@@ -1,0 +1,30 @@
+// Wrangler owns the Worker and browser bundles only. CDKTN/Terraform uploads
+// the result and owns every deployed Cloudflare resource. Keep runtime settings
+// here in sync with src/stacks/edgefall-stack.ts.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "edgefall",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-08-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "rules": [
+    {
+      "type": "Text",
+      "globs": ["**/*.html", "**/*.css", "**/*.svg", "**/*.txt"],
+      "fallthrough": false
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "GAME_ROOMS", "class_name": "EdgefallRoom" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EdgefallRoom"] }],
+  "d1_databases": [
+    {
+      "binding": "RUNS",
+      "database_name": "edgefall-runs",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "r2_buckets": [{ "binding": "REPLAYS", "bucket_name": "edgefall-replays" }]
+}

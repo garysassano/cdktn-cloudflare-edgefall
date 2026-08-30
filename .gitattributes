@@ -1,0 +1,3 @@
+* text=auto eol=lf
+pnpm-lock.yaml text eol=lf
+worker-configuration.d.ts text eol=lf whitespace=-trailing-space

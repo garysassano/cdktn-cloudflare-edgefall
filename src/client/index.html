@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b090c">
+    <meta name="description" content="Edgefall is a cooperative browser action roguelite running on Cloudflare.">
+    <title>Edgefall</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <canvas id="game" aria-label="Edgefall game arena"></canvas>
+
+    <header class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span>EDGEFALL</span>
+      <small>THE RIFT WARDEN</small>
+    </header>
+
+    <section id="hud" class="hud" hidden>
+      <div class="hud__phase"><span id="phase">LOBBY</span><small id="objective">Gather your party</small></div>
+      <div class="hud__boss" id="bossHud" hidden>
+        <span>RIFT WARDEN</span>
+        <div class="meter"><i id="bossHealth"></i></div>
+      </div>
+      <div class="hud__room">RIFT <strong id="roomLabel"></strong></div>
+    </section>
+
+    <section id="party" class="party" hidden></section>
+    <div id="toast" class="toast" role="status"></div>
+
+    <dialog id="landing" class="panel" open>
+      <p class="eyebrow">COOPERATIVE ACTION ROGUELITE</p>
+      <h1>THE EDGE IS<br><em>BREAKING.</em></h1>
+      <p>Cut through the ash host, claim a rift blessing, and bring down the Warden. One to four players. One shared fate.</p>
+      <label>
+        <span>Riftwalker name</span>
+        <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Riftwalker">
+      </label>
+      <label>
+        <span>Invite code</span>
+        <input id="roomCode" maxlength="24" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="panel__actions">
+        <button id="enterButton" class="primary" type="button">ENTER THE RIFT</button>
+        <button id="newRoomButton" class="secondary" type="button">NEW CODE</button>
+      </div>
+      <p class="controls"><kbd>WASD</kbd> move <kbd>MOUSE</kbd> aim <kbd>CLICK</kbd> strike <kbd>SPACE</kbd> dash</p>
+    </dialog>
+
+    <dialog id="lobby" class="panel panel--small">
+      <p class="eyebrow">PARTY ASSEMBLED</p>
+      <h2>RIFT <span id="lobbyCode"></span></h2>
+      <p>Share this code with up to three allies. The first battle begins when any player starts the run.</p>
+      <div class="panel__actions">
+        <button id="startButton" class="primary" type="button">START RUN</button>
+        <button id="copyButton" class="secondary" type="button">COPY INVITE</button>
+      </div>
+    </dialog>
+
+    <dialog id="upgrade" class="panel panel--wide">
+      <p class="eyebrow">THE RIFT ANSWERS</p>
+      <h2>CHOOSE ONE BLESSING</h2>
+      <div id="upgradeCards" class="upgrade-cards"></div>
+    </dialog>
+
+    <dialog id="ending" class="panel panel--small">
+      <p id="endingEyebrow" class="eyebrow"></p>
+      <h2 id="endingTitle">RUN COMPLETE</h2>
+      <p id="endingCopy"></p>
+      <div class="panel__actions">
+        <button id="restartButton" class="primary" type="button">RUN AGAIN</button>
+        <button id="shareButton" class="secondary" type="button">COPY RESULT</button>
+      </div>
+    </dialog>
+
+    <script src="/client.js"></script>
+  </body>
+</html>

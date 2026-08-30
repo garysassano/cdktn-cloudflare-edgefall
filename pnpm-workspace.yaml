@@ -1,0 +1,12 @@
+packages:
+  - "."
+
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+minimumReleaseAge: 4320
+minimumReleaseAgeStrict: true
+
+# mise owns the package-manager binary.
+pmOnFail: ignore
