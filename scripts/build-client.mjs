@@ -1,30 +1,30 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { cp, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { build } from "esbuild";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const outputDirectory = join(root, "src", "generated");
+const outputDirectory = join(root, "dist", "client");
 
-const result = await build({
+await rm(outputDirectory, { force: true, recursive: true });
+await mkdir(outputDirectory, { recursive: true });
+await build({
   bundle: true,
   entryPoints: [join(root, "src", "client", "index.ts")],
   format: "iife",
   legalComments: "none",
   minify: true,
+  outfile: join(outputDirectory, "client.js"),
   platform: "browser",
   target: "es2022",
-  tsconfigRaw: {
-    compilerOptions: { target: "ES2022" },
-  },
-  write: false,
+  tsconfigRaw: { compilerOptions: { target: "ES2022" } },
 });
 
-const output = result.outputFiles?.[0];
-if (!output) {
-  throw new Error("esbuild produced no browser bundle");
-}
+await Promise.all([
+  cp(join(root, "src", "client", "index.html"), join(outputDirectory, "index.html")),
+  cp(join(root, "src", "client", "styles.css"), join(outputDirectory, "styles.css")),
+  cp(join(root, "src", "client", "favicon.svg"), join(outputDirectory, "favicon.svg")),
+  cp(join(root, "public", "assets"), join(outputDirectory, "assets"), { recursive: true }),
+]);
 
-await mkdir(outputDirectory, { recursive: true });
-await writeFile(join(outputDirectory, "client.txt"), output.text);
-console.log(`Built browser client: ${output.text.length.toLocaleString()} bytes`);
+console.log("Built Phaser client and static assets: dist/client");

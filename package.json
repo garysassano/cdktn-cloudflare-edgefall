@@ -6,30 +6,32 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "bundle": "pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler && pnpm worker:build",
+    "assets:validate": "node scripts/validate-assets.mjs",
+    "bundle": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
     "cdktn": "cdktn",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm synth",
+    "check": "pnpm lint && pnpm assets:validate && pnpm typecheck && pnpm test && pnpm synth",
     "client:build": "node scripts/build-client.mjs",
-    "deploy": "pnpm bundle && cdktn deploy --auto-approve",
+    "deploy": "pnpm assets:validate && pnpm client:build && cdktn deploy --auto-approve && cdktn output --skip-synth --outputs-file dist/cdktn-outputs.json && node scripts/build-deploy-config.mjs && wrangler d1 migrations apply RUNS --remote --config .wrangler.deploy.json && wrangler deploy --config .wrangler.deploy.json",
     "destroy": "cdktn destroy --auto-approve",
-    "dev": "pnpm client:build && wrangler dev",
-    "diff": "pnpm bundle && cdktn diff",
+    "dev": "pnpm assets:validate && pnpm client:build && wrangler d1 migrations apply RUNS --local && wrangler dev",
+    "diff": "cdktn diff",
     "format": "biome format --write .",
     "gen": "cdktn get",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "pretest": "pnpm bundle",
     "pretest:watch": "pnpm bundle",
-    "synth": "pnpm bundle && cdktn synth",
+    "synth": "cdktn synth",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/worker/tsconfig.json && tsc --noEmit -p src/client/tsconfig.json",
     "types": "wrangler types",
-    "worker:build": "node scripts/build-worker.mjs"
+    "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler"
   },
   "dependencies": {
     "cdktn": "^0.24.0",
-    "constructs": "10.7.2"
+    "constructs": "10.7.2",
+    "phaser": "4.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.10",

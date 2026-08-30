@@ -1,6 +1,10 @@
-# cdktn-cloudflare-edgefall
+# Edgefall
 
-CDKTN app for a cooperative browser hack-and-slash backed by an authoritative Cloudflare Durable Object.
+Edgefall is a one-to-four-player online run-and-gun roguelite vertical slice set in the diesel-fantasy Cinder Railworks.
+
+Private crews cross hand-authored foundry modules, fight on a moving freight lift, survive the collapsing Fall, and break the three-phase Kilnheart Engine in an authoritative 30 Hz room.
+
+Daily crews receive separate private rooms with the same fixed date seed, so their runs remain comparable without sharing live combat state.
 
 ## Architecture Diagram
 
@@ -9,12 +13,20 @@ CDKTN app for a cooperative browser hack-and-slash backed by an authoritative Cl
   <img alt="Architecture Diagram" src="./src/assets/arch-diagram.svg">
 </picture>
 
+The deterministic TypeScript simulation in `src/game/` is shared by the browser and Durable Object.
+
+Phaser is presentation-only: it renders at a 640×360 logical resolution, predicts the local player's movement, reconciles acknowledged inputs, and interpolates remote snapshots.
+
+The Worker serves static assets and profile, leaderboard, result, and room routes; one hibernatable Durable Object owns each active room; D1 stores anonymous profiles and run records; R2 stores compact completed-run replay streams.
+
+CDKTN owns the D1 and R2 backing resources.
+
+Wrangler exclusively owns Worker code, the Durable Object migration, bindings, and static-asset deployment.
+
 ## Prerequisites
 
-- **_Cloudflare:_**
-  - Must have set the `CLOUDFLARE_API_TOKEN` variable in your local environment, with the `Workers Scripts:Edit`, `D1:Edit`, `Workers R2 Storage:Edit` and `Account Settings:Read` permissions.
-- **_mise:_**
-  - [Install mise](https://mise.jdx.dev/installing-mise.html), which manages Node, pnpm, and OpenTofu.
+- Cloudflare API access with `Workers Scripts:Edit`, `D1:Edit`, `Workers R2 Storage:Edit`, and `Account Settings:Read` permissions.
+- [mise](https://mise.jdx.dev/installing-mise.html), which installs the repository's Node, pnpm, OpenTofu, and CDKTN versions.
 
 ## Installation
 
@@ -22,46 +34,85 @@ CDKTN app for a cooperative browser hack-and-slash backed by an authoritative Cl
 mise install
 pnpm install
 pnpm gen
+cp .dev.vars.example .dev.vars
 ```
 
-`pnpm gen` generates the Cloudflare provider constructs into `.gen/`. Re-run it whenever the provider constraint in `cdktf.json` changes.
+Set a local `PROFILE_COOKIE_SECRET` of at least 32 random characters in `.dev.vars`.
 
-## Deployment
+`pnpm gen` generates the Cloudflare provider constructs into `.gen/`; rerun it when the provider constraint in `cdktf.json` changes.
 
-```sh
-pnpm run deploy
-```
-
-## Usage
-
-For local play:
+## Local play
 
 ```sh
 pnpm dev
 ```
 
-Open `http://localhost:8787`. A Cloudflare account is not required because Wrangler provides local Durable Object, D1, and R2 implementations.
+Open `http://localhost:8787`.
 
-- Move with `WASD` or the arrow keys.
-- Aim with the pointer and hold the primary mouse button to slash.
-- Press `Space` to dash with a brief invulnerability window.
-- Share the room code to play with up to three other people.
+Wrangler supplies local Durable Object, D1, R2, and static-asset implementations, so local play does not require a Cloudflare account.
 
-## Cleanup
+### Controls
+
+- Run: `A` / `D` or left stick.
+- Jump: `Space` or gamepad south; hold `S` and jump to drop through a platform.
+- Aim and fire: pointer and primary mouse button, or right stick and right trigger.
+- Reload: `R` or right bumper.
+- Dodge: `Shift` or gamepad east.
+- Melee and revive: `F` or gamepad west.
+- Ordnance: `Q` or left bumper.
+- Operative ability: `E` or gamepad north.
+
+Friendly fire is disabled, upgrade choices are personal, and destructible supplies are shared automatically.
+
+Downed operatives can crawl and use a sidearm, allies revive with melee, and an eliminated operative re-enters after a short delay.
+
+## Production deployment
+
+Deploy the backing resources and Worker:
+
+```sh
+pnpm deploy
+```
+
+Immediately after the first deploy, add the Worker secret with the generated production configuration:
+
+```sh
+pnpm exec wrangler secret put PROFILE_COOKIE_SECRET --config .wrangler.deploy.json
+```
+
+Later deploys preserve the secret.
+
+The deploy command builds and validates the client, provisions D1 and R2 with CDKTN, writes their outputs to the ignored Wrangler configuration, applies D1 migrations, and deploys Worker code, the Durable Object migration, and static assets with Wrangler.
+
+The [vertical-slice migration note](./docs/migration-notes.md) records the intentional pre-1.0 reset of incompatible prototype leaderboard rows.
+
+Destroying the CDKTN stack removes only its backing resources:
 
 ```sh
 pnpm destroy
 ```
 
-## How it works
+Remove the Wrangler-owned Worker separately when a complete teardown is intended.
 
-The Worker serves the application, routes room WebSockets, exposes the health check, and returns the leaderboard. Each room has a hibernatable Durable Object that runs the authoritative simulation and persists the current game. D1 stores completed-run metadata for the leaderboard, while R2 stores compact replay summaries.
+## Content and evidence
 
-Wrangler owns the Worker **bundle**, CDKTN owns the **deployment**:
+The current slice contains Rook and Vale with two outfits, four primary weapons, two ordnance choices, weapon mutations, relics, five standard enemy roles, the Slag Warden elite, destructibles, the freight-lift fight, the Fall, and the Kilnheart Engine.
 
-1. `pnpm bundle` builds the browser client, validates the Worker with a Wrangler dry run, and creates a self-contained `dist/index.js` with every static module embedded.
-2. `src/stacks/edgefall-stack.ts` uploads that single module through `cloudflare_workers_script` and provisions its Durable Object migration, D1 database, R2 bucket, bindings, observability, and `workers.dev` subdomain.
+The [style benchmark](./docs/style-benchmark.md) records the art, animation, VFX, control, and audio approval gate.
 
-`pnpm synth`, `pnpm diff`, `pnpm run deploy`, and `pnpm test` all run the bundle step first, so the synthesized stack always matches the current source.
+Its Rook, enemy, weapon, VFX, and environment assets are integrated, while palette variants stand in for the remaining final production art until that benchmark is approved.
 
-Keep the compatibility date, compatibility flags, bindings, and migration in `wrangler.jsonc` synchronized with `src/stacks/edgefall-stack.ts`. Wrangler needs them to bundle and run locally, while OpenTofu needs them to deploy.
+Every runtime media file is original or redistribution-compatible licensed and recorded in the checked-in [asset provenance manifest](./public/assets/manifest.json).
+
+The 12–18 minute duration, stable 60 FPS target, boss readability, and four-player enjoyment remain playtest acceptance criteria; automated checks do not claim those human and hardware results.
+
+## Validation
+
+```sh
+pnpm check
+pnpm types
+```
+
+`pnpm check` runs Biome, asset integrity and licence validation, all three TypeScript configurations, the deterministic simulation and network tests, the Worker/client dry-run bundle, and CDKTN synthesis.
+
+`pnpm types` refreshes `worker-configuration.d.ts` after a binding change.

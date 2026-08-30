@@ -3,78 +3,150 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b090c">
-    <meta name="description" content="Edgefall is a cooperative browser action roguelite running on Cloudflare.">
-    <title>Edgefall</title>
+    <meta name="theme-color" content="#0a0909">
+    <meta name="description" content="Edgefall is a one-to-four-player diesel-fantasy run-and-gun roguelite.">
+    <title>Edgefall · Cinder Railworks</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <canvas id="game" aria-label="Edgefall game arena"></canvas>
+    <main id="game" aria-label="Edgefall game view"></main>
+    <div class="scanlines" aria-hidden="true"></div>
 
     <header class="brand">
-      <span class="brand__mark" aria-hidden="true"></span>
-      <span>EDGEFALL</span>
-      <small>THE RIFT WARDEN</small>
+      <span class="brand__sigil" aria-hidden="true">E</span>
+      <span><strong>EDGEFALL</strong><small>CINDER RAILWORKS</small></span>
     </header>
 
     <section id="hud" class="hud" hidden>
-      <div class="hud__phase"><span id="phase">LOBBY</span><small id="objective">Gather your party</small></div>
-      <div class="hud__boss" id="bossHud" hidden>
-        <span>RIFT WARDEN</span>
-        <div class="meter"><i id="bossHealth"></i></div>
+      <div class="hud__objective">
+        <span id="phaseLabel">CREW DECK</span>
+        <strong id="objectiveLabel">Assemble the crew</strong>
       </div>
-      <div class="hud__room">RIFT <strong id="roomLabel"></strong></div>
+      <div id="bossHud" class="boss-hud" hidden>
+        <span>KILNHEART ENGINE · <b id="bossPhase">PHASE I</b></span>
+        <div class="meter meter--boss"><i id="bossHealth"></i></div>
+        <small id="bossComponents">FEEDS 0/3</small>
+      </div>
+      <div class="hud__score"><span>SCORE</span><strong id="scoreLabel">000000</strong></div>
     </section>
 
-    <section id="party" class="party" hidden></section>
-    <div id="toast" class="toast" role="status"></div>
-
-    <dialog id="landing" class="panel" open>
-      <p class="eyebrow">COOPERATIVE ACTION ROGUELITE</p>
-      <h1>THE EDGE IS<br><em>BREAKING.</em></h1>
-      <p>Cut through the ash host, claim a rift blessing, and bring down the Warden. One to four players. One shared fate.</p>
-      <label>
-        <span>Riftwalker name</span>
-        <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Riftwalker">
-      </label>
-      <label>
-        <span>Invite code</span>
-        <input id="roomCode" maxlength="24" autocomplete="off" spellcheck="false">
-      </label>
-      <div class="panel__actions">
-        <button id="enterButton" class="primary" type="button">ENTER THE RIFT</button>
-        <button id="newRoomButton" class="secondary" type="button">NEW CODE</button>
+    <section id="combatHud" class="combat-hud" hidden>
+      <div class="weapon-readout">
+        <span id="weaponName">MORROW CARBINE</span>
+        <strong id="ammoLabel">30 / 180</strong>
+        <div class="meter"><i id="weaponMeter"></i></div>
       </div>
-      <p class="controls"><kbd>WASD</kbd> move <kbd>MOUSE</kbd> aim <kbd>CLICK</kbd> strike <kbd>SPACE</kbd> dash</p>
-    </dialog>
-
-    <dialog id="lobby" class="panel panel--small">
-      <p class="eyebrow">PARTY ASSEMBLED</p>
-      <h2>RIFT <span id="lobbyCode"></span></h2>
-      <p>Share this code with up to three allies. The first battle begins when any player starts the run.</p>
-      <div class="panel__actions">
-        <button id="startButton" class="primary" type="button">START RUN</button>
-        <button id="copyButton" class="secondary" type="button">COPY INVITE</button>
+      <div class="ability-readout">
+        <span id="abilityLabel">BULWARK</span>
+        <b id="ordnanceLabel">CINDER ×3</b>
       </div>
-    </dialog>
+    </section>
 
-    <dialog id="upgrade" class="panel panel--wide">
-      <p class="eyebrow">THE RIFT ANSWERS</p>
-      <h2>CHOOSE ONE BLESSING</h2>
-      <div id="upgradeCards" class="upgrade-cards"></div>
-    </dialog>
+    <section id="partyHud" class="party-hud" hidden></section>
+    <div id="connectionStatus" class="connection" hidden>RECONNECTING TO RESERVED SLOT…</div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <dialog id="ending" class="panel panel--small">
-      <p id="endingEyebrow" class="eyebrow"></p>
-      <h2 id="endingTitle">RUN COMPLETE</h2>
-      <p id="endingCopy"></p>
-      <div class="panel__actions">
-        <button id="restartButton" class="primary" type="button">RUN AGAIN</button>
-        <button id="shareButton" class="secondary" type="button">COPY RESULT</button>
-      </div>
-    </dialog>
+    <section id="landing" class="overlay">
+      <article class="panel panel--landing">
+        <p class="eyebrow">1–4 PLAYER ONLINE RUN-AND-GUN</p>
+        <h1>HOLD THE LINE.<br><em>BREAK THE ENGINE.</em></h1>
+        <p class="lede">Board the Cinder Railworks, survive the moving freight lift and the Fall, then tear open the Kilnheart Engine before the fracture consumes the line.</p>
+        <div class="form-grid">
+          <label><span>Operative name</span><input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Operative"></label>
+          <label><span>Private invite code</span><input id="roomCode" maxlength="24" autocomplete="off" spellcheck="false"></label>
+        </div>
+        <div class="panel__actions">
+          <button id="enterButton" class="primary" type="button">ENTER PRIVATE ROOM</button>
+          <button id="newRoomButton" class="secondary" type="button">NEW CODE</button>
+          <button id="dailyButton" class="secondary" type="button">DAILY RUN</button>
+        </div>
+        <div class="landing-links">
+          <button id="boardsButton" class="text-button" type="button">LEADERBOARDS</button>
+          <button id="settingsButton" class="text-button" type="button">ACCESSIBILITY + AUDIO</button>
+          <span id="profileLabel">CREATING LOCAL PROFILE…</span>
+        </div>
+        <p class="controls"><kbd>A D</kbd> run · <kbd>SPACE</kbd> jump · <kbd>S + SPACE</kbd> drop · <kbd>MOUSE</kbd> aim/fire · <kbd>R</kbd> reload · <kbd>SHIFT</kbd> dodge · <kbd>F</kbd> melee · <kbd>Q</kbd> ordnance · <kbd>E</kbd> ability · gamepad supported</p>
+      </article>
+    </section>
 
-    <script src="/client.js"></script>
+    <section id="lobby" class="overlay" hidden>
+      <article class="panel panel--loadout">
+        <div class="panel__heading">
+          <div><p class="eyebrow">PRIVATE CREW DECK</p><h2>ROOM <span id="lobbyCode"></span></h2></div>
+          <button id="copyInviteButton" class="secondary" type="button">COPY INVITE</button>
+        </div>
+        <div class="loadout-layout">
+          <div>
+            <h3>OPERATIVE</h3>
+            <div class="operator-grid">
+              <button class="operator-card operator-card--selected" data-operator="rook" type="button"><b>ROOK</b><span>Defensive bruiser</span><small>Brace · Bulwark Pulse</small></button>
+              <button class="operator-card" data-operator="vale" type="button"><b>VALE</b><span>Agile skirmisher</span><small>Momentum · Rift Step</small></button>
+            </div>
+            <div id="operatorCopy" class="operator-copy"></div>
+          </div>
+          <div class="loadout-fields">
+            <label><span>Outfit</span><select id="outfitSelect"><option value="field">Field Issue</option><option value="foundry">Foundry Black</option></select></label>
+            <label><span>Starting primary</span><select id="weaponSelect"><option value="carbine">Morrow Carbine</option><option value="scattergun">Breach Scattergun</option><option value="rivet-launcher">Atlas Riveter</option><option value="beam">Kiln Beam</option></select></label>
+            <p id="weaponCopy"></p>
+            <label><span>Ordnance</span><select id="ordnanceSelect"><option value="cinder-bomb">Cinder Bomb</option><option value="arc-mine">Arc Mine</option></select></label>
+            <p id="ordnanceCopy"></p>
+          </div>
+        </div>
+        <div id="crewList" class="crew-list"></div>
+        <div class="panel__actions panel__actions--end">
+          <button id="leaveButton" class="secondary" type="button">LEAVE</button>
+          <button id="readyButton" class="primary" type="button">READY UP</button>
+        </div>
+        <p class="lobby-note">The run launches when every connected operative is ready. Crew slots are reserved for reconnects; nobody can join after departure.</p>
+      </article>
+    </section>
+
+    <section id="reward" class="overlay" hidden>
+      <article class="panel panel--rewards">
+        <p class="eyebrow">PERSONAL SALVAGE · NO LOOT STEALING</p>
+        <h2>CHOOSE A MODIFICATION</h2>
+        <div id="rewardCards" class="reward-cards"></div>
+      </article>
+    </section>
+
+    <section id="results" class="overlay" hidden>
+      <article class="panel panel--results">
+        <p id="resultEyebrow" class="eyebrow">KILNHEART SHUT DOWN</p>
+        <h2 id="resultTitle">RUN COMPLETE</h2>
+        <div class="result-score"><span id="resultScore">000000</span><small id="resultTime">00:00</small></div>
+        <div id="resultParty" class="result-party"></div>
+        <div class="panel__actions">
+          <button id="rematchButton" class="primary" type="button">RETURN TO CREW DECK</button>
+          <button id="copyResultButton" class="secondary" type="button">COPY RESULT LINK</button>
+          <button id="resultBoardsButton" class="secondary" type="button">VIEW BOARD</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="boards" class="overlay" hidden>
+      <article class="panel panel--boards">
+        <div class="panel__heading"><div><p class="eyebrow">RAILWORKS RECORDS</p><h2>LEADERBOARDS</h2></div><button class="close-button" data-close="boards" type="button" aria-label="Close">×</button></div>
+        <div class="board-filters">
+          <label><span>Crew</span><select id="boardParty"><option value="1">Solo</option><option value="2">Duo</option><option value="3">Trio</option><option value="4">Squad</option></select></label>
+          <label><span>Board</span><select id="boardMode"><option value="normal">High Score</option><option value="daily">Daily Seed</option></select></label>
+        </div>
+        <ol id="boardRows" class="board-rows"><li>Loading records…</li></ol>
+      </article>
+    </section>
+
+    <section id="settings" class="overlay" hidden>
+      <article class="panel panel--settings">
+        <div class="panel__heading"><div><p class="eyebrow">READABILITY + COMFORT</p><h2>ACCESSIBILITY</h2></div><button class="close-button" data-close="settings" type="button" aria-label="Close">×</button></div>
+        <label class="range-row"><span>Master volume</span><input id="volumeSetting" type="range" min="0" max="1" step="0.05" value="0.7"></label>
+        <label class="check-row"><input id="shakeSetting" type="checkbox" checked><span>Screen shake</span></label>
+        <label class="check-row"><input id="flashSetting" type="checkbox" checked><span>Bright combat flashes</span></label>
+        <label class="check-row"><input id="contrastSetting" type="checkbox"><span>High-contrast team outlines</span></label>
+        <label class="check-row"><input id="reduceMotionSetting" type="checkbox"><span>Reduce background motion</span></label>
+        <p>Enemy telegraphs use shape, motion, and color together. All actions are remappable through browser or gamepad software in this vertical slice.</p>
+      </article>
+    </section>
+
+    <script src="/client.js" defer></script>
   </body>
 </html>

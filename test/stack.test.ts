@@ -30,67 +30,23 @@ describe("EdgefallStack", () => {
     ).toBe(true);
   });
 
-  it("uploads the bundled authoritative game Worker", () => {
-    expect(
-      Testing.toHaveResourceWithProperties(synthesized, "cloudflare_workers_script", {
-        script_name: "edgefall",
-        main_module: "index.js",
-        compatibility_date: "2026-08-30",
-        compatibility_flags: ["nodejs_compat"],
-        observability: { enabled: true },
-      }),
-    ).toBe(true);
-
-    const script = JSON.parse(synthesized).resource.cloudflare_workers_script.EdgefallWorker;
-    expect(script.content_file).toMatch(/^assets\/EdgefallWorkerBundle\/.+\/index\.js$/);
-    expect(script.content_sha256).toBe(`\${filesha256("${script.content_file}")}`);
-  });
-
-  it("creates and binds the SQLite Durable Object room", () => {
-    expect(
-      Testing.toHaveResourceWithProperties(synthesized, "cloudflare_workers_script", {
-        migrations: {
-          new_tag: "v1",
-          new_sqlite_classes: ["EdgefallRoom"],
-        },
-      }),
-    ).toBe(true);
-  });
-
-  it("binds game rooms, run history, and replay storage", () => {
-    expect(
-      Testing.toHaveResourceWithProperties(synthesized, "cloudflare_workers_script", {
-        bindings: [
-          {
-            type: "durable_object_namespace",
-            name: "GAME_ROOMS",
-            class_name: "EdgefallRoom",
-          },
-          {
-            type: "d1",
-            name: "RUNS",
-            // biome-ignore lint/suspicious/noTemplateCurlyInString: Terraform interpolation
-            database_id: "${cloudflare_d1_database.Runs.id}",
-          },
-          {
-            type: "r2_bucket",
-            name: "REPLAYS",
-            // biome-ignore lint/suspicious/noTemplateCurlyInString: Terraform interpolation
-            bucket_name: "${cloudflare_r2_bucket.Replays.name}",
-          },
-        ],
-      }),
-    ).toBe(true);
-  });
-
-  it("publishes the game on workers.dev", () => {
-    expect(
-      Testing.toHaveResourceWithProperties(synthesized, "cloudflare_workers_script_subdomain", {
-        enabled: true,
-        previews_enabled: true,
+  it("exports backing resource identifiers for the Wrangler-owned deployment", () => {
+    const template = JSON.parse(synthesized);
+    expect(template.output).toEqual({
+      replays_bucket_name: {
         // biome-ignore lint/suspicious/noTemplateCurlyInString: Terraform interpolation
-        script_name: "${cloudflare_workers_script.EdgefallWorker.script_name}",
-      }),
-    ).toBe(true);
+        value: "${cloudflare_r2_bucket.Replays.name}",
+      },
+      runs_database_id: {
+        // biome-ignore lint/suspicious/noTemplateCurlyInString: Terraform interpolation
+        value: "${cloudflare_d1_database.Runs.id}",
+      },
+    });
+  });
+
+  it("does not let CDKTN own Worker code, migrations, routes, or static assets", () => {
+    const resources = JSON.parse(synthesized).resource;
+    expect(resources.cloudflare_workers_script).toBeUndefined();
+    expect(resources.cloudflare_workers_script_subdomain).toBeUndefined();
   });
 });

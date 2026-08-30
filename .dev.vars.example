@@ -1,0 +1,3 @@
+# Copy to .dev.vars for local development. Production uses a Wrangler secret:
+# pnpm exec wrangler secret put PROFILE_COOKIE_SECRET --config .wrangler.deploy.json
+PROFILE_COOKIE_SECRET="replace-with-at-least-32-random-characters"

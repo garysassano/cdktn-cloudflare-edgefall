@@ -15,18 +15,18 @@ BROWSER, WORKER, ROOM, RUNS = 0, 1, 2, 3
 def nodes():
     return [
         Node("browser", "globe", "Browser party", inside=False, external=True),
-        Node("worker", "workers", "Workers", "edgefall"),
-        Node("room", "durable-objects", "Durable Objects", "one per room"),
+        Node("worker", "workers", "Workers", "assets + API"),
+        Node("room", "durable-objects", "Durable Objects", "one per active room"),
         # The shared Cloudflare glyph set has no D1-specific mark, so the
         # generic API/data product glyph accompanies the explicit D1 title.
-        Node("runs", "api", "D1", "edgefall-runs"),
+        Node("runs", "api", "D1", "profiles + runs"),
     ]
 
 
 FLOWS = [
-    Flow(BROWSER, WORKER, "join + input", "HTTP / WebSocket"),
-    Flow(WORKER, ROOM, "route by code", "authoritative 20 Hz"),
-    Flow(ROOM, RUNS, "index victory", "leaderboard"),
+    Flow(BROWSER, WORKER, "assets + room", "HTTPS / WebSocket"),
+    Flow(WORKER, ROOM, "route by code", "authoritative 30 Hz"),
+    Flow(ROOM, RUNS, "store result", "history + boards"),
 ]
 
 

@@ -4,13 +4,13 @@
 
 Use mise for contributor tools and pnpm for package management. Keep pnpm 12 and TypeScript 7 unless an explicit compatibility requirement changes them.
 
-Wrangler owns local development and bundling only. CDK Terrain and OpenTofu own deployed Cloudflare resources; keep matching Worker settings in `wrangler.jsonc` and `src/stacks/edgefall-stack.ts` synchronized.
+Wrangler exclusively owns Worker code, Durable Object migrations, static assets, and their deployment. CDK Terrain and OpenTofu own backing Cloudflare resources such as D1 and R2; pass their synthesized identifiers into Wrangler's deploy configuration.
 
 ## Game architecture
 
 Keep the simulation in `src/game/` deterministic and platform-neutral. Browsers send input intent, while the Durable Object remains authoritative for movement, combat, upgrades, boss phases, and outcomes.
 
-Do not add a normal-path dependency on downloaded game assets. Prefer the existing procedural canvas style for characters, enemies, effects, and animation.
+Runtime art, music, and sound must be original or redistribution-compatible licensed assets checked into `public/assets` and recorded in `public/assets/manifest.json`. Run the asset validator after every change, keep the style benchmark review gate ahead of remaining final asset production, and do not use procedural Canvas figures or oscillator audio as final assets.
 
 ## Validation
 

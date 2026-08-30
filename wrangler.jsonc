@@ -1,6 +1,6 @@
-// Wrangler owns the Worker and browser bundles only. CDKTN/Terraform uploads
-// the result and owns every deployed Cloudflare resource. Keep runtime settings
-// here in sync with src/stacks/edgefall-stack.ts.
+// Wrangler exclusively owns Worker code, Durable Object migrations, and static
+// assets. CDKTN/OpenTofu creates the D1 and R2 backing resources. The production
+// deploy script replaces the local D1 placeholder with the CDKTN output.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "edgefall",
@@ -8,13 +8,12 @@
   "compatibility_date": "2026-08-30",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
-  "rules": [
-    {
-      "type": "Text",
-      "globs": ["**/*.html", "**/*.css", "**/*.svg", "**/*.txt"],
-      "fallthrough": false
-    }
-  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist/client",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*", "/health", "/rooms/*", "/runs/*"]
+  },
   "durable_objects": {
     "bindings": [{ "name": "GAME_ROOMS", "class_name": "EdgefallRoom" }]
   },

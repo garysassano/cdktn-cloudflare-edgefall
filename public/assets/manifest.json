@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "policy": "Every runtime art, music, and sound file must be an original Edgefall asset or carry a licence that permits redistribution. Every file is checked in, attributed to a source record, size-bounded, and integrity-checked before release.",
+  "sources": {
+    "edgefall-original": {
+      "creator": "OpenAI built-in image generation, directed for Edgefall",
+      "licence": "Project-original",
+      "provenance": "Generated specifically for this repository without supplied third-party reference images. Final prompts are recorded in docs/style-benchmark.md."
+    },
+    "kenney-digital-audio": {
+      "creator": "Kenney",
+      "licence": "CC0-1.0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://kenney.nl/assets/digital-audio"
+    },
+    "kenney-impact-sounds": {
+      "creator": "Kenney",
+      "licence": "CC0-1.0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://kenney.nl/assets/impact-sounds"
+    },
+    "kenney-music-jingles": {
+      "creator": "Kenney",
+      "licence": "CC0-1.0",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://kenney.nl/assets/music-jingles"
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/art/cinder-railworks.png",
+      "bytes": 2168876,
+      "sha256": "718541fa816871337aa60d3c626807e71419f978978ce81545af63bf88719b39",
+      "source": "edgefall-original",
+      "licence": "Project-original",
+      "maxBytes": 3000000,
+      "png": { "width": 1672, "height": 941, "colorType": 2 }
+    },
+    {
+      "path": "assets/art/rook-benchmark.json",
+      "bytes": 3677,
+      "sha256": "b31f993683c4b5637bac2bfba2431491d476b1adab775a6a6c50fe543df20929",
+      "source": "edgefall-original",
+      "licence": "Project-original",
+      "maxBytes": 50000
+    },
+    {
+      "path": "assets/art/rook-benchmark.png",
+      "bytes": 2416603,
+      "sha256": "ec5e12548469e6ca0eaab4c8491480b5311e42eedf9d547b3d72df48f18c6c5c",
+      "source": "edgefall-original",
+      "licence": "Project-original",
+      "maxBytes": 3000000,
+      "png": { "width": 1536, "height": 1024, "colorType": 6 },
+      "atlas": "assets/art/rook-benchmark.json"
+    },
+    {
+      "path": "assets/audio/beam-loop.ogg",
+      "bytes": 7222,
+      "sha256": "d6edcbde2c7190e275ef3eba08a8886129153a361cd0e16dc0fb58206deb5e53",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "phaserUp3.ogg"
+    },
+    {
+      "path": "assets/audio/biome-loop.ogg",
+      "bytes": 19117,
+      "sha256": "21233e95b5e2c167293484c9906264c632a5f1fe45744d1d5b52ba1dfb0a18fb",
+      "source": "kenney-music-jingles",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "Steel03.ogg"
+    },
+    {
+      "path": "assets/audio/boss-loop.ogg",
+      "bytes": 20532,
+      "sha256": "a24f6f6f76063d8e0442b15e660896ec4dd11a7be45d19f71088408e002c99f8",
+      "source": "kenney-music-jingles",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "Steel14.ogg"
+    },
+    {
+      "path": "assets/audio/carbine-shot.ogg",
+      "bytes": 9315,
+      "sha256": "0bf468769b48a834dc1c6e38e457f2c71159b010225a9aedf84316795e8cc3e5",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "laser1.ogg"
+    },
+    {
+      "path": "assets/audio/dodge.ogg",
+      "bytes": 6342,
+      "sha256": "5d85717cfca231f7da7887cef5f44b2131bbe3308eb0c1fee0b4f9e61d59b571",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "phaseJump2.ogg"
+    },
+    {
+      "path": "assets/audio/explosion.ogg",
+      "bytes": 7279,
+      "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "impactMetal_heavy_001.ogg"
+    },
+    {
+      "path": "assets/audio/footstep-a.ogg",
+      "bytes": 5808,
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "footstep_concrete_000.ogg"
+    },
+    {
+      "path": "assets/audio/footstep-b.ogg",
+      "bytes": 6308,
+      "sha256": "507a75eb19b897087855a3be3cf11a12d7fa37d143ad535eeebe0b8031c7325d",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "footstep_concrete_001.ogg"
+    },
+    {
+      "path": "assets/audio/impact-light.ogg",
+      "bytes": 9023,
+      "sha256": "92d5db6bfc672d9dc1b4f390b2900504f013187fa36335472554fafefa9050b1",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "impactMetal_light_003.ogg"
+    },
+    {
+      "path": "assets/audio/melee.ogg",
+      "bytes": 12160,
+      "sha256": "4237fa2cd80364ad81cd0af44f67d7497f1c5edcc7bdb02cd22be2ba4580c83d",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "mining_003.ogg"
+    },
+    {
+      "path": "assets/audio/player-hit.ogg",
+      "bytes": 9025,
+      "sha256": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3",
+      "source": "kenney-impact-sounds",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "impactPunch_heavy_002.ogg"
+    },
+    {
+      "path": "assets/audio/reward.ogg",
+      "bytes": 9043,
+      "sha256": "59e7591f7a068882767bc1fd61edabf479b78787466d3a70bc49dfa0533777d2",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "powerUp3.ogg"
+    },
+    {
+      "path": "assets/audio/rivet-shot.ogg",
+      "bytes": 12640,
+      "sha256": "1b3a14886d25a471273eec5d55ff3a7e7c7c6df4e82f3659046dafed982a76d4",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "spaceTrash2.ogg"
+    },
+    {
+      "path": "assets/audio/scatter-shot.ogg",
+      "bytes": 8302,
+      "sha256": "caede23d2b65299acdc4e9cab16d06c247d69c7ca1c74caa5e9da21cbdbc1400",
+      "source": "kenney-digital-audio",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "laser3.ogg"
+    },
+    {
+      "path": "assets/audio/victory.ogg",
+      "bytes": 39948,
+      "sha256": "1010c9b566d6c090ff03a4aaaf7439e26eb4cc4f20373800d0b7e6a9057b795d",
+      "source": "kenney-music-jingles",
+      "licence": "CC0-1.0",
+      "maxBytes": 250000,
+      "originalFile": "NES00.ogg"
+    }
+  ]
+}

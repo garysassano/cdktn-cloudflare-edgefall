@@ -20,6 +20,7 @@ terraform.tfstate.d/
 
 # wrangler
 .wrangler/
+.wrangler.deploy.json
 .dev.vars*
 !.dev.vars.example
 .env*
