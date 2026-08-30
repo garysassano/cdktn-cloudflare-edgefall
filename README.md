@@ -71,7 +71,7 @@ Downed operatives can crawl and use a sidearm, allies revive with melee, and an 
 Deploy the backing resources and Worker:
 
 ```sh
-pnpm deploy
+pnpm run deploy
 ```
 
 Immediately after the first deploy, add the Worker secret with the generated production configuration:
