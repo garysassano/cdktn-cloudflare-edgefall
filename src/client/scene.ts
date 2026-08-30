@@ -77,6 +77,7 @@ export class EdgefallScene extends Phaser.Scene {
     ordnance: false,
     reload: false,
   };
+  private presentationReady = false;
   private projectiles = new Map<string, ProjectileVisual>();
   private sequence = 0;
   private settings: PresentationSettings = DEFAULT_SETTINGS;
@@ -99,6 +100,8 @@ export class EdgefallScene extends Phaser.Scene {
   }
 
   create(): void {
+    this.presentationReady = true;
+    this.sound.volume = this.settings.volume;
     this.cameras.main.setRoundPixels(true);
     this.cameras.main.setBackgroundColor("#090808");
     this.registerAnimations();
@@ -198,7 +201,7 @@ export class EdgefallScene extends Phaser.Scene {
 
   setPresentationSettings(settings: PresentationSettings): void {
     this.settings = settings;
-    this.sound.volume = settings.volume;
+    if (this.presentationReady) this.sound.volume = settings.volume;
   }
 
   private sampleInput(): InputFrame {
