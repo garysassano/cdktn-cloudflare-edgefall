@@ -66,6 +66,12 @@ Friendly fire is disabled, upgrade choices are personal, and destructible suppli
 
 Downed operatives can crawl and use a sidearm, allies revive with melee, and an eliminated operative re-enters after a short delay.
 
+### Redesign controller laboratory
+
+Run `pnpm dev:lab` and open `http://localhost:8787/controller-lab.html` for the new 60 Hz controller's isolated engineering surface. Select the obstacle course, moving support or crush fixture; run or single-step, inspect contacts, and export/import a bounded deterministic input recording. This lab uses temporary geometry visuals and does not connect to a multiplayer room. The ordinary client build excludes both development laboratories.
+
+`pnpm test:lab:controller` builds the labs and verifies keyboard input, replay and rendering in local Chromium. Set `EDGEFALL_CHROMIUM_PATH` to an installed Chromium executable when it is not in Playwright's default location. See the [controller lab evidence](./docs/redesign-evidence/W03-controller-lab.md) for exact coverage and remaining acceptance work.
+
 ## Production deployment
 
 Deploy the backing resources and Worker:

@@ -1,0 +1,616 @@
+{
+  "status": "pass",
+  "recordedAt": "2026-09-06T17:50:32.239Z",
+  "baseCommit": "09e2cc09c647eaa595583d628383d2d709598dbf",
+  "browser": "151.0.7922.34",
+  "bundleSha256": "6c262aae6106a202c25e140d461111b798a07030c79f182e38269ef36c1d65a6",
+  "screenshotSha256": "3be55f7c2c720d2312367c462b7b53d5cb099efaf495ef4f3359c6d56f455804",
+  "checks": [
+    "keyboard run",
+    "between-tick jump tap",
+    "local replay",
+    "recording export",
+    "recording import and tamper rejection",
+    "crouch clearance",
+    "one-way drop tap",
+    "moving support carry",
+    "geometry removal",
+    "landing",
+    "focus-loss pause and neutral input",
+    "crush stop"
+  ],
+  "jumpState": {
+    "scenario": "course",
+    "tick": 2,
+    "geometryRevision": 1,
+    "removed": false,
+    "actor": {
+      "body": {
+        "id": 1,
+        "x": 16128,
+        "y": 75425,
+        "vx": 0,
+        "vy": -1375,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 1,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": 1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [0, 0, 0, 0, 0]
+    },
+    "terrain": [
+      {
+        "id": 100,
+        "rect": {
+          "x": 0,
+          "y": 76800,
+          "w": 58880,
+          "h": 10240
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 101,
+        "rect": {
+          "x": 71680,
+          "y": 76800,
+          "w": 92160,
+          "h": 10240
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 102,
+        "rect": {
+          "x": 33280,
+          "y": 67840,
+          "w": 17920,
+          "h": 2560
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 103,
+        "rect": {
+          "x": 87040,
+          "y": 64000,
+          "w": 23040,
+          "h": 1536
+        },
+        "kind": "one-way",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 104,
+        "rect": {
+          "x": 119040,
+          "y": 60160,
+          "w": 3072,
+          "h": 16640
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 105,
+        "rect": {
+          "x": 143360,
+          "y": 69120,
+          "w": 20480,
+          "h": 3072
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "result": {
+      "status": "complete",
+      "actor": {
+        "body": {
+          "id": 1,
+          "x": 16128,
+          "y": 75425,
+          "vx": 0,
+          "vy": -1375,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "airborne",
+        "action": {
+          "kind": "ready",
+          "actionInstanceId": 0,
+          "stateStartTick": 0,
+          "definitionId": 0,
+          "nextMarkerIndex": 0
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 0,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [0, 0, 0, 0, 0]
+      },
+      "events": [
+        {
+          "kind": "jump",
+          "tick": 2,
+          "supportId": 100
+        }
+      ],
+      "jumpRequest": "consumed",
+      "physics": {
+        "status": "complete",
+        "movement": {
+          "rect": {
+            "x": 14336,
+            "y": 66721,
+            "w": 3584,
+            "h": 8704
+          },
+          "motion": {
+            "x": 0,
+            "y": -1375
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 0,
+          "diagnosticIds": []
+        },
+        "body": {
+          "id": 1,
+          "x": 16128,
+          "y": 75425,
+          "vx": 0,
+          "vy": -1375,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        }
+      }
+    },
+    "stopped": null
+  },
+  "removal": {
+    "scenario": "moving-support",
+    "tick": 21,
+    "geometryRevision": 2,
+    "removed": true,
+    "actor": {
+      "body": {
+        "id": 1,
+        "x": 66560,
+        "y": 58935,
+        "vx": 0,
+        "vy": 55,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 1,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": 1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 3,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 2,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [0, 0, 0, 0, 0]
+    },
+    "terrain": [
+      {
+        "id": 100,
+        "rect": {
+          "x": 0,
+          "y": 76800,
+          "w": 163840,
+          "h": 10240
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "result": {
+      "status": "complete",
+      "actor": {
+        "body": {
+          "id": 1,
+          "x": 66560,
+          "y": 58935,
+          "vx": 0,
+          "vy": 55,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "airborne",
+        "action": {
+          "kind": "ready",
+          "actionInstanceId": 0,
+          "stateStartTick": 0,
+          "definitionId": 0,
+          "nextMarkerIndex": 0
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 3,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 2,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [0, 0, 0, 0, 0]
+      },
+      "events": [
+        {
+          "kind": "leave-support",
+          "tick": 21,
+          "supportId": 110
+        }
+      ],
+      "jumpRequest": "none",
+      "physics": {
+        "status": "complete",
+        "movement": {
+          "rect": {
+            "x": 64768,
+            "y": 50231,
+            "w": 3584,
+            "h": 8704
+          },
+          "motion": {
+            "x": 0,
+            "y": 55
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 0,
+          "diagnosticIds": []
+        },
+        "body": {
+          "id": 1,
+          "x": 66560,
+          "y": 58935,
+          "vx": 0,
+          "vy": 55,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        }
+      }
+    },
+    "stopped": null
+  },
+  "crushed": {
+    "scenario": "crush",
+    "tick": 45,
+    "geometryRevision": 1,
+    "removed": false,
+    "actor": {
+      "body": {
+        "id": 1,
+        "x": 81920,
+        "y": 76800,
+        "vx": 0,
+        "vy": 0,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "grounded": true,
+        "contacts": [
+          {
+            "otherId": 100,
+            "normalX": 0,
+            "normalY": -1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          },
+          {
+            "otherId": 110,
+            "normalX": 0,
+            "normalY": 1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          }
+        ]
+      },
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 1,
+      "life": "alive",
+      "locomotion": "grounded",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": 1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 4,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [0, 0, 0, 0, 0]
+    },
+    "terrain": [
+      {
+        "id": 100,
+        "rect": {
+          "x": 0,
+          "y": 76800,
+          "w": 163840,
+          "h": 10240
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 110,
+        "rect": {
+          "x": 66560,
+          "y": 65280,
+          "w": 30720,
+          "h": 3072
+        },
+        "kind": "solid",
+        "delta": {
+          "x": 0,
+          "y": 256
+        }
+      }
+    ],
+    "result": {
+      "status": "failed",
+      "physics": {
+        "status": "failed",
+        "reason": "crushed",
+        "movement": {
+          "rect": {
+            "x": 80128,
+            "y": 68096,
+            "w": 3584,
+            "h": 8704
+          },
+          "motion": {
+            "x": 0,
+            "y": 0
+          },
+          "supportId": null,
+          "status": "crushed",
+          "contacts": [
+            {
+              "otherId": 100,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 55
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 110,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 201
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 55
+          },
+          "iterations": 1,
+          "diagnosticIds": [100, 110]
+        }
+      }
+    },
+    "stopped": "crushed"
+  },
+  "scope": "Local Chromium engineering laboratory; no network, latency percentile, full gameplay or human feel acceptance"
+}

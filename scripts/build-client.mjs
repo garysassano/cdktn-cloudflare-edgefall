@@ -31,13 +31,15 @@ console.log("Built Phaser client and static assets: dist/client");
 
 // Explicit opt-in; every ordinary build removes the lab with the output directory.
 if (process.argv.includes("--lab")) {
-  await build({
-    bundle: true,
-    entryPoints: [join(root, "src", "client", "lab.ts")],
-    format: "iife",
-    outfile: join(outputDirectory, "lab.js"),
-    platform: "browser",
-    target: "es2022",
-  });
-  await cp(join(root, "src", "client", "lab.html"), join(outputDirectory, "lab.html"));
+  for (const name of ["lab", "controller-lab"]) {
+    await build({
+      bundle: true,
+      entryPoints: [join(root, "src", "client", `${name}.ts`)],
+      format: "iife",
+      outfile: join(outputDirectory, `${name}.js`),
+      platform: "browser",
+      target: "es2022",
+    });
+    await cp(join(root, "src", "client", `${name}.html`), join(outputDirectory, `${name}.html`));
+  }
 }
