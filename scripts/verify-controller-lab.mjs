@@ -198,6 +198,43 @@ try {
   assert.notEqual((await read()).actor.body.y, cancelledTraversal.actor.body.y);
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
+  await page.locator("#scenario").selectOption("route-chain");
+  await page.locator("#traverse").click();
+  await page.locator("#step").evaluate((button) => {
+    for (let i = 0; i < 60; i++) button.click();
+  });
+  const routeInFlight = await read();
+  assert.equal(routeInFlight.traversalStatus, "active");
+  assert.equal(routeInFlight.route.traversal.linkId, 2);
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  await page.screenshot({ path: `${directory}/route-chain.png` });
+  await page.locator("#step").evaluate((button) => {
+    for (let i = 0; i < 57; i++) button.click();
+  });
+  const routeArrival = await read();
+  assert.equal(routeArrival.traversalStatus, "landed");
+  assert.equal(routeArrival.route, null);
+  assert.equal(routeArrival.actor.body.x, 380 * 256);
+  assert.equal(routeArrival.actor.body.supportId, 102);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
+  await page.locator("#reset").click();
+  await page.locator("#traverse").click();
+  await page.locator("#step").evaluate((button) => {
+    for (let i = 0; i < 10; i++) button.click();
+  });
+  const routeBeforeRemoval = await read();
+  await page.locator("#remove").click();
+  await page.locator("#step").click();
+  const cancelledRoute = await read();
+  assert.equal(cancelledRoute.route, null);
+  assert.equal(cancelledRoute.traversalStatus, "cancelled");
+  assert.equal(
+    cancelledRoute.actor.body.y,
+    routeBeforeRemoval.actor.body.y + routeBeforeRemoval.actor.body.vy + 55,
+  );
   assert.deepEqual(errors, []);
   const report = {
     status: "pass",
@@ -224,9 +261,12 @@ try {
       "grounded patrol turns and independent player jump",
       "compiled navigation spans and removal revision",
       "authored jump/drop execution and replay",
+      "two-link route, approach, replay and cancellation",
       "mid-traversal cancellation continues gravity",
       "enemy support removal, gravity, landing and replay",
     ],
+    routeArrival,
+    cancelledRoute,
     traversals,
     cancelledTraversal,
     patrol,

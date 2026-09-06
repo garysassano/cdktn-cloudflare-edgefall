@@ -1,0 +1,2998 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T18:45:00.232Z",
+  "commit": "cbd98d459b57d484948d0712b8759d4c4ea3e6f8",
+  "sourceSha256": "698b5ca4d67e7ead03691591cec3c22283f024d83fe55505aa263a7ded4e9cec",
+  "browserBundleSha256": "ee3cc68044a84fc6de027429bf1673c334396293ead817864439918ac588b9e4",
+  "resultSha256": "125b5cb699592a74dc9e68e6e151157d7aa22019f8ef0ae7f00a4e8c57eb2082",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "snapshotBytes": [
+    {
+      "name": "one-player",
+      "bytes": 432
+    },
+    {
+      "name": "all-sections",
+      "bytes": 956
+    }
+  ],
+  "appliedTicks": [101, 102, 103],
+  "collisionSeeds": 256,
+  "movement": {
+    "ticks": 1200,
+    "traceHash": "8e99e568",
+    "contacts": 1159,
+    "checkpoints": [
+      {
+        "tick": 60,
+        "x": 25600,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 120,
+        "x": 10240,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 180,
+        "x": 25600,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 239,
+        "x": 10496,
+        "y": 16640,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 240,
+        "x": 10496,
+        "y": 13568,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 241,
+        "x": 10496,
+        "y": 10752,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 300,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 360,
+        "x": 4608,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 420,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 480,
+        "x": 4608,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 540,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 599,
+        "x": 4864,
+        "y": 16640,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 600,
+        "x": 4864,
+        "y": 16896,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 601,
+        "x": 4864,
+        "y": 17408,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 660,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 720,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 780,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 840,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 899,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 900,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 901,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 960,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1020,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1080,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1140,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1200,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      }
+    ]
+  },
+  "controller": {
+    "ticks": 1200,
+    "traceHash": "db17022f",
+    "encodedBytes": 548372,
+    "jumpEdges": 26,
+    "counts": {
+      "jump": 15,
+      "drop": 1,
+      "land": 17,
+      "leave-support": 1
+    },
+    "checkpoints": [
+      {
+        "tick": 60,
+        "hash": "428fab52",
+        "x": 12544,
+        "y": -7625,
+        "shapeId": 2,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 120,
+        "hash": "6c04015a",
+        "x": -3584,
+        "y": -17325,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 180,
+        "hash": "5947b96b",
+        "x": -49408,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 240,
+        "hash": "3944a5af",
+        "x": -48640,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 300,
+        "hash": "7621fded",
+        "x": -2560,
+        "y": -17325,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 360,
+        "hash": "f6c65777",
+        "x": 12032,
+        "y": -22530,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 420,
+        "hash": "78c4e879",
+        "x": -28416,
+        "y": -7425,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 480,
+        "hash": "aa36b220",
+        "x": -42240,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 540,
+        "hash": "8e0589a9",
+        "x": 3840,
+        "y": -14850,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 599,
+        "hash": "5d142af4",
+        "x": 18432,
+        "y": -9055,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 600,
+        "hash": "06989f05",
+        "x": 17664,
+        "y": -7680,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 601,
+        "hash": "c1e3651b",
+        "x": 16896,
+        "y": -6250,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 660,
+        "hash": "9734e7b0",
+        "x": -28416,
+        "y": -17325,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 720,
+        "hash": "4b752b2f",
+        "x": -42240,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 780,
+        "hash": "492b26fd",
+        "x": 3840,
+        "y": -15105,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 840,
+        "hash": "d46015a7",
+        "x": 17664,
+        "y": -17325,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 899,
+        "hash": "2ab9e511",
+        "x": -27648,
+        "y": -23080,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 900,
+        "hash": "cd75a517",
+        "x": -28416,
+        "y": -22530,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 901,
+        "hash": "57bef2ee",
+        "x": -29184,
+        "y": -21925,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 960,
+        "hash": "70af4856",
+        "x": -42240,
+        "y": -7425,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1020,
+        "hash": "f48be86b",
+        "x": 3840,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1080,
+        "hash": "82501588",
+        "x": 17664,
+        "y": -14850,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1140,
+        "hash": "38f9691f",
+        "x": -28416,
+        "y": -7425,
+        "shapeId": 1,
+        "supportId": null,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1200,
+        "hash": "db17022f",
+        "x": -42240,
+        "y": 0,
+        "shapeId": 1,
+        "supportId": 100,
+        "geometryRevision": 2
+      }
+    ]
+  },
+  "grounded": {
+    "ticks": 1200,
+    "traceHash": "d37bb0a1",
+    "checkpoints": [
+      {
+        "tick": 1,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 61696,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 0
+        },
+        "geometryRevision": 1
+      },
+      {
+        "tick": 300,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 62976,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 2
+        },
+        "geometryRevision": 1
+      },
+      {
+        "tick": 600,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 64512,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 4
+        },
+        "geometryRevision": 1
+      },
+      {
+        "tick": 900,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 66048,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 6
+        },
+        "geometryRevision": 1
+      },
+      {
+        "tick": 901,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 66304,
+            "y": 58935,
+            "vx": 256,
+            "vy": 55,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 6
+        },
+        "geometryRevision": 2
+      },
+      {
+        "tick": 960,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 81408,
+            "y": 76800,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 6
+        },
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1200,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 142848,
+            "y": 76800,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 6
+        },
+        "geometryRevision": 2
+      }
+    ]
+  },
+  "restoredGroundedHash": "d37bb0a1",
+  "seams": {
+    "results": [
+      {
+        "rotation": 0,
+        "expected": {
+          "x": 5,
+          "y": 0,
+          "w": 10,
+          "h": 10
+        },
+        "forward": {
+          "rect": {
+            "x": 5,
+            "y": 0,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 5,
+            "y": 0
+          },
+          "supportId": 1,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        },
+        "reverse": {
+          "rect": {
+            "x": 5,
+            "y": 0,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 5,
+            "y": 0
+          },
+          "supportId": 1,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        }
+      },
+      {
+        "rotation": 1,
+        "expected": {
+          "x": -10,
+          "y": 5,
+          "w": 10,
+          "h": 10
+        },
+        "forward": {
+          "rect": {
+            "x": -10,
+            "y": 5,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 0,
+            "y": 5
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        },
+        "reverse": {
+          "rect": {
+            "x": -10,
+            "y": 5,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 0,
+            "y": 5
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": -1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        }
+      },
+      {
+        "rotation": 2,
+        "expected": {
+          "x": -15,
+          "y": -10,
+          "w": 10,
+          "h": 10
+        },
+        "forward": {
+          "rect": {
+            "x": -15,
+            "y": -10,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": -5,
+            "y": 0
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        },
+        "reverse": {
+          "rect": {
+            "x": -15,
+            "y": -10,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": -5,
+            "y": 0
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 5
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        }
+      },
+      {
+        "rotation": 3,
+        "expected": {
+          "x": 0,
+          "y": -15,
+          "w": 10,
+          "h": 10
+        },
+        "forward": {
+          "rect": {
+            "x": 0,
+            "y": -15,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 0,
+            "y": -5
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        },
+        "reverse": {
+          "rect": {
+            "x": 0,
+            "y": -15,
+            "w": 10,
+            "h": 10
+          },
+          "motion": {
+            "x": 0,
+            "y": -5
+          },
+          "supportId": null,
+          "status": "complete",
+          "contacts": [
+            {
+              "otherId": 1,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": -1,
+                "y": 0
+              },
+              "iteration": 0
+            },
+            {
+              "otherId": 2,
+              "kind": "solid",
+              "time": {
+                "numerator": 0,
+                "denominator": 2
+              },
+              "normal": {
+                "x": 0,
+                "y": 1
+              },
+              "iteration": 0
+            }
+          ],
+          "correction": {
+            "x": 0,
+            "y": 0
+          },
+          "remaining": {
+            "x": 0,
+            "y": 0
+          },
+          "iterations": 1,
+          "diagnosticIds": []
+        }
+      }
+    ],
+    "traceHash": "20d540c1"
+  },
+  "navigation": {
+    "spans": [
+      {
+        "id": 1,
+        "facing": -1,
+        "y": -40,
+        "minX": 27,
+        "maxX": 27,
+        "supportIds": [3]
+      },
+      {
+        "id": 2,
+        "facing": 1,
+        "y": -40,
+        "minX": 23,
+        "maxX": 23,
+        "supportIds": [3]
+      },
+      {
+        "id": 3,
+        "facing": -1,
+        "y": -20,
+        "minX": -73,
+        "maxX": -43,
+        "supportIds": [4]
+      },
+      {
+        "id": 4,
+        "facing": 1,
+        "y": -20,
+        "minX": -77,
+        "maxX": -47,
+        "supportIds": [4]
+      },
+      {
+        "id": 5,
+        "facing": -1,
+        "y": 0,
+        "minX": -93,
+        "maxX": 17,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 6,
+        "facing": -1,
+        "y": 0,
+        "minX": 37,
+        "maxX": 97,
+        "supportIds": [2]
+      },
+      {
+        "id": 7,
+        "facing": 1,
+        "y": 0,
+        "minX": -97,
+        "maxX": 13,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 8,
+        "facing": 1,
+        "y": 0,
+        "minX": 33,
+        "maxX": 93,
+        "supportIds": [2]
+      }
+    ],
+    "reversed": [
+      {
+        "id": 1,
+        "facing": -1,
+        "y": -40,
+        "minX": 27,
+        "maxX": 27,
+        "supportIds": [3]
+      },
+      {
+        "id": 2,
+        "facing": 1,
+        "y": -40,
+        "minX": 23,
+        "maxX": 23,
+        "supportIds": [3]
+      },
+      {
+        "id": 3,
+        "facing": -1,
+        "y": -20,
+        "minX": -73,
+        "maxX": -43,
+        "supportIds": [4]
+      },
+      {
+        "id": 4,
+        "facing": 1,
+        "y": -20,
+        "minX": -77,
+        "maxX": -47,
+        "supportIds": [4]
+      },
+      {
+        "id": 5,
+        "facing": -1,
+        "y": 0,
+        "minX": -93,
+        "maxX": 17,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 6,
+        "facing": -1,
+        "y": 0,
+        "minX": 37,
+        "maxX": 97,
+        "supportIds": [2]
+      },
+      {
+        "id": 7,
+        "facing": 1,
+        "y": 0,
+        "minX": -97,
+        "maxX": 13,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 8,
+        "facing": 1,
+        "y": 0,
+        "minX": 33,
+        "maxX": 93,
+        "supportIds": [2]
+      }
+    ],
+    "removed": [
+      {
+        "id": 1,
+        "facing": -1,
+        "y": -40,
+        "minX": 27,
+        "maxX": 27,
+        "supportIds": [3]
+      },
+      {
+        "id": 2,
+        "facing": 1,
+        "y": -40,
+        "minX": 23,
+        "maxX": 23,
+        "supportIds": [3]
+      },
+      {
+        "id": 3,
+        "facing": -1,
+        "y": 0,
+        "minX": -93,
+        "maxX": 17,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 4,
+        "facing": -1,
+        "y": 0,
+        "minX": 37,
+        "maxX": 97,
+        "supportIds": [2]
+      },
+      {
+        "id": 5,
+        "facing": 1,
+        "y": 0,
+        "minX": -97,
+        "maxX": 13,
+        "supportIds": [1, 2]
+      },
+      {
+        "id": 6,
+        "facing": 1,
+        "y": 0,
+        "minX": 33,
+        "maxX": 93,
+        "supportIds": [2]
+      }
+    ],
+    "traceHash": "40a032ce"
+  },
+  "traversal": {
+    "routes": [
+      {
+        "kind": "jump",
+        "ticks": 51,
+        "poses": [
+          {
+            "x": 25600,
+            "y": 76800,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 26368,
+            "y": 75425,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 27136,
+            "y": 74105,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 27904,
+            "y": 72840,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 28672,
+            "y": 71630,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 29440,
+            "y": 70475,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 30208,
+            "y": 69375,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 30976,
+            "y": 68330,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 31744,
+            "y": 67340,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 32512,
+            "y": 66405,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 33280,
+            "y": 65525,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 34048,
+            "y": 64700,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 34816,
+            "y": 63930,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 35584,
+            "y": 63215,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 36352,
+            "y": 62555,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 37120,
+            "y": 61950,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 37888,
+            "y": 61400,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 38656,
+            "y": 60905,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 39424,
+            "y": 60465,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 40192,
+            "y": 60080,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 40960,
+            "y": 59750,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 41728,
+            "y": 59475,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 42496,
+            "y": 59255,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 43264,
+            "y": 59090,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 44032,
+            "y": 58980,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 44800,
+            "y": 58925,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 45568,
+            "y": 58925,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 46336,
+            "y": 58980,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 47104,
+            "y": 59090,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 47872,
+            "y": 59255,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 48640,
+            "y": 59475,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 49408,
+            "y": 59750,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 50176,
+            "y": 60080,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 50944,
+            "y": 60465,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 51712,
+            "y": 60905,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 52480,
+            "y": 61400,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 53248,
+            "y": 61950,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 54016,
+            "y": 62555,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 54784,
+            "y": 63215,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 55552,
+            "y": 63930,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 64700,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 57088,
+            "y": 65525,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 57856,
+            "y": 66405,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 58624,
+            "y": 67340,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 59392,
+            "y": 68330,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 60160,
+            "y": 69375,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 60928,
+            "y": 70475,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 61696,
+            "y": 71630,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 62464,
+            "y": 72840,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 63232,
+            "y": 74105,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 64000,
+            "y": 75425,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 64768,
+            "y": 76800,
+            "shapeId": 1,
+            "facing": 1
+          }
+        ],
+        "traceHash": "4fc0de81",
+        "finalActor": {
+          "body": {
+            "id": 1,
+            "x": 64768,
+            "y": 76800,
+            "vx": 768,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 101,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 101,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        }
+      },
+      {
+        "kind": "drop",
+        "ticks": 27,
+        "poses": [
+          {
+            "x": 56320,
+            "y": 56320,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 56375,
+            "shapeId": 2,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 56485,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 56650,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 56870,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 57145,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 57475,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 57860,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 58300,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 58795,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 59345,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 59950,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 60610,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 61325,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 62095,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 62920,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 63800,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 64735,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 65725,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 66770,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 67870,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 69025,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 70235,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 71500,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 72820,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 74195,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 75625,
+            "shapeId": 1,
+            "facing": 1
+          },
+          {
+            "x": 56320,
+            "y": 76800,
+            "shapeId": 1,
+            "facing": 1
+          }
+        ],
+        "traceHash": "e52d9785",
+        "finalActor": {
+          "body": {
+            "id": 1,
+            "x": 56320,
+            "y": 76800,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 101,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 101,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        }
+      }
+    ],
+    "cancellation": {
+      "status": "cancelled",
+      "reason": "geometry",
+      "actor": {
+        "body": {
+          "id": 1,
+          "x": 33280,
+          "y": 64700,
+          "vx": 0,
+          "vy": -825,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "airborne",
+        "action": {
+          "kind": "ready",
+          "actionInstanceId": 0,
+          "stateStartTick": 0,
+          "definitionId": 0,
+          "nextMarkerIndex": 0
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 0,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 2,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [0, 0, 0, 0, 0]
+      },
+      "cursor": null,
+      "result": {
+        "status": "complete",
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 33280,
+            "y": 64700,
+            "vx": 0,
+            "vy": -825,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "airborne",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 0,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 2,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "events": [],
+        "jumpRequest": "none",
+        "physics": {
+          "status": "complete",
+          "movement": {
+            "rect": {
+              "x": 31488,
+              "y": 55996,
+              "w": 3584,
+              "h": 8704
+            },
+            "motion": {
+              "x": 0,
+              "y": -825
+            },
+            "supportId": null,
+            "status": "complete",
+            "contacts": [],
+            "correction": {
+              "x": 0,
+              "y": 0
+            },
+            "remaining": {
+              "x": 0,
+              "y": 0
+            },
+            "iterations": 0,
+            "diagnosticIds": []
+          },
+          "body": {
+            "id": 1,
+            "x": 33280,
+            "y": 64700,
+            "vx": 0,
+            "vy": -825,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          }
+        }
+      }
+    },
+    "traceHash": "370d9102"
+  },
+  "route": {
+    "route": {
+      "status": "route",
+      "geometryRevision": 1,
+      "from": {
+        "x": 12800,
+        "y": 76800,
+        "facing": 1
+      },
+      "destination": {
+        "x": 97280,
+        "y": 76800,
+        "facing": 1
+      },
+      "shapeId": 1,
+      "costTicks": 117,
+      "linkIds": [1, 2],
+      "legs": [
+        {
+          "kind": "settle",
+          "ticks": 1
+        },
+        {
+          "kind": "traverse",
+          "linkId": 1,
+          "ticks": 51
+        },
+        {
+          "kind": "walk",
+          "direction": -1,
+          "ticks": 1
+        },
+        {
+          "kind": "walk",
+          "direction": -1,
+          "ticks": 1
+        },
+        {
+          "kind": "walk",
+          "direction": 1,
+          "ticks": 1
+        },
+        {
+          "kind": "settle",
+          "ticks": 1
+        },
+        {
+          "kind": "traverse",
+          "linkId": 2,
+          "ticks": 51
+        },
+        {
+          "kind": "walk",
+          "direction": 1,
+          "ticks": 9
+        },
+        {
+          "kind": "settle",
+          "ticks": 1
+        }
+      ]
+    },
+    "reversed": {
+      "status": "route",
+      "geometryRevision": 1,
+      "from": {
+        "x": 12800,
+        "y": 76800,
+        "facing": 1
+      },
+      "destination": {
+        "x": 97280,
+        "y": 76800,
+        "facing": 1
+      },
+      "shapeId": 1,
+      "costTicks": 117,
+      "linkIds": [1, 2],
+      "legs": [
+        {
+          "kind": "settle",
+          "ticks": 1
+        },
+        {
+          "kind": "traverse",
+          "linkId": 1,
+          "ticks": 51
+        },
+        {
+          "kind": "walk",
+          "direction": -1,
+          "ticks": 1
+        },
+        {
+          "kind": "walk",
+          "direction": -1,
+          "ticks": 1
+        },
+        {
+          "kind": "walk",
+          "direction": 1,
+          "ticks": 1
+        },
+        {
+          "kind": "settle",
+          "ticks": 1
+        },
+        {
+          "kind": "traverse",
+          "linkId": 2,
+          "ticks": 51
+        },
+        {
+          "kind": "walk",
+          "direction": 1,
+          "ticks": 9
+        },
+        {
+          "kind": "settle",
+          "ticks": 1
+        }
+      ]
+    },
+    "ticks": 117,
+    "traceHash": "7ef3496e",
+    "checkpoints": [
+      {
+        "tick": 1,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 12800,
+            "y": 76800,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": {
+          "startTick": 0,
+          "elapsed": 1,
+          "legIndex": 1,
+          "legElapsed": 0,
+          "traversal": null
+        }
+      },
+      {
+        "tick": 10,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 19712,
+            "y": 66405,
+            "vx": 768,
+            "vy": -935,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "airborne",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 0,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": {
+          "startTick": 0,
+          "elapsed": 10,
+          "legIndex": 1,
+          "legElapsed": 9,
+          "traversal": {
+            "linkId": 1,
+            "startTick": 1,
+            "elapsed": 9
+          }
+        }
+      },
+      {
+        "tick": 52,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 51968,
+            "y": 76800,
+            "vx": 768,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 101,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 101,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": {
+          "startTick": 0,
+          "elapsed": 52,
+          "legIndex": 2,
+          "legElapsed": 0,
+          "traversal": null
+        }
+      },
+      {
+        "tick": 56,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 51200,
+            "y": 76800,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 101,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 101,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": {
+          "startTick": 0,
+          "elapsed": 56,
+          "legIndex": 6,
+          "legElapsed": 0,
+          "traversal": null
+        }
+      },
+      {
+        "tick": 107,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 90368,
+            "y": 76800,
+            "vx": 768,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 102,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 102,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": {
+          "startTick": 0,
+          "elapsed": 107,
+          "legIndex": 7,
+          "legElapsed": 0,
+          "traversal": null
+        }
+      },
+      {
+        "tick": 117,
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 97280,
+            "y": 76800,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 102,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 102,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 1,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "cursor": null
+      }
+    ],
+    "cancellation": {
+      "status": "cancelled",
+      "reason": "geometry",
+      "actor": {
+        "body": {
+          "id": 1,
+          "x": 19712,
+          "y": 65525,
+          "vx": 0,
+          "vy": -880,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": null,
+          "grounded": false,
+          "contacts": []
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "airborne",
+        "action": {
+          "kind": "ready",
+          "actionInstanceId": 0,
+          "stateStartTick": 0,
+          "definitionId": 0,
+          "nextMarkerIndex": 0
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 0,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 2,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [0, 0, 0, 0, 0]
+      },
+      "cursor": null,
+      "result": {
+        "status": "complete",
+        "actor": {
+          "body": {
+            "id": 1,
+            "x": 19712,
+            "y": 65525,
+            "vx": 0,
+            "vy": -880,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "life": "alive",
+          "locomotion": "airborne",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 0,
+            "stateStartTick": 0,
+            "definitionId": 0,
+            "nextMarkerIndex": 0
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 0,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "vehicleId": null,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 0,
+            "shotOrdinal": 0,
+            "lastActionInstanceId": 0
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "geometryRevision": 2,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [0, 0, 0, 0, 0]
+        },
+        "events": [],
+        "jumpRequest": "none",
+        "physics": {
+          "status": "complete",
+          "movement": {
+            "rect": {
+              "x": 17920,
+              "y": 56821,
+              "w": 3584,
+              "h": 8704
+            },
+            "motion": {
+              "x": 0,
+              "y": -880
+            },
+            "supportId": null,
+            "status": "complete",
+            "contacts": [],
+            "correction": {
+              "x": 0,
+              "y": 0
+            },
+            "remaining": {
+              "x": 0,
+              "y": 0
+            },
+            "iterations": 0,
+            "diagnosticIds": []
+          },
+          "body": {
+            "id": 1,
+            "x": 19712,
+            "y": 65525,
+            "vx": 0,
+            "vy": -880,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          }
+        }
+      }
+    }
+  },
+  "controllerBoundaries": {
+    "cases": [
+      "blocked-stand",
+      "end-clearance-jump",
+      "buffered-airborne",
+      "carried",
+      "removed-support"
+    ],
+    "traceHash": "6048746c"
+  },
+  "restoredController": {
+    "restoredAfterTick": 599,
+    "traceHash": "db17022f"
+  },
+  "spatial": {
+    "fixed": 512,
+    "moving": 32,
+    "bodies": 64,
+    "referenceHash": "57a8413b",
+    "cells": [
+      {
+        "cellPixels": 32,
+        "staticGrid": {
+          "targets": 512,
+          "cells": 1536,
+          "references": 1536,
+          "overflow": 0
+        },
+        "dynamicGrid": {
+          "targets": 32,
+          "cells": 240,
+          "references": 240,
+          "overflow": 0
+        },
+        "initialCandidates": [
+          2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "traceHash": "57a8413b"
+      },
+      {
+        "cellPixels": 64,
+        "staticGrid": {
+          "targets": 512,
+          "cells": 768,
+          "references": 1024,
+          "overflow": 0
+        },
+        "dynamicGrid": {
+          "targets": 32,
+          "cells": 128,
+          "references": 128,
+          "overflow": 0
+        },
+        "initialCandidates": [
+          2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "traceHash": "57a8413b"
+      }
+    ]
+  },
+  "indexedMovement": [
+    {
+      "cellPixels": 32,
+      "ticks": 1200,
+      "traceHash": "8e99e568"
+    },
+    {
+      "cellPixels": 64,
+      "ticks": 1200,
+      "traceHash": "8e99e568"
+    }
+  ],
+  "movingCases": {
+    "seeds": 512,
+    "complete": 499,
+    "crushed": 13,
+    "traceHash": "e4ee1e83"
+  },
+  "restoredMovement": [
+    {
+      "restoredAfterTick": 239,
+      "traceHash": "8e99e568"
+    },
+    {
+      "restoredAfterTick": 601,
+      "traceHash": "8e99e568"
+    },
+    {
+      "restoredAfterTick": 899,
+      "traceHash": "8e99e568"
+    }
+  ],
+  "collisionResults": {
+    "solidHits": 23,
+    "initialOverlaps": 10,
+    "oneWayHits": 6
+  },
+  "status": "pass",
+  "scope": "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim"
+}

@@ -215,7 +215,7 @@ describe("grounded enemy patrol", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 3,
+          format: 4,
           scenario: "enemy-ledge",
           commands,
           finalState: labFingerprint(state),

@@ -69,7 +69,8 @@ export class CompiledTraversal {
   readonly commands: readonly Readonly<FootIntent>[];
   readonly poses: readonly Readonly<{ x: number; y: number; shapeId: number; facing: -1 | 1 }>[];
   readonly #samples: readonly string[];
-  readonly #actorDefinition: ActorDefinition;
+  readonly actorDefinition: Readonly<ActorDefinition>;
+  readonly surface: WalkSurface;
   readonly #shapes: ReadonlyMap<number, ShapeDefinition>;
 
   constructor(
@@ -82,6 +83,7 @@ export class CompiledTraversal {
   ) {
     for (const id of [authored.id, authored.sourceSpanId, authored.destinationSpanId])
       integer(id, 1, COUNTER_LIMIT - 1, "traversal ID");
+    integer(shapes.size, 1, 4096, "traversal shape count");
     integer(authored.maxTicks, 1, 180, "traversal duration");
     integer(authored.direction, -1, 1, "traversal direction");
     if (authored.kind !== "jump" && authored.kind !== "drop")
@@ -148,10 +150,11 @@ export class CompiledTraversal {
       (initialIndex.get(sourceActor.body.supportId)?.kind !== "one-way" || destination.y <= from.y)
     )
       throw new Error("Drop requires a one-way source and lower destination");
+    this.surface = surface;
     this.id = authored.id;
     this.geometryRevision = surface.geometryRevision;
     this.definition = Object.freeze({ ...authored });
-    this.#actorDefinition = Object.freeze({ ...actorDefinition });
+    this.actorDefinition = Object.freeze({ ...actorDefinition });
     this.#shapes = new Map(
       [...shapes].map(([id, shape]) => [
         id,
@@ -181,7 +184,7 @@ export class CompiledTraversal {
       const result = stepFootController(
         actor,
         command,
-        this.#actorDefinition,
+        this.actorDefinition,
         this.#shapes,
         new CollisionIndex(grid, [], frame),
         frame,
@@ -267,7 +270,7 @@ export class CompiledTraversal {
         ...(reason ? { jumpBufferTicks: 0 } : {}),
       },
       command,
-      this.#actorDefinition,
+      this.actorDefinition,
       this.#shapes,
       index,
       frame,

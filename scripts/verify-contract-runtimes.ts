@@ -128,6 +128,7 @@ try {
     seams: expected.seams,
     navigation: expected.navigation,
     traversal: expected.traversal,
+    route: expected.route,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
       traceHash: expected.controllerBoundaries.traceHash,

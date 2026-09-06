@@ -214,7 +214,7 @@ describe("authored traversal links", () => {
       expect(state.actor.body.supportId).toBe(101);
       expect(
         labFingerprint(
-          replayControllerLab({ format: 3, scenario, commands, finalState: labFingerprint(state) }),
+          replayControllerLab({ format: 4, scenario, commands, finalState: labFingerprint(state) }),
         ),
       ).toBe(labFingerprint(state));
     },

@@ -1,6 +1,6 @@
 # W03 — Authored traversal links
 
-Status: bounded static jump/drop links compile through the shared controller and execute in the rendered lab. Graph route selection, enemy traversal integration, raw content compilation and W03/G1 acceptance remain open.
+Status: bounded static jump/drop links compile through the shared controller and execute in the rendered lab. The subsequent [route selection/follower milestone](./W03-navigation-routes.md) composes them with actual approach movement; enemy ownership remains open. Graph route selection, enemy traversal integration, raw content compilation and W03/G1 acceptance remain open.
 
 ## Compilation contract
 

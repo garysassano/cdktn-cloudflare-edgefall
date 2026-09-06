@@ -6,6 +6,7 @@ import {
   type LabRecording,
   createControllerLab,
   labFingerprint,
+  labRoute,
   labTraversal,
   replayControllerLab,
   stepControllerLab,
@@ -75,7 +76,7 @@ function step(): void {
   inspect();
 }
 function recording(): LabRecording {
-  return { format: 3, scenario: state.scenario, commands, finalState: labFingerprint(state) };
+  return { format: 4, scenario: state.scenario, commands, finalState: labFingerprint(state) };
 }
 function reset(): void {
   pause();
@@ -225,7 +226,7 @@ class ControllerLabScene extends Phaser.Scene {
       }
     }
     graphics.lineStyle(1, 0xbd93f9);
-    const planned = labTraversal(state.scenario);
+    const planned = labTraversal(state.scenario) ?? labRoute(state.scenario);
     if (planned && planned.geometryRevision === state.geometryRevision) {
       for (let i = 1; i < planned.poses.length; i++) {
         const a = planned.poses[i - 1],
