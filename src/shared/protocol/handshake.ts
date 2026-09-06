@@ -16,7 +16,7 @@ export interface Handshake extends GameIdentity {
   simulationHz: 60;
   snapshotHz: 20;
   initialServerTick: number;
-  capabilities: 0 | 1;
+  capabilities: 0 | 1 | 3;
   baselineSnapshotId: number;
   baselineEventCursor: number;
   /** Deployment provenance; compatibility uses simulation/content/presentation identities. */
@@ -94,7 +94,7 @@ export function decodeHandshake(raw: string, expected: GameIdentity): Handshake 
     record.protocolMinor !== PROTOCOL_MINOR ||
     record.simulationHz !== ARCADE.simulationHz ||
     record.snapshotHz !== ARCADE.snapshotHz ||
-    (record.capabilities !== 0 && record.capabilities !== 1) ||
+    (record.capabilities !== 0 && record.capabilities !== 1 && record.capabilities !== 3) ||
     typeof record.runId !== "string" ||
     !/^[a-z0-9-]{8,80}$/u.test(record.runId)
   )

@@ -1,6 +1,10 @@
 import { DurableObject } from "cloudflare:workers";
-import type { CombatLab, CombatNotice } from "../../game/labs/combat.js";
+import type { CombatLab } from "../../game/labs/combat.js";
 import type { GameIdentity } from "../../shared/content-id.js";
+import {
+  combatEventContext,
+  combatGameplayEvents,
+} from "../../shared/diagnostics/combat-events.js";
 import {
   combatIdentity,
   createCombatWorkload,
@@ -25,6 +29,19 @@ import {
   stepRoomWorkload,
 } from "../../shared/diagnostics/room-workload.js";
 import { decodeInputBatch } from "../../shared/protocol/codec.js";
+import {
+  type EventHistory,
+  acceptsEventBaseline,
+  createEventHistory,
+  eventBatches,
+  stageEventTick,
+} from "../../shared/protocol/event-stream.js";
+import {
+  EVENT_CAPABILITY,
+  type EventBaseline,
+  decodeEventResyncRequest,
+  encodeEventBatch,
+} from "../../shared/protocol/events.js";
 import type { Handshake } from "../../shared/protocol/handshake.js";
 import {
   INPUT_MAPPING_CAPABILITY,
@@ -45,6 +62,8 @@ interface Peer {
   input: InputStream;
   lease: ControlLease | null;
   lastAckAt: number;
+  pendingEventBaseline: EventBaseline | null;
+  eventBeforeBaseline: number;
   metrics: PeerMetrics;
 }
 
@@ -54,8 +73,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private workload: "standard" | "double" | "controller" | "combat" = "standard";
   private world = createRoomWorkload(1);
   private combat: CombatLab | null = null;
-  private readonly combatEvents: Array<{ tick: number; counter: number; event: CombatNotice }> = [];
-  private combatEventsDropped = 0;
+  private eventHistory: EventHistory | null = null;
   private identity: Promise<GameIdentity> = Promise.resolve(PROBE_IDENTITY);
   private failNextCombatTick = false;
   private worldFailure: string | null = null;
@@ -182,25 +200,58 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     return this.controllerInputs ? controllerPeerContext(this.world, slot) : probeContext(slot);
   }
 
-  private snapshot(peer: Peer): void {
+  private snapshot(peer: Peer, requestedRepair?: EventBaseline["reason"]): void {
+    if (peer.pendingEventBaseline) return;
     this.world.snapshotId++;
     const context = this.context(peer.metrics.slot);
     this.world.connectionEpoch = context.connectionEpoch;
     const bytes = encodeSnapshot(this.world, context);
+    const batches = this.eventHistory
+      ? eventBatches(
+          this.eventHistory,
+          peer.input.deliveryAcknowledgments.event,
+          context.connectionEpoch,
+        )
+      : [];
+    let baseline: EventBaseline | null = null;
+    if (requestedRepair || batches === null) {
+      if (++peer.metrics.eventBaselines > 8) throw new Error("Event baseline repair limit");
+      baseline = {
+        type: "resync-required",
+        scope: "events",
+        reason: requestedRepair ?? "history-expired",
+        runEpoch: context.runEpoch,
+        connectionEpoch: context.connectionEpoch,
+        snapshotId: this.world.snapshotId,
+        tick: this.world.tick,
+        baselineEventCursor: this.world.baselineEventCursor,
+      };
+      peer.eventBeforeBaseline = peer.metrics.eventSentCursor;
+      peer.socket.send(JSON.stringify(baseline));
+    } else
+      for (const batch of batches) {
+        const events = encodeEventBatch(batch, combatEventContext(context));
+        peer.socket.send(events);
+        peer.metrics.eventBytes += events.byteLength;
+        peer.metrics.eventFrames++;
+      }
     if (this.controllerInputs) {
       const mapping = JSON.stringify(mappingForSnapshot(this.world, context.playerId));
       peer.socket.send(mapping);
       peer.metrics.inputMappingBytes += new TextEncoder().encode(mapping).byteLength;
     }
     peer.socket.send(bytes);
-    peer.input.recordSent(this.world.snapshotId, 0);
+    const cursor = this.eventHistory?.cursor ?? 0;
+    peer.input.recordSent(this.world.snapshotId, cursor);
+    peer.metrics.eventSentCursor = cursor;
+    peer.pendingEventBaseline = baseline;
     peer.metrics.snapshots++;
     peer.metrics.snapshotBytes += bytes.byteLength;
   }
 
-  private publishSnapshot(peer: Peer): void {
+  private publishSnapshot(peer: Peer, repair?: EventBaseline["reason"]): void {
     try {
-      this.snapshot(peer);
+      this.snapshot(peer, repair);
     } catch (error) {
       // Delivery failure cannot turn an already committed world tick into a failed clock step.
       peer.metrics.lastOutputError = String(error).slice(0, 256);
@@ -226,20 +277,34 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       this.sampledNow,
       (prepared) => {
         if (this.workload === "combat") {
-          if (!this.combat) throw new Error("Missing combat world");
+          if (!this.combat || !this.eventHistory) throw new Error("Missing combat world/history");
           const result = evaluateCombatTick(this.combat, this.world, prepared);
+          const history = stageEventTick(
+            this.eventHistory,
+            tick,
+            combatGameplayEvents(this.combat, result.state.combat),
+            combatEventContext(this.context(0)),
+          );
+          result.state.snapshot.baselineEventCursor = history.cursor;
+          result.state.snapshot.stateHash = roomWorkloadHash(result.state.snapshot);
           for (const [slot] of active) {
             const context = this.context(slot);
             encodeSnapshot(
               { ...result.state.snapshot, connectionEpoch: context.connectionEpoch },
               context,
             );
+            for (const batch of eventBatches(
+              history,
+              this.eventHistory.cursor,
+              context.connectionEpoch,
+            ) ?? [])
+              encodeEventBatch(batch, combatEventContext(context));
           }
           if (this.failNextCombatTick) {
             this.failNextCombatTick = false;
             throw new Error("injected-combat-commit-failure");
           }
-          return result;
+          return { ...result, state: { ...result.state, history } };
         }
         const candidate = structuredClone(this.world);
         const outcomes: WorldInputOutcome[] = prepared.map(({ input }) => ({
@@ -292,21 +357,15 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           const context = this.context(slot);
           encodeSnapshot({ ...candidate, connectionEpoch: context.connectionEpoch }, context);
         }
-        return { state: { snapshot: candidate, combat: this.combat }, outcomes };
+        return {
+          state: { snapshot: candidate, combat: this.combat, history: this.eventHistory },
+          outcomes,
+        };
       },
     );
     this.world = transaction.state.snapshot;
     this.combat = transaction.state.combat;
-    if (this.combat) {
-      const retained = this.combatEvents.filter((item) => item.tick > tick - 120);
-      this.combatEvents.splice(0, this.combatEvents.length, ...retained);
-      for (const [counter, event] of this.combat.events.entries())
-        this.combatEvents.push({ tick, counter, event });
-      if (this.combatEvents.length > 512) {
-        this.combatEventsDropped += this.combatEvents.length - 512;
-        this.combatEvents.splice(0, this.combatEvents.length - 512);
-      }
-    }
+    this.eventHistory = transaction.state.history;
     for (const processed of transaction.processed) {
       const slot = this.world.players.find(
         (actor) => actor.playerId === processed.input.playerId,
@@ -373,6 +432,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         const initial = createCombatWorkload();
         this.world = initial.snapshot;
         this.combat = initial.combat;
+        this.eventHistory = createEventHistory(this.world.runEpoch);
         this.identity = combatIdentity();
       } else
         this.identity = Promise.resolve(
@@ -393,7 +453,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         tick: this.world.tick,
         acknowledgments: this.world.acknowledgments,
         combat: this.combat,
-        events: this.combatEvents,
+        events: this.eventHistory?.entries,
+        eventCursor: this.eventHistory?.cursor,
       });
     }
     if (action === "recover") {
@@ -446,6 +507,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         }),
         lease: null,
         lastAckAt: performance.now(),
+        pendingEventBaseline: null,
+        eventBeforeBaseline: 0,
         metrics: {
           slot,
           active: true,
@@ -456,6 +519,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           snapshots: 0,
           snapshotBytes: 0,
           inputMappingBytes: 0,
+          eventBytes: 0,
+          eventFrames: 0,
+          eventSentCursor: 0,
+          eventBaselines: 0,
           maxQueuedCommands: 0,
           neutralizedAtTick: null,
           expiredAtTick: null,
@@ -482,9 +549,14 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         simulationHz: 60,
         snapshotHz: 20,
         initialServerTick: this.world.tick,
-        capabilities: this.controllerInputs ? INPUT_MAPPING_CAPABILITY : 0,
+        capabilities:
+          this.workload === "combat"
+            ? ((INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY) as 3)
+            : this.controllerInputs
+              ? INPUT_MAPPING_CAPABILITY
+              : 0,
         baselineSnapshotId: this.world.snapshotId + 1,
-        baselineEventCursor: 0,
+        baselineEventCursor: this.world.baselineEventCursor,
         buildId: "4".repeat(64),
       };
       pair[1].send(JSON.stringify(welcome));
@@ -527,9 +599,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         acknowledgment: peer.input.acknowledgment,
         queued: peer.input.queuedCommands,
         requiresResync: peer.input.requiresResync,
+        delivery: peer.input.deliveryAcknowledgments,
+        pendingEventBaseline: peer.pendingEventBaseline,
       })),
       combat: this.combat
-        ? { world: this.combat, events: this.combatEvents, droppedEvents: this.combatEventsDropped }
+        ? {
+            world: this.combat,
+            events: this.eventHistory?.entries ?? [],
+            eventCursor: this.eventHistory?.cursor ?? 0,
+            droppedEvents: this.eventHistory?.capEvictions ?? 0,
+            ageEvictions: this.eventHistory?.ageEvictions ?? 0,
+          }
         : null,
       runEpoch: this.world.runEpoch,
       recoveries: this.recoveries,
@@ -551,8 +631,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const peer = [...this.peers.values()].find((value) => value.socket === socket);
     if (!peer?.metrics.active) return;
     if (
-      typeof message === "string" ||
-      message.byteLength > 284 ||
+      (typeof message === "string" ? message.length > 512 : message.byteLength > 284) ||
       (this.world.roomMode !== "playing" &&
         !(this.controllerInputs && this.world.roomMode === "loading"))
     ) {
@@ -567,13 +646,31 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     let firstSequence = 0,
       lastSequence = 0;
     try {
+      if (typeof message === "string") {
+        if (this.workload !== "combat") throw new Error("Unexpected event control");
+        const request = decodeEventResyncRequest(message, this.context(peer.metrics.slot));
+        if (
+          request.lastEventCursor < peer.input.deliveryAcknowledgments.event ||
+          request.lastEventCursor > peer.metrics.eventSentCursor
+        )
+          throw new Error("Invalid event repair cursor");
+        this.publishSnapshot(peer, "client-gap");
+        return;
+      }
       const previousAck = peer.input.deliveryAcknowledgments.snapshot;
+      const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
       if (this.controllerInputs) {
-        const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
         firstSequence = batch.commands[0]?.sequence ?? 0;
         lastSequence = batch.commands.at(-1)?.sequence ?? 0;
       }
+      const eventBaselineAccepted = acceptsEventBaseline(
+        peer.pendingEventBaseline,
+        batch.snapshotAck,
+        batch.eventAck,
+        peer.eventBeforeBaseline,
+      );
       const result = peer.input.receive(new Uint8Array(message), now, this.clock.state.tick);
+      if (eventBaselineAccepted && !result.duplicate) peer.pendingEventBaseline = null;
       this.traceInput(
         peer,
         "admit",

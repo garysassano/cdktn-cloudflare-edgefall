@@ -9,6 +9,7 @@ import { combatProof } from "./combat-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { encounterProof } from "./encounter-proof.js";
+import { eventDeliveryProof } from "./event-delivery-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
@@ -83,6 +84,7 @@ export function contractProof() {
     collision: collisionProof(),
     combat: combatProof(),
     worldCombat: worldCombatProof(),
+    eventDelivery: eventDeliveryProof(),
     movement: movementProof(),
     controller: controllerProof(),
     grounded: groundedProof(),

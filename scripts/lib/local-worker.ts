@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 import { createServer } from "node:net";
 import { setTimeout as delay } from "node:timers/promises";
@@ -7,7 +8,7 @@ import { build } from "esbuild";
 
 /** A/B control that removes Wrangler's local proxy, using the exact same installed workerd. */
 export async function withDirectRoomWorker<T>(
-  run: (base: string, assertAlive: () => void) => Promise<T>,
+  run: (base: string, assertAlive: () => void, workerBundleSha256: string) => Promise<T>,
 ): Promise<T> {
   const require = createRequire(import.meta.url);
   const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -32,7 +33,13 @@ export async function withDirectRoomWorker<T>(
   try {
     const url: URL = await mf.ready;
     url.hostname = "127.0.0.1";
-    return await run(url.origin, () => {});
+    return await run(
+      url.origin,
+      () => {},
+      createHash("sha256")
+        .update(bundle.outputFiles[0]?.text ?? "")
+        .digest("hex"),
+    );
   } finally {
     await mf.dispose();
   }

@@ -1,5 +1,6 @@
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
-import type { CombatLab, CombatNotice } from "../../game/labs/combat.js";
+import type { CombatLab } from "../../game/labs/combat.js";
+import type { EventBaseline, EventEnvelope } from "../protocol/events.js";
 
 export interface PeerMetrics {
   slot: number;
@@ -11,6 +12,10 @@ export interface PeerMetrics {
   snapshots: number;
   snapshotBytes: number;
   inputMappingBytes: number;
+  eventBytes: number;
+  eventFrames: number;
+  eventSentCursor: number;
+  eventBaselines: number;
   maxQueuedCommands: number;
   neutralizedAtTick: number | null;
   expiredAtTick: number | null;
@@ -27,10 +32,14 @@ export interface RoomProbeStatus {
     acknowledgment: PlayerAcknowledgment;
     queued: number;
     requiresResync: boolean;
+    delivery: { snapshot: number; event: number };
+    pendingEventBaseline: EventBaseline | null;
   }>;
   combat: {
     world: CombatLab;
-    events: Array<{ tick: number; counter: number; event: CombatNotice }>;
+    events: EventEnvelope[];
+    eventCursor: number;
+    ageEvictions: number;
     droppedEvents: number;
   } | null;
   runEpoch: number;

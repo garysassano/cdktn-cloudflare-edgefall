@@ -7,6 +7,7 @@ import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
+import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
@@ -26,6 +27,21 @@ interface ClientStatus {
   pendingEdges: number;
   inputClock: { mode: string; tick: number } | null;
   authoritative: { processedEdgeIds: number[] } | null;
+  events:
+    | (EventReceiver["status"] & {
+        counts: Record<string, number>;
+        hash: string;
+        framesDropped: number;
+        gapsInjected: number;
+        receipts: Array<{
+          cursor: number;
+          tick: number;
+          counter: number;
+          kind: string;
+          hash: string;
+        }>;
+      })
+    | null;
   receipts: Array<{
     tick: number;
     hash: number;
@@ -43,13 +59,17 @@ interface ClientStatus {
 }
 const recoveryMode = process.argv.includes("--recovery");
 const faultMode = process.argv.includes("--combat-fault");
-const combatMode = process.argv.includes("--combat") || faultMode;
+const eventMode = process.argv.includes("--events");
+const combatMode = process.argv.includes("--combat") || faultMode || eventMode;
 assert(!(combatMode && recoveryMode), "Combat recovery is not implemented");
+assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
 const output = combatMode
-  ? faultMode
-    ? "dist/network-combat-fault-evidence"
-    : "dist/network-combat-evidence"
+  ? eventMode
+    ? "dist/network-event-evidence"
+    : faultMode
+      ? "dist/network-combat-fault-evidence"
+      : "dist/network-combat-evidence"
   : recoveryMode
     ? "dist/network-controller-recovery-evidence"
     : "dist/network-controller-evidence";
@@ -98,7 +118,7 @@ sampleHost();
 // Independent host samples; no extra Worker requests or changes to scheduler clock semantics.
 const hostTimer = setInterval(sampleHost, 20);
 try {
-  const report = await withDirectRoomWorker(async (base) => {
+  const report = await withDirectRoomWorker(async (base, _assertAlive, workerBundleSha256) => {
     const openPages = () =>
       Promise.all(
         Array.from({ length: 4 }, async (_, slot) => {
@@ -168,6 +188,36 @@ try {
       assert(start.ok, `Start: ${start.status}`);
     };
     try {
+      const configureEvents = async (
+        slot: number,
+        faults: {
+          dropNext?: number;
+          pauseUntilBaseline?: boolean;
+          duplicate?: boolean;
+          gapNext?: boolean;
+        },
+      ) => {
+        const page = pages[slot];
+        assert(page, "Missing event test client");
+        await page.evaluate((faults) => {
+          (
+            globalThis as unknown as {
+              controllerNetworkLab: {
+                configureEvents(value: {
+                  dropNext?: number;
+                  pauseUntilBaseline?: boolean;
+                  duplicate?: boolean;
+                  gapNext?: boolean;
+                }): void;
+              };
+            }
+          ).controllerNetworkLab.configureEvents(faults);
+        }, faults);
+      };
+      if (eventMode) {
+        await configureEvents(1, { duplicate: true });
+        await configureEvents(2, { dropNext: 1 });
+      }
       await prepareAndStart();
       if (combatMode) {
         let clients: ClientStatus[] = [];
@@ -191,6 +241,114 @@ try {
           clients.every((client) => client.snapshotTick >= target),
           "Combat clients did not reach the target tick",
         );
+        const sharedEvents =
+          clients[0]?.events?.receipts.filter((item) =>
+            clients.every((client) =>
+              client.events?.receipts.some(
+                (other) => other.cursor === item.cursor && other.hash === item.hash,
+              ),
+            ),
+          ).length ?? 0;
+        if (!faultMode) {
+          assert(sharedEvents >= 100, "Missing shared gameplay event prefix");
+          assert(
+            clients.every(
+              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+            ),
+            "Missing or repeated confirmed kills",
+          );
+          assert(
+            clients.every(
+              (client) =>
+                new Set(client.events?.receipts.map((item) => item.cursor)).size ===
+                client.events?.receipts.length,
+            ),
+            "Duplicate confirmed event consumption",
+          );
+        }
+        if (eventMode) {
+          assert((clients[1]?.events?.duplicates ?? 0) > 0, "Duplicate delivery was not exercised");
+          assert.equal(clients[2]?.events?.framesDropped, 1);
+          assert.equal(
+            clients[2]?.events?.baselines,
+            0,
+            "Short gap unnecessarily reset the event baseline",
+          );
+          await configureEvents(0, { pauseUntilBaseline: true });
+          for (let attempt = 0; attempt < 160; attempt++) {
+            clients = await read();
+            assert(
+              clients.every((client) => !client.error && !client.requiresResync),
+              JSON.stringify(
+                clients.map((client) => ({
+                  slot: client.slot,
+                  error: client.error,
+                  tick: client.snapshotTick,
+                })),
+              ),
+            );
+            const repaired = clients[0];
+            if (
+              repaired?.events?.baselines === 1 &&
+              repaired.snapshotTick >= repaired.events.baselineTick + 30
+            )
+              break;
+            await new Promise((resolve) => setTimeout(resolve, 50));
+          }
+          const repaired = clients[0]?.events;
+          assert(
+            repaired &&
+              repaired.baselines === 1 &&
+              repaired.omittedByBaseline > 0 &&
+              repaired.cursor > repaired.baselineCursor,
+            "Event prefix did not repair and resume",
+          );
+          assert(
+            clients.slice(1).every((client) => client.events?.baselines === 0),
+            "One lagging reader reset healthy event streams",
+          );
+          assert(
+            clients.every(
+              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+            ),
+            "Baseline replayed terminal events",
+          );
+          await configureEvents(3, { gapNext: true });
+          for (let attempt = 0; attempt < 100; attempt++) {
+            clients = await read();
+            assert(
+              clients.every((client) => !client.error && !client.requiresResync),
+              JSON.stringify(clients.map((client) => ({ slot: client.slot, error: client.error }))),
+            );
+            const repaired = clients[3];
+            if (
+              repaired?.events?.baselines === 1 &&
+              repaired.snapshotTick >= repaired.events.baselineTick + 12
+            )
+              break;
+            await new Promise((resolve) => setTimeout(resolve, 30));
+          }
+          assert.equal(clients[3]?.events?.gapsInjected, 1);
+          assert.equal(
+            clients[3]?.events?.baselines,
+            1,
+            "Client gap request did not install a baseline",
+          );
+          assert(
+            clients[3]?.events && clients[3].events.cursor > clients[3].events.baselineCursor,
+            "Client gap repair did not resume events",
+          );
+          assert.deepEqual(
+            clients.map((client) => client.events?.baselines),
+            [1, 0, 0, 1],
+          );
+          assert(
+            clients.every(
+              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+            ),
+            "Gap repair replayed terminal events",
+          );
+        }
         let aborted = null;
         if (faultMode) {
           const injection = await fetch(`${base}/${workload}/fail-next-tick`, { method: "POST" });
@@ -200,6 +358,7 @@ try {
             acknowledgments: unknown;
             combat: unknown;
             events: unknown;
+            eventCursor: number;
           };
           for (let attempt = 0; attempt < 80; attempt++) {
             clients = await read();
@@ -218,6 +377,7 @@ try {
           assert.equal(room.clock.tick, aborted.tick);
           assert.deepEqual(room.combat.world, aborted.combat);
           assert.deepEqual(room.combat.events, aborted.events);
+          assert.equal(room.combat.eventCursor, aborted.eventCursor);
           assert.deepEqual(
             room.inputStreams
               .map((input) => input.acknowledgment)
@@ -234,6 +394,22 @@ try {
             2,
           );
           assert(room.peers.every((peer) => peer.active && !peer.lastInputError));
+          assert(
+            room.inputStreams.every(
+              (stream) => stream.delivery.event > 0 && stream.pendingEventBaseline === null,
+            ),
+            "Event delivery is not acknowledged or repair acceptance is pending",
+          );
+          if (eventMode) {
+            assert.equal(room.peers.find((peer) => peer.slot === 0)?.eventBaselines, 1);
+            const repaired = clients[0]?.events;
+            assert(
+              repaired &&
+                (room.inputStreams.find((stream) => stream.acknowledgment.playerId === 1)?.delivery
+                  .event ?? 0) >= repaired.baselineCursor,
+              "Full event baseline was not acknowledged",
+            );
+          }
           assert(
             clients.every(
               (client) =>
@@ -272,12 +448,16 @@ try {
             .update(await readFile(`${root}/network-lab.js`))
             .digest("hex"),
           sharedSnapshots: common.length,
+          sharedEvents,
+          workerBundleSha256,
           clients,
           room,
           aborted,
           scope: faultMode
             ? "Four-browser real workerd abort after world evaluation: no world, event or acknowledgment commit; explicit cohort recovery required"
-            : "Four-browser authoritative firearm/projectile/kill snapshots and movement prediction; combat effects, global action prediction, durable recovery and production integration remain open",
+            : eventMode
+              ? "Four-browser acknowledged combat event prefixes, duplicate suppression, dropped-frame replay and one-reader ring-expiry/full-baseline repair; predicted effects, durable recovery and production integration remain open"
+              : "Four-browser authoritative combat snapshots and acknowledged event prefixes; predicted effects, global action prediction, durable recovery and production integration remain open",
         };
       }
       if (recoveryMode) {

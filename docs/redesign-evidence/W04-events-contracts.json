@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-06T23:07:22.585Z",
+  "commit": "7974d4bd3bcf7f7e6896483b66a31a2805b8054a",
+  "sourceSha256": "d41377dca6a7545a4ec41ca0d538a29a91aae3693ea259655097cf2ea661f3c6",
+  "browserBundleSha256": "d56f933c15bb33b818d5608d8d1ab3b14492d4a0e40dcbb608831543ef22c282",
+  "resultSha256": "b018fac0dad03dd1dee99187fef2bbb4de91d85ed7fa401f08a2a5e2a75085bc",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "eventDelivery": {
+    "ticks": 300,
+    "confirmedActions": 174,
+    "cursor": 528,
+    "repairTick": 183,
+    "droppedFrames": 87,
+    "retained": 207,
+    "capEvictions": 0,
+    "ageEvictions": 321,
+    "receivers": [
+      {
+        "cursor": 528,
+        "baselineCursor": 324,
+        "baselineTick": 183,
+        "consumed": 318,
+        "duplicates": 0,
+        "baselines": 1,
+        "omittedByBaseline": 210,
+        "requiresBaseline": false
+      },
+      {
+        "cursor": 528,
+        "baselineCursor": 0,
+        "baselineTick": 0,
+        "consumed": 528,
+        "duplicates": 528,
+        "baselines": 0,
+        "omittedByBaseline": 0,
+        "requiresBaseline": false
+      },
+      {
+        "cursor": 528,
+        "baselineCursor": 0,
+        "baselineTick": 0,
+        "consumed": 528,
+        "duplicates": 0,
+        "baselines": 0,
+        "omittedByBaseline": 0,
+        "requiresBaseline": false
+      },
+      {
+        "cursor": 528,
+        "baselineCursor": 0,
+        "baselineTick": 0,
+        "consumed": 528,
+        "duplicates": 0,
+        "baselines": 0,
+        "omittedByBaseline": 0,
+        "requiresBaseline": false
+      }
+    ],
+    "kills": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "unimpairedHash": "8069c7bb",
+    "traceHash": "1713b84e"
+  },
+  "worldCombat": {
+    "ticks": 120,
+    "phase": "complete",
+    "shots": [
+      15,
+      24,
+      15,
+      15
+    ],
+    "kills": [
+      {
+        "playerId": 1,
+        "count": 0
+      },
+      {
+        "playerId": 2,
+        "count": 2
+      },
+      {
+        "playerId": 3,
+        "count": 0
+      },
+      {
+        "playerId": 4,
+        "count": 0
+      }
+    ],
+    "nextActionId": 70,
+    "abortAtTick": 121,
+    "traceHash": "87e5dbd9",
+    "finalHash": "513d5710"
+  },
+  "status": "pass",
+  "scope": "Three-runtime deterministic combat events, 300-tick retention/deduplication/baseline repair and unchanged world transaction trace. No deployed service, complete campaign baseline or durable combat recovery claim."
+}

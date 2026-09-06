@@ -1,7 +1,9 @@
 import Phaser from "phaser";
+import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
+import { combatEventContext } from "../shared/diagnostics/combat-events.js";
 import {
   COMBAT_TERRAIN,
   combatIdentity,
@@ -18,12 +20,22 @@ import { type InputBinding, InputCapture } from "../shared/input/capture.js";
 import { ControllerPrediction } from "../shared/prediction/controller.js";
 import { decodeInitialSnapshot } from "../shared/protocol/baseline.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
+import { EventReceiver } from "../shared/protocol/event-stream.js";
+import {
+  EVENT_CAPABILITY,
+  EVENT_TYPE,
+  type EventBaseline,
+  type EventEnvelope,
+  decodeEventBaseline,
+  decodeEventBatch,
+} from "../shared/protocol/events.js";
 import { type Handshake, decodeHandshake } from "../shared/protocol/handshake.js";
 import {
   INPUT_MAPPING_CAPABILITY,
   type InputMapping,
   decodeInputMapping,
 } from "../shared/protocol/input-mapping.js";
+import { ProtocolError } from "../shared/protocol/schema.js";
 import { decodeSnapshot } from "../shared/protocol/snapshot.js";
 import type { FullSnapshot } from "../shared/protocol/snapshot-schema.js";
 import { RoomClock } from "../shared/runtime/room-clock.js";
@@ -43,7 +55,7 @@ async function startLab() {
     const intro = document.getElementById("intro");
     if (intro)
       intro.textContent =
-        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts local movement; enemies, projectiles, firearm actions and ammo use committed server snapshots. Global action prediction, confirmed effects and remote interpolation remain in progress.";
+        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts local movement; enemies, projectiles and ammo use committed snapshots. Confirmed hit/shot markers use acknowledged, deduplicated events. Predicted effects, final audio and remote interpolation remain in progress.";
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
@@ -64,6 +76,22 @@ async function startLab() {
     prediction: ControllerPrediction | null = null;
   let inputStopped = false;
   let pendingMapping: InputMapping | null = null;
+  let eventReceiver: EventReceiver | null = null;
+  let pendingEventBaseline: EventBaseline | null = null;
+  let eventRepairRequested = false;
+  const eventFaults = { dropNext: 0, pauseUntilBaseline: false, duplicate: false, gapNext: false };
+  let eventFramesDropped = 0;
+  let eventGapsInjected = 0;
+  const eventReceipts: Array<{
+    cursor: number;
+    tick: number;
+    counter: number;
+    kind: string;
+    hash: string;
+  }> = [];
+  const confirmedEffects: EventEnvelope[] = [];
+  const eventCounts: Record<string, number> = {};
+  let eventHash = "0";
   let input: InputCapture | null = null;
   let inputClock: RoomClock | null = null;
   let packet = 0,
@@ -155,6 +183,17 @@ async function startLab() {
       projectiles: snapshot?.projectiles ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       removedIds: snapshot?.removedIds ?? [],
+      events: eventReceiver
+        ? {
+            ...eventReceiver.status,
+            counts: eventCounts,
+            hash: eventHash,
+            receipts: eventReceipts,
+            framesDropped: eventFramesDropped,
+            gapsInjected: eventGapsInjected,
+            pendingBaseline: pendingEventBaseline,
+          }
+        : null,
       clockOriginMs: performance.timeOrigin,
       timeline: includeTimeline ? timeline : [],
       runEpoch: welcome?.runEpoch ?? 0,
@@ -201,7 +240,7 @@ async function startLab() {
           connectionEpoch: welcome.connectionEpoch,
           packetSequence: ++packet,
           snapshotAck: snapshot.snapshotId,
-          eventAck: 0,
+          eventAck: eventReceiver?.cursor ?? 0,
           commands,
         }),
       ).buffer,
@@ -291,10 +330,20 @@ async function startLab() {
       if (typeof event.data === "string") {
         if (!welcome) {
           welcome = decodeHandshake(event.data, identity);
-          if (welcome.capabilities !== INPUT_MAPPING_CAPABILITY)
-            throw new Error("Input mapping capability required");
+          if (
+            welcome.capabilities !==
+            (mode === "combat"
+              ? INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY
+              : INPUT_MAPPING_CAPABILITY)
+          )
+            throw new Error("Required input/event capabilities missing");
         } else {
           if (pendingMapping) throw new Error("Unpaired input mapping");
+          if (mode === "combat" && JSON.parse(event.data).type === "resync-required") {
+            if (pendingEventBaseline) throw new Error("Unpaired event baseline");
+            pendingEventBaseline = decodeEventBaseline(event.data, welcome);
+            return;
+          }
           pendingMapping = decodeInputMapping(event.data);
           trace(
             "mapping",
@@ -313,6 +362,56 @@ async function startLab() {
         connectionEpoch: welcome.connectionEpoch,
         playerId: welcome.playerId,
       };
+      if (new Uint8Array(event.data)[4] === EVENT_TYPE) {
+        if (mode !== "combat" || !eventReceiver || pendingMapping || pendingEventBaseline)
+          throw new Error("Unexpected gameplay event frame");
+        let batch = decodeEventBatch(new Uint8Array(event.data), combatEventContext(context));
+        if (eventFaults.dropNext > 0 || eventFaults.pauseUntilBaseline) {
+          eventFaults.dropNext = Math.max(0, eventFaults.dropNext - 1);
+          eventFramesDropped++;
+          return;
+        }
+        try {
+          // Application-consumer fault, distinct from dropping an intact wire frame.
+          if (eventFaults.gapNext && batch.events.length > 1) {
+            batch = { ...batch, events: batch.events.slice(1) };
+            eventFaults.gapNext = false;
+            eventGapsInjected++;
+          }
+          const accepted = eventReceiver.consume(batch);
+          if (eventFaults.duplicate) accepted.push(...eventReceiver.consume(batch));
+          for (const item of accepted) {
+            eventHash = stateHash([eventHash, { runEpoch: welcome.runEpoch, ...item }]);
+            eventCounts[item.event.kind] = (eventCounts[item.event.kind] ?? 0) + 1;
+            eventReceipts.push({
+              cursor: item.cursor,
+              tick: item.tick,
+              counter: item.counter,
+              kind: item.event.kind,
+              hash: eventHash,
+            });
+            confirmedEffects.push(item);
+          }
+          if (eventReceipts.length > 512) eventReceipts.splice(0, eventReceipts.length - 512);
+          if (confirmedEffects.length > 512)
+            confirmedEffects.splice(0, confirmedEffects.length - 512);
+        } catch (failure) {
+          if (!(failure instanceof ProtocolError) || failure.code !== "resync-required")
+            throw failure;
+          if (!eventRepairRequested) {
+            socket.send(
+              JSON.stringify({
+                type: "event-resync-request",
+                runEpoch: welcome.runEpoch,
+                connectionEpoch: welcome.connectionEpoch,
+                lastEventCursor: eventReceiver.cursor,
+              }),
+            );
+            eventRepairRequested = true;
+          }
+        }
+        return;
+      }
       const incoming = snapshot
         ? decodeSnapshot(new Uint8Array(event.data), context)
         : decodeInitialSnapshot(new Uint8Array(event.data), welcome, context);
@@ -349,6 +448,18 @@ async function startLab() {
       );
       input ??= new InputCapture(actor.controlEpoch);
       snapshot = incoming;
+      if (mode === "combat") {
+        eventReceiver ??= new EventReceiver(combatEventContext(context), incoming);
+        if (pendingEventBaseline) {
+          eventReceiver.installBaseline(incoming, pendingEventBaseline);
+          pendingEventBaseline = null;
+          eventRepairRequested = false;
+          eventFaults.pauseUntilBaseline = false;
+          confirmedEffects.length = 0;
+          // Explicit acceptance couples this full snapshot to its replacement event prefix.
+          sendCommands([]);
+        }
+      }
       if (receipts.length >= 500) throw new Error("Receipt history bound");
       receipts.push({
         enemies: incoming.enemies.length,
@@ -416,6 +527,16 @@ async function startLab() {
         g.fillStyle(0xffe475);
         for (const projectile of snapshot?.projectiles ?? [])
           g.fillRect(projectile.x / 256 - 1, projectile.y / 256 - 1, 3, 2);
+        for (const item of confirmedEffects) {
+          const age = (snapshot?.tick ?? 0) - item.tick;
+          if (age < 0 || age > 8 || item.event.kind === "sound") continue;
+          g.lineStyle(1, item.event.kind === "killed" ? 0xff677d : 0xffe475);
+          g.strokeCircle(
+            item.event.x / 256,
+            item.event.y / 256,
+            item.event.kind === "killed" ? 7 : 3,
+          );
+        }
       }
       const actor = prediction?.actor,
         shape = actor && FOOT_SHAPES.get(actor.body.shapeId);
@@ -439,6 +560,10 @@ async function startLab() {
   Object.assign(window, {
     controllerNetworkLab: {
       status,
+      configureEvents: (faults: Partial<typeof eventFaults>) => {
+        if (mode !== "combat") throw new Error("Combat event lab required");
+        Object.assign(eventFaults, faults);
+      },
       stopInput: () => {
         // Send already captured commands before suspending to preserve sequence identity.
         flush(true);
