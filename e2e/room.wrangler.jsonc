@@ -1,0 +1,10 @@
+// Bounded local synthetic workload. Not included in production deployment.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "edgefall-room-load-probe",
+  "main": "../src/worker/diagnostics/room-probe.ts",
+  "compatibility_date": "2026-08-30",
+  "workers_dev": false,
+  "durable_objects": { "bindings": [{ "name": "ROOM_PROBES", "class_name": "RoomLoadProbe" }] },
+  "migrations": [{ "tag": "room-load-probe-v1", "new_sqlite_classes": ["RoomLoadProbe"] }]
+}

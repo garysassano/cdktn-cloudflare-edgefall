@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-09-06T16:01:47.496878+00:00",
+  "source": "timedatectl timesync-status; selected timing fields",
+  "observations": [
+    "Poll interval: 32s (min: 32s; max 34min 8s)",
+    "Offset: -826.058ms",
+    "Jitter: 2.477ms",
+    "Frequency: -9.542ppm"
+  ],
+  "scope": "Read-only host timing observation. No clock configuration was changed. Not evidence of Cloudflare production clocks."
+}

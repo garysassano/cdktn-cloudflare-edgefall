@@ -1,0 +1,182 @@
+{
+  "recordedAt": "2026-09-06T16:02:37.992Z",
+  "sourceSha256": "4abd30a833653301c38977487dbdef08e25b33156b785afe730dd1ba8b7ceaf7",
+  "workload": "standard",
+  "observerClocks": [
+    [0.008872999999994136, 1788710556647],
+    [102.149766, 1788710556749],
+    [202.406023, 1788710556849],
+    [303.05923600000006, 1788710556950],
+    [404.35065499999996, 1788710557051],
+    [506.32909300000006, 1788710557153],
+    [608.26962, 1788710557255],
+    [1330.4935870000002, 1788710557978]
+  ],
+  "runtimeMode": "wrangler",
+  "wrangler": "4.128.0",
+  "workerd": "1.20260831.1",
+  "observerClockOffsetChangesMs": [
+    -0.14089300000000549, -0.25625700000000506, 0.34678699999994933,
+    -0.2914189999999053, 0.02156199999990349, 0.05947300000002542,
+    0.7760329999998703
+  ],
+  "error": "Clock failed under synthetic protocol workload\n+ actual - expected\n\n+ {\n+   debtMs: 386,\n+   lastCompletedTick: 11,\n+   observedAtMs: 1788710557221,\n+   reason: 'scheduler_debt'\n+ }\n- null\n",
+  "probe": {
+    "instanceId": "dbdbc4f7-2150-49ec-9749-0c3a1cd29c91",
+    "workload": "standard",
+    "tick": 11,
+    "roomMode": "recovering",
+    "clock": {
+      "mode": "recovery",
+      "tick": 11,
+      "timerPending": false,
+      "fault": {
+        "reason": "scheduler_debt",
+        "lastCompletedTick": 11,
+        "observedAtMs": 1788710557221,
+        "debtMs": 386
+      }
+    },
+    "watchdogPending": false,
+    "peers": [
+      {
+        "slot": 0,
+        "active": false,
+        "inputFrames": 16,
+        "inputBytes": 832,
+        "renewedFrames": 16,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 45408,
+        "maxQueuedCommands": 9,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastProcessedSequence": 7,
+        "lastHeld": 0
+      },
+      {
+        "slot": 1,
+        "active": false,
+        "inputFrames": 16,
+        "inputBytes": 832,
+        "renewedFrames": 16,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 45408,
+        "maxQueuedCommands": 9,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastProcessedSequence": 7,
+        "lastHeld": 0
+      },
+      {
+        "slot": 2,
+        "active": false,
+        "inputFrames": 16,
+        "inputBytes": 832,
+        "renewedFrames": 16,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 45408,
+        "maxQueuedCommands": 9,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastProcessedSequence": 7,
+        "lastHeld": 0
+      },
+      {
+        "slot": 3,
+        "active": false,
+        "inputFrames": 16,
+        "inputBytes": 832,
+        "renewedFrames": 16,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 45408,
+        "maxQueuedCommands": 9,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastProcessedSequence": 7,
+        "lastHeld": 0
+      }
+    ],
+    "localCpu": [
+      [1, 0, 0],
+      [2, 1, 0],
+      [3, 2, 2],
+      [4, 0, 0],
+      [5, 0, 0],
+      [6, 1, 1],
+      [7, 0, 0],
+      [8, 0, 0],
+      [9, 1, 0],
+      [10, 1, 0],
+      [11, 0, 0]
+    ],
+    "callbacks": [
+      [1788710556685, 3, 3, 33.333251953125],
+      [1788710556761, 4, 7, 59.333251953125],
+      [1788710556903, 4, 11, 134.666748046875]
+    ],
+    "timers": [
+      [1788710556635, 16.666748046875, 1788710556685],
+      [1788710556688, 16.666748046875, 1788710556761],
+      [1788710556762, 7.333251953125, 1788710556903],
+      [1788710556905, 1, 1788710557221]
+    ]
+  },
+  "clients": [
+    {
+      "slot": 0,
+      "sequence": 34,
+      "closeCode": 4003,
+      "closeReason": "clock-fault",
+      "receipts": [
+        [0, 0, 2, 11352, 0, 0],
+        [42.896334000000024, 3, 6, 11352, 1, 0],
+        [117.6593499999999, 6, 10, 11352, 3, 0],
+        [259.30158099999994, 9, 14, 11352, 5, 0]
+      ]
+    },
+    {
+      "slot": 1,
+      "sequence": 35,
+      "closeCode": 4003,
+      "closeReason": "clock-fault",
+      "receipts": [
+        [0, 0, 3, 11352, 0, 0],
+        [44.02069099999994, 3, 7, 11352, 1, 0],
+        [118.70397400000002, 6, 11, 11352, 3, 0],
+        [260.09148600000003, 9, 15, 11352, 5, 0]
+      ]
+    },
+    {
+      "slot": 2,
+      "sequence": 35,
+      "closeCode": 4003,
+      "closeReason": "clock-fault",
+      "receipts": [
+        [0, 0, 4, 11352, 0, 0],
+        [44.62957600000004, 3, 8, 11352, 1, 0],
+        [120.22624300000007, 6, 12, 11352, 3, 0],
+        [260.9638050000001, 9, 16, 11352, 5, 0]
+      ]
+    },
+    {
+      "slot": 3,
+      "sequence": 35,
+      "closeCode": 4003,
+      "closeReason": "clock-fault",
+      "receipts": [
+        [0, 0, 5, 11352, 0, 0],
+        [45.90297099999998, 3, 9, 11352, 1, 0],
+        [122.531657, 6, 13, 11352, 3, 0],
+        [261.974019, 9, 17, 11352, 5, 0]
+      ]
+    }
+  ]
+}
