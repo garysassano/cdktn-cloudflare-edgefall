@@ -33,7 +33,8 @@
     "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
     "bench:room": "tsx scripts/bench-room.ts",
     "bench:room:network": "tsx scripts/bench-room-network.ts",
-    "bench:room:timers": "tsx scripts/probe-native-timers.mjs"
+    "bench:room:timers": "tsx scripts/probe-native-timers.mjs",
+    "bench:collision:grid": "tsx scripts/bench-collision-grid.ts"
   },
   "dependencies": {
     "cdktn": "^0.24.0",

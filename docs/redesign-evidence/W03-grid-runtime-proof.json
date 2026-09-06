@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T16:55:27.710Z",
+  "commit": "07e006002b139e8f6ece4ac86773bc1acd9cf262",
+  "sourceSha256": "d1a0f5980aad7ab823df2d22183c47825f2f8f97994b12aa92cd6102374e304b",
+  "browserBundleSha256": "003ccdf50a8a47a36bab3ce9e734829fd8b2969c4da122fa6c94c1e8b583e710",
+  "resultSha256": "6ba058982c752e9a89f29ab4b7f7a75a3b948caec903abbbb495d340e615e886",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "snapshotBytes": [
+    {
+      "name": "one-player",
+      "bytes": 432
+    },
+    {
+      "name": "all-sections",
+      "bytes": 956
+    }
+  ],
+  "appliedTicks": [101, 102, 103],
+  "collisionSeeds": 256,
+  "movement": {
+    "ticks": 1200,
+    "traceHash": "8e99e568",
+    "contacts": 1159,
+    "checkpoints": [
+      {
+        "tick": 60,
+        "x": 25600,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 120,
+        "x": 10240,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 180,
+        "x": 25600,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 239,
+        "x": 10496,
+        "y": 16640,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 240,
+        "x": 10496,
+        "y": 13568,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 241,
+        "x": 10496,
+        "y": 10752,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 300,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 360,
+        "x": 4608,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 420,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 480,
+        "x": 4608,
+        "y": 16896,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 540,
+        "x": 19968,
+        "y": 1536,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 599,
+        "x": 4864,
+        "y": 16640,
+        "supportId": 1,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 600,
+        "x": 4864,
+        "y": 16896,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 601,
+        "x": 4864,
+        "y": 17408,
+        "supportId": null,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 660,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 720,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 780,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 840,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 899,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 1
+      },
+      {
+        "tick": 900,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 901,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 960,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1020,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1080,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1140,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      },
+      {
+        "tick": 1200,
+        "x": 4864,
+        "y": 47616,
+        "supportId": 2,
+        "geometryRevision": 2
+      }
+    ]
+  },
+  "spatial": {
+    "fixed": 512,
+    "moving": 32,
+    "bodies": 64,
+    "referenceHash": "57a8413b",
+    "cells": [
+      {
+        "cellPixels": 32,
+        "staticGrid": {
+          "targets": 512,
+          "cells": 1536,
+          "references": 1536,
+          "overflow": 0
+        },
+        "dynamicGrid": {
+          "targets": 32,
+          "cells": 240,
+          "references": 240,
+          "overflow": 0
+        },
+        "initialCandidates": [
+          2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "traceHash": "57a8413b"
+      },
+      {
+        "cellPixels": 64,
+        "staticGrid": {
+          "targets": 512,
+          "cells": 768,
+          "references": 1024,
+          "overflow": 0
+        },
+        "dynamicGrid": {
+          "targets": 32,
+          "cells": 128,
+          "references": 128,
+          "overflow": 0
+        },
+        "initialCandidates": [
+          2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "traceHash": "57a8413b"
+      }
+    ]
+  },
+  "indexedMovement": [
+    {
+      "cellPixels": 32,
+      "ticks": 1200,
+      "traceHash": "8e99e568"
+    },
+    {
+      "cellPixels": 64,
+      "ticks": 1200,
+      "traceHash": "8e99e568"
+    }
+  ],
+  "movingCases": {
+    "seeds": 512,
+    "complete": 499,
+    "crushed": 13,
+    "traceHash": "e4ee1e83"
+  },
+  "restoredMovement": [
+    {
+      "restoredAfterTick": 239,
+      "traceHash": "8e99e568"
+    },
+    {
+      "restoredAfterTick": 601,
+      "traceHash": "8e99e568"
+    },
+    {
+      "restoredAfterTick": 899,
+      "traceHash": "8e99e568"
+    }
+  ],
+  "collisionResults": {
+    "solidHits": 23,
+    "initialOverlaps": 10,
+    "oneWayHits": 6
+  },
+  "status": "pass",
+  "scope": "snapshot bytes/state, input traces, 256 seeded sweep results and a 1200-tick gravity/platform movement fixture; no integrated controller, renderer, full gameplay replay or remote timer claim"
+}

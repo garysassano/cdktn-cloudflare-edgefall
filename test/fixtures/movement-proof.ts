@@ -1,5 +1,6 @@
 import { stateHash } from "../../src/game/core/canonical.js";
 import { pixels, randomStep } from "../../src/game/core/numeric.js";
+import { CollisionGrid, CollisionIndex } from "../../src/game/physics/grid.js";
 import { type KinematicState, moveKinematic } from "../../src/game/physics/move.js";
 import type { SweepTarget } from "../../src/game/physics/sweep.js";
 
@@ -41,7 +42,7 @@ export function movingCasesProof() {
 }
 
 /** Engineering gravity/carry/drop fixture, not the final controller or gameplay replay. */
-export function movementProof(restoreAfterTick?: number) {
+export function movementProof(restoreAfterTick?: number, cellPixels?: 32 | 64) {
   let body: KinematicState = {
     rect: { x: pixels(40), y: pixels(66), w: pixels(14), h: pixels(34) },
     motion: { x: 0, y: 0 },
@@ -59,6 +60,7 @@ export function movementProof(restoreAfterTick?: number) {
     delta: { x: 0, y: 0 },
     kind: "solid",
   };
+  const fixed = cellPixels ? new CollisionGrid([floor], cellPixels) : undefined;
   const trace: Array<{ tick: number; bodyHash: string; geometryHash: string }> = [];
   const checkpoints: Array<{
     tick: number;
@@ -77,10 +79,11 @@ export function movementProof(restoreAfterTick?: number) {
     };
     const geometryRevision = tick < 900 ? 1 : 2;
     const terrain = geometryRevision === 1 ? [platform, floor] : [floor];
+    const frame = { geometryRevision, tick };
     const result = moveKinematic(
       body,
-      terrain,
-      tick >= 600 && tick <= 620 ? { ignoredOneWayId: 1 } : {},
+      fixed ? new CollisionIndex(fixed, geometryRevision === 1 ? [platform] : [], frame) : terrain,
+      { frame, ...(tick >= 600 && tick <= 620 ? { ignoredOneWayId: 1 } : {}) },
     );
     if (result.status !== "complete")
       throw new Error(`Movement proof tick ${tick}: ${result.status}`);

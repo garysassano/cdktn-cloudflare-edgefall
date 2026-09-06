@@ -7,6 +7,7 @@ import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/sn
 import { collisionProof } from "./collision-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
+import { spatialProof } from "./spatial-proof.js";
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
 export function contractProof() {
@@ -68,6 +69,11 @@ export function contractProof() {
     trace,
     collision: collisionProof(),
     movement: movementProof(),
+    spatial: spatialProof(),
+    indexedMovement: ([32, 64] as const).map((cellPixels) => ({
+      cellPixels,
+      ...movementProof(undefined, cellPixels),
+    })),
     movingCases: movingCasesProof(),
     restoredMovement: [239, 601, 899].map((tick) => ({
       restoredAfterTick: tick,

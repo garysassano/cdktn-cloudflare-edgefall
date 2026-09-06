@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "package": "W03",
+  "recordedAt": "2026-09-06T16:54:29.087Z",
+  "baseCommit": "07e006002b139e8f6ece4ac86773bc1acd9cf262",
+  "sourceSha256": "282f7b9df15c0d2f817a3ff8ad4b4f9f7436cc824d7638f72a24071a451e55f1",
+  "runtime": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 5 7600X 6-Core Processor"
+  },
+  "workload": {
+    "fixed": 512,
+    "moving": 32,
+    "bodies": 64,
+    "resultHash": "57a8413b"
+  },
+  "fullScanMs": {
+    "samples": [
+      27.671574, 34.822611, 29.28625, 25.790798, 25.374554, 24.977703,
+      28.059271, 26.68693, 28.200245
+    ],
+    "minimum": 24.977703,
+    "median": 27.671574,
+    "maximum": 34.822611
+  },
+  "indexed": [
+    {
+      "cellPixels": 32,
+      "staticBuildMs": 1.424529,
+      "frameMs": {
+        "samples": [
+          6.301654, 5.682405, 5.890534, 5.991804, 5.939666, 5.940499, 5.938264,
+          6.009056, 5.911361
+        ],
+        "minimum": 5.682405,
+        "median": 5.939666,
+        "maximum": 6.301654
+      }
+    },
+    {
+      "cellPixels": 64,
+      "staticBuildMs": 0.411446,
+      "frameMs": {
+        "samples": [
+          5.579745, 5.002142, 5.26149, 5.145393, 5.917823, 5.509427, 5.309927,
+          5.574441, 5.087666
+        ],
+        "minimum": 5.002142,
+        "median": 5.309927,
+        "maximum": 5.917823
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "cellPixels": 32,
+      "staticGrid": {
+        "targets": 512,
+        "cells": 1536,
+        "references": 1536,
+        "overflow": 0
+      },
+      "dynamicGrid": {
+        "targets": 32,
+        "cells": 240,
+        "references": 240,
+        "overflow": 0
+      },
+      "initialCandidates": [
+        2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+      ],
+      "traceHash": "57a8413b"
+    },
+    {
+      "cellPixels": 64,
+      "staticGrid": {
+        "targets": 512,
+        "cells": 768,
+        "references": 1024,
+        "overflow": 0
+      },
+      "dynamicGrid": {
+        "targets": 32,
+        "cells": 128,
+        "references": 128,
+        "overflow": 0
+      },
+      "initialCandidates": [
+        2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1
+      ],
+      "traceHash": "57a8413b"
+    }
+  ],
+  "status": "equivalent-results",
+  "scope": "Local Node microbenchmark, three warmup frames/nine measured frames; timings include 64 movement queries and dynamic index construction, exclude reused static build and result comparison. Static build is one cold observation. Not representative combat CPU, deployed cadence or a performance gate."
+}

@@ -122,6 +122,18 @@ try {
     appliedTicks: expected.trace.map((tick) => tick.input.serverTick),
     collisionSeeds: expected.collision.samples.length,
     movement: expected.movement,
+    spatial: {
+      fixed: expected.spatial.fixed,
+      moving: expected.spatial.moving,
+      bodies: expected.spatial.bodies,
+      referenceHash: expected.spatial.referenceHash,
+      cells: expected.spatial.cells.map(({ outcomes: _outcomes, ...summary }) => summary),
+    },
+    indexedMovement: expected.indexedMovement.map((result) => ({
+      cellPixels: result.cellPixels,
+      ticks: result.ticks,
+      traceHash: result.traceHash,
+    })),
     movingCases: {
       seeds: expected.movingCases.outcomes.length,
       complete: expected.movingCases.complete,

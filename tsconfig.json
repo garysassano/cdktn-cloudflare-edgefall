@@ -27,6 +27,7 @@
     "scripts/verify-contract-runtimes.ts",
     "scripts/bench-room.ts",
     "scripts/bench-room-network.ts",
+    "scripts/bench-collision-grid.ts",
     "scripts/lib/**/*.ts"
   ],
   "exclude": [

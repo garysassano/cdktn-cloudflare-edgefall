@@ -8,6 +8,7 @@ import {
   position,
 } from "../core/numeric.js";
 import type { Point, Rect } from "../state.js";
+import { type CollisionFrame, CollisionIndex } from "./grid.js";
 import {
   type Normal,
   type SweepContact,
@@ -15,6 +16,7 @@ import {
   displacementAtContact,
   earliestSweep,
   sweepAabb,
+  sweepBounds,
   sweepOneWay,
 } from "./sweep.js";
 
@@ -45,6 +47,8 @@ export interface MovementResult extends KinematicState {
 export interface MovementOptions {
   ignoredOneWayId?: number;
   maxIterations?: number;
+  /** Required for indexed geometry, preventing a cached moving frame from being reused. */
+  frame?: CollisionFrame;
 }
 
 const ZERO: Readonly<Point> = { x: 0, y: 0 };
@@ -218,7 +222,7 @@ function closingTrap(
  */
 export function moveKinematic(
   state: KinematicState,
-  terrain: readonly SweepTarget[],
+  terrain: readonly SweepTarget[] | CollisionIndex,
   options: MovementOptions = {},
 ): MovementResult {
   const limit = integer(options.maxIterations ?? 4, 1, 4, "movement contact limit");
@@ -227,11 +231,27 @@ export function moveKinematic(
     integer(options.ignoredOneWayId, 1, COUNTER_LIMIT - 1, "ignored support ID");
   integer(state.rect.w, 1, MAX_POSITION, "body width");
   integer(state.rect.h, 1, MAX_POSITION, "body height");
-  const initial = earliestSweep(state.rect, state.motion, terrain, options.ignoredOneWayId);
-  const targets = terrain
+  const index = terrain instanceof CollisionIndex ? terrain : undefined;
+  index?.assertFrame(options.frame);
+  const source = terrain instanceof CollisionIndex ? terrain.targets : terrain;
+  const targets = source
     .map((target) => ({ ...target, rect: { ...target.rect }, delta: { ...target.delta } }))
     .sort((a, b) => a.id - b.id);
   const byId = new Map(targets.map((target) => [target.id, target]));
+  const query = (rect: Rect, delta: Point) => {
+    // Every residual target position remains inside its original swept bounds. Requery
+    // the actual new body path after each collision; retain full geometry for support,
+    // correction and closing-trap proof so broadphase cannot change those decisions.
+    const candidates = index
+      ? index.query(sweepBounds(rect, delta)).map((target) => {
+          const current = byId.get(target.id);
+          if (!current) throw new Error("Missing current collision target");
+          return current;
+        })
+      : targets;
+    return earliestSweep(rect, delta, candidates, options.ignoredOneWayId);
+  };
+  const initial = query(state.rect, state.motion);
   const correction = correctOverlap(state.rect, targets, initial.overlaps, options.ignoredOneWayId);
   const result: MovementResult = {
     rect: { ...state.rect },
@@ -257,10 +277,10 @@ export function moveKinematic(
   if (startingSupport !== null) credited.add(startingSupport);
   let active: Constraint[] = [];
   for (let iteration = 0; iteration < limit; iteration++) {
-    const query = earliestSweep(result.rect, result.remaining, targets, options.ignoredOneWayId);
-    if (query.overlaps.length)
-      return { ...result, status: "residual-overlap", diagnosticIds: query.overlaps };
-    if (!query.contacts.length) {
+    const hits = query(result.rect, result.remaining);
+    if (hits.overlaps.length)
+      return { ...result, status: "residual-overlap", diagnosticIds: hits.overlaps };
+    if (!hits.contacts.length) {
       result.rect = translate(result.rect, result.remaining);
       for (const target of targets) target.rect = translate(target.rect, target.delta);
       result.remaining = { ...ZERO };
@@ -270,7 +290,7 @@ export function moveKinematic(
           : support(result.rect, targets, startingSupport, credited, options.ignoredOneWayId);
       return result;
     }
-    const first = query.contacts[0];
+    const first = hits.contacts[0];
     if (!first) throw new Error("Missing movement contact");
     result.iterations++;
     const moved = displacementAtContact(result.remaining, first.time);
@@ -281,7 +301,7 @@ export function moveKinematic(
       target.rect = translate(target.rect, movedTarget);
       target.delta = { x: target.delta.x - movedTarget.x, y: target.delta.y - movedTarget.y };
     }
-    const current = query.contacts.map((contact) => {
+    const current = hits.contacts.map((contact) => {
       result.contacts.push({ ...contact, iteration });
       if (contact.normal.y === -1) credited.add(contact.otherId);
       const target = byId.get(contact.otherId);

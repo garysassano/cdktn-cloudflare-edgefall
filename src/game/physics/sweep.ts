@@ -31,6 +31,12 @@ export interface SweepContact {
   time: ContactTime;
   normal: Normal;
 }
+export interface SweepBounds {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+}
 
 const ZERO: Readonly<Point> = { x: 0, y: 0 };
 const START: ContactTime = { numerator: 0, denominator: 1 };
@@ -52,6 +58,24 @@ function validate(rect: Rect, delta: Point, segment: boolean): void {
   position(rect.y + delta.y);
   position(rect.x + rect.w + delta.x);
   position(rect.y + rect.h + delta.y);
+}
+
+export function validateSweepTarget(target: SweepTarget): void {
+  integer(target.id, 1, COUNTER_LIMIT - 1, "collision entity ID");
+  if (target.kind !== "solid" && target.kind !== "one-way")
+    throw new Error("Unsupported collision terrain");
+  validate(target.rect, target.delta, false);
+}
+
+/** Closed bounds include endpoint/corner contact and the entire linear tick path. */
+export function sweepBounds(rect: Rect, delta: Point = ZERO): SweepBounds {
+  validate(rect, delta, true);
+  return {
+    minX: rect.x + Math.min(0, delta.x),
+    minY: rect.y + Math.min(0, delta.y),
+    maxX: rect.x + rect.w + Math.max(0, delta.x),
+    maxY: rect.y + rect.h + Math.max(0, delta.y),
+  };
 }
 
 interface Slab {
@@ -172,12 +196,9 @@ export function earliestSweep(
   let contacts: SweepContact[] = [];
   let earliest: ContactTime | undefined;
   for (const target of [...targets].sort((a, b) => a.id - b.id)) {
-    integer(target.id, 1, COUNTER_LIMIT - 1, "collision entity ID");
+    validateSweepTarget(target);
     if (ids.has(target.id)) throw new Error("Duplicate collision entity ID");
     ids.add(target.id);
-    if (target.kind !== "solid" && target.kind !== "one-way")
-      throw new Error("Unsupported collision terrain");
-    validate(target.rect, target.delta, false);
     if (target.kind === "one-way" && target.id === ignoredOneWayId) continue;
     const result =
       target.kind === "solid"
