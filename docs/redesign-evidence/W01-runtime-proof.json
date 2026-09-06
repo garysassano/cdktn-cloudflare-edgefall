@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "package": "W01",
+  "recordedAt": "2026-09-06T15:03:10.698Z",
+  "commit": "08f42bb6fa9b92b93ad495e357496ba832853771",
+  "sourceSha256": "e8080dfb79e41116a97c08af177a62a66d6afe7e4e5010e6d583332e7dc124f0",
+  "browserBundleSha256": "ee2d8bd4bd182765a33f8feeeb392091de2657cdacbee0e7bb2aacb20fb9b9dd",
+  "resultSha256": "d42f2167d7abdac845fc72041572a9ee5fea5df45c9a3d0d392b86967873cfc4",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.127.0",
+    "worker": "local workerd; no deployed service",
+    "miniflarePackage": "5.20260826.0-alpha",
+    "workerdPackage": "1.20260826.1"
+  },
+  "snapshotBytes": [
+    {
+      "name": "one-player",
+      "bytes": 432
+    },
+    {
+      "name": "all-sections",
+      "bytes": 956
+    }
+  ],
+  "appliedTicks": [101, 102, 103],
+  "status": "pass",
+  "scope": "snapshot bytes/state and processed-input trace equality; no renderer, gameplay or remote timer claim"
+}

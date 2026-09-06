@@ -13,3 +13,6 @@ export const MAX_CLIENT_FRAME_BYTES = 2048;
 export const MAX_QUEUED_COMMANDS = 120;
 export const MAX_PREDICTION_TICKS = 180;
 export const MAX_EDGE_ADVANCE = 256;
+export const MAX_CLIENT_LEAD_TICKS = 6;
+export const INPUT_STALE_TICKS = 15;
+export const INPUT_STALE_MS = 250;

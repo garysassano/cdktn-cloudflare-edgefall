@@ -26,6 +26,7 @@
     "synth": "cdktn synth",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:contracts": "tsx scripts/verify-contract-runtimes.ts",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/worker/tsconfig.json && tsc --noEmit -p src/client/tsconfig.json",
     "types": "wrangler types",

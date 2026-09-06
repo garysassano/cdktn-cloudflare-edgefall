@@ -33,9 +33,14 @@ export interface PlayerAcknowledgment {
   processedEdgeIds: EdgeCursors;
 }
 export type InputOutcome = "applied" | "stale" | "old-control" | "cooldown" | "unavailable";
+export interface EdgeResult extends ActionEdge {
+  outcome: InputOutcome;
+}
 export interface AppliedInput {
   playerId: number;
   command: InputCommand;
+  /** Original accepted intent for replay/audit; null for a missing-command tick. */
+  submittedCommand: InputCommand | null;
   serverTick: number;
   outcome: InputOutcome;
   /** True only on missing-command ticks; edges must be empty in this case. */

@@ -23,7 +23,8 @@
     "test/**/*.ts",
     "e2e/**/*.ts",
     "playwright.config.ts",
-    "scripts/validate-content.ts"
+    "scripts/validate-content.ts",
+    "scripts/verify-contract-runtimes.ts"
   ],
   "exclude": [
     ".gen",

@@ -1,0 +1,127 @@
+import type { PlayerAcknowledgment } from "../../game/input/types.js";
+import type { CampaignState, ControlledActor, Point, VehicleState } from "../../game/state.js";
+
+export const ROOM_MODES = [
+  "lobby",
+  "loading",
+  "playing",
+  "intermission",
+  "paused-empty",
+  "recovering",
+  "completed",
+  "expired",
+] as const;
+export interface EnemySnapshot {
+  id: number;
+  definitionId: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  shapeId: number;
+  facing: -1 | 1;
+  health: number;
+  mode: number;
+  stateStartTick: number;
+  actionInstanceId: number;
+  actionDefinitionId: number;
+  modeTicks: number;
+  supportId: number | null;
+  geometryRevision: number;
+}
+export interface ProjectileSnapshot {
+  id: number;
+  ownerId: number;
+  actionInstanceId: number;
+  definitionId: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  spawnTick: number;
+  lifetimeTicks: number;
+  heading: number;
+  shapeId: number;
+}
+export interface PlatformSnapshot {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  shapeId: number;
+  trajectoryId: number;
+  trajectoryTick: number;
+}
+export interface ThreatSnapshot {
+  actionInstanceId: number;
+  sourceId: number;
+  definitionId: number;
+  telegraphTick: number;
+  activeTick: number;
+  endTick: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  heading: number;
+  targetId: number | null;
+  motion: "linear" | "locked" | "authored";
+  cancelled: boolean;
+  stateVersion: number;
+  shapeId: number;
+}
+export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolvedEntities"> & {
+  remainingEnemies: number;
+};
+export interface FullSnapshot {
+  runEpoch: number;
+  connectionEpoch: number;
+  snapshotId: number;
+  tick: number;
+  baselineEventCursor: number;
+  geometryRevision: number;
+  /** Diagnostic FNV-1a value, not a content/authentication digest. */
+  stateHash: number;
+  roomMode: (typeof ROOM_MODES)[number];
+  camera: Point;
+  campaign: CampaignSnapshot;
+  acknowledgments: PlayerAcknowledgment[];
+  players: ControlledActor[];
+  vehicles: VehicleState[];
+  enemies: EnemySnapshot[];
+  projectiles: ProjectileSnapshot[];
+  platforms: PlatformSnapshot[];
+  threats: ThreatSnapshot[];
+  removedIds: number[];
+}
+export interface SnapshotContext {
+  runEpoch: number;
+  connectionEpoch: number;
+  playerId: number;
+  geometryRevision: number;
+  /** The negotiated content's collision table must exist before decoding for prediction. */
+  shapeIds: ReadonlySet<number>;
+}
+
+export const SNAPSHOT_TYPE = 2;
+export const SNAPSHOT_HEADER_BYTES = 64;
+export const CAMPAIGN_BYTES = 40;
+export const BODY_BYTES = 140;
+export const PLAYER_BYTES = 288;
+export const VEHICLE_BYTES = 308;
+export const ENEMY_BYTES = 64;
+export const PROJECTILE_BYTES = 48;
+export const PLATFORM_BYTES = 32;
+export const THREAT_BYTES = 64;
+export const SNAPSHOT_CAPS = {
+  players: 4,
+  vehicles: 16,
+  enemies: 128,
+  projectiles: 256,
+  platforms: 64,
+  threats: 128,
+  removedIds: 512,
+} as const;
+export const MIN_SNAPSHOT_BYTES = 432;
+export const MAX_SNAPSHOT_BYTES = 39112;

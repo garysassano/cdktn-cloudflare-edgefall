@@ -1,0 +1,8 @@
+// Local conformance worker only. No production bindings or provisioned resources.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "edgefall-contract-proof",
+  "main": "../test/fixtures/contract-worker.ts",
+  "compatibility_date": "2026-08-30",
+  "workers_dev": false
+}

@@ -1,4 +1,4 @@
-import type { AppliedInput } from "./types.js";
+import type { AppliedInput, EdgeResult } from "./types.js";
 
 /** External decisions are assigned a tick and order before entering the deterministic kernel. */
 export type BoundaryEvent =
@@ -17,7 +17,7 @@ export type BoundaryEvent =
 export interface JournalTick {
   tick: number;
   runEpoch: number;
-  inputs: AppliedInput[];
+  inputs: Array<{ input: AppliedInput; edgeResults: EdgeResult[] }>;
   boundaryEvents: Array<{ order: number; event: BoundaryEvent }>;
   /** Derived changes are assertions, never applied a second time as external causes. */
   assertions: Array<{ kind: "state-hash"; value: string }>;
