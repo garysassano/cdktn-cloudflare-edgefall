@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { Edge, Held, type InputCommand } from "../game/input/types.js";
+import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
 import {
@@ -8,11 +8,13 @@ import {
   stepNetworkController,
 } from "../shared/diagnostics/controller-workload.js";
 import { probeContext, roomWorkloadHash } from "../shared/diagnostics/room-workload.js";
+import { type InputBinding, InputCapture } from "../shared/input/capture.js";
 import { ControllerPrediction } from "../shared/prediction/controller.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
 import { type Handshake, decodeHandshake } from "../shared/protocol/handshake.js";
 import { decodeSnapshot } from "../shared/protocol/snapshot.js";
 import type { FullSnapshot } from "../shared/protocol/snapshot-schema.js";
+import { RoomClock } from "../shared/runtime/room-clock.js";
 
 const params = new URL(location.href).searchParams,
   base = new URL(params.get("room") ?? "http://127.0.0.1:8791");
@@ -33,13 +35,11 @@ let welcome: Handshake | null = null,
   snapshot: FullSnapshot | null = null,
   prediction: ControllerPrediction | null = null;
 let inputStopped = false;
-let sequence = 0,
-  packet = 0,
-  jumpId = 0,
+let input: InputCapture | null = null;
+let inputClock: RoomClock | null = null;
+let packet = 0,
   prepared = false,
-  jump = false,
   error: string | null = null;
-const keys = new Set<string>();
 const receipts: Array<{
   tick: number;
   hash: number;
@@ -51,29 +51,42 @@ const receipts: Array<{
   correctionY: number;
   correctionChanged: boolean;
 }> = [];
-const bindings: Record<string, number> = {
-  ArrowLeft: Held.Left,
-  KeyA: Held.Left,
-  ArrowRight: Held.Right,
-  KeyD: Held.Right,
-  ArrowUp: Held.Up,
-  KeyW: Held.Up,
-  ArrowDown: Held.Down,
-  KeyS: Held.Down,
+const bindings: Record<string, InputBinding> = {
+  ArrowLeft: { held: Held.Left },
+  KeyA: { held: Held.Left },
+  ArrowRight: { held: Held.Right },
+  KeyD: { held: Held.Right },
+  ArrowUp: { held: Held.Up },
+  KeyW: { held: Held.Up },
+  ArrowDown: { held: Held.Down },
+  KeyS: { held: Held.Down },
+  Space: { edge: Edge.Jump },
+  KeyZ: { held: Held.Fire, edge: Edge.FireOnset },
+  KeyX: { edge: Edge.Grenade },
+  KeyE: { edge: Edge.Interact },
+  KeyV: { held: Held.VehicleSpecial, edge: Edge.VehicleSpecial },
 };
 const surface = element("game");
 surface.addEventListener("keydown", (event) => {
   const e = event as KeyboardEvent;
-  if (bindings[e.code] || e.code === "Space") {
-    e.preventDefault();
-    keys.add(e.code);
+  const binding = bindings[e.code];
+  if (!binding) return;
+  e.preventDefault();
+  try {
+    input?.press(e.code, binding);
+  } catch (e) {
+    fail(e);
   }
-  if (e.code === "Space" && !e.repeat) jump = true;
 });
-surface.addEventListener("keyup", (event) => keys.delete((event as KeyboardEvent).code));
+surface.addEventListener("keyup", (event) => input?.release((event as KeyboardEvent).code));
 function neutral() {
-  keys.clear();
-  jump = false;
+  input?.neutralize();
+}
+function fail(e: unknown) {
+  error ??= String(e);
+  inputClock?.stop();
+  neutral();
+  inspect();
 }
 surface.addEventListener("blur", neutral);
 window.addEventListener("blur", neutral);
@@ -88,8 +101,12 @@ function status() {
     ready: welcome !== null && snapshot !== null,
     prepared,
     error,
-    requiresResync: prediction?.requiresResync ?? false,
-    sequence,
+    requiresResync: Boolean(
+      prediction?.requiresResync || input?.requiresResync || inputClock?.state.mode === "recovery",
+    ),
+    sequence: input?.sequence ?? 0,
+    unsent: input?.pending ?? 0,
+    inputClock: inputClock?.state ?? null,
     snapshotTick: snapshot?.tick ?? 0,
     predictedTick: prediction?.tick ?? 0,
     pending: prediction?.pending ?? 0,
@@ -107,53 +124,8 @@ function inspect() {
     2,
   );
 }
-function send() {
-  if (!prediction || !snapshot || !welcome || error) return;
-  if (inputStopped) {
-    socket.send(
-      new Uint8Array(
-        encodeInputBatch({
-          runEpoch: welcome.runEpoch,
-          connectionEpoch: welcome.connectionEpoch,
-          packetSequence: ++packet,
-          snapshotAck: snapshot.snapshotId,
-          eventAck: 0,
-          commands: [],
-        }),
-      ).buffer,
-    );
-    return;
-  }
-  const commands: InputCommand[] = [];
-  for (let i = 0; i < 3; i++) {
-    const clientTick = sequence;
-    const scripted = element<HTMLInputElement>("scripted").checked;
-    const held = scripted
-      ? clientTick >= 180 && slot === 0
-        ? Held.Down
-        : clientTick < 10
-          ? Held.Right
-          : clientTick >= 30 && clientTick < 40
-            ? Held.Left
-            : clientTick >= 70 && clientTick < 80
-              ? Held.Down
-              : 0
-      : [...keys].reduce((h, key) => h | (bindings[key] ?? 0), 0);
-    const requested = scripted
-      ? clientTick === 6 + slot * 3 || clientTick === 160 + slot * 3
-      : jump;
-    const command: InputCommand = {
-      sequence: ++sequence,
-      clientTick,
-      controlEpoch: welcome ? prediction.actor.controlEpoch : 1,
-      held,
-      aim: 0,
-      edges: requested ? [{ kind: Edge.Jump, id: ++jumpId }] : [],
-    };
-    jump = false;
-    prediction.submit(command);
-    commands.push(command);
-  }
+function sendCommands(commands: InputCommand[]) {
+  if (!snapshot || !welcome || error) return;
   if (socket.bufferedAmount > 4096) throw new Error("Outbound queue requires resync");
   socket.send(
     new Uint8Array(
@@ -168,12 +140,67 @@ function send() {
     ).buffer,
   );
 }
+function capture() {
+  if (!input || !prediction || inputStopped || error) return;
+  const clientTick = input.sequence;
+  if (element<HTMLInputElement>("scripted").checked) {
+    const held =
+      clientTick >= 180 && slot === 0
+        ? Held.Down
+        : clientTick < 10
+          ? Held.Right
+          : clientTick >= 30 && clientTick < 40
+            ? Held.Left
+            : clientTick >= 70 && clientTick < 80
+              ? Held.Down
+              : 0;
+    for (const bit of [Held.Left, Held.Right, Held.Down]) {
+      const source = `script-${bit}`;
+      if (held & bit) input.press(source, { held: bit });
+      else input.release(source);
+    }
+    if (clientTick === 6 + slot * 3 || clientTick === 160 + slot * 3) {
+      input.press("script-jump", { edge: Edge.Jump });
+      input.release("script-jump");
+    }
+  }
+  const actor = prediction.actor;
+  const command = input.capture(
+    directionalIntent(input.held, actor.facing, actor.body.grounded).aim,
+  );
+  prediction.submit(command);
+}
+function flush(force = false) {
+  const commands = input?.takeBatch(performance.now(), force);
+  if (commands) sendCommands(commands);
+}
+function startCaptureClock() {
+  if (inputClock || !input || inputStopped) return;
+  inputClock = new RoomClock({
+    initialTick: input.sequence,
+    port: {
+      now: () => performance.now(),
+      schedule: (callback, delay) => {
+        const timer = setTimeout(callback, delay);
+        return () => clearTimeout(timer);
+      },
+    },
+    step: () => {
+      capture();
+      flush();
+    },
+    onDiscontinuity: (fault) => fail(`Client input clock: ${fault.reason}`),
+  });
+  inputClock.start();
+}
 element("prepare").onclick = () => {
   try {
     if (prepared) throw new Error("Already prepared");
     prepared = true;
-    send();
-    send();
+    for (let i = 0; i < 6; i++) {
+      capture();
+      if (i % 3 === 2) flush(true);
+    }
     inspect();
   } catch (e) {
     error ??= String(e);
@@ -191,7 +218,7 @@ socket.addEventListener("message", (event) => {
       throw new Error("Missing welcome/binary data");
     const incoming = decodeSnapshot(new Uint8Array(event.data), probeContext(slot));
     if (incoming.stateHash !== roomWorkloadHash(incoming)) throw new Error("World digest mismatch");
-    if (snapshot && (incoming.tick <= snapshot.tick || incoming.snapshotId <= snapshot.snapshotId))
+    if (snapshot && (incoming.tick < snapshot.tick || incoming.snapshotId <= snapshot.snapshotId))
       throw new Error("Snapshot regression");
     const actor = incoming.players[slot],
       acknowledgment = incoming.acknowledgments[slot];
@@ -208,6 +235,7 @@ socket.addEventListener("message", (event) => {
       baseline,
       (a, c, t) => stepNetworkController(a, c, t).actor,
     );
+    input ??= new InputCapture(actor.controlEpoch);
     snapshot = incoming;
     if (receipts.length >= 500) throw new Error("Receipt history bound");
     receipts.push({
@@ -221,21 +249,25 @@ socket.addEventListener("message", (event) => {
       correctionY: correction?.y ?? 0,
       correctionChanged: correction?.changed ?? false,
     });
-    if (prepared && incoming.roomMode === "playing") send();
+    if (prepared && incoming.roomMode === "playing") {
+      if (inputStopped) sendCommands([]);
+      else startCaptureClock();
+    } else if (incoming.roomMode !== "loading") {
+      fail("Room lifecycle requires a fresh input baseline");
+    }
     inspect();
   } catch (e) {
-    error ??= String(e);
-    neutral();
-    inspect();
+    fail(e);
   }
 });
 socket.addEventListener("close", (event) => {
+  inputClock?.close();
+  neutral();
   if (event.reason !== "observer-closed") error ??= `closed: ${event.code} ${event.reason}`;
   inspect();
 });
 socket.addEventListener("error", () => {
-  error ??= "WebSocket failure";
-  inspect();
+  fail("WebSocket failure");
 });
 class NetworkScene extends Phaser.Scene {
   private graphics?: Phaser.GameObjects.Graphics;
@@ -279,7 +311,11 @@ Object.assign(window, {
   controllerNetworkLab: {
     status,
     stopInput: () => {
+      // Send already captured commands before suspending to preserve sequence identity.
+      flush(true);
+      if (input?.pending) throw new Error("Input stop could not flush captured commands");
       inputStopped = true;
+      inputClock?.stop();
       neutral();
     },
   },

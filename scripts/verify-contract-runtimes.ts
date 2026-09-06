@@ -138,6 +138,7 @@ try {
     compiledLevel: expected.compiledLevel,
     encounter: expected.encounter,
     prediction: expected.prediction,
+    inputCapture: expected.inputCapture,
     routedEnemy: expected.routedEnemy,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),

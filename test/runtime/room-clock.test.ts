@@ -5,7 +5,7 @@ import {
   type ClockPort,
   type ClockSample,
   RoomClock,
-} from "../../src/worker/runtime/room-clock.js";
+} from "../../src/shared/runtime/room-clock.js";
 
 class ManualClock implements ClockPort {
   time = 0;

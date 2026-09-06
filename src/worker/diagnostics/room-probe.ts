@@ -16,8 +16,8 @@ import {
 import type { Handshake } from "../../shared/protocol/handshake.js";
 import { InputStream } from "../../shared/protocol/input-stream.js";
 import { encodeSnapshot } from "../../shared/protocol/snapshot.js";
+import { RoomClock } from "../../shared/runtime/room-clock.js";
 import { ControlLease } from "../runtime/control-lease.js";
-import { RoomClock } from "../runtime/room-clock.js";
 
 interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
@@ -288,6 +288,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         peer.lastAckAt = now;
       }
       this.world.roomMode = "playing";
+      if (this.workload === "controller") {
+        // Announce the start boundary before the first tick; clients retain their six-tick lead.
+        this.world.stateHash = roomWorkloadHash(this.world);
+        for (const peer of this.peers.values()) this.snapshot(peer);
+      }
       this.watchdog = setTimeout(() => this.finish("wall-limit"), 20_000);
       this.clock.start();
     } else if (action === "close") this.finish("observer-closed");

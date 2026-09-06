@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 import { createServer } from "node:net";
 import { cpus, platform, release } from "node:os";
 import { setTimeout as delay } from "node:timers/promises";
-import type { ClockSample, RoomClock } from "../src/worker/runtime/room-clock.js";
+import type { ClockSample, RoomClock } from "../src/shared/runtime/room-clock.js";
 
 interface ProbeStatus {
   instanceId: string;
@@ -151,7 +151,7 @@ try {
   const source = createHash("sha256");
   for (const path of [
     "src/game/core/numeric.ts",
-    "src/worker/runtime/room-clock.ts",
+    "src/shared/runtime/room-clock.ts",
     "src/worker/diagnostics/clock-probe.ts",
     "scripts/bench-room.ts",
     "e2e/clock.wrangler.jsonc",

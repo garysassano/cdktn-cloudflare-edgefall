@@ -17,6 +17,9 @@ interface ClientStatus {
   snapshotTick: number;
   predictedTick: number;
   pending: number;
+  unsent: number;
+  inputClock: { mode: string; tick: number } | null;
+  authoritative: { processedEdgeIds: number[] } | null;
   receipts: Array<{
     tick: number;
     hash: number;
@@ -171,7 +174,14 @@ try {
           ),
           "Unimpaired prediction correction",
         );
-        assert(client.pending <= 6, "Unbounded client pending input");
+        // Pending includes commands captured since the last 20 Hz snapshot, not just server lead.
+        assert(
+          client.pending <= 9,
+          "Unimpaired client pending input exceeds lead plus snapshot interval",
+        );
+        assert.equal(client.inputClock?.mode, "running", "Missing independent capture clock");
+        assert.equal(client.inputClock.tick, client.sequence, "Capture clock/command divergence");
+        assert(client.unsent <= 2, "Normal input batching backlog");
       }
       const common =
         clients[0]?.receipts.filter(
@@ -210,6 +220,16 @@ try {
           globalThis as unknown as { controllerNetworkLab: { stopInput: () => void } }
         ).controllerNetworkLab.stopInput(),
       );
+      // Real keyboard events exercise short taps through DOM capture, binary transport and ack.
+      // The laboratory consumes combat edges as unavailable; this does not prove combat effects.
+      const tapPage = pages[1];
+      assert(tapPage);
+      const beforeTaps = (await read())[1]?.authoritative?.processedEdgeIds;
+      assert(beforeTaps);
+      await tapPage.locator("#game").focus();
+      for (const key of ["Space", "KeyZ", "KeyX", "KeyE", "KeyV"]) await tapPage.keyboard.down(key);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      for (const key of ["Space", "KeyZ", "KeyX", "KeyE", "KeyV"]) await tapPage.keyboard.up(key);
       let stoppedClients: ClientStatus[] = [];
       for (let attempt = 0; attempt < 100; attempt++) {
         stoppedClients = await read();
@@ -240,6 +260,13 @@ try {
         "Healthy leases expired",
       );
       assert.equal(room.clock.fault, null);
+      const afterTaps = stoppedClients[1]?.authoritative?.processedEdgeIds;
+      assert(afterTaps);
+      assert.deepEqual(
+        afterTaps,
+        beforeTaps.map((id) => id + 1),
+        "Lost or duplicated action tap",
+      );
       await fetch(`${base}/controller/close`, { method: "POST" });
       await pages[0]?.screenshot({ path: `${output}/four-player-controller.png` });
       return {
@@ -251,6 +278,7 @@ try {
           .update(await readFile(`${root}/network-lab.js`))
           .digest("hex"),
         sharedSnapshots: common.length,
+        actionTaps: { slot: 1, before: beforeTaps, after: afterTaps },
         stoppedClients,
         room,
         clients,

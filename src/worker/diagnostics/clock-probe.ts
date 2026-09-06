@@ -1,5 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
-import { type ClockSample, RoomClock } from "../runtime/room-clock.js";
+import { type ClockSample, RoomClock } from "../../shared/runtime/room-clock.js";
 
 interface ProbeEnv {
   CLOCK_PROBES: DurableObjectNamespace<ClockProbe>;
