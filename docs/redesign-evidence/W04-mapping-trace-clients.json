@@ -1,0 +1,2602 @@
+[
+  {
+    "slot": 0,
+    "clockOriginMs": 1788729209885.6,
+    "timeline": [
+      {
+        "kind": "snapshot",
+        "atMs": 554.7000000029802,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 0,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 791.2999999970198,
+        "sequence": 1,
+        "lastSequence": 1,
+        "snapshotTick": 33,
+        "mappedTick": 34
+      },
+      {
+        "kind": "capture",
+        "atMs": 791.7000000029802,
+        "sequence": 2,
+        "lastSequence": 2,
+        "snapshotTick": 33,
+        "mappedTick": 35
+      },
+      {
+        "kind": "capture",
+        "atMs": 791.9000000059605,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "send",
+        "atMs": 792,
+        "sequence": 1,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 795.7999999970198,
+        "sequence": 4,
+        "lastSequence": 4,
+        "snapshotTick": 33,
+        "mappedTick": 37
+      },
+      {
+        "kind": "capture",
+        "atMs": 796,
+        "sequence": 5,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 38
+      },
+      {
+        "kind": "send",
+        "atMs": 796.1000000089407,
+        "sequence": 4,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 834.7000000029802,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 33,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 852.7999999970198,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 33,
+        "mappedTick": 39
+      },
+      {
+        "kind": "send",
+        "atMs": 852.9000000059605,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 863.2000000029802,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "capture",
+        "atMs": 870.6000000089407,
+        "sequence": 7,
+        "lastSequence": 7,
+        "snapshotTick": 36,
+        "mappedTick": 40
+      },
+      {
+        "kind": "capture",
+        "atMs": 886.2000000029802,
+        "sequence": 8,
+        "lastSequence": 8,
+        "snapshotTick": 36,
+        "mappedTick": 41
+      },
+      {
+        "kind": "capture",
+        "atMs": 903.1000000089407,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 36,
+        "mappedTick": 42
+      },
+      {
+        "kind": "send",
+        "atMs": 903.2000000029802,
+        "sequence": 7,
+        "lastSequence": 9,
+        "snapshotTick": 36,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 911.6000000089407,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 39
+      },
+      {
+        "kind": "capture",
+        "atMs": 918.5,
+        "sequence": 10,
+        "lastSequence": 10,
+        "snapshotTick": 39,
+        "mappedTick": 43
+      },
+      {
+        "kind": "capture",
+        "atMs": 939.5,
+        "sequence": 11,
+        "lastSequence": 11,
+        "snapshotTick": 39,
+        "mappedTick": 44
+      },
+      {
+        "kind": "capture",
+        "atMs": 955.9000000059605,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 45
+      },
+      {
+        "kind": "send",
+        "atMs": 956.2999999970198,
+        "sequence": 10,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 964.4000000059605,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 42
+      },
+      {
+        "kind": "capture",
+        "atMs": 968.6000000089407,
+        "sequence": 13,
+        "lastSequence": 13,
+        "snapshotTick": 42,
+        "mappedTick": 46
+      },
+      {
+        "kind": "capture",
+        "atMs": 985.1000000089407,
+        "sequence": 14,
+        "lastSequence": 14,
+        "snapshotTick": 42,
+        "mappedTick": 47
+      },
+      {
+        "kind": "capture",
+        "atMs": 1005.7999999970198,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 42,
+        "mappedTick": 48
+      },
+      {
+        "kind": "send",
+        "atMs": 1006.1000000089407,
+        "sequence": 13,
+        "lastSequence": 15,
+        "snapshotTick": 42,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1013.2000000029802,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 42,
+        "mappedTick": 45
+      },
+      {
+        "kind": "capture",
+        "atMs": 1018.5,
+        "sequence": 16,
+        "lastSequence": 16,
+        "snapshotTick": 45,
+        "mappedTick": 49
+      },
+      {
+        "kind": "capture",
+        "atMs": 1035.1000000089407,
+        "sequence": 17,
+        "lastSequence": 17,
+        "snapshotTick": 45,
+        "mappedTick": 50
+      },
+      {
+        "kind": "capture",
+        "atMs": 1054.2000000029802,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 45,
+        "mappedTick": 51
+      },
+      {
+        "kind": "send",
+        "atMs": 1054.2999999970198,
+        "sequence": 16,
+        "lastSequence": 18,
+        "snapshotTick": 45,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1062.4000000059605,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 48
+      },
+      {
+        "kind": "capture",
+        "atMs": 1069.7000000029802,
+        "sequence": 19,
+        "lastSequence": 19,
+        "snapshotTick": 48,
+        "mappedTick": 52
+      },
+      {
+        "kind": "capture",
+        "atMs": 1086,
+        "sequence": 20,
+        "lastSequence": 20,
+        "snapshotTick": 48,
+        "mappedTick": 53
+      },
+      {
+        "kind": "capture",
+        "atMs": 1105.7999999970198,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 48,
+        "mappedTick": 54
+      },
+      {
+        "kind": "send",
+        "atMs": 1106,
+        "sequence": 19,
+        "lastSequence": 21,
+        "snapshotTick": 48,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1111.5,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 51
+      },
+      {
+        "kind": "capture",
+        "atMs": 1120.5,
+        "sequence": 22,
+        "lastSequence": 22,
+        "snapshotTick": 51,
+        "mappedTick": 55
+      },
+      {
+        "kind": "capture",
+        "atMs": 1139.5,
+        "sequence": 23,
+        "lastSequence": 23,
+        "snapshotTick": 51,
+        "mappedTick": 56
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1182.7000000029802,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 54
+      },
+      {
+        "kind": "capture",
+        "atMs": 1183.2999999970198,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      },
+      {
+        "kind": "send",
+        "atMs": 1183.7999999970198,
+        "sequence": 22,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1183.9000000059605,
+        "sequence": 25,
+        "lastSequence": 25,
+        "snapshotTick": 54,
+        "mappedTick": 58
+      },
+      {
+        "kind": "capture",
+        "atMs": 1189.2000000029802,
+        "sequence": 26,
+        "lastSequence": 26,
+        "snapshotTick": 54,
+        "mappedTick": 59
+      },
+      {
+        "kind": "capture",
+        "atMs": 1205.9000000059605,
+        "sequence": 27,
+        "lastSequence": 27,
+        "snapshotTick": 54,
+        "mappedTick": 60
+      },
+      {
+        "kind": "send",
+        "atMs": 1206,
+        "sequence": 25,
+        "lastSequence": 27,
+        "snapshotTick": 54,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1214.9000000059605,
+        "sequence": 23,
+        "lastSequence": 23,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      }
+    ],
+    "runEpoch": 2,
+    "initialServerTick": 33,
+    "inputStopped": false,
+    "ready": true,
+    "prepared": true,
+    "error": "ProtocolError: Unacknowledged command overlaps restored snapshot",
+    "requiresResync": true,
+    "sequence": 27,
+    "unsent": 0,
+    "held": 0,
+    "pendingEdges": 0,
+    "inputClock": {
+      "mode": "stopped",
+      "tick": 27,
+      "timerPending": false,
+      "fault": null
+    },
+    "snapshotTick": 54,
+    "predictedTick": 60,
+    "pending": 6,
+    "receipts": [
+      {
+        "tick": 33,
+        "hash": 2404459359,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 33,
+        "hash": 929260089,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 36,
+        "hash": 2543426134,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 3,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 39,
+        "hash": 3534150634,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 6,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 42,
+        "hash": 2228848998,
+        "bytes": 1416,
+        "y": 61950,
+        "shape": 1,
+        "ack": 9,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 45,
+        "hash": 3293825181,
+        "bytes": 1416,
+        "y": 63930,
+        "shape": 1,
+        "ack": 12,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 48,
+        "hash": 3620516843,
+        "bytes": 1416,
+        "y": 66405,
+        "shape": 1,
+        "ack": 15,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 51,
+        "hash": 3402067348,
+        "bytes": 1416,
+        "y": 69375,
+        "shape": 1,
+        "ack": 18,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 54,
+        "hash": 10977167,
+        "bytes": 1416,
+        "y": 72840,
+        "shape": 1,
+        "ack": 21,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      }
+    ],
+    "actor": {
+      "body": {
+        "id": 1,
+        "x": 12800,
+        "y": 76800,
+        "vx": 0,
+        "vy": 0,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": 1501,
+        "grounded": true,
+        "contacts": [
+          {
+            "otherId": 1501,
+            "normalX": 0,
+            "normalY": -1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          }
+        ]
+      },
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "grounded",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 4,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "authoritative": {
+      "body": {
+        "id": 1,
+        "x": 12800,
+        "y": 72840,
+        "vx": 0,
+        "vy": 1210,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "slot": 1,
+    "clockOriginMs": 1788729209220.1,
+    "timeline": [
+      {
+        "kind": "snapshot",
+        "atMs": 462.80000001192093,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 0,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 754.3000000119209,
+        "sequence": 1,
+        "lastSequence": 1,
+        "snapshotTick": 33,
+        "mappedTick": 34
+      },
+      {
+        "kind": "capture",
+        "atMs": 754.7000000029802,
+        "sequence": 2,
+        "lastSequence": 2,
+        "snapshotTick": 33,
+        "mappedTick": 35
+      },
+      {
+        "kind": "capture",
+        "atMs": 754.8000000119209,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "send",
+        "atMs": 755,
+        "sequence": 1,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 755.9000000059605,
+        "sequence": 4,
+        "lastSequence": 4,
+        "snapshotTick": 33,
+        "mappedTick": 37
+      },
+      {
+        "kind": "capture",
+        "atMs": 756.1000000089407,
+        "sequence": 5,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 38
+      },
+      {
+        "kind": "send",
+        "atMs": 756.1000000089407,
+        "sequence": 4,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 805.5,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 33,
+        "mappedTick": 33
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 822.8000000119209,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "capture",
+        "atMs": 824.8000000119209,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 39
+      },
+      {
+        "kind": "send",
+        "atMs": 825,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 840.5,
+        "sequence": 7,
+        "lastSequence": 7,
+        "snapshotTick": 36,
+        "mappedTick": 40
+      },
+      {
+        "kind": "capture",
+        "atMs": 857,
+        "sequence": 8,
+        "lastSequence": 8,
+        "snapshotTick": 36,
+        "mappedTick": 41
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 871.5,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 39
+      },
+      {
+        "kind": "capture",
+        "atMs": 874.6000000089407,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 42
+      },
+      {
+        "kind": "send",
+        "atMs": 874.7000000029802,
+        "sequence": 7,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 890.2000000029802,
+        "sequence": 10,
+        "lastSequence": 10,
+        "snapshotTick": 39,
+        "mappedTick": 43
+      },
+      {
+        "kind": "capture",
+        "atMs": 906.8000000119209,
+        "sequence": 11,
+        "lastSequence": 11,
+        "snapshotTick": 39,
+        "mappedTick": 44
+      },
+      {
+        "kind": "capture",
+        "atMs": 923.5,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 45
+      },
+      {
+        "kind": "send",
+        "atMs": 923.5,
+        "sequence": 10,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 923.9000000059605,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 42
+      },
+      {
+        "kind": "capture",
+        "atMs": 944.7000000029802,
+        "sequence": 13,
+        "lastSequence": 13,
+        "snapshotTick": 42,
+        "mappedTick": 46
+      },
+      {
+        "kind": "capture",
+        "atMs": 957.3000000119209,
+        "sequence": 14,
+        "lastSequence": 14,
+        "snapshotTick": 42,
+        "mappedTick": 47
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 970.8000000119209,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 42,
+        "mappedTick": 45
+      },
+      {
+        "kind": "capture",
+        "atMs": 974.7000000029802,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 48
+      },
+      {
+        "kind": "send",
+        "atMs": 974.9000000059605,
+        "sequence": 13,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 991.7000000029802,
+        "sequence": 16,
+        "lastSequence": 16,
+        "snapshotTick": 45,
+        "mappedTick": 49
+      },
+      {
+        "kind": "capture",
+        "atMs": 1007.8000000119209,
+        "sequence": 17,
+        "lastSequence": 17,
+        "snapshotTick": 45,
+        "mappedTick": 50
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1021.9000000059605,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 48
+      },
+      {
+        "kind": "capture",
+        "atMs": 1029.7000000029802,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 51
+      },
+      {
+        "kind": "send",
+        "atMs": 1029.9000000059605,
+        "sequence": 16,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1040.300000011921,
+        "sequence": 19,
+        "lastSequence": 19,
+        "snapshotTick": 48,
+        "mappedTick": 52
+      },
+      {
+        "kind": "capture",
+        "atMs": 1057.5,
+        "sequence": 20,
+        "lastSequence": 20,
+        "snapshotTick": 48,
+        "mappedTick": 53
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1071.300000011921,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 51
+      },
+      {
+        "kind": "capture",
+        "atMs": 1074,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 54
+      },
+      {
+        "kind": "send",
+        "atMs": 1074.1000000089407,
+        "sequence": 19,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1091,
+        "sequence": 22,
+        "lastSequence": 22,
+        "snapshotTick": 51,
+        "mappedTick": 55
+      },
+      {
+        "kind": "capture",
+        "atMs": 1111.2000000029802,
+        "sequence": 23,
+        "lastSequence": 23,
+        "snapshotTick": 51,
+        "mappedTick": 56
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1121.800000011921,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 54
+      },
+      {
+        "kind": "capture",
+        "atMs": 1123.7000000029802,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      },
+      {
+        "kind": "send",
+        "atMs": 1123.9000000059605,
+        "sequence": 22,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1171.800000011921,
+        "sequence": 25,
+        "lastSequence": 25,
+        "snapshotTick": 54,
+        "mappedTick": 58
+      },
+      {
+        "kind": "capture",
+        "atMs": 1172,
+        "sequence": 26,
+        "lastSequence": 26,
+        "snapshotTick": 54,
+        "mappedTick": 59
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1174.5,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      },
+      {
+        "kind": "capture",
+        "atMs": 1177.9000000059605,
+        "sequence": 27,
+        "lastSequence": 27,
+        "snapshotTick": 57,
+        "mappedTick": 60
+      },
+      {
+        "kind": "send",
+        "atMs": 1178.2000000029802,
+        "sequence": 25,
+        "lastSequence": 27,
+        "snapshotTick": 57,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1191.4000000059605,
+        "sequence": 28,
+        "lastSequence": 28,
+        "snapshotTick": 57,
+        "mappedTick": 61
+      }
+    ],
+    "runEpoch": 2,
+    "initialServerTick": 33,
+    "inputStopped": false,
+    "ready": true,
+    "prepared": true,
+    "error": null,
+    "requiresResync": false,
+    "sequence": 28,
+    "unsent": 1,
+    "held": 0,
+    "pendingEdges": 0,
+    "inputClock": {
+      "mode": "running",
+      "tick": 28,
+      "timerPending": true,
+      "fault": null
+    },
+    "snapshotTick": 57,
+    "predictedTick": 61,
+    "pending": 4,
+    "receipts": [
+      {
+        "tick": 33,
+        "hash": 2404459359,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 33,
+        "hash": 929260089,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 36,
+        "hash": 2543426134,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 3,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 39,
+        "hash": 3534150634,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 6,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 42,
+        "hash": 2228848998,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 9,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 45,
+        "hash": 3293825181,
+        "bytes": 1416,
+        "y": 61950,
+        "shape": 1,
+        "ack": 12,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 48,
+        "hash": 3620516843,
+        "bytes": 1416,
+        "y": 63930,
+        "shape": 1,
+        "ack": 15,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 51,
+        "hash": 3402067348,
+        "bytes": 1416,
+        "y": 66405,
+        "shape": 1,
+        "ack": 18,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 54,
+        "hash": 10977167,
+        "bytes": 1416,
+        "y": 69375,
+        "shape": 1,
+        "ack": 21,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 57,
+        "hash": 3431851298,
+        "bytes": 1416,
+        "y": 72840,
+        "shape": 1,
+        "ack": 24,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      }
+    ],
+    "actor": {
+      "body": {
+        "id": 2,
+        "x": 13568,
+        "y": 76800,
+        "vx": 0,
+        "vy": 0,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": 1501,
+        "grounded": true,
+        "contacts": [
+          {
+            "otherId": 1501,
+            "normalX": 0,
+            "normalY": -1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          }
+        ]
+      },
+      "playerId": 2,
+      "slot": 1,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "grounded",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 4,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "authoritative": {
+      "body": {
+        "id": 2,
+        "x": 13568,
+        "y": 72840,
+        "vx": 0,
+        "vy": 1210,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 2,
+      "slot": 1,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "slot": 2,
+    "clockOriginMs": 1788729209898.8,
+    "timeline": [
+      {
+        "kind": "snapshot",
+        "atMs": 524.9000000059605,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 0,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 757.5,
+        "sequence": 1,
+        "lastSequence": 1,
+        "snapshotTick": 33,
+        "mappedTick": 34
+      },
+      {
+        "kind": "capture",
+        "atMs": 757.7999999970198,
+        "sequence": 2,
+        "lastSequence": 2,
+        "snapshotTick": 33,
+        "mappedTick": 35
+      },
+      {
+        "kind": "capture",
+        "atMs": 759.2000000029802,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "send",
+        "atMs": 759.2999999970198,
+        "sequence": 1,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 759.5999999940395,
+        "sequence": 4,
+        "lastSequence": 4,
+        "snapshotTick": 33,
+        "mappedTick": 37
+      },
+      {
+        "kind": "capture",
+        "atMs": 759.5999999940395,
+        "sequence": 5,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 38
+      },
+      {
+        "kind": "send",
+        "atMs": 759.7999999970198,
+        "sequence": 4,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 797.7000000029802,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 33,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 817.5,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 33,
+        "mappedTick": 39
+      },
+      {
+        "kind": "send",
+        "atMs": 817.5999999940395,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 834.2999999970198,
+        "sequence": 7,
+        "lastSequence": 7,
+        "snapshotTick": 33,
+        "mappedTick": 40
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 848.9000000059605,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "capture",
+        "atMs": 850.5999999940395,
+        "sequence": 8,
+        "lastSequence": 8,
+        "snapshotTick": 36,
+        "mappedTick": 41
+      },
+      {
+        "kind": "capture",
+        "atMs": 867,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 36,
+        "mappedTick": 42
+      },
+      {
+        "kind": "send",
+        "atMs": 867.0999999940395,
+        "sequence": 7,
+        "lastSequence": 9,
+        "snapshotTick": 36,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 884.7000000029802,
+        "sequence": 10,
+        "lastSequence": 10,
+        "snapshotTick": 36,
+        "mappedTick": 43
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 898.4000000059605,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 39
+      },
+      {
+        "kind": "capture",
+        "atMs": 902.2000000029802,
+        "sequence": 11,
+        "lastSequence": 11,
+        "snapshotTick": 39,
+        "mappedTick": 44
+      },
+      {
+        "kind": "capture",
+        "atMs": 917.0999999940395,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 45
+      },
+      {
+        "kind": "send",
+        "atMs": 917.2000000029802,
+        "sequence": 10,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 934,
+        "sequence": 13,
+        "lastSequence": 13,
+        "snapshotTick": 39,
+        "mappedTick": 46
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 950.7000000029802,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 42
+      },
+      {
+        "kind": "capture",
+        "atMs": 951.2999999970198,
+        "sequence": 14,
+        "lastSequence": 14,
+        "snapshotTick": 42,
+        "mappedTick": 47
+      },
+      {
+        "kind": "capture",
+        "atMs": 970.7999999970198,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 42,
+        "mappedTick": 48
+      },
+      {
+        "kind": "send",
+        "atMs": 970.7999999970198,
+        "sequence": 13,
+        "lastSequence": 15,
+        "snapshotTick": 42,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 987.5,
+        "sequence": 16,
+        "lastSequence": 16,
+        "snapshotTick": 42,
+        "mappedTick": 49
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 998,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 42,
+        "mappedTick": 45
+      },
+      {
+        "kind": "capture",
+        "atMs": 1005.4000000059605,
+        "sequence": 17,
+        "lastSequence": 17,
+        "snapshotTick": 45,
+        "mappedTick": 50
+      },
+      {
+        "kind": "capture",
+        "atMs": 1020.9000000059605,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 45,
+        "mappedTick": 51
+      },
+      {
+        "kind": "send",
+        "atMs": 1021,
+        "sequence": 16,
+        "lastSequence": 18,
+        "snapshotTick": 45,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1037.9000000059605,
+        "sequence": 19,
+        "lastSequence": 19,
+        "snapshotTick": 45,
+        "mappedTick": 52
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1050,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 48
+      },
+      {
+        "kind": "capture",
+        "atMs": 1050.7999999970198,
+        "sequence": 20,
+        "lastSequence": 20,
+        "snapshotTick": 48,
+        "mappedTick": 53
+      },
+      {
+        "kind": "capture",
+        "atMs": 1067.5,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 48,
+        "mappedTick": 54
+      },
+      {
+        "kind": "send",
+        "atMs": 1067.5999999940395,
+        "sequence": 19,
+        "lastSequence": 21,
+        "snapshotTick": 48,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1084.0999999940395,
+        "sequence": 22,
+        "lastSequence": 22,
+        "snapshotTick": 48,
+        "mappedTick": 55
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1098.5,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 51
+      },
+      {
+        "kind": "capture",
+        "atMs": 1100.5999999940395,
+        "sequence": 23,
+        "lastSequence": 23,
+        "snapshotTick": 51,
+        "mappedTick": 56
+      },
+      {
+        "kind": "capture",
+        "atMs": 1117.0999999940395,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 51,
+        "mappedTick": 57
+      },
+      {
+        "kind": "send",
+        "atMs": 1117.2000000029802,
+        "sequence": 22,
+        "lastSequence": 24,
+        "snapshotTick": 51,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1133.7000000029802,
+        "sequence": 25,
+        "lastSequence": 25,
+        "snapshotTick": 51,
+        "mappedTick": 58
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1175.5,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 54
+      },
+      {
+        "kind": "capture",
+        "atMs": 1180.0999999940395,
+        "sequence": 26,
+        "lastSequence": 26,
+        "snapshotTick": 54,
+        "mappedTick": 59
+      },
+      {
+        "kind": "send",
+        "atMs": 1180.2000000029802,
+        "sequence": 25,
+        "lastSequence": 26,
+        "snapshotTick": 54,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1181.4000000059605,
+        "sequence": 27,
+        "lastSequence": 27,
+        "snapshotTick": 54,
+        "mappedTick": 60
+      },
+      {
+        "kind": "capture",
+        "atMs": 1189.7999999970198,
+        "sequence": 28,
+        "lastSequence": 28,
+        "snapshotTick": 54,
+        "mappedTick": 61
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1201.7000000029802,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      },
+      {
+        "kind": "capture",
+        "atMs": 1203,
+        "sequence": 29,
+        "lastSequence": 29,
+        "snapshotTick": 57,
+        "mappedTick": 62
+      },
+      {
+        "kind": "send",
+        "atMs": 1203.2000000029802,
+        "sequence": 27,
+        "lastSequence": 29,
+        "snapshotTick": 57,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1217.0999999940395,
+        "sequence": 30,
+        "lastSequence": 30,
+        "snapshotTick": 57,
+        "mappedTick": 63
+      }
+    ],
+    "runEpoch": 2,
+    "initialServerTick": 33,
+    "inputStopped": false,
+    "ready": true,
+    "prepared": true,
+    "error": null,
+    "requiresResync": false,
+    "sequence": 30,
+    "unsent": 1,
+    "held": 0,
+    "pendingEdges": 0,
+    "inputClock": {
+      "mode": "running",
+      "tick": 30,
+      "timerPending": true,
+      "fault": null
+    },
+    "snapshotTick": 57,
+    "predictedTick": 63,
+    "pending": 6,
+    "receipts": [
+      {
+        "tick": 33,
+        "hash": 2404459359,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 33,
+        "hash": 929260089,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 36,
+        "hash": 2543426134,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 3,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 39,
+        "hash": 3534150634,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 6,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 42,
+        "hash": 2228848998,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 9,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 45,
+        "hash": 3293825181,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 12,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 48,
+        "hash": 3620516843,
+        "bytes": 1416,
+        "y": 61950,
+        "shape": 1,
+        "ack": 15,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 51,
+        "hash": 3402067348,
+        "bytes": 1416,
+        "y": 63930,
+        "shape": 1,
+        "ack": 18,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 54,
+        "hash": 10977167,
+        "bytes": 1416,
+        "y": 66405,
+        "shape": 1,
+        "ack": 21,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 57,
+        "hash": 3431851298,
+        "bytes": 1416,
+        "y": 69375,
+        "shape": 1,
+        "ack": 24,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      }
+    ],
+    "actor": {
+      "body": {
+        "id": 3,
+        "x": 14336,
+        "y": 76800,
+        "vx": 0,
+        "vy": 0,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": 1501,
+        "grounded": true,
+        "contacts": [
+          {
+            "otherId": 1501,
+            "normalX": 0,
+            "normalY": -1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          }
+        ]
+      },
+      "playerId": 3,
+      "slot": 2,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "grounded",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 4,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "authoritative": {
+      "body": {
+        "id": 3,
+        "x": 14336,
+        "y": 69375,
+        "vx": 0,
+        "vy": 1045,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 3,
+      "slot": 2,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "slot": 3,
+    "clockOriginMs": 1788729209240.6,
+    "timeline": [
+      {
+        "kind": "snapshot",
+        "atMs": 480,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 0,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 724.7999999970198,
+        "sequence": 1,
+        "lastSequence": 1,
+        "snapshotTick": 33,
+        "mappedTick": 34
+      },
+      {
+        "kind": "capture",
+        "atMs": 725.2999999970198,
+        "sequence": 2,
+        "lastSequence": 2,
+        "snapshotTick": 33,
+        "mappedTick": 35
+      },
+      {
+        "kind": "capture",
+        "atMs": 725.4000000059605,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "send",
+        "atMs": 725.5,
+        "sequence": 1,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 725.7999999970198,
+        "sequence": 4,
+        "lastSequence": 4,
+        "snapshotTick": 33,
+        "mappedTick": 37
+      },
+      {
+        "kind": "capture",
+        "atMs": 725.9000000059605,
+        "sequence": 5,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 38
+      },
+      {
+        "kind": "send",
+        "atMs": 726,
+        "sequence": 4,
+        "lastSequence": 5,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 750.2999999970198,
+        "sequence": 0,
+        "lastSequence": 0,
+        "snapshotTick": 33,
+        "mappedTick": 33
+      },
+      {
+        "kind": "capture",
+        "atMs": 768.2000000029802,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 33,
+        "mappedTick": 39
+      },
+      {
+        "kind": "capture",
+        "atMs": 784.7000000029802,
+        "sequence": 7,
+        "lastSequence": 7,
+        "snapshotTick": 33,
+        "mappedTick": 40
+      },
+      {
+        "kind": "send",
+        "atMs": 784.9000000059605,
+        "sequence": 6,
+        "lastSequence": 7,
+        "snapshotTick": 33,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 801.5999999940395,
+        "sequence": 8,
+        "lastSequence": 8,
+        "snapshotTick": 33,
+        "mappedTick": 41
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 803.2999999970198,
+        "sequence": 3,
+        "lastSequence": 3,
+        "snapshotTick": 33,
+        "mappedTick": 36
+      },
+      {
+        "kind": "capture",
+        "atMs": 817.5999999940395,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 36,
+        "mappedTick": 42
+      },
+      {
+        "kind": "capture",
+        "atMs": 834.0999999940395,
+        "sequence": 10,
+        "lastSequence": 10,
+        "snapshotTick": 36,
+        "mappedTick": 43
+      },
+      {
+        "kind": "send",
+        "atMs": 834.2999999970198,
+        "sequence": 8,
+        "lastSequence": 10,
+        "snapshotTick": 36,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 851,
+        "sequence": 6,
+        "lastSequence": 6,
+        "snapshotTick": 36,
+        "mappedTick": 39
+      },
+      {
+        "kind": "capture",
+        "atMs": 851.2999999970198,
+        "sequence": 11,
+        "lastSequence": 11,
+        "snapshotTick": 39,
+        "mappedTick": 44
+      },
+      {
+        "kind": "capture",
+        "atMs": 871,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 39,
+        "mappedTick": 45
+      },
+      {
+        "kind": "capture",
+        "atMs": 884.2999999970198,
+        "sequence": 13,
+        "lastSequence": 13,
+        "snapshotTick": 39,
+        "mappedTick": 46
+      },
+      {
+        "kind": "send",
+        "atMs": 884.5,
+        "sequence": 11,
+        "lastSequence": 13,
+        "snapshotTick": 39,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 901.0999999940395,
+        "sequence": 14,
+        "lastSequence": 14,
+        "snapshotTick": 39,
+        "mappedTick": 47
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 904.5999999940395,
+        "sequence": 9,
+        "lastSequence": 9,
+        "snapshotTick": 39,
+        "mappedTick": 42
+      },
+      {
+        "kind": "capture",
+        "atMs": 917.5999999940395,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 42,
+        "mappedTick": 48
+      },
+      {
+        "kind": "capture",
+        "atMs": 934.2000000029802,
+        "sequence": 16,
+        "lastSequence": 16,
+        "snapshotTick": 42,
+        "mappedTick": 49
+      },
+      {
+        "kind": "send",
+        "atMs": 934.2000000029802,
+        "sequence": 14,
+        "lastSequence": 16,
+        "snapshotTick": 42,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 950.5999999940395,
+        "sequence": 12,
+        "lastSequence": 12,
+        "snapshotTick": 42,
+        "mappedTick": 45
+      },
+      {
+        "kind": "capture",
+        "atMs": 951.7000000029802,
+        "sequence": 17,
+        "lastSequence": 17,
+        "snapshotTick": 45,
+        "mappedTick": 50
+      },
+      {
+        "kind": "capture",
+        "atMs": 967.4000000059605,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 45,
+        "mappedTick": 51
+      },
+      {
+        "kind": "capture",
+        "atMs": 985,
+        "sequence": 19,
+        "lastSequence": 19,
+        "snapshotTick": 45,
+        "mappedTick": 52
+      },
+      {
+        "kind": "send",
+        "atMs": 985.0999999940395,
+        "sequence": 17,
+        "lastSequence": 19,
+        "snapshotTick": 45,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1001.5,
+        "sequence": 15,
+        "lastSequence": 15,
+        "snapshotTick": 45,
+        "mappedTick": 48
+      },
+      {
+        "kind": "capture",
+        "atMs": 1004.7000000029802,
+        "sequence": 20,
+        "lastSequence": 20,
+        "snapshotTick": 48,
+        "mappedTick": 53
+      },
+      {
+        "kind": "capture",
+        "atMs": 1021.4000000059605,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 48,
+        "mappedTick": 54
+      },
+      {
+        "kind": "capture",
+        "atMs": 1034.2000000029802,
+        "sequence": 22,
+        "lastSequence": 22,
+        "snapshotTick": 48,
+        "mappedTick": 55
+      },
+      {
+        "kind": "send",
+        "atMs": 1034.4000000059605,
+        "sequence": 20,
+        "lastSequence": 22,
+        "snapshotTick": 48,
+        "mappedTick": 0
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1051,
+        "sequence": 18,
+        "lastSequence": 18,
+        "snapshotTick": 48,
+        "mappedTick": 51
+      },
+      {
+        "kind": "capture",
+        "atMs": 1051.4000000059605,
+        "sequence": 23,
+        "lastSequence": 23,
+        "snapshotTick": 51,
+        "mappedTick": 56
+      },
+      {
+        "kind": "capture",
+        "atMs": 1067.5,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 51,
+        "mappedTick": 57
+      },
+      {
+        "kind": "capture",
+        "atMs": 1084.2000000029802,
+        "sequence": 25,
+        "lastSequence": 25,
+        "snapshotTick": 51,
+        "mappedTick": 58
+      },
+      {
+        "kind": "send",
+        "atMs": 1084.2999999970198,
+        "sequence": 23,
+        "lastSequence": 25,
+        "snapshotTick": 51,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1100.9000000059605,
+        "sequence": 26,
+        "lastSequence": 26,
+        "snapshotTick": 51,
+        "mappedTick": 59
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1101.4000000059605,
+        "sequence": 21,
+        "lastSequence": 21,
+        "snapshotTick": 51,
+        "mappedTick": 54
+      },
+      {
+        "kind": "capture",
+        "atMs": 1118,
+        "sequence": 27,
+        "lastSequence": 27,
+        "snapshotTick": 54,
+        "mappedTick": 60
+      },
+      {
+        "kind": "snapshot",
+        "atMs": 1165.7999999970198,
+        "sequence": 24,
+        "lastSequence": 24,
+        "snapshotTick": 54,
+        "mappedTick": 57
+      },
+      {
+        "kind": "capture",
+        "atMs": 1167.0999999940395,
+        "sequence": 28,
+        "lastSequence": 28,
+        "snapshotTick": 57,
+        "mappedTick": 61
+      },
+      {
+        "kind": "send",
+        "atMs": 1167.0999999940395,
+        "sequence": 26,
+        "lastSequence": 28,
+        "snapshotTick": 57,
+        "mappedTick": 0
+      },
+      {
+        "kind": "capture",
+        "atMs": 1167.2999999970198,
+        "sequence": 29,
+        "lastSequence": 29,
+        "snapshotTick": 57,
+        "mappedTick": 62
+      },
+      {
+        "kind": "capture",
+        "atMs": 1172.9000000059605,
+        "sequence": 30,
+        "lastSequence": 30,
+        "snapshotTick": 57,
+        "mappedTick": 63
+      }
+    ],
+    "runEpoch": 2,
+    "initialServerTick": 33,
+    "inputStopped": false,
+    "ready": true,
+    "prepared": true,
+    "error": null,
+    "requiresResync": false,
+    "sequence": 30,
+    "unsent": 2,
+    "held": 0,
+    "pendingEdges": 0,
+    "inputClock": {
+      "mode": "running",
+      "tick": 30,
+      "timerPending": true,
+      "fault": null
+    },
+    "snapshotTick": 57,
+    "predictedTick": 63,
+    "pending": 6,
+    "receipts": [
+      {
+        "tick": 33,
+        "hash": 2404459359,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 33,
+        "hash": 929260089,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 0,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 36,
+        "hash": 2543426134,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 3,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 39,
+        "hash": 3534150634,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 6,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 42,
+        "hash": 2228848998,
+        "bytes": 1416,
+        "y": 58980,
+        "shape": 1,
+        "ack": 9,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 45,
+        "hash": 3293825181,
+        "bytes": 1416,
+        "y": 59475,
+        "shape": 1,
+        "ack": 12,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 48,
+        "hash": 3620516843,
+        "bytes": 1416,
+        "y": 60465,
+        "shape": 1,
+        "ack": 15,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 51,
+        "hash": 3402067348,
+        "bytes": 1416,
+        "y": 61950,
+        "shape": 1,
+        "ack": 18,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 54,
+        "hash": 10977167,
+        "bytes": 1416,
+        "y": 63930,
+        "shape": 1,
+        "ack": 21,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      },
+      {
+        "tick": 57,
+        "hash": 3431851298,
+        "bytes": 1416,
+        "y": 66405,
+        "shape": 1,
+        "ack": 24,
+        "correctionX": 0,
+        "correctionY": 0,
+        "correctionChanged": false
+      }
+    ],
+    "actor": {
+      "body": {
+        "id": 4,
+        "x": 15104,
+        "y": 72840,
+        "vx": 0,
+        "vy": 1210,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 4,
+      "slot": 3,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "authoritative": {
+      "body": {
+        "id": 4,
+        "x": 15104,
+        "y": 66405,
+        "vx": 0,
+        "vy": 880,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": null,
+        "grounded": false,
+        "contacts": []
+      },
+      "playerId": 4,
+      "slot": 3,
+      "controlEpoch": 2,
+      "life": "alive",
+      "locomotion": "airborne",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": -1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 0,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "vehicleId": null,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "geometryRevision": 1,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+]

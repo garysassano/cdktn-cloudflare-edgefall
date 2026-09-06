@@ -3,19 +3,25 @@ import { COUNTER_LIMIT, integer } from "../../game/core/numeric.js";
 import type { EdgeCursors, InputCommand, PlayerAcknowledgment } from "../../game/input/types.js";
 import type { ControlledActor } from "../../game/state.js";
 import { encodeAcknowledgment, validateInputBatch } from "../protocol/codec.js";
-import { MAX_PREDICTION_TICKS, MAX_QUEUED_COMMANDS } from "../protocol/limits.js";
+import { type InputMapping, validateInputMapping } from "../protocol/input-mapping.js";
+import {
+  MAX_CLIENT_LEAD_TICKS,
+  MAX_PREDICTION_TICKS,
+  MAX_QUEUED_COMMANDS,
+} from "../protocol/limits.js";
 import { ProtocolError } from "../protocol/schema.js";
 
 export interface PredictionBaseline {
   runEpoch: number;
   connectionEpoch: number;
   tick: number;
+  snapshotId?: number;
   actor: ControlledActor;
   acknowledgment: PlayerAcknowledgment;
 }
 type Step = (actor: ControlledActor, command: InputCommand, tick: number) => ControlledActor;
 
-/** Exact full-controller reconciliation. Mapping is the server welcome's baseline + clientTick + 1. */
+/** Full-controller reconciliation with optional snapshot-paired authoritative command mapping. */
 export class ControllerPrediction {
   readonly #initial: PredictionBaseline;
   readonly #step: Step;
@@ -31,7 +37,9 @@ export class ControllerPrediction {
   #pending: InputCommand[] = [];
   #history = new Map<number, ControlledActor>();
   #stopped = false;
-  constructor(baseline: PredictionBaseline, step: Step) {
+  readonly #usesMappings: boolean;
+  #mapping: InputMapping | null = null;
+  constructor(baseline: PredictionBaseline, step: Step, mapping?: InputMapping) {
     for (const value of [baseline.runEpoch, baseline.connectionEpoch])
       integer(value, 1, COUNTER_LIMIT - 1, "prediction epoch");
     integer(baseline.tick, 0, COUNTER_LIMIT - 2, "prediction baseline tick");
@@ -42,12 +50,46 @@ export class ControllerPrediction {
     )
       throw new Error("Prediction needs a fresh server input baseline");
     this.#initial = structuredClone(baseline);
+    this.#usesMappings = mapping !== undefined;
     this.#step = step;
     this.#actor = structuredClone(baseline.actor);
     this.#tick = baseline.tick;
     this.#baselineTick = baseline.tick;
     this.#history.set(baseline.tick, structuredClone(baseline.actor));
     this.#checkIdentity(baseline);
+    if (mapping) this.#mapping = this.#checkMapping(baseline, mapping);
+  }
+  #checkMapping(baseline: PredictionBaseline, value: InputMapping): InputMapping {
+    let mapping: InputMapping;
+    try {
+      mapping = validateInputMapping(value);
+    } catch {
+      this.#reject("Invalid authoritative input mapping");
+    }
+    const offset = mapping.nextCommandTick - mapping.nextSequence;
+    const previousOffset = this.#mapping
+      ? this.#mapping.nextCommandTick - this.#mapping.nextSequence
+      : this.#initial.tick;
+    if (
+      mapping.runEpoch !== baseline.runEpoch ||
+      mapping.connectionEpoch !== baseline.connectionEpoch ||
+      mapping.playerId !== baseline.actor.playerId ||
+      mapping.snapshotId !== baseline.snapshotId ||
+      mapping.snapshotTick !== baseline.tick ||
+      mapping.nextSequence !== baseline.acknowledgment.lastProcessedSequence + 1 ||
+      offset < previousOffset ||
+      (offset - this.#initial.tick > MAX_CLIENT_LEAD_TICKS &&
+        this.#pending.some(
+          (command) => command.sequence > baseline.acknowledgment.lastProcessedSequence,
+        ))
+    )
+      this.#reject("Authoritative mapping needs a fresh baseline");
+    return mapping;
+  }
+  #target(command: InputCommand, mapping = this.#mapping) {
+    return mapping
+      ? mapping.nextCommandTick + command.sequence - mapping.nextSequence
+      : this.#initial.tick + command.clientTick + 1;
   }
   get actor() {
     return structuredClone(this.#actor);
@@ -88,6 +130,12 @@ export class ControllerPrediction {
   }
   submit(command: InputCommand) {
     this.#guard();
+    if (
+      this.#mapping &&
+      this.#mapping.nextCommandTick - this.#mapping.nextSequence - this.#initial.tick >
+        MAX_CLIENT_LEAD_TICKS
+    )
+      this.#reject("Input mapping drift needs a fresh baseline");
     validateInputBatch({
       runEpoch: this.#initial.runEpoch,
       connectionEpoch: this.#initial.connectionEpoch,
@@ -109,7 +157,7 @@ export class ControllerPrediction {
         this.#reject("Prediction edge identity reused");
       edges[edge.kind - 1] = edge.id;
     }
-    const target = this.#initial.tick + command.clientTick + 1;
+    const target = this.#target(command);
     if (target !== this.#tick + 1 || target <= this.#baselineTick)
       this.#reject("Pending command maps into an authoritative or missing tick");
     if (
@@ -131,11 +179,16 @@ export class ControllerPrediction {
     this.#lastClientTick = command.clientTick;
     this.#history.set(target, structuredClone(actor));
   }
-  reconcile(baseline: PredictionBaseline) {
+  reconcile(baseline: PredictionBaseline, mapping?: InputMapping) {
     this.#guard();
     this.#checkIdentity(baseline);
     integer(baseline.tick, 0, COUNTER_LIMIT - 2, "snapshot tick");
     const ack = baseline.acknowledgment;
+    let nextMapping = this.#mapping;
+    if (this.#usesMappings) {
+      if (!mapping) this.#reject("Missing authoritative input mapping");
+      nextMapping = this.#checkMapping(baseline, mapping);
+    } else if (mapping) this.#reject("Input mapping capability was not negotiated");
     encodeAcknowledgment(ack);
     if (
       baseline.tick < this.#baselineTick ||
@@ -157,7 +210,7 @@ export class ControllerPrediction {
     if (canonical(consumedEdges) !== canonical(ack.processedEdgeIds))
       this.#reject("Acknowledged edge was not consumed");
     const pending = this.#pending.filter((c) => c.sequence > ack.lastProcessedSequence);
-    if (pending.some((c) => this.#initial.tick + c.clientTick + 1 <= baseline.tick))
+    if (pending.some((c) => this.#target(c, nextMapping) <= baseline.tick))
       this.#reject("Unacknowledged command overlaps restored snapshot");
     const prior = this.#history.get(baseline.tick);
     const correction = prior
@@ -173,7 +226,7 @@ export class ControllerPrediction {
     history.set(tick, structuredClone(actor));
     try {
       for (const command of pending) {
-        const target = this.#initial.tick + command.clientTick + 1;
+        const target = this.#target(command, nextMapping);
         if (target !== tick + 1) this.#reject("Pending mapping needs a new baseline");
         actor = this.#step(actor, structuredClone(command), target);
         tick = target;
@@ -190,6 +243,7 @@ export class ControllerPrediction {
     this.#lastAckTick = ack.appliedAtServerTick;
     this.#ackedEdges = consumedEdges;
     this.#history = history;
+    this.#mapping = nextMapping;
     return { correction, replayed: pending.length, tick };
   }
 }

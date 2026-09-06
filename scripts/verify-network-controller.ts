@@ -10,6 +10,7 @@ import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
+  timeline: unknown[];
   slot: number;
   runEpoch: number;
   initialServerTick: number;
@@ -123,13 +124,17 @@ try {
         }),
       );
     const pages = await openPages();
-    const read = () =>
+    const read = (includeTimeline = false) =>
       Promise.all(
         pages.map((page) =>
-          page.evaluate(() =>
-            (
-              globalThis as unknown as { controllerNetworkLab: { status: () => ClientStatus } }
-            ).controllerNetworkLab.status(),
+          page.evaluate(
+            (include) =>
+              (
+                globalThis as unknown as {
+                  controllerNetworkLab: { status: (include?: boolean) => ClientStatus };
+                }
+              ).controllerNetworkLab.status(include),
+            includeTimeline,
           ),
         ),
       );
@@ -184,7 +189,7 @@ try {
           if ((await read()).every((c) => c.error?.includes("baseline-replaced"))) break;
           await new Promise((resolve) => setTimeout(resolve, 10));
         }
-        const replaced = await read();
+        const replaced = await read(true);
         assert(
           replaced.every((c) => c.error?.includes("baseline-replaced")),
           "Old socket generation remained active",
@@ -252,6 +257,10 @@ try {
           clients,
           room,
           recovery: { boundary, before, replaced, baselines },
+          timelines: (await read(true)).map((client) => ({
+            slot: client.slot,
+            timeline: client.timeline,
+          })),
           repeatNeutralization: { held: repeatInput.held, pendingEdges: repeatInput.pendingEdges },
           scope:
             "Four-browser in-memory authority-approved session rotation and restart at a preserved nonzero tick; no durable crash recovery, automatic reconnect or long-running timing acceptance",
@@ -401,6 +410,10 @@ try {
         sharedSnapshots: common.length,
         actionTaps: { slot: 1, before: beforeTaps, after: afterTaps },
         stoppedClients,
+        timelines: (await read(true)).map((client) => ({
+          slot: client.slot,
+          timeline: client.timeline,
+        })),
         room,
         clients,
         scope:
@@ -408,7 +421,7 @@ try {
       };
     } catch (error) {
       room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
-      await writeFile(`${output}/failed-clients.json`, JSON.stringify(await read(), null, 2));
+      await writeFile(`${output}/failed-clients.json`, JSON.stringify(await read(true), null, 2));
       await pages[0]?.screenshot({ path: `${output}/failure.png` }).catch(() => {});
       throw error;
     } finally {

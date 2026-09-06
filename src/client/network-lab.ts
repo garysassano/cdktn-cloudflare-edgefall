@@ -14,6 +14,11 @@ import { ControllerPrediction } from "../shared/prediction/controller.js";
 import { decodeInitialSnapshot } from "../shared/protocol/baseline.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
 import { type Handshake, decodeHandshake } from "../shared/protocol/handshake.js";
+import {
+  INPUT_MAPPING_CAPABILITY,
+  type InputMapping,
+  decodeInputMapping,
+} from "../shared/protocol/input-mapping.js";
 import { decodeSnapshot } from "../shared/protocol/snapshot.js";
 import type { FullSnapshot } from "../shared/protocol/snapshot-schema.js";
 import { RoomClock } from "../shared/runtime/room-clock.js";
@@ -37,6 +42,7 @@ let welcome: Handshake | null = null,
   snapshot: FullSnapshot | null = null,
   prediction: ControllerPrediction | null = null;
 let inputStopped = false;
+let pendingMapping: InputMapping | null = null;
 let input: InputCapture | null = null;
 let inputClock: RoomClock | null = null;
 let packet = 0,
@@ -97,10 +103,31 @@ window.addEventListener("blur", neutral);
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) neutral();
 });
-function status() {
+const timeline: Array<{
+  kind: string;
+  atMs: number;
+  sequence: number;
+  lastSequence: number;
+  snapshotTick: number;
+  mappedTick: number;
+}> = [];
+function trace(kind: string, sequence: number, lastSequence: number, mappedTick: number) {
+  if (timeline.length < 1800)
+    timeline.push({
+      kind,
+      atMs: performance.now(),
+      sequence,
+      lastSequence,
+      snapshotTick: snapshot?.tick ?? 0,
+      mappedTick,
+    });
+}
+function status(includeTimeline = false) {
   const actor = prediction?.actor;
   return {
     slot,
+    clockOriginMs: performance.timeOrigin,
+    timeline: includeTimeline ? timeline : [],
     runEpoch: welcome?.runEpoch ?? 0,
     initialServerTick: welcome?.initialServerTick ?? 0,
     inputStopped,
@@ -135,6 +162,7 @@ function inspect() {
 function sendCommands(commands: InputCommand[]) {
   if (!snapshot || !welcome || error) return;
   if (socket.bufferedAmount > 4096) throw new Error("Outbound queue requires resync");
+  trace("send", commands[0]?.sequence ?? 0, commands.at(-1)?.sequence ?? 0, 0);
   socket.send(
     new Uint8Array(
       encodeInputBatch({
@@ -178,6 +206,7 @@ function capture() {
     directionalIntent(input.held, actor.facing, actor.body.grounded).aim,
   );
   prediction.submit(command);
+  trace("capture", command.sequence, command.sequence, prediction.tick);
 }
 function flush(force = false) {
   const commands = input?.takeBatch(performance.now(), force);
@@ -219,8 +248,20 @@ element("prepare").onclick = () => {
 socket.addEventListener("message", (event) => {
   try {
     if (typeof event.data === "string") {
-      if (welcome) throw new Error("Repeated welcome");
-      welcome = decodeHandshake(event.data, CONTROLLER_IDENTITY);
+      if (!welcome) {
+        welcome = decodeHandshake(event.data, CONTROLLER_IDENTITY);
+        if (welcome.capabilities !== INPUT_MAPPING_CAPABILITY)
+          throw new Error("Input mapping capability required");
+      } else {
+        if (pendingMapping) throw new Error("Unpaired input mapping");
+        pendingMapping = decodeInputMapping(event.data);
+        trace(
+          "mapping",
+          pendingMapping.nextSequence,
+          pendingMapping.nextSequence,
+          pendingMapping.nextCommandTick,
+        );
+      }
       return;
     }
     if (!welcome || !(event.data instanceof ArrayBuffer))
@@ -240,17 +281,28 @@ socket.addEventListener("message", (event) => {
     const actor = incoming.players[slot],
       acknowledgment = incoming.acknowledgments[slot];
     if (!actor || !acknowledgment) throw new Error("Missing local controller");
+    trace(
+      "snapshot",
+      acknowledgment.lastProcessedSequence,
+      acknowledgment.lastProcessedSequence,
+      incoming.tick,
+    );
     const baseline = {
+      snapshotId: incoming.snapshotId,
       runEpoch: incoming.runEpoch,
       connectionEpoch: incoming.connectionEpoch,
       tick: incoming.tick,
       actor,
       acknowledgment,
     };
-    const correction = prediction ? prediction.reconcile(baseline).correction : null;
+    const mapping = pendingMapping;
+    pendingMapping = null;
+    if (!mapping) throw new Error("Snapshot missing its input mapping");
+    const correction = prediction ? prediction.reconcile(baseline, mapping).correction : null;
     prediction ??= new ControllerPrediction(
       baseline,
       (a, c, t) => stepNetworkController(a, c, t).actor,
+      mapping,
     );
     input ??= new InputCapture(actor.controlEpoch);
     snapshot = incoming;

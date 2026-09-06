@@ -18,7 +18,12 @@ import {
   roomWorkloadHash,
   stepRoomWorkload,
 } from "../../shared/diagnostics/room-workload.js";
+import { decodeInputBatch } from "../../shared/protocol/codec.js";
 import type { Handshake } from "../../shared/protocol/handshake.js";
+import {
+  INPUT_MAPPING_CAPABILITY,
+  mappingForSnapshot,
+} from "../../shared/protocol/input-mapping.js";
 import { InputStream } from "../../shared/protocol/input-stream.js";
 import { encodeSnapshot } from "../../shared/protocol/snapshot.js";
 import { RoomClock } from "../../shared/runtime/room-clock.js";
@@ -28,6 +33,7 @@ interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
 }
 interface Peer {
+  baselineTick: number;
   socket: WebSocket;
   input: InputStream;
   lease: ControlLease | null;
@@ -44,6 +50,30 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private readonly localCpu: RoomProbeStatus["localCpu"] = [];
   private readonly callbacks: RoomProbeStatus["callbacks"] = [];
   private readonly timers: RoomProbeStatus["timers"] = [];
+  private readonly inputTimeline: RoomProbeStatus["inputTimeline"] = [];
+  private traceInput(
+    peer: Peer,
+    kind: "admit" | "apply" | "reject",
+    runtimeMs: number,
+    serverTick: number,
+    firstSequence: number,
+    lastSequence: number,
+    outcome: string,
+  ) {
+    if (this.workload !== "controller" || this.inputTimeline.length >= 6400) return;
+    this.inputTimeline.push({
+      runEpoch: this.world.runEpoch,
+      slot: peer.metrics.slot,
+      kind,
+      runtimeMs,
+      serverTick,
+      baselineTick: peer.baselineTick,
+      firstSequence,
+      lastSequence,
+      queued: peer.input.queuedCommands,
+      outcome,
+    });
+  }
   private sampledNow = 0;
   private watchdog: ReturnType<typeof setTimeout> | null = null;
   private initialized = false;
@@ -132,6 +162,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const context = this.context(peer.metrics.slot);
     this.world.connectionEpoch = context.connectionEpoch;
     const bytes = encodeSnapshot(this.world, context);
+    if (this.workload === "controller") {
+      const mapping = JSON.stringify(mappingForSnapshot(this.world, context.playerId));
+      peer.socket.send(mapping);
+      peer.metrics.inputMappingBytes += new TextEncoder().encode(mapping).byteLength;
+    }
     peer.socket.send(bytes);
     peer.input.recordSent(this.world.snapshotId, 0);
     peer.metrics.snapshots++;
@@ -169,6 +204,18 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return input.command.edges.map((edge) => ({ ...edge, outcome: "unavailable" as const }));
       });
       this.world.acknowledgments[slot] = processed.acknowledgment;
+      const submitted = processed.input.submittedCommand?.sequence ?? 0;
+      this.traceInput(
+        peer,
+        "apply",
+        this.sampledNow,
+        tick,
+        submitted,
+        submitted,
+        processed.input.repeatedHeld
+          ? `repeat:${processed.input.outcome}`
+          : processed.input.outcome,
+      );
       const actor = this.world.players[slot];
       if (!actor) throw new Error("Missing probe actor");
       actor.processedEdgeIds = [...processed.acknowledgment.processedEdgeIds];
@@ -271,6 +318,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return new Response("Probe full or started", { status: 409 });
       const pair = new WebSocketPair();
       const peer: Peer = {
+        baselineTick: this.world.tick,
         socket: pair[1],
         input: new InputStream({
           ...this.context(slot),
@@ -288,6 +336,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           acknowledgmentOnlyFrames: 0,
           snapshots: 0,
           snapshotBytes: 0,
+          inputMappingBytes: 0,
           maxQueuedCommands: 0,
           neutralizedAtTick: null,
           expiredAtTick: null,
@@ -313,7 +362,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         simulationHz: 60,
         snapshotHz: 20,
         initialServerTick: this.world.tick,
-        capabilities: 0,
+        capabilities: this.workload === "controller" ? INPUT_MAPPING_CAPABILITY : 0,
         baselineSnapshotId: this.world.snapshotId + 1,
         baselineEventCursor: 0,
         buildId: "4".repeat(64),
@@ -362,6 +411,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       clock: this.clock.state,
       watchdogPending: this.watchdog !== null,
       peers: [...this.peers.values()].map((peer) => ({ ...peer.metrics })),
+      inputTimeline: this.inputTimeline,
       localCpu: this.localCpu,
       callbacks: this.callbacks,
       timers: this.timers,
@@ -386,9 +436,25 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       this.disconnect(peer, "lease-expired");
       return;
     }
+    let firstSequence = 0,
+      lastSequence = 0;
     try {
       const previousAck = peer.input.deliveryAcknowledgments.snapshot;
+      if (this.workload === "controller") {
+        const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
+        firstSequence = batch.commands[0]?.sequence ?? 0;
+        lastSequence = batch.commands.at(-1)?.sequence ?? 0;
+      }
       const result = peer.input.receive(new Uint8Array(message), now, this.clock.state.tick);
+      this.traceInput(
+        peer,
+        "admit",
+        now,
+        this.clock.state.tick,
+        firstSequence,
+        lastSequence,
+        result.duplicate ? "duplicate" : "admitted",
+      );
       peer.metrics.inputFrames++;
       peer.metrics.inputBytes += message.byteLength;
       if (result.admitted === 0 && !result.duplicate) peer.metrics.acknowledgmentOnlyFrames++;
@@ -402,6 +468,15 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       peer.metrics.lastInputError = (error instanceof Error ? error.message : String(error)).slice(
         0,
         256,
+      );
+      this.traceInput(
+        peer,
+        "reject",
+        now,
+        this.clock.state.tick,
+        firstSequence,
+        lastSequence,
+        peer.metrics.lastInputError,
       );
       this.disconnect(peer, "invalid-input", 4004);
     }

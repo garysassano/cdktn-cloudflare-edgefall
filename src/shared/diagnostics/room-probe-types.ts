@@ -7,6 +7,7 @@ export interface PeerMetrics {
   acknowledgmentOnlyFrames: number;
   snapshots: number;
   snapshotBytes: number;
+  inputMappingBytes: number;
   maxQueuedCommands: number;
   neutralizedAtTick: number | null;
   expiredAtTick: number | null;
@@ -25,6 +26,18 @@ export interface RoomProbeStatus {
   clock: { mode: string; tick: number; timerPending: boolean; fault: unknown };
   watchdogPending: boolean;
   peers: PeerMetrics[];
+  inputTimeline: Array<{
+    runEpoch: number;
+    slot: number;
+    kind: "admit" | "apply" | "reject";
+    runtimeMs: number;
+    serverTick: number;
+    baselineTick: number;
+    firstSequence: number;
+    lastSequence: number;
+    queued: number;
+    outcome: string;
+  }>;
   /** [tick, local input/world/encode/send duration, encode-only duration], milliseconds. */
   localCpu: Array<[number, number, number]>;
   /** [observed runtime milliseconds, steps, completed tick, lateness milliseconds]. */

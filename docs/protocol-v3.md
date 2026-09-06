@@ -56,6 +56,16 @@ Admission copies the complete batch and validates its final command before commi
 
 After an authoritative seat outcome, the adapter advances `controlEpoch` once before subsequent input acceptance/publication; doing so clears old held intent. On reconnect/resynchronization, construct a fresh stream under a newly approved connection epoch and baseline. The old socket must not be routed to that new stream. `recordSent` records actually delivered snapshot IDs and event-prefix cursors, preventing acknowledgments of unsent state. The complete snapshot section layout and validation are in [snapshot-v3.md](./snapshot-v3.md).
 
+## Snapshot-paired input mapping
+
+Handshake capability `0` retains the original baseline-plus-client-tick mapping. Capability `1` enables a bounded JSON `input-mapping` control message immediately before each binary snapshot, including the initial baseline. The controller laboratory requires capability `1`; unknown capability values fail closed. Input, acknowledgment and full-snapshot binary layouts remain unchanged.
+
+The control message has exactly `type: "input-mapping"`, `runEpoch`, `connectionEpoch`, `playerId`, `snapshotId`, `snapshotTick`, `nextSequence` and `nextCommandTick`. The decoder rejects messages above 512 UTF-8 bytes, unknown fields, invalid counters and a next-command tick other than `snapshotTick + 1`. All counters except snapshot tick are nonzero. The receiver pairs it with exactly the named snapshot and owner and requires `nextSequence = lastProcessedSequence + 1`. A missing, repeated, mismatched or unsolicited mapping requires a fresh baseline.
+
+Pending command sequence `s` is replayed at `nextCommandTick + s - nextSequence`. This mapping states the earliest sequential application after that snapshot; further absent input can cause a later server mapping. Its offset cannot regress. Drift beyond six ticks from the original baseline requires fresh input synchronization; an observer with no pending commands may continue restoring snapshots, but cannot resume input under that excessive drift. The server still applies at most one command per tick, and receipt/admission, stale-command, edge-identity and control-lease limits are unchanged. The client cannot rewrite sequence, client tick or action edge IDs to repair its own timing.
+
+Binary snapshot byte metrics exclude this additional control message. Diagnostic `inputMappingBytes` reports its UTF-8 payload separately; neither metric includes WebSocket/TLS framing.
+
 ## Integration work still required
 
 The active Worker still advertises v2. W04 must connect the stream to the real ordered world step, current-socket/membership ownership, wall-clock-to-tick journal, event ring, full-baseline installation, complete prediction and backpressure. W02 must verify clocks, storage cost and traffic budgets with actual room workloads. Codecs and a conformance fixture cannot establish controller feel, remote cadence or replay recovery.

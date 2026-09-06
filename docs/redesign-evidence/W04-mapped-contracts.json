@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-06T21:27:51.601Z",
+  "commit": "34cba7c0a3db2887dd83d75c31e71070374c6a56",
+  "sourceSha256": "dfc1a99eb3e998660516d65b829305c5c9b3d81651752a36e03dc07936745a04",
+  "browserBundleSha256": "b1d8a62cf2e03a7d69cb6090b5735ccf7cef4c95bc4b14924d9ef21b86cc15de",
+  "resultSha256": "3012f48c3b75d90e541ac0cbd7c5b606336e7aa0a855fb28c6afb672afce2c84",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "mappedPrediction": {
+    "applied": [
+      {
+        "tick": 1,
+        "sequence": 1,
+        "repeated": false
+      },
+      {
+        "tick": 2,
+        "sequence": 0,
+        "repeated": true
+      },
+      {
+        "tick": 3,
+        "sequence": 2,
+        "repeated": false
+      }
+    ],
+    "mapping": {
+      "type": "input-mapping",
+      "runEpoch": 1,
+      "connectionEpoch": 1,
+      "playerId": 1,
+      "snapshotId": 2,
+      "snapshotTick": 3,
+      "nextSequence": 3,
+      "nextCommandTick": 4
+    },
+    "replayed": 1,
+    "predictedTick": 4,
+    "edgeCursor": 1,
+    "traceHash": "32c1bfa5"
+  },
+  "status": "pass"
+}

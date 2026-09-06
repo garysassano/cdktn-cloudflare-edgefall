@@ -138,6 +138,7 @@ try {
     compiledLevel: expected.compiledLevel,
     encounter: expected.encounter,
     prediction: expected.prediction,
+    mappedPrediction: expected.mappedPrediction,
     inputCapture: expected.inputCapture,
     routedEnemy: expected.routedEnemy,
     controllerBoundaries: {

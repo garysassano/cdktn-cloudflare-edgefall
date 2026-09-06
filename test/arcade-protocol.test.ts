@@ -206,12 +206,16 @@ describe("build and content handshake", () => {
       decodeHandshake(JSON.stringify({ ...hello, buildId: "e".repeat(64) }), hello).buildId,
     ).toBe("e".repeat(64));
   });
+  it("accepts the explicit snapshot-paired input mapping capability", () => {
+    const mapped = { ...hello, capabilities: 1 as const };
+    expect(decodeHandshake(JSON.stringify(mapped), hello)).toEqual(mapped);
+  });
   it("rejects missing/extra fields, oversized payloads and unsupported contract values", () => {
     for (const patch of [
       { protocolMajor: 2 },
       { simulationHz: 30 },
       { snapshotHz: 30 },
-      { capabilities: 1 },
+      { capabilities: 2 },
       { controlEpoch: 1 },
       { connectionEpoch: 0 },
       { runId: "../unsafe" },

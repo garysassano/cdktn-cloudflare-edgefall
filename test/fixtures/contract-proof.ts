@@ -10,6 +10,7 @@ import { controllerBoundaryProof, controllerProof } from "./controller-proof.js"
 import { encounterProof } from "./encounter-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
+import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import { predictionProof } from "./prediction-proof.js";
@@ -89,6 +90,7 @@ export function contractProof() {
     compiledLevel: compiledLevelProof(),
     encounter: encounterProof(),
     prediction: predictionProof(),
+    mappedPrediction: mappedPredictionProof(),
     inputCapture: inputCaptureProof(),
     routedEnemy: routedEnemyProof(),
     controllerBoundaries: controllerBoundaryProof(),
