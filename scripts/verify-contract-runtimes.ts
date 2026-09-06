@@ -121,6 +121,17 @@ try {
     })),
     appliedTicks: expected.trace.map((tick) => tick.input.serverTick),
     collisionSeeds: expected.collision.samples.length,
+    movement: expected.movement,
+    movingCases: {
+      seeds: expected.movingCases.outcomes.length,
+      complete: expected.movingCases.complete,
+      crushed: expected.movingCases.crushed,
+      traceHash: expected.movingCases.traceHash,
+    },
+    restoredMovement: expected.restoredMovement.map((restored) => ({
+      restoredAfterTick: restored.restoredAfterTick,
+      traceHash: restored.traceHash,
+    })),
     collisionResults: {
       solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,
       initialOverlaps: expected.collision.samples.filter(
@@ -130,7 +141,7 @@ try {
     },
     status: "pass",
     scope:
-      "snapshot bytes/state, processed-input traces and 256 seeded solid/one-way sweep results; no integrated controller, renderer, gameplay replay or remote timer claim",
+      "snapshot bytes/state, input traces, 256 seeded sweep results and a 1200-tick gravity/platform movement fixture; no integrated controller, renderer, full gameplay replay or remote timer claim",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));

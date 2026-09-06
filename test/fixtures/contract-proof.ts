@@ -5,6 +5,7 @@ import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
 import { collisionProof } from "./collision-proof.js";
+import { movementProof, movingCasesProof } from "./movement-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
@@ -60,5 +61,17 @@ export function contractProof() {
   const trace = [stream.processTick(101, 16, process)];
   const duplicate = stream.receive(packet, 100, 101);
   trace.push(stream.processTick(102, 200, process), stream.processTick(103, 250, process));
-  return { snapshots, admitted, duplicate, trace, collision: collisionProof() };
+  return {
+    snapshots,
+    admitted,
+    duplicate,
+    trace,
+    collision: collisionProof(),
+    movement: movementProof(),
+    movingCases: movingCasesProof(),
+    restoredMovement: [239, 601, 899].map((tick) => ({
+      restoredAfterTick: tick,
+      ...movementProof(tick),
+    })),
+  };
 }
