@@ -24,7 +24,8 @@
     "e2e/**/*.ts",
     "playwright.config.ts",
     "scripts/validate-content.ts",
-    "scripts/verify-contract-runtimes.ts"
+    "scripts/verify-contract-runtimes.ts",
+    "scripts/bench-room.ts"
   ],
   "exclude": [
     ".gen",

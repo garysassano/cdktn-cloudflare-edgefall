@@ -30,7 +30,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/worker/tsconfig.json && tsc --noEmit -p src/client/tsconfig.json",
     "types": "wrangler types",
-    "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler"
+    "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
+    "bench:room": "tsx scripts/bench-room.ts"
   },
   "dependencies": {
     "cdktn": "^0.24.0",

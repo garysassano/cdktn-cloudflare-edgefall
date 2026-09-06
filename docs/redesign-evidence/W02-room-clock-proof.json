@@ -1,0 +1,2788 @@
+{
+  "schemaVersion": 1,
+  "package": "W02",
+  "recordedAt": "2026-09-06T15:20:30.649Z",
+  "baseCommit": "c227f8b4ee2afcb9bdb3d88519239e192838637a",
+  "sourceSha256": "f0f042314c2d583b4c3d7374363feb84c76fdeaf6d75346afe97fccc732534a5",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "release": "6.18.33.2-microsoft-standard-WSL2",
+    "cpu": "AMD Ryzen 5 7600X 6-Core Processor",
+    "runtime": "local Wrangler/workerd Durable Object",
+    "wrangler": "4.127.0",
+    "workerd": "1.20260826.1"
+  },
+  "status": "pass",
+  "observations": [
+    {
+      "atMs": 1059.0777320000002,
+      "mode": "stopped",
+      "tick": 0,
+      "timers": 0
+    },
+    {
+      "atMs": 1078.255013,
+      "mode": "running",
+      "tick": 0,
+      "timers": 1
+    },
+    {
+      "atMs": 1097.559216,
+      "mode": "running",
+      "tick": 0,
+      "timers": 1
+    },
+    {
+      "atMs": 1168.2701539999998,
+      "mode": "running",
+      "tick": 5,
+      "timers": 1
+    },
+    {
+      "atMs": 1237.6099909999998,
+      "mode": "running",
+      "tick": 9,
+      "timers": 1
+    },
+    {
+      "atMs": 1306.4551259999998,
+      "mode": "running",
+      "tick": 13,
+      "timers": 1
+    },
+    {
+      "atMs": 1373.4491480000002,
+      "mode": "running",
+      "tick": 17,
+      "timers": 1
+    },
+    {
+      "atMs": 1444.607736,
+      "mode": "running",
+      "tick": 21,
+      "timers": 1
+    },
+    {
+      "atMs": 1514.0267239999998,
+      "mode": "running",
+      "tick": 25,
+      "timers": 1
+    },
+    {
+      "atMs": 1582.645943,
+      "mode": "running",
+      "tick": 30,
+      "timers": 1
+    },
+    {
+      "atMs": 1649.8103339999998,
+      "mode": "running",
+      "tick": 34,
+      "timers": 1
+    },
+    {
+      "atMs": 1718.933306,
+      "mode": "running",
+      "tick": 38,
+      "timers": 1
+    },
+    {
+      "atMs": 1788.2218830000002,
+      "mode": "running",
+      "tick": 42,
+      "timers": 1
+    },
+    {
+      "atMs": 1857.043094,
+      "mode": "running",
+      "tick": 46,
+      "timers": 1
+    },
+    {
+      "atMs": 1924.203795,
+      "mode": "running",
+      "tick": 50,
+      "timers": 1
+    },
+    {
+      "atMs": 1993.127141,
+      "mode": "running",
+      "tick": 54,
+      "timers": 1
+    },
+    {
+      "atMs": 2060.630585,
+      "mode": "running",
+      "tick": 58,
+      "timers": 1
+    },
+    {
+      "atMs": 2127.59029,
+      "mode": "running",
+      "tick": 62,
+      "timers": 1
+    },
+    {
+      "atMs": 2194.413581,
+      "mode": "running",
+      "tick": 66,
+      "timers": 1
+    },
+    {
+      "atMs": 2261.769862,
+      "mode": "running",
+      "tick": 70,
+      "timers": 1
+    },
+    {
+      "atMs": 2331.5676519999997,
+      "mode": "running",
+      "tick": 74,
+      "timers": 1
+    },
+    {
+      "atMs": 2399.549278,
+      "mode": "running",
+      "tick": 79,
+      "timers": 1
+    },
+    {
+      "atMs": 2469.182767,
+      "mode": "running",
+      "tick": 83,
+      "timers": 1
+    },
+    {
+      "atMs": 2538.1812879999998,
+      "mode": "running",
+      "tick": 87,
+      "timers": 1
+    },
+    {
+      "atMs": 2607.6749489999997,
+      "mode": "running",
+      "tick": 91,
+      "timers": 1
+    },
+    {
+      "atMs": 2676.85138,
+      "mode": "running",
+      "tick": 95,
+      "timers": 1
+    },
+    {
+      "atMs": 2745.92224,
+      "mode": "running",
+      "tick": 99,
+      "timers": 1
+    },
+    {
+      "atMs": 2817.705744,
+      "mode": "running",
+      "tick": 104,
+      "timers": 1
+    },
+    {
+      "atMs": 2886.22078,
+      "mode": "running",
+      "tick": 108,
+      "timers": 1
+    },
+    {
+      "atMs": 2953.578215,
+      "mode": "running",
+      "tick": 112,
+      "timers": 1
+    },
+    {
+      "atMs": 3022.506593,
+      "mode": "running",
+      "tick": 116,
+      "timers": 1
+    },
+    {
+      "atMs": 3085.302372,
+      "mode": "stopped",
+      "tick": 120,
+      "timers": 0
+    },
+    {
+      "atMs": 3408.780997,
+      "mode": "stopped",
+      "tick": 120,
+      "timers": 0
+    },
+    {
+      "atMs": 3427.514866,
+      "mode": "running",
+      "tick": 120,
+      "timers": 1
+    },
+    {
+      "atMs": 3446.607189,
+      "mode": "running",
+      "tick": 120,
+      "timers": 1
+    },
+    {
+      "atMs": 3513.578766,
+      "mode": "running",
+      "tick": 124,
+      "timers": 1
+    },
+    {
+      "atMs": 3582.680281,
+      "mode": "running",
+      "tick": 129,
+      "timers": 1
+    },
+    {
+      "atMs": 3651.696747,
+      "mode": "running",
+      "tick": 133,
+      "timers": 1
+    },
+    {
+      "atMs": 3721.031827,
+      "mode": "running",
+      "tick": 137,
+      "timers": 1
+    },
+    {
+      "atMs": 3788.119624,
+      "mode": "running",
+      "tick": 141,
+      "timers": 1
+    },
+    {
+      "atMs": 3857.9104629999997,
+      "mode": "running",
+      "tick": 145,
+      "timers": 1
+    },
+    {
+      "atMs": 3926.60635,
+      "mode": "running",
+      "tick": 149,
+      "timers": 1
+    },
+    {
+      "atMs": 3997.702408,
+      "mode": "running",
+      "tick": 153,
+      "timers": 1
+    },
+    {
+      "atMs": 4066.778788,
+      "mode": "running",
+      "tick": 157,
+      "timers": 1
+    },
+    {
+      "atMs": 4135.863868,
+      "mode": "running",
+      "tick": 162,
+      "timers": 1
+    },
+    {
+      "atMs": 4205.2928600000005,
+      "mode": "running",
+      "tick": 166,
+      "timers": 1
+    },
+    {
+      "atMs": 4274.065127000001,
+      "mode": "running",
+      "tick": 170,
+      "timers": 1
+    },
+    {
+      "atMs": 4343.145227,
+      "mode": "running",
+      "tick": 174,
+      "timers": 1
+    },
+    {
+      "atMs": 4410.4843470000005,
+      "mode": "running",
+      "tick": 178,
+      "timers": 1
+    },
+    {
+      "atMs": 4477.363686000001,
+      "mode": "running",
+      "tick": 182,
+      "timers": 1
+    },
+    {
+      "atMs": 4544.650571,
+      "mode": "running",
+      "tick": 186,
+      "timers": 1
+    },
+    {
+      "atMs": 4611.916155000001,
+      "mode": "running",
+      "tick": 190,
+      "timers": 1
+    },
+    {
+      "atMs": 4681.725243000001,
+      "mode": "running",
+      "tick": 194,
+      "timers": 1
+    },
+    {
+      "atMs": 4749.906784000001,
+      "mode": "running",
+      "tick": 199,
+      "timers": 1
+    },
+    {
+      "atMs": 4817.228751000001,
+      "mode": "running",
+      "tick": 203,
+      "timers": 1
+    },
+    {
+      "atMs": 4888.523911,
+      "mode": "running",
+      "tick": 207,
+      "timers": 1
+    },
+    {
+      "atMs": 4957.3988770000005,
+      "mode": "running",
+      "tick": 211,
+      "timers": 1
+    },
+    {
+      "atMs": 5024.447137,
+      "mode": "running",
+      "tick": 215,
+      "timers": 1
+    },
+    {
+      "atMs": 5091.663342000001,
+      "mode": "running",
+      "tick": 219,
+      "timers": 1
+    },
+    {
+      "atMs": 5161.194407,
+      "mode": "running",
+      "tick": 223,
+      "timers": 1
+    },
+    {
+      "atMs": 5230.243308,
+      "mode": "running",
+      "tick": 227,
+      "timers": 1
+    },
+    {
+      "atMs": 5303.531092,
+      "mode": "running",
+      "tick": 231,
+      "timers": 1
+    },
+    {
+      "atMs": 5372.882987,
+      "mode": "running",
+      "tick": 236,
+      "timers": 1
+    },
+    {
+      "atMs": 5437.64394,
+      "mode": "stopped",
+      "tick": 240,
+      "timers": 0
+    },
+    {
+      "atMs": 5454.124761,
+      "mode": "running",
+      "tick": 240,
+      "timers": 1
+    },
+    {
+      "atMs": 5578.058335000001,
+      "mode": "stopped",
+      "tick": 246,
+      "timers": 0
+    },
+    {
+      "atMs": 5892.472339,
+      "mode": "stopped",
+      "tick": 246,
+      "timers": 0
+    },
+    {
+      "atMs": 5909.504049,
+      "mode": "closed",
+      "tick": 246,
+      "timers": 0
+    },
+    {
+      "atMs": 6024.40812,
+      "mode": "closed",
+      "tick": 246,
+      "timers": 0
+    }
+  ],
+  "samples": [
+    {
+      "observedAtMs": 1788708025708,
+      "firstDeadlineMs": 1788708025689.6667,
+      "latenessMs": 18.333251953125,
+      "steps": 2,
+      "lastCompletedTick": 2,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025723,
+      "firstDeadlineMs": 1788708025723,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 3,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025740,
+      "firstDeadlineMs": 1788708025739.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 4,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025757,
+      "firstDeadlineMs": 1788708025756.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 5,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025777,
+      "firstDeadlineMs": 1788708025773,
+      "latenessMs": 4,
+      "steps": 1,
+      "lastCompletedTick": 6,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025789,
+      "firstDeadlineMs": 1788708025789.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 6,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025790,
+      "firstDeadlineMs": 1788708025789.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 7,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025807,
+      "firstDeadlineMs": 1788708025806.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 8,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025823,
+      "firstDeadlineMs": 1788708025823,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 9,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025846,
+      "firstDeadlineMs": 1788708025839.6667,
+      "latenessMs": 6.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 10,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025856,
+      "firstDeadlineMs": 1788708025856.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 10,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025857,
+      "firstDeadlineMs": 1788708025856.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 11,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025874,
+      "firstDeadlineMs": 1788708025873,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 12,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025890,
+      "firstDeadlineMs": 1788708025889.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 13,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025915,
+      "firstDeadlineMs": 1788708025906.3333,
+      "latenessMs": 8.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 14,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025923,
+      "firstDeadlineMs": 1788708025923,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 15,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025940,
+      "firstDeadlineMs": 1788708025939.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 16,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025956,
+      "firstDeadlineMs": 1788708025956.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 16,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025958,
+      "firstDeadlineMs": 1788708025956.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 17,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025982,
+      "firstDeadlineMs": 1788708025973,
+      "latenessMs": 9,
+      "steps": 1,
+      "lastCompletedTick": 18,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708025990,
+      "firstDeadlineMs": 1788708025989.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 19,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026006,
+      "firstDeadlineMs": 1788708026006.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 19,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026007,
+      "firstDeadlineMs": 1788708026006.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 20,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026024,
+      "firstDeadlineMs": 1788708026023,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 21,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026053,
+      "firstDeadlineMs": 1788708026039.6667,
+      "latenessMs": 13.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 22,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026057,
+      "firstDeadlineMs": 1788708026056.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 23,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026073,
+      "firstDeadlineMs": 1788708026073,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 24,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026090,
+      "firstDeadlineMs": 1788708026089.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 25,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026123,
+      "firstDeadlineMs": 1788708026106.3333,
+      "latenessMs": 16.666748046875,
+      "steps": 2,
+      "lastCompletedTick": 27,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026139,
+      "firstDeadlineMs": 1788708026139.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 27,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026140,
+      "firstDeadlineMs": 1788708026139.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 28,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026157,
+      "firstDeadlineMs": 1788708026156.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 29,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026174,
+      "firstDeadlineMs": 1788708026173,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 30,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026192,
+      "firstDeadlineMs": 1788708026189.6667,
+      "latenessMs": 2.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 31,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026206,
+      "firstDeadlineMs": 1788708026206.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 31,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026207,
+      "firstDeadlineMs": 1788708026206.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 32,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026224,
+      "firstDeadlineMs": 1788708026223,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 33,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026239,
+      "firstDeadlineMs": 1788708026239.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 33,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026241,
+      "firstDeadlineMs": 1788708026239.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 34,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026259,
+      "firstDeadlineMs": 1788708026256.3333,
+      "latenessMs": 2.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 35,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026273,
+      "firstDeadlineMs": 1788708026273,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 36,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026289,
+      "firstDeadlineMs": 1788708026289.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 36,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026290,
+      "firstDeadlineMs": 1788708026289.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 37,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026307,
+      "firstDeadlineMs": 1788708026306.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 38,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026328,
+      "firstDeadlineMs": 1788708026323,
+      "latenessMs": 5,
+      "steps": 1,
+      "lastCompletedTick": 39,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026339,
+      "firstDeadlineMs": 1788708026339.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 39,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026340,
+      "firstDeadlineMs": 1788708026339.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 40,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026357,
+      "firstDeadlineMs": 1788708026356.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 41,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026373,
+      "firstDeadlineMs": 1788708026373,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 42,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026397,
+      "firstDeadlineMs": 1788708026389.6667,
+      "latenessMs": 7.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 43,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026407,
+      "firstDeadlineMs": 1788708026406.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 44,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026423,
+      "firstDeadlineMs": 1788708026423,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 45,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026439,
+      "firstDeadlineMs": 1788708026439.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 45,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026440,
+      "firstDeadlineMs": 1788708026439.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 46,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026466,
+      "firstDeadlineMs": 1788708026456.3333,
+      "latenessMs": 9.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 47,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026473,
+      "firstDeadlineMs": 1788708026473,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 48,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026490,
+      "firstDeadlineMs": 1788708026489.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 49,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026507,
+      "firstDeadlineMs": 1788708026506.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 50,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026533,
+      "firstDeadlineMs": 1788708026523,
+      "latenessMs": 10,
+      "steps": 1,
+      "lastCompletedTick": 51,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026540,
+      "firstDeadlineMs": 1788708026539.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 52,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026556,
+      "firstDeadlineMs": 1788708026556.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 52,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026558,
+      "firstDeadlineMs": 1788708026556.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 53,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026573,
+      "firstDeadlineMs": 1788708026573,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 54,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026602,
+      "firstDeadlineMs": 1788708026589.6667,
+      "latenessMs": 12.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 55,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026607,
+      "firstDeadlineMs": 1788708026606.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 56,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026624,
+      "firstDeadlineMs": 1788708026623,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 57,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026639,
+      "firstDeadlineMs": 1788708026639.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 57,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026640,
+      "firstDeadlineMs": 1788708026639.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 58,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026670,
+      "firstDeadlineMs": 1788708026656.3333,
+      "latenessMs": 13.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 59,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026673,
+      "firstDeadlineMs": 1788708026673,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 60,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026690,
+      "firstDeadlineMs": 1788708026689.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 61,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026706,
+      "firstDeadlineMs": 1788708026706.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 61,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026707,
+      "firstDeadlineMs": 1788708026706.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 62,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026737,
+      "firstDeadlineMs": 1788708026723,
+      "latenessMs": 14,
+      "steps": 1,
+      "lastCompletedTick": 63,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026739,
+      "firstDeadlineMs": 1788708026739.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 63,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026740,
+      "firstDeadlineMs": 1788708026739.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 64,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026757,
+      "firstDeadlineMs": 1788708026756.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 65,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026773,
+      "firstDeadlineMs": 1788708026773,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 66,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026806,
+      "firstDeadlineMs": 1788708026789.6667,
+      "latenessMs": 16.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 67,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026807,
+      "firstDeadlineMs": 1788708026806.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 68,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026824,
+      "firstDeadlineMs": 1788708026823,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 69,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026839,
+      "firstDeadlineMs": 1788708026839.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 69,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026840,
+      "firstDeadlineMs": 1788708026839.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 70,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026871,
+      "firstDeadlineMs": 1788708026856.3333,
+      "latenessMs": 14.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 71,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026873,
+      "firstDeadlineMs": 1788708026873,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 72,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026889,
+      "firstDeadlineMs": 1788708026889.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 72,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026890,
+      "firstDeadlineMs": 1788708026889.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 73,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026907,
+      "firstDeadlineMs": 1788708026906.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 74,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026940,
+      "firstDeadlineMs": 1788708026923,
+      "latenessMs": 17,
+      "steps": 2,
+      "lastCompletedTick": 76,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026957,
+      "firstDeadlineMs": 1788708026956.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 77,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026973,
+      "firstDeadlineMs": 1788708026973,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 78,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026989,
+      "firstDeadlineMs": 1788708026989.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 78,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708026991,
+      "firstDeadlineMs": 1788708026989.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 79,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027009,
+      "firstDeadlineMs": 1788708027006.3333,
+      "latenessMs": 2.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 80,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027024,
+      "firstDeadlineMs": 1788708027023,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 81,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027039,
+      "firstDeadlineMs": 1788708027039.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 81,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027040,
+      "firstDeadlineMs": 1788708027039.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 82,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027056,
+      "firstDeadlineMs": 1788708027056.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 82,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027058,
+      "firstDeadlineMs": 1788708027056.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 83,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027078,
+      "firstDeadlineMs": 1788708027073,
+      "latenessMs": 5,
+      "steps": 1,
+      "lastCompletedTick": 84,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027090,
+      "firstDeadlineMs": 1788708027089.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 85,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027106,
+      "firstDeadlineMs": 1788708027106.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 85,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027107,
+      "firstDeadlineMs": 1788708027106.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 86,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027123,
+      "firstDeadlineMs": 1788708027123,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 87,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027147,
+      "firstDeadlineMs": 1788708027139.6667,
+      "latenessMs": 7.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 88,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027157,
+      "firstDeadlineMs": 1788708027156.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 89,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027173,
+      "firstDeadlineMs": 1788708027173,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 90,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027190,
+      "firstDeadlineMs": 1788708027189.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 91,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027217,
+      "firstDeadlineMs": 1788708027206.3333,
+      "latenessMs": 10.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 92,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027223,
+      "firstDeadlineMs": 1788708027223,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 93,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027239,
+      "firstDeadlineMs": 1788708027239.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 93,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027240,
+      "firstDeadlineMs": 1788708027239.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 94,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027256,
+      "firstDeadlineMs": 1788708027256.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 94,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027258,
+      "firstDeadlineMs": 1788708027256.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 95,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027286,
+      "firstDeadlineMs": 1788708027273,
+      "latenessMs": 13,
+      "steps": 1,
+      "lastCompletedTick": 96,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027289,
+      "firstDeadlineMs": 1788708027289.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 96,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027290,
+      "firstDeadlineMs": 1788708027289.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 97,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027307,
+      "firstDeadlineMs": 1788708027306.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 98,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027324,
+      "firstDeadlineMs": 1788708027323,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 99,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027355,
+      "firstDeadlineMs": 1788708027339.6667,
+      "latenessMs": 15.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 100,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027356,
+      "firstDeadlineMs": 1788708027356.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 100,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027357,
+      "firstDeadlineMs": 1788708027356.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 101,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027374,
+      "firstDeadlineMs": 1788708027373,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 102,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027390,
+      "firstDeadlineMs": 1788708027389.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 103,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027406,
+      "firstDeadlineMs": 1788708027406.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 103,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027407,
+      "firstDeadlineMs": 1788708027406.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 104,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027426,
+      "firstDeadlineMs": 1788708027423,
+      "latenessMs": 3,
+      "steps": 1,
+      "lastCompletedTick": 105,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027439,
+      "firstDeadlineMs": 1788708027439.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 105,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027441,
+      "firstDeadlineMs": 1788708027439.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 106,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027456,
+      "firstDeadlineMs": 1788708027456.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 106,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027457,
+      "firstDeadlineMs": 1788708027456.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 107,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027473,
+      "firstDeadlineMs": 1788708027473,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 108,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027495,
+      "firstDeadlineMs": 1788708027489.6667,
+      "latenessMs": 5.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 109,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027507,
+      "firstDeadlineMs": 1788708027506.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 110,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027523,
+      "firstDeadlineMs": 1788708027523,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 111,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027540,
+      "firstDeadlineMs": 1788708027539.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 112,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027562,
+      "firstDeadlineMs": 1788708027556.3333,
+      "latenessMs": 5.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 113,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027574,
+      "firstDeadlineMs": 1788708027573,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 114,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027590,
+      "firstDeadlineMs": 1788708027589.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 115,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027606,
+      "firstDeadlineMs": 1788708027606.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 115,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027607,
+      "firstDeadlineMs": 1788708027606.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 116,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027632,
+      "firstDeadlineMs": 1788708027623,
+      "latenessMs": 9,
+      "steps": 1,
+      "lastCompletedTick": 117,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027639,
+      "firstDeadlineMs": 1788708027639.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 117,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027640,
+      "firstDeadlineMs": 1788708027639.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 118,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027657,
+      "firstDeadlineMs": 1788708027656.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 119,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708027673,
+      "firstDeadlineMs": 1788708027673,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 120,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028056,
+      "firstDeadlineMs": 1788708028039.6667,
+      "latenessMs": 16.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 121,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028057,
+      "firstDeadlineMs": 1788708028056.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 122,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028073,
+      "firstDeadlineMs": 1788708028073,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 123,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028090,
+      "firstDeadlineMs": 1788708028089.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 124,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028123,
+      "firstDeadlineMs": 1788708028106.3333,
+      "latenessMs": 16.666748046875,
+      "steps": 2,
+      "lastCompletedTick": 126,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028139,
+      "firstDeadlineMs": 1788708028139.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 126,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028140,
+      "firstDeadlineMs": 1788708028139.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 127,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028157,
+      "firstDeadlineMs": 1788708028156.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 128,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028173,
+      "firstDeadlineMs": 1788708028173,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 129,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028192,
+      "firstDeadlineMs": 1788708028189.6667,
+      "latenessMs": 2.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 130,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028206,
+      "firstDeadlineMs": 1788708028206.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 130,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028207,
+      "firstDeadlineMs": 1788708028206.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 131,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028224,
+      "firstDeadlineMs": 1788708028223,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 132,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028240,
+      "firstDeadlineMs": 1788708028239.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 133,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028261,
+      "firstDeadlineMs": 1788708028256.3333,
+      "latenessMs": 4.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 134,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028273,
+      "firstDeadlineMs": 1788708028273,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 135,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028290,
+      "firstDeadlineMs": 1788708028289.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 136,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028307,
+      "firstDeadlineMs": 1788708028306.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 137,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028330,
+      "firstDeadlineMs": 1788708028323,
+      "latenessMs": 7,
+      "steps": 1,
+      "lastCompletedTick": 138,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028339,
+      "firstDeadlineMs": 1788708028339.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 138,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028341,
+      "firstDeadlineMs": 1788708028339.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 139,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028356,
+      "firstDeadlineMs": 1788708028356.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 139,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028357,
+      "firstDeadlineMs": 1788708028356.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 140,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028373,
+      "firstDeadlineMs": 1788708028373,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 141,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028397,
+      "firstDeadlineMs": 1788708028389.6667,
+      "latenessMs": 7.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 142,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028407,
+      "firstDeadlineMs": 1788708028406.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 143,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028423,
+      "firstDeadlineMs": 1788708028423,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 144,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028440,
+      "firstDeadlineMs": 1788708028439.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 145,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028466,
+      "firstDeadlineMs": 1788708028456.3333,
+      "latenessMs": 9.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 146,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028474,
+      "firstDeadlineMs": 1788708028473,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 147,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028489,
+      "firstDeadlineMs": 1788708028489.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 147,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028490,
+      "firstDeadlineMs": 1788708028489.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 148,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028507,
+      "firstDeadlineMs": 1788708028506.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 149,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028535,
+      "firstDeadlineMs": 1788708028523,
+      "latenessMs": 12,
+      "steps": 1,
+      "lastCompletedTick": 150,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028540,
+      "firstDeadlineMs": 1788708028539.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 151,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028556,
+      "firstDeadlineMs": 1788708028556.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 151,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028557,
+      "firstDeadlineMs": 1788708028556.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 152,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028574,
+      "firstDeadlineMs": 1788708028573,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 153,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028611,
+      "firstDeadlineMs": 1788708028589.6667,
+      "latenessMs": 21.333251953125,
+      "steps": 2,
+      "lastCompletedTick": 155,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028624,
+      "firstDeadlineMs": 1788708028623,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 156,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028639,
+      "firstDeadlineMs": 1788708028639.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 156,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028641,
+      "firstDeadlineMs": 1788708028639.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 157,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028656,
+      "firstDeadlineMs": 1788708028656.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 157,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028676,
+      "firstDeadlineMs": 1788708028656.3333,
+      "latenessMs": 19.666748046875,
+      "steps": 2,
+      "lastCompletedTick": 159,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028690,
+      "firstDeadlineMs": 1788708028689.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 160,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028706,
+      "firstDeadlineMs": 1788708028706.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 160,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028707,
+      "firstDeadlineMs": 1788708028706.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 161,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028724,
+      "firstDeadlineMs": 1788708028723,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 162,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028745,
+      "firstDeadlineMs": 1788708028739.6667,
+      "latenessMs": 5.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 163,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028757,
+      "firstDeadlineMs": 1788708028756.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 164,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028773,
+      "firstDeadlineMs": 1788708028773,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 165,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028789,
+      "firstDeadlineMs": 1788708028789.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 165,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028790,
+      "firstDeadlineMs": 1788708028789.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 166,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028814,
+      "firstDeadlineMs": 1788708028806.3333,
+      "latenessMs": 7.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 167,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028824,
+      "firstDeadlineMs": 1788708028823,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 168,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028839,
+      "firstDeadlineMs": 1788708028839.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 168,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028840,
+      "firstDeadlineMs": 1788708028839.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 169,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028856,
+      "firstDeadlineMs": 1788708028856.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 169,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028858,
+      "firstDeadlineMs": 1788708028856.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 170,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028883,
+      "firstDeadlineMs": 1788708028873,
+      "latenessMs": 10,
+      "steps": 1,
+      "lastCompletedTick": 171,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028890,
+      "firstDeadlineMs": 1788708028889.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 172,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028907,
+      "firstDeadlineMs": 1788708028906.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 173,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028923,
+      "firstDeadlineMs": 1788708028923,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 174,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028953,
+      "firstDeadlineMs": 1788708028939.6667,
+      "latenessMs": 13.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 175,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028956,
+      "firstDeadlineMs": 1788708028956.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 175,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028957,
+      "firstDeadlineMs": 1788708028956.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 176,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028974,
+      "firstDeadlineMs": 1788708028973,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 177,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028989,
+      "firstDeadlineMs": 1788708028989.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 177,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708028991,
+      "firstDeadlineMs": 1788708028989.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 178,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029020,
+      "firstDeadlineMs": 1788708029006.3333,
+      "latenessMs": 13.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 179,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029023,
+      "firstDeadlineMs": 1788708029023,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 180,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029040,
+      "firstDeadlineMs": 1788708029039.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 181,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029056,
+      "firstDeadlineMs": 1788708029056.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 181,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029057,
+      "firstDeadlineMs": 1788708029056.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 182,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029087,
+      "firstDeadlineMs": 1788708029073,
+      "latenessMs": 14,
+      "steps": 1,
+      "lastCompletedTick": 183,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029089,
+      "firstDeadlineMs": 1788708029089.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 183,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029090,
+      "firstDeadlineMs": 1788708029089.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 184,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029107,
+      "firstDeadlineMs": 1788708029106.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 185,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029124,
+      "firstDeadlineMs": 1788708029123,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 186,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029154,
+      "firstDeadlineMs": 1788708029139.6667,
+      "latenessMs": 14.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 187,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029156,
+      "firstDeadlineMs": 1788708029156.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 187,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029157,
+      "firstDeadlineMs": 1788708029156.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 188,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029174,
+      "firstDeadlineMs": 1788708029173,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 189,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029190,
+      "firstDeadlineMs": 1788708029189.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 190,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029221,
+      "firstDeadlineMs": 1788708029206.3333,
+      "latenessMs": 14.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 191,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029223,
+      "firstDeadlineMs": 1788708029223,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 192,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029240,
+      "firstDeadlineMs": 1788708029239.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 193,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029257,
+      "firstDeadlineMs": 1788708029256.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 194,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029290,
+      "firstDeadlineMs": 1788708029273,
+      "latenessMs": 17,
+      "steps": 2,
+      "lastCompletedTick": 196,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029307,
+      "firstDeadlineMs": 1788708029306.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 197,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029323,
+      "firstDeadlineMs": 1788708029323,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 198,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029340,
+      "firstDeadlineMs": 1788708029339.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 199,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029359,
+      "firstDeadlineMs": 1788708029356.3333,
+      "latenessMs": 2.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 200,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029374,
+      "firstDeadlineMs": 1788708029373,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 201,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029389,
+      "firstDeadlineMs": 1788708029389.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 201,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029390,
+      "firstDeadlineMs": 1788708029389.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 202,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029407,
+      "firstDeadlineMs": 1788708029406.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 203,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029426,
+      "firstDeadlineMs": 1788708029423,
+      "latenessMs": 3,
+      "steps": 1,
+      "lastCompletedTick": 204,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029440,
+      "firstDeadlineMs": 1788708029439.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 205,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029456,
+      "firstDeadlineMs": 1788708029456.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 205,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029457,
+      "firstDeadlineMs": 1788708029456.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 206,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029474,
+      "firstDeadlineMs": 1788708029473,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 207,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029497,
+      "firstDeadlineMs": 1788708029489.6667,
+      "latenessMs": 7.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 208,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029507,
+      "firstDeadlineMs": 1788708029506.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 209,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029523,
+      "firstDeadlineMs": 1788708029523,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 210,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029540,
+      "firstDeadlineMs": 1788708029539.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 211,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029567,
+      "firstDeadlineMs": 1788708029556.3333,
+      "latenessMs": 10.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 212,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029573,
+      "firstDeadlineMs": 1788708029573,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 213,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029589,
+      "firstDeadlineMs": 1788708029589.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 213,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029590,
+      "firstDeadlineMs": 1788708029589.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 214,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029607,
+      "firstDeadlineMs": 1788708029606.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 215,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029634,
+      "firstDeadlineMs": 1788708029623,
+      "latenessMs": 11,
+      "steps": 1,
+      "lastCompletedTick": 216,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029639,
+      "firstDeadlineMs": 1788708029639.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 216,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029640,
+      "firstDeadlineMs": 1788708029639.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 217,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029657,
+      "firstDeadlineMs": 1788708029656.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 218,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029673,
+      "firstDeadlineMs": 1788708029673,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 219,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029701,
+      "firstDeadlineMs": 1788708029689.6667,
+      "latenessMs": 11.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 220,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029706,
+      "firstDeadlineMs": 1788708029706.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 220,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029707,
+      "firstDeadlineMs": 1788708029706.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 221,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029724,
+      "firstDeadlineMs": 1788708029723,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 222,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029740,
+      "firstDeadlineMs": 1788708029739.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 223,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029772,
+      "firstDeadlineMs": 1788708029756.3333,
+      "latenessMs": 15.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 224,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029773,
+      "firstDeadlineMs": 1788708029773,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 225,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029790,
+      "firstDeadlineMs": 1788708029789.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 226,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029807,
+      "firstDeadlineMs": 1788708029806.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 227,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029839,
+      "firstDeadlineMs": 1788708029823,
+      "latenessMs": 16,
+      "steps": 1,
+      "lastCompletedTick": 228,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029840,
+      "firstDeadlineMs": 1788708029839.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 229,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029857,
+      "firstDeadlineMs": 1788708029856.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 230,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029874,
+      "firstDeadlineMs": 1788708029873,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 231,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029889,
+      "firstDeadlineMs": 1788708029889.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 231,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029912,
+      "firstDeadlineMs": 1788708029889.6667,
+      "latenessMs": 22.333251953125,
+      "steps": 2,
+      "lastCompletedTick": 233,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029924,
+      "firstDeadlineMs": 1788708029923,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 234,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029940,
+      "firstDeadlineMs": 1788708029939.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 235,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029956,
+      "firstDeadlineMs": 1788708029956.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 235,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029958,
+      "firstDeadlineMs": 1788708029956.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 236,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029982,
+      "firstDeadlineMs": 1788708029973,
+      "latenessMs": 9,
+      "steps": 1,
+      "lastCompletedTick": 237,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029989,
+      "firstDeadlineMs": 1788708029989.6667,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 237,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708029990,
+      "firstDeadlineMs": 1788708029989.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 238,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030006,
+      "firstDeadlineMs": 1788708030006.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 238,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030007,
+      "firstDeadlineMs": 1788708030006.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 239,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030024,
+      "firstDeadlineMs": 1788708030023,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 240,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030069,
+      "firstDeadlineMs": 1788708030067.6667,
+      "latenessMs": 1.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 241,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030084,
+      "firstDeadlineMs": 1788708030084.3333,
+      "latenessMs": 0,
+      "steps": 0,
+      "lastCompletedTick": 241,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030086,
+      "firstDeadlineMs": 1788708030084.3333,
+      "latenessMs": 1.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 242,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030101,
+      "firstDeadlineMs": 1788708030101,
+      "latenessMs": 0,
+      "steps": 1,
+      "lastCompletedTick": 243,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030118,
+      "firstDeadlineMs": 1788708030117.6667,
+      "latenessMs": 0.333251953125,
+      "steps": 1,
+      "lastCompletedTick": 244,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030135,
+      "firstDeadlineMs": 1788708030134.3333,
+      "latenessMs": 0.666748046875,
+      "steps": 1,
+      "lastCompletedTick": 245,
+      "remainingDebtMs": 0
+    },
+    {
+      "observedAtMs": 1788708030152,
+      "firstDeadlineMs": 1788708030151,
+      "latenessMs": 1,
+      "steps": 1,
+      "lastCompletedTick": 246,
+      "remainingDebtMs": 0
+    }
+  ],
+  "scope": "Bounded local scheduler lifecycle only. HTTP observation; no WebSocket clients, world/encode CPU load, storage/restart recovery, remote cadence or billing proof."
+}

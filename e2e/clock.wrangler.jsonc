@@ -1,0 +1,12 @@
+// Local lifecycle proof only; separate from the deployed game and its migrations.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "edgefall-clock-probe",
+  "main": "../src/worker/diagnostics/clock-probe.ts",
+  "compatibility_date": "2026-08-30",
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "CLOCK_PROBES", "class_name": "ClockProbe" }]
+  },
+  "migrations": [{ "tag": "clock-probe-v1", "new_sqlite_classes": ["ClockProbe"] }]
+}
