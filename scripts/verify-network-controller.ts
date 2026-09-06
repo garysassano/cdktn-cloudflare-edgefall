@@ -36,12 +36,23 @@ interface ClientStatus {
     correctionX: number;
     correctionY: number;
     correctionChanged: boolean;
+    enemies: number;
+    projectiles: number;
+    shots: number;
   }>;
 }
 const recoveryMode = process.argv.includes("--recovery");
-const output = recoveryMode
-  ? "dist/network-controller-recovery-evidence"
-  : "dist/network-controller-evidence";
+const faultMode = process.argv.includes("--combat-fault");
+const combatMode = process.argv.includes("--combat") || faultMode;
+assert(!(combatMode && recoveryMode), "Combat recovery is not implemented");
+const workload = combatMode ? "combat" : "controller";
+const output = combatMode
+  ? faultMode
+    ? "dist/network-combat-fault-evidence"
+    : "dist/network-combat-evidence"
+  : recoveryMode
+    ? "dist/network-controller-recovery-evidence"
+    : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -111,7 +122,7 @@ try {
             record("requestfailed", request.failure()?.errorText ?? "unknown"),
           );
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -141,7 +152,7 @@ try {
     const prepareAndStart = async () => {
       await Promise.all(pages.map((page) => page.locator("#prepare").click()));
       for (let attempt = 0; attempt < 50; attempt++) {
-        room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+        room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
         if (
           room.peers.length === 4 &&
           room.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS)
@@ -153,11 +164,122 @@ try {
         room?.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS),
         "Input preload incomplete",
       );
-      const start = await fetch(`${base}/controller/start`, { method: "POST" });
+      const start = await fetch(`${base}/${workload}/start`, { method: "POST" });
       assert(start.ok, `Start: ${start.status}`);
     };
     try {
       await prepareAndStart();
+      if (combatMode) {
+        let clients: ClientStatus[] = [];
+        const target = faultMode ? 12 : 90;
+        for (let attempt = 0; attempt < 120; attempt++) {
+          clients = await read();
+          assert(
+            clients.every((client) => !client.error && !client.requiresResync),
+            JSON.stringify(
+              clients.map((client) => ({
+                slot: client.slot,
+                error: client.error,
+                tick: client.snapshotTick,
+              })),
+            ),
+          );
+          if (clients.every((client) => client.snapshotTick >= target)) break;
+          await new Promise((resolve) => setTimeout(resolve, 50));
+        }
+        assert(
+          clients.every((client) => client.snapshotTick >= target),
+          "Combat clients did not reach the target tick",
+        );
+        let aborted = null;
+        if (faultMode) {
+          const injection = await fetch(`${base}/${workload}/fail-next-tick`, { method: "POST" });
+          assert.equal(injection.status, 200);
+          aborted = (await injection.json()) as {
+            tick: number;
+            acknowledgments: unknown;
+            combat: unknown;
+            events: unknown;
+          };
+          for (let attempt = 0; attempt < 80; attempt++) {
+            clients = await read();
+            if (clients.every((client) => client.error?.includes("clock-fault"))) break;
+            await new Promise((resolve) => setTimeout(resolve, 20));
+          }
+          assert(
+            clients.every((client) => client.error?.includes("clock-fault")),
+            "Failed cohort did not close",
+          );
+        }
+        room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
+        assert(room.combat, "Missing committed combat state");
+        if (aborted) {
+          assert.equal(room.tick, aborted.tick);
+          assert.equal(room.clock.tick, aborted.tick);
+          assert.deepEqual(room.combat.world, aborted.combat);
+          assert.deepEqual(room.combat.events, aborted.events);
+          assert.deepEqual(
+            room.inputStreams
+              .map((input) => input.acknowledgment)
+              .sort((a, b) => a.playerId - b.playerId),
+            aborted.acknowledgments,
+          );
+          assert(room.inputStreams.every((input) => input.requiresResync));
+          assert.match(room.worldFailure ?? "", /injected-combat-commit-failure/);
+        } else {
+          assert.equal(room.worldFailure, null);
+          assert.equal(room.combat.world.encounter.phase, "complete");
+          assert.equal(
+            room.combat.world.encounter.kills.reduce((sum, entry) => sum + entry.count, 0),
+            2,
+          );
+          assert(room.peers.every((peer) => peer.active && !peer.lastInputError));
+          assert(
+            clients.every(
+              (client) =>
+                client.receipts.some((receipt) => receipt.projectiles > 0) &&
+                client.receipts.some((receipt) => receipt.enemies === 0) &&
+                client.receipts.some((receipt) => receipt.shots > 0),
+            ),
+          );
+          assert(
+            clients.every((client) =>
+              client.receipts.every(
+                (receipt) => receipt.correctionX === 0 && receipt.correctionY === 0,
+              ),
+            ),
+            "Combat movement correction",
+          );
+        }
+        const common =
+          clients[0]?.receipts.filter(
+            (receipt) =>
+              receipt.tick > 0 &&
+              clients.every((client) =>
+                client.receipts.some(
+                  (other) => other.tick === receipt.tick && other.hash === receipt.hash,
+                ),
+              ),
+          ) ?? [];
+        assert(common.length >= (faultMode ? 4 : 30), "Missing shared committed combat snapshots");
+        await pages[0]?.screenshot({ path: `${output}/four-player-controller.png` });
+        return {
+          status: "pass",
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          recordedAt: new Date().toISOString(),
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          sharedSnapshots: common.length,
+          clients,
+          room,
+          aborted,
+          scope: faultMode
+            ? "Four-browser real workerd abort after world evaluation: no world, event or acknowledgment commit; explicit cohort recovery required"
+            : "Four-browser authoritative firearm/projectile/kill snapshots and movement prediction; combat effects, global action prediction, durable recovery and production integration remain open",
+        };
+      }
       if (recoveryMode) {
         const waitForTick = async (target: number) => {
           let clients: ClientStatus[] = [];
@@ -175,7 +297,7 @@ try {
           throw new Error("Recovery progression timed out");
         };
         const before = await waitForTick(30);
-        const response = await fetch(`${base}/controller/recover`, { method: "POST" });
+        const response = await fetch(`${base}/${workload}/recover`, { method: "POST" });
         assert(response.ok, `Recovery request: ${response.status}`);
         const boundary = (await response.json()) as {
           runEpoch: number;
@@ -228,7 +350,7 @@ try {
         assert.equal(repeatInput?.held, 0, "Repeat recreated released held intent");
         assert.equal(repeatInput?.pendingEdges, 0, "Repeat recreated a cleared action edge");
         await repeatPage.keyboard.up("KeyZ");
-        const premature = await fetch(`${base}/controller/start`, { method: "POST" });
+        const premature = await fetch(`${base}/${workload}/start`, { method: "POST" });
         assert.equal(premature.status, 409, "Recovery resumed without fresh preloaded input");
         await prepareAndStart();
         const clients = await waitForTick(boundary.tick + 30);
@@ -240,7 +362,7 @@ try {
           ),
           "Recovered prediction diverged",
         );
-        room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+        room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
         assert.equal(room.runEpoch, 2);
         assert.equal(room.recoveries, 1);
         assert.equal(room.clock.fault, null);
@@ -282,7 +404,7 @@ try {
         clients.every((c) => c.snapshotTick >= 180),
         "Controller did not reach 180 ticks",
       );
-      room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+      room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
       assert.equal(room.clock.fault, null);
       assert.equal(room.roomMode, "playing");
       for (const client of clients) {
@@ -374,7 +496,7 @@ try {
         stoppedClients.slice(1).every((c) => c.snapshotTick >= 420),
         "Input-stop observation timed out",
       );
-      room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+      room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
       const stoppedPeer = room.peers.find((peer) => peer.slot === 0);
       assert.equal(stoppedPeer?.closeReason, "lease-expired");
       assert(
@@ -397,7 +519,7 @@ try {
         beforeTaps.map((id) => id + 1),
         "Lost or duplicated action tap",
       );
-      await fetch(`${base}/controller/close`, { method: "POST" });
+      await fetch(`${base}/${workload}/close`, { method: "POST" });
       await pages[0]?.screenshot({ path: `${output}/four-player-controller.png` });
       return {
         status: "pass",
@@ -420,12 +542,12 @@ try {
           "Four isolated Chromium contexts over real WebSockets to direct local workerd; 180-tick movement/reconciliation proof followed by input-stop/lease-expiry through tick 420; not combat load, persistence, full impaired transport or live cadence acceptance",
       };
     } catch (error) {
-      room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+      room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
       await writeFile(`${output}/failed-clients.json`, JSON.stringify(await read(true), null, 2));
       await pages[0]?.screenshot({ path: `${output}/failure.png` }).catch(() => {});
       throw error;
     } finally {
-      await fetch(`${base}/controller/close`, { method: "POST" }).catch(() => {});
+      await fetch(`${base}/${workload}/close`, { method: "POST" }).catch(() => {});
       await Promise.all(pages.map((page) => page.context().close()));
     }
   });

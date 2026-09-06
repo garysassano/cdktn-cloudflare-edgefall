@@ -1,0 +1,5058 @@
+{
+  "status": "pass",
+  "baseCommit": "eba50e59b6ba60b0e26c7dbdb8ca2f52fd3e2275",
+  "recordedAt": "2026-09-06T22:31:54.566Z",
+  "browser": "151.0.7922.34",
+  "bundleSha256": "194ed067df5ce73e2ffc072465d9ca976f9150c68a84eb7af80bbacd1626d32d",
+  "sharedSnapshots": 4,
+  "clients": [
+    {
+      "slot": 0,
+      "mode": "combat",
+      "enemies": [
+        {
+          "id": 21,
+          "definitionId": 1,
+          "x": 70912,
+          "y": 51200,
+          "vx": -64,
+          "vy": 0,
+          "shapeId": 1,
+          "facing": -1,
+          "health": 1,
+          "mode": 0,
+          "stateStartTick": 0,
+          "actionInstanceId": 0,
+          "actionDefinitionId": 0,
+          "modeTicks": 0,
+          "supportId": 100,
+          "geometryRevision": 1
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 1,
+          "x": 49152,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 1,
+          "x": 51200,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 1,
+          "x": 52224,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1004,
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "definitionId": 2,
+          "x": 44032,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 6,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1005,
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "definitionId": 1,
+          "x": 24576,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 1,
+          "x": 26624,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 1,
+          "x": 27648,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1008,
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "definitionId": 2,
+          "x": 20992,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 11,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        }
+      ],
+      "remainingEnemies": 1,
+      "removedIds": [
+        20
+      ],
+      "clockOriginMs": 1788733913277.1,
+      "timeline": [],
+      "runEpoch": 1,
+      "initialServerTick": 0,
+      "inputStopped": false,
+      "ready": true,
+      "prepared": true,
+      "error": "closed: 4003 clock-fault",
+      "requiresResync": false,
+      "sequence": 19,
+      "unsent": 1,
+      "held": 0,
+      "pendingEdges": 0,
+      "inputClock": {
+        "mode": "closed",
+        "tick": 19,
+        "timerPending": false,
+        "fault": null
+      },
+      "snapshotTick": 12,
+      "predictedTick": 19,
+      "pending": 7,
+      "receipts": [
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 1479006438,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 749340204,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 4,
+          "shots": 1,
+          "tick": 3,
+          "hash": 278351787,
+          "bytes": 1736,
+          "y": 51200,
+          "shape": 1,
+          "ack": 3,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 5,
+          "shots": 1,
+          "tick": 6,
+          "hash": 2518742813,
+          "bytes": 1784,
+          "y": 51200,
+          "shape": 1,
+          "ack": 6,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 9,
+          "hash": 1767087604,
+          "bytes": 1928,
+          "y": 51200,
+          "shape": 1,
+          "ack": 9,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 1,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 12,
+          "hash": 3103229907,
+          "bytes": 1868,
+          "y": 51200,
+          "shape": 1,
+          "ack": 12,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        }
+      ],
+      "actor": {
+        "body": {
+          "id": 1,
+          "x": 11520,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 6,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 6
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "authoritative": {
+        "body": {
+          "id": 1,
+          "x": 11520,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 1,
+        "slot": 0,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 6,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 6
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "slot": 1,
+      "mode": "combat",
+      "enemies": [
+        {
+          "id": 21,
+          "definitionId": 1,
+          "x": 70912,
+          "y": 51200,
+          "vx": -64,
+          "vy": 0,
+          "shapeId": 1,
+          "facing": -1,
+          "health": 1,
+          "mode": 0,
+          "stateStartTick": 0,
+          "actionInstanceId": 0,
+          "actionDefinitionId": 0,
+          "modeTicks": 0,
+          "supportId": 100,
+          "geometryRevision": 1
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 1,
+          "x": 49152,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 1,
+          "x": 51200,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 1,
+          "x": 52224,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1004,
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "definitionId": 2,
+          "x": 44032,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 6,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1005,
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "definitionId": 1,
+          "x": 24576,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 1,
+          "x": 26624,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 1,
+          "x": 27648,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1008,
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "definitionId": 2,
+          "x": 20992,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 11,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        }
+      ],
+      "remainingEnemies": 1,
+      "removedIds": [
+        20
+      ],
+      "clockOriginMs": 1788733913280.5,
+      "timeline": [],
+      "runEpoch": 1,
+      "initialServerTick": 0,
+      "inputStopped": false,
+      "ready": true,
+      "prepared": true,
+      "error": "closed: 4003 clock-fault",
+      "requiresResync": false,
+      "sequence": 19,
+      "unsent": 2,
+      "held": 0,
+      "pendingEdges": 0,
+      "inputClock": {
+        "mode": "closed",
+        "tick": 19,
+        "timerPending": false,
+        "fault": null
+      },
+      "snapshotTick": 12,
+      "predictedTick": 19,
+      "pending": 7,
+      "receipts": [
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 1479006438,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 749340204,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 4,
+          "shots": 1,
+          "tick": 3,
+          "hash": 278351787,
+          "bytes": 1736,
+          "y": 51200,
+          "shape": 1,
+          "ack": 3,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 5,
+          "shots": 2,
+          "tick": 6,
+          "hash": 2518742813,
+          "bytes": 1784,
+          "y": 51200,
+          "shape": 1,
+          "ack": 6,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 9,
+          "hash": 1767087604,
+          "bytes": 1928,
+          "y": 51200,
+          "shape": 1,
+          "ack": 9,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 1,
+          "projectiles": 8,
+          "shots": 3,
+          "tick": 12,
+          "hash": 3103229907,
+          "bytes": 1868,
+          "y": 51200,
+          "shape": 1,
+          "ack": 12,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        }
+      ],
+      "actor": {
+        "body": {
+          "id": 2,
+          "x": 12544,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 2,
+        "slot": 1,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 9,
+          "stateStartTick": 11,
+          "definitionId": 14,
+          "nextMarkerIndex": 2
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 147,
+          "cooldownTicks": 4,
+          "shotOrdinal": 3,
+          "lastActionInstanceId": 9
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "authoritative": {
+        "body": {
+          "id": 2,
+          "x": 12544,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 2,
+        "slot": 1,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 9,
+          "stateStartTick": 11,
+          "definitionId": 14,
+          "nextMarkerIndex": 2
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 147,
+          "cooldownTicks": 4,
+          "shotOrdinal": 3,
+          "lastActionInstanceId": 9
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "mode": "combat",
+      "enemies": [
+        {
+          "id": 21,
+          "definitionId": 1,
+          "x": 70912,
+          "y": 51200,
+          "vx": -64,
+          "vy": 0,
+          "shapeId": 1,
+          "facing": -1,
+          "health": 1,
+          "mode": 0,
+          "stateStartTick": 0,
+          "actionInstanceId": 0,
+          "actionDefinitionId": 0,
+          "modeTicks": 0,
+          "supportId": 100,
+          "geometryRevision": 1
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 1,
+          "x": 49152,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 1,
+          "x": 51200,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 1,
+          "x": 52224,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1004,
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "definitionId": 2,
+          "x": 44032,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 6,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1005,
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "definitionId": 1,
+          "x": 24576,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 1,
+          "x": 26624,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 1,
+          "x": 27648,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1008,
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "definitionId": 2,
+          "x": 20992,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 11,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        }
+      ],
+      "remainingEnemies": 1,
+      "removedIds": [
+        20
+      ],
+      "clockOriginMs": 1788733913283.1,
+      "timeline": [],
+      "runEpoch": 1,
+      "initialServerTick": 0,
+      "inputStopped": false,
+      "ready": true,
+      "prepared": true,
+      "error": "closed: 4003 clock-fault",
+      "requiresResync": false,
+      "sequence": 19,
+      "unsent": 1,
+      "held": 0,
+      "pendingEdges": 0,
+      "inputClock": {
+        "mode": "closed",
+        "tick": 19,
+        "timerPending": false,
+        "fault": null
+      },
+      "snapshotTick": 12,
+      "predictedTick": 19,
+      "pending": 7,
+      "receipts": [
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 1479006438,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 749340204,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 4,
+          "shots": 1,
+          "tick": 3,
+          "hash": 278351787,
+          "bytes": 1736,
+          "y": 51200,
+          "shape": 1,
+          "ack": 3,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 5,
+          "shots": 1,
+          "tick": 6,
+          "hash": 2518742813,
+          "bytes": 1784,
+          "y": 51200,
+          "shape": 1,
+          "ack": 6,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 9,
+          "hash": 1767087604,
+          "bytes": 1928,
+          "y": 51200,
+          "shape": 1,
+          "ack": 9,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 1,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 12,
+          "hash": 3103229907,
+          "bytes": 1868,
+          "y": 51200,
+          "shape": 1,
+          "ack": 12,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        }
+      ],
+      "actor": {
+        "body": {
+          "id": 3,
+          "x": 13568,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 3,
+        "slot": 2,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 7,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 7
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "authoritative": {
+        "body": {
+          "id": 3,
+          "x": 13568,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 3,
+        "slot": 2,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 7,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 7
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "mode": "combat",
+      "enemies": [
+        {
+          "id": 21,
+          "definitionId": 1,
+          "x": 70912,
+          "y": 51200,
+          "vx": -64,
+          "vy": 0,
+          "shapeId": 1,
+          "facing": -1,
+          "health": 1,
+          "mode": 0,
+          "stateStartTick": 0,
+          "actionInstanceId": 0,
+          "actionDefinitionId": 0,
+          "modeTicks": 0,
+          "supportId": 100,
+          "geometryRevision": 1
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 1,
+          "x": 49152,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 1,
+          "x": 51200,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 1,
+          "x": 52224,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 1,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1004,
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "definitionId": 2,
+          "x": 44032,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 6,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1005,
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "definitionId": 1,
+          "x": 24576,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 1,
+          "x": 26624,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 1,
+          "x": 27648,
+          "y": 45312,
+          "vx": 3072,
+          "vy": 0,
+          "spawnTick": 9,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        },
+        {
+          "id": 1008,
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "definitionId": 2,
+          "x": 20992,
+          "y": 45312,
+          "vx": 4608,
+          "vy": 0,
+          "spawnTick": 11,
+          "lifetimeTicks": 30,
+          "heading": 0,
+          "shapeId": 4
+        }
+      ],
+      "remainingEnemies": 1,
+      "removedIds": [
+        20
+      ],
+      "clockOriginMs": 1788733913289.4,
+      "timeline": [],
+      "runEpoch": 1,
+      "initialServerTick": 0,
+      "inputStopped": false,
+      "ready": true,
+      "prepared": true,
+      "error": "closed: 4003 clock-fault",
+      "requiresResync": false,
+      "sequence": 19,
+      "unsent": 1,
+      "held": 0,
+      "pendingEdges": 0,
+      "inputClock": {
+        "mode": "closed",
+        "tick": 19,
+        "timerPending": false,
+        "fault": null
+      },
+      "snapshotTick": 12,
+      "predictedTick": 19,
+      "pending": 7,
+      "receipts": [
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 1479006438,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 0,
+          "shots": 0,
+          "tick": 0,
+          "hash": 749340204,
+          "bytes": 1544,
+          "y": 51200,
+          "shape": 1,
+          "ack": 0,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": false
+        },
+        {
+          "enemies": 2,
+          "projectiles": 4,
+          "shots": 1,
+          "tick": 3,
+          "hash": 278351787,
+          "bytes": 1736,
+          "y": 51200,
+          "shape": 1,
+          "ack": 3,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 5,
+          "shots": 1,
+          "tick": 6,
+          "hash": 2518742813,
+          "bytes": 1784,
+          "y": 51200,
+          "shape": 1,
+          "ack": 6,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 2,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 9,
+          "hash": 1767087604,
+          "bytes": 1928,
+          "y": 51200,
+          "shape": 1,
+          "ack": 9,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        },
+        {
+          "enemies": 1,
+          "projectiles": 8,
+          "shots": 2,
+          "tick": 12,
+          "hash": 3103229907,
+          "bytes": 1868,
+          "y": 51200,
+          "shape": 1,
+          "ack": 12,
+          "correctionX": 0,
+          "correctionY": 0,
+          "correctionChanged": true
+        }
+      ],
+      "actor": {
+        "body": {
+          "id": 4,
+          "x": 14592,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 4,
+        "slot": 3,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 8,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 8
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "authoritative": {
+        "body": {
+          "id": 4,
+          "x": 14592,
+          "y": 51200,
+          "vx": 0,
+          "vy": 0,
+          "remainderX": 0,
+          "remainderY": 0,
+          "shapeId": 1,
+          "supportId": 100,
+          "grounded": true,
+          "contacts": [
+            {
+              "otherId": 100,
+              "normalX": 0,
+              "normalY": -1,
+              "toiNumerator": 1,
+              "toiDenominator": 1,
+              "kind": "solid"
+            }
+          ]
+        },
+        "playerId": 4,
+        "slot": 3,
+        "controlEpoch": 1,
+        "life": "alive",
+        "locomotion": "grounded",
+        "action": {
+          "kind": "fire",
+          "actionInstanceId": 8,
+          "stateStartTick": 9,
+          "definitionId": 10,
+          "nextMarkerIndex": 3
+        },
+        "facing": 1,
+        "aim": 0,
+        "jumpBufferTicks": 0,
+        "coyoteTicks": 4,
+        "ignoredSupportId": null,
+        "ignoredSupportTicks": 0,
+        "invulnerableTicks": 0,
+        "reboardCooldownTicks": 0,
+        "vehicleSpecialTicks": 0,
+        "vehicleId": null,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 5,
+          "shotOrdinal": 2,
+          "lastActionInstanceId": 8
+        },
+        "grenadeStock": 10,
+        "grenadeCooldownTicks": 0,
+        "meleeCooldownTicks": 0,
+        "geometryRevision": 1,
+        "health": 1,
+        "lives": 3,
+        "lastRallyMission": 0,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "room": {
+    "instanceId": "c6fdcde0-8171-460b-a42b-1386ad15dddd",
+    "worldFailure": "Error: injected-combat-commit-failure",
+    "inputStreams": [
+      {
+        "acknowledgment": {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 13,
+          "appliedAtServerTick": 13,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "queued": 5,
+        "requiresResync": true
+      },
+      {
+        "acknowledgment": {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 13,
+          "appliedAtServerTick": 13,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "queued": 5,
+        "requiresResync": true
+      },
+      {
+        "acknowledgment": {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 13,
+          "appliedAtServerTick": 13,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "queued": 5,
+        "requiresResync": true
+      },
+      {
+        "acknowledgment": {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 13,
+          "appliedAtServerTick": 13,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "queued": 4,
+        "requiresResync": true
+      }
+    ],
+    "combat": {
+      "world": {
+        "format": 1,
+        "scenario": "range",
+        "tick": 13,
+        "nextActionId": 10,
+        "nextEntityId": 1009,
+        "eventSequence": 3,
+        "players": [
+          {
+            "body": {
+              "id": 1,
+              "x": 11520,
+              "y": 51200,
+              "vx": 0,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "life": "alive",
+            "locomotion": "grounded",
+            "action": {
+              "kind": "ready",
+              "actionInstanceId": 6,
+              "stateStartTick": 9,
+              "definitionId": 10,
+              "nextMarkerIndex": 3
+            },
+            "facing": 1,
+            "aim": 0,
+            "jumpBufferTicks": 0,
+            "coyoteTicks": 4,
+            "ignoredSupportId": null,
+            "ignoredSupportTicks": 0,
+            "vehicleId": null,
+            "geometryRevision": 1,
+            "playerId": 1,
+            "slot": 0,
+            "controlEpoch": 1,
+            "invulnerableTicks": 0,
+            "reboardCooldownTicks": 0,
+            "vehicleSpecialTicks": 0,
+            "weapon": {
+              "id": "sidearm",
+              "ammo": 0,
+              "cooldownTicks": 4,
+              "shotOrdinal": 2,
+              "lastActionInstanceId": 6
+            },
+            "grenadeStock": 10,
+            "grenadeCooldownTicks": 0,
+            "meleeCooldownTicks": 0,
+            "health": 1,
+            "lives": 3,
+            "lastRallyMission": 0,
+            "processedEdgeIds": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "body": {
+              "id": 2,
+              "x": 12544,
+              "y": 51200,
+              "vx": 0,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "life": "alive",
+            "locomotion": "grounded",
+            "action": {
+              "kind": "fire",
+              "actionInstanceId": 9,
+              "stateStartTick": 11,
+              "definitionId": 14,
+              "nextMarkerIndex": 3
+            },
+            "facing": 1,
+            "aim": 0,
+            "jumpBufferTicks": 0,
+            "coyoteTicks": 4,
+            "ignoredSupportId": null,
+            "ignoredSupportTicks": 0,
+            "vehicleId": null,
+            "geometryRevision": 1,
+            "playerId": 2,
+            "slot": 1,
+            "controlEpoch": 1,
+            "invulnerableTicks": 0,
+            "reboardCooldownTicks": 0,
+            "vehicleSpecialTicks": 0,
+            "weapon": {
+              "id": "heavy-machine-gun",
+              "ammo": 147,
+              "cooldownTicks": 3,
+              "shotOrdinal": 3,
+              "lastActionInstanceId": 9
+            },
+            "grenadeStock": 10,
+            "grenadeCooldownTicks": 0,
+            "meleeCooldownTicks": 0,
+            "health": 1,
+            "lives": 3,
+            "lastRallyMission": 0,
+            "processedEdgeIds": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "body": {
+              "id": 3,
+              "x": 13568,
+              "y": 51200,
+              "vx": 0,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "life": "alive",
+            "locomotion": "grounded",
+            "action": {
+              "kind": "ready",
+              "actionInstanceId": 7,
+              "stateStartTick": 9,
+              "definitionId": 10,
+              "nextMarkerIndex": 3
+            },
+            "facing": 1,
+            "aim": 0,
+            "jumpBufferTicks": 0,
+            "coyoteTicks": 4,
+            "ignoredSupportId": null,
+            "ignoredSupportTicks": 0,
+            "vehicleId": null,
+            "geometryRevision": 1,
+            "playerId": 3,
+            "slot": 2,
+            "controlEpoch": 1,
+            "invulnerableTicks": 0,
+            "reboardCooldownTicks": 0,
+            "vehicleSpecialTicks": 0,
+            "weapon": {
+              "id": "sidearm",
+              "ammo": 0,
+              "cooldownTicks": 4,
+              "shotOrdinal": 2,
+              "lastActionInstanceId": 7
+            },
+            "grenadeStock": 10,
+            "grenadeCooldownTicks": 0,
+            "meleeCooldownTicks": 0,
+            "health": 1,
+            "lives": 3,
+            "lastRallyMission": 0,
+            "processedEdgeIds": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "body": {
+              "id": 4,
+              "x": 14592,
+              "y": 51200,
+              "vx": 0,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "life": "alive",
+            "locomotion": "grounded",
+            "action": {
+              "kind": "ready",
+              "actionInstanceId": 8,
+              "stateStartTick": 9,
+              "definitionId": 10,
+              "nextMarkerIndex": 3
+            },
+            "facing": 1,
+            "aim": 0,
+            "jumpBufferTicks": 0,
+            "coyoteTicks": 4,
+            "ignoredSupportId": null,
+            "ignoredSupportTicks": 0,
+            "vehicleId": null,
+            "geometryRevision": 1,
+            "playerId": 4,
+            "slot": 3,
+            "controlEpoch": 1,
+            "invulnerableTicks": 0,
+            "reboardCooldownTicks": 0,
+            "vehicleSpecialTicks": 0,
+            "weapon": {
+              "id": "sidearm",
+              "ammo": 0,
+              "cooldownTicks": 4,
+              "shotOrdinal": 2,
+              "lastActionInstanceId": 8
+            },
+            "grenadeStock": 10,
+            "grenadeCooldownTicks": 0,
+            "meleeCooldownTicks": 0,
+            "health": 1,
+            "lives": 3,
+            "lastRallyMission": 0,
+            "processedEdgeIds": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "targets": [
+          {
+            "enemy": {
+              "body": {
+                "id": 20,
+                "x": 55680,
+                "y": 51200,
+                "vx": -64,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 100,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 100,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "facing": -1,
+              "geometryRevision": 1,
+              "life": "removed",
+              "removalReason": null,
+              "turns": 0
+            },
+            "health": 0,
+            "shield": false
+          },
+          {
+            "enemy": {
+              "body": {
+                "id": 21,
+                "x": 70848,
+                "y": 51200,
+                "vx": -64,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 100,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 100,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "facing": -1,
+              "geometryRevision": 1,
+              "life": "alive",
+              "removalReason": null,
+              "turns": 0
+            },
+            "health": 1,
+            "shield": false
+          }
+        ],
+        "projectiles": [
+          {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 1,
+            "definitionId": 1,
+            "position": {
+              "x": 52224,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 1
+          },
+          {
+            "id": 1002,
+            "ownerId": 3,
+            "team": 1,
+            "actionInstanceId": 3,
+            "definitionId": 1,
+            "position": {
+              "x": 54272,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 1
+          },
+          {
+            "id": 1003,
+            "ownerId": 4,
+            "team": 1,
+            "actionInstanceId": 4,
+            "definitionId": 1,
+            "position": {
+              "x": 55296,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 1
+          },
+          {
+            "id": 1004,
+            "ownerId": 2,
+            "team": 1,
+            "actionInstanceId": 5,
+            "definitionId": 2,
+            "position": {
+              "x": 48640,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 4608,
+              "y": 0
+            },
+            "spawnTick": 6
+          },
+          {
+            "id": 1005,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 6,
+            "definitionId": 1,
+            "position": {
+              "x": 27648,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 9
+          },
+          {
+            "id": 1006,
+            "ownerId": 3,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 1,
+            "position": {
+              "x": 29696,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 9
+          },
+          {
+            "id": 1007,
+            "ownerId": 4,
+            "team": 1,
+            "actionInstanceId": 8,
+            "definitionId": 1,
+            "position": {
+              "x": 30720,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 3072,
+              "y": 0
+            },
+            "spawnTick": 9
+          },
+          {
+            "id": 1008,
+            "ownerId": 2,
+            "team": 1,
+            "actionInstanceId": 9,
+            "definitionId": 2,
+            "position": {
+              "x": 25600,
+              "y": 45312
+            },
+            "velocity": {
+              "x": 4608,
+              "y": 0
+            },
+            "spawnTick": 11
+          }
+        ],
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":20,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":600},{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":21,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":600}],\"objectives\":[],\"participants\":[1,2,3,4]}",
+          "tick": 13,
+          "phase": "active",
+          "members": [
+            {
+              "id": 20,
+              "status": "resolved",
+              "activatedTick": 1,
+              "resolvedTick": 10,
+              "reason": "killed",
+              "killerId": 2,
+              "progressKey": "{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":20,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":55744,\"y\":51200}",
+              "unchangedSince": 9,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            },
+            {
+              "id": 21,
+              "status": "alive",
+              "activatedTick": 1,
+              "resolvedTick": null,
+              "reason": null,
+              "killerId": null,
+              "progressKey": "{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":21,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":70848,\"y\":51200}",
+              "unchangedSince": 13,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            },
+            {
+              "playerId": 2,
+              "count": 1
+            },
+            {
+              "playerId": 3,
+              "count": 0
+            },
+            {
+              "playerId": 4,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":20,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}",
+            "{\"id\":21,\"kind\":\"activate\",\"sequence\":2,\"tick\":1}",
+            "{\"id\":20,\"killerId\":2,\"kind\":\"resolve\",\"reason\":\"killed\",\"sequence\":3,\"tick\":10}"
+          ],
+          "failure": null
+        },
+        "events": [
+          {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 9,
+            "markerIndex": 2,
+            "position": {
+              "x": 12544,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        ]
+      },
+      "events": [
+        {
+          "tick": 1,
+          "counter": 0,
+          "event": {
+            "kind": "shot",
+            "ownerId": 1,
+            "actionInstanceId": 1,
+            "markerIndex": 0,
+            "position": {
+              "x": 15360,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 1,
+          "event": {
+            "kind": "sound",
+            "ownerId": 1,
+            "actionInstanceId": 1,
+            "markerIndex": 1,
+            "position": {
+              "x": 15360,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 2,
+          "event": {
+            "kind": "shot",
+            "ownerId": 2,
+            "actionInstanceId": 2,
+            "markerIndex": 0,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 3,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 2,
+            "markerIndex": 1,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 4,
+          "event": {
+            "kind": "shot",
+            "ownerId": 3,
+            "actionInstanceId": 3,
+            "markerIndex": 0,
+            "position": {
+              "x": 17408,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 5,
+          "event": {
+            "kind": "sound",
+            "ownerId": 3,
+            "actionInstanceId": 3,
+            "markerIndex": 1,
+            "position": {
+              "x": 17408,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 6,
+          "event": {
+            "kind": "shot",
+            "ownerId": 4,
+            "actionInstanceId": 4,
+            "markerIndex": 0,
+            "position": {
+              "x": 18432,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 1,
+          "counter": 7,
+          "event": {
+            "kind": "sound",
+            "ownerId": 4,
+            "actionInstanceId": 4,
+            "markerIndex": 1,
+            "position": {
+              "x": 18432,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 3,
+          "counter": 0,
+          "event": {
+            "kind": "sound",
+            "ownerId": 1,
+            "actionInstanceId": 1,
+            "markerIndex": 2,
+            "position": {
+              "x": 11520,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 3,
+          "counter": 1,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 2,
+            "markerIndex": 2,
+            "position": {
+              "x": 12544,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 3,
+          "counter": 2,
+          "event": {
+            "kind": "sound",
+            "ownerId": 3,
+            "actionInstanceId": 3,
+            "markerIndex": 2,
+            "position": {
+              "x": 13568,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 3,
+          "counter": 3,
+          "event": {
+            "kind": "sound",
+            "ownerId": 4,
+            "actionInstanceId": 4,
+            "markerIndex": 2,
+            "position": {
+              "x": 14592,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 6,
+          "counter": 0,
+          "event": {
+            "kind": "shot",
+            "ownerId": 2,
+            "actionInstanceId": 5,
+            "markerIndex": 0,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 6,
+          "counter": 1,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 5,
+            "markerIndex": 1,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 8,
+          "counter": 0,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 5,
+            "markerIndex": 2,
+            "position": {
+              "x": 12544,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 0,
+          "event": {
+            "kind": "shot",
+            "ownerId": 1,
+            "actionInstanceId": 6,
+            "markerIndex": 0,
+            "position": {
+              "x": 15360,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 1,
+          "event": {
+            "kind": "sound",
+            "ownerId": 1,
+            "actionInstanceId": 6,
+            "markerIndex": 1,
+            "position": {
+              "x": 15360,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 2,
+          "event": {
+            "kind": "shot",
+            "ownerId": 3,
+            "actionInstanceId": 7,
+            "markerIndex": 0,
+            "position": {
+              "x": 17408,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 3,
+          "event": {
+            "kind": "sound",
+            "ownerId": 3,
+            "actionInstanceId": 7,
+            "markerIndex": 1,
+            "position": {
+              "x": 17408,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 4,
+          "event": {
+            "kind": "shot",
+            "ownerId": 4,
+            "actionInstanceId": 8,
+            "markerIndex": 0,
+            "position": {
+              "x": 18432,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 9,
+          "counter": 5,
+          "event": {
+            "kind": "sound",
+            "ownerId": 4,
+            "actionInstanceId": 8,
+            "markerIndex": 1,
+            "position": {
+              "x": 18432,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 10,
+          "counter": 0,
+          "event": {
+            "kind": "impact",
+            "ownerId": 2,
+            "actionInstanceId": 2,
+            "markerIndex": 0,
+            "position": {
+              "x": 54194,
+              "y": 45312
+            },
+            "impact": {
+              "projectileId": 1001,
+              "actionInstanceId": 2,
+              "ownerId": 2,
+              "colliderId": 40,
+              "entityId": 20,
+              "kind": "body",
+              "damage": 1,
+              "position": {
+                "x": 54194,
+                "y": 45312
+              },
+              "time": {
+                "numerator": 960,
+                "denominator": 4672
+              }
+            },
+            "targetId": 20
+          }
+        },
+        {
+          "tick": 10,
+          "counter": 1,
+          "event": {
+            "kind": "killed",
+            "ownerId": 2,
+            "actionInstanceId": 2,
+            "markerIndex": 0,
+            "position": {
+              "x": 54194,
+              "y": 45312
+            },
+            "impact": {
+              "projectileId": 1001,
+              "actionInstanceId": 2,
+              "ownerId": 2,
+              "colliderId": 40,
+              "entityId": 20,
+              "kind": "body",
+              "damage": 1,
+              "position": {
+                "x": 54194,
+                "y": 45312
+              },
+              "time": {
+                "numerator": 960,
+                "denominator": 4672
+              }
+            },
+            "targetId": 20
+          }
+        },
+        {
+          "tick": 11,
+          "counter": 0,
+          "event": {
+            "kind": "sound",
+            "ownerId": 1,
+            "actionInstanceId": 6,
+            "markerIndex": 2,
+            "position": {
+              "x": 11520,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 11,
+          "counter": 1,
+          "event": {
+            "kind": "shot",
+            "ownerId": 2,
+            "actionInstanceId": 9,
+            "markerIndex": 0,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 11,
+          "counter": 2,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 9,
+            "markerIndex": 1,
+            "position": {
+              "x": 16384,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 11,
+          "counter": 3,
+          "event": {
+            "kind": "sound",
+            "ownerId": 3,
+            "actionInstanceId": 7,
+            "markerIndex": 2,
+            "position": {
+              "x": 13568,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 11,
+          "counter": 4,
+          "event": {
+            "kind": "sound",
+            "ownerId": 4,
+            "actionInstanceId": 8,
+            "markerIndex": 2,
+            "position": {
+              "x": 14592,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        },
+        {
+          "tick": 13,
+          "counter": 0,
+          "event": {
+            "kind": "sound",
+            "ownerId": 2,
+            "actionInstanceId": 9,
+            "markerIndex": 2,
+            "position": {
+              "x": 12544,
+              "y": 45312
+            },
+            "impact": null,
+            "targetId": null
+          }
+        }
+      ],
+      "droppedEvents": 0
+    },
+    "runEpoch": 1,
+    "recoveries": 0,
+    "workload": "combat",
+    "tick": 13,
+    "roomMode": "recovering",
+    "clock": {
+      "mode": "recovery",
+      "tick": 13,
+      "timerPending": false,
+      "fault": {
+        "reason": "step_failed",
+        "lastCompletedTick": 13,
+        "observedAtMs": 1788733914438,
+        "debtMs": null
+      }
+    },
+    "watchdogPending": false,
+    "peers": [
+      {
+        "slot": 0,
+        "active": false,
+        "inputFrames": 7,
+        "inputBytes": 592,
+        "renewedFrames": 5,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 6,
+        "snapshotBytes": 10404,
+        "inputMappingBytes": 843,
+        "maxQueuedCommands": 5,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastInputError": null,
+        "lastOutputError": null,
+        "lastProcessedSequence": 13,
+        "lastHeld": 0
+      },
+      {
+        "slot": 3,
+        "active": false,
+        "inputFrames": 7,
+        "inputBytes": 592,
+        "renewedFrames": 5,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 6,
+        "snapshotBytes": 10404,
+        "inputMappingBytes": 843,
+        "maxQueuedCommands": 5,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastInputError": null,
+        "lastOutputError": null,
+        "lastProcessedSequence": 13,
+        "lastHeld": 0
+      },
+      {
+        "slot": 2,
+        "active": false,
+        "inputFrames": 7,
+        "inputBytes": 592,
+        "renewedFrames": 5,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 6,
+        "snapshotBytes": 10404,
+        "inputMappingBytes": 843,
+        "maxQueuedCommands": 5,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastInputError": null,
+        "lastOutputError": null,
+        "lastProcessedSequence": 13,
+        "lastHeld": 0
+      },
+      {
+        "slot": 1,
+        "active": false,
+        "inputFrames": 7,
+        "inputBytes": 572,
+        "renewedFrames": 5,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 6,
+        "snapshotBytes": 10404,
+        "inputMappingBytes": 843,
+        "maxQueuedCommands": 5,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "clock-fault",
+        "lastInputError": null,
+        "lastOutputError": null,
+        "lastProcessedSequence": 13,
+        "lastHeld": 0
+      }
+    ],
+    "inputTimeline": [
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914155,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914158,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 5,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914159,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914161,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 5,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914162,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914162,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 5,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914170,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914170,
+        "serverTick": 0,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 5,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914219,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 1,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914219,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 1,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914219,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 1,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914219,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 1,
+        "lastSequence": 1,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914227,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914228,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914228,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914228,
+        "serverTick": 1,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914243,
+        "serverTick": 2,
+        "baselineTick": 0,
+        "firstSequence": 2,
+        "lastSequence": 2,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914243,
+        "serverTick": 2,
+        "baselineTick": 0,
+        "firstSequence": 2,
+        "lastSequence": 2,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914243,
+        "serverTick": 2,
+        "baselineTick": 0,
+        "firstSequence": 2,
+        "lastSequence": 2,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914243,
+        "serverTick": 2,
+        "baselineTick": 0,
+        "firstSequence": 2,
+        "lastSequence": 2,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914254,
+        "serverTick": 3,
+        "baselineTick": 0,
+        "firstSequence": 3,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914254,
+        "serverTick": 3,
+        "baselineTick": 0,
+        "firstSequence": 3,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914254,
+        "serverTick": 3,
+        "baselineTick": 0,
+        "firstSequence": 3,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914254,
+        "serverTick": 3,
+        "baselineTick": 0,
+        "firstSequence": 3,
+        "lastSequence": 3,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914270,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 4,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914270,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 4,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914270,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 4,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914270,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 4,
+        "lastSequence": 4,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914273,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 9,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914273,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 9,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914273,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 9,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914274,
+        "serverTick": 4,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 9,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914288,
+        "serverTick": 5,
+        "baselineTick": 0,
+        "firstSequence": 5,
+        "lastSequence": 5,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914288,
+        "serverTick": 5,
+        "baselineTick": 0,
+        "firstSequence": 5,
+        "lastSequence": 5,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914288,
+        "serverTick": 5,
+        "baselineTick": 0,
+        "firstSequence": 5,
+        "lastSequence": 5,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914288,
+        "serverTick": 5,
+        "baselineTick": 0,
+        "firstSequence": 5,
+        "lastSequence": 5,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914304,
+        "serverTick": 6,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914304,
+        "serverTick": 6,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914304,
+        "serverTick": 6,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914304,
+        "serverTick": 6,
+        "baselineTick": 0,
+        "firstSequence": 6,
+        "lastSequence": 6,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914321,
+        "serverTick": 7,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 7,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914321,
+        "serverTick": 7,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 7,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914321,
+        "serverTick": 7,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 7,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914321,
+        "serverTick": 7,
+        "baselineTick": 0,
+        "firstSequence": 7,
+        "lastSequence": 7,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914336,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 8,
+        "lastSequence": 8,
+        "queued": 1,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914336,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 8,
+        "lastSequence": 8,
+        "queued": 1,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914336,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 8,
+        "lastSequence": 8,
+        "queued": 1,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914336,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 8,
+        "lastSequence": 8,
+        "queued": 1,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914339,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 11,
+        "queued": 3,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914339,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 12,
+        "queued": 4,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914339,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 12,
+        "queued": 4,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914343,
+        "serverTick": 8,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 12,
+        "queued": 4,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914353,
+        "serverTick": 9,
+        "baselineTick": 0,
+        "firstSequence": 9,
+        "lastSequence": 9,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914353,
+        "serverTick": 9,
+        "baselineTick": 0,
+        "firstSequence": 9,
+        "lastSequence": 9,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914353,
+        "serverTick": 9,
+        "baselineTick": 0,
+        "firstSequence": 9,
+        "lastSequence": 9,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914353,
+        "serverTick": 9,
+        "baselineTick": 0,
+        "firstSequence": 9,
+        "lastSequence": 9,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914356,
+        "serverTick": 9,
+        "baselineTick": 0,
+        "firstSequence": 12,
+        "lastSequence": 14,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914370,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 10,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914370,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 10,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914370,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 10,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914370,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 10,
+        "lastSequence": 10,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914374,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 15,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914374,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 15,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914375,
+        "serverTick": 10,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 15,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914388,
+        "serverTick": 11,
+        "baselineTick": 0,
+        "firstSequence": 11,
+        "lastSequence": 11,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914388,
+        "serverTick": 11,
+        "baselineTick": 0,
+        "firstSequence": 11,
+        "lastSequence": 11,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914388,
+        "serverTick": 11,
+        "baselineTick": 0,
+        "firstSequence": 11,
+        "lastSequence": 11,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914388,
+        "serverTick": 11,
+        "baselineTick": 0,
+        "firstSequence": 11,
+        "lastSequence": 11,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914403,
+        "serverTick": 12,
+        "baselineTick": 0,
+        "firstSequence": 12,
+        "lastSequence": 12,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914403,
+        "serverTick": 12,
+        "baselineTick": 0,
+        "firstSequence": 12,
+        "lastSequence": 12,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914403,
+        "serverTick": 12,
+        "baselineTick": 0,
+        "firstSequence": 12,
+        "lastSequence": 12,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914403,
+        "serverTick": 12,
+        "baselineTick": 0,
+        "firstSequence": 12,
+        "lastSequence": 12,
+        "queued": 3,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "admit",
+        "runtimeMs": 1788733914405,
+        "serverTick": 12,
+        "baselineTick": 0,
+        "firstSequence": 15,
+        "lastSequence": 17,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788733914421,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 13,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 1,
+        "kind": "apply",
+        "runtimeMs": 1788733914421,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 13,
+        "queued": 4,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "apply",
+        "runtimeMs": 1788733914421,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 13,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "apply",
+        "runtimeMs": 1788733914421,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 13,
+        "lastSequence": 13,
+        "queued": 2,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 3,
+        "kind": "admit",
+        "runtimeMs": 1788733914423,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 16,
+        "lastSequence": 18,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788733914423,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 16,
+        "lastSequence": 18,
+        "queued": 5,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 2,
+        "kind": "admit",
+        "runtimeMs": 1788733914423,
+        "serverTick": 13,
+        "baselineTick": 0,
+        "firstSequence": 16,
+        "lastSequence": 18,
+        "queued": 5,
+        "outcome": "admitted"
+      }
+    ],
+    "localCpu": [
+      [
+        1,
+        8,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        3,
+        2,
+        0
+      ],
+      [
+        4,
+        3,
+        0
+      ],
+      [
+        5,
+        2,
+        0
+      ],
+      [
+        6,
+        3,
+        0
+      ],
+      [
+        7,
+        1,
+        0
+      ],
+      [
+        8,
+        1,
+        0
+      ],
+      [
+        9,
+        2,
+        0
+      ],
+      [
+        10,
+        4,
+        0
+      ],
+      [
+        11,
+        2,
+        0
+      ],
+      [
+        12,
+        2,
+        0
+      ],
+      [
+        13,
+        2,
+        0
+      ]
+    ],
+    "callbacks": [
+      [
+        1788733914219,
+        1,
+        1,
+        1.333251953125
+      ],
+      [
+        1788733914243,
+        1,
+        2,
+        8.666748046875
+      ],
+      [
+        1788733914254,
+        1,
+        3,
+        3
+      ],
+      [
+        1788733914270,
+        1,
+        4,
+        2.333251953125
+      ],
+      [
+        1788733914288,
+        1,
+        5,
+        3.666748046875
+      ],
+      [
+        1788733914304,
+        1,
+        6,
+        3
+      ],
+      [
+        1788733914321,
+        1,
+        7,
+        3.333251953125
+      ],
+      [
+        1788733914336,
+        1,
+        8,
+        1.666748046875
+      ],
+      [
+        1788733914353,
+        1,
+        9,
+        2
+      ],
+      [
+        1788733914370,
+        1,
+        10,
+        2.333251953125
+      ],
+      [
+        1788733914388,
+        1,
+        11,
+        3.666748046875
+      ],
+      [
+        1788733914403,
+        1,
+        12,
+        2
+      ],
+      [
+        1788733914421,
+        1,
+        13,
+        3.333251953125
+      ]
+    ],
+    "timers": [
+      [
+        1788733914202,
+        16.666748046875,
+        1788733914218
+      ],
+      [
+        1788733914227,
+        15.333251953125,
+        1788733914243
+      ],
+      [
+        1788733914245,
+        8,
+        1788733914254
+      ],
+      [
+        1788733914256,
+        13.666748046875,
+        1788733914270
+      ],
+      [
+        1788733914273,
+        14.333251953125,
+        1788733914288
+      ],
+      [
+        1788733914290,
+        13,
+        1788733914304
+      ],
+      [
+        1788733914307,
+        13.666748046875,
+        1788733914321
+      ],
+      [
+        1788733914322,
+        13.333251953125,
+        1788733914336
+      ],
+      [
+        1788733914337,
+        15,
+        1788733914353
+      ],
+      [
+        1788733914355,
+        14.666748046875,
+        1788733914370
+      ],
+      [
+        1788733914374,
+        14.333251953125,
+        1788733914388
+      ],
+      [
+        1788733914390,
+        13,
+        1788733914403
+      ],
+      [
+        1788733914405,
+        14.666748046875,
+        1788733914421
+      ],
+      [
+        1788733914423,
+        13.333251953125,
+        1788733914438
+      ]
+    ]
+  },
+  "aborted": {
+    "accepted": true,
+    "tick": 13,
+    "acknowledgments": [
+      {
+        "playerId": 1,
+        "connectionEpoch": 1,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 13,
+        "appliedAtServerTick": 13,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "playerId": 2,
+        "connectionEpoch": 2,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 13,
+        "appliedAtServerTick": 13,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "playerId": 3,
+        "connectionEpoch": 3,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 13,
+        "appliedAtServerTick": 13,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "playerId": 4,
+        "connectionEpoch": 4,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 13,
+        "appliedAtServerTick": 13,
+        "processedEdgeIds": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "combat": {
+      "format": 1,
+      "scenario": "range",
+      "tick": 13,
+      "nextActionId": 10,
+      "nextEntityId": 1009,
+      "eventSequence": 3,
+      "players": [
+        {
+          "body": {
+            "id": 1,
+            "x": 11520,
+            "y": 51200,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 6,
+            "stateStartTick": 9,
+            "definitionId": 10,
+            "nextMarkerIndex": 3
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "vehicleId": null,
+          "geometryRevision": 1,
+          "playerId": 1,
+          "slot": 0,
+          "controlEpoch": 1,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 4,
+            "shotOrdinal": 2,
+            "lastActionInstanceId": 6
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "body": {
+            "id": 2,
+            "x": 12544,
+            "y": 51200,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "fire",
+            "actionInstanceId": 9,
+            "stateStartTick": 11,
+            "definitionId": 14,
+            "nextMarkerIndex": 3
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "vehicleId": null,
+          "geometryRevision": 1,
+          "playerId": 2,
+          "slot": 1,
+          "controlEpoch": 1,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "weapon": {
+            "id": "heavy-machine-gun",
+            "ammo": 147,
+            "cooldownTicks": 3,
+            "shotOrdinal": 3,
+            "lastActionInstanceId": 9
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "body": {
+            "id": 3,
+            "x": 13568,
+            "y": 51200,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 7,
+            "stateStartTick": 9,
+            "definitionId": 10,
+            "nextMarkerIndex": 3
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "vehicleId": null,
+          "geometryRevision": 1,
+          "playerId": 3,
+          "slot": 2,
+          "controlEpoch": 1,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 4,
+            "shotOrdinal": 2,
+            "lastActionInstanceId": 7
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "body": {
+            "id": 4,
+            "x": 14592,
+            "y": 51200,
+            "vx": 0,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 100,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 100,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "life": "alive",
+          "locomotion": "grounded",
+          "action": {
+            "kind": "ready",
+            "actionInstanceId": 8,
+            "stateStartTick": 9,
+            "definitionId": 10,
+            "nextMarkerIndex": 3
+          },
+          "facing": 1,
+          "aim": 0,
+          "jumpBufferTicks": 0,
+          "coyoteTicks": 4,
+          "ignoredSupportId": null,
+          "ignoredSupportTicks": 0,
+          "vehicleId": null,
+          "geometryRevision": 1,
+          "playerId": 4,
+          "slot": 3,
+          "controlEpoch": 1,
+          "invulnerableTicks": 0,
+          "reboardCooldownTicks": 0,
+          "vehicleSpecialTicks": 0,
+          "weapon": {
+            "id": "sidearm",
+            "ammo": 0,
+            "cooldownTicks": 4,
+            "shotOrdinal": 2,
+            "lastActionInstanceId": 8
+          },
+          "grenadeStock": 10,
+          "grenadeCooldownTicks": 0,
+          "meleeCooldownTicks": 0,
+          "health": 1,
+          "lives": 3,
+          "lastRallyMission": 0,
+          "processedEdgeIds": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "enemy": {
+            "body": {
+              "id": 20,
+              "x": 55680,
+              "y": 51200,
+              "vx": -64,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "facing": -1,
+            "geometryRevision": 1,
+            "life": "removed",
+            "removalReason": null,
+            "turns": 0
+          },
+          "health": 0,
+          "shield": false
+        },
+        {
+          "enemy": {
+            "body": {
+              "id": 21,
+              "x": 70848,
+              "y": 51200,
+              "vx": -64,
+              "vy": 0,
+              "remainderX": 0,
+              "remainderY": 0,
+              "shapeId": 1,
+              "supportId": 100,
+              "grounded": true,
+              "contacts": [
+                {
+                  "otherId": 100,
+                  "normalX": 0,
+                  "normalY": -1,
+                  "toiNumerator": 1,
+                  "toiDenominator": 1,
+                  "kind": "solid"
+                }
+              ]
+            },
+            "facing": -1,
+            "geometryRevision": 1,
+            "life": "alive",
+            "removalReason": null,
+            "turns": 0
+          },
+          "health": 1,
+          "shield": false
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 1,
+          "position": {
+            "x": 52224,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 1
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 1,
+          "position": {
+            "x": 54272,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 1
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 1,
+          "position": {
+            "x": 55296,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 1
+        },
+        {
+          "id": 1004,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 2,
+          "position": {
+            "x": 48640,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 4608,
+            "y": 0
+          },
+          "spawnTick": 6
+        },
+        {
+          "id": 1005,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 1,
+          "position": {
+            "x": 27648,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 9
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 1,
+          "position": {
+            "x": 29696,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 9
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 1,
+          "position": {
+            "x": 30720,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 3072,
+            "y": 0
+          },
+          "spawnTick": 9
+        },
+        {
+          "id": 1008,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 2,
+          "position": {
+            "x": 25600,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 4608,
+            "y": 0
+          },
+          "spawnTick": 11
+        }
+      ],
+      "encounter": {
+        "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":20,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":600},{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":21,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":600}],\"objectives\":[],\"participants\":[1,2,3,4]}",
+        "tick": 13,
+        "phase": "active",
+        "members": [
+          {
+            "id": 20,
+            "status": "resolved",
+            "activatedTick": 1,
+            "resolvedTick": 10,
+            "reason": "killed",
+            "killerId": 2,
+            "progressKey": "{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":20,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":55744,\"y\":51200}",
+            "unchangedSince": 9,
+            "unreachableSince": null,
+            "warnedUnchanged": false,
+            "warnedUnreachable": false
+          },
+          {
+            "id": 21,
+            "status": "alive",
+            "activatedTick": 1,
+            "resolvedTick": null,
+            "reason": null,
+            "killerId": null,
+            "progressKey": "{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":21,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":70848,\"y\":51200}",
+            "unchangedSince": 13,
+            "unreachableSince": null,
+            "warnedUnchanged": false,
+            "warnedUnreachable": false
+          }
+        ],
+        "objectives": [],
+        "kills": [
+          {
+            "playerId": 1,
+            "count": 0
+          },
+          {
+            "playerId": 2,
+            "count": 1
+          },
+          {
+            "playerId": 3,
+            "count": 0
+          },
+          {
+            "playerId": 4,
+            "count": 0
+          }
+        ],
+        "receipts": [
+          "{\"id\":20,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}",
+          "{\"id\":21,\"kind\":\"activate\",\"sequence\":2,\"tick\":1}",
+          "{\"id\":20,\"killerId\":2,\"kind\":\"resolve\",\"reason\":\"killed\",\"sequence\":3,\"tick\":10}"
+        ],
+        "failure": null
+      },
+      "events": [
+        {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "markerIndex": 2,
+          "position": {
+            "x": 12544,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      ]
+    },
+    "events": [
+      {
+        "tick": 1,
+        "counter": 0,
+        "event": {
+          "kind": "shot",
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "markerIndex": 0,
+          "position": {
+            "x": 15360,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 1,
+        "event": {
+          "kind": "sound",
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "markerIndex": 1,
+          "position": {
+            "x": 15360,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 2,
+        "event": {
+          "kind": "shot",
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "markerIndex": 0,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 3,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "markerIndex": 1,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 4,
+        "event": {
+          "kind": "shot",
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "markerIndex": 0,
+          "position": {
+            "x": 17408,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 5,
+        "event": {
+          "kind": "sound",
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "markerIndex": 1,
+          "position": {
+            "x": 17408,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 6,
+        "event": {
+          "kind": "shot",
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "markerIndex": 0,
+          "position": {
+            "x": 18432,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 1,
+        "counter": 7,
+        "event": {
+          "kind": "sound",
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "markerIndex": 1,
+          "position": {
+            "x": 18432,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 3,
+        "counter": 0,
+        "event": {
+          "kind": "sound",
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "markerIndex": 2,
+          "position": {
+            "x": 11520,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 3,
+        "counter": 1,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "markerIndex": 2,
+          "position": {
+            "x": 12544,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 3,
+        "counter": 2,
+        "event": {
+          "kind": "sound",
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "markerIndex": 2,
+          "position": {
+            "x": 13568,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 3,
+        "counter": 3,
+        "event": {
+          "kind": "sound",
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "markerIndex": 2,
+          "position": {
+            "x": 14592,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 6,
+        "counter": 0,
+        "event": {
+          "kind": "shot",
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "markerIndex": 0,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 6,
+        "counter": 1,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "markerIndex": 1,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 8,
+        "counter": 0,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 5,
+          "markerIndex": 2,
+          "position": {
+            "x": 12544,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 0,
+        "event": {
+          "kind": "shot",
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "markerIndex": 0,
+          "position": {
+            "x": 15360,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 1,
+        "event": {
+          "kind": "sound",
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "markerIndex": 1,
+          "position": {
+            "x": 15360,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 2,
+        "event": {
+          "kind": "shot",
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "markerIndex": 0,
+          "position": {
+            "x": 17408,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 3,
+        "event": {
+          "kind": "sound",
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "markerIndex": 1,
+          "position": {
+            "x": 17408,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 4,
+        "event": {
+          "kind": "shot",
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "markerIndex": 0,
+          "position": {
+            "x": 18432,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 9,
+        "counter": 5,
+        "event": {
+          "kind": "sound",
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "markerIndex": 1,
+          "position": {
+            "x": 18432,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 10,
+        "counter": 0,
+        "event": {
+          "kind": "impact",
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "markerIndex": 0,
+          "position": {
+            "x": 54194,
+            "y": 45312
+          },
+          "impact": {
+            "projectileId": 1001,
+            "actionInstanceId": 2,
+            "ownerId": 2,
+            "colliderId": 40,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 1,
+            "position": {
+              "x": 54194,
+              "y": 45312
+            },
+            "time": {
+              "numerator": 960,
+              "denominator": 4672
+            }
+          },
+          "targetId": 20
+        }
+      },
+      {
+        "tick": 10,
+        "counter": 1,
+        "event": {
+          "kind": "killed",
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "markerIndex": 0,
+          "position": {
+            "x": 54194,
+            "y": 45312
+          },
+          "impact": {
+            "projectileId": 1001,
+            "actionInstanceId": 2,
+            "ownerId": 2,
+            "colliderId": 40,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 1,
+            "position": {
+              "x": 54194,
+              "y": 45312
+            },
+            "time": {
+              "numerator": 960,
+              "denominator": 4672
+            }
+          },
+          "targetId": 20
+        }
+      },
+      {
+        "tick": 11,
+        "counter": 0,
+        "event": {
+          "kind": "sound",
+          "ownerId": 1,
+          "actionInstanceId": 6,
+          "markerIndex": 2,
+          "position": {
+            "x": 11520,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 11,
+        "counter": 1,
+        "event": {
+          "kind": "shot",
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "markerIndex": 0,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 11,
+        "counter": 2,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "markerIndex": 1,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 11,
+        "counter": 3,
+        "event": {
+          "kind": "sound",
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "markerIndex": 2,
+          "position": {
+            "x": 13568,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 11,
+        "counter": 4,
+        "event": {
+          "kind": "sound",
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "markerIndex": 2,
+          "position": {
+            "x": 14592,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      },
+      {
+        "tick": 13,
+        "counter": 0,
+        "event": {
+          "kind": "sound",
+          "ownerId": 2,
+          "actionInstanceId": 9,
+          "markerIndex": 2,
+          "position": {
+            "x": 12544,
+            "y": 45312
+          },
+          "impact": null,
+          "targetId": null
+        }
+      }
+    ]
+  },
+  "scope": "Four-browser real workerd abort after world evaluation: no world, event or acknowledgment commit; explicit cohort recovery required"
+}

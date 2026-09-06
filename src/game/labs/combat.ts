@@ -139,6 +139,9 @@ export function combatHurtboxes(targets: CombatTarget[], previous = targets): Hu
 
 /** Locomotion -> markers at the new boundary -> old-projectile sweeps -> damage -> ledger. */
 export function stepCombatLab(current: CombatLab, commands: readonly CombatCommand[]): CombatLab {
+  return advanceCombatLab(current, commands).state;
+}
+export function advanceCombatLab(current: CombatLab, commands: readonly CombatCommand[]) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
@@ -153,12 +156,24 @@ export function stepCombatLab(current: CombatLab, commands: readonly CombatComma
   const frame = { tick, geometryRevision: 1 };
   const index = new CollisionIndex(new CollisionGrid(terrain), [], frame);
   const encounterEvents: EncounterEvent[] = [];
+  const outcomes: Array<{
+    playerId: number;
+    jumpAccepted: boolean;
+    fire: ReturnType<typeof stepFirearm>["outcome"];
+  }> = [];
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
     if (!command || !FOOT_DEFINITION) throw new Error("Missing combat controller");
     const result = stepFootController(actor, command, FOOT_DEFINITION, COMBAT_SHAPES, index, frame);
     if (result.status === "failed") throw new Error(`Combat body: ${result.physics.reason}`);
     world.players[slot] = result.actor;
+    outcomes.push({
+      playerId: actor.playerId,
+      jumpAccepted:
+        result.status === "complete" &&
+        (result.jumpRequest === "consumed" || result.jumpRequest === "buffered"),
+      fire: "none",
+    });
   }
   for (const target of world.targets) {
     if (current.tick === 0)
@@ -203,6 +218,9 @@ export function stepCombatLab(current: CombatLab, commands: readonly CombatComma
     const result = stepFirearm(actor, command, tick, world.nextActionId, COMBAT_CATALOG);
     world.players[slot] = result.actor;
     world.nextActionId = result.nextActionId;
+    const outcome = outcomes.find((item) => item.playerId === actor.playerId);
+    if (!outcome) throw new Error("Missing combat action owner");
+    outcome.fire = result.outcome;
     for (const item of result.markers) {
       const local = item.pose.sockets.find((socket) => socket.name === item.marker.socket)?.point;
       if (!local) throw new Error("Missing marker socket");
@@ -317,7 +335,7 @@ export function stepCombatLab(current: CombatLab, commands: readonly CombatComma
       })),
     "throw",
   ).state;
-  return world;
+  return { state: world, outcomes };
 }
 export interface CombatRecording {
   format: 1;

@@ -74,6 +74,8 @@ Run `pnpm dev:lab` and open `http://localhost:8787/controller-lab.html` for the 
 
 Open `http://localhost:8787/combat-lab.html` for the shared firearm timeline, authored muzzle/hurtbox inspector and swept projectile path. The range, thin-wall and frontal-shield scenarios support one to four deterministic input slots, sidearm/HMG cadence and ammo, physical target motion, exact kill credit, single stepping and recording replay. `pnpm test:lab:combat` verifies its browser controls and replay. These are engineering fixtures; production combat and final media remain in progress.
 
+`pnpm test:network:controller --combat` owns a local workerd room and four Chromium contexts to verify authoritative firearm/projectile snapshots, enemy removal and shared world hashes. `--combat-fault` instead rejects a prepared world tick and verifies that no world state, committed event or input acknowledgment advances. The regular command and `--recovery` retain the movement/lease and controller-session checks. See the [world transaction evidence](./docs/redesign-evidence/W04-world-transaction.md) for coverage and remaining event/prediction integration.
+
 ## Production deployment
 
 Deploy the backing resources and Worker:

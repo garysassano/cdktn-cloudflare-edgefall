@@ -1,0 +1,35 @@
+# W04/W05: one accepted world tick across controlling sockets
+
+The diagnostic Durable Object now commits the complete combat update and all participating input acknowledgments together. Four independent browser contexts receive authoritative firearm/projectile/enemy snapshots from that path. Production remains v2; this does not close W04/G2, W05 or durable-recovery acceptance.
+
+## Commit boundary
+
+`InputStream.processWorldTick` first prepares each player's normalized input, expiry decision and proposed acknowledgment without changing queues or cursors. It sorts owners, rejects duplicate/mixed-run cohorts, and locks every participating stream against reentrant mutation. The evaluator builds a candidate world and returns one outcome for every delivered edge and owner. Only when all outcomes validate does the transaction consume the queued commands and advance the cohort's acknowledgments. The single-player `processTick` adapter uses this same implementation.
+
+The room evaluates movement, firearm markers, projectile sweeps, ordered damage and encounter accounting through the shared combat kernel. It validates every recipient's full binary snapshot before the input transaction commits. After that point it installs the candidate combat/snapshot state and exposes its committed diagnostic events. Stale or old-control input remains a consumed neutral/no-op with explicit synthetic edge outcomes. Inactive players receive neutral locomotion input. An evaluator, encoding or outcome failure stops the affected streams and leaves the prior accepted world/queues/acknowledgments intact.
+
+The evaluator is synchronous and must avoid external mutation or I/O; this mechanism cannot undo arbitrary callback side effects and does not provide database transaction durability. Read-only preparation failures run no world code. The room's existing clock catches a failed world step and enters recovery, without widening its timing guards or retrying the uncertain tick.
+
+Snapshot delivery happens after commit. A send failure records `lastOutputError` and closes that peer; it cannot retroactively turn the accepted tick into a failed clock step. Socket-close errors are also bounded diagnostics.
+
+## Actual room integration
+
+The loopback `/combat` workload runs four foot actors, sidearm/HMG actions, moving grounded targets, projectiles and the encounter ledger. The browser selects this workload through `network-lab.html?mode=combat`, verifies a SHA-256 digest of the engineering content and firearm pose profiles, and decodes the existing binary snapshot and paired input-mapping contracts. Simulation and presentation identities remain diagnostic fixture identities. Movement is predicted locally; firearm action IDs, ammunition, projectiles and removals come from authority. Complete action prediction and effect confirmation are still required.
+
+The status endpoint exposes the committed combat state, input-stream acknowledgments/resync status and a diagnostic event window bounded to 120 ticks/512 records. The cap-eviction counter is separate from ordinary age expiry. This window is not acknowledged gameplay-event delivery, and `eventAck` remains zero in this lab. No missing event prefix is presented as a successful transport acknowledgment.
+
+The loopback-only `POST /combat/fail-next-tick` injects a failure after combat evaluation and snapshot validation, immediately before commit. It is used only by an owned local test process. The failure report records the exact last accepted world/event/acknowledgment boundary and the explicit `injected-combat-commit-failure` cause; the clock's generic socket closure is not evidence of a wall-clock regression in this test.
+
+## Validation
+
+- `CHECKPOINT_DISABLE=1 pnpm check`: 348 tests in 33 files, lint, licensed assets, compiled content, TypeScript, Worker dry run and infrastructure synthesis pass. New transaction cases cover successful commit, evaluator failure, missing/duplicate owners, invalid final-player edge outcomes, preview mutation isolation, reentrancy and stale-edge consumption. Optional CDKTN telemetry is bypassed with the environment flag.
+- Node, Chromium and local workerd agree on the complete 120-tick input/combat/snapshot transaction trace `87e5dbd9`. Each player’s snapshot encodes/decodes before commit. Final shot counts are 15/24/15/15, two kills are credited once, and next action ID is 70. An injected tick-121 failure preserves tick 120 and every acknowledgment. [Portable report](./W04-world-contracts.json).
+- `pnpm test:network:controller --combat`: four browsers agree on at least 30 shared snapshots through tick 90, observe projectiles and both enemy removals, and retain zero positional correction. Full actor corrections are expected while weapon actions remain authoritative. [Browser report](./W04-world-combat-browser.json), [screenshot](./W04-world-combat-browser.png), [host/browser diagnostics](./W04-world-combat-diagnostics.json).
+- `pnpm test:network:controller --combat-fault`: all four sockets close for recovery and all streams require resync. The world, committed events, processed acknowledgments and last completed clock tick exactly match the boundary returned when the fault was armed. The candidate tick and its allocations/effects do not become committed state. [Abort report](./W04-world-combat-abort.json), [screenshot](./W04-world-combat-abort.png).
+- The existing default four-browser run still matches 61 movement snapshots through tick 183 and passes action taps and input-stop lease expiry. The stopped peer neutralizes at tick 203 and expires at tick 368 while the other peers remain active through room tick 423. Controller recovery replaces the session at tick 32 and resumes all four clients through tick 63, with room tick 64 at collection. [Controller report](./W04-world-controller.json), [recovery report](./W04-world-controller-recovery.json).
+
+Reports record their base commit and built bundle/source hashes. The first combat browser attempt passed its assertions but could not save a bundle hash because two checks rebuilt `dist/client` concurrently; it was an evidence-collection error. The recorded browser runs were completed sequentially. Candidate cloning and extra defensive snapshot encodings are included in local timing metrics, so these runs are not comparable to earlier CPU baselines without accounting for that instrumentation.
+
+## Remaining work
+
+Implement the bounded acknowledged gameplay-event stream and baseline repair, then stable predicted-action confirmation keys and effect deduplication. Extend snapshot/recovery ownership to the complete combat journal and allocation cursors, integrate authenticated production room membership, and complete per-player recovery and the impairment matrix. Grounded enemy attack/hurt states, melee/grenades, shield material/break behavior, HMG sweep, vehicles, final media/style approval and the complete three-mission campaign remain open. No live deployment, binding change, trace-ingestion verification or final asset production occurred here.

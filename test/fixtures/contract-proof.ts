@@ -20,6 +20,7 @@ import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { spatialProof } from "./spatial-proof.js";
 import { traversalProof } from "./traversal-proof.js";
+import { worldCombatProof } from "./world-combat-proof.js";
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
 export function contractProof() {
@@ -81,6 +82,7 @@ export function contractProof() {
     trace,
     collision: collisionProof(),
     combat: combatProof(),
+    worldCombat: worldCombatProof(),
     movement: movementProof(),
     controller: controllerProof(),
     grounded: groundedProof(),

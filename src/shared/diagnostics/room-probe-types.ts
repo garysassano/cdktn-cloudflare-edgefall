@@ -1,3 +1,6 @@
+import type { PlayerAcknowledgment } from "../../game/input/types.js";
+import type { CombatLab, CombatNotice } from "../../game/labs/combat.js";
+
 export interface PeerMetrics {
   slot: number;
   active: boolean;
@@ -13,14 +16,26 @@ export interface PeerMetrics {
   expiredAtTick: number | null;
   closeReason: string | null;
   lastInputError: string | null;
+  lastOutputError: string | null;
   lastProcessedSequence: number;
   lastHeld: number;
 }
 export interface RoomProbeStatus {
   instanceId: string;
+  worldFailure: string | null;
+  inputStreams: Array<{
+    acknowledgment: PlayerAcknowledgment;
+    queued: number;
+    requiresResync: boolean;
+  }>;
+  combat: {
+    world: CombatLab;
+    events: Array<{ tick: number; counter: number; event: CombatNotice }>;
+    droppedEvents: number;
+  } | null;
   runEpoch: number;
   recoveries: number;
-  workload: "standard" | "double" | "controller";
+  workload: "standard" | "double" | "controller" | "combat";
   tick: number;
   roomMode: string;
   clock: { mode: string; tick: number; timerPending: boolean; fault: unknown };

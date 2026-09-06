@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T22:25:54.272Z",
+  "commit": "eba50e59b6ba60b0e26c7dbdb8ca2f52fd3e2275",
+  "sourceSha256": "072eb807638e5684426b5c454f092b5768b8b075ac4eddd07a6f18ef916df617",
+  "browserBundleSha256": "25ae40833afa4158fc3fe55e1ffc7147140006d228636c02416dd45c0f84fb10",
+  "resultSha256": "1853f848d5c6c85571c25ca7af8c47f1cb1ffa2503b055bb84460554b25dda00",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "worldCombat": {
+    "ticks": 120,
+    "phase": "complete",
+    "shots": [
+      15,
+      24,
+      15,
+      15
+    ],
+    "kills": [
+      {
+        "playerId": 1,
+        "count": 0
+      },
+      {
+        "playerId": 2,
+        "count": 2
+      },
+      {
+        "playerId": 3,
+        "count": 0
+      },
+      {
+        "playerId": 4,
+        "count": 0
+      }
+    ],
+    "nextActionId": 70,
+    "abortAtTick": 121,
+    "traceHash": "87e5dbd9",
+    "finalHash": "513d5710"
+  },
+  "status": "pass",
+  "scope": "Node, Chromium and local workerd compare the same input/world/snapshot transaction. The fixture also rejects tick 121 without changing the last committed world or acknowledgments. No deployed service or durable recovery proof."
+}

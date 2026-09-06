@@ -56,6 +56,12 @@ Admission copies the complete batch and validates its final command before commi
 
 After an authoritative seat outcome, the adapter advances `controlEpoch` once before subsequent input acceptance/publication; doing so clears old held intent. On reconnect/resynchronization, construct a fresh stream under a newly approved connection epoch and baseline. The old socket must not be routed to that new stream. `recordSent` records actually delivered snapshot IDs and event-prefix cursors, preventing acknowledgments of unsent state. The complete snapshot section layout and validation are in [snapshot-v3.md](./snapshot-v3.md).
 
+## Coordinated world commit
+
+`InputStream.processWorldTick` stages the normalized input and proposed consumption acknowledgment for every controlling socket in stable player order, then locks those streams against reentrant mutation. Its synchronous evaluator builds and validates a candidate world and returns exactly one edge-outcome list per player. Only after every outcome validates does the transaction remove queued commands and advance all processed cursors. The room then installs the candidate state and exposes its events/snapshots. `processTick` uses the same path for a single owner.
+
+An evaluator, encoding or edge-outcome failure leaves all participating queues and acknowledgments unchanged and stops those streams until a fresh baseline. Invalid read-only timing/cohort preconditions do not execute the world and can be corrected by the caller. Evaluators must avoid external mutation and I/O; the transaction cannot undo arbitrary callback side effects or provide durable database atomicity. The loopback controller, synthetic and combat room workloads now use this boundary. The combat workload validates each recipient's binary snapshot before committing, and keeps a bounded diagnostic view of committed events. That diagnostic view does not implement the required acknowledged gameplay-event transport.
+
 ## Snapshot-paired input mapping
 
 Handshake capability `0` retains the original baseline-plus-client-tick mapping. Capability `1` enables a bounded JSON `input-mapping` control message immediately before each binary snapshot, including the initial baseline. The controller laboratory requires capability `1`; unknown capability values fail closed. Input, acknowledgment and full-snapshot binary layouts remain unchanged.

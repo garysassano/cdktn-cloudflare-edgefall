@@ -37,6 +37,21 @@ export interface ProcessedTick {
   neutralized: boolean;
 }
 
+export interface PreparedPlayerTick {
+  input: AppliedInput;
+  /** Proposed consumption only; publication waits for every world's edge result to validate. */
+  acknowledgment: PlayerAcknowledgment;
+  neutralized: boolean;
+}
+export interface WorldInputOutcome {
+  playerId: number;
+  edgeResults: readonly EdgeResult[];
+}
+interface StagedTick extends PreparedPlayerTick {
+  pending: PendingCommand | undefined;
+  nowMs: number;
+}
+
 function copyCommand(command: InputCommand): InputCommand {
   return { ...command, edges: command.edges.map((edge) => ({ ...edge })) };
 }
@@ -246,12 +261,91 @@ export class InputStream {
     return { admitted: additions.length, duplicate: false, renewed };
   }
 
-  /** The callback performs one simulation tick. Only its successful return advances processed cursors. */
+  /** The single-player adapter uses the same all-or-nothing processing path as a world tick. */
   processTick(
     serverTick: number,
     nowMs: number,
     apply: (input: AppliedInput) => readonly EdgeResult[],
   ): ProcessedTick {
+    const transaction = InputStream.processWorldTick([this], serverTick, nowMs, ([prepared]) => {
+      if (!prepared) throw new Error("Missing prepared input");
+      return {
+        state: null,
+        outcomes: [{ playerId: this.playerId, edgeResults: apply(prepared.input) }],
+      };
+    });
+    const result = transaction.processed[0];
+    if (!result) throw new Error("Missing processed input");
+    return result;
+  }
+
+  /**
+   * Synchronous in-memory commit across all controlling sockets. Evaluate into a candidate world,
+   * without publishing it or performing I/O. Validate that candidate before returning it here.
+   * A failed evaluation/outcome leaves every queue/ack unchanged and stops the whole cohort.
+   * This is not durable storage atomicity; the room still owns checkpoint/recovery publication.
+   */
+  static processWorldTick<T>(
+    streams: readonly InputStream[],
+    serverTick: number,
+    nowMs: number,
+    evaluate: (prepared: readonly PreparedPlayerTick[]) => {
+      state: T;
+      outcomes: readonly WorldInputOutcome[];
+    },
+  ): { state: T; processed: ProcessedTick[] } {
+    counter(serverTick, true);
+    requireValue(Number.isFinite(nowMs) && nowMs >= 0, "Invalid world clock");
+    requireValue(streams.length <= 4, "Excess world input owners");
+    const ordered = [...streams].sort((a, b) => a.playerId - b.playerId);
+    requireValue(
+      new Set(ordered.map((stream) => stream.playerId)).size === ordered.length,
+      "Duplicate world input owner",
+    );
+    requireValue(
+      ordered.every((stream) => stream.identity.runEpoch === ordered[0]?.identity.runEpoch),
+      "Mixed world run epochs",
+    );
+    // All preconditions are read-only, so invalid caller timing can be corrected before evaluation.
+    const staged = ordered.map((stream) => stream.prepareTick(serverTick, nowMs));
+    for (const stream of ordered) stream.applying = true;
+    try {
+      const candidate = evaluate(
+        staged.map(({ input, acknowledgment, neutralized }) =>
+          structuredClone({ input, acknowledgment, neutralized }),
+        ),
+      );
+      const state = candidate.state;
+      const outcomes = candidate.outcomes;
+      requireValue(
+        outcomes.length === ordered.length,
+        "World must resolve every input owner exactly once",
+      );
+      requireValue(
+        new Set(outcomes.map((result) => result.playerId)).size === outcomes.length,
+        "Duplicate world outcome owner",
+      );
+      const processed = staged.map((stage) => {
+        const outcome = outcomes.find((item) => item.playerId === stage.input.playerId);
+        requireValue(Boolean(outcome), "Missing world input outcome");
+        if (!outcome) throw new Error("Missing input outcome");
+        return InputStream.validateTick(stage, outcome.edgeResults);
+      });
+      // No user callbacks, validation, encoding or observable publication after the commit point.
+      for (const [index, stream] of ordered.entries()) {
+        const stage = staged[index];
+        if (stage) stream.commitTick(stage);
+      }
+      return { state, processed };
+    } catch (error) {
+      for (const stream of ordered) stream.stopped = true;
+      throw error;
+    } finally {
+      for (const stream of ordered) stream.applying = false;
+    }
+  }
+
+  private prepareTick(serverTick: number, nowMs: number): StagedTick {
     this.guard();
     this.time(nowMs, serverTick);
     requireValue(serverTick === this.lastServerTick + 1, "Exactly one input step per server tick");
@@ -294,58 +388,61 @@ export class InputStream {
       outcome,
       repeatedHeld: pending === undefined,
     };
-    const journalInput: AppliedInput = {
-      ...input,
-      command: copyCommand(command),
-      submittedCommand: submitted ? copyCommand(submitted) : null,
-    };
-    this.applying = true;
-    let edgeResults: EdgeResult[];
-    try {
-      const results = apply(input);
-      requireValue(
-        results.length === journalInput.command.edges.length,
-        "Simulation must resolve every delivered edge exactly once",
-      );
-      for (const [index, result] of results.entries()) {
-        const edge = journalInput.command.edges[index];
-        requireValue(
-          Boolean(
-            edge &&
-              edge.kind === result.kind &&
-              edge.id === result.id &&
-              ["applied", "cooldown", "unavailable"].includes(result.outcome),
-          ),
-          "Invalid simulation edge outcome",
-        );
-      }
-      edgeResults =
-        outcome === "applied"
-          ? results.map((result) => ({ ...result }))
-          : (submitted?.edges ?? []).map((edge) => ({ ...edge, outcome }));
-    } catch (error) {
-      // The callback may have partially changed world state: never retry an uncertain tick.
-      this.stopped = true;
-      throw error;
-    } finally {
-      this.applying = false;
-    }
+    const acknowledgment = this.acknowledgment;
     if (pending) {
-      this.queue.shift();
-      this.ack.lastProcessedSequence = pending.command.sequence;
-      this.ack.appliedAtServerTick = serverTick;
-      for (const edge of pending.command.edges) this.ack.processedEdgeIds[edge.kind - 1] = edge.id;
+      acknowledgment.lastProcessedSequence = pending.command.sequence;
+      acknowledgment.appliedAtServerTick = serverTick;
+      for (const edge of pending.command.edges)
+        acknowledgment.processedEdgeIds[edge.kind - 1] = edge.id;
     }
-    this.lastHeld =
-      outcome === "applied" ? { ...copyCommand(journalInput.command), edges: [] } : null;
-    this.lastServerTick = serverTick;
-    this.lastNowMs = nowMs;
     return {
-      input: journalInput,
-      edgeResults,
-      acknowledgment: this.acknowledgment,
+      input,
+      acknowledgment,
+      pending,
+      nowMs,
       neutralized: outcome === "stale" && previousHeld !== null && previousHeld.held !== 0,
     };
+  }
+
+  private static validateTick(stage: StagedTick, results: readonly EdgeResult[]): ProcessedTick {
+    requireValue(
+      results.length === stage.input.command.edges.length,
+      "Simulation must resolve every delivered edge exactly once",
+    );
+    for (const [index, result] of results.entries()) {
+      const edge = stage.input.command.edges[index];
+      requireValue(
+        Boolean(
+          edge &&
+            edge.kind === result.kind &&
+            edge.id === result.id &&
+            ["applied", "cooldown", "unavailable"].includes(result.outcome),
+        ),
+        "Invalid simulation edge outcome",
+      );
+    }
+    const edgeResults =
+      stage.input.outcome === "applied"
+        ? results.map((result) => ({ ...result }))
+        : (stage.input.submittedCommand?.edges ?? []).map((edge) => ({
+            ...edge,
+            outcome: stage.input.outcome,
+          }));
+    return structuredClone({
+      input: stage.input,
+      acknowledgment: stage.acknowledgment,
+      neutralized: stage.neutralized,
+      edgeResults,
+    });
+  }
+
+  private commitTick(stage: StagedTick): void {
+    if (stage.pending) this.queue.shift();
+    this.ack = stage.acknowledgment;
+    this.lastHeld =
+      stage.input.outcome === "applied" ? { ...copyCommand(stage.input.command), edges: [] } : null;
+    this.lastServerTick = stage.input.serverTick;
+    this.lastNowMs = stage.nowMs;
   }
 
   private guard(): void {
