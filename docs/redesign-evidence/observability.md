@@ -1,0 +1,9 @@
+# Observability during redesign
+
+The Wrangler configuration explicitly enables Workers traces and invocation logs at sampling rate 1, and uploads source maps. These settings take effect on deployment; no deployment or Cloudflare trace retrieval was performed during this local diagnostic change. The deployment configuration generator preserves these settings.
+
+Cloudflare currently requires `observability.traces.enabled` separately from `observability.enabled`: see [Workers traces](https://developers.cloudflare.com/workers/observability/traces/). Traces do not replace CPU profiling: [non-I/O spans may report zero duration](https://developers.cloudflare.com/workers/observability/traces/known-limitations/) because runtime time updates follow I/O events.
+
+The controller network probe runs in local Miniflare/workerd and records bounded scheduler callbacks, timer scheduling/firing, per-peer admission and lease metrics, snapshots, reconciliation results, browser failures, and a screenshot. Cloudflare dashboard traces are not evidence for this local run. The latest retained runtime output reports tick 344 at time 1788725475270 followed by a clock-fault observation of 1788725474484, a regression of 786 ms. This proves the observed clock discontinuity, not its underlying cause. Scheduler guards remain unchanged.
+
+Before closing the timing gate, correlate a deployed reproduction with invocation logs/traces and runtime/build identity, and compare local runtime clock samples against an independent host monotonic clock. Use CPU profiles for simulation and encoding work; do not interpret the probe's local `performance.now()` differences as reliable production CPU measurements. Full trace sampling is intentional during diagnosis and should be reviewed before sustained production traffic.
