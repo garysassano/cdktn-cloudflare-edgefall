@@ -36,7 +36,8 @@
     "bench:room:timers": "tsx scripts/probe-native-timers.mjs",
     "bench:collision:grid": "tsx scripts/bench-collision-grid.ts",
     "test:lab:controller": "node scripts/build-client.mjs --lab && node scripts/verify-controller-lab.mjs",
-    "content:compile": "tsx scripts/compile-content.ts"
+    "content:compile": "tsx scripts/compile-content.ts",
+    "test:network:controller": "tsx scripts/verify-network-controller.ts"
   },
   "dependencies": {
     "cdktn": "^0.24.0",

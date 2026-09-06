@@ -1,5 +1,10 @@
 import { DurableObject } from "cloudflare:workers";
 import type { AppliedInput } from "../../game/input/types.js";
+import {
+  CONTROLLER_IDENTITY,
+  createControllerWorkload,
+  stepNetworkController,
+} from "../../shared/diagnostics/controller-workload.js";
 import type { PeerMetrics, RoomProbeStatus } from "../../shared/diagnostics/room-probe-types.js";
 import {
   PROBE_IDENTITY,
@@ -25,10 +30,10 @@ interface Peer {
   metrics: PeerMetrics;
 }
 
-/** Only the separate loopback Wrangler configuration exports this synthetic workload. */
+/** Separate loopback diagnostics only: synthetic load and the real controller workload. */
 export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private readonly instanceId = crypto.randomUUID();
-  private workload: "standard" | "double" = "standard";
+  private workload: "standard" | "double" | "controller" = "standard";
   private world = createRoomWorkload(1);
   private readonly peers = new Map<number, Peer>();
   private readonly localCpu: RoomProbeStatus["localCpu"] = [];
@@ -119,7 +124,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private step(tick: number): undefined {
     const cpuStart = performance.now(); // Local CPU diagnostic only; never enters world arithmetic.
     const inputs: AppliedInput[] = [];
-    for (const actor of this.world.players) actor.body.vx = 0;
+    if (this.workload !== "controller") for (const actor of this.world.players) actor.body.vx = 0;
     for (const [slot, peer] of [...this.peers].sort(([a], [b]) => a - b)) {
       if (!peer.metrics.active) continue;
       if (peer.lease?.expired(this.sampledNow)) {
@@ -132,6 +137,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       }
       const processed = peer.input.processTick(tick, this.sampledNow, (input) => {
         inputs.push(input);
+        if (this.workload === "controller") {
+          const actor = this.world.players[slot];
+          if (!actor) throw new Error("Missing controller actor");
+          const result = stepNetworkController(
+            actor,
+            { ...input.command, controlEpoch: actor.controlEpoch },
+            tick,
+          );
+          this.world.players[slot] = result.actor;
+          return result.edges;
+        }
         // The synthetic fixture has no combat; rejected edges must still be acknowledged.
         return input.command.edges.map((edge) => ({ ...edge, outcome: "unavailable" as const }));
       });
@@ -144,7 +160,26 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       if (processed.neutralized && peer.metrics.neutralizedAtTick === null)
         peer.metrics.neutralizedAtTick = tick;
     }
-    stepRoomWorkload(this.world, tick, inputs);
+    if (this.workload === "controller") {
+      for (const [slot, peer] of this.peers)
+        if (!peer.metrics.active) {
+          const actor = this.world.players[slot];
+          if (actor)
+            this.world.players[slot] = stepNetworkController(
+              actor,
+              {
+                sequence: 0,
+                clientTick: 0,
+                controlEpoch: actor.controlEpoch,
+                held: 0,
+                aim: 0,
+                edges: [],
+              },
+              tick,
+            ).actor;
+        }
+      this.world.tick = tick;
+    } else stepRoomWorkload(this.world, tick, inputs);
     if (![...this.peers.values()].some((peer) => peer.metrics.active)) {
       this.world.roomMode = "paused-empty";
       this.clock.stop();
@@ -170,8 +205,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const parts = url.pathname.split("/");
     const action = parts[2];
     if (!this.peers.size) {
-      this.workload = parts[1] === "double" ? "double" : "standard";
-      this.world = createRoomWorkload(this.workload === "double" ? 2 : 1);
+      this.workload =
+        parts[1] === "controller" ? "controller" : parts[1] === "double" ? "double" : "standard";
+      this.world =
+        this.workload === "controller"
+          ? createControllerWorkload()
+          : createRoomWorkload(this.workload === "double" ? 2 : 1);
     }
     if (action === "connect") {
       const slot = Number(url.searchParams.get("slot"));
@@ -208,7 +247,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       this.ctx.acceptWebSocket(pair[1]);
       pair[1].serializeAttachment({ instanceId: this.instanceId, slot });
       const welcome: Handshake = {
-        ...PROBE_IDENTITY,
+        ...(this.workload === "controller" ? CONTROLLER_IDENTITY : PROBE_IDENTITY),
         type: "welcome",
         protocolMajor: 3,
         protocolMinor: 0,
@@ -236,7 +275,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       if (
         this.world.roomMode !== "loading" ||
         this.peers.size !== 4 ||
-        [...this.peers.values()].some((peer) => !peer.metrics.active)
+        [...this.peers.values()].some(
+          (peer) =>
+            !peer.metrics.active ||
+            (this.workload === "controller" && peer.input.queuedCommands < 6),
+        )
       )
         return new Response("Four clients required", { status: 409 });
       const now = performance.now();
@@ -270,13 +313,14 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (
       typeof message === "string" ||
       message.byteLength > 284 ||
-      this.world.roomMode !== "playing"
+      (this.world.roomMode !== "playing" &&
+        !(this.workload === "controller" && this.world.roomMode === "loading"))
     ) {
       this.disconnect(peer, "invalid-input", 4004);
       return;
     }
     const now = performance.now();
-    if (!peer.lease || peer.lease.expired(now)) {
+    if (this.world.roomMode === "playing" && (!peer.lease || peer.lease.expired(now))) {
       this.disconnect(peer, "lease-expired");
       return;
     }
@@ -286,7 +330,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       peer.metrics.inputFrames++;
       peer.metrics.inputBytes += message.byteLength;
       if (result.admitted === 0 && !result.duplicate) peer.metrics.acknowledgmentOnlyFrames++;
-      if (peer.lease.observeAdmission(result, now)) peer.metrics.renewedFrames++;
+      if (peer.lease?.observeAdmission(result, now)) peer.metrics.renewedFrames++;
       if (peer.input.deliveryAcknowledgments.snapshot > previousAck) peer.lastAckAt = now;
       peer.metrics.maxQueuedCommands = Math.max(
         peer.metrics.maxQueuedCommands,
@@ -311,7 +355,9 @@ export default {
     if (!["localhost", "127.0.0.1"].includes(url.hostname))
       return new Response("Local only", { status: 403 });
     if (url.pathname === "/health") return Response.json({ fixture: "edgefall-room-load-probe" });
-    const match = /^\/(standard|double)\/(connect|start|status|close)$/u.exec(url.pathname);
+    const match = /^\/(standard|double|controller)\/(connect|start|status|close)$/u.exec(
+      url.pathname,
+    );
     if (!match?.[1]) return new Response("Not found", { status: 404 });
     return env.ROOM_PROBES.getByName(match[1]).fetch(request);
   },

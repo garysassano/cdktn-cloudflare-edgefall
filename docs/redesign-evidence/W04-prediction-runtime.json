@@ -1,0 +1,46 @@
+{
+  "status": "pass",
+  "commit": "a991a972bc3f1d06fd786e6b89190c54d69fc4bd",
+  "recordedAt": "2026-09-06T20:10:18.199Z",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "prediction": {
+    "ticks": 180,
+    "traceHash": "9b62ab0c",
+    "bytes": 1416,
+    "reconciliations": 240,
+    "coverage": [
+      {
+        "slot": 0,
+        "minY": 58925,
+        "crouched": true,
+        "pending": 6
+      },
+      {
+        "slot": 1,
+        "minY": 58925,
+        "crouched": true,
+        "pending": 6
+      },
+      {
+        "slot": 2,
+        "minY": 58925,
+        "crouched": true,
+        "pending": 6
+      },
+      {
+        "slot": 3,
+        "minY": 58925,
+        "crouched": true,
+        "pending": 6
+      }
+    ]
+  },
+  "sourceSha256": "221a426a287dfb59293dd9dcc60d2f69fcbcdc3d73743dd14748d0937dc50c2e",
+  "resultSha256": "cbfbbb02dca2a910ce575998f0d990d5a1990a603ef23a65e9d67b4d0236fb01",
+  "scope": "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim"
+}

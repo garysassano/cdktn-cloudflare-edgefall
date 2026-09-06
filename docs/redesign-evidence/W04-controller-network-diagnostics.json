@@ -1,0 +1,1664 @@
+{
+  "scope": "Independent Node hrtime/wall-clock samples and bounded browser errors; not a CPU profile or proof of the runtime clock's underlying cause",
+  "node": "v24.20.0",
+  "hostClock": [
+    {
+      "monotonicMs": 0.038045,
+      "wallMs": 1788726015790
+    },
+    {
+      "monotonicMs": 212.671106,
+      "wallMs": 1788726016003
+    },
+    {
+      "monotonicMs": 233.298425,
+      "wallMs": 1788726016024
+    },
+    {
+      "monotonicMs": 264.642002,
+      "wallMs": 1788726016055
+    },
+    {
+      "monotonicMs": 285.4434,
+      "wallMs": 1788726016076
+    },
+    {
+      "monotonicMs": 304.718142,
+      "wallMs": 1788726016095
+    },
+    {
+      "monotonicMs": 325.005295,
+      "wallMs": 1788726016115
+    },
+    {
+      "monotonicMs": 345.473703,
+      "wallMs": 1788726016136
+    },
+    {
+      "monotonicMs": 365.815843,
+      "wallMs": 1788726016156
+    },
+    {
+      "monotonicMs": 386.207753,
+      "wallMs": 1788726016177
+    },
+    {
+      "monotonicMs": 405.765197,
+      "wallMs": 1788726016196
+    },
+    {
+      "monotonicMs": 426.55233,
+      "wallMs": 1788726016217
+    },
+    {
+      "monotonicMs": 447.369263,
+      "wallMs": 1788726016238
+    },
+    {
+      "monotonicMs": 466.883576,
+      "wallMs": 1788726016257
+    },
+    {
+      "monotonicMs": 486.767824,
+      "wallMs": 1788726016277
+    },
+    {
+      "monotonicMs": 507.043284,
+      "wallMs": 1788726016297
+    },
+    {
+      "monotonicMs": 526.474229,
+      "wallMs": 1788726016317
+    },
+    {
+      "monotonicMs": 547.491185,
+      "wallMs": 1788726016338
+    },
+    {
+      "monotonicMs": 567.863584,
+      "wallMs": 1788726016358
+    },
+    {
+      "monotonicMs": 590.527839,
+      "wallMs": 1788726016381
+    },
+    {
+      "monotonicMs": 623.044791,
+      "wallMs": 1788726016413
+    },
+    {
+      "monotonicMs": 643.007183,
+      "wallMs": 1788726016433
+    },
+    {
+      "monotonicMs": 662.998109,
+      "wallMs": 1788726016453
+    },
+    {
+      "monotonicMs": 683.463373,
+      "wallMs": 1788726016474
+    },
+    {
+      "monotonicMs": 704.054433,
+      "wallMs": 1788726016494
+    },
+    {
+      "monotonicMs": 723.840531,
+      "wallMs": 1788726016514
+    },
+    {
+      "monotonicMs": 744.018604,
+      "wallMs": 1788726016534
+    },
+    {
+      "monotonicMs": 764.180258,
+      "wallMs": 1788726016554
+    },
+    {
+      "monotonicMs": 784.638157,
+      "wallMs": 1788726016575
+    },
+    {
+      "monotonicMs": 804.841165,
+      "wallMs": 1788726016595
+    },
+    {
+      "monotonicMs": 825.071101,
+      "wallMs": 1788726016615
+    },
+    {
+      "monotonicMs": 845.361317,
+      "wallMs": 1788726016636
+    },
+    {
+      "monotonicMs": 865.626658,
+      "wallMs": 1788726016656
+    },
+    {
+      "monotonicMs": 885.909472,
+      "wallMs": 1788726016676
+    },
+    {
+      "monotonicMs": 906.112032,
+      "wallMs": 1788726016696
+    },
+    {
+      "monotonicMs": 926.44205,
+      "wallMs": 1788726016717
+    },
+    {
+      "monotonicMs": 945.695624,
+      "wallMs": 1788726016736
+    },
+    {
+      "monotonicMs": 965.977431,
+      "wallMs": 1788726016756
+    },
+    {
+      "monotonicMs": 986.308971,
+      "wallMs": 1788726016777
+    },
+    {
+      "monotonicMs": 1006.623981,
+      "wallMs": 1788726016797
+    },
+    {
+      "monotonicMs": 1026.969173,
+      "wallMs": 1788726016817
+    },
+    {
+      "monotonicMs": 1047.357444,
+      "wallMs": 1788726016838
+    },
+    {
+      "monotonicMs": 1067.762157,
+      "wallMs": 1788726016858
+    },
+    {
+      "monotonicMs": 1087.946005,
+      "wallMs": 1788726016878
+    },
+    {
+      "monotonicMs": 1108.126724,
+      "wallMs": 1788726016898
+    },
+    {
+      "monotonicMs": 1128.31456,
+      "wallMs": 1788726016919
+    },
+    {
+      "monotonicMs": 1148.538272,
+      "wallMs": 1788726016939
+    },
+    {
+      "monotonicMs": 1169.473317,
+      "wallMs": 1788726016960
+    },
+    {
+      "monotonicMs": 1189.887672,
+      "wallMs": 1788726016980
+    },
+    {
+      "monotonicMs": 1209.650546,
+      "wallMs": 1788726017000
+    },
+    {
+      "monotonicMs": 1230.393727,
+      "wallMs": 1788726017021
+    },
+    {
+      "monotonicMs": 1250.007698,
+      "wallMs": 1788726017040
+    },
+    {
+      "monotonicMs": 1270.153551,
+      "wallMs": 1788726017060
+    },
+    {
+      "monotonicMs": 1290.416414,
+      "wallMs": 1788726017081
+    },
+    {
+      "monotonicMs": 1310.332835,
+      "wallMs": 1788726017101
+    },
+    {
+      "monotonicMs": 1329.548507,
+      "wallMs": 1788726017120
+    },
+    {
+      "monotonicMs": 1349.997895,
+      "wallMs": 1788726017140
+    },
+    {
+      "monotonicMs": 1369.744329,
+      "wallMs": 1788726017160
+    },
+    {
+      "monotonicMs": 1390.045904,
+      "wallMs": 1788726017180
+    },
+    {
+      "monotonicMs": 1409.952971,
+      "wallMs": 1788726017200
+    },
+    {
+      "monotonicMs": 1430.370869,
+      "wallMs": 1788726017221
+    },
+    {
+      "monotonicMs": 1450.317952,
+      "wallMs": 1788726017241
+    },
+    {
+      "monotonicMs": 1469.762361,
+      "wallMs": 1788726017260
+    },
+    {
+      "monotonicMs": 1489.8641,
+      "wallMs": 1788726017280
+    },
+    {
+      "monotonicMs": 1513.911786,
+      "wallMs": 1788726017304
+    },
+    {
+      "monotonicMs": 1534.401173,
+      "wallMs": 1788726017325
+    },
+    {
+      "monotonicMs": 1554.723382,
+      "wallMs": 1788726017345
+    },
+    {
+      "monotonicMs": 1575.079317,
+      "wallMs": 1788726017365
+    },
+    {
+      "monotonicMs": 1596.815757,
+      "wallMs": 1788726017387
+    },
+    {
+      "monotonicMs": 1616.900181,
+      "wallMs": 1788726017407
+    },
+    {
+      "monotonicMs": 1637.36105,
+      "wallMs": 1788726017428
+    },
+    {
+      "monotonicMs": 1657.490232,
+      "wallMs": 1788726017448
+    },
+    {
+      "monotonicMs": 1678.488144,
+      "wallMs": 1788726017469
+    },
+    {
+      "monotonicMs": 1698.770223,
+      "wallMs": 1788726017489
+    },
+    {
+      "monotonicMs": 1724.913997,
+      "wallMs": 1788726017515
+    },
+    {
+      "monotonicMs": 1745.089047,
+      "wallMs": 1788726017535
+    },
+    {
+      "monotonicMs": 1765.401154,
+      "wallMs": 1788726017556
+    },
+    {
+      "monotonicMs": 1785.276746,
+      "wallMs": 1788726017576
+    },
+    {
+      "monotonicMs": 1805.045766,
+      "wallMs": 1788726017595
+    },
+    {
+      "monotonicMs": 1824.799069,
+      "wallMs": 1788726017615
+    },
+    {
+      "monotonicMs": 1844.562499,
+      "wallMs": 1788726017635
+    },
+    {
+      "monotonicMs": 1865.404689,
+      "wallMs": 1788726017656
+    },
+    {
+      "monotonicMs": 1885.032886,
+      "wallMs": 1788726017675
+    },
+    {
+      "monotonicMs": 1906.576356,
+      "wallMs": 1788726017697
+    },
+    {
+      "monotonicMs": 1927.198535,
+      "wallMs": 1788726017717
+    },
+    {
+      "monotonicMs": 1947.052529,
+      "wallMs": 1788726017737
+    },
+    {
+      "monotonicMs": 1968.945592,
+      "wallMs": 1788726017759
+    },
+    {
+      "monotonicMs": 1988.966734,
+      "wallMs": 1788726017779
+    },
+    {
+      "monotonicMs": 2009.565726,
+      "wallMs": 1788726017800
+    },
+    {
+      "monotonicMs": 2029.785321,
+      "wallMs": 1788726017820
+    },
+    {
+      "monotonicMs": 2050.478642,
+      "wallMs": 1788726017841
+    },
+    {
+      "monotonicMs": 2070.83989,
+      "wallMs": 1788726017861
+    },
+    {
+      "monotonicMs": 2091.54006,
+      "wallMs": 1788726017882
+    },
+    {
+      "monotonicMs": 2112.414036,
+      "wallMs": 1788726017903
+    },
+    {
+      "monotonicMs": 2132.174828,
+      "wallMs": 1788726017922
+    },
+    {
+      "monotonicMs": 2153.189246,
+      "wallMs": 1788726017943
+    },
+    {
+      "monotonicMs": 2172.732196,
+      "wallMs": 1788726017963
+    },
+    {
+      "monotonicMs": 2193.710239,
+      "wallMs": 1788726017984
+    },
+    {
+      "monotonicMs": 2214.563373,
+      "wallMs": 1788726018005
+    },
+    {
+      "monotonicMs": 2235.717032,
+      "wallMs": 1788726018026
+    },
+    {
+      "monotonicMs": 2255.982738,
+      "wallMs": 1788726018046
+    },
+    {
+      "monotonicMs": 2275.955729,
+      "wallMs": 1788726018066
+    },
+    {
+      "monotonicMs": 2296.174668,
+      "wallMs": 1788726018086
+    },
+    {
+      "monotonicMs": 2316.396998,
+      "wallMs": 1788726018107
+    },
+    {
+      "monotonicMs": 2337.637942,
+      "wallMs": 1788726018128
+    },
+    {
+      "monotonicMs": 2357.791423,
+      "wallMs": 1788726018148
+    },
+    {
+      "monotonicMs": 2378.803497,
+      "wallMs": 1788726018169
+    },
+    {
+      "monotonicMs": 2399.05364,
+      "wallMs": 1788726018189
+    },
+    {
+      "monotonicMs": 2419.134554,
+      "wallMs": 1788726018209
+    },
+    {
+      "monotonicMs": 2439.435023,
+      "wallMs": 1788726018230
+    },
+    {
+      "monotonicMs": 2458.735025,
+      "wallMs": 1788726018249
+    },
+    {
+      "monotonicMs": 2479.06533,
+      "wallMs": 1788726018269
+    },
+    {
+      "monotonicMs": 2499.485111,
+      "wallMs": 1788726018290
+    },
+    {
+      "monotonicMs": 2520.515978,
+      "wallMs": 1788726018311
+    },
+    {
+      "monotonicMs": 2540.974292,
+      "wallMs": 1788726018331
+    },
+    {
+      "monotonicMs": 2561.189312,
+      "wallMs": 1788726018351
+    },
+    {
+      "monotonicMs": 2580.484722,
+      "wallMs": 1788726018371
+    },
+    {
+      "monotonicMs": 2600.903362,
+      "wallMs": 1788726018391
+    },
+    {
+      "monotonicMs": 2621.246829,
+      "wallMs": 1788726018412
+    },
+    {
+      "monotonicMs": 2643.34107,
+      "wallMs": 1788726018434
+    },
+    {
+      "monotonicMs": 2663.058248,
+      "wallMs": 1788726018453
+    },
+    {
+      "monotonicMs": 2683.53833,
+      "wallMs": 1788726018474
+    },
+    {
+      "monotonicMs": 2703.56692,
+      "wallMs": 1788726018494
+    },
+    {
+      "monotonicMs": 2723.441687,
+      "wallMs": 1788726018514
+    },
+    {
+      "monotonicMs": 2743.809204,
+      "wallMs": 1788726018534
+    },
+    {
+      "monotonicMs": 2766.839796,
+      "wallMs": 1788726018557
+    },
+    {
+      "monotonicMs": 2787.286302,
+      "wallMs": 1788726018578
+    },
+    {
+      "monotonicMs": 2807.626366,
+      "wallMs": 1788726018598
+    },
+    {
+      "monotonicMs": 2829.457364,
+      "wallMs": 1788726018620
+    },
+    {
+      "monotonicMs": 2849.950442,
+      "wallMs": 1788726018640
+    },
+    {
+      "monotonicMs": 2870.307298,
+      "wallMs": 1788726018661
+    },
+    {
+      "monotonicMs": 2892.749286,
+      "wallMs": 1788726018683
+    },
+    {
+      "monotonicMs": 2912.949414,
+      "wallMs": 1788726018703
+    },
+    {
+      "monotonicMs": 2933.544283,
+      "wallMs": 1788726018724
+    },
+    {
+      "monotonicMs": 2954.667386,
+      "wallMs": 1788726018745
+    },
+    {
+      "monotonicMs": 2974.448585,
+      "wallMs": 1788726018765
+    },
+    {
+      "monotonicMs": 2995.310819,
+      "wallMs": 1788726018786
+    },
+    {
+      "monotonicMs": 3015.234671,
+      "wallMs": 1788726018806
+    },
+    {
+      "monotonicMs": 3035.388097,
+      "wallMs": 1788726018826
+    },
+    {
+      "monotonicMs": 3055.531978,
+      "wallMs": 1788726018846
+    },
+    {
+      "monotonicMs": 3078.524973,
+      "wallMs": 1788726018869
+    },
+    {
+      "monotonicMs": 3098.936857,
+      "wallMs": 1788726018889
+    },
+    {
+      "monotonicMs": 3119.335955,
+      "wallMs": 1788726018910
+    },
+    {
+      "monotonicMs": 3139.851172,
+      "wallMs": 1788726018930
+    },
+    {
+      "monotonicMs": 3160.653423,
+      "wallMs": 1788726018951
+    },
+    {
+      "monotonicMs": 3181.143527,
+      "wallMs": 1788726018971
+    },
+    {
+      "monotonicMs": 3200.539818,
+      "wallMs": 1788726018991
+    },
+    {
+      "monotonicMs": 3220.603542,
+      "wallMs": 1788726019011
+    },
+    {
+      "monotonicMs": 3240.947023,
+      "wallMs": 1788726019031
+    },
+    {
+      "monotonicMs": 3262.047556,
+      "wallMs": 1788726019052
+    },
+    {
+      "monotonicMs": 3282.553219,
+      "wallMs": 1788726019073
+    },
+    {
+      "monotonicMs": 3302.919532,
+      "wallMs": 1788726019093
+    },
+    {
+      "monotonicMs": 3323.049512,
+      "wallMs": 1788726019113
+    },
+    {
+      "monotonicMs": 3343.375373,
+      "wallMs": 1788726019134
+    },
+    {
+      "monotonicMs": 3363.952987,
+      "wallMs": 1788726019154
+    },
+    {
+      "monotonicMs": 3384.99297,
+      "wallMs": 1788726019175
+    },
+    {
+      "monotonicMs": 3404.784101,
+      "wallMs": 1788726019195
+    },
+    {
+      "monotonicMs": 3425.46005,
+      "wallMs": 1788726019216
+    },
+    {
+      "monotonicMs": 3446.284987,
+      "wallMs": 1788726019237
+    },
+    {
+      "monotonicMs": 3466.409338,
+      "wallMs": 1788726019257
+    },
+    {
+      "monotonicMs": 3485.796861,
+      "wallMs": 1788726019276
+    },
+    {
+      "monotonicMs": 3506.070372,
+      "wallMs": 1788726019296
+    },
+    {
+      "monotonicMs": 3526.831346,
+      "wallMs": 1788726019317
+    },
+    {
+      "monotonicMs": 3547.211065,
+      "wallMs": 1788726019338
+    },
+    {
+      "monotonicMs": 3567.635815,
+      "wallMs": 1788726019358
+    },
+    {
+      "monotonicMs": 3588.642904,
+      "wallMs": 1788726019379
+    },
+    {
+      "monotonicMs": 3608.860553,
+      "wallMs": 1788726019399
+    },
+    {
+      "monotonicMs": 3629.583697,
+      "wallMs": 1788726019420
+    },
+    {
+      "monotonicMs": 3651.672104,
+      "wallMs": 1788726019442
+    },
+    {
+      "monotonicMs": 3671.840514,
+      "wallMs": 1788726019462
+    },
+    {
+      "monotonicMs": 3691.922865,
+      "wallMs": 1788726019482
+    },
+    {
+      "monotonicMs": 3713.474125,
+      "wallMs": 1788726019504
+    },
+    {
+      "monotonicMs": 3734.069448,
+      "wallMs": 1788726019524
+    },
+    {
+      "monotonicMs": 3754.418867,
+      "wallMs": 1788726019545
+    },
+    {
+      "monotonicMs": 3778.312751,
+      "wallMs": 1788726019569
+    },
+    {
+      "monotonicMs": 3798.651489,
+      "wallMs": 1788726019589
+    },
+    {
+      "monotonicMs": 3819.028255,
+      "wallMs": 1788726019609
+    },
+    {
+      "monotonicMs": 3844.64456,
+      "wallMs": 1788726019635
+    },
+    {
+      "monotonicMs": 3864.920088,
+      "wallMs": 1788726019655
+    },
+    {
+      "monotonicMs": 3885.66812,
+      "wallMs": 1788726019676
+    },
+    {
+      "monotonicMs": 3905.481603,
+      "wallMs": 1788726019696
+    },
+    {
+      "monotonicMs": 3925.684974,
+      "wallMs": 1788726019716
+    },
+    {
+      "monotonicMs": 3945.985057,
+      "wallMs": 1788726019736
+    },
+    {
+      "monotonicMs": 3965.965037,
+      "wallMs": 1788726019756
+    },
+    {
+      "monotonicMs": 3985.874171,
+      "wallMs": 1788726019776
+    },
+    {
+      "monotonicMs": 4006.59799,
+      "wallMs": 1788726019797
+    },
+    {
+      "monotonicMs": 4027.694341,
+      "wallMs": 1788726019818
+    },
+    {
+      "monotonicMs": 4047.744838,
+      "wallMs": 1788726019838
+    },
+    {
+      "monotonicMs": 4067.908893,
+      "wallMs": 1788726019858
+    },
+    {
+      "monotonicMs": 4088.519414,
+      "wallMs": 1788726019879
+    },
+    {
+      "monotonicMs": 4109.067516,
+      "wallMs": 1788726019899
+    },
+    {
+      "monotonicMs": 4128.662463,
+      "wallMs": 1788726019919
+    },
+    {
+      "monotonicMs": 4148.920396,
+      "wallMs": 1788726019939
+    },
+    {
+      "monotonicMs": 4171.092796,
+      "wallMs": 1788726019961
+    },
+    {
+      "monotonicMs": 4191.403691,
+      "wallMs": 1788726019982
+    },
+    {
+      "monotonicMs": 4210.778792,
+      "wallMs": 1788726020001
+    },
+    {
+      "monotonicMs": 4231.467256,
+      "wallMs": 1788726020022
+    },
+    {
+      "monotonicMs": 4251.805647,
+      "wallMs": 1788726020042
+    },
+    {
+      "monotonicMs": 4272.775717,
+      "wallMs": 1788726020063
+    },
+    {
+      "monotonicMs": 4293.110199,
+      "wallMs": 1788726020083
+    },
+    {
+      "monotonicMs": 4313.282466,
+      "wallMs": 1788726020104
+    },
+    {
+      "monotonicMs": 4333.333962,
+      "wallMs": 1788726020124
+    },
+    {
+      "monotonicMs": 4353.608933,
+      "wallMs": 1788726020144
+    },
+    {
+      "monotonicMs": 4374.037281,
+      "wallMs": 1788726020164
+    },
+    {
+      "monotonicMs": 4395.504171,
+      "wallMs": 1788726020186
+    },
+    {
+      "monotonicMs": 4415.783425,
+      "wallMs": 1788726020206
+    },
+    {
+      "monotonicMs": 4436.275902,
+      "wallMs": 1788726020227
+    },
+    {
+      "monotonicMs": 4456.159923,
+      "wallMs": 1788726020246
+    },
+    {
+      "monotonicMs": 4475.761452,
+      "wallMs": 1788726020266
+    },
+    {
+      "monotonicMs": 4498.282458,
+      "wallMs": 1788726020289
+    },
+    {
+      "monotonicMs": 4518.349972,
+      "wallMs": 1788726020309
+    },
+    {
+      "monotonicMs": 4538.82846,
+      "wallMs": 1788726020329
+    },
+    {
+      "monotonicMs": 4559.087735,
+      "wallMs": 1788726020349
+    },
+    {
+      "monotonicMs": 4578.547384,
+      "wallMs": 1788726020369
+    },
+    {
+      "monotonicMs": 4598.92173,
+      "wallMs": 1788726020389
+    },
+    {
+      "monotonicMs": 4620.995356,
+      "wallMs": 1788726020411
+    },
+    {
+      "monotonicMs": 4641.11274,
+      "wallMs": 1788726020431
+    },
+    {
+      "monotonicMs": 4661.495733,
+      "wallMs": 1788726020452
+    },
+    {
+      "monotonicMs": 4681.920641,
+      "wallMs": 1788726020472
+    },
+    {
+      "monotonicMs": 4702.157166,
+      "wallMs": 1788726020492
+    },
+    {
+      "monotonicMs": 4722.981822,
+      "wallMs": 1788726020513
+    },
+    {
+      "monotonicMs": 4742.552731,
+      "wallMs": 1788726020533
+    },
+    {
+      "monotonicMs": 4763.931669,
+      "wallMs": 1788726020554
+    },
+    {
+      "monotonicMs": 4784.220744,
+      "wallMs": 1788726020575
+    },
+    {
+      "monotonicMs": 4804.439921,
+      "wallMs": 1788726020595
+    },
+    {
+      "monotonicMs": 4825.533182,
+      "wallMs": 1788726020616
+    },
+    {
+      "monotonicMs": 4845.828027,
+      "wallMs": 1788726020636
+    },
+    {
+      "monotonicMs": 4866.585319,
+      "wallMs": 1788726020657
+    },
+    {
+      "monotonicMs": 4889.404257,
+      "wallMs": 1788726020680
+    },
+    {
+      "monotonicMs": 4909.27401,
+      "wallMs": 1788726020700
+    },
+    {
+      "monotonicMs": 4928.810014,
+      "wallMs": 1788726020719
+    },
+    {
+      "monotonicMs": 4949.282669,
+      "wallMs": 1788726020740
+    },
+    {
+      "monotonicMs": 4971.51906,
+      "wallMs": 1788726020762
+    },
+    {
+      "monotonicMs": 4991.849656,
+      "wallMs": 1788726020782
+    },
+    {
+      "monotonicMs": 5012.019862,
+      "wallMs": 1788726020802
+    },
+    {
+      "monotonicMs": 5065.883633,
+      "wallMs": 1788726020856
+    },
+    {
+      "monotonicMs": 5086.701429,
+      "wallMs": 1788726020877
+    },
+    {
+      "monotonicMs": 5106.989983,
+      "wallMs": 1788726020897
+    },
+    {
+      "monotonicMs": 5126.895357,
+      "wallMs": 1788726020917
+    },
+    {
+      "monotonicMs": 5146.794955,
+      "wallMs": 1788726020937
+    },
+    {
+      "monotonicMs": 5167.184783,
+      "wallMs": 1788726020957
+    },
+    {
+      "monotonicMs": 5187.152406,
+      "wallMs": 1788726020977
+    },
+    {
+      "monotonicMs": 5210.154076,
+      "wallMs": 1788726021000
+    },
+    {
+      "monotonicMs": 5230.739991,
+      "wallMs": 1788726021021
+    },
+    {
+      "monotonicMs": 5251.125256,
+      "wallMs": 1788726021041
+    },
+    {
+      "monotonicMs": 5276.913725,
+      "wallMs": 1788726021067
+    },
+    {
+      "monotonicMs": 5297.317578,
+      "wallMs": 1788726021088
+    },
+    {
+      "monotonicMs": 5317.597101,
+      "wallMs": 1788726021108
+    },
+    {
+      "monotonicMs": 5346.199463,
+      "wallMs": 1788726021136
+    },
+    {
+      "monotonicMs": 5366.801697,
+      "wallMs": 1788726021157
+    },
+    {
+      "monotonicMs": 5386.821429,
+      "wallMs": 1788726021177
+    },
+    {
+      "monotonicMs": 5409.179882,
+      "wallMs": 1788726021199
+    },
+    {
+      "monotonicMs": 5429.467717,
+      "wallMs": 1788726021220
+    },
+    {
+      "monotonicMs": 5449.749429,
+      "wallMs": 1788726021240
+    },
+    {
+      "monotonicMs": 5470.07357,
+      "wallMs": 1788726021260
+    },
+    {
+      "monotonicMs": 5491.554812,
+      "wallMs": 1788726021282
+    },
+    {
+      "monotonicMs": 5512.360018,
+      "wallMs": 1788726021303
+    },
+    {
+      "monotonicMs": 5532.371972,
+      "wallMs": 1788726021323
+    },
+    {
+      "monotonicMs": 5553.884833,
+      "wallMs": 1788726021344
+    },
+    {
+      "monotonicMs": 5574.121713,
+      "wallMs": 1788726021364
+    },
+    {
+      "monotonicMs": 5593.962906,
+      "wallMs": 1788726021384
+    },
+    {
+      "monotonicMs": 5614.279663,
+      "wallMs": 1788726021405
+    },
+    {
+      "monotonicMs": 5636.988616,
+      "wallMs": 1788726021427
+    },
+    {
+      "monotonicMs": 5658.926915,
+      "wallMs": 1788726021449
+    },
+    {
+      "monotonicMs": 5679.631129,
+      "wallMs": 1788726021470
+    },
+    {
+      "monotonicMs": 5700.849862,
+      "wallMs": 1788726021491
+    },
+    {
+      "monotonicMs": 5721.059128,
+      "wallMs": 1788726021511
+    },
+    {
+      "monotonicMs": 5741.018957,
+      "wallMs": 1788726021531
+    },
+    {
+      "monotonicMs": 5761.274119,
+      "wallMs": 1788726021552
+    },
+    {
+      "monotonicMs": 5783.945863,
+      "wallMs": 1788726021574
+    },
+    {
+      "monotonicMs": 5804.224243,
+      "wallMs": 1788726021595
+    },
+    {
+      "monotonicMs": 5823.52659,
+      "wallMs": 1788726021614
+    },
+    {
+      "monotonicMs": 5843.767967,
+      "wallMs": 1788726021634
+    },
+    {
+      "monotonicMs": 5864.39002,
+      "wallMs": 1788726021655
+    },
+    {
+      "monotonicMs": 5883.781353,
+      "wallMs": 1788726021674
+    },
+    {
+      "monotonicMs": 5903.961631,
+      "wallMs": 1788726021694
+    },
+    {
+      "monotonicMs": 5933.166666,
+      "wallMs": 1788726021723
+    },
+    {
+      "monotonicMs": 5952.704314,
+      "wallMs": 1788726021743
+    },
+    {
+      "monotonicMs": 5973.14676,
+      "wallMs": 1788726021763
+    },
+    {
+      "monotonicMs": 5992.516247,
+      "wallMs": 1788726021783
+    },
+    {
+      "monotonicMs": 6012.979101,
+      "wallMs": 1788726021803
+    },
+    {
+      "monotonicMs": 6032.979374,
+      "wallMs": 1788726021823
+    },
+    {
+      "monotonicMs": 6053.22132,
+      "wallMs": 1788726021844
+    },
+    {
+      "monotonicMs": 6077.066049,
+      "wallMs": 1788726021867
+    },
+    {
+      "monotonicMs": 6096.979981,
+      "wallMs": 1788726021887
+    },
+    {
+      "monotonicMs": 6117.215928,
+      "wallMs": 1788726021908
+    },
+    {
+      "monotonicMs": 6137.350331,
+      "wallMs": 1788726021928
+    },
+    {
+      "monotonicMs": 6158.094864,
+      "wallMs": 1788726021948
+    },
+    {
+      "monotonicMs": 6178.22059,
+      "wallMs": 1788726021969
+    },
+    {
+      "monotonicMs": 6198.8706,
+      "wallMs": 1788726021989
+    },
+    {
+      "monotonicMs": 6227.118583,
+      "wallMs": 1788726022017
+    },
+    {
+      "monotonicMs": 6247.341527,
+      "wallMs": 1788726022038
+    },
+    {
+      "monotonicMs": 6267.795268,
+      "wallMs": 1788726022058
+    },
+    {
+      "monotonicMs": 6287.742397,
+      "wallMs": 1788726022078
+    },
+    {
+      "monotonicMs": 6307.898441,
+      "wallMs": 1788726022098
+    },
+    {
+      "monotonicMs": 6328.293648,
+      "wallMs": 1788726022119
+    },
+    {
+      "monotonicMs": 6348.615333,
+      "wallMs": 1788726022139
+    },
+    {
+      "monotonicMs": 6374.177137,
+      "wallMs": 1788726022164
+    },
+    {
+      "monotonicMs": 6394.339088,
+      "wallMs": 1788726022185
+    },
+    {
+      "monotonicMs": 6414.683393,
+      "wallMs": 1788726022205
+    },
+    {
+      "monotonicMs": 6434.714876,
+      "wallMs": 1788726022225
+    },
+    {
+      "monotonicMs": 6458.2372,
+      "wallMs": 1788726022249
+    },
+    {
+      "monotonicMs": 6478.263117,
+      "wallMs": 1788726022269
+    },
+    {
+      "monotonicMs": 6498.636543,
+      "wallMs": 1788726022289
+    },
+    {
+      "monotonicMs": 6520.236722,
+      "wallMs": 1788726022311
+    },
+    {
+      "monotonicMs": 6540.283088,
+      "wallMs": 1788726022331
+    },
+    {
+      "monotonicMs": 6560.552154,
+      "wallMs": 1788726022351
+    },
+    {
+      "monotonicMs": 6581.595749,
+      "wallMs": 1788726022372
+    },
+    {
+      "monotonicMs": 6601.76946,
+      "wallMs": 1788726022392
+    },
+    {
+      "monotonicMs": 6621.99759,
+      "wallMs": 1788726022412
+    },
+    {
+      "monotonicMs": 6641.988663,
+      "wallMs": 1788726022432
+    },
+    {
+      "monotonicMs": 6670.062752,
+      "wallMs": 1788726022460
+    },
+    {
+      "monotonicMs": 6690.679533,
+      "wallMs": 1788726022481
+    },
+    {
+      "monotonicMs": 6711.380647,
+      "wallMs": 1788726022502
+    },
+    {
+      "monotonicMs": 6731.124718,
+      "wallMs": 1788726022521
+    },
+    {
+      "monotonicMs": 6755.026206,
+      "wallMs": 1788726022545
+    },
+    {
+      "monotonicMs": 6774.999325,
+      "wallMs": 1788726022565
+    },
+    {
+      "monotonicMs": 6795.480467,
+      "wallMs": 1788726022586
+    },
+    {
+      "monotonicMs": 6816.317825,
+      "wallMs": 1788726022607
+    },
+    {
+      "monotonicMs": 6836.960016,
+      "wallMs": 1788726022627
+    },
+    {
+      "monotonicMs": 6857.271116,
+      "wallMs": 1788726022648
+    },
+    {
+      "monotonicMs": 6876.744001,
+      "wallMs": 1788726022667
+    },
+    {
+      "monotonicMs": 6898.586788,
+      "wallMs": 1788726022689
+    },
+    {
+      "monotonicMs": 6919.747224,
+      "wallMs": 1788726022710
+    },
+    {
+      "monotonicMs": 6939.740065,
+      "wallMs": 1788726022730
+    },
+    {
+      "monotonicMs": 6959.917854,
+      "wallMs": 1788726022750
+    },
+    {
+      "monotonicMs": 6981.001361,
+      "wallMs": 1788726022771
+    },
+    {
+      "monotonicMs": 7000.920372,
+      "wallMs": 1788726022791
+    },
+    {
+      "monotonicMs": 7021.480949,
+      "wallMs": 1788726022812
+    },
+    {
+      "monotonicMs": 7044.935161,
+      "wallMs": 1788726022835
+    },
+    {
+      "monotonicMs": 7066.459821,
+      "wallMs": 1788726022857
+    },
+    {
+      "monotonicMs": 7087.093638,
+      "wallMs": 1788726022877
+    },
+    {
+      "monotonicMs": 7107.547,
+      "wallMs": 1788726022898
+    },
+    {
+      "monotonicMs": 7133.88794,
+      "wallMs": 1788726022924
+    },
+    {
+      "monotonicMs": 7154.820121,
+      "wallMs": 1788726022945
+    },
+    {
+      "monotonicMs": 7175.597516,
+      "wallMs": 1788726022966
+    },
+    {
+      "monotonicMs": 7197.614113,
+      "wallMs": 1788726022988
+    },
+    {
+      "monotonicMs": 7217.700533,
+      "wallMs": 1788726023008
+    },
+    {
+      "monotonicMs": 7237.778923,
+      "wallMs": 1788726023028
+    },
+    {
+      "monotonicMs": 7258.200626,
+      "wallMs": 1788726023048
+    },
+    {
+      "monotonicMs": 7288.790091,
+      "wallMs": 1788726023079
+    },
+    {
+      "monotonicMs": 7309.654816,
+      "wallMs": 1788726023100
+    },
+    {
+      "monotonicMs": 7330.597164,
+      "wallMs": 1788726023121
+    },
+    {
+      "monotonicMs": 7352.970848,
+      "wallMs": 1788726023143
+    },
+    {
+      "monotonicMs": 7375.638173,
+      "wallMs": 1788726023166
+    },
+    {
+      "monotonicMs": 7396.09776,
+      "wallMs": 1788726023186
+    },
+    {
+      "monotonicMs": 7416.296836,
+      "wallMs": 1788726023207
+    },
+    {
+      "monotonicMs": 7442.392523,
+      "wallMs": 1788726023233
+    },
+    {
+      "monotonicMs": 7461.920738,
+      "wallMs": 1788726023252
+    },
+    {
+      "monotonicMs": 7482.480214,
+      "wallMs": 1788726023273
+    },
+    {
+      "monotonicMs": 7503.247561,
+      "wallMs": 1788726023294
+    },
+    {
+      "monotonicMs": 7523.971634,
+      "wallMs": 1788726023314
+    },
+    {
+      "monotonicMs": 7544.347725,
+      "wallMs": 1788726023335
+    },
+    {
+      "monotonicMs": 7564.514411,
+      "wallMs": 1788726023355
+    },
+    {
+      "monotonicMs": 7585.21503,
+      "wallMs": 1788726023376
+    },
+    {
+      "monotonicMs": 7605.242074,
+      "wallMs": 1788726023396
+    },
+    {
+      "monotonicMs": 7625.471829,
+      "wallMs": 1788726023416
+    },
+    {
+      "monotonicMs": 7645.929167,
+      "wallMs": 1788726023436
+    },
+    {
+      "monotonicMs": 7665.610291,
+      "wallMs": 1788726023456
+    },
+    {
+      "monotonicMs": 7692.507904,
+      "wallMs": 1788726023483
+    },
+    {
+      "monotonicMs": 7712.815765,
+      "wallMs": 1788726023503
+    },
+    {
+      "monotonicMs": 7733.464868,
+      "wallMs": 1788726023524
+    },
+    {
+      "monotonicMs": 7764.00619,
+      "wallMs": 1788726023554
+    },
+    {
+      "monotonicMs": 7784.599943,
+      "wallMs": 1788726023575
+    },
+    {
+      "monotonicMs": 7804.837563,
+      "wallMs": 1788726023595
+    },
+    {
+      "monotonicMs": 7824.978528,
+      "wallMs": 1788726023615
+    },
+    {
+      "monotonicMs": 7848.187445,
+      "wallMs": 1788726023638
+    },
+    {
+      "monotonicMs": 7868.373627,
+      "wallMs": 1788726023659
+    },
+    {
+      "monotonicMs": 7889.968385,
+      "wallMs": 1788726023680
+    },
+    {
+      "monotonicMs": 7916.238105,
+      "wallMs": 1788726023707
+    },
+    {
+      "monotonicMs": 7936.698965,
+      "wallMs": 1788726023727
+    },
+    {
+      "monotonicMs": 7956.925772,
+      "wallMs": 1788726023747
+    },
+    {
+      "monotonicMs": 7977.344051,
+      "wallMs": 1788726023768
+    },
+    {
+      "monotonicMs": 8003.633667,
+      "wallMs": 1788726023794
+    },
+    {
+      "monotonicMs": 8023.506135,
+      "wallMs": 1788726023814
+    },
+    {
+      "monotonicMs": 8044.669575,
+      "wallMs": 1788726023835
+    },
+    {
+      "monotonicMs": 8067.263664,
+      "wallMs": 1788726023858
+    },
+    {
+      "monotonicMs": 8086.859667,
+      "wallMs": 1788726023877
+    },
+    {
+      "monotonicMs": 8107.077656,
+      "wallMs": 1788726023897
+    },
+    {
+      "monotonicMs": 8127.44833,
+      "wallMs": 1788726023918
+    },
+    {
+      "monotonicMs": 8156.408014,
+      "wallMs": 1788726023947
+    },
+    {
+      "monotonicMs": 8175.854818,
+      "wallMs": 1788726023966
+    },
+    {
+      "monotonicMs": 8196.36798,
+      "wallMs": 1788726023987
+    },
+    {
+      "monotonicMs": 8216.35154,
+      "wallMs": 1788726024007
+    },
+    {
+      "monotonicMs": 8244.49463,
+      "wallMs": 1788726024035
+    },
+    {
+      "monotonicMs": 8264.736094,
+      "wallMs": 1788726024055
+    },
+    {
+      "monotonicMs": 8284.748198,
+      "wallMs": 1788726024075
+    },
+    {
+      "monotonicMs": 8315.763066,
+      "wallMs": 1788726024106
+    },
+    {
+      "monotonicMs": 8336.257284,
+      "wallMs": 1788726024127
+    },
+    {
+      "monotonicMs": 8356.468083,
+      "wallMs": 1788726024147
+    },
+    {
+      "monotonicMs": 8381.403578,
+      "wallMs": 1788726024172
+    },
+    {
+      "monotonicMs": 8401.166579,
+      "wallMs": 1788726024191
+    },
+    {
+      "monotonicMs": 8421.511153,
+      "wallMs": 1788726024212
+    },
+    {
+      "monotonicMs": 8442.281667,
+      "wallMs": 1788726024233
+    },
+    {
+      "monotonicMs": 8470.9843,
+      "wallMs": 1788726024261
+    },
+    {
+      "monotonicMs": 8490.64636,
+      "wallMs": 1788726024281
+    },
+    {
+      "monotonicMs": 8511.229996,
+      "wallMs": 1788726024302
+    },
+    {
+      "monotonicMs": 8532.204499,
+      "wallMs": 1788726024322
+    },
+    {
+      "monotonicMs": 8552.399335,
+      "wallMs": 1788726024343
+    },
+    {
+      "monotonicMs": 8572.577123,
+      "wallMs": 1788726024363
+    },
+    {
+      "monotonicMs": 8593.18806,
+      "wallMs": 1788726024383
+    },
+    {
+      "monotonicMs": 8613.460602,
+      "wallMs": 1788726024404
+    },
+    {
+      "monotonicMs": 8633.765702,
+      "wallMs": 1788726024424
+    },
+    {
+      "monotonicMs": 8653.960057,
+      "wallMs": 1788726024444
+    },
+    {
+      "monotonicMs": 8681.362441,
+      "wallMs": 1788726024472
+    },
+    {
+      "monotonicMs": 8700.795626,
+      "wallMs": 1788726024491
+    },
+    {
+      "monotonicMs": 8721.212938,
+      "wallMs": 1788726024512
+    },
+    {
+      "monotonicMs": 8728.543977,
+      "wallMs": 1788726024519
+    }
+  ],
+  "browserEvents": [
+    {
+      "slot": 3,
+      "monotonicMs": 1317.634277,
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slot": 2,
+      "monotonicMs": 1322.703613,
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slot": 1,
+      "monotonicMs": 1326.759303,
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slot": 0,
+      "monotonicMs": 1327.337818,
+      "kind": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

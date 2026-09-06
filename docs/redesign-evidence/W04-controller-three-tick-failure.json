@@ -1,0 +1,85 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: [{\"slot\":0,\"error\":\"ProtocolError: Prediction requires a fresh baseline\",\"tick\":135},{\"slot\":1,\"error\":\"ProtocolError: Prediction requires a fresh baseline\",\"tick\":135},{\"slot\":2,\"error\":\"ProtocolError: Prediction requires a fresh baseline\",\"tick\":135},{\"slot\":3,\"error\":\"ProtocolError: Prediction requires a fresh baseline\",\"tick\":135}]",
+  "room": {
+    "instanceId": "997c2632-a73d-4120-804b-1d6b13f1f6d9",
+    "workload": "controller",
+    "tick": 0,
+    "roomMode": "loading",
+    "clock": {
+      "mode": "stopped",
+      "tick": 0,
+      "timerPending": false,
+      "fault": null
+    },
+    "watchdogPending": false,
+    "peers": [
+      {
+        "slot": 0,
+        "active": true,
+        "inputFrames": 1,
+        "inputBytes": 92,
+        "renewedFrames": 0,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 1,
+        "snapshotBytes": 1416,
+        "maxQueuedCommands": 3,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 0,
+        "lastHeld": 0
+      },
+      {
+        "slot": 1,
+        "active": true,
+        "inputFrames": 1,
+        "inputBytes": 92,
+        "renewedFrames": 0,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 1,
+        "snapshotBytes": 1416,
+        "maxQueuedCommands": 3,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 0,
+        "lastHeld": 0
+      },
+      {
+        "slot": 2,
+        "active": true,
+        "inputFrames": 1,
+        "inputBytes": 92,
+        "renewedFrames": 0,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 1,
+        "snapshotBytes": 1416,
+        "maxQueuedCommands": 3,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 0,
+        "lastHeld": 0
+      },
+      {
+        "slot": 3,
+        "active": true,
+        "inputFrames": 1,
+        "inputBytes": 92,
+        "renewedFrames": 0,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 1,
+        "snapshotBytes": 1416,
+        "maxQueuedCommands": 3,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 0,
+        "lastHeld": 0
+      }
+    ],
+    "localCpu": [],
+    "callbacks": [],
+    "timers": []
+  }
+}

@@ -11,6 +11,7 @@ import { encounterProof } from "./encounter-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
+import { predictionProof } from "./prediction-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
@@ -86,6 +87,7 @@ export function contractProof() {
     route: routeProof(),
     compiledLevel: compiledLevelProof(),
     encounter: encounterProof(),
+    prediction: predictionProof(),
     routedEnemy: routedEnemyProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),

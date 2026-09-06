@@ -16,13 +16,13 @@ export interface PeerMetrics {
 }
 export interface RoomProbeStatus {
   instanceId: string;
-  workload: "standard" | "double";
+  workload: "standard" | "double" | "controller";
   tick: number;
   roomMode: string;
   clock: { mode: string; tick: number; timerPending: boolean; fault: unknown };
   watchdogPending: boolean;
   peers: PeerMetrics[];
-  /** [tick, local synthetic input/world/encode/send duration, encode-only duration], milliseconds. */
+  /** [tick, local input/world/encode/send duration, encode-only duration], milliseconds. */
   localCpu: Array<[number, number, number]>;
   /** [observed runtime milliseconds, steps, completed tick, lateness milliseconds]. */
   callbacks: Array<[number, number, number, number]>;
