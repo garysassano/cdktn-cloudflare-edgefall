@@ -1,0 +1,212 @@
+[
+  {
+    "name": "ack-only",
+    "byteLength": 32,
+    "input": {
+      "runEpoch": 1,
+      "connectionEpoch": 2,
+      "packetSequence": 3,
+      "snapshotAck": 4,
+      "eventAck": 5,
+      "commands": []
+    },
+    "hex": "4546030001002000010000000200000003000000040000000500000000000000"
+  },
+  {
+    "name": "one-command",
+    "byteLength": 52,
+    "input": {
+      "runEpoch": 1,
+      "connectionEpoch": 2,
+      "packetSequence": 3,
+      "snapshotAck": 4,
+      "eventAck": 5,
+      "commands": [
+        {
+          "sequence": 6,
+          "clientTick": 7,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": []
+        }
+      ]
+    },
+    "hex": "45460300010034000100000002000000030000000400000005000000010000000600000007000000080000001100000000000000"
+  },
+  {
+    "name": "three-commands",
+    "byteLength": 92,
+    "input": {
+      "runEpoch": 1,
+      "connectionEpoch": 2,
+      "packetSequence": 3,
+      "snapshotAck": 4,
+      "eventAck": 5,
+      "commands": [
+        {
+          "sequence": 6,
+          "clientTick": 7,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": []
+        },
+        {
+          "sequence": 7,
+          "clientTick": 8,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": []
+        },
+        {
+          "sequence": 8,
+          "clientTick": 9,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": []
+        }
+      ]
+    },
+    "hex": "4546030001005c00010000000200000003000000040000000500000003000000060000000700000008000000110000000000000007000000080000000800000011000000000000000800000009000000080000001100000000000000"
+  },
+  {
+    "name": "maximum-edges",
+    "byteLength": 284,
+    "input": {
+      "runEpoch": 1,
+      "connectionEpoch": 2,
+      "packetSequence": 3,
+      "snapshotAck": 4,
+      "eventAck": 5,
+      "commands": [
+        {
+          "sequence": 6,
+          "clientTick": 7,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": [
+            {
+              "kind": 5,
+              "id": 1
+            },
+            {
+              "kind": 5,
+              "id": 2
+            },
+            {
+              "kind": 5,
+              "id": 3
+            },
+            {
+              "kind": 5,
+              "id": 4
+            },
+            {
+              "kind": 5,
+              "id": 5
+            },
+            {
+              "kind": 5,
+              "id": 6
+            },
+            {
+              "kind": 5,
+              "id": 7
+            },
+            {
+              "kind": 5,
+              "id": 8
+            }
+          ]
+        },
+        {
+          "sequence": 7,
+          "clientTick": 8,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": [
+            {
+              "kind": 5,
+              "id": 9
+            },
+            {
+              "kind": 5,
+              "id": 10
+            },
+            {
+              "kind": 5,
+              "id": 11
+            },
+            {
+              "kind": 5,
+              "id": 12
+            },
+            {
+              "kind": 5,
+              "id": 13
+            },
+            {
+              "kind": 5,
+              "id": 14
+            },
+            {
+              "kind": 5,
+              "id": 15
+            },
+            {
+              "kind": 5,
+              "id": 16
+            }
+          ]
+        },
+        {
+          "sequence": 8,
+          "clientTick": 9,
+          "controlEpoch": 8,
+          "held": 17,
+          "aim": 0,
+          "edges": [
+            {
+              "kind": 5,
+              "id": 17
+            },
+            {
+              "kind": 5,
+              "id": 18
+            },
+            {
+              "kind": 5,
+              "id": 19
+            },
+            {
+              "kind": 5,
+              "id": 20
+            },
+            {
+              "kind": 5,
+              "id": 21
+            },
+            {
+              "kind": 5,
+              "id": 22
+            },
+            {
+              "kind": 5,
+              "id": 23
+            },
+            {
+              "kind": 5,
+              "id": 24
+            }
+          ]
+        }
+      ]
+    },
+    "hex": "4546030001001c0101000000020000000300000004000000050000000300000006000000070000000800000011000008000000000500000001000000050000000200000005000000030000000500000004000000050000000500000005000000060000000500000007000000050000000800000007000000080000000800000011000008000000000500000009000000050000000a000000050000000b000000050000000c000000050000000d000000050000000e000000050000000f0000000500000010000000080000000900000008000000110000080000000005000000110000000500000012000000050000001300000005000000140000000500000015000000050000001600000005000000170000000500000018000000"
+  }
+]

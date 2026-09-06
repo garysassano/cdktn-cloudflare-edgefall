@@ -2,9 +2,7 @@
   "compilerOptions": {
     "declaration": false,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ES2025"
-    ],
+    "lib": ["ES2025"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "noEmit": true,
@@ -15,17 +13,17 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "target": "ES2025",
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "include": [
     "src/main.ts",
     "src/stacks/**/*.ts",
     "src/game/**/*.ts",
+    "src/shared/**/*.ts",
     "test/**/*.ts",
     "e2e/**/*.ts",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    "scripts/validate-content.ts"
   ],
   "exclude": [
     ".gen",

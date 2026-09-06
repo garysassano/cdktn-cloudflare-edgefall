@@ -1,0 +1,15 @@
+export const PROTOCOL_MAJOR = 3;
+export const PROTOCOL_MINOR = 0;
+export const MAGIC = 0x4645;
+export const INPUT_TYPE = 1;
+export const INPUT_HEADER_BYTES = 32;
+export const COMMAND_BYTES = 20;
+export const EDGE_BYTES = 8;
+export const MAX_COMMANDS = 3;
+export const MAX_EDGES_PER_COMMAND = 8;
+export const MAX_INPUT_BYTES = 284;
+export const ACK_BYTES = 40;
+export const MAX_CLIENT_FRAME_BYTES = 2048;
+export const MAX_QUEUED_COMMANDS = 120;
+export const MAX_PREDICTION_TICKS = 180;
+export const MAX_EDGE_ADVANCE = 256;

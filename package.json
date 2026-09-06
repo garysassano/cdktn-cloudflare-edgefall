@@ -9,8 +9,9 @@
     "assets:validate": "node scripts/validate-assets.mjs",
     "bundle": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
     "cdktn": "cdktn",
-    "check": "pnpm lint && pnpm assets:validate && pnpm typecheck && pnpm test && pnpm synth",
+    "check": "pnpm lint && pnpm assets:validate && pnpm content:validate && pnpm typecheck && pnpm test && pnpm synth",
     "client:build": "node scripts/build-client.mjs",
+    "content:validate": "tsx scripts/validate-content.ts",
     "deploy": "pnpm assets:validate && pnpm client:build && cdktn deploy --auto-approve && cdktn output --skip-synth --outputs-file dist/cdktn-outputs.json && node scripts/build-deploy-config.mjs && wrangler d1 migrations apply RUNS --remote --config .wrangler.deploy.json && wrangler deploy --config .wrangler.deploy.json",
     "destroy": "cdktn destroy --auto-approve",
     "dev": "pnpm assets:validate && pnpm client:build && wrangler d1 migrations apply RUNS --local && wrangler dev",
@@ -24,11 +25,11 @@
     "pretest:watch": "pnpm bundle",
     "synth": "cdktn synth",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/worker/tsconfig.json && tsc --noEmit -p src/client/tsconfig.json",
     "types": "wrangler types",
-    "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
-    "test:e2e": "playwright test"
+    "worker:build": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler"
   },
   "dependencies": {
     "cdktn": "^0.24.0",
@@ -37,13 +38,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.10",
+    "@playwright/test": "1.63.0",
     "@types/node": "^24.13.3",
     "cdktn-cli": "^0.24.0",
     "esbuild": "^0.28.2",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2",
     "vitest": "^5.0.0",
-    "wrangler": "^4.127.0",
-    "@playwright/test": "1.63.0"
+    "wrangler": "^4.127.0"
   }
 }

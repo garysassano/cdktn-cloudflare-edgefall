@@ -12,5 +12,5 @@
     "strict": true,
     "target": "ES2025"
   },
-  "include": ["./**/*.ts", "../game/**/*.ts"]
+  "include": ["./**/*.ts", "../game/**/*.ts", "../shared/**/*.ts"]
 }
