@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T16:15:43.831Z",
+  "commit": "4cc7e12b0ac73e492d6d8f638715a7a8c579548b",
+  "sourceSha256": "824915f6a102b31eebde3f4a894f51ad7e8b9a4bb7e74793864467a51fdc0ae5",
+  "browserBundleSha256": "881bda934aceb9f9fbc748e6697aa9782cbc84336a07b1a6883b56e1c1f3609f",
+  "resultSha256": "b4a9352d480509b92aeee650184e39b478a3058bb16896cbc0237cbb36e31c52",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "snapshotBytes": [
+    {
+      "name": "one-player",
+      "bytes": 432
+    },
+    {
+      "name": "all-sections",
+      "bytes": 956
+    }
+  ],
+  "appliedTicks": [101, 102, 103],
+  "collisionSeeds": 256,
+  "collisionResults": {
+    "solidHits": 23,
+    "initialOverlaps": 10,
+    "oneWayHits": 6
+  },
+  "status": "pass",
+  "scope": "snapshot bytes/state, processed-input traces and 256 seeded solid/one-way sweep results; no integrated controller, renderer, gameplay replay or remote timer claim"
+}

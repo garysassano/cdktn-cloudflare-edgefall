@@ -103,7 +103,7 @@ try {
   assert.deepEqual(errors, []);
   const report = {
     schemaVersion: 1,
-    package: "W01",
+    package: "W01/W03",
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     sourceSha256: source.digest("hex"),
@@ -120,9 +120,17 @@ try {
       bytes: snapshot.hex.length / 2,
     })),
     appliedTicks: expected.trace.map((tick) => tick.input.serverTick),
+    collisionSeeds: expected.collision.samples.length,
+    collisionResults: {
+      solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,
+      initialOverlaps: expected.collision.samples.filter(
+        (sample) => sample.solid?.kind === "overlap",
+      ).length,
+      oneWayHits: expected.collision.samples.filter((sample) => sample.oneWay !== null).length,
+    },
     status: "pass",
     scope:
-      "snapshot bytes/state and processed-input trace equality; no renderer, gameplay or remote timer claim",
+      "snapshot bytes/state, processed-input traces and 256 seeded solid/one-way sweep results; no integrated controller, renderer, gameplay replay or remote timer claim",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));
