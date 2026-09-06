@@ -126,6 +126,7 @@ try {
     grounded: expected.grounded,
     restoredGroundedHash: expected.restoredGrounded.traceHash,
     seams: expected.seams,
+    navigation: expected.navigation,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
       traceHash: expected.controllerBoundaries.traceHash,

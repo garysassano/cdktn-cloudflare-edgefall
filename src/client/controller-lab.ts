@@ -10,6 +10,7 @@ import {
   stepControllerLab,
 } from "../game/labs/controller.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
+import { WalkSurface } from "../game/navigation/spans.js";
 import { worldRect } from "../game/physics/body.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -44,8 +45,14 @@ function pause(): void {
   jump = false;
   element("run").textContent = "Run";
 }
+let navigation: WalkSurface | null = null;
 function inspect(): void {
-  element("state").textContent = JSON.stringify(state, null, 2);
+  const shape = FOOT_SHAPES.get(state.actor.body.shapeId);
+  navigation =
+    shape && state.terrain.every((target) => target.delta.x === 0 && target.delta.y === 0)
+      ? new WalkSurface(state.terrain, shape, state.geometryRevision)
+      : null;
+  element("state").textContent = JSON.stringify({ ...state, navigation }, null, 2);
   element("status").textContent =
     `Tick ${state.tick} · revision ${state.geometryRevision} · ${state.stopped ?? (running ? "running" : "paused")} · ${commands.length} recorded inputs`;
 }
@@ -207,6 +214,14 @@ class ControllerLabScene extends Phaser.Scene {
         );
       }
     }
+    graphics.lineStyle(1, 0x82aaff);
+    for (const span of navigation?.spans ?? [])
+      graphics.lineBetween(
+        span.minX / 256,
+        span.y / 256 - (span.facing === 1 ? 2 : 4),
+        span.maxX / 256,
+        span.y / 256 - (span.facing === 1 ? 2 : 4),
+      );
     const body = state.actor.body;
     const shape = FOOT_SHAPES.get(body.shapeId);
     if (!shape) throw new Error("Missing rendered shape");

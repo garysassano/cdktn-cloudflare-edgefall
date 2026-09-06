@@ -1,6 +1,6 @@
 # W03 — Grounded patrol and coplanar collision seams
 
-Status: grounded enemy patrol now runs alongside the player in the rendered controller laboratory. Authored navigation links, combat, production world integration and W03/G1 final acceptance remain open.
+Status: grounded enemy patrol now runs alongside the player in the rendered controller laboratory. The subsequent [walkable surface compiler](./W03-navigation-spans.md) provides static clearance-checked spans; graph-driven traversal remains open. Authored navigation links, combat, production world integration and W03/G1 final acceptance remain open.
 
 ## Grounded behavior
 

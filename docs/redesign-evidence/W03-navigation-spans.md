@@ -1,0 +1,19 @@
+# W03 — Compiled walkable surfaces
+
+Status: static walkable root spans are compiled from collision geometry and visible in the engineering laboratory. Authored jump/drop links, their envelope validation and traversal execution remain required; this is not a complete navigation graph or W03/G1 acceptance.
+
+`src/game/navigation/spans.ts` compiles a `WalkSurface` for a feet-anchored shape and geometry revision. It merges coplanar solid/one-way top surfaces before shrinking them to positions with full-foot support, preserving walkability across tile seams. Each facing is compiled separately using the same asymmetric reflection convention as body collision. Intervals contain inclusive integer root coordinates; strict solid overlap removes blocked positions while exact ceiling/wall tangency remains legal. One-way undersides do not block standing clearance.
+
+Each immutable span carries a stable sorted ID within its revision, facing, Y, root X range and contributing support IDs. Input order cannot change output. `locate` rejects a mismatched geometry revision. Removing a bridge requires compiling the new geometry; its former spans disappear. Shape identity and revision belong to the compiled-content owner; content/build hashing remains W02 work.
+
+The compiler rejects moving targets instead of treating a sampled moving platform pose as proof of traversability. Moving-platform trajectory/link compilation remains open. Geometry is bounded by the existing 4,096-target grid contract, output by 8,192 spans, and clearance/provenance interval work by one million operations; exceeding a bound fails explicitly. World and local shape bounds are validated before compilation. No geometry is silently discarded to meet a bound.
+
+The controller lab overlays blue root intervals for both facings and exposes the compiled surface in its inspection panel. It recompiles from the current static geometry and shape; moving scenarios omit the static overlay. The panel is derived diagnostic data, not a new authoritative recording field. The patrol still uses its continuous support probe; graph-driven traversal is the next integration step.
+
+## Validation
+
+`pnpm check` passes 223 tests across 22 files, lint, asset/content validation, TypeScript, client/Worker dry-run builds and CDKTN synthesis. Six new tests cover seam merging, solid clearance versus one-way/tangent contact, asymmetric facing, revision/removal behavior, rejected moving/non-foot geometry, explicit resource-bound failure and an independent per-column support/rectangle-overlap oracle over 32 generated layouts, both facings, three heights and 51 root positions. Reversing geometry order preserves spans.
+
+[Node/Chromium/local-workerd evidence](./W03-navigation-runtime.json) agrees on the compiled asymmetric fixture and bridge removal, trace `40a032ce`, alongside the existing controller/patrol/seam proofs. [Chromium evidence](./W03-navigation-browser.json) verifies platform 110 contributes spans before removal and contributes none at revision 2. The [overlay screenshot](./W03-navigation-spans.png) was visually inspected. Report commit fields identify the pre-change base; source and bundle hashes identify tested code.
+
+Next: authored link schema, source/destination and trajectory clearance validation using the shared movement policy, deterministic traversal state and geometry invalidation during traversal. Raw LDtk compilation, enemy snapshots/prediction, world lifecycle/geometry journals, remaining rendered scenarios, replay playback and failure-seed minimization remain open. W02 bandwidth/timing/renderer/recovery/live and human acceptance gates remain unchanged. No deployment, dependency, production binding or final media changed.

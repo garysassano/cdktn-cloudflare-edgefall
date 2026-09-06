@@ -135,6 +135,7 @@ try {
   const patrol = await read();
   assert(patrol.enemy.turns >= 2);
   assert.equal(patrol.enemy.body.supportId, 110);
+  assert(patrol.navigation.spans.some((span) => span.supportIds.includes(110)));
   await page.evaluate(
     () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
   );
@@ -148,6 +149,8 @@ try {
   const landedEnemy = await read();
   assert.equal(landedEnemy.enemy.body.supportId, 100);
   assert.equal(landedEnemy.enemy.body.y, 300 * 256);
+  assert.equal(landedEnemy.navigation.geometryRevision, 2);
+  assert(landedEnemy.navigation.spans.every((span) => !span.supportIds.includes(110)));
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
   assert.deepEqual(errors, []);
@@ -174,6 +177,7 @@ try {
       "focus-loss pause and neutral input",
       "crush stop",
       "grounded patrol turns and independent player jump",
+      "compiled navigation spans and removal revision",
       "enemy support removal, gravity, landing and replay",
     ],
     patrol,

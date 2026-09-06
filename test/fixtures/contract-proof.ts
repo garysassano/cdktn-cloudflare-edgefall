@@ -8,6 +8,7 @@ import { collisionProof } from "./collision-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
+import { navigationProof } from "./navigation-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { spatialProof } from "./spatial-proof.js";
 
@@ -75,6 +76,7 @@ export function contractProof() {
     grounded: groundedProof(),
     restoredGrounded: groundedProof(600),
     seams: seamProof(),
+    navigation: navigationProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),
     spatial: spatialProof(),
