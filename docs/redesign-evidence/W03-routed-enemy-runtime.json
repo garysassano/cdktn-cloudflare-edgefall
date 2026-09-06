@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T19:06:56.398Z",
+  "commit": "0593b6119c936f98f1ed5e0e81e86a5785224693",
+  "sourceSha256": "97406bbfc88ad70ea5b31fd3f3119663fbb63a94c9d9052706fec64b6f93b74d",
+  "browserBundleSha256": "412b490347fb7074bc43dcf8b7e705ba1bf79e69519814506ad2ae051d5cf59a",
+  "resultSha256": "81f3c5d5ec2d5181667b39219c7e1ba345a632c4fce18469b9b5ec40e06104df",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "snapshotBytes": [
+    {
+      "name": "one-player",
+      "bytes": 432
+    },
+    {
+      "name": "all-sections",
+      "bytes": 956
+    }
+  ],
+  "routedEnemy": [
+    {
+      "remove": false,
+      "ticks": 150,
+      "traceHash": "6eaa6f07",
+      "checkpoints": [
+        {
+          "tick": 1,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 12800,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 100,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 100,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": {
+              "status": "route",
+              "geometryRevision": 1,
+              "from": {
+                "x": 12800,
+                "y": 76800,
+                "facing": 1
+              },
+              "destination": {
+                "x": 97280,
+                "y": 76800,
+                "facing": 1
+              },
+              "shapeId": 1,
+              "costTicks": 117,
+              "linkIds": [1, 2],
+              "legs": [
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 1,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 2,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 9
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                }
+              ]
+            },
+            "cursor": {
+              "startTick": 0,
+              "elapsed": 1,
+              "legIndex": 1,
+              "legElapsed": 0,
+              "traversal": null
+            },
+            "status": "routing",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": [
+            {
+              "kind": "route-started",
+              "id": 2,
+              "tick": 1,
+              "links": [1, 2]
+            }
+          ]
+        },
+        {
+          "tick": 60,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 54272,
+                "y": 71630,
+                "vx": 768,
+                "vy": -1210,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": null,
+                "grounded": false,
+                "contacts": []
+              },
+              "life": "alive",
+              "locomotion": "airborne",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 0,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": {
+              "status": "route",
+              "geometryRevision": 1,
+              "from": {
+                "x": 12800,
+                "y": 76800,
+                "facing": 1
+              },
+              "destination": {
+                "x": 97280,
+                "y": 76800,
+                "facing": 1
+              },
+              "shapeId": 1,
+              "costTicks": 117,
+              "linkIds": [1, 2],
+              "legs": [
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 1,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 2,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 9
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                }
+              ]
+            },
+            "cursor": {
+              "startTick": 0,
+              "elapsed": 60,
+              "legIndex": 6,
+              "legElapsed": 4,
+              "traversal": {
+                "linkId": 2,
+                "startTick": 56,
+                "elapsed": 4
+              }
+            },
+            "status": "routing",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": []
+        },
+        {
+          "tick": 61,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 55040,
+                "y": 70475,
+                "vx": 768,
+                "vy": -1155,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": null,
+                "grounded": false,
+                "contacts": []
+              },
+              "life": "alive",
+              "locomotion": "airborne",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 0,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": {
+              "status": "route",
+              "geometryRevision": 1,
+              "from": {
+                "x": 12800,
+                "y": 76800,
+                "facing": 1
+              },
+              "destination": {
+                "x": 97280,
+                "y": 76800,
+                "facing": 1
+              },
+              "shapeId": 1,
+              "costTicks": 117,
+              "linkIds": [1, 2],
+              "legs": [
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 1,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 2,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 9
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                }
+              ]
+            },
+            "cursor": {
+              "startTick": 0,
+              "elapsed": 61,
+              "legIndex": 6,
+              "legElapsed": 5,
+              "traversal": {
+                "linkId": 2,
+                "startTick": 56,
+                "elapsed": 5
+              }
+            },
+            "status": "routing",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": []
+        },
+        {
+          "tick": 117,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 97280,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 102,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 102,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": null,
+            "cursor": null,
+            "status": "arrived",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": []
+        },
+        {
+          "tick": 150,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 97280,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 102,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 102,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": null,
+            "cursor": null,
+            "status": "arrived",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": []
+        }
+      ],
+      "finalState": "{\"actor\":{\"action\":{\"actionInstanceId\":0,\"definitionId\":0,\"kind\":\"ready\",\"nextMarkerIndex\":0,\"stateStartTick\":0},\"aim\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":1,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":20480,\"y\":76800},\"controlEpoch\":1,\"coyoteTicks\":4,\"facing\":1,\"geometryRevision\":1,\"grenadeCooldownTicks\":0,\"grenadeStock\":10,\"health\":1,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"invulnerableTicks\":0,\"jumpBufferTicks\":0,\"lastRallyMission\":0,\"life\":\"alive\",\"lives\":3,\"locomotion\":\"grounded\",\"meleeCooldownTicks\":0,\"playerId\":1,\"processedEdgeIds\":[0,0,0,0,0],\"reboardCooldownTicks\":0,\"slot\":0,\"vehicleId\":null,\"vehicleSpecialTicks\":0,\"weapon\":{\"ammo\":0,\"cooldownTicks\":0,\"id\":\"sidearm\",\"lastActionInstanceId\":0,\"shotOrdinal\":0}},\"enemy\":null,\"enemyNavigationEvents\":[],\"geometryRevision\":1,\"navigatingEnemy\":{\"actor\":{\"action\":{\"actionInstanceId\":0,\"definitionId\":0,\"kind\":\"ready\",\"nextMarkerIndex\":0,\"stateStartTick\":0},\"aim\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":102,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":2,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":102,\"vx\":0,\"vy\":0,\"x\":97280,\"y\":76800},\"coyoteTicks\":4,\"facing\":1,\"geometryRevision\":1,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"jumpBufferTicks\":0,\"life\":\"alive\",\"locomotion\":\"grounded\",\"vehicleId\":null},\"cursor\":null,\"goal\":{\"facing\":1,\"x\":97280,\"y\":76800},\"nextPlanTick\":0,\"plan\":null,\"plans\":1,\"reason\":null,\"removalReason\":null,\"status\":\"arrived\"},\"removed\":false,\"resolvedEnemies\":[],\"route\":null,\"scenario\":\"enemy-route\",\"stopped\":null,\"tick\":150,\"traversal\":null,\"traversalStatus\":\"idle\"}"
+    },
+    {
+      "remove": true,
+      "ticks": 150,
+      "traceHash": "b454a5f7",
+      "checkpoints": [
+        {
+          "tick": 1,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 12800,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 100,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 100,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": {
+              "status": "route",
+              "geometryRevision": 1,
+              "from": {
+                "x": 12800,
+                "y": 76800,
+                "facing": 1
+              },
+              "destination": {
+                "x": 97280,
+                "y": 76800,
+                "facing": 1
+              },
+              "shapeId": 1,
+              "costTicks": 117,
+              "linkIds": [1, 2],
+              "legs": [
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 1,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 2,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 9
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                }
+              ]
+            },
+            "cursor": {
+              "startTick": 0,
+              "elapsed": 1,
+              "legIndex": 1,
+              "legElapsed": 0,
+              "traversal": null
+            },
+            "status": "routing",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": [
+            {
+              "kind": "route-started",
+              "id": 2,
+              "tick": 1,
+              "links": [1, 2]
+            }
+          ]
+        },
+        {
+          "tick": 60,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 54272,
+                "y": 71630,
+                "vx": 768,
+                "vy": -1210,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": null,
+                "grounded": false,
+                "contacts": []
+              },
+              "life": "alive",
+              "locomotion": "airborne",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 0,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 1
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": {
+              "status": "route",
+              "geometryRevision": 1,
+              "from": {
+                "x": 12800,
+                "y": 76800,
+                "facing": 1
+              },
+              "destination": {
+                "x": 97280,
+                "y": 76800,
+                "facing": 1
+              },
+              "shapeId": 1,
+              "costTicks": 117,
+              "linkIds": [1, 2],
+              "legs": [
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 1,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": -1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 1
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                },
+                {
+                  "kind": "traverse",
+                  "linkId": 2,
+                  "ticks": 51
+                },
+                {
+                  "kind": "walk",
+                  "direction": 1,
+                  "ticks": 9
+                },
+                {
+                  "kind": "settle",
+                  "ticks": 1
+                }
+              ]
+            },
+            "cursor": {
+              "startTick": 0,
+              "elapsed": 60,
+              "legIndex": 6,
+              "legElapsed": 4,
+              "traversal": {
+                "linkId": 2,
+                "startTick": 56,
+                "elapsed": 4
+              }
+            },
+            "status": "routing",
+            "reason": null,
+            "removalReason": null,
+            "nextPlanTick": 0,
+            "plans": 1
+          },
+          "events": []
+        },
+        {
+          "tick": 61,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 54272,
+                "y": 70475,
+                "vx": 0,
+                "vy": -1155,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": null,
+                "grounded": false,
+                "contacts": []
+              },
+              "life": "alive",
+              "locomotion": "airborne",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 0,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 2
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": null,
+            "cursor": null,
+            "status": "waiting",
+            "reason": "geometry",
+            "removalReason": null,
+            "nextPlanTick": 62,
+            "plans": 1
+          },
+          "events": [
+            {
+              "kind": "route-cancelled",
+              "id": 2,
+              "tick": 61,
+              "reason": "geometry"
+            }
+          ]
+        },
+        {
+          "tick": 117,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 54272,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 101,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 101,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 2
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": null,
+            "cursor": null,
+            "status": "unreachable",
+            "reason": "no-route",
+            "removalReason": null,
+            "nextPlanTick": 138,
+            "plans": 2
+          },
+          "events": []
+        },
+        {
+          "tick": 150,
+          "enemy": {
+            "actor": {
+              "body": {
+                "id": 2,
+                "x": 54272,
+                "y": 76800,
+                "vx": 0,
+                "vy": 0,
+                "remainderX": 0,
+                "remainderY": 0,
+                "shapeId": 1,
+                "supportId": 101,
+                "grounded": true,
+                "contacts": [
+                  {
+                    "otherId": 101,
+                    "normalX": 0,
+                    "normalY": -1,
+                    "toiNumerator": 1,
+                    "toiDenominator": 1,
+                    "kind": "solid"
+                  }
+                ]
+              },
+              "life": "alive",
+              "locomotion": "grounded",
+              "action": {
+                "kind": "ready",
+                "actionInstanceId": 0,
+                "stateStartTick": 0,
+                "definitionId": 0,
+                "nextMarkerIndex": 0
+              },
+              "facing": 1,
+              "aim": 0,
+              "jumpBufferTicks": 0,
+              "coyoteTicks": 4,
+              "ignoredSupportId": null,
+              "ignoredSupportTicks": 0,
+              "vehicleId": null,
+              "geometryRevision": 2
+            },
+            "goal": {
+              "x": 97280,
+              "y": 76800,
+              "facing": 1
+            },
+            "plan": null,
+            "cursor": null,
+            "status": "unreachable",
+            "reason": "no-route",
+            "removalReason": null,
+            "nextPlanTick": 168,
+            "plans": 3
+          },
+          "events": []
+        }
+      ],
+      "finalState": "{\"actor\":{\"action\":{\"actionInstanceId\":0,\"definitionId\":0,\"kind\":\"ready\",\"nextMarkerIndex\":0,\"stateStartTick\":0},\"aim\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":1,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":20480,\"y\":76800},\"controlEpoch\":1,\"coyoteTicks\":4,\"facing\":1,\"geometryRevision\":2,\"grenadeCooldownTicks\":0,\"grenadeStock\":10,\"health\":1,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"invulnerableTicks\":0,\"jumpBufferTicks\":0,\"lastRallyMission\":0,\"life\":\"alive\",\"lives\":3,\"locomotion\":\"grounded\",\"meleeCooldownTicks\":0,\"playerId\":1,\"processedEdgeIds\":[0,0,0,0,0],\"reboardCooldownTicks\":0,\"slot\":0,\"vehicleId\":null,\"vehicleSpecialTicks\":0,\"weapon\":{\"ammo\":0,\"cooldownTicks\":0,\"id\":\"sidearm\",\"lastActionInstanceId\":0,\"shotOrdinal\":0}},\"enemy\":null,\"enemyNavigationEvents\":[],\"geometryRevision\":2,\"navigatingEnemy\":{\"actor\":{\"action\":{\"actionInstanceId\":0,\"definitionId\":0,\"kind\":\"ready\",\"nextMarkerIndex\":0,\"stateStartTick\":0},\"aim\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":101,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":2,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":101,\"vx\":0,\"vy\":0,\"x\":54272,\"y\":76800},\"coyoteTicks\":4,\"facing\":1,\"geometryRevision\":2,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"jumpBufferTicks\":0,\"life\":\"alive\",\"locomotion\":\"grounded\",\"vehicleId\":null},\"cursor\":null,\"goal\":{\"facing\":1,\"x\":97280,\"y\":76800},\"nextPlanTick\":168,\"plan\":null,\"plans\":3,\"reason\":\"no-route\",\"removalReason\":null,\"status\":\"unreachable\"},\"removed\":true,\"resolvedEnemies\":[],\"route\":null,\"scenario\":\"enemy-route\",\"stopped\":null,\"tick\":150,\"traversal\":null,\"traversalStatus\":\"idle\"}"
+    }
+  ],
+  "status": "pass",
+  "scope": "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim"
+}

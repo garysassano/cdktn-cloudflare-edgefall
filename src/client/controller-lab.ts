@@ -5,6 +5,7 @@ import {
   type LabCommand,
   type LabRecording,
   createControllerLab,
+  labEnemyPreview,
   labFingerprint,
   labRoute,
   labTraversal,
@@ -76,7 +77,7 @@ function step(): void {
   inspect();
 }
 function recording(): LabRecording {
-  return { format: 4, scenario: state.scenario, commands, finalState: labFingerprint(state) };
+  return { format: 5, scenario: state.scenario, commands, finalState: labFingerprint(state) };
 }
 function reset(): void {
   pause();
@@ -210,6 +211,21 @@ class ControllerLabScene extends Phaser.Scene {
       );
       graphics.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
     }
+    if (state.navigatingEnemy && state.navigatingEnemy.status !== "removed") {
+      const actor = state.navigatingEnemy.actor;
+      const shape = FOOT_SHAPES.get(actor.body.shapeId);
+      if (shape) {
+        const rect = worldRect(actor.body, shape.rect, actor.facing);
+        graphics.lineStyle(2, 0xff9876);
+        graphics.strokeRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+        graphics.lineBetween(
+          actor.body.x / 256,
+          actor.body.y / 256 - 12,
+          actor.body.x / 256 + actor.facing * 12,
+          actor.body.y / 256 - 12,
+        );
+      }
+    }
     if (state.enemy && state.enemy.life === "alive") {
       const enemy = state.enemy;
       const shape = FOOT_SHAPES.get(enemy.body.shapeId);
@@ -226,7 +242,10 @@ class ControllerLabScene extends Phaser.Scene {
       }
     }
     graphics.lineStyle(1, 0xbd93f9);
-    const planned = labTraversal(state.scenario) ?? labRoute(state.scenario);
+    const planned =
+      labTraversal(state.scenario) ??
+      labRoute(state.scenario) ??
+      labEnemyPreview(state.scenario, state.removed);
     if (planned && planned.geometryRevision === state.geometryRevision) {
       for (let i = 1; i < planned.poses.length; i++) {
         const a = planned.poses[i - 1],

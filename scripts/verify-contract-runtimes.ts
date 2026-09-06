@@ -129,6 +129,7 @@ try {
     navigation: expected.navigation,
     traversal: expected.traversal,
     route: expected.route,
+    routedEnemy: expected.routedEnemy,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
       traceHash: expected.controllerBoundaries.traceHash,

@@ -1,19 +1,20 @@
 import { stateHash } from "../../src/game/core/canonical.js";
 import { traversalFixture } from "../../src/game/labs/traversal.js";
-import type { TraversalCursor } from "../../src/game/navigation/links.js";
+import type { TraversalCursor, TraversalStep } from "../../src/game/navigation/links.js";
 import { CollisionGrid, CollisionIndex } from "../../src/game/physics/grid.js";
+import type { ControlledActor } from "../../src/game/state.js";
 
 export function traversalProof() {
   const routes = (["jump", "drop"] as const).map((kind) => {
     const { actor: source, targets, link } = traversalFixture(kind);
-    let actor = source;
+    let actor: ControlledActor = source;
     let cursor: TraversalCursor | null = link.begin(actor, 100);
     const trace = [];
     for (let elapsed = 0; elapsed < link.commands.length; elapsed++) {
       if (!cursor) throw new Error("Premature traversal completion");
       const frame = { tick: 101 + elapsed, geometryRevision: 1 };
       const index = new CollisionIndex(new CollisionGrid(targets), [], frame);
-      const result = link.step(actor, cursor, index, frame);
+      const result: TraversalStep = link.step(actor, cursor, index, frame);
       const restored = link.step(
         JSON.parse(JSON.stringify(actor)),
         JSON.parse(JSON.stringify(cursor)),
@@ -36,11 +37,11 @@ export function traversalProof() {
     };
   });
   const { actor: source, targets, link } = traversalFixture("jump");
-  let actor = source;
+  let actor: ControlledActor = source;
   let cursor = link.begin(actor, 0);
   for (let tick = 1; tick <= 10; tick++) {
     const frame = { tick, geometryRevision: 1 };
-    const result = link.step(
+    const result: TraversalStep = link.step(
       actor,
       cursor,
       new CollisionIndex(new CollisionGrid(targets), [], frame),

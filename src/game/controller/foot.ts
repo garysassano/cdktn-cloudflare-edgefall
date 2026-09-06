@@ -4,7 +4,7 @@ import { HELD_MASK, directionalIntent } from "../input/types.js";
 import { type BodyStep, startSupport, stepBody, tryBodyShape, worldRect } from "../physics/body.js";
 import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
 import { ARCADE } from "../rules.js";
-import type { ControlledActor } from "../state.js";
+import type { ControlledActor, FootActor } from "../state.js";
 
 /** Already admitted tick intent. The input/world owner deduplicates and acknowledges edges. */
 export interface FootIntent {
@@ -16,24 +16,23 @@ export interface FootEvent {
   tick: number;
   supportId: number | null;
 }
-export type FootStep =
-  | { status: "inactive"; actor: ControlledActor }
+export type FootStep<T extends FootActor = ControlledActor> =
+  | { status: "inactive"; actor: T }
   | { status: "failed"; physics: Extract<BodyStep, { status: "failed" }> }
   | {
       status: "complete";
-      actor: ControlledActor;
+      actor: T;
       events: FootEvent[];
       jumpRequest: "none" | "buffered" | "consumed" | "unavailable";
       physics: Extract<BodyStep, { status: "complete" }>;
     };
 
-function clone(actor: ControlledActor): ControlledActor {
+/** Clone locomotion-owned records; caller-owned extensions are preserved and never mutated here. */
+function clone<T extends FootActor>(actor: T): T {
   return {
     ...actor,
     body: { ...actor.body, contacts: actor.body.contacts.map((contact) => ({ ...contact })) },
     action: { ...actor.action },
-    weapon: { ...actor.weapon },
-    processedEdgeIds: [...actor.processedEdgeIds],
   };
 }
 function required(shapes: ReadonlyMap<number, ShapeDefinition>, id: number): ShapeDefinition {
@@ -43,15 +42,15 @@ function required(shapes: ReadonlyMap<number, ShapeDefinition>, id: number): Sha
 }
 
 /** Pure one-tick on-foot locomotion. Combat, seat transitions and lifecycle remain world-owned. */
-export function stepFootController(
-  current: ControlledActor,
+export function stepFootController<T extends FootActor>(
+  current: T,
   intent: FootIntent,
   definition: ActorDefinition,
   shapes: ReadonlyMap<number, ShapeDefinition>,
   index: CollisionIndex,
   frame: CollisionFrame,
   controlsLocked = false,
-): FootStep {
+): FootStep<T> {
   index.assertFrame(frame);
   integer(intent.held, 0, HELD_MASK, "controller held mask");
   if (typeof intent.jumpPressed !== "boolean") throw new Error("Invalid jump edge intent");

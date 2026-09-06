@@ -3,7 +3,7 @@ import { type FootStep, stepFootController } from "../controller/foot.js";
 import { COUNTER_LIMIT, integer, position } from "../core/numeric.js";
 import { Held } from "../input/types.js";
 import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
-import type { ControlledActor } from "../state.js";
+import type { ControlledActor, FootActor } from "../state.js";
 import type { NavigationGraph, NavigationPoint, RouteLeg, RouteResult } from "./graph.js";
 import type { TraversalCursor } from "./links.js";
 
@@ -14,28 +14,28 @@ export interface RouteCursor {
   legElapsed: number;
   traversal: TraversalCursor | null;
 }
-export type RouteStep =
+export type RouteStep<T extends FootActor = ControlledActor> =
   | {
       status: "active" | "arrived";
-      actor: ControlledActor;
+      actor: T;
       cursor: RouteCursor | null;
-      result: Extract<FootStep, { status: "complete" }>;
+      result: Extract<FootStep<T>, { status: "complete" }>;
     }
   | {
       status: "cancelled";
       reason: "geometry" | "state" | "launch" | "trajectory";
-      actor: ControlledActor;
+      actor: T;
       cursor: null;
-      result: Exclude<FootStep, { status: "failed" }>;
+      result: Exclude<FootStep<T>, { status: "failed" }>;
     }
-  | { status: "failed"; result: Extract<FootStep, { status: "failed" }> };
-function point(actor: ControlledActor): NavigationPoint {
+  | { status: "failed"; result: Extract<FootStep<T>, { status: "failed" }> };
+function point(actor: FootActor): NavigationPoint {
   return { x: actor.body.x, y: actor.body.y, facing: actor.facing };
 }
 function same(a: NavigationPoint, b: NavigationPoint): boolean {
   return a.x === b.x && a.y === b.y && a.facing === b.facing;
 }
-function ready(actor: ControlledActor): boolean {
+function ready(actor: FootActor): boolean {
   return actor.life === "alive" && actor.vehicleId === null && actor.action.kind === "ready";
 }
 
@@ -114,7 +114,7 @@ export class RouteFollower {
     this.poses = Object.freeze(poses);
     Object.freeze(this);
   }
-  begin(actor: ControlledActor, startTick: number): RouteCursor {
+  begin(actor: FootActor, startTick: number): RouteCursor {
     integer(startTick, 0, COUNTER_LIMIT - 3602, "route start tick");
     const source = this.poses[0];
     if (
@@ -130,12 +130,12 @@ export class RouteFollower {
       throw new Error("Route source mismatch");
     return { startTick, elapsed: 0, legIndex: 0, legElapsed: 0, traversal: null };
   }
-  step(
-    actor: ControlledActor,
+  step<T extends FootActor>(
+    actor: T,
     cursor: RouteCursor,
     index: CollisionIndex,
     frame: CollisionFrame,
-  ): RouteStep {
+  ): RouteStep<T> {
     index.assertFrame(frame);
     integer(cursor.startTick, 0, COUNTER_LIMIT - 3602, "route start tick");
     integer(cursor.elapsed, 0, this.poses.length - 2, "route elapsed");
@@ -157,7 +157,7 @@ export class RouteFollower {
         : !expected || !same(point(actor), expected) || !ready(actor)
           ? "state"
           : null;
-    let result: FootStep;
+    let result: FootStep<T>;
     let traversal = cursor.traversal;
     if (!reason && leg.kind === "traverse") {
       const link = this.#graph.link(leg.linkId);
@@ -224,7 +224,11 @@ export class RouteFollower {
       result,
     };
   }
-  #neutral(actor: ControlledActor, index: CollisionIndex, frame: CollisionFrame): FootStep {
+  #neutral<T extends FootActor>(
+    actor: T,
+    index: CollisionIndex,
+    frame: CollisionFrame,
+  ): FootStep<T> {
     return stepFootController(
       { ...actor, geometryRevision: frame.geometryRevision, jumpBufferTicks: 0 },
       { held: 0, jumpPressed: false },

@@ -8,9 +8,14 @@ import {
 } from "../src/game/labs/controller.js";
 import { FOOT_DEFINITION, FOOT_SHAPES, footTerrain } from "../src/game/labs/foot-fixture.js";
 import { traversalFixture } from "../src/game/labs/traversal.js";
-import { CompiledTraversal, type TraversalCursor } from "../src/game/navigation/links.js";
+import {
+  CompiledTraversal,
+  type TraversalCursor,
+  type TraversalStep,
+} from "../src/game/navigation/links.js";
 import { WalkSurface } from "../src/game/navigation/spans.js";
 import { CollisionGrid, CollisionIndex } from "../src/game/physics/grid.js";
+import type { ControlledActor } from "../src/game/state.js";
 
 function fixture(kind: "jump" | "drop" = "jump") {
   return traversalFixture(kind);
@@ -21,13 +26,13 @@ describe("authored traversal links", () => {
     (kind) => {
       const { actor: initial, targets, link } = fixture(kind);
       expect(link.commands.length).toBe(kind === "jump" ? 51 : 27);
-      let actor = initial;
+      let actor: ControlledActor = initial;
       let cursor: TraversalCursor | null = link.begin(actor, 500);
       for (let elapsed = 0; elapsed < link.commands.length; elapsed++) {
         if (!cursor) throw new Error("Unexpected completion");
         const frame = { tick: 501 + elapsed, geometryRevision: 1 };
         const index = new CollisionIndex(new CollisionGrid(targets), [], frame);
-        const result = link.step(actor, cursor, index, frame);
+        const result: TraversalStep = link.step(actor, cursor, index, frame);
         const restored = link.step(
           JSON.parse(JSON.stringify(actor)),
           JSON.parse(JSON.stringify(cursor)),
@@ -135,11 +140,11 @@ describe("authored traversal links", () => {
   });
   it("cancels a removed destination but continues actual airborne gravity once", () => {
     const { actor: initial, targets, link } = fixture();
-    let actor = initial;
+    let actor: ControlledActor = initial;
     let cursor = link.begin(actor, 0);
     for (let tick = 1; tick <= 10; tick++) {
       const frame = { tick, geometryRevision: 1 };
-      const result = link.step(
+      const result: TraversalStep = link.step(
         actor,
         cursor,
         new CollisionIndex(new CollisionGrid(targets), [], frame),
@@ -150,7 +155,7 @@ describe("authored traversal links", () => {
       cursor = result.cursor;
     }
     const frame = { tick: 11, geometryRevision: 2 };
-    const result = link.step(
+    const result: TraversalStep = link.step(
       actor,
       cursor,
       new CollisionIndex(new CollisionGrid(targets.filter((t) => t.id !== 101)), [], frame),
@@ -171,7 +176,7 @@ describe("authored traversal links", () => {
     const cursor = link.begin(actor, 0);
     const frame = { tick: 1, geometryRevision: 1 };
     const wall = [...targets, footTerrain(102, 107, 200, 10, 100)];
-    const result = link.step(
+    const result: TraversalStep = link.step(
       actor,
       cursor,
       new CollisionIndex(new CollisionGrid(wall), [], frame),
@@ -214,7 +219,7 @@ describe("authored traversal links", () => {
       expect(state.actor.body.supportId).toBe(101);
       expect(
         labFingerprint(
-          replayControllerLab({ format: 4, scenario, commands, finalState: labFingerprint(state) }),
+          replayControllerLab({ format: 5, scenario, commands, finalState: labFingerprint(state) }),
         ),
       ).toBe(labFingerprint(state));
     },
@@ -228,7 +233,7 @@ describe("authored traversal links", () => {
     ).toThrow("tick/cursor");
     const nextFrame = { tick: 1, geometryRevision: 1 };
     const changed = { ...actor, body: { ...actor.body, x: actor.body.x + 10 } };
-    const result = link.step(
+    const result: TraversalStep = link.step(
       changed,
       cursor,
       new CollisionIndex(new CollisionGrid(targets), [], nextFrame),

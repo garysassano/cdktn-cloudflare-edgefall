@@ -11,6 +11,7 @@ import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { routeProof } from "./route-proof.js";
+import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { spatialProof } from "./spatial-proof.js";
 import { traversalProof } from "./traversal-proof.js";
 
@@ -81,6 +82,7 @@ export function contractProof() {
     navigation: navigationProof(),
     traversal: traversalProof(),
     route: routeProof(),
+    routedEnemy: routedEnemyProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),
     spatial: spatialProof(),

@@ -1,13 +1,14 @@
 import { CONTRACT_FIXTURE } from "../content/contract-fixture.js";
 import { pixels } from "../core/numeric.js";
 import type { SweepTarget } from "../physics/sweep.js";
-import type { ControlledActor } from "../state.js";
+import type { ControlledActor, FootActor } from "../state.js";
 
 export const FOOT_SHAPES = new Map(CONTRACT_FIXTURE.shapes.map((shape) => [shape.id, shape]));
 export const FOOT_DEFINITION = CONTRACT_FIXTURE.actors[0];
 if (!FOOT_DEFINITION) throw new Error("Missing foot fixture definition");
 
-export function footActor(x = 0, y = 0): ControlledActor {
+/** Locomotion-only engineering state, also used by enemies. */
+export function footState(x = 0, y = 0): FootActor {
   return {
     body: {
       id: 1,
@@ -22,9 +23,6 @@ export function footActor(x = 0, y = 0): ControlledActor {
       grounded: true,
       contacts: [],
     },
-    playerId: 1,
-    slot: 0,
-    controlEpoch: 1,
     life: "alive",
     locomotion: "grounded",
     action: {
@@ -40,15 +38,23 @@ export function footActor(x = 0, y = 0): ControlledActor {
     coyoteTicks: 4,
     ignoredSupportId: null,
     ignoredSupportTicks: 0,
+    vehicleId: null,
+    geometryRevision: 1,
+  };
+}
+export function footActor(x = 0, y = 0): ControlledActor {
+  return {
+    ...footState(x, y),
+    playerId: 1,
+    slot: 0,
+    controlEpoch: 1,
     invulnerableTicks: 0,
     reboardCooldownTicks: 0,
     vehicleSpecialTicks: 0,
-    vehicleId: null,
     weapon: { id: "sidearm", ammo: 0, cooldownTicks: 0, shotOrdinal: 0, lastActionInstanceId: 0 },
     grenadeStock: 10,
     grenadeCooldownTicks: 0,
     meleeCooldownTicks: 0,
-    geometryRevision: 1,
     health: 1,
     lives: 3,
     lastRallyMission: 0,

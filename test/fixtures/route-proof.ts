@@ -3,6 +3,7 @@ import { routeFixture } from "../../src/game/labs/route.js";
 import type { RouteCursor, RouteStep } from "../../src/game/navigation/follower.js";
 import { NavigationGraph } from "../../src/game/navigation/graph.js";
 import { CollisionGrid, CollisionIndex } from "../../src/game/physics/grid.js";
+import type { ControlledActor } from "../../src/game/state.js";
 
 export function routeProof() {
   const {
@@ -21,7 +22,7 @@ export function routeProof() {
     destination,
     1,
   );
-  let actor = initial;
+  let actor: ControlledActor = initial;
   let cursor: RouteCursor | null = follower.begin(actor, 0);
   let traceHash = "00000000";
   const checkpoints = [];
@@ -30,7 +31,7 @@ export function routeProof() {
     if (!cursor) throw new Error("Early route arrival");
     const frame = { tick, geometryRevision: 1 };
     const index = new CollisionIndex(new CollisionGrid(targets), [], frame);
-    const result = follower.step(actor, cursor, index, frame);
+    const result: RouteStep = follower.step(actor, cursor, index, frame);
     const restored = follower.step(
       JSON.parse(JSON.stringify(actor)),
       JSON.parse(JSON.stringify(cursor)),

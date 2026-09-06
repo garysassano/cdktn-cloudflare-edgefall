@@ -56,12 +56,9 @@ export interface WeaponState {
   shotOrdinal: number;
   lastActionInstanceId: number;
 }
-/** Complete reversible controller state; snapshots cannot replace it with render poses. */
-export interface ControlledActor {
+/** Shared reversible locomotion; no player identity, inventory or transport cursors. */
+export interface FootActor {
   body: Body;
-  playerId: number;
-  slot: number;
-  controlEpoch: number;
   life: "alive" | "death" | "respawning" | "spectating";
   locomotion: "grounded" | "airborne" | "crouched" | "seated";
   action: ActionState;
@@ -71,15 +68,21 @@ export interface ControlledActor {
   coyoteTicks: number;
   ignoredSupportId: EntityId | null;
   ignoredSupportTicks: number;
+  vehicleId: EntityId | null;
+  geometryRevision: number;
+}
+/** Player-owned state extends shared locomotion; snapshot field layout is unchanged. */
+export interface ControlledActor extends FootActor {
+  playerId: number;
+  slot: number;
+  controlEpoch: number;
   invulnerableTicks: number;
   reboardCooldownTicks: number;
   vehicleSpecialTicks: number;
-  vehicleId: EntityId | null;
   weapon: WeaponState;
   grenadeStock: number;
   grenadeCooldownTicks: number;
   meleeCooldownTicks: number;
-  geometryRevision: number;
   health: number;
   lives: number;
   lastRallyMission: number;

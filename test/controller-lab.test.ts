@@ -31,7 +31,7 @@ describe("rendered controller laboratory world", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 4,
+          format: 5,
           scenario: state.scenario,
           commands,
           finalState: labFingerprint(state),
@@ -58,14 +58,49 @@ describe("rendered controller laboratory world", () => {
     expect(state.stopped).toBe("kill-bound");
     expect(() =>
       replayControllerLab({
-        format: 4,
+        format: 5,
         scenario: "course",
         commands: [...commands, neutral],
         finalState: labFingerprint(state),
       }),
     ).toThrow("after stop");
     expect(() =>
-      replayControllerLab({ format: 4, scenario: "course", commands: [], finalState: "wrong" }),
+      replayControllerLab({ format: 5, scenario: "course", commands: [], finalState: "wrong" }),
     ).toThrow("diverged");
+  });
+  it("routes an independent enemy and replays a changed collision catalog", () => {
+    for (const remove of [false, true]) {
+      let state = createControllerLab("enemy-route");
+      const commands: LabCommand[] = [];
+      for (let tick = 0; tick < 150; tick++) {
+        const command = {
+          ...neutral,
+          jumpPressed: tick === 0,
+          removePlatform: remove && tick === 60,
+        };
+        commands.push(command);
+        state = stepControllerLab(state, command);
+        expect(state.stopped).toBe(null);
+        if (tick === 0) expect(state.actor.body.y).toBe(300 * 256 - 1375);
+        if (tick === 60 && remove) {
+          expect(state.navigatingEnemy?.reason).toBe("geometry");
+          expect(state.navigatingEnemy?.plan).toBe(null);
+        }
+      }
+      expect(state.navigatingEnemy?.actor).not.toHaveProperty("playerId");
+      expect(state.navigatingEnemy?.status).toBe(remove ? "unreachable" : "arrived");
+      expect(state.navigatingEnemy?.actor.body.supportId).toBe(remove ? 101 : 102);
+      expect(state.actor.body.x).toBe(80 * 256);
+      expect(
+        labFingerprint(
+          replayControllerLab({
+            format: 5,
+            scenario: "enemy-route",
+            commands,
+            finalState: labFingerprint(state),
+          }),
+        ),
+      ).toBe(labFingerprint(state));
+    }
   });
 });

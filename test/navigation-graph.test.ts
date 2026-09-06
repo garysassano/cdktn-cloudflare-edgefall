@@ -10,11 +10,13 @@ import {
 } from "../src/game/labs/controller.js";
 import { FOOT_SHAPES } from "../src/game/labs/foot-fixture.js";
 import { routeFixture } from "../src/game/labs/route.js";
+import type { RouteStep } from "../src/game/navigation/follower.js";
 import { type RouteCursor, RouteFollower } from "../src/game/navigation/follower.js";
 import { NavigationGraph } from "../src/game/navigation/graph.js";
 import { CompiledTraversal } from "../src/game/navigation/links.js";
 import { WalkSurface } from "../src/game/navigation/spans.js";
 import { CollisionGrid, CollisionIndex } from "../src/game/physics/grid.js";
+import type { ControlledActor } from "../src/game/state.js";
 
 describe("navigation route selection", () => {
   it("executes the selected two-link route through real controller inputs and reaches the exact goal", () => {
@@ -24,7 +26,7 @@ describe("navigation route selection", () => {
     if (route.status !== "route") throw new Error("Missing route");
     expect(route.linkIds).toEqual([1, 2]);
     expect(route.costTicks).toBe(117);
-    let actor = initial,
+    let actor: ControlledActor = initial,
       tick = 0;
     for (const leg of route.legs) {
       if (leg.kind === "traverse") {
@@ -74,13 +76,13 @@ describe("navigation route selection", () => {
     const route = graph.route({ ...initial.body, facing: initial.facing }, destination, 1);
     if (route.status !== "route") throw new Error("Missing route");
     const follower = new RouteFollower(graph, route, FOOT_SHAPES);
-    let actor = initial;
+    let actor: ControlledActor = initial;
     let cursor: RouteCursor | null = follower.begin(actor, 200);
     for (let tick = 201; tick <= 200 + route.costTicks; tick++) {
       if (!cursor) throw new Error("Early arrival");
       const frame = { tick, geometryRevision: 1 };
       const index = new CollisionIndex(new CollisionGrid(targets), [], frame);
-      const result = follower.step(actor, cursor, index, frame);
+      const result: RouteStep = follower.step(actor, cursor, index, frame);
       const restored = follower.step(
         JSON.parse(JSON.stringify(actor)),
         JSON.parse(JSON.stringify(cursor)),
@@ -102,11 +104,11 @@ describe("navigation route selection", () => {
     const route = graph.route({ ...initial.body, facing: initial.facing }, destination, 1);
     if (route.status !== "route") throw new Error("Missing route");
     const follower = new RouteFollower(graph, route, FOOT_SHAPES);
-    let actor = initial;
+    let actor: ControlledActor = initial;
     let cursor = follower.begin(actor, 0);
     for (let tick = 1; tick <= 10; tick++) {
       const frame = { tick, geometryRevision: 1 };
-      const result = follower.step(
+      const result: RouteStep = follower.step(
         actor,
         cursor,
         new CollisionIndex(new CollisionGrid(targets), [], frame),
@@ -117,7 +119,7 @@ describe("navigation route selection", () => {
       cursor = result.cursor;
     }
     const frame = { tick: 11, geometryRevision: 2 };
-    const result = follower.step(
+    const result: RouteStep = follower.step(
       actor,
       cursor,
       new CollisionIndex(
@@ -150,7 +152,7 @@ describe("navigation route selection", () => {
     );
     if (first.status !== "active" || !first.cursor) throw new Error("Route stopped");
     const nextFrame = { tick: 2, geometryRevision: 1 };
-    const result = follower.step(
+    const result: RouteStep = follower.step(
       { ...first.actor, jumpBufferTicks: 1 },
       first.cursor,
       new CollisionIndex(new CollisionGrid(targets), [], nextFrame),
@@ -177,7 +179,7 @@ describe("navigation route selection", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 4,
+          format: 5,
           scenario: "route-chain",
           commands,
           finalState: labFingerprint(state),

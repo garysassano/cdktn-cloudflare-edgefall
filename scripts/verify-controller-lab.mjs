@@ -236,6 +236,43 @@ try {
     routeBeforeRemoval.actor.body.y + routeBeforeRemoval.actor.body.vy + 55,
   );
   assert.deepEqual(errors, []);
+  await page.locator("#scenario").selectOption("enemy-route");
+  await surface.focus();
+  await page.keyboard.press("Space");
+  await page.keyboard.press("Enter");
+  assert.equal((await read()).actor.body.y, 300 * 256 - 1375);
+  for (let i = 1; i < 60; i++) await page.locator("#step").click();
+  assert.equal((await read()).navigatingEnemy.status, "routing");
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  await page.screenshot({ path: `${directory}/enemy-route.png` });
+  for (let i = 60; i < 130; i++) await page.locator("#step").click();
+  const routedEnemy = await read();
+  assert.equal(routedEnemy.navigatingEnemy.status, "arrived");
+  assert.equal(routedEnemy.navigatingEnemy.actor.body.x, 380 * 256);
+  assert.equal(routedEnemy.navigatingEnemy.actor.body.supportId, 102);
+  assert.equal("playerId" in routedEnemy.navigatingEnemy.actor, false);
+  assert.equal(routedEnemy.actor.body.x, 80 * 256);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
+  await page.locator("#reset").click();
+  for (let i = 0; i < 60; i++) await page.locator("#step").click();
+  const enemyBeforeRemoval = (await read()).navigatingEnemy.actor.body;
+  await page.locator("#remove").click();
+  await page.locator("#step").click();
+  const cancelledEnemy = (await read()).navigatingEnemy;
+  assert.equal(cancelledEnemy.plan, null);
+  assert.equal(cancelledEnemy.reason, "geometry");
+  assert.equal(cancelledEnemy.actor.body.y, enemyBeforeRemoval.y + enemyBeforeRemoval.vy + 55);
+  for (let i = 61; i < 150; i++) await page.locator("#step").click();
+  const strandedEnemy = await read();
+  assert.equal(strandedEnemy.navigatingEnemy.status, "unreachable");
+  assert.equal(strandedEnemy.navigatingEnemy.actor.body.supportId, 101);
+  assert.equal(strandedEnemy.geometryRevision, 2);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
+  assert.deepEqual(errors, []);
   const report = {
     status: "pass",
     recordedAt: new Date().toISOString(),
@@ -262,9 +299,12 @@ try {
       "compiled navigation spans and removal revision",
       "authored jump/drop execution and replay",
       "two-link route, approach, replay and cancellation",
+      "independent routed enemy, rebuilt geometry, gravity and replay",
       "mid-traversal cancellation continues gravity",
       "enemy support removal, gravity, landing and replay",
     ],
+    routedEnemy,
+    strandedEnemy,
     routeArrival,
     cancelledRoute,
     traversals,

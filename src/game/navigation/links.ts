@@ -6,7 +6,7 @@ import { Held } from "../input/types.js";
 import { startSupport } from "../physics/body.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
-import type { ControlledActor } from "../state.js";
+import type { ControlledActor, FootActor } from "../state.js";
 import { WalkSurface } from "./spans.js";
 
 export interface TraversalDefinition {
@@ -25,24 +25,24 @@ export interface TraversalCursor {
   startTick: number;
   elapsed: number;
 }
-export type TraversalStep =
+export type TraversalStep<T extends FootActor = ControlledActor> =
   | {
       status: "active" | "landed";
-      actor: ControlledActor;
+      actor: T;
       cursor: TraversalCursor | null;
-      result: Extract<FootStep, { status: "complete" }>;
+      result: Extract<FootStep<T>, { status: "complete" }>;
     }
   | {
       status: "cancelled";
       reason: "geometry" | "state" | "trajectory";
-      actor: ControlledActor;
+      actor: T;
       cursor: null;
-      result: Exclude<FootStep, { status: "failed" }>;
+      result: Exclude<FootStep<T>, { status: "failed" }>;
     }
-  | { status: "failed"; result: Extract<FootStep, { status: "failed" }> };
+  | { status: "failed"; result: Extract<FootStep<T>, { status: "failed" }> };
 
 /** Only locomotion continuation fields; identities, combat state and diagnostic contacts remain world-owned. */
-function continuation(actor: ControlledActor): string {
+function continuation(actor: FootActor): string {
   const { id: _id, contacts: _contacts, ...body } = actor.body;
   return canonical({
     body,
@@ -55,7 +55,7 @@ function continuation(actor: ControlledActor): string {
     ignoredSupportTicks: actor.ignoredSupportTicks,
   });
 }
-function ready(actor: ControlledActor): boolean {
+function ready(actor: FootActor): boolean {
   return actor.life === "alive" && actor.vehicleId === null && actor.action.kind === "ready";
 }
 
@@ -75,7 +75,7 @@ export class CompiledTraversal {
 
   constructor(
     authored: TraversalDefinition,
-    sourceActor: ControlledActor,
+    sourceActor: FootActor,
     actorDefinition: ActorDefinition,
     shapes: ReadonlyMap<number, ShapeDefinition>,
     targets: readonly SweepTarget[],
@@ -232,7 +232,7 @@ export class CompiledTraversal {
     this.#samples = Object.freeze(samples);
     Object.freeze(this);
   }
-  begin(actor: ControlledActor, startTick: number): TraversalCursor {
+  begin(actor: FootActor, startTick: number): TraversalCursor {
     integer(startTick, 0, COUNTER_LIMIT - 182, "traversal start tick");
     if (
       !ready(actor) ||
@@ -242,12 +242,12 @@ export class CompiledTraversal {
       throw new Error("Traversal source state mismatch");
     return { linkId: this.id, startTick, elapsed: 0 };
   }
-  step(
-    actor: ControlledActor,
+  step<T extends FootActor>(
+    actor: T,
     cursor: TraversalCursor,
     index: CollisionIndex,
     frame: CollisionFrame,
-  ): TraversalStep {
+  ): TraversalStep<T> {
     index.assertFrame(frame);
     integer(cursor.startTick, 0, COUNTER_LIMIT - 182, "traversal start tick");
     integer(cursor.elapsed, 0, this.commands.length - 1, "traversal cursor");
