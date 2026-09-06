@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "package": "W00",
+  "recordedAt": "2026-09-06T14:24:39.152Z",
+  "results": [
+    {
+      "title": "v2 real profile, two-player room, input, recording and reserved-slot reload",
+      "status": "passed",
+      "durationMs": 14384,
+      "artifacts": [
+        {
+          "path": "room-lifecycle.webm",
+          "sha256": "44e61186841139e6a934a5e085638263c86c2c8ccea2ed064968a16a5edb4e25",
+          "bytes": 1364450
+        }
+      ],
+      "observations": {
+        "commit": "1a60f99a96dacb207258a61cac6865c40f581dae",
+        "browser": "151.0.7922.34",
+        "runtime": "v24.20.0",
+        "roomPlayers": 2,
+        "freshSockets": 2,
+        "resumePreservedPlayer": true,
+        "tickBeforeReload": 58,
+        "tickAfterReload": 222,
+        "shortTaps": 10,
+        "capturedTapCommands": 0,
+        "impairment": "none; local workerd; SwiftShader rendering",
+        "errors": []
+      }
+    },
+    {
+      "title": "v2 renders a persisted result and leaderboard from an explicitly seeded local fixture",
+      "status": "passed",
+      "durationMs": 5298,
+      "artifacts": [
+        {
+          "path": "persisted-result.webm",
+          "sha256": "9107b7fdcfe681c59750e6fe2c797f97c69c28f4f5705678946d937c92183655",
+          "bytes": 153259
+        }
+      ]
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "dist/client/client.js",
+      "sha256": "ac659f87c3f1f6cd27b409bd397dac846a0068828eadcaaa6829184cef1ad1c4"
+    },
+    {
+      "path": "src/worker/index.ts",
+      "sha256": "110d5cac656a2f1e51c6413542d2200086595b5ff6bd0300b3d842d9dd00bbf1"
+    },
+    {
+      "path": "src/worker/room.ts",
+      "sha256": "f79c9e5f6520672299a066c1471f5a7845bd5114d804a91a8c1de16ffe4f73fd"
+    },
+    {
+      "path": "e2e/baseline.spec.ts",
+      "sha256": "5ed271ecfc9538e0e28f8a8b81034b8e081fc5a82b3541b35a9580dc884af635"
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "0998b941e3afb3c3068da7e288ce75871102c3b6124115980bd9c7a76e06cad7"
+    }
+  ],
+  "limitations": [
+    "Local workerd and software-rendered Chromium only",
+    "Result/leaderboard fixture was inserted directly into local D1; does not prove terminal publication",
+    "Requested ten-millisecond browser key presses are not physical keyboard latency measurements"
+  ]
+}

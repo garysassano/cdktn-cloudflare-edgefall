@@ -131,7 +131,9 @@ async function runJson(runId: string, database: D1Database): Promise<Response> {
 
 function applicationShell(request: Request, assets: Fetcher): Promise<Response> {
   const url = new URL(request.url);
-  url.pathname = "/index.html";
+  // Static Assets canonicalizes /index.html to / with a redirect, which would
+  // discard the browser's /runs/:id route. Fetch the canonical shell internally.
+  url.pathname = "/";
   return assets.fetch(new Request(url, request));
 }
 

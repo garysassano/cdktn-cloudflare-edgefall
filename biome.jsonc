@@ -21,6 +21,8 @@
       "!src/assets",
       "!src/generated",
       "test/**",
+      "e2e/**",
+      "playwright.config.ts",
       "scripts/**",
       "package.json",
       "cdktf.json",

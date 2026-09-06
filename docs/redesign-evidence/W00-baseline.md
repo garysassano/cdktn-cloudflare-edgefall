@@ -1,6 +1,6 @@
 # W00 baseline and regression inventory
 
-Implementation started 2026-09-06 from `8c3c41ee303d4fc1975fed60a0058ca4a74c735e` on `main`. W00 is in progress; this is evidence for specific baseline behavior, not acceptance of the redesign.
+Implementation started 2026-09-06 from `8c3c41ee303d4fc1975fed60a0058ca4a74c735e` on `main`. W00 baseline characterization is complete. This establishes specific existing behavior, not acceptance of the redesign.
 
 ## Reproduce
 
@@ -26,6 +26,14 @@ The current browser creates an anonymous profile, supports private invite rooms 
 
 The existing D1 migration defines `profiles`, `unlocks`, `runs` and `run_players`; runs include score, party size, daily flag, seed, result and summary JSON. That initial migration destructively drops prior prototype tables and must not be rerun as the redesign migration. Room storage uses `checkpoint-v2` and reservations; R2 replay exports use `edgefall-replay-v1` at 30 Hz. New campaign identity, ruleset-partitioned results, bounded replay storage and v3 room namespaces require explicit later migrations.
 
-## Outstanding W00 evidence
+## Real browser lifecycle and footage
 
-Record real browser lobby/profile/result/reconnect behavior and existing encounter gameplay, including short-tap input behavior. Produce normal-speed footage with build metadata, rather than treating screenshots as recordings. Verify current package compatibility before selecting new dependencies. W01 contract work follows this baseline; W02 remote room cadence and W06 human style acceptance remain separate gates. No Cloudflare deployment or paid workload has run.
+`pnpm test:e2e` runs Playwright against a real local Wrangler process and isolated `.wrangler/e2e` data, including local D1 migrations and an explicit test-only profile signing key. It does not use a deployed Cloudflare credential. Two browser contexts create distinct profiles, join the same room, ready up, receive authoritative combat state, move/jump/fire, and recover the same player/profile after reload. The first browser's recording includes the lobby and live encounter. Requested 10 ms key presses are measured as a baseline observation, not asserted to succeed in v2.
+
+The recorded run saw zero jump commands from ten requested short taps. A held jump did produce a command and movement advanced the authoritative player more than 30 pixels. Reload established a second socket, retained the same player/profile, and advanced from tick 58 to tick 222 with two room members. There were no browser exceptions. [Recorded evidence and source hashes](./W00-artifacts/report.json), [13.8-second room recording](./W00-artifacts/room-lifecycle.webm), and [persisted-result recording](./W00-artifacts/persisted-result.webm) are checked in for durable review. Selected frames were visually inspected. These are software-rendered browser observations, not a claim about physical keyboard latency, audio quality, production networking, or game feel.
+
+The separate result test inserts a declared fixture directly into local D1, then follows the real result API/page and leaderboard. It uncovered a real bug: fetching `/index.html` through Static Assets returns a canonical redirect to `/`, losing `/runs/:id`. The Worker now fetches `/` internally, preserving the user's result route. The real browser regression passes; this fixture does not prove the old terminal D1/R2 publication path.
+
+Latest stable Playwright 1.63.0 was verified from the npm registry and added as a project development dependency. Its three packages have exact-version release-age exceptions beside the repository's existing Vitest exceptions, retaining the general three-day policy. The installed Chromium 151.0.7922.34 was selected using `EDGEFALL_CHROMIUM_PATH`; Playwright's default browser revision was not installed. Reproduce here with `EDGEFALL_CHROMIUM_PATH=/home/user/.cache/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell pnpm test:e2e`. Other machines should use their configured browser or normal Playwright-managed revision. No global tool configuration was changed.
+
+Registry peer metadata was rechecked: `@cloudflare/vitest-pool-workers` 0.22.0 and `@cloudflare/vitest-plugin` 1.1.4 require Vitest 4.1, while this repository uses Vitest 5.0.0. Keep Vitest 5 and real Wrangler-backed tests; do not force incompatible peers. W02 owns deployed room cadence, cross-engine coverage and workload budgets. W06 owns human style acceptance. No deployment or paid workload has run.
