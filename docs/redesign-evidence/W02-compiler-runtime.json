@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T19:20:51.967Z",
+  "commit": "4d7699128659752a6d1120f3ba60c30aac340986",
+  "sourceSha256": "3111be811b801afa9658695dda35ce33648e0c0e8e2f35189f53dddf30826386",
+  "browserBundleSha256": "abe8364b65729340515dd323918064990f20dd45e29cfdec76e1e82d705f6d62",
+  "resultSha256": "72deec3be3773a5406e639df27ecf4895dfd155b0d252a92a1c7854d4ecee201",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "compiledLevel": {
+    "contentHash": "a6434f8f6468122005419e4c88336a3e6dbf29547ca01ed1057b818514c2dbb6",
+    "buildHash": "e7042cbe2114695b232b5958580c5e3bd881da7f5adbe528f7e38ff3f7ae9688",
+    "ticks": 117,
+    "traceHash": "0f5d4d9f",
+    "actor": {
+      "body": {
+        "id": 1000000,
+        "x": 97280,
+        "y": 76800,
+        "vx": 0,
+        "vy": 0,
+        "remainderX": 0,
+        "remainderY": 0,
+        "shapeId": 1,
+        "supportId": 1529,
+        "grounded": true,
+        "contacts": [
+          {
+            "otherId": 1529,
+            "normalX": 0,
+            "normalY": -1,
+            "toiNumerator": 1,
+            "toiDenominator": 1,
+            "kind": "solid"
+          }
+        ]
+      },
+      "life": "alive",
+      "locomotion": "grounded",
+      "action": {
+        "kind": "ready",
+        "actionInstanceId": 0,
+        "stateStartTick": 0,
+        "definitionId": 0,
+        "nextMarkerIndex": 0
+      },
+      "facing": 1,
+      "aim": 0,
+      "jumpBufferTicks": 0,
+      "coyoteTicks": 4,
+      "ignoredSupportId": null,
+      "ignoredSupportTicks": 0,
+      "vehicleId": null,
+      "geometryRevision": 1,
+      "playerId": 1,
+      "slot": 0,
+      "controlEpoch": 1,
+      "invulnerableTicks": 0,
+      "reboardCooldownTicks": 0,
+      "vehicleSpecialTicks": 0,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 0,
+        "shotOrdinal": 0,
+        "lastActionInstanceId": 0
+      },
+      "grenadeStock": 10,
+      "grenadeCooldownTicks": 0,
+      "meleeCooldownTicks": 0,
+      "health": 1,
+      "lives": 3,
+      "lastRallyMission": 0,
+      "processedEdgeIds": [0, 0, 0, 0, 0]
+    }
+  },
+  "status": "pass",
+  "scope": "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim"
+}

@@ -1,0 +1,6075 @@
+{
+  "bgColor": "#101820",
+  "defs": {
+    "entities": [
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Entry",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 100,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1000,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "ActorId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1001,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": false,
+        "resizableY": false,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Checkpoint",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 101,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1010,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": false,
+        "resizableY": false,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Spawn",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 102,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1020,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "ActorId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1021,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": false,
+        "resizableY": false,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Jump",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 103,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1030,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "ActorId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1031,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "DestinationX",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1032,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "DestinationY",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1033,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "Direction",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1034,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "MaxTicks",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1035,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": false,
+        "resizableY": false,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Drop",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 104,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1040,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "ActorId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1041,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "DestinationX",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1042,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "DestinationY",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1043,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "Direction",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1044,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          },
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "MaxTicks",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1045,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": false,
+        "resizableY": false,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Camera",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 105,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1050,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": true,
+        "resizableY": true,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "KillBounds",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 106,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1060,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": true,
+        "resizableY": true,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      },
+      {
+        "color": "#f59e0b",
+        "height": 10,
+        "identifier": "Exit",
+        "nineSliceBorders": [],
+        "pivotX": 0,
+        "pivotY": 0,
+        "tileRenderMode": "Cover",
+        "uid": 107,
+        "width": 10,
+        "allowOutOfBounds": false,
+        "exportToToc": false,
+        "fieldDefs": [
+          {
+            "__type": "Int",
+            "canBeNull": false,
+            "identifier": "StableId",
+            "isArray": false,
+            "type": "F_Int",
+            "uid": 1070,
+            "allowOutOfLevelRef": false,
+            "allowedRefTags": [],
+            "allowedRefs": "Any",
+            "autoChainRef": false,
+            "editorAlwaysShow": false,
+            "editorCutLongValues": false,
+            "editorDisplayMode": "Hidden",
+            "editorDisplayPos": "Above",
+            "editorDisplayScale": 0,
+            "editorLinkStyle": "ZigZag",
+            "editorShowInWorld": false,
+            "exportToToc": false,
+            "searchable": false,
+            "symmetricalRef": false,
+            "useForSmartColor": false
+          }
+        ],
+        "fillOpacity": 0.2,
+        "hollow": false,
+        "keepAspectRatio": false,
+        "limitBehavior": "DiscardOldOnes",
+        "limitScope": "PerLayer",
+        "lineOpacity": 1,
+        "maxCount": 0,
+        "renderMode": "Rectangle",
+        "resizableX": true,
+        "resizableY": true,
+        "showName": false,
+        "tags": [],
+        "tileOpacity": 1
+      }
+    ],
+    "enums": [],
+    "externalEnums": [],
+    "layers": [
+      {
+        "__type": "IntGrid",
+        "displayOpacity": 1,
+        "gridSize": 10,
+        "identifier": "Collision",
+        "intGridValues": [
+          {
+            "value": 1,
+            "identifier": "Solid",
+            "color": "#64748b",
+            "groupUid": 0
+          },
+          {
+            "value": 2,
+            "identifier": "OneWay",
+            "color": "#a3b86c",
+            "groupUid": 0
+          }
+        ],
+        "intGridValuesGroups": [],
+        "parallaxFactorX": 0,
+        "parallaxFactorY": 0,
+        "parallaxScaling": false,
+        "pxOffsetX": 0,
+        "pxOffsetY": 0,
+        "uid": 10,
+        "autoRuleGroups": [],
+        "canSelectWhenInactive": false,
+        "excludedTags": [],
+        "guideGridHei": 0,
+        "guideGridWid": 0,
+        "hideFieldsWhenInactive": false,
+        "hideInList": false,
+        "inactiveOpacity": 1,
+        "renderInWorldView": true,
+        "requiredTags": [],
+        "tilePivotX": 0,
+        "tilePivotY": 0,
+        "type": "IntGrid",
+        "uiFilterTags": [],
+        "useAsyncRender": false
+      },
+      {
+        "__type": "Tiles",
+        "displayOpacity": 1,
+        "gridSize": 10,
+        "identifier": "Gameplay",
+        "intGridValues": [],
+        "intGridValuesGroups": [],
+        "parallaxFactorX": 0,
+        "parallaxFactorY": 0,
+        "parallaxScaling": false,
+        "pxOffsetX": 0,
+        "pxOffsetY": 0,
+        "uid": 11,
+        "autoRuleGroups": [],
+        "canSelectWhenInactive": false,
+        "excludedTags": [],
+        "guideGridHei": 0,
+        "guideGridWid": 0,
+        "hideFieldsWhenInactive": false,
+        "hideInList": false,
+        "inactiveOpacity": 1,
+        "renderInWorldView": true,
+        "requiredTags": [],
+        "tilePivotX": 0,
+        "tilePivotY": 0,
+        "type": "Tiles",
+        "uiFilterTags": [],
+        "useAsyncRender": false,
+        "tilesetDefUid": 20
+      },
+      {
+        "__type": "Entities",
+        "displayOpacity": 1,
+        "gridSize": 10,
+        "identifier": "Logic",
+        "intGridValues": [],
+        "intGridValuesGroups": [],
+        "parallaxFactorX": 0,
+        "parallaxFactorY": 0,
+        "parallaxScaling": false,
+        "pxOffsetX": 0,
+        "pxOffsetY": 0,
+        "uid": 12,
+        "autoRuleGroups": [],
+        "canSelectWhenInactive": false,
+        "excludedTags": [],
+        "guideGridHei": 0,
+        "guideGridWid": 0,
+        "hideFieldsWhenInactive": false,
+        "hideInList": false,
+        "inactiveOpacity": 1,
+        "renderInWorldView": true,
+        "requiredTags": [],
+        "tilePivotX": 0,
+        "tilePivotY": 0,
+        "type": "Entities",
+        "uiFilterTags": [],
+        "useAsyncRender": false
+      }
+    ],
+    "levelFields": [],
+    "tilesets": [
+      {
+        "__cHei": 1,
+        "__cWid": 1,
+        "customData": [],
+        "enumTags": [],
+        "identifier": "EngineeringTerrain",
+        "padding": 0,
+        "pxHei": 10,
+        "pxWid": 10,
+        "spacing": 0,
+        "tags": [],
+        "tileGridSize": 10,
+        "uid": 20,
+        "savedSelections": [],
+        "relPath": "terrain.png"
+      }
+    ]
+  },
+  "externalLevels": false,
+  "iid": "2d287b40-3000-4000-8000-000000000001",
+  "jsonVersion": "1.5.3",
+  "levels": [
+    {
+      "__bgColor": "#101820",
+      "__neighbours": [],
+      "fieldInstances": [],
+      "identifier": "NavigationProof",
+      "iid": "2d287b40-3000-4000-8000-000000000002",
+      "pxHei": 400,
+      "pxWid": 500,
+      "uid": 1,
+      "worldDepth": 0,
+      "worldX": 0,
+      "worldY": 0,
+      "__smartColor": "#101820",
+      "bgPivotX": 0,
+      "bgPivotY": 0,
+      "useAutoIdentifier": false,
+      "externalRelPath": null,
+      "layerInstances": [
+        {
+          "__cHei": 40,
+          "__cWid": 50,
+          "__gridSize": 10,
+          "__identifier": "Collision",
+          "__opacity": 1,
+          "__pxTotalOffsetX": 0,
+          "__pxTotalOffsetY": 0,
+          "__type": "IntGrid",
+          "autoLayerTiles": [],
+          "entityInstances": [],
+          "gridTiles": [],
+          "iid": "2d287b40-3000-4000-8000-000000000010",
+          "intGridCsv": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "layerDefUid": 10,
+          "levelId": 1,
+          "pxOffsetX": 0,
+          "pxOffsetY": 0,
+          "visible": true,
+          "optionalRules": [],
+          "seed": 0,
+          "__tilesetDefUid": null
+        },
+        {
+          "__cHei": 40,
+          "__cWid": 50,
+          "__gridSize": 10,
+          "__identifier": "Gameplay",
+          "__opacity": 1,
+          "__pxTotalOffsetX": 0,
+          "__pxTotalOffsetY": 0,
+          "__type": "Tiles",
+          "autoLayerTiles": [],
+          "entityInstances": [],
+          "gridTiles": [
+            {
+              "px": [
+                0,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1500
+              ]
+            },
+            {
+              "px": [
+                10,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1501
+              ]
+            },
+            {
+              "px": [
+                20,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1502
+              ]
+            },
+            {
+              "px": [
+                30,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1503
+              ]
+            },
+            {
+              "px": [
+                40,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1504
+              ]
+            },
+            {
+              "px": [
+                50,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1505
+              ]
+            },
+            {
+              "px": [
+                60,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1506
+              ]
+            },
+            {
+              "px": [
+                70,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1507
+              ]
+            },
+            {
+              "px": [
+                80,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1508
+              ]
+            },
+            {
+              "px": [
+                90,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1509
+              ]
+            },
+            {
+              "px": [
+                130,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1513
+              ]
+            },
+            {
+              "px": [
+                140,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1514
+              ]
+            },
+            {
+              "px": [
+                150,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1515
+              ]
+            },
+            {
+              "px": [
+                160,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1516
+              ]
+            },
+            {
+              "px": [
+                170,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1517
+              ]
+            },
+            {
+              "px": [
+                180,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1518
+              ]
+            },
+            {
+              "px": [
+                190,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1519
+              ]
+            },
+            {
+              "px": [
+                200,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1520
+              ]
+            },
+            {
+              "px": [
+                210,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1521
+              ]
+            },
+            {
+              "px": [
+                220,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1522
+              ]
+            },
+            {
+              "px": [
+                230,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1523
+              ]
+            },
+            {
+              "px": [
+                240,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1524
+              ]
+            },
+            {
+              "px": [
+                280,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1528
+              ]
+            },
+            {
+              "px": [
+                290,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1529
+              ]
+            },
+            {
+              "px": [
+                300,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1530
+              ]
+            },
+            {
+              "px": [
+                310,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1531
+              ]
+            },
+            {
+              "px": [
+                320,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1532
+              ]
+            },
+            {
+              "px": [
+                330,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1533
+              ]
+            },
+            {
+              "px": [
+                340,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1534
+              ]
+            },
+            {
+              "px": [
+                350,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1535
+              ]
+            },
+            {
+              "px": [
+                360,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1536
+              ]
+            },
+            {
+              "px": [
+                370,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1537
+              ]
+            },
+            {
+              "px": [
+                380,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1538
+              ]
+            },
+            {
+              "px": [
+                390,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1539
+              ]
+            },
+            {
+              "px": [
+                400,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1540
+              ]
+            },
+            {
+              "px": [
+                410,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1541
+              ]
+            },
+            {
+              "px": [
+                420,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1542
+              ]
+            },
+            {
+              "px": [
+                430,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1543
+              ]
+            },
+            {
+              "px": [
+                440,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1544
+              ]
+            },
+            {
+              "px": [
+                450,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1545
+              ]
+            },
+            {
+              "px": [
+                460,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1546
+              ]
+            },
+            {
+              "px": [
+                470,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1547
+              ]
+            },
+            {
+              "px": [
+                480,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1548
+              ]
+            },
+            {
+              "px": [
+                490,
+                300
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1549
+              ]
+            },
+            {
+              "px": [
+                0,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1550
+              ]
+            },
+            {
+              "px": [
+                10,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1551
+              ]
+            },
+            {
+              "px": [
+                20,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1552
+              ]
+            },
+            {
+              "px": [
+                30,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1553
+              ]
+            },
+            {
+              "px": [
+                40,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1554
+              ]
+            },
+            {
+              "px": [
+                50,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1555
+              ]
+            },
+            {
+              "px": [
+                60,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1556
+              ]
+            },
+            {
+              "px": [
+                70,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1557
+              ]
+            },
+            {
+              "px": [
+                80,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1558
+              ]
+            },
+            {
+              "px": [
+                90,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1559
+              ]
+            },
+            {
+              "px": [
+                130,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1563
+              ]
+            },
+            {
+              "px": [
+                140,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1564
+              ]
+            },
+            {
+              "px": [
+                150,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1565
+              ]
+            },
+            {
+              "px": [
+                160,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1566
+              ]
+            },
+            {
+              "px": [
+                170,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1567
+              ]
+            },
+            {
+              "px": [
+                180,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1568
+              ]
+            },
+            {
+              "px": [
+                190,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1569
+              ]
+            },
+            {
+              "px": [
+                200,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1570
+              ]
+            },
+            {
+              "px": [
+                210,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1571
+              ]
+            },
+            {
+              "px": [
+                220,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1572
+              ]
+            },
+            {
+              "px": [
+                230,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1573
+              ]
+            },
+            {
+              "px": [
+                240,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1574
+              ]
+            },
+            {
+              "px": [
+                280,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1578
+              ]
+            },
+            {
+              "px": [
+                290,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1579
+              ]
+            },
+            {
+              "px": [
+                300,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1580
+              ]
+            },
+            {
+              "px": [
+                310,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1581
+              ]
+            },
+            {
+              "px": [
+                320,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1582
+              ]
+            },
+            {
+              "px": [
+                330,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1583
+              ]
+            },
+            {
+              "px": [
+                340,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1584
+              ]
+            },
+            {
+              "px": [
+                350,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1585
+              ]
+            },
+            {
+              "px": [
+                360,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1586
+              ]
+            },
+            {
+              "px": [
+                370,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1587
+              ]
+            },
+            {
+              "px": [
+                380,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1588
+              ]
+            },
+            {
+              "px": [
+                390,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1589
+              ]
+            },
+            {
+              "px": [
+                400,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1590
+              ]
+            },
+            {
+              "px": [
+                410,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1591
+              ]
+            },
+            {
+              "px": [
+                420,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1592
+              ]
+            },
+            {
+              "px": [
+                430,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1593
+              ]
+            },
+            {
+              "px": [
+                440,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1594
+              ]
+            },
+            {
+              "px": [
+                450,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1595
+              ]
+            },
+            {
+              "px": [
+                460,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1596
+              ]
+            },
+            {
+              "px": [
+                470,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1597
+              ]
+            },
+            {
+              "px": [
+                480,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1598
+              ]
+            },
+            {
+              "px": [
+                490,
+                310
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1599
+              ]
+            },
+            {
+              "px": [
+                0,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1600
+              ]
+            },
+            {
+              "px": [
+                10,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1601
+              ]
+            },
+            {
+              "px": [
+                20,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1602
+              ]
+            },
+            {
+              "px": [
+                30,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1603
+              ]
+            },
+            {
+              "px": [
+                40,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1604
+              ]
+            },
+            {
+              "px": [
+                50,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1605
+              ]
+            },
+            {
+              "px": [
+                60,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1606
+              ]
+            },
+            {
+              "px": [
+                70,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1607
+              ]
+            },
+            {
+              "px": [
+                80,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1608
+              ]
+            },
+            {
+              "px": [
+                90,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1609
+              ]
+            },
+            {
+              "px": [
+                130,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1613
+              ]
+            },
+            {
+              "px": [
+                140,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1614
+              ]
+            },
+            {
+              "px": [
+                150,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1615
+              ]
+            },
+            {
+              "px": [
+                160,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1616
+              ]
+            },
+            {
+              "px": [
+                170,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1617
+              ]
+            },
+            {
+              "px": [
+                180,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1618
+              ]
+            },
+            {
+              "px": [
+                190,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1619
+              ]
+            },
+            {
+              "px": [
+                200,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1620
+              ]
+            },
+            {
+              "px": [
+                210,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1621
+              ]
+            },
+            {
+              "px": [
+                220,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1622
+              ]
+            },
+            {
+              "px": [
+                230,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1623
+              ]
+            },
+            {
+              "px": [
+                240,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1624
+              ]
+            },
+            {
+              "px": [
+                280,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1628
+              ]
+            },
+            {
+              "px": [
+                290,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1629
+              ]
+            },
+            {
+              "px": [
+                300,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1630
+              ]
+            },
+            {
+              "px": [
+                310,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1631
+              ]
+            },
+            {
+              "px": [
+                320,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1632
+              ]
+            },
+            {
+              "px": [
+                330,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1633
+              ]
+            },
+            {
+              "px": [
+                340,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1634
+              ]
+            },
+            {
+              "px": [
+                350,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1635
+              ]
+            },
+            {
+              "px": [
+                360,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1636
+              ]
+            },
+            {
+              "px": [
+                370,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1637
+              ]
+            },
+            {
+              "px": [
+                380,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1638
+              ]
+            },
+            {
+              "px": [
+                390,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1639
+              ]
+            },
+            {
+              "px": [
+                400,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1640
+              ]
+            },
+            {
+              "px": [
+                410,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1641
+              ]
+            },
+            {
+              "px": [
+                420,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1642
+              ]
+            },
+            {
+              "px": [
+                430,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1643
+              ]
+            },
+            {
+              "px": [
+                440,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1644
+              ]
+            },
+            {
+              "px": [
+                450,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1645
+              ]
+            },
+            {
+              "px": [
+                460,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1646
+              ]
+            },
+            {
+              "px": [
+                470,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1647
+              ]
+            },
+            {
+              "px": [
+                480,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1648
+              ]
+            },
+            {
+              "px": [
+                490,
+                320
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1649
+              ]
+            },
+            {
+              "px": [
+                0,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1650
+              ]
+            },
+            {
+              "px": [
+                10,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1651
+              ]
+            },
+            {
+              "px": [
+                20,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1652
+              ]
+            },
+            {
+              "px": [
+                30,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1653
+              ]
+            },
+            {
+              "px": [
+                40,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1654
+              ]
+            },
+            {
+              "px": [
+                50,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1655
+              ]
+            },
+            {
+              "px": [
+                60,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1656
+              ]
+            },
+            {
+              "px": [
+                70,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1657
+              ]
+            },
+            {
+              "px": [
+                80,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1658
+              ]
+            },
+            {
+              "px": [
+                90,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1659
+              ]
+            },
+            {
+              "px": [
+                130,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1663
+              ]
+            },
+            {
+              "px": [
+                140,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1664
+              ]
+            },
+            {
+              "px": [
+                150,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1665
+              ]
+            },
+            {
+              "px": [
+                160,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1666
+              ]
+            },
+            {
+              "px": [
+                170,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1667
+              ]
+            },
+            {
+              "px": [
+                180,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1668
+              ]
+            },
+            {
+              "px": [
+                190,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1669
+              ]
+            },
+            {
+              "px": [
+                200,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1670
+              ]
+            },
+            {
+              "px": [
+                210,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1671
+              ]
+            },
+            {
+              "px": [
+                220,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1672
+              ]
+            },
+            {
+              "px": [
+                230,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1673
+              ]
+            },
+            {
+              "px": [
+                240,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1674
+              ]
+            },
+            {
+              "px": [
+                280,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1678
+              ]
+            },
+            {
+              "px": [
+                290,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1679
+              ]
+            },
+            {
+              "px": [
+                300,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1680
+              ]
+            },
+            {
+              "px": [
+                310,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1681
+              ]
+            },
+            {
+              "px": [
+                320,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1682
+              ]
+            },
+            {
+              "px": [
+                330,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1683
+              ]
+            },
+            {
+              "px": [
+                340,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1684
+              ]
+            },
+            {
+              "px": [
+                350,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1685
+              ]
+            },
+            {
+              "px": [
+                360,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1686
+              ]
+            },
+            {
+              "px": [
+                370,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1687
+              ]
+            },
+            {
+              "px": [
+                380,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1688
+              ]
+            },
+            {
+              "px": [
+                390,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1689
+              ]
+            },
+            {
+              "px": [
+                400,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1690
+              ]
+            },
+            {
+              "px": [
+                410,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1691
+              ]
+            },
+            {
+              "px": [
+                420,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1692
+              ]
+            },
+            {
+              "px": [
+                430,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1693
+              ]
+            },
+            {
+              "px": [
+                440,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1694
+              ]
+            },
+            {
+              "px": [
+                450,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1695
+              ]
+            },
+            {
+              "px": [
+                460,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1696
+              ]
+            },
+            {
+              "px": [
+                470,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1697
+              ]
+            },
+            {
+              "px": [
+                480,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1698
+              ]
+            },
+            {
+              "px": [
+                490,
+                330
+              ],
+              "src": [
+                0,
+                0
+              ],
+              "f": 0,
+              "t": 0,
+              "a": 1,
+              "d": [
+                1699
+              ]
+            }
+          ],
+          "iid": "2d287b40-3000-4000-8000-000000000011",
+          "intGridCsv": [],
+          "layerDefUid": 11,
+          "levelId": 1,
+          "pxOffsetX": 0,
+          "pxOffsetY": 0,
+          "visible": true,
+          "optionalRules": [],
+          "seed": 0,
+          "__tilesetDefUid": 20
+        },
+        {
+          "__cHei": 40,
+          "__cWid": 50,
+          "__gridSize": 10,
+          "__identifier": "Logic",
+          "__opacity": 1,
+          "__pxTotalOffsetX": 0,
+          "__pxTotalOffsetY": 0,
+          "__type": "Entities",
+          "autoLayerTiles": [],
+          "entityInstances": [
+            {
+              "__grid": [
+                5,
+                30
+              ],
+              "__identifier": "Entry",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 100,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000000,
+                  "defUid": 1000,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "ActorId",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1001,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 10,
+              "iid": "2d287b40-3000-4000-8000-000001000000",
+              "px": [
+                50,
+                300
+              ],
+              "width": 10
+            },
+            {
+              "__grid": [
+                38,
+                30
+              ],
+              "__identifier": "Checkpoint",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 101,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000001,
+                  "defUid": 1010,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 10,
+              "iid": "2d287b40-3000-4000-8000-000001000001",
+              "px": [
+                380,
+                300
+              ],
+              "width": 10
+            },
+            {
+              "__grid": [
+                0,
+                0
+              ],
+              "__identifier": "Camera",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 105,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000002,
+                  "defUid": 1050,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 360,
+              "iid": "2d287b40-3000-4000-8000-000001000002",
+              "px": [
+                0,
+                0
+              ],
+              "width": 500
+            },
+            {
+              "__grid": [
+                0,
+                0
+              ],
+              "__identifier": "KillBounds",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 106,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000003,
+                  "defUid": 1060,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 400,
+              "iid": "2d287b40-3000-4000-8000-000001000003",
+              "px": [
+                0,
+                0
+              ],
+              "width": 500
+            },
+            {
+              "__grid": [
+                37,
+                26
+              ],
+              "__identifier": "Exit",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 107,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000004,
+                  "defUid": 1070,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 40,
+              "iid": "2d287b40-3000-4000-8000-000001000004",
+              "px": [
+                370,
+                260
+              ],
+              "width": 20
+            },
+            {
+              "__grid": [
+                5,
+                30
+              ],
+              "__identifier": "Jump",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 103,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000005,
+                  "defUid": 1030,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "ActorId",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1031,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "DestinationX",
+                  "__type": "Int",
+                  "__value": 203,
+                  "defUid": 1032,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "DestinationY",
+                  "__type": "Int",
+                  "__value": 300,
+                  "defUid": 1033,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "Direction",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1034,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "MaxTicks",
+                  "__type": "Int",
+                  "__value": 90,
+                  "defUid": 1035,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 10,
+              "iid": "2d287b40-3000-4000-8000-000001000005",
+              "px": [
+                50,
+                300
+              ],
+              "width": 10
+            },
+            {
+              "__grid": [
+                20,
+                30
+              ],
+              "__identifier": "Jump",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 103,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000006,
+                  "defUid": 1030,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "ActorId",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1031,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "DestinationX",
+                  "__type": "Int",
+                  "__value": 353,
+                  "defUid": 1032,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "DestinationY",
+                  "__type": "Int",
+                  "__value": 300,
+                  "defUid": 1033,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "Direction",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1034,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "MaxTicks",
+                  "__type": "Int",
+                  "__value": 90,
+                  "defUid": 1035,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 10,
+              "iid": "2d287b40-3000-4000-8000-000001000006",
+              "px": [
+                200,
+                300
+              ],
+              "width": 10
+            },
+            {
+              "__grid": [
+                8,
+                30
+              ],
+              "__identifier": "Spawn",
+              "__pivot": [
+                0,
+                0
+              ],
+              "__smartColor": "#f59e0b",
+              "__tags": [],
+              "defUid": 102,
+              "fieldInstances": [
+                {
+                  "__identifier": "StableId",
+                  "__type": "Int",
+                  "__value": 1000007,
+                  "defUid": 1020,
+                  "realEditorValues": []
+                },
+                {
+                  "__identifier": "ActorId",
+                  "__type": "Int",
+                  "__value": 1,
+                  "defUid": 1021,
+                  "realEditorValues": []
+                }
+              ],
+              "height": 10,
+              "iid": "2d287b40-3000-4000-8000-000001000007",
+              "px": [
+                80,
+                300
+              ],
+              "width": 10
+            }
+          ],
+          "gridTiles": [],
+          "iid": "2d287b40-3000-4000-8000-000000000012",
+          "intGridCsv": [],
+          "layerDefUid": 12,
+          "levelId": 1,
+          "pxOffsetX": 0,
+          "pxOffsetY": 0,
+          "visible": true,
+          "optionalRules": [],
+          "seed": 0,
+          "__tilesetDefUid": null
+        }
+      ]
+    }
+  ],
+  "toc": [],
+  "worlds": [],
+  "appBuildId": 475706,
+  "backupLimit": 0,
+  "backupOnSave": false,
+  "customCommands": [],
+  "defaultEntityHeight": 10,
+  "defaultEntityWidth": 10,
+  "defaultGridSize": 10,
+  "defaultLevelBgColor": "#101820",
+  "defaultPivotX": 0,
+  "defaultPivotY": 0,
+  "dummyWorldIid": "",
+  "exportLevelBg": false,
+  "exportTiled": false,
+  "flags": [],
+  "identifierStyle": "Capitalize",
+  "imageExportMode": "None",
+  "levelNamePattern": "Level_%idx",
+  "minifyJson": false,
+  "nextUid": 2000,
+  "simplifiedExport": false,
+  "worldLayout": "Free"
+}

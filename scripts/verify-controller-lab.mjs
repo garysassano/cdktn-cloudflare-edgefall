@@ -273,6 +273,22 @@ try {
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
   assert.deepEqual(errors, []);
+  await page.locator("#scenario").selectOption("compiled-route");
+  await page.locator("#traverse").click();
+  for (let i = 0; i < 60; i++) await page.locator("#step").click();
+  assert.equal((await read()).route.traversal.linkId, 1000006);
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  await page.screenshot({ path: `${directory}/compiled-route.png` });
+  for (let i = 60; i < 117; i++) await page.locator("#step").click();
+  const compiledArrival = await read();
+  assert.equal(compiledArrival.traversalStatus, "landed");
+  assert.equal(compiledArrival.actor.body.x, 380 * 256);
+  assert.equal(compiledArrival.actor.body.supportId, 1529);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
+  assert.deepEqual(errors, []);
   const report = {
     status: "pass",
     recordedAt: new Date().toISOString(),
@@ -300,9 +316,11 @@ try {
       "authored jump/drop execution and replay",
       "two-link route, approach, replay and cancellation",
       "independent routed enemy, rebuilt geometry, gravity and replay",
+      "compiled LDtk terrain, two jumps, arrival and replay",
       "mid-traversal cancellation continues gravity",
       "enemy support removal, gravity, landing and replay",
     ],
+    compiledArrival,
     routedEnemy,
     strandedEnemy,
     routeArrival,

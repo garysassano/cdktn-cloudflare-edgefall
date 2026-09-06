@@ -9,6 +9,7 @@ import type { TraversalCursor } from "../navigation/links.js";
 import { CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor } from "../state.js";
+import { compiledLevelFixture } from "./compiled.js";
 import { FOOT_DEFINITION, FOOT_SHAPES, footActor, footTerrain } from "./foot-fixture.js";
 import { routeFixture } from "./route.js";
 import { routedEnemyFixture } from "./routed.js";
@@ -22,6 +23,7 @@ export const LAB_SCENARIOS = [
   "jump-link",
   "drop-link",
   "route-chain",
+  "compiled-route",
   "enemy-route",
 ] as const;
 export type LabScenario = (typeof LAB_SCENARIOS)[number];
@@ -68,8 +70,13 @@ export function labTraversal(scenario: LabScenario) {
   return getTraversalFixture(scenario)?.link ?? null;
 }
 
+let compiledLab: ReturnType<typeof compiledLevelFixture> | null = null;
 let routeLab: ReturnType<typeof routeFixture> | null = null;
 function getRouteFixture(scenario: LabScenario) {
+  if (scenario === "compiled-route") {
+    compiledLab ??= compiledLevelFixture();
+    return compiledLab;
+  }
   if (scenario !== "route-chain") return null;
   routeLab ??= routeFixture();
   return routeLab;
@@ -101,7 +108,7 @@ function geometry(scenario: LabScenario, tick: number, removed: boolean): SweepT
   const fixture = getTraversalFixture(scenario) ?? getRouteFixture(scenario);
   if (fixture)
     return fixture.targets
-      .filter((target) => !(removed && target.id === (scenario === "route-chain" ? 102 : 101)))
+      .filter((target) => !(removed && target.id === fixture.targets.at(-1)?.id))
       .map((target) => ({ ...target, rect: { ...target.rect }, delta: { ...target.delta } }));
   if (scenario === "course")
     return [
@@ -200,6 +207,7 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
       state.scenario === "jump-link" ||
       state.scenario === "drop-link" ||
       state.scenario === "route-chain" ||
+      state.scenario === "compiled-route" ||
       state.scenario === "enemy-route") &&
       command.removePlatform);
   const revision = state.geometryRevision + Number(removed !== state.removed);

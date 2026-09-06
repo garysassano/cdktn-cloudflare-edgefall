@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "source": "content/engineering/navigation.ldtk",
+  "output": "src/game/content/compiled/navigation.json",
+  "sourceSha256": "5b6637b99cbdb300337c949fab6331282508e8f8009038263a6ff9bf22e98301",
+  "schemaSha256": "b96ca8a106d12c5bf8aa42da223a4ceb02e93dcfbb0d1b49fbbaeb9959264bda",
+  "contentHash": "a6434f8f6468122005419e4c88336a3e6dbf29547ca01ed1057b818514c2dbb6",
+  "graphicsHash": "8523df73611d93e17ef71e49e31839cfac6fb97ba022b330e87793f6b447b47a",
+  "buildHash": "e7042cbe2114695b232b5958580c5e3bd881da7f5adbe528f7e38ff3f7ae9688",
+  "terrain": 3,
+  "links": 2,
+  "checkpointTicks": 117,
+  "baseCommit": "4d7699128659752a6d1120f3ba60c30aac340986",
+  "sources": {
+    "scripts/lib/ldtk.ts": "948ba920e0d74268d5e6bfb2ad9b4848f4d2d3303370b646876b03f8d0cb99e8",
+    "scripts/compile-content.ts": "60119179ef625d928e470d516a52f41bd3fcb4e80459601cd23431264f1472e5",
+    "src/game/content/contract-fixture.ts": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733",
+    "src/game/content/compiled/navigation.json": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb",
+    "content/engineering/terrain.png": "db04ec948db7f056562d9e8bef0c029dd98bf630f9d1a60708cebcdea764e627",
+    "package.json": "2ddfea02f5bf60732c93e71b87b3d54b1acb9d729fc021774b98a7b5c3b21c25",
+    "pnpm-lock.yaml": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+  },
+  "scope": "Synthetic schema-complete single static encounter; no graphical editor round-trip, production media, build negotiation or campaign acceptance"
+}

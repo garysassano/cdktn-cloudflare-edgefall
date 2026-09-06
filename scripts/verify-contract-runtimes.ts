@@ -21,6 +21,12 @@ const bundle = await build({
   platform: "browser",
   target: "es2022",
 });
+assert(
+  !Object.keys(bundle.metafile.inputs).some(
+    (path) => path.includes("ajv") || path.endsWith(".ldtk") || path.includes("scripts/lib/ldtk"),
+  ),
+  "Build-only editor parser leaked into runtime",
+);
 const javascript = bundle.outputFiles[0]?.text;
 assert(javascript, "Missing browser proof bundle");
 await writeFile(`${output}/browser.js`, javascript);
@@ -129,6 +135,7 @@ try {
     navigation: expected.navigation,
     traversal: expected.traversal,
     route: expected.route,
+    compiledLevel: expected.compiledLevel,
     routedEnemy: expected.routedEnemy,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),

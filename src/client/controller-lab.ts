@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { Held } from "../game/input/types.js";
+import { compiledPresentation } from "../game/labs/compiled.js";
 import {
   LAB_SCENARIOS,
   type LabCommand,
@@ -184,7 +185,21 @@ element<HTMLInputElement>("import").onchange = async (event) => {
 };
 class ControllerLabScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Graphics;
+  private compiledTiles: Phaser.GameObjects.Image[] = [];
+  preload(): void {
+    this.load.spritesheet("compiled-terrain", "engineering-terrain.png", {
+      frameWidth: compiledPresentation.tileset.cell,
+      frameHeight: compiledPresentation.tileset.cell,
+    });
+  }
   create(): void {
+    this.compiledTiles = compiledPresentation.tiles.map((tile) =>
+      this.add
+        .image(tile.x, tile.y, "compiled-terrain", tile.tile)
+        .setOrigin(0)
+        .setFlip((tile.flip & 1) !== 0, (tile.flip & 2) !== 0)
+        .setVisible(false),
+    );
     this.overlay = this.add.graphics();
     inspect();
   }
@@ -200,6 +215,17 @@ class ControllerLabScene extends Phaser.Scene {
     const graphics = this.overlay;
     if (!graphics) return;
     graphics.clear();
+    for (const tile of this.compiledTiles)
+      tile.setVisible(
+        state.scenario === "compiled-route" &&
+          state.terrain.some(
+            (target) =>
+              tile.x * 256 >= target.rect.x &&
+              tile.x * 256 < target.rect.x + target.rect.w &&
+              tile.y * 256 >= target.rect.y &&
+              tile.y * 256 < target.rect.y + target.rect.h,
+          ),
+      );
     for (const target of state.terrain) {
       const rect = target.rect;
       graphics.fillStyle(
@@ -208,6 +234,7 @@ class ControllerLabScene extends Phaser.Scene {
           : target.kind === "one-way"
             ? 0x647dc4
             : 0x445368,
+        state.scenario === "compiled-route" ? 0.2 : 1,
       );
       graphics.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
     }
