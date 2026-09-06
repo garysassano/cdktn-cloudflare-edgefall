@@ -6,6 +6,7 @@ import {
   type LabRecording,
   createControllerLab,
   labFingerprint,
+  labTraversal,
   replayControllerLab,
   stepControllerLab,
 } from "../game/labs/controller.js";
@@ -27,6 +28,7 @@ let running = false;
 let accumulator = 0;
 let jump = false;
 let remove = false;
+let traverse = false;
 const keys = new Set<string>();
 const bindings: Record<string, number> = {
   ArrowLeft: Held.Left,
@@ -62,20 +64,23 @@ function step(): void {
     held: [...keys].reduce((held, key) => held | (bindings[key] ?? 0), 0),
     jumpPressed: jump,
     removePlatform: remove,
+    startTraversal: traverse,
   };
   jump = false;
   remove = false;
+  traverse = false;
   state = stepControllerLab(state, command);
   commands.push(command);
   if (state.stopped) pause();
   inspect();
 }
 function recording(): LabRecording {
-  return { format: 2, scenario: state.scenario, commands, finalState: labFingerprint(state) };
+  return { format: 3, scenario: state.scenario, commands, finalState: labFingerprint(state) };
 }
 function reset(): void {
   pause();
   remove = false;
+  traverse = false;
   commands = [];
   state = createControllerLab(LAB_SCENARIOS.find((s) => s === select.value) ?? "course");
   inspect();
@@ -131,6 +136,10 @@ element("remove").onclick = () => {
   remove = true;
   element("status").textContent = "Platform removal queued for next tick";
 };
+element("traverse").onclick = () => {
+  traverse = true;
+  element("status").textContent = "Authored traversal queued for next tick";
+};
 element("replay").onclick = () => {
   pause();
   state = replayControllerLab(recording());
@@ -159,6 +168,7 @@ element<HTMLInputElement>("import").onchange = async (event) => {
     state = restored;
     commands = imported.commands;
     remove = false;
+    traverse = false;
     select.value = state.scenario;
     inspect();
     element("status").textContent += " · imported replay matches";
@@ -212,6 +222,15 @@ class ControllerLabScene extends Phaser.Scene {
           enemy.body.x / 256 + enemy.facing * 12,
           enemy.body.y / 256 - 12,
         );
+      }
+    }
+    graphics.lineStyle(1, 0xbd93f9);
+    const planned = labTraversal(state.scenario);
+    if (planned && planned.geometryRevision === state.geometryRevision) {
+      for (let i = 1; i < planned.poses.length; i++) {
+        const a = planned.poses[i - 1],
+          b = planned.poses[i];
+        if (a && b) graphics.lineBetween(a.x / 256, a.y / 256, b.x / 256, b.y / 256);
       }
     }
     graphics.lineStyle(1, 0x82aaff);

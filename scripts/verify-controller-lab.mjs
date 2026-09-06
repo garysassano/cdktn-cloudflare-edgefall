@@ -153,6 +153,51 @@ try {
   assert(landedEnemy.navigation.spans.every((span) => !span.supportIds.includes(110)));
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
+  const traversals = [];
+  for (const [scenario, ticks] of [
+    ["jump-link", 51],
+    ["drop-link", 27],
+  ]) {
+    await page.locator("#scenario").selectOption(scenario);
+    await page.locator("#traverse").click();
+    await page.locator("#step").click();
+    assert.equal((await read()).traversalStatus, "active");
+    await page.locator("#step").evaluate((button) => {
+      for (let i = 0; i < 9; i++) button.click();
+    });
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
+    await page.screenshot({ path: `${directory}/${scenario}.png` });
+    await page.locator("#step").evaluate((button, count) => {
+      for (let i = 0; i < count; i++) button.click();
+    }, ticks - 10);
+    const finished = await read();
+    assert.equal(finished.traversalStatus, "landed");
+    assert.equal(finished.actor.body.supportId, 101);
+    await page.locator("#replay").click();
+    assert.match(await page.locator("#status").textContent(), /replay matches/);
+    traversals.push(finished);
+  }
+  await page.locator("#scenario").selectOption("jump-link");
+  await page.locator("#traverse").click();
+  await page.locator("#step").evaluate((button) => {
+    for (let i = 0; i < 10; i++) button.click();
+  });
+  const beforeCancellation = await read();
+  await page.locator("#remove").click();
+  await page.locator("#step").click();
+  const cancelledTraversal = await read();
+  assert.equal(cancelledTraversal.traversalStatus, "cancelled");
+  assert.equal(cancelledTraversal.traversal, null);
+  assert.equal(
+    cancelledTraversal.actor.body.y,
+    beforeCancellation.actor.body.y + beforeCancellation.actor.body.vy + 55,
+  );
+  await page.locator("#step").click();
+  assert.notEqual((await read()).actor.body.y, cancelledTraversal.actor.body.y);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
   assert.deepEqual(errors, []);
   const report = {
     status: "pass",
@@ -178,8 +223,12 @@ try {
       "crush stop",
       "grounded patrol turns and independent player jump",
       "compiled navigation spans and removal revision",
+      "authored jump/drop execution and replay",
+      "mid-traversal cancellation continues gravity",
       "enemy support removal, gravity, landing and replay",
     ],
+    traversals,
+    cancelledTraversal,
     patrol,
     landedEnemy,
     jumpState,

@@ -11,6 +11,7 @@ import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { spatialProof } from "./spatial-proof.js";
+import { traversalProof } from "./traversal-proof.js";
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
 export function contractProof() {
@@ -77,6 +78,7 @@ export function contractProof() {
     restoredGrounded: groundedProof(600),
     seams: seamProof(),
     navigation: navigationProof(),
+    traversal: traversalProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),
     spatial: spatialProof(),

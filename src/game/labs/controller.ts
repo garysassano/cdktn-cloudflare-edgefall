@@ -3,16 +3,26 @@ import { type FootIntent, type FootStep, stepFootController } from "../controlle
 import { canonical } from "../core/canonical.js";
 import { integer, pixels } from "../core/numeric.js";
 import { HELD_MASK } from "../input/types.js";
+import type { TraversalCursor } from "../navigation/links.js";
 import { CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor } from "../state.js";
 import { FOOT_DEFINITION, FOOT_SHAPES, footActor, footTerrain } from "./foot-fixture.js";
+import { traversalFixture } from "./traversal.js";
 
-export const LAB_SCENARIOS = ["course", "moving-support", "crush", "enemy-ledge"] as const;
+export const LAB_SCENARIOS = [
+  "course",
+  "moving-support",
+  "crush",
+  "enemy-ledge",
+  "jump-link",
+  "drop-link",
+] as const;
 export type LabScenario = (typeof LAB_SCENARIOS)[number];
 export const LAB_LIMIT = 3600;
 export interface LabCommand extends FootIntent {
   removePlatform: boolean;
+  startTraversal: boolean;
 }
 export interface LabState {
   scenario: LabScenario;
@@ -20,6 +30,8 @@ export interface LabState {
   geometryRevision: number;
   removed: boolean;
   actor: ControlledActor;
+  traversal: TraversalCursor | null;
+  traversalStatus: "idle" | "active" | "landed" | "cancelled" | "failed" | "unavailable";
   enemy: GroundedEnemy | null;
   resolvedEnemies: Array<{ id: number; reason: "crushed" | "out-of-bounds" }>;
   terrain: SweepTarget[];
@@ -27,13 +39,32 @@ export interface LabState {
   stopped: string | null;
 }
 export interface LabRecording {
-  format: 2;
+  format: 3;
   scenario: LabScenario;
   commands: LabCommand[];
   finalState: string;
 }
 
+const traversalFixtures = new Map<string, ReturnType<typeof traversalFixture>>();
+function getTraversalFixture(scenario: LabScenario) {
+  if (scenario !== "jump-link" && scenario !== "drop-link") return null;
+  let fixture = traversalFixtures.get(scenario);
+  if (!fixture) {
+    fixture = traversalFixture(scenario === "jump-link" ? "jump" : "drop");
+    traversalFixtures.set(scenario, fixture);
+  }
+  return fixture;
+}
+export function labTraversal(scenario: LabScenario) {
+  return getTraversalFixture(scenario)?.link ?? null;
+}
+
 function geometry(scenario: LabScenario, tick: number, removed: boolean): SweepTarget[] {
+  const fixture = getTraversalFixture(scenario);
+  if (fixture)
+    return fixture.targets
+      .filter((target) => !(removed && target.id === 101))
+      .map((target) => ({ ...target, rect: { ...target.rect }, delta: { ...target.delta } }));
   if (scenario === "course")
     return [
       footTerrain(100, 0, 300, 230, 40),
@@ -71,10 +102,13 @@ function geometry(scenario: LabScenario, tick: number, removed: boolean): SweepT
 }
 export function createControllerLab(scenario: LabScenario): LabState {
   if (!LAB_SCENARIOS.includes(scenario)) throw new Error("Unknown lab scenario");
-  const actor = footActor(
-    scenario === "course" ? 60 : scenario === "crush" ? 320 : 240,
-    scenario === "moving-support" ? 230 : 300,
-  );
+  const fixture = getTraversalFixture(scenario);
+  const actor: ControlledActor = fixture
+    ? JSON.parse(JSON.stringify(fixture.actor))
+    : footActor(
+        scenario === "course" ? 60 : scenario === "crush" ? 320 : 240,
+        scenario === "moving-support" ? 230 : 300,
+      );
   if (scenario === "moving-support") actor.body.supportId = 110;
   const enemyBody = footActor(240, 230).body;
   enemyBody.id = 2;
@@ -85,6 +119,8 @@ export function createControllerLab(scenario: LabScenario): LabState {
     geometryRevision: 1,
     removed: false,
     actor,
+    traversal: null,
+    traversalStatus: "idle",
     enemy:
       scenario === "enemy-ledge"
         ? {
@@ -105,12 +141,19 @@ export function createControllerLab(scenario: LabScenario): LabState {
 export function stepControllerLab(state: LabState, command: LabCommand): LabState {
   if (state.stopped) return state;
   integer(command.held, 0, HELD_MASK, "lab held");
-  if (typeof command.jumpPressed !== "boolean" || typeof command.removePlatform !== "boolean")
+  if (
+    typeof command.jumpPressed !== "boolean" ||
+    typeof command.removePlatform !== "boolean" ||
+    typeof command.startTraversal !== "boolean"
+  )
     throw new Error("Invalid lab command");
   if (!FOOT_DEFINITION) throw new Error("Missing lab actor definition");
   const removed =
     state.removed ||
-    ((state.scenario === "moving-support" || state.scenario === "enemy-ledge") &&
+    ((state.scenario === "moving-support" ||
+      state.scenario === "enemy-ledge" ||
+      state.scenario === "jump-link" ||
+      state.scenario === "drop-link") &&
       command.removePlatform);
   const revision = state.geometryRevision + Number(removed !== state.removed);
   const terrain = geometry(state.scenario, state.tick, removed);
@@ -120,15 +163,34 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
     terrain.filter((t) => t.delta.x !== 0 || t.delta.y !== 0),
     frame,
   );
-  const result = stepFootController(
-    { ...state.actor, geometryRevision: revision },
-    command,
-    FOOT_DEFINITION,
-    FOOT_SHAPES,
-    index,
-    frame,
-  );
-  const actor = result.status === "complete" ? result.actor : state.actor;
+  const link = labTraversal(state.scenario);
+  let traversal = state.traversal;
+  let traversalStatus = state.traversalStatus;
+  if (command.startTraversal && !traversal) {
+    try {
+      if (!link) throw new Error("No authored link in this scenario");
+      traversal = link.begin(state.actor, state.tick);
+      traversalStatus = "active";
+    } catch {
+      traversalStatus = "unavailable";
+    }
+  }
+  let result: FootStep;
+  if (traversal && link) {
+    const progress = link.step(state.actor, traversal, index, frame);
+    result = progress.result;
+    traversal = progress.status === "failed" ? null : progress.cursor;
+    traversalStatus = progress.status;
+  } else
+    result = stepFootController(
+      { ...state.actor, geometryRevision: revision },
+      command,
+      FOOT_DEFINITION,
+      FOOT_SHAPES,
+      index,
+      frame,
+    );
+  const actor = result.status !== "failed" ? result.actor : state.actor;
   let enemy = state.enemy;
   let enemyFailure: string | null = null;
   const resolvedEnemies = [...state.resolvedEnemies];
@@ -172,6 +234,8 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
     geometryRevision: revision,
     removed,
     actor,
+    traversal,
+    traversalStatus,
     enemy,
     resolvedEnemies,
     terrain: geometry(state.scenario, frame.tick, removed),
@@ -186,6 +250,8 @@ export function labFingerprint(state: LabState): string {
     geometryRevision: state.geometryRevision,
     removed: state.removed,
     actor: state.actor,
+    traversal: state.traversal,
+    traversalStatus: state.traversalStatus,
     enemy: state.enemy,
     resolvedEnemies: state.resolvedEnemies,
     stopped: state.stopped,
@@ -193,7 +259,7 @@ export function labFingerprint(state: LabState): string {
 }
 export function replayControllerLab(recording: LabRecording): LabState {
   if (
-    recording.format !== 2 ||
+    recording.format !== 3 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > LAB_LIMIT
   )

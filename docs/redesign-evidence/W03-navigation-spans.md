@@ -1,6 +1,6 @@
 # W03 — Compiled walkable surfaces
 
-Status: static walkable root spans are compiled from collision geometry and visible in the engineering laboratory. Authored jump/drop links, their envelope validation and traversal execution remain required; this is not a complete navigation graph or W03/G1 acceptance.
+Status: static walkable root spans are compiled from collision geometry and visible in the engineering laboratory. The subsequent [authored traversal milestone](./W03-traversal-links.md) adds bounded jump/drop proof and runtime execution; graph-driven enemy integration remains open. Authored jump/drop links, their envelope validation and traversal execution remain required; this is not a complete navigation graph or W03/G1 acceptance.
 
 `src/game/navigation/spans.ts` compiles a `WalkSurface` for a feet-anchored shape and geometry revision. It merges coplanar solid/one-way top surfaces before shrinking them to positions with full-foot support, preserving walkability across tile seams. Each facing is compiled separately using the same asymmetric reflection convention as body collision. Intervals contain inclusive integer root coordinates; strict solid overlap removes blocked positions while exact ceiling/wall tangency remains legal. One-way undersides do not block standing clearance.
 

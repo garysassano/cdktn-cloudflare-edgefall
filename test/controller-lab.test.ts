@@ -8,13 +8,19 @@ import {
   stepControllerLab,
 } from "../src/game/labs/controller.js";
 
-const neutral: LabCommand = { held: 0, jumpPressed: false, removePlatform: false };
+const neutral: LabCommand = {
+  held: 0,
+  jumpPressed: false,
+  startTraversal: false,
+  removePlatform: false,
+};
 describe("rendered controller laboratory world", () => {
   it("carries, removes support at a new revision and replays the recorded world command", () => {
     let state = createControllerLab("moving-support");
     const startX = state.actor.body.x;
     const commands = Array.from({ length: 90 }, (_, tick) => ({
       ...neutral,
+      startTraversal: false,
       removePlatform: tick === 20,
     }));
     for (const command of commands) state = stepControllerLab(state, command);
@@ -25,7 +31,7 @@ describe("rendered controller laboratory world", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 2,
+          format: 3,
           scenario: state.scenario,
           commands,
           finalState: labFingerprint(state),
@@ -52,14 +58,14 @@ describe("rendered controller laboratory world", () => {
     expect(state.stopped).toBe("kill-bound");
     expect(() =>
       replayControllerLab({
-        format: 2,
+        format: 3,
         scenario: "course",
         commands: [...commands, neutral],
         finalState: labFingerprint(state),
       }),
     ).toThrow("after stop");
     expect(() =>
-      replayControllerLab({ format: 2, scenario: "course", commands: [], finalState: "wrong" }),
+      replayControllerLab({ format: 3, scenario: "course", commands: [], finalState: "wrong" }),
     ).toThrow("diverged");
   });
 });

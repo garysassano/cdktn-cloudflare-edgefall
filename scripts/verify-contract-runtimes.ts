@@ -127,6 +127,7 @@ try {
     restoredGroundedHash: expected.restoredGrounded.traceHash,
     seams: expected.seams,
     navigation: expected.navigation,
+    traversal: expected.traversal,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
       traceHash: expected.controllerBoundaries.traceHash,
@@ -166,7 +167,7 @@ try {
     },
     status: "pass",
     scope:
-      "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim",
+      "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));

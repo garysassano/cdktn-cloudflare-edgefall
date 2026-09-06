@@ -199,6 +199,7 @@ describe("grounded enemy patrol", () => {
     const commands = Array.from({ length: 400 }, (_, tick) => ({
       held: 0,
       jumpPressed: tick % 60 === 0,
+      startTraversal: false,
       removePlatform: tick === 300,
     }));
     for (const [tick, command] of commands.entries()) {
@@ -214,7 +215,7 @@ describe("grounded enemy patrol", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 2,
+          format: 3,
           scenario: "enemy-ledge",
           commands,
           finalState: labFingerprint(state),

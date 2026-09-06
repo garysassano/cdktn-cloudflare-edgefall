@@ -43,6 +43,7 @@ export function groundedProof(restoreAt?: number) {
     state = stepControllerLab(state, {
       held: 0,
       jumpPressed: tick % 60 === 1,
+      startTraversal: false,
       removePlatform: tick === 901,
     });
     if (state.stopped) throw new Error(`Enemy lab stopped: ${state.stopped}`);
