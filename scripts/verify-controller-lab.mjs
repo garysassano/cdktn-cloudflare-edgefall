@@ -122,6 +122,34 @@ try {
   assert.equal(crushed.stopped, "crushed");
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
+  await page.locator("#scenario").selectOption("enemy-ledge");
+  await surface.focus();
+  await page.keyboard.press("Space");
+  await page.keyboard.press("Enter");
+  assert.equal((await read()).enemy.body.y, 230 * 256);
+  assert((await read()).actor.body.y < 300 * 256);
+  // Drive the actual lab step control without wall-clock pacing for a long patrol.
+  await page.locator("#step").evaluate((button) => {
+    for (let tick = 0; tick < 400; tick++) button.click();
+  });
+  const patrol = await read();
+  assert(patrol.enemy.turns >= 2);
+  assert.equal(patrol.enemy.body.supportId, 110);
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  await page.screenshot({ path: `${directory}/enemy-ledge.png` });
+  await page.locator("#remove").click();
+  await page.locator("#step").click();
+  assert.equal((await read()).enemy.body.supportId, null);
+  await page.locator("#step").evaluate((button) => {
+    for (let tick = 0; tick < 40; tick++) button.click();
+  });
+  const landedEnemy = await read();
+  assert.equal(landedEnemy.enemy.body.supportId, 100);
+  assert.equal(landedEnemy.enemy.body.y, 300 * 256);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
   assert.deepEqual(errors, []);
   const report = {
     status: "pass",
@@ -145,7 +173,11 @@ try {
       "landing",
       "focus-loss pause and neutral input",
       "crush stop",
+      "grounded patrol turns and independent player jump",
+      "enemy support removal, gravity, landing and replay",
     ],
+    patrol,
+    landedEnemy,
     jumpState,
     removal,
     crushed,

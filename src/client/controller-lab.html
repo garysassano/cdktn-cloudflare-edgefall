@@ -4,7 +4,7 @@
 <style>body{background:#131b27;color:#eef2f7;font:16px system-ui;max-width:1000px;margin:24px auto;padding:0 16px}button,select{font:inherit;margin:4px;padding:6px}canvas{max-width:100%;height:auto}pre{max-height:320px;overflow:auto}#game{width:640px;max-width:100%}#game:focus{outline:3px solid #72dfed}</style></head>
 <body>
 <h1>Controller laboratory</h1>
-<p>Engineering shapes — not final art. Local 60 Hz controller fixture, no multiplayer connection. Cyan: collider; amber: root; green: support; magenta: contact normal.</p>
+<p>Engineering shapes — not final art. Local 60 Hz controller fixture, no multiplayer connection. Cyan: collider; amber: root; green: support; magenta: contact normal; orange: grounded patrol enemy.</p>
 <label>Scenario <select id="scenario"></select></label><button type="button" id="reset">Reset</button><button type="button" id="run">Run</button><button type="button" id="step">Step</button><button type="button" id="remove">Remove platform next tick</button><button type="button" id="replay">Replay recording</button><button type="button" id="export">Export recording</button>
 <label>Import recording <input id="import" type="file" accept="application/json,.json"></label>
 <p>Focus the surface, then arrows or WASD to move/aim/crouch; Space to jump; Enter to step while paused; Down + Space to drop. A tap is retained until the next tick. Blur pauses and clears input. At most 3,600 ticks per recording.</p>

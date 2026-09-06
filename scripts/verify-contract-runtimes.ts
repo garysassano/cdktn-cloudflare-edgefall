@@ -123,6 +123,9 @@ try {
     collisionSeeds: expected.collision.samples.length,
     movement: expected.movement,
     controller: expected.controller,
+    grounded: expected.grounded,
+    restoredGroundedHash: expected.restoredGrounded.traceHash,
+    seams: expected.seams,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
       traceHash: expected.controllerBoundaries.traceHash,
@@ -162,7 +165,7 @@ try {
     },
     status: "pass",
     scope:
-      "snapshot bytes/state, input traces, 256 seeded sweep results and a 1200-tick gravity/platform movement fixture; no integrated controller, renderer, full gameplay replay or remote timer claim",
+      "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));

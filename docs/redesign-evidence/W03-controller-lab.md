@@ -1,6 +1,6 @@
 # W03 — Rendered controller laboratory
 
-Status: the pure on-foot controller now drives an opt-in Phaser engineering surface. This is progress toward W03/G1, not final movement or gameplay acceptance. Production gameplay remains v2.
+Status: the pure on-foot controller now drives an opt-in Phaser engineering surface. The [grounded patrol extension](./W03-grounded-enemies.md) adds an enemy-ledge scenario, format-2 recordings and coplanar seam fixes; the evidence below records the initial laboratory milestone. This is progress toward W03/G1, not final movement or gameplay acceptance. Production gameplay remains v2.
 
 ## Run and inspect
 

@@ -143,6 +143,35 @@ interface Constraint {
   normal: Normal;
   delta: Point;
 }
+/** A real coplanar face makes an adjacent corner's orthogonal constraint redundant.
+ * Require exact current planes and equal remaining normal motion; unequal platforms
+ * must still collide. Standalone corners keep both normals.
+ */
+function redundantSeam(
+  rect: Rect,
+  corner: Constraint,
+  constraints: readonly Constraint[],
+  byId: ReadonlyMap<number, SweepTarget>,
+): boolean {
+  const target = byId.get(corner.id);
+  if (!target) return false;
+  const axis = corner.normal.x !== 0 ? "y" : "x";
+  const extent = axis === "x" ? "w" : "h";
+  return constraints.some((face) => {
+    const other = byId.get(face.id);
+    if (!other || face.normal[axis] === 0 || !touching(rect, other, face.normal, 0)) return false;
+    if (target.delta[axis] !== other.delta[axis]) return false;
+    if (face.normal[axis] === -1)
+      return (
+        rect[axis] + rect[extent] === target.rect[axis] && target.rect[axis] === other.rect[axis]
+      );
+    return (
+      rect[axis] === target.rect[axis] + target.rect[extent] &&
+      target.rect[axis] + target.rect[extent] === other.rect[axis] + other.rect[extent]
+    );
+  });
+}
+
 function touching(rect: Rect, target: SweepTarget, normal: Normal, tolerance: number): boolean {
   const b = target.rect;
   const horizontal = rect.x < b.x + b.w && rect.x + rect.w > b.x;
@@ -315,7 +344,9 @@ export function moveKinematic(
         ? [{ ...constraint, delta: target.delta }]
         : [];
     });
+    const witnessed = [...active, ...current];
     for (const constraint of current) {
+      if (redundantSeam(result.rect, constraint, witnessed, byId)) continue;
       if (
         !active.some(
           (item) =>

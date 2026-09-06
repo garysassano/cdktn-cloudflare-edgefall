@@ -25,7 +25,7 @@ describe("rendered controller laboratory world", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 1,
+          format: 2,
           scenario: state.scenario,
           commands,
           finalState: labFingerprint(state),
@@ -52,14 +52,14 @@ describe("rendered controller laboratory world", () => {
     expect(state.stopped).toBe("kill-bound");
     expect(() =>
       replayControllerLab({
-        format: 1,
+        format: 2,
         scenario: "course",
         commands: [...commands, neutral],
         finalState: labFingerprint(state),
       }),
     ).toThrow("after stop");
     expect(() =>
-      replayControllerLab({ format: 1, scenario: "course", commands: [], finalState: "wrong" }),
+      replayControllerLab({ format: 2, scenario: "course", commands: [], finalState: "wrong" }),
     ).toThrow("diverged");
   });
 });

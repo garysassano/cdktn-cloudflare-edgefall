@@ -64,7 +64,7 @@ function step(): void {
   inspect();
 }
 function recording(): LabRecording {
-  return { format: 1, scenario: state.scenario, commands, finalState: labFingerprint(state) };
+  return { format: 2, scenario: state.scenario, commands, finalState: labFingerprint(state) };
 }
 function reset(): void {
   pause();
@@ -191,6 +191,21 @@ class ControllerLabScene extends Phaser.Scene {
             : 0x445368,
       );
       graphics.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+    }
+    if (state.enemy && state.enemy.life === "alive") {
+      const enemy = state.enemy;
+      const shape = FOOT_SHAPES.get(enemy.body.shapeId);
+      if (shape) {
+        const rect = worldRect(enemy.body, shape.rect, enemy.facing);
+        graphics.lineStyle(2, 0xff9876);
+        graphics.strokeRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+        graphics.lineBetween(
+          enemy.body.x / 256,
+          enemy.body.y / 256 - 12,
+          enemy.body.x / 256 + enemy.facing * 12,
+          enemy.body.y / 256 - 12,
+        );
+      }
     }
     const body = state.actor.body;
     const shape = FOOT_SHAPES.get(body.shapeId);

@@ -1,3 +1,4 @@
+import { type GroundedEnemy, stepGroundedEnemy } from "../actors/grounded.js";
 import { type FootIntent, type FootStep, stepFootController } from "../controller/foot.js";
 import { canonical } from "../core/canonical.js";
 import { integer, pixels } from "../core/numeric.js";
@@ -7,7 +8,7 @@ import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor } from "../state.js";
 import { FOOT_DEFINITION, FOOT_SHAPES, footActor, footTerrain } from "./foot-fixture.js";
 
-export const LAB_SCENARIOS = ["course", "moving-support", "crush"] as const;
+export const LAB_SCENARIOS = ["course", "moving-support", "crush", "enemy-ledge"] as const;
 export type LabScenario = (typeof LAB_SCENARIOS)[number];
 export const LAB_LIMIT = 3600;
 export interface LabCommand extends FootIntent {
@@ -19,12 +20,14 @@ export interface LabState {
   geometryRevision: number;
   removed: boolean;
   actor: ControlledActor;
+  enemy: GroundedEnemy | null;
+  resolvedEnemies: Array<{ id: number; reason: "crushed" | "out-of-bounds" }>;
   terrain: SweepTarget[];
   result: FootStep | null;
   stopped: string | null;
 }
 export interface LabRecording {
-  format: 1;
+  format: 2;
   scenario: LabScenario;
   commands: LabCommand[];
   finalState: string;
@@ -48,6 +51,11 @@ function geometry(scenario: LabScenario, tick: number, removed: boolean): SweepT
         delta: { x: 0, y: tick < 65 ? pixels(1) : 0 },
       },
     ];
+  if (scenario === "enemy-ledge")
+    return [
+      footTerrain(100, 0, 300, 640, 40),
+      ...(removed ? [] : [footTerrain(110, 200, 230, 160, 8)]),
+    ];
   const phase = tick % 240;
   const x = 200 + (phase <= 120 ? phase : 240 - phase);
   const nextPhase = (tick + 1) % 240;
@@ -68,12 +76,27 @@ export function createControllerLab(scenario: LabScenario): LabState {
     scenario === "moving-support" ? 230 : 300,
   );
   if (scenario === "moving-support") actor.body.supportId = 110;
+  const enemyBody = footActor(240, 230).body;
+  enemyBody.id = 2;
+  enemyBody.supportId = 110;
   return {
     scenario,
     tick: 0,
     geometryRevision: 1,
     removed: false,
     actor,
+    enemy:
+      scenario === "enemy-ledge"
+        ? {
+            body: enemyBody,
+            facing: 1,
+            geometryRevision: 1,
+            life: "alive",
+            removalReason: null,
+            turns: 0,
+          }
+        : null,
+    resolvedEnemies: [],
     terrain: geometry(scenario, 0, false),
     result: null,
     stopped: null,
@@ -85,7 +108,10 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
   if (typeof command.jumpPressed !== "boolean" || typeof command.removePlatform !== "boolean")
     throw new Error("Invalid lab command");
   if (!FOOT_DEFINITION) throw new Error("Missing lab actor definition");
-  const removed = state.removed || (state.scenario === "moving-support" && command.removePlatform);
+  const removed =
+    state.removed ||
+    ((state.scenario === "moving-support" || state.scenario === "enemy-ledge") &&
+      command.removePlatform);
   const revision = state.geometryRevision + Number(removed !== state.removed);
   const terrain = geometry(state.scenario, state.tick, removed);
   const frame = { tick: state.tick + 1, geometryRevision: revision };
@@ -103,20 +129,51 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
     frame,
   );
   const actor = result.status === "complete" ? result.actor : state.actor;
+  let enemy = state.enemy;
+  let enemyFailure: string | null = null;
+  const resolvedEnemies = [...state.resolvedEnemies];
+  if (enemy) {
+    const shape = FOOT_SHAPES.get(enemy.body.shapeId);
+    if (!shape) throw new Error("Missing enemy shape");
+    const enemyStep = stepGroundedEnemy(
+      { ...enemy, geometryRevision: revision },
+      {
+        speed: pixels(1),
+        gravity: FOOT_DEFINITION.gravity,
+        terminalVelocity: FOOT_DEFINITION.terminalVelocity,
+        bounds: { x: pixels(-30), y: pixels(-80), w: pixels(700), h: pixels(470) },
+      },
+      shape,
+      index,
+      frame,
+    );
+    if (enemyStep.status === "failed") enemyFailure = `enemy-${enemyStep.physics.reason}`;
+    else {
+      enemy = enemyStep.enemy;
+      if (
+        enemy.removalReason &&
+        !resolvedEnemies.some((resolved) => resolved.id === enemy?.body.id)
+      )
+        resolvedEnemies.push({ id: enemy.body.id, reason: enemy.removalReason });
+    }
+  }
   const stopped =
-    result.status === "failed"
+    enemyFailure ??
+    (result.status === "failed"
       ? result.physics.reason
       : actor.body.y > pixels(390)
         ? "kill-bound"
         : frame.tick >= LAB_LIMIT
           ? "recording-limit"
-          : null;
+          : null);
   return {
     ...state,
     tick: frame.tick,
     geometryRevision: revision,
     removed,
     actor,
+    enemy,
+    resolvedEnemies,
     terrain: geometry(state.scenario, frame.tick, removed),
     result,
     stopped,
@@ -129,12 +186,14 @@ export function labFingerprint(state: LabState): string {
     geometryRevision: state.geometryRevision,
     removed: state.removed,
     actor: state.actor,
+    enemy: state.enemy,
+    resolvedEnemies: state.resolvedEnemies,
     stopped: state.stopped,
   });
 }
 export function replayControllerLab(recording: LabRecording): LabState {
   if (
-    recording.format !== 1 ||
+    recording.format !== 2 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > LAB_LIMIT
   )
