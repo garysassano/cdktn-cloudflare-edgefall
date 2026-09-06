@@ -101,6 +101,10 @@ export class CollisionGrid {
     return this.inspectQuery(bounds).targets;
   }
 
+  get(id: number): SweepTarget | undefined {
+    return this.#entries.get(id)?.target;
+  }
+
   inspectQuery(bounds: SweepBounds): GridQuery {
     validateBounds(bounds);
     const range = this.#range(bounds);
@@ -165,5 +169,9 @@ export class CollisionIndex {
 
   query(bounds: SweepBounds): readonly SweepTarget[] {
     return sorted([...this.fixed.query(bounds), ...this.dynamic.query(bounds)]);
+  }
+
+  get(id: number): SweepTarget | undefined {
+    return this.fixed.get(id) ?? this.dynamic.get(id);
   }
 }

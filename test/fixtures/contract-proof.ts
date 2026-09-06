@@ -5,6 +5,7 @@ import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
 import { collisionProof } from "./collision-proof.js";
+import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { spatialProof } from "./spatial-proof.js";
@@ -69,6 +70,9 @@ export function contractProof() {
     trace,
     collision: collisionProof(),
     movement: movementProof(),
+    controller: controllerProof(),
+    controllerBoundaries: controllerBoundaryProof(),
+    restoredController: controllerProof(599),
     spatial: spatialProof(),
     indexedMovement: ([32, 64] as const).map((cellPixels) => ({
       cellPixels,

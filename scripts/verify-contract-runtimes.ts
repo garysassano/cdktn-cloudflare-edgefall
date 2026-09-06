@@ -122,6 +122,15 @@ try {
     appliedTicks: expected.trace.map((tick) => tick.input.serverTick),
     collisionSeeds: expected.collision.samples.length,
     movement: expected.movement,
+    controller: expected.controller,
+    controllerBoundaries: {
+      cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
+      traceHash: expected.controllerBoundaries.traceHash,
+    },
+    restoredController: {
+      restoredAfterTick: 599,
+      traceHash: expected.restoredController.traceHash,
+    },
     spatial: {
       fixed: expected.spatial.fixed,
       moving: expected.spatial.moving,

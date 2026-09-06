@@ -1,5 +1,6 @@
 import { canonical } from "../core/canonical.js";
 import { COUNTER_LIMIT, MAX_SHAPE, integer, motion, position } from "../core/numeric.js";
+import { validateLocalRect } from "../physics/body.js";
 import type { Point, Rect } from "../state.js";
 import type { ContentDefinition } from "./schema.js";
 
@@ -22,6 +23,7 @@ function point(value: Point, local = false): void {
   integer(value.y, -maximum, maximum, "point y");
 }
 function rectangle(rect: Rect, local = false): void {
+  if (local) validateLocalRect(rect);
   point(rect, local);
   integer(rect.w, 1, local ? MAX_SHAPE : 2 ** 24, "rectangle width");
   integer(rect.h, 1, local ? MAX_SHAPE : 2 ** 24, "rectangle height");

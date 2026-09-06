@@ -1,0 +1,19 @@
+# W03 — Root bodies and on-foot controller
+
+Status: pure on-foot locomotion is implemented; the active v2 game has not been switched. W03/G1 remain open pending rendered laboratory, grounded enemies, world integration and gameplay acceptance.
+
+`src/game/physics/body.ts` transforms local colliders and sockets around the same bounded root, including asymmetric facing reflection. Shape changes preserve the root and reject solid overlap at the selected start/end phase. Local far edges are validated by typed content validation. The controller requires standing/crouched shapes to share a feet anchor, with crouch contained in standing bounds. Blocked standing and turning retain the previous fitting shape/facing.
+
+`stepFootController` consumes normalized admitted intent and a matching collision tick/revision. It clones `ControlledActor` state, applies immediate run/reversal and air control, stationary grounded crouch, aim, support carry, gravity, fixed-height jump, five-tick jump buffering and four future coyote ticks. Down+jump ignores only the selected one-way support, for at most a proposed 12 ticks or until feet clear its bottom. Buffered landing drop has priority over jumping. Hurt preserves horizontal knockback while locking control; dead/seated/transfer states remain lifecycle-owned.
+
+A direct jump applies its impulse before gravity. The engineering fixture therefore starts with -1,375 subpixels of displacement from a -1,430 impulse and 55 gravity, reaching 17,875 subpixels (about 69.82 pixels) of free ascent. A buffered landing jump prepares the raw impulse at tick end; movement starts on the following tick with the same displacement sequence. These are proposed Edgefall values, not measured reference-game calibration.
+
+Body snapshots retain at most one final contact representative per cardinal normal, prioritizing actual floor support, with end-of-tick contact time. The full movement diagnostic manifold remains available separately. Failed physics returns no accepted body/actor. This controller rejects nonzero motion remainders until a fractional integration policy is implemented; the codec still preserves those fields. Input admission/acknowledgments, action timelines, weapons, seats, lifecycle and geometry journals remain world-owned.
+
+## Validation
+
+`pnpm check` passes 200 tests across 19 files, lint, asset/content validation, TypeScript, client/Worker dry-run builds and CDKTN synthesis. Coverage includes exact buffer/coyote boundaries, direct/buffered arc parity, duplicate admitted edges, ceiling clearance, asymmetric turns, platform removal/carry/drop, failure results, snapshot restoration and 100 seeded 120-tick routes with reversed geometry order and penetration checks.
+
+[Runtime report](./W03-controller-runtime-proof.json) records Node 24.20.0, Chromium 151.0.7922.34 and local workerd agreement. The 1,200-tick controller fixture encodes/decodes every snapshot and produces trace `db17022f`, including 15 jumps, one drop, 17 landings and one leave-support event. Restoration after tick 599 preserves the trace. Five separate boundary cases produce `6048746c`. Existing sweep, moving-obstacle and indexed movement proofs also pass. The report commit identifies the pre-change base; source and bundle hashes identify tested code. Its older scope label excludes an integrated controller: this addition exercises the pure controller, not production room/browser integration.
+
+No deployment, production binding, dependency or media changes are included. These engineering fixtures do not establish renderer behavior, browser input latency, full gameplay replay, multiplayer acceptance or deployed cadence. Next: rendered collision laboratory and grounded enemy integration, followed by world lifecycle/geometry and shared prediction. W02 compiler/build identity, bandwidth, timing, renderer, recovery and live gates remain open. Profile actual simulation/combat before a bounded Rust/Wasm comparison.

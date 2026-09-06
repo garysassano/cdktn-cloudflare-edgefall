@@ -15,6 +15,7 @@ export const ARCADE = Object.freeze({
   vehicleSpecialHoldTicks: 30,
   jumpBufferTicks: 5,
   coyoteTicks: 4,
+  dropThroughTicks: 12,
 } as const);
 
 export const RULE_PRESETS = Object.freeze({
