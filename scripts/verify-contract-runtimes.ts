@@ -136,6 +136,7 @@ try {
     traversal: expected.traversal,
     route: expected.route,
     compiledLevel: expected.compiledLevel,
+    encounter: expected.encounter,
     routedEnemy: expected.routedEnemy,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),

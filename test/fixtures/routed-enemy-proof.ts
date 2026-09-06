@@ -32,7 +32,7 @@ export function routedEnemyProof() {
         });
     }
     const finalState = labFingerprint(state);
-    replayControllerLab({ format: 5, scenario: "enemy-route", commands, finalState });
+    replayControllerLab({ format: 6, scenario: "enemy-route", commands, finalState });
     if (
       state.navigatingEnemy?.status !== (remove ? "unreachable" : "arrived") ||
       state.navigatingEnemy.actor.body.supportId !== (remove ? 101 : 102)

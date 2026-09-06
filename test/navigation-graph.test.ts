@@ -179,7 +179,7 @@ describe("navigation route selection", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 5,
+          format: 6,
           scenario: "route-chain",
           commands,
           finalState: labFingerprint(state),

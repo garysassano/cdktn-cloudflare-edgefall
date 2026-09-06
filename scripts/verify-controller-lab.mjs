@@ -289,6 +289,31 @@ try {
   await page.locator("#replay").click();
   assert.match(await page.locator("#status").textContent(), /replay matches/);
   assert.deepEqual(errors, []);
+  await page.locator("#scenario").selectOption("encounter-clear");
+  for (let i = 0; i < 10; i++) await page.locator("#step").click();
+  assert.equal((await read()).encounter.phase, "active");
+  await page.locator("#remove").click();
+  for (let i = 10; i < 30; i++) await page.locator("#step").click();
+  const fallingEncounter = await read();
+  assert.equal(fallingEncounter.encounter.phase, "active");
+  assert.equal(fallingEncounter.enemy.body.supportId, null);
+  assert(fallingEncounter.enemy.body.y > 230 * 256);
+  assert.equal(fallingEncounter.actor.body.supportId, 100);
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  await page.screenshot({ path: `${directory}/encounter-fall.png` });
+  for (let i = 30; i < 80; i++) await page.locator("#step").click();
+  const clearedEncounter = await read();
+  assert.equal(clearedEncounter.encounter.phase, "complete");
+  assert.equal(clearedEncounter.enemy.removalReason, "out-of-bounds");
+  assert.equal(clearedEncounter.encounter.receipts.length, 2);
+  assert.equal(clearedEncounter.encounter.kills[0].count, 0);
+  assert.equal(clearedEncounter.stopped, null);
+  assert.match(await page.locator("#status").textContent(), /encounter complete/);
+  await page.locator("#replay").click();
+  assert.match(await page.locator("#status").textContent(), /replay matches/);
+  assert.deepEqual(errors, []);
   const report = {
     status: "pass",
     recordedAt: new Date().toISOString(),
@@ -317,9 +342,12 @@ try {
       "two-link route, approach, replay and cancellation",
       "independent routed enemy, rebuilt geometry, gravity and replay",
       "compiled LDtk terrain, two jumps, arrival and replay",
+      "physical enemy fall, encounter completion without kill credit, and replay",
       "mid-traversal cancellation continues gravity",
       "enemy support removal, gravity, landing and replay",
     ],
+    fallingEncounter,
+    clearedEncounter,
     compiledArrival,
     routedEnemy,
     strandedEnemy,

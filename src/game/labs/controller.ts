@@ -3,6 +3,12 @@ import type { EnemyNavigationEvent, RoutedEnemy } from "../actors/routed.js";
 import { type FootIntent, type FootStep, stepFootController } from "../controller/foot.js";
 import { canonical } from "../core/canonical.js";
 import { integer, pixels } from "../core/numeric.js";
+import type {
+  EncounterEvent,
+  EncounterNotice,
+  EncounterState,
+  PoseFault,
+} from "../encounters/lifecycle.js";
 import { HELD_MASK } from "../input/types.js";
 import type { RouteCursor } from "../navigation/follower.js";
 import type { TraversalCursor } from "../navigation/links.js";
@@ -10,6 +16,7 @@ import { CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor } from "../state.js";
 import { compiledLevelFixture } from "./compiled.js";
+import { labEncounter } from "./encounter.js";
 import { FOOT_DEFINITION, FOOT_SHAPES, footActor, footTerrain } from "./foot-fixture.js";
 import { routeFixture } from "./route.js";
 import { routedEnemyFixture } from "./routed.js";
@@ -20,6 +27,7 @@ export const LAB_SCENARIOS = [
   "moving-support",
   "crush",
   "enemy-ledge",
+  "encounter-clear",
   "jump-link",
   "drop-link",
   "route-chain",
@@ -44,13 +52,15 @@ export interface LabState {
   enemy: GroundedEnemy | null;
   navigatingEnemy: RoutedEnemy | null;
   enemyNavigationEvents: EnemyNavigationEvent[];
+  encounter: EncounterState | null;
+  encounterNotices: EncounterNotice[];
   resolvedEnemies: Array<{ id: number; reason: "crushed" | "out-of-bounds" }>;
   terrain: SweepTarget[];
   result: FootStep | null;
   stopped: string | null;
 }
 export interface LabRecording {
-  format: 5;
+  format: 6;
   scenario: LabScenario;
   commands: LabCommand[];
   finalState: string;
@@ -127,6 +137,11 @@ function geometry(scenario: LabScenario, tick: number, removed: boolean): SweepT
         delta: { x: 0, y: tick < 65 ? pixels(1) : 0 },
       },
     ];
+  if (scenario === "encounter-clear")
+    return [
+      footTerrain(100, 0, 300, 100, 40),
+      ...(removed ? [] : [footTerrain(110, 200, 230, 160, 8)]),
+    ];
   if (scenario === "enemy-ledge")
     return [
       footTerrain(100, 0, 300, 640, 40),
@@ -149,7 +164,7 @@ export function createControllerLab(scenario: LabScenario): LabState {
   if (!LAB_SCENARIOS.includes(scenario)) throw new Error("Unknown lab scenario");
   const fixture = getTraversalFixture(scenario) ?? getRouteFixture(scenario);
   const actor: ControlledActor =
-    scenario === "enemy-route"
+    scenario === "enemy-route" || scenario === "encounter-clear"
       ? footActor(80, 300)
       : fixture
         ? JSON.parse(JSON.stringify(fixture.actor))
@@ -171,7 +186,7 @@ export function createControllerLab(scenario: LabScenario): LabState {
     route: null,
     traversalStatus: "idle",
     enemy:
-      scenario === "enemy-ledge"
+      scenario === "enemy-ledge" || scenario === "encounter-clear"
         ? {
             body: enemyBody,
             facing: 1,
@@ -184,6 +199,10 @@ export function createControllerLab(scenario: LabScenario): LabState {
     navigatingEnemy:
       scenario === "enemy-route" ? JSON.parse(JSON.stringify(getRoutedLab(false).enemy)) : null,
     enemyNavigationEvents: [],
+    encounter: ["enemy-ledge", "enemy-route", "encounter-clear"].includes(scenario)
+      ? labEncounter.begin()
+      : null,
+    encounterNotices: [],
     resolvedEnemies: [],
     terrain: geometry(scenario, 0, false),
     result: null,
@@ -204,6 +223,7 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
     state.removed ||
     ((state.scenario === "moving-support" ||
       state.scenario === "enemy-ledge" ||
+      state.scenario === "encounter-clear" ||
       state.scenario === "jump-link" ||
       state.scenario === "drop-link" ||
       state.scenario === "route-chain" ||
@@ -258,6 +278,7 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
   const actor = result.status !== "failed" ? result.actor : state.actor;
   let enemy = state.enemy;
   let enemyFailure: string | null = null;
+  let enemyFault: PoseFault | null = null;
   const resolvedEnemies = [...state.resolvedEnemies];
   if (enemy) {
     const shape = FOOT_SHAPES.get(enemy.body.shapeId);
@@ -274,8 +295,11 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
       index,
       frame,
     );
-    if (enemyStep.status === "failed") enemyFailure = `enemy-${enemyStep.physics.reason}`;
-    else {
+    if (enemyStep.status === "failed") {
+      enemyFailure = `enemy-${enemyStep.physics.reason}`;
+      if (enemyStep.physics.reason === "crushed") throw new Error("Unresolved proven crush");
+      enemyFault = enemyStep.physics.reason;
+    } else {
       enemy = enemyStep.enemy;
       if (
         enemy.removalReason &&
@@ -289,14 +313,63 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
   if (navigatingEnemy) {
     const fixture = getRoutedLab(removed);
     const progress = fixture.driver.step(navigatingEnemy, fixture.goal, index, frame);
-    if (progress.status === "failed") enemyFailure = `enemy-${progress.result.physics.reason}`;
-    else {
+    if (progress.status === "failed") {
+      enemyFailure = `enemy-${progress.result.physics.reason}`;
+      if (progress.result.physics.reason === "crushed") throw new Error("Unresolved proven crush");
+      enemyFault = progress.result.physics.reason;
+    } else {
       navigatingEnemy = progress.enemy;
       enemyNavigationEvents = progress.events;
       for (const event of progress.events)
         if (event.kind === "removed" && !resolvedEnemies.some((entry) => entry.id === event.id))
           resolvedEnemies.push({ id: event.id, reason: event.reason });
     }
+  }
+  let encounter = state.encounter;
+  let encounterNotices: EncounterNotice[] = [];
+  if (encounter) {
+    const member = encounter.members[0];
+    if (!member) throw new Error("Missing lab encounter member");
+    const events: EncounterEvent[] = [];
+    const received = encounter.receipts.length;
+    const sequence = () => received + events.length + 1;
+    if (member.status === "pending")
+      events.push({ kind: "activate", id: 2, tick: frame.tick, sequence: sequence() });
+    if (enemyFault)
+      events.push({
+        kind: "fault",
+        id: 2,
+        tick: frame.tick,
+        sequence: sequence(),
+        reason: enemyFault,
+      });
+    const removal = enemy?.removalReason ?? navigatingEnemy?.removalReason;
+    if (removal && member.status !== "resolved")
+      events.push({
+        kind: "resolve",
+        id: 2,
+        tick: frame.tick,
+        sequence: sequence(),
+        reason: removal,
+        killerId: null,
+      });
+    const body = enemy?.body ?? navigatingEnemy?.actor.body;
+    const progress = labEncounter.step(
+      encounter,
+      frame.tick,
+      events,
+      body && !removal
+        ? [
+            {
+              id: 2,
+              progressKey: canonical({ x: body.x, y: body.y, vx: body.vx, vy: body.vy }),
+              unreachable: navigatingEnemy?.status === "unreachable",
+            },
+          ]
+        : [],
+    );
+    encounter = progress.state;
+    encounterNotices = progress.notices;
   }
   const stopped =
     enemyFailure ??
@@ -320,6 +393,8 @@ export function stepControllerLab(state: LabState, command: LabCommand): LabStat
     navigatingEnemy,
     enemyNavigationEvents,
     resolvedEnemies,
+    encounter,
+    encounterNotices,
     terrain: geometry(state.scenario, frame.tick, removed),
     result,
     stopped,
@@ -339,12 +414,14 @@ export function labFingerprint(state: LabState): string {
     navigatingEnemy: state.navigatingEnemy,
     enemyNavigationEvents: state.enemyNavigationEvents,
     resolvedEnemies: state.resolvedEnemies,
+    encounter: state.encounter,
+    encounterNotices: state.encounterNotices,
     stopped: state.stopped,
   });
 }
 export function replayControllerLab(recording: LabRecording): LabState {
   if (
-    recording.format !== 5 ||
+    recording.format !== 6 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > LAB_LIMIT
   )

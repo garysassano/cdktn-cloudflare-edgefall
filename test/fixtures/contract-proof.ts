@@ -7,6 +7,7 @@ import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/sn
 import { collisionProof } from "./collision-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
+import { encounterProof } from "./encounter-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
@@ -84,6 +85,7 @@ export function contractProof() {
     traversal: traversalProof(),
     route: routeProof(),
     compiledLevel: compiledLevelProof(),
+    encounter: encounterProof(),
     routedEnemy: routedEnemyProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),

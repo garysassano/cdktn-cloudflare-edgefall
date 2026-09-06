@@ -59,7 +59,7 @@ function inspect(): void {
       : null;
   element("state").textContent = JSON.stringify({ ...state, navigation }, null, 2);
   element("status").textContent =
-    `Tick ${state.tick} · revision ${state.geometryRevision} · ${state.stopped ?? (running ? "running" : "paused")} · ${commands.length} recorded inputs`;
+    `Tick ${state.tick} · revision ${state.geometryRevision} · ${state.stopped ?? (running ? "running" : "paused")} · ${commands.length} recorded inputs${state.encounter ? ` · encounter ${state.encounter.phase}` : ""}`;
 }
 function step(): void {
   if (state.stopped) return;
@@ -78,7 +78,7 @@ function step(): void {
   inspect();
 }
 function recording(): LabRecording {
-  return { format: 5, scenario: state.scenario, commands, finalState: labFingerprint(state) };
+  return { format: 6, scenario: state.scenario, commands, finalState: labFingerprint(state) };
 }
 function reset(): void {
   pause();

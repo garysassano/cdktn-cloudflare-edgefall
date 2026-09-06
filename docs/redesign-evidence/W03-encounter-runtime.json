@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 1,
+  "package": "W01/W03",
+  "recordedAt": "2026-09-06T19:41:17.287Z",
+  "commit": "d75b215684f8784d568d8d0f6a82d8f30850cb81",
+  "sourceSha256": "bc10b9c7c820acd5f1c1ff228a432ee68490d5c50492858965f5aeb868de8089",
+  "browserBundleSha256": "b7af354c57f925eceefda78ed9d4f95ed5e759836acaafdabf97010ee2cc3e76",
+  "resultSha256": "357e90f453851a3fc9ecdc1e3dd68416eb07f164d6b2bf1aa4c4b1458229230e",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "encounter": {
+    "ticks": 120,
+    "traceHash": "c0cc01b8",
+    "notices": [
+      {
+        "kind": "complete",
+        "tick": 49,
+        "encounterId": 1
+      }
+    ],
+    "checkpoints": [
+      {
+        "tick": 1,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 61696,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 1,
+          "phase": "active",
+          "members": [
+            {
+              "id": 2,
+              "status": "alive",
+              "activatedTick": 1,
+              "resolvedTick": null,
+              "reason": null,
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":0,\"x\":61696,\"y\":58880}",
+              "unchangedSince": 1,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}"
+          ],
+          "failure": null
+        }
+      },
+      {
+        "tick": 10,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 64000,
+            "y": 58880,
+            "vx": 256,
+            "vy": 0,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": 110,
+            "grounded": true,
+            "contacts": [
+              {
+                "otherId": 110,
+                "normalX": 0,
+                "normalY": -1,
+                "toiNumerator": 1,
+                "toiDenominator": 1,
+                "kind": "solid"
+              }
+            ]
+          },
+          "facing": 1,
+          "geometryRevision": 1,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 10,
+          "phase": "active",
+          "members": [
+            {
+              "id": 2,
+              "status": "alive",
+              "activatedTick": 1,
+              "resolvedTick": null,
+              "reason": null,
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":0,\"x\":64000,\"y\":58880}",
+              "unchangedSince": 10,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}"
+          ],
+          "failure": null
+        }
+      },
+      {
+        "tick": 11,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 64256,
+            "y": 58935,
+            "vx": 256,
+            "vy": 55,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 11,
+          "phase": "active",
+          "members": [
+            {
+              "id": 2,
+              "status": "alive",
+              "activatedTick": 1,
+              "resolvedTick": null,
+              "reason": null,
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":55,\"x\":64256,\"y\":58935}",
+              "unchangedSince": 11,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}"
+          ],
+          "failure": null
+        }
+      },
+      {
+        "tick": 30,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 69120,
+            "y": 70430,
+            "vx": 256,
+            "vy": 1100,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "alive",
+          "removalReason": null,
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 30,
+          "phase": "active",
+          "members": [
+            {
+              "id": 2,
+              "status": "alive",
+              "activatedTick": 1,
+              "resolvedTick": null,
+              "reason": null,
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":1100,\"x\":69120,\"y\":70430}",
+              "unchangedSince": 30,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}"
+          ],
+          "failure": null
+        }
+      },
+      {
+        "tick": 60,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 73984,
+            "y": 101641,
+            "vx": 256,
+            "vy": 2048,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "removed",
+          "removalReason": "out-of-bounds",
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 60,
+          "phase": "complete",
+          "members": [
+            {
+              "id": 2,
+              "status": "resolved",
+              "activatedTick": 1,
+              "resolvedTick": 49,
+              "reason": "out-of-bounds",
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":2048,\"x\":73728,\"y\":99593}",
+              "unchangedSince": 48,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}",
+            "{\"id\":2,\"killerId\":null,\"kind\":\"resolve\",\"reason\":\"out-of-bounds\",\"sequence\":2,\"tick\":49}"
+          ],
+          "failure": null
+        }
+      },
+      {
+        "tick": 120,
+        "enemy": {
+          "body": {
+            "id": 2,
+            "x": 73984,
+            "y": 101641,
+            "vx": 256,
+            "vy": 2048,
+            "remainderX": 0,
+            "remainderY": 0,
+            "shapeId": 1,
+            "supportId": null,
+            "grounded": false,
+            "contacts": []
+          },
+          "facing": 1,
+          "geometryRevision": 2,
+          "life": "removed",
+          "removalReason": "out-of-bounds",
+          "turns": 0
+        },
+        "encounter": {
+          "definitionKey": "{\"id\":1,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":false,\"id\":2,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":180}],\"objectives\":[],\"participants\":[1]}",
+          "tick": 120,
+          "phase": "complete",
+          "members": [
+            {
+              "id": 2,
+              "status": "resolved",
+              "activatedTick": 1,
+              "resolvedTick": 49,
+              "reason": "out-of-bounds",
+              "killerId": null,
+              "progressKey": "{\"vx\":256,\"vy\":2048,\"x\":73728,\"y\":99593}",
+              "unchangedSince": 48,
+              "unreachableSince": null,
+              "warnedUnchanged": false,
+              "warnedUnreachable": false
+            }
+          ],
+          "objectives": [],
+          "kills": [
+            {
+              "playerId": 1,
+              "count": 0
+            }
+          ],
+          "receipts": [
+            "{\"id\":2,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}",
+            "{\"id\":2,\"killerId\":null,\"kind\":\"resolve\",\"reason\":\"out-of-bounds\",\"sequence\":2,\"tick\":49}"
+          ],
+          "failure": null
+        }
+      }
+    ],
+    "failure": {
+      "state": {
+        "definitionKey": "{\"id\":99,\"members\":[{\"ambientCleanupTicks\":null,\"critical\":true,\"id\":42,\"required\":true,\"retreatAllowed\":false,\"watchdogTicks\":60}],\"objectives\":[],\"participants\":[1]}",
+        "tick": 1,
+        "phase": "failed",
+        "members": [
+          {
+            "id": 42,
+            "status": "resolved",
+            "activatedTick": 1,
+            "resolvedTick": 1,
+            "reason": "out-of-bounds",
+            "killerId": null,
+            "progressKey": null,
+            "unchangedSince": null,
+            "unreachableSince": null,
+            "warnedUnchanged": false,
+            "warnedUnreachable": false
+          }
+        ],
+        "objectives": [],
+        "kills": [
+          {
+            "playerId": 1,
+            "count": 0
+          }
+        ],
+        "receipts": [
+          "{\"id\":42,\"kind\":\"activate\",\"sequence\":1,\"tick\":1}",
+          "{\"id\":42,\"killerId\":null,\"kind\":\"resolve\",\"reason\":\"out-of-bounds\",\"sequence\":2,\"tick\":1}"
+        ],
+        "failure": {
+          "id": 42,
+          "tick": 1,
+          "reason": "critical-loss",
+          "cause": "out-of-bounds"
+        }
+      },
+      "notices": [
+        {
+          "kind": "failed",
+          "encounterId": 99,
+          "failure": {
+            "id": 42,
+            "tick": 1,
+            "reason": "critical-loss",
+            "cause": "out-of-bounds"
+          }
+        }
+      ],
+      "remaining": 0,
+      "counts": {
+        "pending": 0,
+        "alive": 0,
+        "resolved": 1
+      }
+    }
+  },
+  "status": "pass",
+  "scope": "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim"
+}

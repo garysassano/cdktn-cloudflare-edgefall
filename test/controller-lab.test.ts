@@ -7,6 +7,7 @@ import {
   replayControllerLab,
   stepControllerLab,
 } from "../src/game/labs/controller.js";
+import { encounterProof } from "./fixtures/encounter-proof.js";
 
 const neutral: LabCommand = {
   held: 0,
@@ -31,7 +32,7 @@ describe("rendered controller laboratory world", () => {
     expect(
       labFingerprint(
         replayControllerLab({
-          format: 5,
+          format: 6,
           scenario: state.scenario,
           commands,
           finalState: labFingerprint(state),
@@ -58,14 +59,14 @@ describe("rendered controller laboratory world", () => {
     expect(state.stopped).toBe("kill-bound");
     expect(() =>
       replayControllerLab({
-        format: 5,
+        format: 6,
         scenario: "course",
         commands: [...commands, neutral],
         finalState: labFingerprint(state),
       }),
     ).toThrow("after stop");
     expect(() =>
-      replayControllerLab({ format: 5, scenario: "course", commands: [], finalState: "wrong" }),
+      replayControllerLab({ format: 6, scenario: "course", commands: [], finalState: "wrong" }),
     ).toThrow("diverged");
   });
   it("routes an independent enemy and replays a changed collision catalog", () => {
@@ -94,7 +95,7 @@ describe("rendered controller laboratory world", () => {
       expect(
         labFingerprint(
           replayControllerLab({
-            format: 5,
+            format: 6,
             scenario: "enemy-route",
             commands,
             finalState: labFingerprint(state),
@@ -102,5 +103,23 @@ describe("rendered controller laboratory world", () => {
         ),
       ).toBe(labFingerprint(state));
     }
+  });
+  it("completes a real environmental removal once and restores the entire lab every tick", () => {
+    const proof = encounterProof();
+    expect(proof.notices.filter((n) => n.kind === "complete")).toHaveLength(1);
+    expect(proof.checkpoints.at(-1)?.enemy?.removalReason).toBe("out-of-bounds");
+    expect(proof.checkpoints.at(-1)?.encounter?.receipts).toHaveLength(2);
+  });
+  it("records a physical solver failure without accepting a partial enemy or clearing its obligation", () => {
+    const initial = createControllerLab("encounter-clear");
+    if (!initial.enemy) throw new Error("Missing enemy");
+    initial.enemy.body.y += 2 * 256;
+    const result = stepControllerLab(initial, neutral);
+    expect(result.stopped).toBe("enemy-initial-overlap");
+    expect(result.enemy?.body).toEqual(initial.enemy.body);
+    expect(result.encounter?.phase).toBe("failed");
+    expect(result.encounter?.failure?.cause).toBe("initial-overlap");
+    expect(result.encounter?.members[0]?.status).toBe("alive");
+    expect(result.resolvedEnemies).toEqual([]);
   });
 });
