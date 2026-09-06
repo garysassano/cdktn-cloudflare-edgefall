@@ -5,6 +5,7 @@ import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
 import { collisionProof } from "./collision-proof.js";
+import { combatProof } from "./combat-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { encounterProof } from "./encounter-proof.js";
@@ -79,6 +80,7 @@ export function contractProof() {
     duplicate,
     trace,
     collision: collisionProof(),
+    combat: combatProof(),
     movement: movementProof(),
     controller: controllerProof(),
     grounded: groundedProof(),

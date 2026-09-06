@@ -171,6 +171,7 @@ try {
       restoredAfterTick: restored.restoredAfterTick,
       traceHash: restored.traceHash,
     })),
+    combat: expected.combat,
     collisionResults: {
       solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,
       initialOverlaps: expected.collision.samples.filter(

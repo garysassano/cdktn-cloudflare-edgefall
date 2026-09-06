@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-06T21:56:20.510Z",
+  "commit": "b0a27fbffd5390a04b268d5047c54c3f5f90e0c9",
+  "sourceSha256": "3ffa7526cb9d66daf441eedc59e6b7e2a8c3ef3ddc29b968e489d2d91bc78caf",
+  "browserBundleSha256": "1672b07525e8f83744ffa661e1129aac294c704bca477c68920cb7eef74328ac",
+  "resultSha256": "dc0a9c3c3c73145e66a43515e9dcd0c2225d00ce622db0b6c698a799572d8265",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "combat": [
+    {
+      "scenario": "range",
+      "ticks": 120,
+      "phase": "complete",
+      "ammo": [
+        0,
+        130,
+        0,
+        0
+      ],
+      "shots": 59,
+      "impacts": 4,
+      "kills": [
+        {
+          "tick": 10,
+          "ownerId": 2,
+          "targetId": 20
+        },
+        {
+          "tick": 18,
+          "ownerId": 2,
+          "targetId": 21
+        }
+      ],
+      "traceHash": "72751362",
+      "finalHash": "1a7987a2"
+    },
+    {
+      "scenario": "wall",
+      "ticks": 120,
+      "phase": "active",
+      "ammo": [
+        0,
+        130,
+        0,
+        0
+      ],
+      "shots": 59,
+      "impacts": 59,
+      "kills": [],
+      "traceHash": "4dcda799",
+      "finalHash": "1622525d"
+    },
+    {
+      "scenario": "shield",
+      "ticks": 120,
+      "phase": "active",
+      "ammo": [
+        0,
+        130,
+        0,
+        0
+      ],
+      "shots": 59,
+      "impacts": 59,
+      "kills": [],
+      "traceHash": "291ca7d1",
+      "finalHash": "40f71669"
+    }
+  ],
+  "status": "pass"
+}

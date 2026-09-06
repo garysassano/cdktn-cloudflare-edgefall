@@ -35,7 +35,7 @@ if (process.argv.includes("--lab")) {
     join(root, "content", "engineering", "terrain.png"),
     join(outputDirectory, "engineering-terrain.png"),
   );
-  for (const name of ["lab", "controller-lab", "network-lab"]) {
+  for (const name of ["lab", "controller-lab", "network-lab", "combat-lab"]) {
     await build({
       bundle: true,
       entryPoints: [join(root, "src", "client", `${name}.ts`)],
