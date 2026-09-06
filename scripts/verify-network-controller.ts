@@ -5,11 +5,14 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
+import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
   slot: number;
+  runEpoch: number;
+  initialServerTick: number;
   ready: boolean;
   error: string | null;
   requiresResync: boolean;
@@ -18,6 +21,8 @@ interface ClientStatus {
   predictedTick: number;
   pending: number;
   unsent: number;
+  held: number;
+  pendingEdges: number;
   inputClock: { mode: string; tick: number } | null;
   authoritative: { processedEdgeIds: number[] } | null;
   receipts: Array<{
@@ -32,7 +37,10 @@ interface ClientStatus {
     correctionChanged: boolean;
   }>;
 }
-const output = "dist/network-controller-evidence";
+const recoveryMode = process.argv.includes("--recovery");
+const output = recoveryMode
+  ? "dist/network-controller-recovery-evidence"
+  : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -79,40 +87,42 @@ sampleHost();
 const hostTimer = setInterval(sampleHost, 20);
 try {
   const report = await withDirectRoomWorker(async (base) => {
-    const pages = await Promise.all(
-      Array.from({ length: 4 }, async (_, slot) => {
-        const context = await browser.newContext({ viewport: { width: 1050, height: 1000 } }),
-          page = await context.newPage();
-        const record = (kind: string, message: string) => {
-          if (browserEvents.length < 200)
-            browserEvents.push({
-              slot,
-              monotonicMs: elapsed(),
-              kind,
-              message: message.slice(0, 2000),
-            });
-        };
-        page.on("pageerror", (error) => record("pageerror", String(error)));
-        page.on("console", (message) => {
-          if (message.type() === "warning" || message.type() === "error")
-            record(message.type(), message.text());
-        });
-        page.on("requestfailed", (request) =>
-          record("requestfailed", request.failure()?.errorText ?? "unknown"),
-        );
-        await page.goto(
-          `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}`,
-        );
-        await page.waitForFunction(() => {
-          const lab = (
-            globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
-          ).controllerNetworkLab;
-          return lab?.status().ready || lab?.status().error;
-        });
-        await page.locator("#scripted").check();
-        return page;
-      }),
-    );
+    const openPages = () =>
+      Promise.all(
+        Array.from({ length: 4 }, async (_, slot) => {
+          const context = await browser.newContext({ viewport: { width: 1050, height: 1000 } }),
+            page = await context.newPage();
+          const record = (kind: string, message: string) => {
+            if (browserEvents.length < 200)
+              browserEvents.push({
+                slot,
+                monotonicMs: elapsed(),
+                kind,
+                message: message.slice(0, 2000),
+              });
+          };
+          page.on("pageerror", (error) => record("pageerror", String(error)));
+          page.on("console", (message) => {
+            if (message.type() === "warning" || message.type() === "error")
+              record(message.type(), message.text());
+          });
+          page.on("requestfailed", (request) =>
+            record("requestfailed", request.failure()?.errorText ?? "unknown"),
+          );
+          await page.goto(
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}`,
+          );
+          await page.waitForFunction(() => {
+            const lab = (
+              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+            ).controllerNetworkLab;
+            return lab?.status().ready || lab?.status().error;
+          });
+          await page.locator("#scripted").check();
+          return page;
+        }),
+      );
+    const pages = await openPages();
     const read = () =>
       Promise.all(
         pages.map((page) =>
@@ -123,19 +133,130 @@ try {
           ),
         ),
       );
-    try {
+    const prepareAndStart = async () => {
       await Promise.all(pages.map((page) => page.locator("#prepare").click()));
       for (let attempt = 0; attempt < 50; attempt++) {
         room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
-        if (room.peers.length === 4 && room.peers.every((p) => p.maxQueuedCommands === 6)) break;
+        if (
+          room.peers.length === 4 &&
+          room.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS)
+        )
+          break;
         await new Promise((resolve) => setTimeout(resolve, 20));
       }
       assert(
-        room?.peers.every((p) => p.maxQueuedCommands === 6),
+        room?.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS),
         "Input preload incomplete",
       );
       const start = await fetch(`${base}/controller/start`, { method: "POST" });
       assert(start.ok, `Start: ${start.status}`);
+    };
+    try {
+      await prepareAndStart();
+      if (recoveryMode) {
+        const waitForTick = async (target: number) => {
+          let clients: ClientStatus[] = [];
+          for (let attempt = 0; attempt < 80; attempt++) {
+            clients = await read();
+            assert(
+              clients.every((c) => !c.error && !c.requiresResync),
+              JSON.stringify(
+                clients.map((c) => ({ slot: c.slot, error: c.error, tick: c.snapshotTick })),
+              ),
+            );
+            if (clients.every((c) => c.snapshotTick >= target)) return clients;
+            await new Promise((resolve) => setTimeout(resolve, 20));
+          }
+          throw new Error("Recovery progression timed out");
+        };
+        const before = await waitForTick(30);
+        const response = await fetch(`${base}/controller/recover`, { method: "POST" });
+        assert(response.ok, `Recovery request: ${response.status}`);
+        const boundary = (await response.json()) as {
+          runEpoch: number;
+          tick: number;
+          roomMode: string;
+        };
+        assert.equal(boundary.runEpoch, 2);
+        assert.equal(boundary.roomMode, "loading");
+        assert(boundary.tick >= 30);
+        for (let attempt = 0; attempt < 40; attempt++) {
+          if ((await read()).every((c) => c.error?.includes("baseline-replaced"))) break;
+          await new Promise((resolve) => setTimeout(resolve, 10));
+        }
+        const replaced = await read();
+        assert(
+          replaced.every((c) => c.error?.includes("baseline-replaced")),
+          "Old socket generation remained active",
+        );
+        await Promise.all(
+          pages.map(async (page) => {
+            await Promise.all([page.waitForEvent("load"), page.locator("#reconnect").click()]);
+            await page.waitForFunction(() => {
+              const lab = (
+                globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+              ).controllerNetworkLab;
+              return lab?.status().ready || lab?.status().error;
+            });
+            await page.locator("#scripted").check();
+          }),
+        );
+        const baselines = await read();
+        assert(
+          baselines.every(
+            (c) =>
+              c.runEpoch === 2 &&
+              c.initialServerTick === boundary.tick &&
+              c.sequence === 0 &&
+              c.pending === 0,
+          ),
+        );
+        const repeatPage = pages[0];
+        assert(repeatPage);
+        await repeatPage.locator("#game").focus();
+        await repeatPage.keyboard.down("KeyZ");
+        await repeatPage.locator("#prepare").focus(); // Blur clears unsampled intent.
+        await repeatPage.locator("#game").focus();
+        await repeatPage.keyboard.down("KeyZ"); // Still physically held: DOM repeat=true.
+        const repeatInput = (await read())[0];
+        assert(repeatInput);
+        assert.equal(repeatInput?.held, 0, "Repeat recreated released held intent");
+        assert.equal(repeatInput?.pendingEdges, 0, "Repeat recreated a cleared action edge");
+        await repeatPage.keyboard.up("KeyZ");
+        const premature = await fetch(`${base}/controller/start`, { method: "POST" });
+        assert.equal(premature.status, 409, "Recovery resumed without fresh preloaded input");
+        await prepareAndStart();
+        const clients = await waitForTick(boundary.tick + 30);
+        assert(
+          clients.every((c) =>
+            c.receipts.every(
+              (r) => !r.correctionChanged && r.correctionX === 0 && r.correctionY === 0,
+            ),
+          ),
+          "Recovered prediction diverged",
+        );
+        room = (await (await fetch(`${base}/controller/status`)).json()) as RoomProbeStatus;
+        assert.equal(room.runEpoch, 2);
+        assert.equal(room.recoveries, 1);
+        assert.equal(room.clock.fault, null);
+        await pages[0]?.screenshot({ path: `${output}/four-player-controller.png` });
+        return {
+          status: "pass",
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          recordedAt: new Date().toISOString(),
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          sharedSnapshots: 0,
+          clients,
+          room,
+          recovery: { boundary, before, replaced, baselines },
+          repeatNeutralization: { held: repeatInput.held, pendingEdges: repeatInput.pendingEdges },
+          scope:
+            "Four-browser in-memory authority-approved session rotation and restart at a preserved nonzero tick; no durable crash recovery, automatic reconnect or long-running timing acceptance",
+        };
+      }
       let clients: ClientStatus[] = [];
       for (let attempt = 0; attempt < 100; attempt++) {
         clients = await read();

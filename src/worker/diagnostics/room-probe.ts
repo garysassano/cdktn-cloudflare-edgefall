@@ -1,7 +1,12 @@
 import { DurableObject } from "cloudflare:workers";
 import type { AppliedInput } from "../../game/input/types.js";
 import {
+  controllerPeerContext,
+  recoverControllerWorld,
+} from "../../shared/diagnostics/controller-recovery.js";
+import {
   CONTROLLER_IDENTITY,
+  CONTROLLER_INPUT_PREFILL_TICKS,
   createControllerWorkload,
   stepNetworkController,
 } from "../../shared/diagnostics/controller-workload.js";
@@ -41,42 +46,47 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private readonly timers: RoomProbeStatus["timers"] = [];
   private sampledNow = 0;
   private watchdog: ReturnType<typeof setTimeout> | null = null;
-  private readonly clock = new RoomClock({
-    initialTick: 0,
-    port: {
-      now: () => {
-        this.sampledNow = performance.now();
-        return this.sampledNow;
+  private initialized = false;
+  private recoveries = 0;
+  private clock = this.createClock(0);
+  private createClock(initialTick: number): RoomClock {
+    return new RoomClock({
+      initialTick,
+      port: {
+        now: () => {
+          this.sampledNow = performance.now();
+          return this.sampledNow;
+        },
+        schedule: (callback, delay) => {
+          const row: [number, number, number | null] = [performance.now(), delay, null];
+          if (this.timers.length < 2401) this.timers.push(row);
+          const timer = setTimeout(() => {
+            row[2] = performance.now();
+            callback();
+          }, delay);
+          return () => clearTimeout(timer);
+        },
       },
-      schedule: (callback, delay) => {
-        const row: [number, number, number | null] = [performance.now(), delay, null];
-        if (this.timers.length < 2401) this.timers.push(row);
-        const timer = setTimeout(() => {
-          row[2] = performance.now();
-          callback();
-        }, delay);
-        return () => clearTimeout(timer);
+      step: (tick) => this.step(tick),
+      onSample: (sample) => {
+        if (this.callbacks.length >= 2400) {
+          this.finish("callback-limit");
+          return;
+        }
+        this.callbacks.push([
+          sample.observedAtMs,
+          sample.steps,
+          sample.lastCompletedTick,
+          sample.latenessMs,
+        ]);
       },
-    },
-    step: (tick) => this.step(tick),
-    onSample: (sample) => {
-      if (this.callbacks.length >= 2400) {
-        this.finish("callback-limit");
-        return;
-      }
-      this.callbacks.push([
-        sample.observedAtMs,
-        sample.steps,
-        sample.lastCompletedTick,
-        sample.latenessMs,
-      ]);
-    },
-    onDiscontinuity: () => {
-      this.world.roomMode = "recovering";
-      this.clearWatchdog();
-      this.disconnectAll("clock-fault");
-    },
-  });
+      onDiscontinuity: () => {
+        this.world.roomMode = "recovering";
+        this.clearWatchdog();
+        this.disconnectAll("clock-fault");
+      },
+    });
+  }
 
   constructor(ctx: DurableObjectState, env: ProbeEnv) {
     super(ctx, env);
@@ -111,10 +121,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.disconnectAll(reason);
   }
 
+  private context(slot: number) {
+    return this.workload === "controller"
+      ? controllerPeerContext(this.world, slot)
+      : probeContext(slot);
+  }
+
   private snapshot(peer: Peer): void {
     this.world.snapshotId++;
-    this.world.connectionEpoch = peer.metrics.slot + 1;
-    const bytes = encodeSnapshot(this.world, probeContext(peer.metrics.slot));
+    const context = this.context(peer.metrics.slot);
+    this.world.connectionEpoch = context.connectionEpoch;
+    const bytes = encodeSnapshot(this.world, context);
     peer.socket.send(bytes);
     peer.input.recordSent(this.world.snapshotId, 0);
     peer.metrics.snapshots++;
@@ -204,13 +221,45 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const url = new URL(request.url);
     const parts = url.pathname.split("/");
     const action = parts[2];
-    if (!this.peers.size) {
+    if (!this.initialized) {
+      this.initialized = true;
       this.workload =
         parts[1] === "controller" ? "controller" : parts[1] === "double" ? "double" : "standard";
       this.world =
         this.workload === "controller"
           ? createControllerWorkload()
           : createRoomWorkload(this.workload === "double" ? 2 : 1);
+    }
+    if (action === "recover") {
+      if (request.method !== "POST") return new Response("Use POST", { status: 405 });
+      if (
+        this.workload !== "controller" ||
+        this.recoveries >= 4 ||
+        !["playing", "recovering", "paused-empty"].includes(this.world.roomMode)
+      )
+        return new Response("Recovery unavailable", { status: 409 });
+      // Construct and validate the replacement before invalidating the current generation.
+      const restored = recoverControllerWorld(this.world);
+      for (const actor of restored.players)
+        encodeSnapshot(
+          {
+            ...restored,
+            connectionEpoch: controllerPeerContext(restored, actor.slot).connectionEpoch,
+          },
+          controllerPeerContext(restored, actor.slot),
+        );
+      this.clock.close();
+      this.clearWatchdog();
+      this.disconnectAll("baseline-replaced");
+      this.peers.clear();
+      this.world = restored;
+      this.clock = this.createClock(restored.tick);
+      this.recoveries++;
+      return Response.json({
+        runEpoch: restored.runEpoch,
+        tick: restored.tick,
+        roomMode: restored.roomMode,
+      });
     }
     if (action === "connect") {
       const slot = Number(url.searchParams.get("slot"));
@@ -223,7 +272,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       const pair = new WebSocketPair();
       const peer: Peer = {
         socket: pair[1],
-        input: new InputStream({ ...probeContext(slot), controlEpoch: 1, baselineServerTick: 0 }),
+        input: new InputStream({
+          ...this.context(slot),
+          controlEpoch: this.world.players[slot]?.controlEpoch ?? 1,
+          baselineServerTick: this.world.tick,
+        }),
         lease: null,
         lastAckAt: performance.now(),
         metrics: {
@@ -239,6 +292,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           neutralizedAtTick: null,
           expiredAtTick: null,
           closeReason: null,
+          lastInputError: null,
           lastProcessedSequence: 0,
           lastHeld: 0,
         },
@@ -252,13 +306,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         protocolMajor: 3,
         protocolMinor: 0,
         runId: "local-room-workload",
-        runEpoch: 1,
-        connectionEpoch: slot + 1,
+        runEpoch: this.world.runEpoch,
+        connectionEpoch: this.context(slot).connectionEpoch,
         playerId: slot + 1,
         entityId: slot + 1,
         simulationHz: 60,
         snapshotHz: 20,
-        initialServerTick: 0,
+        initialServerTick: this.world.tick,
         capabilities: 0,
         baselineSnapshotId: this.world.snapshotId + 1,
         baselineEventCursor: 0,
@@ -278,7 +332,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         [...this.peers.values()].some(
           (peer) =>
             !peer.metrics.active ||
-            (this.workload === "controller" && peer.input.queuedCommands < 6),
+            (this.workload === "controller" &&
+              peer.input.queuedCommands < CONTROLLER_INPUT_PREFILL_TICKS),
         )
       )
         return new Response("Four clients required", { status: 409 });
@@ -289,7 +344,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       }
       this.world.roomMode = "playing";
       if (this.workload === "controller") {
-        // Announce the start boundary before the first tick; clients retain their six-tick lead.
+        // Announce the start boundary before the first tick; clients retain their preloaded lead.
         this.world.stateHash = roomWorkloadHash(this.world);
         for (const peer of this.peers.values()) this.snapshot(peer);
       }
@@ -299,6 +354,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     else if (action !== "status") return new Response("Not found", { status: 404 });
     const status: RoomProbeStatus = {
       instanceId: this.instanceId,
+      runEpoch: this.world.runEpoch,
+      recoveries: this.recoveries,
       workload: this.workload,
       tick: this.world.tick,
       roomMode: this.world.roomMode,
@@ -341,7 +398,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         peer.metrics.maxQueuedCommands,
         peer.input.queuedCommands,
       );
-    } catch {
+    } catch (error) {
+      peer.metrics.lastInputError = (error instanceof Error ? error.message : String(error)).slice(
+        0,
+        256,
+      );
       this.disconnect(peer, "invalid-input", 4004);
     }
   }
@@ -360,7 +421,7 @@ export default {
     if (!["localhost", "127.0.0.1"].includes(url.hostname))
       return new Response("Local only", { status: 403 });
     if (url.pathname === "/health") return Response.json({ fixture: "edgefall-room-load-probe" });
-    const match = /^\/(standard|double|controller)\/(connect|start|status|close)$/u.exec(
+    const match = /^\/(standard|double|controller)\/(connect|start|status|close|recover)$/u.exec(
       url.pathname,
     );
     if (!match?.[1]) return new Response("Not found", { status: 404 });

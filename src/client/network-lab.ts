@@ -4,12 +4,14 @@ import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
 import {
   CONTROLLER_IDENTITY,
+  CONTROLLER_INPUT_PREFILL_TICKS,
   CONTROLLER_TERRAIN,
   stepNetworkController,
 } from "../shared/diagnostics/controller-workload.js";
 import { probeContext, roomWorkloadHash } from "../shared/diagnostics/room-workload.js";
 import { type InputBinding, InputCapture } from "../shared/input/capture.js";
 import { ControllerPrediction } from "../shared/prediction/controller.js";
+import { decodeInitialSnapshot } from "../shared/protocol/baseline.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
 import { type Handshake, decodeHandshake } from "../shared/protocol/handshake.js";
 import { decodeSnapshot } from "../shared/protocol/snapshot.js";
@@ -72,6 +74,8 @@ surface.addEventListener("keydown", (event) => {
   const binding = bindings[e.code];
   if (!binding) return;
   e.preventDefault();
+  // A repeat after blur/reconnect must not recreate intent cleared with the previous session.
+  if (e.repeat) return;
   try {
     input?.press(e.code, binding);
   } catch (e) {
@@ -97,6 +101,8 @@ function status() {
   const actor = prediction?.actor;
   return {
     slot,
+    runEpoch: welcome?.runEpoch ?? 0,
+    initialServerTick: welcome?.initialServerTick ?? 0,
     inputStopped,
     ready: welcome !== null && snapshot !== null,
     prepared,
@@ -106,6 +112,8 @@ function status() {
     ),
     sequence: input?.sequence ?? 0,
     unsent: input?.pending ?? 0,
+    held: input?.held ?? 0,
+    pendingEdges: input?.pendingEdges ?? 0,
     inputClock: inputClock?.state ?? null,
     snapshotTick: snapshot?.tick ?? 0,
     predictedTick: prediction?.tick ?? 0,
@@ -142,16 +150,17 @@ function sendCommands(commands: InputCommand[]) {
 }
 function capture() {
   if (!input || !prediction || inputStopped || error) return;
-  const clientTick = input.sequence;
+  // The scripted workload follows world time even when a fresh session resets command counters.
+  const fixtureTick = (welcome?.initialServerTick ?? 0) + input.sequence;
   if (element<HTMLInputElement>("scripted").checked) {
     const held =
-      clientTick >= 180 && slot === 0
+      fixtureTick >= 180 && slot === 0
         ? Held.Down
-        : clientTick < 10
+        : fixtureTick < 10
           ? Held.Right
-          : clientTick >= 30 && clientTick < 40
+          : fixtureTick >= 30 && fixtureTick < 40
             ? Held.Left
-            : clientTick >= 70 && clientTick < 80
+            : fixtureTick >= 70 && fixtureTick < 80
               ? Held.Down
               : 0;
     for (const bit of [Held.Left, Held.Right, Held.Down]) {
@@ -159,7 +168,7 @@ function capture() {
       if (held & bit) input.press(source, { held: bit });
       else input.release(source);
     }
-    if (clientTick === 6 + slot * 3 || clientTick === 160 + slot * 3) {
+    if (fixtureTick === 6 + slot * 3 || fixtureTick === 160 + slot * 3) {
       input.press("script-jump", { edge: Edge.Jump });
       input.release("script-jump");
     }
@@ -197,9 +206,9 @@ element("prepare").onclick = () => {
   try {
     if (prepared) throw new Error("Already prepared");
     prepared = true;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < CONTROLLER_INPUT_PREFILL_TICKS; i++) {
       capture();
-      if (i % 3 === 2) flush(true);
+      if (i % 3 === 2 || i === CONTROLLER_INPUT_PREFILL_TICKS - 1) flush(true);
     }
     inspect();
   } catch (e) {
@@ -216,7 +225,15 @@ socket.addEventListener("message", (event) => {
     }
     if (!welcome || !(event.data instanceof ArrayBuffer))
       throw new Error("Missing welcome/binary data");
-    const incoming = decodeSnapshot(new Uint8Array(event.data), probeContext(slot));
+    const context = {
+      ...probeContext(slot),
+      runEpoch: welcome.runEpoch,
+      connectionEpoch: welcome.connectionEpoch,
+      playerId: welcome.playerId,
+    };
+    const incoming = snapshot
+      ? decodeSnapshot(new Uint8Array(event.data), context)
+      : decodeInitialSnapshot(new Uint8Array(event.data), welcome, context);
     if (incoming.stateHash !== roomWorkloadHash(incoming)) throw new Error("World digest mismatch");
     if (snapshot && (incoming.tick < snapshot.tick || incoming.snapshotId <= snapshot.snapshotId))
       throw new Error("Snapshot regression");
@@ -261,11 +278,13 @@ socket.addEventListener("message", (event) => {
   }
 });
 socket.addEventListener("close", (event) => {
+  element("reconnect").hidden = false;
   inputClock?.close();
   neutral();
   if (event.reason !== "observer-closed") error ??= `closed: ${event.code} ${event.reason}`;
   inspect();
 });
+element("reconnect").onclick = () => location.reload();
 socket.addEventListener("error", () => {
   fail("WebSocket failure");
 });

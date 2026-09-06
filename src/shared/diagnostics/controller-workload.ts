@@ -15,6 +15,8 @@ export const CONTROLLER_IDENTITY = {
   presentationBuild: artifact.graphicsHash,
 };
 export const CONTROLLER_TERRAIN = artifact.gameplay.terrain as SweepTarget[];
+/** Leave one tick of scheduling headroom below the protocol's six-tick admission ceiling. */
+export const CONTROLLER_INPUT_PREFILL_TICKS = 5;
 const shapes = new Map<number, ShapeDefinition>(
   artifact.gameplay.definitions.shapes.map((s) => [s.id, s]),
 );

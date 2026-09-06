@@ -1,0 +1,223 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: [{\"slot\":0,\"error\":null,\"tick\":6},{\"slot\":1,\"error\":null,\"tick\":6},{\"slot\":2,\"error\":null,\"tick\":6},{\"slot\":3,\"error\":\"closed: 4004 invalid-input\",\"tick\":6}]",
+  "room": {
+    "instanceId": "baa78f7c-0d8d-4d78-be86-d438d2555db2",
+    "runEpoch": 1,
+    "recoveries": 0,
+    "workload": "controller",
+    "tick": 8,
+    "roomMode": "playing",
+    "clock": {
+      "mode": "running",
+      "tick": 8,
+      "timerPending": true,
+      "fault": null
+    },
+    "watchdogPending": true,
+    "peers": [
+      {
+        "slot": 0,
+        "active": true,
+        "inputFrames": 5,
+        "inputBytes": 428,
+        "renewedFrames": 3,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 5664,
+        "maxQueuedCommands": 6,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 8,
+        "lastHeld": 2
+      },
+      {
+        "slot": 2,
+        "active": true,
+        "inputFrames": 5,
+        "inputBytes": 428,
+        "renewedFrames": 3,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 5664,
+        "maxQueuedCommands": 6,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 8,
+        "lastHeld": 2
+      },
+      {
+        "slot": 1,
+        "active": true,
+        "inputFrames": 5,
+        "inputBytes": 428,
+        "renewedFrames": 3,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 5664,
+        "maxQueuedCommands": 6,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": null,
+        "lastProcessedSequence": 8,
+        "lastHeld": 2
+      },
+      {
+        "slot": 3,
+        "active": false,
+        "inputFrames": 4,
+        "inputBytes": 328,
+        "renewedFrames": 2,
+        "acknowledgmentOnlyFrames": 0,
+        "snapshots": 4,
+        "snapshotBytes": 5664,
+        "maxQueuedCommands": 6,
+        "neutralizedAtTick": null,
+        "expiredAtTick": null,
+        "closeReason": "invalid-input",
+        "lastProcessedSequence": 6,
+        "lastHeld": 0
+      }
+    ],
+    "localCpu": [
+      [
+        1,
+        7,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        3,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        0
+      ],
+      [
+        5,
+        1,
+        0
+      ],
+      [
+        6,
+        4,
+        0
+      ],
+      [
+        7,
+        0,
+        0
+      ],
+      [
+        8,
+        1,
+        0
+      ]
+    ],
+    "callbacks": [
+      [
+        1788728486781,
+        1,
+        1,
+        2.333251953125
+      ],
+      [
+        1788728486803,
+        1,
+        2,
+        7.666748046875
+      ],
+      [
+        1788728486815,
+        1,
+        3,
+        3
+      ],
+      [
+        1788728486830,
+        1,
+        4,
+        1.333251953125
+      ],
+      [
+        1788728486846,
+        1,
+        5,
+        0.666748046875
+      ],
+      [
+        1788728486864,
+        1,
+        6,
+        2
+      ],
+      [
+        1788728486882,
+        1,
+        7,
+        3.333251953125
+      ],
+      [
+        1788728486897,
+        1,
+        8,
+        1.666748046875
+      ]
+    ],
+    "timers": [
+      [
+        1788728486762,
+        16.666748046875,
+        1788728486781
+      ],
+      [
+        1788728486788,
+        14.333251953125,
+        1788728486803
+      ],
+      [
+        1788728486805,
+        9,
+        1788728486815
+      ],
+      [
+        1788728486816,
+        13.666748046875,
+        1788728486830
+      ],
+      [
+        1788728486831,
+        15.333251953125,
+        1788728486846
+      ],
+      [
+        1788728486847,
+        16,
+        1788728486864
+      ],
+      [
+        1788728486868,
+        14.666748046875,
+        1788728486882
+      ],
+      [
+        1788728486883,
+        13.333251953125,
+        1788728486897
+      ],
+      [
+        1788728486898,
+        15,
+        null
+      ]
+    ]
+  }
+}

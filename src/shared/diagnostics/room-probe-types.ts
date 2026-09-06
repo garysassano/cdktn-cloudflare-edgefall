@@ -11,11 +11,14 @@ export interface PeerMetrics {
   neutralizedAtTick: number | null;
   expiredAtTick: number | null;
   closeReason: string | null;
+  lastInputError: string | null;
   lastProcessedSequence: number;
   lastHeld: number;
 }
 export interface RoomProbeStatus {
   instanceId: string;
+  runEpoch: number;
+  recoveries: number;
   workload: "standard" | "double" | "controller";
   tick: number;
   roomMode: string;
