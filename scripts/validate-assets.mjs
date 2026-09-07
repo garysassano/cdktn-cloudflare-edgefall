@@ -197,6 +197,16 @@ function validateNativeAtlas(atlas, atlasPath) {
   if (!Object.keys(drawings).length) fail("empty native drawings");
   for (const [id, drawing] of Object.entries(drawings)) {
     if (!["legs", "upper"].includes(drawing.channel)) fail(`invalid native channel ${id}`);
+    if (
+      drawing.contact &&
+      (drawing.channel !== "legs" ||
+        !["near", "far"].includes(drawing.contact.foot) ||
+        !Array.isArray(drawing.contact.point) ||
+        drawing.contact.point.length !== 2 ||
+        !drawing.contact.point.every(Number.isSafeInteger) ||
+        drawing.contact.point[1] !== 0)
+    )
+      fail(`invalid native contact ${id}`);
     for (const variant of variants) {
       const name = `${variant}/${id}`,
         value = frames[name],

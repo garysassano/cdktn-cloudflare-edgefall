@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { CONTRACT_FIXTURE } from "../../src/game/content/contract-fixture.js";
 import { COMBAT_CATALOG } from "../../src/game/labs/combat-content.js";
+import { nativeExposure } from "../../src/shared/animation/native.js";
 import { OPERATIVE_POSES } from "../../src/shared/animation/operative.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
@@ -31,6 +33,27 @@ for (const [frame, id] of bindings) {
     [muzzle.x / 256, muzzle.y / 256],
     "Native muzzle differs from simulation",
   );
+  const clip = built.source.clips.find((clip) => clip.id === `upper.fire.${frame.slice(6)}`);
+  const timeline = COMBAT_CATALOG.timelines.get(id);
+  assert(clip && timeline, "Missing sidearm visual/action clip");
+  assert.equal(
+    clip.exposures.reduce((total, exposure) => total + exposure.ticks, 0),
+    timeline.durationTicks,
+    "Sidearm recoil duration differs from action",
+  );
+  for (const marker of timeline.markers)
+    if (marker.socket === "muzzle") {
+      const eventFrame = nativeExposure(clip, marker.tickOffset);
+      assert.deepEqual(
+        built.atlas.meta.edgefall.drawings[eventFrame]?.sockets?.muzzle,
+        [muzzle.x / 256, muzzle.y / 256],
+        "Visual release muzzle differs from authoritative event",
+      );
+    }
+  assert(
+    new Set(clip.exposures.map((exposure) => built.frameHashes[`p1/${exposure.frame}`])).size >= 3,
+    "Recoil must contain three distinct drawings",
+  );
 }
 const run = built.source.clips.find((clip) => clip.id === "legs.run");
 assert(run && run.exposures.length === 8);
@@ -39,6 +62,21 @@ assert.equal(
   8,
   "Run drawings are duplicates",
 );
+const runSpeed = (CONTRACT_FIXTURE.actors.find((actor) => actor.id === 1)?.runSpeed ?? 0) / 256;
+const contacts = run.exposures.map(
+  (exposure) => built.atlas.meta.edgefall.drawings[exposure.frame]?.contact,
+);
+for (let index = 1; index < contacts.length; index++) {
+  const before = contacts[index - 1],
+    after = contacts[index];
+  assert(before && after, "Run exposure lacks contact metadata");
+  if (before.foot === after.foot)
+    assert.equal(
+      after.point[0] - before.point[0],
+      -runSpeed * (run.exposures[index - 1]?.ticks ?? 0),
+      "Run contact spacing differs from movement speed",
+    );
+}
 const atlasBytes = Buffer.from(`${JSON.stringify(built.atlas, null, 2)}\n`),
   sha = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
 const files = [
@@ -53,6 +91,9 @@ const report = {
   paletteVariants: Object.keys(built.source.variants).length,
   runDrawings: 8,
   runDurationTicks: run.exposures.reduce((n, e) => n + e.ticks, 0),
+  contactTravelPixelsPerTick: runSpeed,
+  contacts,
+  sidearmRecoilClips: bindings.length,
   bindings: bindings.map(([frame, poseId]) => ({ frame, poseId })),
   image: audit,
   frameHashes: built.frameHashes,

@@ -1,5 +1,6 @@
 import type { ControlledActor } from "../../game/state.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
+import { type OperativeMotion, operativeMode } from "./operative-motion.js";
 
 export const OPERATIVE_POSES = {
   "upper-horizontal": 10,
@@ -9,7 +10,12 @@ export const OPERATIVE_POSES = {
 } as const;
 
 /** Cosmetic state is sampled from an accepted world tick, never an animation callback. */
-export function operativePresentation(actor: ControlledActor, tick: number, atlas: NativeAtlas) {
+export function operativePresentation(
+  actor: ControlledActor,
+  tick: number,
+  atlas: NativeAtlas,
+  motion: OperativeMotion,
+) {
   if (
     actor.life !== "alive" ||
     actor.vehicleId !== null ||
@@ -17,7 +23,14 @@ export function operativePresentation(actor: ControlledActor, tick: number, atla
     (actor.action.kind !== "ready" && actor.action.kind !== "fire")
   )
     return null;
-  const upper =
+  if (
+    motion.tick !== tick ||
+    motion.playerId !== actor.playerId ||
+    motion.controlEpoch !== actor.controlEpoch ||
+    motion.mode !== operativeMode(actor)
+  )
+    throw new Error("Operative presentation has a stale motion clock");
+  const aim =
     actor.aim === 1
       ? "upper-up"
       : actor.aim === 2
@@ -25,19 +38,29 @@ export function operativePresentation(actor: ControlledActor, tick: number, atla
         : actor.locomotion === "crouched"
           ? "upper-crouch"
           : "upper-horizontal";
+  const recoil = atlas.meta.edgefall.clips.find((clip) => clip.id === `upper.fire.${aim.slice(6)}`);
+  if (!recoil) throw new Error("Missing operative recoil clip");
+  const upper =
+    actor.action.kind === "fire" ? nativeExposure(recoil, tick - actor.action.stateStartTick) : aim;
   const run = atlas.meta.edgefall.clips.find((clip) => clip.id === "legs.run");
   if (!run) throw new Error("Missing operative run clip");
-  // The initial benchmark uses world-tick phase. Reversals/shots cannot reset it,
-  // and a checkpoint does not need a new authoritative locomotion clock.
-  const legs =
-    actor.locomotion === "crouched"
+  const transition = motion.transition
+    ? atlas.meta.edgefall.clips.find((clip) => clip.id === `legs.${motion.transition}`)
+    : null;
+  const transitionAge = tick - motion.transitionStartTick;
+  const transitionActive =
+    transition &&
+    transitionAge < transition.exposures.reduce((sum, exposure) => sum + exposure.ticks, 0);
+  const legs = transitionActive
+    ? nativeExposure(transition, transitionAge)
+    : actor.locomotion === "crouched"
       ? "legs-crouch"
       : actor.locomotion === "airborne"
         ? actor.body.vy < 0
           ? "legs-rise"
           : "legs-fall"
         : actor.body.vx !== 0
-          ? nativeExposure(run, tick)
+          ? nativeExposure(run, Math.max(0, tick - motion.runStartTick))
           : "legs-idle";
   const variant = `p${actor.slot + 1}`;
   const upperFrame = `${variant}/${upper}`,
@@ -51,10 +74,15 @@ export function operativePresentation(actor: ControlledActor, tick: number, atla
     y = Math.round(actor.body.y / 256);
   return {
     tick,
+    motion: {
+      runStartTick: motion.runStartTick,
+      transition: transitionActive ? motion.transition : null,
+      transitionStartTick: motion.transitionStartTick,
+    },
     variant,
     upperFrame,
     legsFrame,
-    poseId: OPERATIVE_POSES[upper],
+    poseId: OPERATIVE_POSES[aim],
     x,
     y,
     flipX: actor.facing < 0,
@@ -63,6 +91,13 @@ export function operativePresentation(actor: ControlledActor, tick: number, atla
     originX: actor.facing < 0 ? 1 - rootX / frame.sourceSize.w : rootX / frame.sourceSize.w,
     originY: rootY / frame.sourceSize.h,
     muzzle: { x: x + actor.facing * muzzle[0], y: y + muzzle[1] },
+    contact: atlas.meta.edgefall.drawings[legs]?.contact
+      ? {
+          foot: atlas.meta.edgefall.drawings[legs]?.contact?.foot,
+          x: x + actor.facing * (atlas.meta.edgefall.drawings[legs]?.contact?.point[0] ?? 0),
+          y,
+        }
+      : null,
     sourceSha256: atlas.meta.edgefall.sourceSha256,
   };
 }

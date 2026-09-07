@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "command": "pnpm client:build",
+  "excluded": [
+    "art-review.html",
+    "art-review.js",
+    "art-review",
+    "combat-lab.html",
+    "combat-lab.js",
+    "network-lab.html",
+    "controller-lab.html",
+    "engineering-terrain.png"
+  ],
+  "includedAssets": [
+    "assets/art/hero/operative.png",
+    "assets/art/hero/operative.atlas.json"
+  ],
+  "clientSelectsNativeCandidate": false,
+  "clientSha256": "0ebbc88619b3f7fbf63b64fe4dfedbdba7cd35c149032807caafd50f32eb8ea2",
+  "scope": "Ordinary static build excludes inspector pages and editable art. The registered candidate assets are copied but not selected by the v2 client."
+}

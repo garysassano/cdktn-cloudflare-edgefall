@@ -1,0 +1,43 @@
+{
+  "status": "pass",
+  "baseCommit": "4e8e37309771ba1c4788cab762f9b96d93eb5918",
+  "browser": "151.0.7922.34",
+  "bundleSha256": "1d0c7d068457c242736b25d9b029468071e1fadc12da8a0205b816f1e353c3ab",
+  "sourceIndexSha256": "5ce09710c6aca93e016918b6794e905ac321c5068028c41dff8852d7657c5acb",
+  "captures": [
+    {
+      "id": "hero-key-poses-01",
+      "actual": [
+        1774,
+        887
+      ],
+      "alpha": {
+        "transparent": 1164103,
+        "opaque": 937,
+        "partial": 408498,
+        "hiddenRgb": 0
+      },
+      "backgrounds": 5,
+      "logicalPreviewWidth": 256,
+      "importAllowed": false
+    },
+    {
+      "id": "hero-key-poses-02",
+      "actual": [
+        1774,
+        887
+      ],
+      "alpha": {
+        "transparent": 0,
+        "opaque": 1573538,
+        "partial": 0,
+        "hiddenRgb": 0
+      },
+      "backgrounds": 5,
+      "logicalPreviewWidth": 256,
+      "importAllowed": false
+    }
+  ],
+  "errors": [],
+  "scope": "Actual browser controls and source diagnostics only. Native frames, animation, sockets, audio, gameplay footage and human acceptance remain unfinished."
+}

@@ -10,6 +10,7 @@ import {
   COMBAT_LAB_LIMIT,
   COMBAT_SCENARIOS,
   type CombatCommand,
+  type CombatLab,
   type CombatRecording,
   combatHurtboxes,
   combatTerrain,
@@ -29,6 +30,11 @@ import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import type { NativeAtlas } from "../shared/animation/native.js";
 import { operativePresentation } from "../shared/animation/operative.js";
+import {
+  type OperativeMotion,
+  advanceOperativeMotion,
+  initialOperativeMotion,
+} from "../shared/animation/operative-motion.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -50,6 +56,28 @@ let state = createCombatLab("range"),
   fire = false;
 const keys = new Set<string>();
 let nativeFrames: Array<ReturnType<typeof operativePresentation>> = [];
+let nativeAtlas: NativeAtlas | undefined;
+let motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
+function nextMotion(before: CombatLab, next: CombatLab, current: OperativeMotion[]) {
+  return next.players.map((player, slot) => {
+    const old = before.players[slot],
+      clock = current[slot];
+    return nativeAtlas && old && clock
+      ? advanceOperativeMotion(old, player, clock, next.tick, nativeAtlas)
+      : initialOperativeMotion(player, next.tick);
+  });
+}
+function replayWithMotion(recording: CombatRecording) {
+  let previous: CombatLab | undefined,
+    clocks: OperativeMotion[] = [];
+  const restored = replayCombatLab(recording, (boundary) => {
+    clocks = previous
+      ? nextMotion(previous, boundary, clocks)
+      : boundary.players.map((player) => initialOperativeMotion(player, boundary.tick));
+    previous = boundary;
+  });
+  return { state: restored, motion: clocks };
+}
 const bindings: Record<string, number> = {
   ArrowLeft: Held.Left,
   KeyA: Held.Left,
@@ -99,7 +127,10 @@ function step() {
         },
   );
   try {
-    state = stepCombatLab(state, inputs);
+    const next = stepCombatLab(state, inputs),
+      clocks = nextMotion(state, next, motion);
+    state = next;
+    motion = clocks;
     commands.push(inputs);
     inspect();
   } catch (error) {
@@ -114,6 +145,7 @@ function reset() {
     COMBAT_SCENARIOS.find((scenario) => scenario === scenarios.value) ?? "range",
     Number(players.value),
   );
+  motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
   inspect();
 }
 function recording(): CombatRecording {
@@ -184,7 +216,9 @@ element("run").onclick = () => {
 element("replay").onclick = () => {
   pause();
   try {
-    state = replayCombatLab(recording());
+    const replayed = replayWithMotion(recording());
+    state = replayed.state;
+    motion = replayed.motion;
     inspect("replay matches");
   } catch (error) {
     inspect(`replay failed: ${error}`);
@@ -206,8 +240,9 @@ element<HTMLInputElement>("import").onchange = async (event) => {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file || file.size > 2_000_000) throw new Error("Recording missing or too large");
     const imported: CombatRecording = JSON.parse(await file.text());
-    const restored = replayCombatLab(imported);
-    state = restored;
+    const restored = replayWithMotion(imported);
+    state = restored.state;
+    motion = restored.motion;
     commands = imported.commands;
     scenarios.value = state.scenario;
     players.value = String(state.players.length);
@@ -234,6 +269,7 @@ class CombatScene extends Phaser.Scene {
   }
   create() {
     this.atlas = this.cache.json.get("operative-metadata") as NativeAtlas;
+    nativeAtlas = this.atlas;
     for (let slot = 0; slot < 4; slot++)
       this.operative.push({
         legs: this.add
@@ -264,9 +300,9 @@ class CombatScene extends Phaser.Scene {
     const g = this.overlay;
     if (!g) return;
     g.clear();
-    nativeFrames = state.players.map((player) =>
-      this.atlas && element<HTMLInputElement>("native-operative").checked
-        ? operativePresentation(player, state.tick, this.atlas)
+    nativeFrames = state.players.map((player, slot) =>
+      this.atlas && motion[slot] && element<HTMLInputElement>("native-operative").checked
+        ? operativePresentation(player, state.tick, this.atlas, motion[slot])
         : null,
     );
     for (const [slot, images] of this.operative.entries()) {
@@ -294,6 +330,12 @@ class CombatScene extends Phaser.Scene {
     for (const player of state.players) {
       if (nativeFrames[player.slot] && !element<HTMLInputElement>("player-overlays").checked)
         continue;
+      const contact = nativeFrames[player.slot]?.contact;
+      if (contact) {
+        g.lineStyle(1, 0xa4e488);
+        g.lineBetween(contact.x - 3, contact.y, contact.x + 3, contact.y);
+        g.lineBetween(contact.x, contact.y - 3, contact.x, contact.y + 3);
+      }
       const shape = COMBAT_SHAPES.get(player.body.shapeId);
       if (!shape) continue;
       const rect = worldRect(player.body, shape.rect, player.facing);

@@ -23,6 +23,11 @@ export async function startNativeReview() {
     speed = element<HTMLSelectElement>("native-speed");
   for (const [id, drawing] of Object.entries(data.drawings))
     (drawing.channel === "upper" ? upper : legs).add(new Option(id, id));
+  for (const clip of data.clips)
+    if (clip.id !== "legs.run")
+      (clip.channel === "upper" ? upper : legs).add(
+        new Option(`Clip: ${clip.id}`, `clip:${clip.id}`),
+      );
   const run = data.clips.find((clip) => clip.id === "legs.run");
   if (!run) throw new Error("Missing native run clip");
   let tick = 0,
@@ -34,23 +39,35 @@ export async function startNativeReview() {
       canvas = document.createElement("div"),
       lower = document.createElement("span"),
       higher = document.createElement("span"),
-      root = document.createElement("i");
+      root = document.createElement("i"),
+      contact = document.createElement("i");
     caption.textContent = variant.toUpperCase();
     canvas.className = "native-canvas";
     lower.className = higher.className = "native-layer";
     root.className = "native-root";
-    canvas.append(lower, higher, root);
+    contact.className = "native-root native-contact";
+    canvas.append(lower, higher, root, contact);
     card.append(canvas, caption);
     element("native-cards").append(card);
-    return { variant, canvas, lower, higher, root };
+    return { variant, canvas, lower, higher, root, contact };
   });
+  const selectedDrawing = (value: string) => {
+    if (value === "run-loop") return nativeExposure(run, Math.floor(tick));
+    if (!value.startsWith("clip:")) return value;
+    const clip = data.clips.find((clip) => clip.id === value.slice(5));
+    if (!clip) throw new Error("Missing selected native clip");
+    const duration = clip.exposures.reduce((sum, exposure) => sum + exposure.ticks, 0);
+    // The workbench repeats one-shot clips with a visible hold between cycles.
+    return nativeExposure(clip, Math.floor(tick) % (duration + 4));
+  };
   const render = () => {
-    const lowerId = legs.value === "run-loop" ? nativeExposure(run, Math.floor(tick)) : legs.value;
+    const lowerId = selectedDrawing(legs.value),
+      upperId = selectedDrawing(upper.value);
     const scale = Number(zoom.value);
     for (const card of cards) {
       for (const [layer, id] of [
         [card.lower, lowerId],
-        [card.higher, upper.value],
+        [card.higher, upperId],
       ] as const) {
         const frame = atlas.frames[`${card.variant}/${id}`]?.frame;
         if (!frame) throw new Error("Missing native review frame");
@@ -70,24 +87,31 @@ export async function startNativeReview() {
         card.root.style.left = `${(flip.checked ? frame.w - data.root[0] : data.root[0]) * scale}px`;
         card.root.style.top = `${data.root[1] * scale}px`;
         card.root.hidden = !roots.checked;
+        const contact = data.drawings[lowerId]?.contact;
+        card.contact.hidden = !roots.checked || !contact;
+        if (contact) {
+          const x = data.root[0] + contact.point[0];
+          card.contact.style.left = `${(flip.checked ? frame.w - x : x) * scale}px`;
+          card.contact.style.top = `${data.root[1] * scale}px`;
+        }
       }
     }
     element("native-status").textContent =
-      `Tick ${Math.floor(tick)} · ${lowerId} + ${upper.value} · ${scale}× native pixels · Human style review pending`;
+      `Tick ${Math.floor(tick)} · ${lowerId} + ${upperId} · ${scale}× native pixels · Human style review pending`;
     element("native").dataset.tick = String(Math.floor(tick));
     element("native").dataset.legs = lowerId;
+    element("native").dataset.upper = upperId;
     element("native").dataset.ready = "true";
   };
   const pause = () => {
     playing = false;
-    element("native-play").textContent = "Play run";
+    element("native-play").textContent = "Play selection";
   };
   for (const control of [upper, legs, zoom, background, flip, roots]) control.onchange = render;
   legs.addEventListener("change", pause);
   element("native-play").onclick = () => {
     if (playing) pause();
     else {
-      legs.value = "run-loop";
       playing = true;
       previous = performance.now();
       element("native-play").textContent = "Pause";
@@ -97,7 +121,11 @@ export async function startNativeReview() {
   element("native-step").onclick = () => {
     pause();
     tick = Math.floor(tick) + 1;
-    legs.value = "run-loop";
+    render();
+  };
+  element("native-reset").onclick = () => {
+    pause();
+    tick = 0;
     render();
   };
   document.addEventListener("visibilitychange", () => {
@@ -112,7 +140,7 @@ export async function startNativeReview() {
     requestAnimationFrame(animate);
   };
   element("native-source").textContent =
-    `Source SHA-256: ${data.sourceSha256}. Fixed root ${data.root.join(", ")}; untrimmed 64×64 drawings. World-tick run phase in combat; final contact and transition tuning remain open.`;
+    `Source SHA-256: ${data.sourceSha256}. Fixed root ${data.root.join(", ")}; untrimmed 64×64 drawings. Green marks the authored run contact at each exposure boundary. Combat clocks advance with accepted ticks and reconstruct during recording replay. Human motion review remains open.`;
   render();
   requestAnimationFrame(animate);
 }

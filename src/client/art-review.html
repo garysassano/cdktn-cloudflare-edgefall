@@ -38,6 +38,7 @@
       .native-canvas { position: relative; outline: 1px solid #53616e; }
       .native-layer { position: absolute; inset: 0; image-rendering: pixelated; background-repeat: no-repeat; }
       .native-root { position: absolute; width: 10px; height: 10px; margin: -5px; background: linear-gradient(transparent 4px, #ff547e 4px, #ff547e 6px, transparent 6px), linear-gradient(to right, transparent 4px, #ff547e 4px, #ff547e 6px, transparent 6px); }
+      .native-contact { filter: hue-rotate(100deg); }
       button { font: inherit; padding: 8px 12px; border: 1px solid #4c5f70; border-radius: 5px; background: #1b2834; color: #fff; }
       @media (max-width: 700px) { .details { grid-template-columns: 1fr; } main { padding: 20px 16px; } }
     </style>
@@ -62,8 +63,8 @@
       </div>
       <details><summary>Source, prompt and provenance</summary><p id="source"></p><pre id="provenance"></pre></details>
       <section id="native">
-        <h2>Native operative · first animation candidate</h2>
-        <p>Explicit pixel drawings in four jacket palettes. Choose each leg/aim drawing, step the eight-frame run or play it at normal and quarter speed. Sidearm muzzle placement is checked against the simulation. Silhouette, stride contacts, transitions and recoil still need refinement and human review.</p>
+        <h2>Native operative · motion candidate</h2>
+        <p>Explicit pixel drawings in four jacket palettes. Review individual drawings, sidearm recoil and leg transition clips, or play the eight-frame run at normal and quarter speed. Pink marks the root and green the authored run contact. Release muzzle placement and contact spacing are checked against the simulation; human style and motion review remain pending.</p>
         <div class="toolbar">
           <label>Upper body<select id="native-upper"></select></label>
           <label>Legs<select id="native-legs"><option value="run-loop">Run loop</option></select></label>
@@ -72,7 +73,7 @@
           <label class="inline"><input type="checkbox" id="native-flip">Face left</label>
           <label class="inline"><input type="checkbox" id="native-roots" checked>Roots</label>
           <label>Playback<select id="native-speed"><option value="1">Normal</option><option value="0.25">Quarter speed</option></select></label>
-          <button type="button" id="native-play">Play run</button><button type="button" id="native-step">Step tick</button>
+          <button type="button" id="native-play">Play selection</button><button type="button" id="native-step">Step tick</button><button type="button" id="native-reset">Reset clock</button>
         </div>
         <p id="native-status" role="status">Loading native drawings…</p>
         <div id="native-cards"></div>

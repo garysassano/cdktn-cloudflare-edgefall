@@ -1,0 +1,1097 @@
+{
+  "status": "pass",
+  "baseCommit": "4e8e37309771ba1c4788cab762f9b96d93eb5918",
+  "browser": "151.0.7922.34",
+  "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2",
+  "bundleSha256": "3284ec0faa8db5a6ae738bdc5fe8641f6e0e3eaf952ad767e02e2f8518df28a3",
+  "captures": [
+    {
+      "label": "standing-right",
+      "pixels": 487,
+      "tick": 0,
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "poseId": 10,
+      "x": 45,
+      "y": 200,
+      "flipX": false,
+      "originX": 0.375,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 60,
+        "y": 177
+      },
+      "contact": null,
+      "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+    },
+    {
+      "label": "standing-left",
+      "pixels": 487,
+      "tick": 4,
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 2
+      },
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "poseId": 10,
+      "x": 42,
+      "y": 200,
+      "flipX": true,
+      "originX": 0.625,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 27,
+        "y": 177
+      },
+      "contact": null,
+      "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+    }
+  ],
+  "run": [
+    {
+      "tick": 1,
+      "legs": "p1/legs-start-brace",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": "start",
+        "transitionStartTick": 1
+      },
+      "contact": null,
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 2,
+      "legs": "p1/legs-start-drive",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": "start",
+        "transitionStartTick": 1
+      },
+      "contact": null,
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 3,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 4,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 5,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 6,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 7,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 8,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 9,
+      "legs": "p1/legs-run-3",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 10,
+      "legs": "p1/legs-run-3",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 11,
+      "legs": "p1/legs-run-4",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 12,
+      "legs": "p1/legs-run-4",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 13,
+      "legs": "p1/legs-run-5",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 14,
+      "legs": "p1/legs-run-5",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 15,
+      "legs": "p1/legs-run-6",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 16,
+      "legs": "p1/legs-run-6",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 17,
+      "legs": "p1/legs-run-7",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 18,
+      "legs": "p1/legs-run-7",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 19,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 20,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 21,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 22,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 23,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 24,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    }
+  ],
+  "poses": [
+    {
+      "name": "crouch",
+      "frame": {
+        "tick": 1,
+        "motion": {
+          "runStartTick": 0,
+          "transition": "crouch-enter",
+          "transitionStartTick": 1
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-crouch",
+        "legsFrame": "p1/legs-crouch-mid",
+        "poseId": 13,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 60,
+          "y": 188
+        },
+        "contact": null,
+        "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+      },
+      "shot": {
+        "x": 15360,
+        "y": 48128
+      }
+    },
+    {
+      "name": "up",
+      "frame": {
+        "tick": 1,
+        "motion": {
+          "runStartTick": 0,
+          "transition": null,
+          "transitionStartTick": 0
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-up",
+        "legsFrame": "p1/legs-idle",
+        "poseId": 11,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 164
+        },
+        "contact": null,
+        "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 41984
+      }
+    },
+    {
+      "name": "air-down",
+      "frame": {
+        "tick": 2,
+        "motion": {
+          "runStartTick": 0,
+          "transition": null,
+          "transitionStartTick": 0
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-down",
+        "legsFrame": "p1/legs-rise",
+        "poseId": 12,
+        "x": 45,
+        "y": 189,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 189
+        },
+        "contact": null,
+        "sourceSha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 48505
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "tick": 1,
+      "legs": "p1/legs-start-brace",
+      "upper": "p1/upper-horizontal",
+      "transition": "start"
+    },
+    {
+      "tick": 2,
+      "legs": "p1/legs-start-drive",
+      "upper": "p1/upper-horizontal-kick",
+      "transition": "start"
+    },
+    {
+      "tick": 3,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "transition": null
+    },
+    {
+      "tick": 4,
+      "legs": "p1/legs-reverse-pivot",
+      "upper": "p1/upper-horizontal",
+      "transition": "reverse"
+    },
+    {
+      "tick": 5,
+      "legs": "p1/legs-reverse-drive",
+      "upper": "p1/upper-horizontal",
+      "transition": "reverse"
+    },
+    {
+      "tick": 6,
+      "legs": "p1/legs-stop-brake",
+      "upper": "p1/upper-horizontal",
+      "transition": "stop"
+    },
+    {
+      "tick": 7,
+      "legs": "p1/legs-stop-settle",
+      "upper": "p1/upper-horizontal",
+      "transition": "stop"
+    },
+    {
+      "tick": 8,
+      "legs": "p1/legs-crouch-mid",
+      "upper": "p1/upper-crouch",
+      "transition": "crouch-enter"
+    },
+    {
+      "tick": 9,
+      "legs": "p1/legs-crouch",
+      "upper": "p1/upper-crouch",
+      "transition": "crouch-enter"
+    },
+    {
+      "tick": 10,
+      "legs": "p1/legs-crouch-mid",
+      "upper": "p1/upper-horizontal",
+      "transition": "crouch-exit"
+    },
+    {
+      "tick": 11,
+      "legs": "p1/legs-idle",
+      "upper": "p1/upper-horizontal",
+      "transition": "crouch-exit"
+    },
+    {
+      "tick": 12,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 13,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 14,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 15,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 16,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 17,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 18,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 19,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 20,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 21,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 22,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 23,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 24,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 25,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 26,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 27,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 28,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 29,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 30,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 31,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 32,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 33,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 34,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 35,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 36,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 37,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 38,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 39,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 40,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 41,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 42,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 43,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 44,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 45,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 46,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 47,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 48,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 49,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 50,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 51,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 52,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 53,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 54,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 55,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 56,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 57,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 58,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 59,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 60,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 61,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 62,
+      "legs": "p1/legs-land-compress",
+      "upper": "p1/upper-horizontal",
+      "transition": "land"
+    },
+    {
+      "tick": 63,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    }
+  ],
+  "recordings": [
+    {
+      "file": "run-recording.json",
+      "tick": 24,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      }
+    },
+    {
+      "file": "motion-recording.json",
+      "tick": 63,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 62
+      }
+    },
+    {
+      "file": "recording.json",
+      "tick": 2,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-down",
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      }
+    }
+  ],
+  "reviewedClips": [
+    {
+      "id": "upper.fire.horizontal",
+      "frames": [
+        "upper-horizontal",
+        "upper-horizontal-kick",
+        "upper-horizontal-settle",
+        "upper-horizontal"
+      ]
+    },
+    {
+      "id": "upper.fire.up",
+      "frames": [
+        "upper-up",
+        "upper-up-kick",
+        "upper-up-settle",
+        "upper-up"
+      ]
+    },
+    {
+      "id": "upper.fire.down",
+      "frames": [
+        "upper-down",
+        "upper-down-kick",
+        "upper-down-settle",
+        "upper-down"
+      ]
+    },
+    {
+      "id": "upper.fire.crouch",
+      "frames": [
+        "upper-crouch",
+        "upper-crouch-kick",
+        "upper-crouch-settle",
+        "upper-crouch"
+      ]
+    },
+    {
+      "id": "legs.start",
+      "frames": [
+        "legs-start-brace",
+        "legs-start-drive"
+      ]
+    },
+    {
+      "id": "legs.stop",
+      "frames": [
+        "legs-stop-brake",
+        "legs-stop-settle"
+      ]
+    },
+    {
+      "id": "legs.reverse",
+      "frames": [
+        "legs-reverse-pivot",
+        "legs-reverse-drive"
+      ]
+    },
+    {
+      "id": "legs.crouch-enter",
+      "frames": [
+        "legs-crouch-mid",
+        "legs-crouch"
+      ]
+    },
+    {
+      "id": "legs.crouch-exit",
+      "frames": [
+        "legs-crouch-mid",
+        "legs-idle"
+      ]
+    },
+    {
+      "id": "legs.land",
+      "frames": [
+        "legs-land-compress",
+        "legs-land-compress",
+        "legs-land-rise",
+        "legs-land-rise"
+      ]
+    }
+  ],
+  "replayMatches": true,
+  "paletteVariants": 4,
+  "reviewedRunFrames": 8,
+  "reviewBackgrounds": 5,
+  "footage": [
+    {
+      "file": "run-fire-normal.webm",
+      "speed": 1,
+      "endTick": 240,
+      "shots": 30,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    },
+    {
+      "file": "run-fire-quarter.webm",
+      "speed": 0.25,
+      "endTick": 64,
+      "shots": 8,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    }
+  ],
+  "errors": [],
+  "humanReview": "pending",
+  "scope": "Native source and local rendering candidate. Pixel-exact facing/root checks, independent run/fire and cardinal muzzle release, local replay and palette review; final animation quality, other actions/weapons/audio and multiplayer footage remain open."
+}

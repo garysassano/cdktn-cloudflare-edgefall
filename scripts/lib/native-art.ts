@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import sharp from "sharp";
-import type { NativeAtlas, NativeClip } from "../../src/shared/animation/native.js";
+import type { NativeAtlas, NativeClip, NativeContact } from "../../src/shared/animation/native.js";
 
 export interface NativeDrawing {
   format: 1;
@@ -19,6 +19,7 @@ export interface NativeDrawing {
     at: [number, number];
     rows: string[];
     sockets?: { muzzle: [number, number] } | null;
+    contact?: NativeContact;
   }>;
   clips: NativeClip[];
   notes: string[];
@@ -108,6 +109,25 @@ export async function compileNativeArt(raw: Buffer) {
         "Native muzzle has no adjacent gun drawing",
       );
     }
+    if (frame.contact) {
+      assert(
+        frame.channel === "legs" && ["near", "far"].includes(frame.contact.foot),
+        "Invalid native foot contact",
+      );
+      const [x, y] = frame.contact.point;
+      number(x, -root[0], width - root[0]);
+      assert(y === 0, "Planted native contact must meet the floor");
+      assert(
+        [-2, -1].some((dy) =>
+          [-1, 0, 1].some((dx) => {
+            const symbol =
+              frame.rows[root[1] + y + dy - frame.at[1]]?.[root[0] + x + dx - frame.at[0]];
+            return symbol === "B" || symbol === "t" || symbol === "u";
+          }),
+        ),
+        "Native contact has no adjacent boot drawing",
+      );
+    }
     known.set(frame.id, frame);
   }
   const clipIds = new Set<string>();
@@ -153,6 +173,7 @@ export async function compileNativeArt(raw: Buffer) {
     atlas.meta.edgefall.drawings[frame.id] = {
       channel: frame.channel,
       ...(frame.sockets ? { sockets: frame.sockets } : {}),
+      ...(frame.contact ? { contact: frame.contact } : {}),
     };
     for (const [variantIndex, variant] of variants.entries()) {
       const slot = variantIndex * source.frames.length + index,

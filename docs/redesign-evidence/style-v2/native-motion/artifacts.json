@@ -1,0 +1,288 @@
+{
+  "baseCommit": "4e8e37309771ba1c4788cab762f9b96d93eb5918",
+  "scope": "W06 native operative motion candidate: 33 drawings, sidearm recoil, speed-matched exposure contacts, authored leg transitions, accepted-tick cosmetic clocks and exact local recording restoration. Human style acceptance, full-body actions and the complete benchmark remain open.",
+  "sources": [
+    {
+      "file": "README.md",
+      "bytes": 16484,
+      "sha256": "7ea8f6d6944ad25600f5a352a33edc5a88136c8b9909e93d9923c3e93b120203"
+    },
+    {
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 31248,
+      "sha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2"
+    },
+    {
+      "file": "art/source/provenance.json",
+      "bytes": 3279,
+      "sha256": "5ce09710c6aca93e016918b6794e905ac321c5068028c41dff8852d7657c5acb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/README.md",
+      "bytes": 14101,
+      "sha256": "846989a864f1eae729a434a2151bcb68ceff231404a752675470fa59eb07cded"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-frames.json",
+      "bytes": 14201,
+      "sha256": "df6ab99d00f7a82c7a81dd8284f43a89cf47679cb8ec81d3e3a8684636018789"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/source-review.json",
+      "bytes": 4620,
+      "sha256": "e02c2ff102eb6ffacbd598e0c4afddda519f2f169ee570f7dccea7ff7622da74"
+    },
+    {
+      "file": "public/assets/art/hero/operative.atlas.json",
+      "bytes": 55196,
+      "sha256": "101aab9a600025706e070faef313b94407f59de3c3153e81d1d9fe97773ba089"
+    },
+    {
+      "file": "public/assets/art/hero/operative.png",
+      "bytes": 18018,
+      "sha256": "0062907a5291b406a24bd4c2fd42221cf111d9e1555a88f7ced0ec305f92c025"
+    },
+    {
+      "file": "public/assets/manifest.json",
+      "bytes": 7858,
+      "sha256": "2ef303dc723745ca3a42fde331516b27545f1af55c59a5078301bd277502e919"
+    },
+    {
+      "file": "scripts/assets/export-native.ts",
+      "bytes": 7466,
+      "sha256": "fca0680838f3509322b3a8ec2a62ba56dfe5edef235d4c819bc79c62d6ae70fe"
+    },
+    {
+      "file": "scripts/lib/native-art.ts",
+      "bytes": 7896,
+      "sha256": "1d0064f19c8507ee118b706bbe55d5a4354aa42bf5d18bdb83325fc834fed6a8"
+    },
+    {
+      "file": "scripts/validate-assets.mjs",
+      "bytes": 9929,
+      "sha256": "c89fe61e6a24581bbc7d8e70ae664902b6d3fed878c1177bee2f6e9d7155d1cb"
+    },
+    {
+      "file": "scripts/verify-native-operative.mjs",
+      "bytes": 17474,
+      "sha256": "a8bac997465c89de276f5dbfabf1b08009940b81ed80f1e9b6ce4e99b01dfea2"
+    },
+    {
+      "file": "src/client/art-review.html",
+      "bytes": 7196,
+      "sha256": "96c0c0582e530f223ad21a467cedaa60890df5a6b79a867fbf5dce05f796aa0b"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "bytes": 3787,
+      "sha256": "d50f60ac19a3777a57f1c3bec37f60bbd7020f39e94ebac429cfe02c43e756d8"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "bytes": 18036,
+      "sha256": "f14b5f7050a0bb557b87ef22c59e8d6a0c65813bd82ef30daef08fa61e4189d7"
+    },
+    {
+      "file": "src/client/native-review.ts",
+      "bytes": 6229,
+      "sha256": "a9b8c5687feb32a31a0cc9b4bf24e97a54207fbf969b59485d653581325dfe6f"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "bytes": 43491,
+      "sha256": "0f575b252f309ab49fa6dde7c42ada7397d1628fab25bcdbfaf4ec6dd6f7aca2"
+    },
+    {
+      "file": "src/shared/animation/native.ts",
+      "bytes": 1972,
+      "sha256": "5f6ec3d504757a6c6ca23d3ef72f17d6940c0e3849406e30e951da3cfac8bc0a"
+    },
+    {
+      "file": "src/shared/animation/operative-motion.ts",
+      "bytes": 2862,
+      "sha256": "7039e45d6af8e9a3e6fe5cad470cc79e2cf7e97a08fc7710bac474f825376a7a"
+    },
+    {
+      "file": "src/shared/animation/operative.ts",
+      "bytes": 3848,
+      "sha256": "6e79363f75c2e0378b37619477d63eb69a23c8eb5b3b0b66b38d4a0f0e9f3c21"
+    },
+    {
+      "file": "test/native-art.test.ts",
+      "bytes": 13183,
+      "sha256": "7e0a18ea6d53cab7f014a7ab1a3186aff81115c03d71763f9e142b515c8e63b4"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/air-down-debug.png",
+      "bytes": 3115,
+      "sha256": "4fe5b2ac1abb9dee9ccb02786ff6a074191340c47163b1700b56767378916ab8"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/air-down.png",
+      "bytes": 3021,
+      "sha256": "5bd9e1ebcad4d10ad99460e6f86578916605b0df2c81e104b0426c544229fc7a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/browser.json",
+      "bytes": 23521,
+      "sha256": "79959535781ede1744694183957ded6addf08c4b7851c1f2f4f36e059e700193"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/browser.log.gz",
+      "bytes": 314,
+      "sha256": "1ef61890cb09290d6770ff96a55f9581fcfd6e7b469419a7974c5de4f0492bc6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/check.log.gz",
+      "bytes": 1448,
+      "sha256": "a0f2eb161fa55b0e6ac23ff8e2d6427736b784fcd0eb2234238de92d57754481"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/combat-browser.json.gz",
+      "bytes": 16933,
+      "sha256": "d5b34932ad50052030203352735514852f6a3e549bd273d8ad694ba9c3a2fbc8"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/combat-browser.log.gz",
+      "bytes": 128,
+      "sha256": "97668857d84d2b8db5bf292d082607c90e139e6cf57b71c22ae0340113d2efd5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/concept-browser.json",
+      "bytes": 1119,
+      "sha256": "f4c870f1b611e5011a4ba13476ef93878f204e27cb8fe6fb416e131f2fa819ba"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/concept-browser.log.gz",
+      "bytes": 84,
+      "sha256": "5e1895792c2d197d2fd3f2aeb27437ff7dd171e33f25adaa36be12e208564075"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/crouch.png",
+      "bytes": 2953,
+      "sha256": "3527f806214b97283120513d6af3217d26c142acf8e9ac001728ad7e6d46a52d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/four-slots.png",
+      "bytes": 3809,
+      "sha256": "1684c4a7569142873982e6408690cad1b70b2cb48145da75b6e20ee2d10edd32"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/landing.png",
+      "bytes": 3066,
+      "sha256": "d2760977768f56a3a8c0567ac703a8afcd10737768e6d4e050f6189db5c0d9a8"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/motion-recording.json",
+      "bytes": 15088,
+      "sha256": "f6baad6b6787a2787008770939f95646e7a2dc0eeebbfd6b5ad46ff111f47ca2"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/palettes-1x.png",
+      "bytes": 3074,
+      "sha256": "96e49aa7e8e61ad5614122ab250bcc84309486b3e7881911098a2620a6f5b17f"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/palettes-4x.png",
+      "bytes": 4729,
+      "sha256": "004c2be4d3026969a9ce357f122a0c9f37852d598e87f31fe82ea72f2fe7c7f6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/production-isolation.json",
+      "bytes": 656,
+      "sha256": "1b104fbfd2f0ab1b21e51cc0da5ce0851be9325967958ffff1ed0b68e1769c36"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/recoil-kick.png",
+      "bytes": 3065,
+      "sha256": "e59eb53707bc30f272f288cb11fa45fe21d827bc77582c65befd5f20d3da6f13"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/recoil-settle.png",
+      "bytes": 3162,
+      "sha256": "322e6a556ad116d778f02cc5c35e86eaf23e5af0b2c40de005a352e22176d27a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/recording.json",
+      "bytes": 4333,
+      "sha256": "6e2b1d18dc003ff4732e896d23b20d014892c036e4d1cf8e47429a25fecd60fe"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-0.png",
+      "bytes": 3162,
+      "sha256": "322e6a556ad116d778f02cc5c35e86eaf23e5af0b2c40de005a352e22176d27a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-1.png",
+      "bytes": 3122,
+      "sha256": "1667ed0c09e2ae144b1ad2c9d6dc8be8febb48c293a7145e026d9d1ff8b0de3a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-2.png",
+      "bytes": 3115,
+      "sha256": "b280c1efe58b80e632193b170f6cf5ba572f2667d3b74ffde5bc339e63c5fc9c"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-3.png",
+      "bytes": 3142,
+      "sha256": "633ce908fb9a3b0bfb149ee7ef394fc3e9d2bab307f6b73289163fdfe06bca62"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-4.png",
+      "bytes": 3138,
+      "sha256": "cc7c5ad4edee015dc0f3d427187530c5815709ee2913d7bbffc99cb4cc2e0ed1"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-5.png",
+      "bytes": 3127,
+      "sha256": "7e0ef6cd7718cd1adef55fef2562e40d3283fd0b0f9d593139678beb5e4f4e56"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-6.png",
+      "bytes": 3091,
+      "sha256": "9b98c4515a3e2eb75403de89a5488a9291479f5bfa4c93d585d295ec594717f6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-7.png",
+      "bytes": 3124,
+      "sha256": "83877470354c0ffa458b3bfb3cde72d73db47cd5b8f1dacf97f9863f643d53f3"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-fire-normal.webm",
+      "bytes": 270478,
+      "sha256": "c8b09d804dd398f847240e58e6f906b577456cd06ea0b9deb23781dc8446fe40"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-fire-quarter.webm",
+      "bytes": 238418,
+      "sha256": "54c2f8bb2195b2b50bbcac9b2f1be303703391540b2b9d5332c5f5da6e58ec72"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/run-recording.json",
+      "bytes": 8168,
+      "sha256": "76bc0705e9fd8f777dc62de7004a682a0e44c44f6eaf0e2eeea8f6c022d788d7"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/standing-left.png",
+      "bytes": 3040,
+      "sha256": "331357b6499f21c70336e4ff3b1eaf401ac1c594d0909a17ead1c0d1d608296a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/standing-right.png",
+      "bytes": 3030,
+      "sha256": "5cb973bb7e66624b371544dbcd90e882cc1f583e2055856f50482efab17011fb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/up.png",
+      "bytes": 2878,
+      "sha256": "70d3ff4dcd68ed85ff36fe4b10cdb202186df51034320e39407bb8656ebff565"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-motion/video-metadata.json",
+      "bytes": 775,
+      "sha256": "3d78260f29ddeeb2b3ced74c81a4da77fff265695002a43465b7db5e2a7b4d30"
+    }
+  ]
+}

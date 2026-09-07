@@ -4,10 +4,19 @@ import { describe, expect, it } from "vitest";
 import { type NativeDrawing, compileNativeArt } from "../scripts/lib/native-art.js";
 import { canonical } from "../src/game/core/canonical.js";
 import { Held } from "../src/game/input/types.js";
-import { createCombatLab, stepCombatLab } from "../src/game/labs/combat.js";
+import {
+  type CombatCommand,
+  createCombatLab,
+  replayCombatLab,
+  stepCombatLab,
+} from "../src/game/labs/combat.js";
 import { COMBAT_CATALOG } from "../src/game/labs/combat-content.js";
 import { nativeExposure } from "../src/shared/animation/native.js";
 import { OPERATIVE_POSES, operativePresentation } from "../src/shared/animation/operative.js";
+import {
+  advanceOperativeMotion,
+  initialOperativeMotion,
+} from "../src/shared/animation/operative-motion.js";
 
 const raw = await readFile("art/source/hero/operative.pixels.json"),
   built = await compileNativeArt(raw);
@@ -15,7 +24,7 @@ const source = () => JSON.parse(raw.toString()) as NativeDrawing;
 describe("native operative source and playback", () => {
   it("exports the exact indexed drawing pixels into padded untrimmed palette frames", async () => {
     const { data, info } = await sharp(built.png).raw().toBuffer({ resolveWithObject: true });
-    expect(Object.keys(built.atlas.frames)).toHaveLength(64);
+    expect(Object.keys(built.atlas.frames)).toHaveLength(built.source.frames.length * 4);
     const alphas = new Set<number>();
     for (let i = 3; i < data.length; i += 4) {
       alphas.add(data[i] ?? -1);
@@ -123,7 +132,7 @@ describe("native operative source and playback", () => {
     actor.body.y = 100 * 256;
     for (const facing of [-1, 1] as const) {
       actor.facing = facing;
-      const draw = operativePresentation(actor, 0, built.atlas);
+      const draw = operativePresentation(actor, 0, built.atlas, initialOperativeMotion(actor, 0));
       expect(draw?.muzzle).toEqual({ x: 100 + facing * 15, y: 77 });
       if (!draw) throw new Error("Missing drawing");
       // Actual Phaser canvas-flip geometry, including its unequal root margins.
@@ -134,9 +143,13 @@ describe("native operative source and playback", () => {
   });
   it("keeps the run moving across sidearm actions and reconstructs it from accepted state", () => {
     let state = createCombatLab("range");
+    const initial = state.players[0];
+    if (!initial) throw new Error("Missing operative");
+    let motion = initialOperativeMotion(initial, 0);
     const sampled = new Set<string>(),
       firing = new Set<string>();
     for (let tick = 1; tick <= 24; tick++) {
+      const previous = state.players[0];
       state = stepCombatLab(state, [
         {
           held: Held.Right | Held.Fire,
@@ -147,13 +160,21 @@ describe("native operative source and playback", () => {
         },
       ]);
       const actor = state.players[0];
-      if (!actor) throw new Error("Missing operative");
+      if (!actor || !previous) throw new Error("Missing operative");
+      motion = advanceOperativeMotion(previous, actor, motion, state.tick, built.atlas);
       const before = canonical(state),
-        draw = operativePresentation(actor, state.tick, built.atlas);
+        draw = operativePresentation(actor, state.tick, built.atlas, motion);
       expect(canonical(state)).toBe(before);
-      expect(draw?.legsFrame).toMatch(/legs-run-/);
-      expect(operativePresentation(structuredClone(actor), state.tick, built.atlas)).toEqual(draw);
-      sampled.add(draw?.legsFrame ?? "missing");
+      expect(draw?.legsFrame).toMatch(/legs-(run|start)-/);
+      expect(
+        operativePresentation(
+          structuredClone(actor),
+          state.tick,
+          built.atlas,
+          structuredClone(motion),
+        ),
+      ).toEqual(draw);
+      if (draw?.legsFrame.includes("legs-run-")) sampled.add(draw.legsFrame);
       if (actor.action.kind === "fire") firing.add(draw?.legsFrame ?? "missing");
     }
     expect(sampled.size).toBe(8);
@@ -164,12 +185,123 @@ describe("native operative source and playback", () => {
     const actor = createCombatLab("range", 2).players[0],
       other = createCombatLab("range", 2).players[1];
     if (!actor || !other) throw new Error("Missing operative");
-    expect(operativePresentation(other, 0, built.atlas)).toBeNull();
+    const motion = initialOperativeMotion(actor, 0);
+    expect(operativePresentation(other, 0, built.atlas, motion)).toBeNull();
     for (const kind of ["melee", "grenade", "enter", "exit", "hurt"] as const)
       expect(
-        operativePresentation({ ...actor, action: { ...actor.action, kind } }, 0, built.atlas),
+        operativePresentation(
+          { ...actor, action: { ...actor.action, kind } },
+          0,
+          built.atlas,
+          motion,
+        ),
       ).toBeNull();
-    expect(operativePresentation({ ...actor, life: "death" }, 0, built.atlas)).toBeNull();
-    expect(operativePresentation({ ...actor, vehicleId: 5 }, 0, built.atlas)).toBeNull();
+    expect(operativePresentation({ ...actor, life: "death" }, 0, built.atlas, motion)).toBeNull();
+    expect(operativePresentation({ ...actor, vehicleId: 5 }, 0, built.atlas, motion)).toBeNull();
+  });
+  it("matches planted contact positions at successive authored exposure boundaries", () => {
+    const run = built.source.clips[0];
+    if (!run) throw new Error("Missing run");
+    const positions = new Map<string, number>();
+    let tick = 0;
+    for (const exposure of run.exposures) {
+      const contact = built.atlas.meta.edgefall.drawings[exposure.frame]?.contact;
+      if (!contact) throw new Error("Missing contact");
+      const world = tick * 3 + contact.point[0];
+      expect(contact.point[1]).toBe(0);
+      if (positions.has(contact.foot)) expect(world).toBe(positions.get(contact.foot));
+      positions.set(contact.foot, world);
+      tick += exposure.ticks;
+    }
+    expect(positions.size).toBe(2);
+  });
+  it("rejects detached boot contacts and stale, skipped or repeated presentation ticks", async () => {
+    const data = source(),
+      frame = data.frames.find((frame) => frame.contact);
+    if (!frame?.contact) throw new Error("Missing authored contact");
+    frame.contact.point = [-24, 0];
+    await expect(compileNativeArt(Buffer.from(JSON.stringify(data)))).rejects.toThrow(/boot/);
+    const actor = createCombatLab("range").players[0];
+    if (!actor) throw new Error("Missing operative");
+    const clock = initialOperativeMotion(actor, 0);
+    expect(() => advanceOperativeMotion(actor, actor, clock, 0, built.atlas)).toThrow(/repeated/);
+    expect(() => advanceOperativeMotion(actor, actor, clock, 2, built.atlas)).toThrow(/skipped/);
+    expect(() => operativePresentation(actor, 1, built.atlas, clock)).toThrow(/stale/);
+    const rejoined = { ...actor, controlEpoch: actor.controlEpoch + 1 };
+    expect(advanceOperativeMotion(actor, rejoined, clock, 1, built.atlas)).toEqual(
+      initialOperativeMotion(rejoined, 1),
+    );
+  });
+  it("uses the base muzzle at release and three authored recoil drawings for every aim", () => {
+    const actor = createCombatLab("range").players[0];
+    if (!actor) throw new Error("Missing operative");
+    for (const [name, poseId] of Object.entries(OPERATIVE_POSES)) {
+      actor.aim = name === "upper-up" ? 1 : name === "upper-down" ? 2 : 0;
+      actor.locomotion =
+        name === "upper-crouch" ? "crouched" : name === "upper-down" ? "airborne" : "grounded";
+      actor.action = { ...actor.action, kind: "fire", definitionId: poseId, stateStartTick: 20 };
+      const frames = [];
+      for (let age = 0; age < 4; age++)
+        frames.push(
+          operativePresentation(
+            actor,
+            20 + age,
+            built.atlas,
+            initialOperativeMotion(actor, 20 + age),
+          )?.upperFrame,
+        );
+      expect(frames).toEqual([`p1/${name}`, `p1/${name}-kick`, `p1/${name}-settle`, `p1/${name}`]);
+    }
+  });
+  it("starts, reverses, stops and crouches without delaying accepted jump/fire or restarting the gait on a shot", () => {
+    let state = createCombatLab("range");
+    const initial = state.players[0];
+    if (!initial) throw new Error("Missing operative");
+    let motion = initialOperativeMotion(initial, 0);
+    const commands: CombatCommand[][] = [];
+    const step = (held = 0, jumpPressed = false, firePressed = false) => {
+      const before = state.players[0];
+      const input = [
+        { held, jumpPressed, firePressed, grenadePressed: false, interactPressed: false },
+      ];
+      state = stepCombatLab(state, input);
+      commands.push(input);
+      const actor = state.players[0];
+      if (!before || !actor) throw new Error("Missing operative");
+      motion = advanceOperativeMotion(before, actor, motion, state.tick, built.atlas);
+      return operativePresentation(actor, state.tick, built.atlas, motion);
+    };
+    expect(step(Held.Right, false, true)?.legsFrame).toBe("p1/legs-start-brace");
+    expect(step(Held.Right)?.upperFrame).toBe("p1/upper-horizontal-kick");
+    expect(step(Held.Right)?.legsFrame).toBe("p1/legs-run-0");
+    const start = motion.runStartTick;
+    expect(step(Held.Left)?.legsFrame).toBe("p1/legs-reverse-pivot");
+    expect(motion.runStartTick).toBe(start);
+    expect(step()?.legsFrame).toBe("p1/legs-stop-brake");
+    expect(step(Held.Down)?.legsFrame).toBe("p1/legs-crouch-mid");
+    expect(step(0, true)?.legsFrame).toBe("p1/legs-rise");
+    expect(state.players[0]?.locomotion).toBe("airborne");
+    while (state.players[0]?.locomotion === "airborne" && state.tick < 120) step();
+    expect(motion.transition).toBe("land");
+    const y = state.players[0]?.body.y ?? 0,
+      shots = state.players[0]?.weapon.shotOrdinal ?? 0;
+    expect(step(0, true, true)?.legsFrame).toBe("p1/legs-rise");
+    expect(state.players[0]?.body.y).toBeLessThan(y);
+    expect(state.players[0]?.weapon.shotOrdinal).toBe(shots + 1);
+    const recording = {
+      format: 7 as const,
+      scenario: state.scenario,
+      players: 1,
+      commands,
+      finalState: canonical(state),
+    };
+    let observed = 0;
+    expect(
+      replayCombatLab(recording, (copy) => {
+        observed++;
+        if (copy.players[0]) copy.players[0].body.x = 0;
+      }),
+    ).toEqual(state);
+    expect(observed).toBe(commands.length + 1);
   });
 });

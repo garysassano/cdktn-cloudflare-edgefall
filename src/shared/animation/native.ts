@@ -1,3 +1,8 @@
+export interface NativeContact {
+  foot: "near" | "far";
+  /** Contact at the start of this exposure, relative to the fixed feet root. */
+  point: [number, number];
+}
 export interface NativeClip {
   id: string;
   channel: "legs" | "upper";
@@ -26,7 +31,11 @@ export interface NativeAtlas {
       variants: string[];
       drawings: Record<
         string,
-        { channel: "legs" | "upper"; sockets?: { muzzle: [number, number] } }
+        {
+          channel: "legs" | "upper";
+          sockets?: { muzzle: [number, number] };
+          contact?: NativeContact;
+        }
       >;
       clips: NativeClip[];
       approval: "pending";

@@ -1220,7 +1220,8 @@ export interface CombatRecording {
   commands: CombatCommand[][];
   finalState: string;
 }
-export function replayCombatLab(recording: CombatRecording) {
+/** Optional inspector observations are isolated copies and cannot mutate the replay. */
+export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
     recording.format !== 7 ||
     !Array.isArray(recording.commands) ||
@@ -1228,7 +1229,11 @@ export function replayCombatLab(recording: CombatRecording) {
   )
     throw new Error("Invalid combat recording");
   let world = createCombatLab(recording.scenario, recording.players);
-  for (const commands of recording.commands) world = stepCombatLab(world, commands);
+  observe?.(structuredClone(world));
+  for (const commands of recording.commands) {
+    world = stepCombatLab(world, commands);
+    observe?.(structuredClone(world));
+  }
   if (canonical(world) !== recording.finalState) throw new Error("Combat replay diverged");
   return world;
 }

@@ -60,6 +60,26 @@ try {
   const surface = page.locator("#game"),
     canvas = surface.locator("canvas");
   const captures = [];
+  const recordings = [];
+  const checkRecording = async (file) => {
+    const before = await read(),
+      download = page.waitForEvent("download");
+    await page.locator("#export").click();
+    await (await download).saveAs(`${output}/${file}`);
+    await page.locator("#reset").click();
+    await page.locator("#import").setInputFiles(`${output}/${file}`);
+    await page.waitForFunction(() =>
+      document.querySelector("#status").textContent.includes("imported replay matches"),
+    );
+    assert.deepEqual(await read(), before);
+    recordings.push({
+      file,
+      tick: before.state.tick,
+      legs: before.frames[0].legsFrame,
+      upper: before.frames[0].upperFrame,
+      motion: before.frames[0].motion,
+    });
+  };
   // Compare every opaque native pixel to the actual browser canvas in both
   // directions. Metadata-only assertions would miss an incorrect Phaser origin.
   const checkRenderedPixels = async (label) => {
@@ -102,6 +122,8 @@ try {
   await page.keyboard.press("Enter");
   await page.keyboard.up("ArrowLeft");
   await page.keyboard.press("Enter");
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Enter");
   await checkRenderedPixels("standing-left");
   await page.locator("#reset").click();
   await surface.focus();
@@ -114,18 +136,23 @@ try {
     const { state, frames } = await read(),
       frame = frames[0],
       player = state.players[0];
-    assert(frame.legsFrame.includes("legs-run-"));
+    assert(/legs-(run|start)-/.test(frame.legsFrame));
     run.push({
       tick,
       legs: frame.legsFrame,
+      upper: frame.upperFrame,
+      motion: frame.motion,
+      contact: frame.contact,
       action: player.action.kind,
       actionStart: player.action.stateStartTick,
       shots: player.weapon.shotOrdinal,
     });
-    if (!seen.has(frame.legsFrame)) {
+    if (frame.legsFrame.includes("legs-run-") && !seen.has(frame.legsFrame)) {
       seen.add(frame.legsFrame);
       await canvas.screenshot({ path: `${output}/run-${seen.size - 1}.png` });
     }
+    if (tick === 2 || tick === 3)
+      await canvas.screenshot({ path: `${output}/recoil-${tick === 2 ? "kick" : "settle"}.png` });
   }
   await page.keyboard.up("ArrowRight");
   await page.keyboard.up("KeyZ");
@@ -134,9 +161,80 @@ try {
     new Set(run.filter((frame) => frame.action === "fire").map((frame) => frame.legs)).size > 1,
   );
   assert(run.at(-1).shots > 1);
+  assert.equal(
+    new Set(run.map((sample) => sample.motion.runStartTick)).size,
+    1,
+    "Shots restarted run phase",
+  );
+  assert.equal(
+    new Set(run.map((sample) => sample.upper)).size,
+    3,
+    "Recoil drawings did not advance",
+  );
+  const contacts = new Map();
+  for (const sample of run)
+    if (sample.contact && (sample.tick - sample.motion.runStartTick) % 2 === 0) {
+      const key = `${Math.floor((sample.tick - sample.motion.runStartTick) / 16)}/${sample.contact.foot}`;
+      if (contacts.has(key))
+        assert.equal(
+          sample.contact.x,
+          contacts.get(key),
+          "Authored contact slipped at exposure boundary",
+        );
+      contacts.set(key, sample.contact.x);
+    }
+  await checkRecording("run-recording.json");
+  const transitions = [];
+  await page.locator("#reset").click();
+  await surface.focus();
+  const stepMotion = async () => {
+    await page.keyboard.press("Enter");
+    const value = await read();
+    transitions.push({
+      tick: value.state.tick,
+      legs: value.frames[0].legsFrame,
+      upper: value.frames[0].upperFrame,
+      transition: value.frames[0].motion.transition,
+    });
+    return value;
+  };
+  await page.keyboard.down("ArrowRight");
+  await page.keyboard.press("KeyZ");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-start-brace");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-start-drive");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-run-0");
+  await page.keyboard.up("ArrowRight");
+  await page.keyboard.down("ArrowLeft");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-reverse-pivot");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-reverse-drive");
+  await page.keyboard.up("ArrowLeft");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-stop-brake");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-stop-settle");
+  await page.keyboard.down("ArrowDown");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-crouch-mid");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-crouch");
+  await page.keyboard.up("ArrowDown");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-crouch-mid");
+  assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-idle");
+  await page.keyboard.press("Space");
+  let falling = await stepMotion();
+  assert.equal(falling.frames[0].legsFrame, "p1/legs-rise");
+  while (falling.state.players[0].locomotion === "airborne" && falling.state.tick < 120)
+    falling = await stepMotion();
+  assert.equal(falling.frames[0].legsFrame, "p1/legs-land-compress");
+  await canvas.screenshot({ path: `${output}/landing.png` });
+  const landedY = falling.state.players[0].body.y,
+    shots = falling.state.players[0].weapon.shotOrdinal;
+  await page.keyboard.press("Space");
+  await page.keyboard.press("KeyZ");
+  const interrupted = await stepMotion();
+  assert(interrupted.state.players[0].body.y < landedY);
+  assert.equal(interrupted.frames[0].legsFrame, "p1/legs-rise");
+  assert.equal(interrupted.state.players[0].weapon.shotOrdinal, shots + 1);
+  await checkRecording("motion-recording.json");
   const poses = [];
   for (const [name, aim, jump, upper, legs] of [
-    ["crouch", "ArrowDown", false, "upper-crouch", "legs-crouch"],
+    ["crouch", "ArrowDown", false, "upper-crouch", "legs-crouch-mid"],
     ["up", "ArrowUp", false, "upper-up", "legs-idle"],
     ["air-down", "ArrowDown", true, "upper-down", "legs-rise"],
   ]) {
@@ -162,16 +260,7 @@ try {
     poses.push({ name, frame, shot: shot.position });
   }
   // The real recording format restores the same accepted tick and presentation.
-  const before = await read(),
-    download = page.waitForEvent("download");
-  await page.locator("#export").click();
-  await (await download).saveAs(`${output}/recording.json`);
-  await page.locator("#reset").click();
-  await page.locator("#import").setInputFiles(`${output}/recording.json`);
-  await page.waitForFunction(() =>
-    document.querySelector("#status").textContent.includes("imported replay matches"),
-  );
-  assert.deepEqual(await read(), before);
+  await checkRecording("recording.json");
   await page.locator("#player-overlays").check();
   await canvas.screenshot({ path: `${output}/air-down-debug.png` });
   await page.locator("#players").selectOption("4");
@@ -187,6 +276,26 @@ try {
     await page.locator("#native-step").click();
   }
   assert.equal(reviewedFrames.size, 8);
+  const reviewedClips = [];
+  for (const clip of atlas.meta.edgefall.clips.filter((clip) => clip.id !== "legs.run")) {
+    const control = clip.channel === "upper" ? "#native-upper" : "#native-legs";
+    await page.locator(control).selectOption(`clip:${clip.id}`);
+    await page.locator("#native-reset").click();
+    const frames = [];
+    for (const exposure of clip.exposures)
+      for (let i = 0; i < exposure.ticks; i++) {
+        const frame = await page
+          .locator("#native")
+          .getAttribute(clip.channel === "upper" ? "data-upper" : "data-legs");
+        assert.equal(frame, exposure.frame);
+        frames.push(frame);
+        await page.locator("#native-step").click();
+      }
+    reviewedClips.push({ id: clip.id, frames });
+  }
+  await page.locator("#native-upper").selectOption("upper-horizontal");
+  await page.locator("#native-legs").selectOption("run-loop");
+  await page.locator("#native-reset").click();
   for (const color of ["#000000", "#ffffff", "#808080", "#00ffff", "#ff00ff"]) {
     await page.locator("#native-background").selectOption(color);
     assert.equal(
@@ -284,6 +393,9 @@ try {
         captures,
         run,
         poses,
+        transitions,
+        recordings,
+        reviewedClips,
         replayMatches: true,
         paletteVariants: 4,
         reviewedRunFrames: 8,

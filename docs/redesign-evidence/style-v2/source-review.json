@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "sourceIndexSha256": "e177f9c94280be5b96812dbc2ed0d54c605e9ddd73a3d6a53f8eb3cd8012c434",
+  "sourceIndexSha256": "5ce09710c6aca93e016918b6794e905ac321c5068028c41dff8852d7657c5acb",
   "decoder": {
     "sharp": "0.35.4",
     "vips": "8.18.6"
