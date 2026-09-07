@@ -1,6 +1,7 @@
 import { DurableObject } from "cloudflare:workers";
 import { COUNTER_LIMIT } from "../../game/core/numeric.js";
 import type { CombatLab } from "../../game/labs/combat.js";
+import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
 import type { GameIdentity } from "../../shared/content-id.js";
 import { combatEventContext } from "../../shared/diagnostics/combat-events.js";
 import {
@@ -90,6 +91,7 @@ interface Peer {
   initialBaseline: { snapshotId: number; cursor: number } | null;
   baselineTick: number;
   lastRoomMode: RoomMode;
+  inputPauseSnapshotId: number | null;
   socket: WebSocket;
   input: InputStream;
   lease: ControlLease | null;
@@ -105,6 +107,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private workload: "standard" | "double" | "controller" | "combat" = "standard";
   private world = createRoomWorkload(1);
   private combat: CombatLab | null = null;
+  private campaign: CombatCampaign | null = null;
   private eventHistory: EventHistory | null = null;
   private connectedPlayerIds: number[] = [];
   private pausedFrom: PausableRoomMode | null = null;
@@ -161,6 +164,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     });
   }
   private sampledNow = 0;
+  private startedAtTick = 0;
   private watchdog: ReturnType<typeof setTimeout> | null = null;
   private initialization: Promise<void> | null = null;
   private recoveries = 0;
@@ -307,6 +311,38 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       });
     this.ctx.waitUntil(this.pausing);
   }
+  /** Advertise the nonterminal input pause immediately; host reset stays locked until storage confirms. */
+  private confirmCampaignBoundary(): void {
+    if (this.starting || this.pausing || this.world.roomMode !== "intermission") return;
+    const accepted = structuredClone(this.combatRuntime());
+    this.clock.stop();
+    this.clearWatchdog();
+    this.starting = true;
+    for (const peer of this.peers.values()) {
+      peer.lease = null;
+      if (peer.metrics.active) this.publishSnapshot(peer);
+    }
+    this.pausing = (async () => {
+      if (!this.combatWriter) throw new Error("Missing campaign boundary writer");
+      const durable = await this.combatWriter.seal(accepted);
+      if (this.world.roomMode !== "intermission") return;
+      if (combatRuntimeHash(durable) !== combatRuntimeHash(this.combatRuntime()))
+        throw new Error("Campaign boundary changed during confirmation");
+      this.combatWriter = null;
+    })()
+      .catch((error) => this.pausePersistence(String(error)))
+      .finally(() => {
+        this.pausing = null;
+        this.starting = false;
+        this.pauseEmpty();
+      });
+    this.ctx.waitUntil(this.pausing);
+  }
+  private admissionPhase(): RoomMode {
+    return this.campaign && ["wipe", "defeat"].includes(this.campaign.state.phase)
+      ? "playing"
+      : this.world.roomMode;
+  }
   async alarm(): Promise<void> {
     this.alarmDeliveries++;
     this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize("combat"));
@@ -445,6 +481,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     peer.socket.send(bytes);
     const cursor = this.eventHistory?.cursor ?? 0;
     peer.input.recordSent(this.world.snapshotId, cursor);
+    if (
+      this.world.roomMode === "intermission" &&
+      this.campaign &&
+      ["wipe", "defeat"].includes(this.campaign.state.phase)
+    )
+      peer.inputPauseSnapshotId ??= this.world.snapshotId;
     peer.metrics.eventSentCursor = cursor;
     peer.pendingEventBaseline = baseline;
     if (initial && this.workload === "combat")
@@ -488,6 +530,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       history: EventHistory | null;
       connectedPlayerIds: number[];
       pausedFrom: PausableRoomMode | null;
+      campaign: CombatCampaign | null;
       journal: CombatJournalTick | null;
     }>(
       active.map(([, peer]) => peer.input),
@@ -579,6 +622,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             history: this.eventHistory,
             connectedPlayerIds: this.connectedPlayerIds,
             pausedFrom: this.pausedFrom,
+            campaign: this.campaign,
             journal: null,
           },
           outcomes,
@@ -590,6 +634,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.eventHistory = transaction.state.history;
     this.connectedPlayerIds = transaction.state.connectedPlayerIds;
     this.pausedFrom = transaction.state.pausedFrom;
+    this.campaign = transaction.state.campaign;
     for (const [slot, peer] of replacements) {
       const old = this.peers.get(slot);
       if (old) this.disconnect(old, "connection-replaced", 4003);
@@ -651,8 +696,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         this.clearWatchdog();
       }
     }
+    if (this.workload === "combat" && this.world.roomMode === "intermission")
+      this.confirmCampaignBoundary();
     let encodeMs = 0;
-    if (tick % 3 === 0) {
+    if (tick % 3 === 0 && this.world.roomMode === "playing") {
       this.world.stateHash = roomWorkloadHash(this.world);
       const encodeStart = performance.now();
       for (const peer of this.peers.values()) {
@@ -664,18 +711,20 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     }
     if (this.localCpu.length < 1200)
       this.localCpu.push([tick, performance.now() - cpuStart, encodeMs]);
-    if (tick >= 1200) this.finish("tick-limit");
+    if (tick - this.startedAtTick >= 1200) this.finish("tick-limit");
     return undefined;
   }
 
   private combatRuntime(): CombatRuntime {
-    if (!this.combat || !this.eventHistory) throw new Error("Missing combat continuation");
+    if (!this.combat || !this.eventHistory || !this.campaign)
+      throw new Error("Missing combat continuation");
     return {
       combat: this.combat,
       snapshot: this.world,
       history: this.eventHistory,
       connectedPlayerIds: this.connectedPlayerIds,
       pausedFrom: this.pausedFrom,
+      campaign: this.campaign,
     };
   }
   private installCombat(state: CombatRuntime) {
@@ -684,6 +733,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.eventHistory = state.history;
     this.connectedPlayerIds = state.connectedPlayerIds;
     this.pausedFrom = state.pausedFrom;
+    this.campaign = state.campaign;
   }
   private pausePersistence(reason: string) {
     this.persistenceFailure ??= reason.slice(0, 256);
@@ -858,9 +908,9 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return Response.json({ code }, { status: code === "host-required" ? 403 : 409 });
       }
       action = hostCommand.command;
-      if (action !== "load" && action !== "start")
+      if (action !== "load" && action !== "start" && action !== "continue")
         return Response.json({ code: "command-unavailable" }, { status: 409 });
-    } else if (this.workload === "combat" && (action === "start" || action === "load"))
+    } else if (this.workload === "combat" && ["start", "load", "continue"].includes(action ?? ""))
       return Response.json({ code: "host-command-required" }, { status: 401 });
     if (action === "disconnect-peer") {
       const slot = Number(url.searchParams.get("slot"));
@@ -911,7 +961,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           this.members.state,
           request.headers.get("X-Edgefall-Profile") ?? "",
           slot,
-          this.world.roomMode,
+          this.admissionPhase(),
           Date.now(),
         );
       } catch (error) {
@@ -1044,7 +1094,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.members.state,
             request.headers.get("X-Edgefall-Profile") ?? "",
             slot,
-            this.world.roomMode,
+            this.admissionPhase(),
             Date.now(),
           );
         } catch (error) {
@@ -1097,7 +1147,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.members.state,
             profileId,
             slot,
-            this.world.roomMode,
+            this.admissionPhase(),
             Date.now(),
           );
           generation = admitted.members.find((m) => m.slot === slot)?.generation ?? 0;
@@ -1154,6 +1204,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         initialBaseline: null,
         baselineTick: this.world.tick,
         lastRoomMode: this.world.roomMode,
+        inputPauseSnapshotId: null,
         socket: pair[1],
         input: new InputStream({
           ...this.context(slot),
@@ -1211,11 +1262,47 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     }
     if (action !== "status" && request.method !== "POST")
       return new Response("Use POST", { status: 405 });
+    if (action === "continue") {
+      if (
+        this.starting ||
+        this.admissions.size ||
+        this.world.roomMode !== "intermission" ||
+        this.campaign?.state.phase !== "wipe" ||
+        !this.combatStore
+      )
+        return Response.json({ code: "continue-unavailable" }, { status: 409 });
+      this.starting = true;
+      try {
+        const continued = await this.combatStore.transition(
+          this.combatRuntime(),
+          "continue",
+          requireHost,
+        );
+        requireHost();
+        this.installCombat(continued);
+        this.combatWriter = null;
+        this.clock = this.createClock(continued.combat.tick);
+        this.disconnectAll("baseline-replaced");
+        this.peers.clear();
+        this.emptyPause = null;
+      } catch (error) {
+        this.pausePersistence(String(error));
+        return Response.json({ code: "continue-recovery" }, { status: 503 });
+      } finally {
+        this.starting = false;
+      }
+      return Response.json({
+        roomMode: this.world.roomMode,
+        runEpoch: this.world.runEpoch,
+        continuesUsed: this.campaign?.state.continuesUsed,
+      });
+    }
     if (action === "load") {
       if (
         this.starting ||
         this.admissions.size ||
         !["lobby", "intermission"].includes(this.world.roomMode) ||
+        (this.campaign && ["wipe", "defeat"].includes(this.campaign.state.phase)) ||
         !this.combatStore
       )
         return Response.json({ code: "load-unavailable" }, { status: 409 });
@@ -1293,6 +1380,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         for (const peer of this.peers.values()) this.publishSnapshot(peer);
       }
       this.watchdog = setTimeout(() => this.finish("wall-limit"), 20_000);
+      this.startedAtTick = this.world.tick;
       this.clock.start();
     } else if (action === "close") this.finish("observer-closed");
     else if (action !== "status") return new Response("Not found", { status: 404 });
@@ -1325,15 +1413,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         pendingEventBaseline: peer.pendingEventBaseline,
         initialBaseline: peer.initialBaseline,
       })),
-      combat: this.combat
-        ? {
-            world: this.combat,
-            events: this.eventHistory?.entries ?? [],
-            eventCursor: this.eventHistory?.cursor ?? 0,
-            droppedEvents: this.eventHistory?.capEvictions ?? 0,
-            ageEvictions: this.eventHistory?.ageEvictions ?? 0,
-          }
-        : null,
+      combat:
+        this.combat && this.campaign
+          ? {
+              world: this.combat,
+              campaign: this.campaign,
+              events: this.eventHistory?.entries ?? [],
+              eventCursor: this.eventHistory?.cursor ?? 0,
+              droppedEvents: this.eventHistory?.capEvictions ?? 0,
+              ageEvictions: this.eventHistory?.ageEvictions ?? 0,
+            }
+          : null,
       runEpoch: this.world.runEpoch,
       recoveries: this.recoveries,
       workload: this.workload,
@@ -1389,10 +1479,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       }
       const previousAck = peer.input.deliveryAcknowledgments.snapshot;
       const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
+      const drainPaused =
+        this.world.roomMode === "intermission" &&
+        this.campaign &&
+        ["wipe", "defeat"].includes(this.campaign.state.phase) &&
+        !peer.initialBaseline &&
+        (peer.inputPauseSnapshotId === null || batch.snapshotAck < peer.inputPauseSnapshotId);
       if (
         this.world.roomMode !== "loading" &&
         this.world.roomMode !== "playing" &&
-        batch.commands.length
+        batch.commands.length &&
+        !drainPaused
       )
         throw new Error("Room phase accepts acknowledgments only");
       if (
@@ -1411,7 +1508,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         batch.eventAck,
         peer.eventBeforeBaseline,
       );
-      const result = peer.input.receive(new Uint8Array(message), now, this.clock.state.tick);
+      const result = peer.input.receive(
+        new Uint8Array(message),
+        now,
+        this.clock.state.tick,
+        drainPaused ? "drain-paused" : "active",
+      );
       if (!result.duplicate) peer.initialBaseline = null;
       if (peer.lastRoomMode !== this.world.roomMode) this.publishSnapshot(peer);
       if (eventBaselineAccepted && !result.duplicate) peer.pendingEventBaseline = null;
@@ -1422,7 +1524,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         this.clock.state.tick,
         firstSequence,
         lastSequence,
-        result.duplicate ? "duplicate" : "admitted",
+        result.duplicate
+          ? "duplicate"
+          : drainPaused && batch.commands.length
+            ? "discarded-after-pause"
+            : "admitted",
       );
       peer.metrics.inputFrames++;
       peer.metrics.inputBytes += message.byteLength;

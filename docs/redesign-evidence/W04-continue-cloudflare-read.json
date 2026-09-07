@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-09-07T06:38:07.862Z",
+  "scope": "Read-only Cloudflare lookup using the supplied credential; no resources changed and no live trace ingestion claimed",
+  "configuredWorker": {
+    "accountLookupStatus": 200,
+    "accountLookupSuccess": true,
+    "accountErrorCodes": [],
+    "worker": "edgefall",
+    "settings": [
+      {
+        "status": 404,
+        "found": false,
+        "errorCodes": [10007]
+      }
+    ]
+  },
+  "matchingDeploymentLookup": {
+    "scope": "Read-only lookup in the supplied credential's authorized accounts; no resources changed",
+    "results": [
+      {
+        "listStatus": 200,
+        "success": true,
+        "matchingWorkerNames": [],
+        "errorCodes": []
+      }
+    ]
+  }
+}

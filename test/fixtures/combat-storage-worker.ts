@@ -4,6 +4,7 @@ import { transitionCombatRuntime } from "../../src/shared/diagnostics/combat-rec
 import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.js";
 import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
+import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 
@@ -28,6 +29,57 @@ export class CombatStorageProof extends DurableObject<Env> {
     const [, name, action] = new URL(request.url).pathname.split("/");
     let loadingChecks: string[] | null = null;
     let phaseChecks: string[] | null = null;
+    let campaignChecks: string[] | null = null;
+    if (action === "seed-campaign") {
+      const wipe = recordPlayerLifeRecovery().states.at(-1);
+      if (wipe?.campaign.state.phase !== "wipe") throw new Error("Missing actual party wipe");
+      await store.initialize(wipe);
+    }
+    if (action && ["failed-continue", "denied-continue", "stale-continue"].includes(action)) {
+      const saved = await store.load();
+      const previous =
+        action === "stale-continue" ? recordPlayerLifeRecovery().states.at(-1) : saved;
+      if (!saved || !previous) throw new Error("Missing campaign checkpoint");
+      this.inject = action === "failed-continue";
+      let currentHost = true;
+      let guardCalls = 0;
+      const pending = store.transition(previous, "continue", () => {
+        guardCalls++;
+        if (!currentHost) throw new Error("stale-host-command");
+      });
+      if (action === "denied-continue") currentHost = false;
+      let failure = "";
+      try {
+        await pending;
+      } catch (error) {
+        failure = String(error);
+      }
+      const expected =
+        action === "failed-continue"
+          ? "injected-storage-transaction-failure"
+          : action === "denied-continue"
+            ? "stale-host-command"
+            : "prefix";
+      if (!failure.includes(expected) || canonical(await store.load()) !== canonical(saved))
+        throw new Error(`Continue rejection changed the saved checkpoint: ${failure}`);
+      if (action === "denied-continue" && guardCalls !== 1)
+        throw new Error("Missing commit host fence");
+      campaignChecks = [action, "archive-unchanged"];
+    }
+    if (action === "continue" || action === "lost-continue") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing campaign checkpoint");
+      await store.transition(previous, "continue");
+      if (action === "lost-continue")
+        return new Response("Injected response loss after confirmed commit", { status: 503 });
+    }
+    if (action === "start-continued") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing continued checkpoint");
+      const started = await store.transition(previous, "start");
+      const replay = recordCombatInputs(started, 15);
+      await store.commit(started, replay.entries, replay.state);
+    }
     if (action === "seed-life" || action === "resume-life") {
       const fixture = recordPlayerLifeRecovery();
       let state = action === "seed-life" ? fixture.states[fixture.death + 6] : await store.load();
@@ -239,6 +291,10 @@ export class CombatStorageProof extends DurableObject<Env> {
         })),
         loadingChecks,
         phaseChecks,
+        campaignChecks,
+        campaign: state?.campaign,
+        targets: state?.combat.targets.map((target) => target.enemy.body.id),
+        encounter: state?.combat.encounter,
         hash: state && combatRuntimeHash(state),
         nextActionId: state?.combat.nextActionId,
         nextEntityId: state?.combat.nextEntityId,
@@ -276,6 +332,8 @@ export default {
         "tail",
         "loading",
         "life",
+        "campaign",
+        "campaign-loss",
         "phase-lobby",
         "phase-intermission",
         "phase-completed",

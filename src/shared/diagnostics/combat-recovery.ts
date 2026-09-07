@@ -1,5 +1,6 @@
 import { stateHash } from "../../game/core/canonical.js";
 import { nextCounter } from "../../game/core/numeric.js";
+import { continueCombatCheckpoint } from "../../game/labs/combat-campaign.js";
 import { createEventHistory } from "../protocol/event-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
 import { isPausableRoom, isWaitingRoom } from "../session/room-phase.js";
@@ -64,7 +65,7 @@ export function combatContinuationHash(current: FullSnapshot): string {
 /** A persisted boundary replaces old input/effect generations before any replacement welcome. */
 export function transitionCombatRuntime(
   current: CombatRuntime,
-  kind: "load" | "start" | "recover" | "pause" | "expire",
+  kind: "load" | "start" | "recover" | "pause" | "expire" | "continue",
 ): CombatRuntime {
   const state = structuredClone(current);
   if (
@@ -72,7 +73,27 @@ export function transitionCombatRuntime(
     (current.snapshot.roomMode === "completed" && kind !== "expire")
   )
     throw new Error("Terminal combat room cannot resume");
-  if (kind === "pause" || kind === "expire") {
+  if (kind === "continue") {
+    if (current.snapshot.roomMode !== "intermission" || current.pausedFrom !== null)
+      throw new Error("Continue requires a confirmed wipe boundary");
+    const reset = continueCombatCheckpoint(
+      current.combat,
+      current.campaign,
+      current.snapshot.runEpoch,
+    );
+    state.combat = reset.combat;
+    state.campaign = reset.campaign;
+    state.snapshot = combatSnapshot(state.combat, state.snapshot, state.campaign);
+    state.snapshot = recoverControllerWorld(state.snapshot);
+    state.snapshot.roomMode = "loading";
+    state.combat.players = structuredClone(state.snapshot.players);
+    state.history = { ...createEventHistory(state.snapshot.runEpoch), tick: state.combat.tick };
+    state.connectedPlayerIds = [];
+    state.snapshot.baselineEventCursor = 0;
+    state.snapshot.snapshotId = 1;
+    state.snapshot.connectionEpoch = state.snapshot.acknowledgments[0]?.connectionEpoch ?? 0;
+    state.snapshot = combatSnapshot(state.combat, state.snapshot, state.campaign);
+  } else if (kind === "pause" || kind === "expire") {
     if (
       kind === "pause"
         ? !isPausableRoom(current.snapshot.roomMode)
@@ -96,6 +117,8 @@ export function transitionCombatRuntime(
   } else if (kind === "load") {
     if (!["lobby", "intermission"].includes(current.snapshot.roomMode))
       throw new Error("Load requires lobby or intermission");
+    if (["wipe", "defeat"].includes(current.campaign.state.phase))
+      throw new Error("A wiped campaign cannot load without a continue");
     state.snapshot.roomMode = "loading";
   } else if (kind === "start") {
     if (current.snapshot.roomMode !== "loading")
@@ -113,7 +136,7 @@ export function transitionCombatRuntime(
     state.snapshot.baselineEventCursor = 0;
     state.snapshot.snapshotId = 1;
     state.snapshot.connectionEpoch = state.snapshot.acknowledgments[0]?.connectionEpoch ?? 0;
-    state.snapshot = combatSnapshot(state.combat, state.snapshot);
+    state.snapshot = combatSnapshot(state.combat, state.snapshot, state.campaign);
   }
   state.snapshot.stateHash = roomWorkloadHash(state.snapshot);
   return state;

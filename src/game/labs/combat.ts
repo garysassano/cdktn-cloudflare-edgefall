@@ -217,7 +217,11 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     });
   }
   for (const target of world.targets) {
-    if (current.tick === 0)
+    if (
+      world.encounter.members.some(
+        (member) => member.id === target.enemy.body.id && member.status === "pending",
+      )
+    )
       encounterEvents.push({
         kind: "activate",
         id: target.enemy.body.id,

@@ -1,5 +1,6 @@
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CombatLab } from "../../game/labs/combat.js";
+import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
 import type { EventBaseline, EventEnvelope } from "../protocol/events.js";
 import type { RoomMember } from "../session/membership.js";
 import type { PausableRoomMode } from "../session/room-phase.js";
@@ -75,6 +76,7 @@ export interface RoomProbeStatus {
   }>;
   combat: {
     world: CombatLab;
+    campaign: CombatCampaign;
     events: EventEnvelope[];
     eventCursor: number;
     ageEvictions: number;

@@ -158,17 +158,23 @@ export class InputStream {
     bytes: Uint8Array,
     receivedAtMs: number,
     serverTick: number,
+    policy: "active" | "drain-paused" = "active",
   ): { admitted: number; duplicate: boolean; renewed: boolean } {
     this.guard();
     try {
-      return this.admit(decodeInputBatch(bytes, this.identity), receivedAtMs, serverTick);
+      return this.admit(decodeInputBatch(bytes, this.identity), receivedAtMs, serverTick, policy);
     } catch (error) {
       this.stopped = true;
       throw error;
     }
   }
 
-  private admit(batch: InputBatch, nowMs: number, serverTick: number) {
+  private admit(
+    batch: InputBatch,
+    nowMs: number,
+    serverTick: number,
+    policy: "active" | "drain-paused",
+  ) {
     this.time(nowMs, serverTick);
     requireValue(
       serverTick === this.lastServerTick,
@@ -205,7 +211,9 @@ export class InputStream {
     let sequence = this.lastSequence;
     let clientTick = this.lastClientTick;
     let renewed = false;
-    for (const command of batch.commands) {
+    // The room may drain pre-pause packets only while waiting for its pause snapshot's acknowledgment.
+    // Preserve original packet fingerprints and delivery checks; never queue, acknowledge or renew discarded intent.
+    for (const command of policy === "drain-paused" ? [] : batch.commands) {
       if (command.sequence <= sequence) {
         const previous = this.accepted.get(command.sequence);
         if (!previous)

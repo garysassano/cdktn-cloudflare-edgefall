@@ -45,6 +45,28 @@ const applied = (input: AppliedInput): EdgeResult[] =>
   input.command.edges.map((edge) => ({ ...edge, outcome: "applied" }));
 
 describe("bounded processed input stream", () => {
+  it("drains pre-pause packets without applying commands or renewing a lease, preserving immutable packet checks", () => {
+    const stream = new InputStream(options);
+    stream.recordSent(1, 0);
+    stream.receive(batch([command(1)]), 0, 100);
+    stream.processTick(101, 16, applied);
+    const before = stream.acknowledgment;
+    const late = batch([command(2, { edges: [{ kind: Edge.FireOnset, id: 1 }] })], 2, {
+      snapshotAck: 1,
+    });
+    expect(stream.receive(late, 17, 101, "drain-paused")).toEqual({
+      admitted: 0,
+      duplicate: false,
+      renewed: false,
+    });
+    expect(stream.queuedCommands).toBe(0);
+    expect(stream.acknowledgment).toEqual(before);
+    expect(stream.deliveryAcknowledgments.snapshot).toBe(1);
+    expect(stream.receive(late, 18, 101, "drain-paused").duplicate).toBe(true);
+    expect(() =>
+      stream.receive(batch([command(2)], 2, { snapshotAck: 1 }), 19, 101, "drain-paused"),
+    ).toThrow("Changed duplicate packet");
+  });
   it("does not acknowledge receipt, consumes at most one command each tick, and acknowledges rejected actions", () => {
     const stream = new InputStream(options);
     const first = command(1, {

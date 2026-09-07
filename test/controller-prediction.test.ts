@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { damagePlayer } from "../src/game/campaign/life.js";
 import { Edge, Held, type InputCommand } from "../src/game/input/types.js";
 import {
   createControllerWorkload,
@@ -99,13 +100,25 @@ describe("full controller prediction", () => {
     expect(prediction.pending).toBe(120);
     expect(prediction.requiresResync).toBe(true);
   });
-  it("rejects changed geometry/lifecycle, unsent acknowledgments, and reused edges", () => {
-    for (const change of ["geometry", "death", "ack"]) {
+  it("reconciles an authoritative death while preserving the input generation", () => {
+    const initial = baseline(),
+      prediction = new ControllerPrediction(initial, step);
+    prediction.submit(command(1));
+    const snapshot = authoritative(initial, [command(1)]);
+    snapshot.actor = damagePlayer(snapshot.actor, snapshot.tick, 1, "classic", "fall").actor;
+    prediction.reconcile(snapshot);
+    expect(prediction.actor.life).toBe("death");
+    expect(prediction.actor.lives).toBe(initial.actor.lives - 1);
+    expect(prediction.requiresResync).toBe(false);
+  });
+  it("rejects changed geometry/ownership, unsent acknowledgments, and reused edges", () => {
+    for (const change of ["geometry", "control", "vehicle", "ack"]) {
       const initial = baseline(),
         prediction = new ControllerPrediction(initial, step),
         snapshot = structuredClone(initial);
       if (change === "geometry") snapshot.actor.geometryRevision++;
-      if (change === "death") snapshot.actor.life = "death";
+      if (change === "control") snapshot.actor.controlEpoch++;
+      if (change === "vehicle") snapshot.actor.vehicleId = 42;
       if (change === "ack") snapshot.acknowledgment.lastProcessedSequence = 1;
       expect(() => prediction.reconcile(snapshot)).toThrow();
       expect(prediction.requiresResync).toBe(true);

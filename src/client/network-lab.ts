@@ -253,6 +253,7 @@ async function startLab() {
       inputStopped,
       ready: welcome !== null && snapshot !== null && connection?.status.phase === "connected",
       roomMode: snapshot?.roomMode ?? null,
+      campaign: snapshot?.campaign ?? null,
       prepared,
       error,
       requiresResync: Boolean(
@@ -563,8 +564,12 @@ async function startLab() {
         if (inputStopped) sendCommands([]);
         else startCaptureClock();
       } else if (["lobby", "intermission", "completed"].includes(incoming.roomMode)) {
+        inputClock?.stop();
+        input?.neutralize();
+        sendCommands([]);
+      } else if (incoming.roomMode === "loading") {
         if (initial) sendCommands([]);
-      } else if (incoming.roomMode !== "loading") {
+      } else {
         fail("Room lifecycle requires a fresh input baseline");
       }
       inspect();
@@ -740,7 +745,7 @@ async function startLab() {
     });
     return { status: response.status };
   };
-  for (const command of ["load", "start"] as const) {
+  for (const command of ["load", "start", "continue"] as const) {
     const button = element(`host-${command}`);
     button.hidden = mode !== "combat";
     button.onclick = () => {

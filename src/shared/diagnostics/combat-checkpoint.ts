@@ -7,6 +7,7 @@ import {
   combatEncounterDefinition,
   createCombatLab,
 } from "../../game/labs/combat.js";
+import { validateCombatCampaign } from "../../game/labs/combat-campaign.js";
 import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES } from "../../game/labs/combat-content.js";
 import type { GameIdentity } from "../content-id.js";
 import { Reader, Writer } from "../protocol/binary.js";
@@ -67,8 +68,21 @@ function identity(value: CombatArchiveIdentity) {
 
 /** Validates the laboratory's full server continuation, including fields absent from the wire. */
 export function validateCombatCheckpoint(state: CombatRuntime): void {
-  fields(state, "combat snapshot history connectedPlayerIds pausedFrom");
+  fields(state, "combat snapshot history connectedPlayerIds pausedFrom campaign");
   const { combat, snapshot, history } = state;
+  fields(state.campaign, "state continues");
+  fields(
+    state.campaign.state,
+    "ruleset mission checkpointId encounterId continuesRemaining continuesUsed phase requiredEntities resolvedEntities",
+  );
+  for (const decision of state.campaign.continues) {
+    fields(
+      decision,
+      "ordinal tick checkpointId fromRunEpoch runEpoch nextEntityIdBefore retiredEntityIds spawnedEntityIds kills",
+    );
+    for (const kill of decision.kills) fields(kill, "playerId count");
+  }
+  validateCombatCampaign(state.campaign, combat, snapshot.runEpoch);
   check(
     snapshot.roomMode === "paused-empty"
       ? state.pausedFrom !== null && isPausableRoom(state.pausedFrom)
@@ -86,7 +100,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   integer(combat.events.length, 0, MAX_EVENT_HISTORY, "combat checkpoint notices");
   const initial = createCombatLab(combat.scenario, combat.players.length);
   check(combat.targets.length === initial.targets.length, "target roster");
-  const lifecycle = new EncounterLifecycle(combatEncounterDefinition(initial));
+  const lifecycle = new EncounterLifecycle(combatEncounterDefinition(combat));
   lifecycle.restore(combat.encounter);
   check(
     combat.encounter.tick === combat.tick &&
@@ -125,7 +139,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       member = combat.encounter.members[index],
       body = target.enemy.body;
     check(
-      original && member && body.id === original.enemy.body.id && target.shield === original.shield,
+      original && member && body.id === member.id && target.shield === original.shield,
       "target identity",
     );
     integer(target.health, 0, 1, "target health");
@@ -281,7 +295,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     "snapshot schema/hash",
   );
   check(
-    canonical(combatSnapshot(combat, snapshot)) === canonical(snapshot),
+    canonical(combatSnapshot(combat, snapshot, state.campaign)) === canonical(snapshot),
     "combat/snapshot mismatch",
   );
   integer(state.connectedPlayerIds.length, 0, combat.players.length, "connected roster size");
@@ -345,7 +359,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 2,
+    format: 3,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -369,7 +383,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 2 &&
+    envelope.format === 3 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

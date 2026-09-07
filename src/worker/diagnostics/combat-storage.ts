@@ -146,7 +146,7 @@ export class CombatStorage {
   }
   transition(
     current: CombatRuntime,
-    kind: "load" | "start" | "recover" | "pause" | "expire",
+    kind: "load" | "start" | "recover" | "pause" | "expire" | "continue",
     guard?: () => void,
   ): Promise<CombatRuntime> {
     return this.replaceCheckpoint(

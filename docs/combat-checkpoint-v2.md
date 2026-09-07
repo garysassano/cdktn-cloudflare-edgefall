@@ -1,5 +1,7 @@
 # Combat checkpoint and applied-input journal v2
 
+Historical format 2 contract. The current diagnostic implementation uses [archive format 3](./combat-checkpoint-v3.md); the evidence links below retain their original scope.
+
 The combat laboratory now has a separate server reconstruction format. It preserves the private simulation continuation that the [3.2 client snapshot](./snapshot-v3.md) deliberately projects: all target bodies and patrol turns, encounter definition/receipts/watchdog timers, current tick notices, allocation/action/marker cursors, players, projectiles, acknowledgments, the retained output event history, and the connected input-owner roster. This format currently supports the existing sidearm/HMG range, wall and shield fixtures. It is not a production campaign checkpoint.
 
 ## Identity and bounds

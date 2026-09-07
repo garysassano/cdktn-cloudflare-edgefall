@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { build } from "esbuild";
+import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 
 const require = createRequire(import.meta.url);
@@ -166,6 +167,10 @@ try {
     await runtime.dispose();
     runtime = create();
   });
+  const campaign = await verifyStoredCampaign(origin, async () => {
+    await runtime.dispose();
+    runtime = create();
+  });
   const lifeState = async (action: string) => {
     const response = await fetch(`${await origin()}/life/${action}`, { method: "POST" });
     assert(response.ok, `Life ${action}: ${await response.clone().text()}`);
@@ -214,10 +219,11 @@ try {
     tail: { seededTail, restoredTail, pausedTail, coldPause, expiredTail, coldExpired },
     loading: { seededLoading, replacedLoading, coldLoading },
     phases,
+    campaign,
     life: { dying, coldDeath, entering, coldEntry, transactionRollback: ["death", "entry"] },
     status: "pass",
     scope:
-      "Owned local SQLite Durable Object and fresh workerd processes. Death/entry delays and spent lives, full/partial journal reconstruction, atomic rollback, guarded host boundaries, pause origins and terminal non-resurrection; no campaign progression, deployed durability or production outbox claim.",
+      "Owned local SQLite Durable Object and fresh workerd processes. Actual wipe/continue checkpoint reset, spent credits, fresh IDs, rollback, stale host/prefix rejection and lost response after commit; death/entry recovery and room phase regressions. No authored mission progression, deployed durability or production outbox claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report)}\n`);

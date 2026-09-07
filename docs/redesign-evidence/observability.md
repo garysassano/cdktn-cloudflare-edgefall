@@ -1,5 +1,7 @@
 # Observability during redesign
 
+Latest read-only Cloudflare check: the supplied credential successfully listed its accessible account's Workers, with no Edgefall-named deployment present; the configured `edgefall` script returned 404/code 10007. Tracing is prepared in configuration and has no live Edgefall ingestion proof yet. [Sanitized lookup](W04-continue-cloudflare-read.json). The [continue diagnostics](W04-continues.md) add actual life/persistence/reconnection failures and two further runtime/host clock regressions; the timing gate remains open.
+
 The Wrangler configuration explicitly enables Workers traces and invocation logs at sampling rate 1, and uploads source maps. These settings take effect on deployment; no deployment or Cloudflare trace retrieval was performed during this local diagnostic change. The deployment configuration generator preserves these settings.
 
 During the [room-phase increment](W04-room-phases.md), the ignored `.wrangler.deploy.json` was found to predate those settings. Regenerating it from the existing CDKTN outputs preserved the D1/R2/room bindings and carried traces, invocation logs and source maps into the generated configuration. A production asset rebuild and dry run against that file pass. [Sanitized local configuration proof](W04-phase-deploy-config.json). This verifies deployment preparation; live ingestion remains unverified.

@@ -111,6 +111,8 @@ export class ControllerPrediction {
     if (this.#stopped) this.#reject("Prediction requires a fresh baseline");
   }
   #checkIdentity(baseline: PredictionBaseline) {
+    // Life is authoritative simulation state and is restored with the actor before replay.
+    // Death/entry do not replace the player's input or ownership generation.
     const original = this.#initial,
       ack = baseline.acknowledgment;
     if (
@@ -121,12 +123,11 @@ export class ControllerPrediction {
       baseline.actor.controlEpoch !== original.actor.controlEpoch ||
       baseline.actor.geometryRevision !== original.actor.geometryRevision ||
       baseline.actor.vehicleId !== original.actor.vehicleId ||
-      baseline.actor.life !== original.actor.life ||
       ack.playerId !== baseline.actor.playerId ||
       ack.connectionEpoch !== baseline.connectionEpoch ||
       ack.controlEpoch !== baseline.actor.controlEpoch
     )
-      this.#reject("Prediction identity/lifecycle changed");
+      this.#reject("Prediction identity/ownership changed");
   }
   submit(command: InputCommand) {
     this.#guard();

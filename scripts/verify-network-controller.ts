@@ -13,6 +13,7 @@ import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapsh
 import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
+import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 
@@ -85,6 +86,7 @@ const phaseMode = process.argv.includes("--combat-phases");
 const loadingMode = process.argv.includes("--combat-loading") || phaseMode;
 const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
+const campaignMode = process.argv.includes("--combat-campaign");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
@@ -94,7 +96,8 @@ const combatMode =
   eventMode ||
   combatRecoveryMode ||
   combatReconnectMode ||
-  automaticMode;
+  automaticMode ||
+  campaignMode;
 assert(
   !(
     automaticMode &&
@@ -113,27 +116,29 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = automaticMode
-  ? "dist/network-combat-auto-evidence"
-  : combatReconnectMode
-    ? loadingMode
-      ? phaseMode
-        ? "dist/network-combat-phase-evidence"
-        : "dist/network-combat-loading-evidence"
-      : "dist/network-combat-reconnect-evidence"
-    : combatRecoveryMode
-      ? "dist/network-combat-recovery-evidence"
-      : baselineMode
-        ? "dist/network-combat-baseline-evidence"
-        : combatMode
-          ? eventMode
-            ? "dist/network-event-evidence"
-            : faultMode
-              ? "dist/network-combat-fault-evidence"
-              : "dist/network-combat-evidence"
-          : recoveryMode
-            ? "dist/network-controller-recovery-evidence"
-            : "dist/network-controller-evidence";
+const output = campaignMode
+  ? "dist/network-combat-campaign-evidence"
+  : automaticMode
+    ? "dist/network-combat-auto-evidence"
+    : combatReconnectMode
+      ? loadingMode
+        ? phaseMode
+          ? "dist/network-combat-phase-evidence"
+          : "dist/network-combat-loading-evidence"
+        : "dist/network-combat-reconnect-evidence"
+      : combatRecoveryMode
+        ? "dist/network-combat-recovery-evidence"
+        : baselineMode
+          ? "dist/network-combat-baseline-evidence"
+          : combatMode
+            ? eventMode
+              ? "dist/network-event-evidence"
+              : faultMode
+                ? "dist/network-combat-fault-evidence"
+                : "dist/network-combat-evidence"
+            : recoveryMode
+              ? "dist/network-controller-recovery-evidence"
+              : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -207,7 +212,7 @@ try {
             record("requestfailed", request.failure()?.errorText ?? "unknown"),
           );
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -291,6 +296,27 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (campaignMode) {
+        const campaign = await verifyCombatCampaign(pages, base);
+        room = campaign.resumed;
+        await pages[0]?.screenshot({ path: `${output}/continued-party.png` });
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          campaign,
+          clients: campaign.clients,
+          sharedSnapshots: campaign.common.length,
+          room,
+          scope:
+            "Four Chromium contexts, actual keyboard falls, delayed final persistence, signed host continue and same-document reconnection with fresh input; no authored missions, deployed durability or long soak acceptance.",
+        };
       }
       const phases = phaseMode ? await verifyRoomPhases(pages, base, restart) : null;
       if (phases)

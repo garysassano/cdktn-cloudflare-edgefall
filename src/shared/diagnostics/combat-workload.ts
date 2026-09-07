@@ -11,6 +11,7 @@ import {
   combatTerrain,
   createCombatLab,
 } from "../../game/labs/combat.js";
+import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
 import { COMBAT_CATALOG, COMBAT_CONTENT, COMBAT_SHAPES } from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
 import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
@@ -27,6 +28,7 @@ export async function combatIdentity() {
   const bytes = new TextEncoder().encode(
     canonical({
       content: COMBAT_CONTENT,
+      campaignFormat: 1,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -48,7 +50,24 @@ export async function combatIdentity() {
     ).join(""),
   };
 }
-export function combatSnapshot(combat: CombatLab, previous = createRoomWorkload(1)): FullSnapshot {
+export function projectCombatCampaign(snapshot: FullSnapshot, campaign: CombatCampaign): void {
+  const { ruleset, mission, checkpointId, continuesRemaining, continuesUsed, phase, encounterId } =
+    campaign.state;
+  Object.assign(snapshot.campaign, {
+    ruleset,
+    mission,
+    checkpointId,
+    continuesRemaining,
+    continuesUsed,
+    phase,
+    encounterId,
+  });
+}
+export function combatSnapshot(
+  combat: CombatLab,
+  previous = createRoomWorkload(1),
+  campaign?: CombatCampaign,
+): FullSnapshot {
   const snapshot = structuredClone(previous);
   snapshot.tick = combat.tick;
   snapshot.players = structuredClone(combat.players);
@@ -129,6 +148,7 @@ export function combatSnapshot(combat: CombatLab, previous = createRoomWorkload(
     kills: structuredClone(combat.encounter.kills),
     failure: structuredClone(combat.encounter.failure),
   };
+  if (campaign) projectCombatCampaign(snapshot, campaign);
   snapshot.stateHash = roomWorkloadHash(snapshot);
   return snapshot;
 }

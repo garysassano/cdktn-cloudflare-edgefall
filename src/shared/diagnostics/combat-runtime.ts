@@ -8,12 +8,21 @@ import {
   type PlayerAcknowledgment,
 } from "../../game/input/types.js";
 import type { CombatLab } from "../../game/labs/combat.js";
+import {
+  type CombatCampaign,
+  advanceCombatCampaign,
+  createCombatCampaign,
+} from "../../game/labs/combat-campaign.js";
 import { type EventHistory, createEventHistory, stageEventTick } from "../protocol/event-stream.js";
 import type { PreparedPlayerTick } from "../protocol/input-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
 import type { PausableRoomMode } from "../session/room-phase.js";
 import { combatEventContext, combatGameplayEvents } from "./combat-events.js";
-import { createCombatWorkload, evaluateCombatTick } from "./combat-workload.js";
+import {
+  createCombatWorkload,
+  evaluateCombatTick,
+  projectCombatCampaign,
+} from "./combat-workload.js";
 import { roomWorkloadHash } from "./room-workload.js";
 
 export interface CombatRuntime {
@@ -22,6 +31,7 @@ export interface CombatRuntime {
   history: EventHistory;
   connectedPlayerIds: number[];
   pausedFrom: PausableRoomMode | null;
+  campaign: CombatCampaign;
 }
 export interface CombatJournalTick extends JournalTick {
   acknowledgments: PlayerAcknowledgment[];
@@ -33,6 +43,8 @@ export interface CombatConnectionChange {
 }
 export function createCombatRuntime(): CombatRuntime {
   const state = createCombatWorkload();
+  const campaign = createCombatCampaign(state.combat);
+  projectCombatCampaign(state.snapshot, campaign);
   state.snapshot.roomMode = "playing";
   state.snapshot.stateHash = roomWorkloadHash(state.snapshot);
   return {
@@ -40,6 +52,7 @@ export function createCombatRuntime(): CombatRuntime {
     history: createEventHistory(state.snapshot.runEpoch),
     connectedPlayerIds: state.combat.players.map((p) => p.playerId),
     pausedFrom: null,
+    campaign,
   };
 }
 /** Per-reader send headers do not affect gameplay and are not journaled as external causes. */
@@ -56,6 +69,7 @@ export function combatRuntimeHash(state: CombatRuntime): string {
     history: state.history,
     connectedPlayerIds: state.connectedPlayerIds,
     pausedFrom: state.pausedFrom,
+    campaign: state.campaign,
   });
 }
 function check(ok: unknown, message: string): asserts ok {
@@ -199,7 +213,18 @@ export function stageCombatRuntime(
   result.state.snapshot.baselineEventCursor = history.cursor;
   result.state.snapshot.stateHash = roomWorkloadHash(result.state.snapshot);
   const connectedPlayerIds = prepared.map((p) => p.input.playerId);
-  const state: CombatRuntime = { ...result.state, history, connectedPlayerIds, pausedFrom: null };
+  const campaign = advanceCombatCampaign(current.campaign, result.state.combat, connectedPlayerIds);
+  projectCombatCampaign(result.state.snapshot, campaign);
+  if (campaign.state.phase === "wipe" || campaign.state.phase === "defeat")
+    result.state.snapshot.roomMode = "intermission";
+  result.state.snapshot.stateHash = roomWorkloadHash(result.state.snapshot);
+  const state: CombatRuntime = {
+    ...result.state,
+    history,
+    connectedPlayerIds,
+    pausedFrom: null,
+    campaign,
+  };
   const boundary: BoundaryEvent[] = [];
   for (const player of current.combat.players) {
     const was = current.connectedPlayerIds.includes(player.playerId),
