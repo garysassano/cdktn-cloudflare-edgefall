@@ -10,9 +10,20 @@ import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types
 import { encodeInputBatch } from "../src/shared/protocol/codec.js";
 import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
 import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapshot-schema.js";
+import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
+  documentId: string;
+  connection: ConnectionStatus;
+  connectionHistory: Array<{
+    generation: number;
+    runEpoch: number;
+    connectionEpoch: number;
+    baselineTick: number;
+    previousTick: number;
+    rewindTicks: number;
+  }>;
   combatBaseline: CombatSnapshot | null;
   timeline: unknown[];
   slot: number;
@@ -67,6 +78,7 @@ interface ClientStatus {
 const recoveryMode = process.argv.includes("--recovery");
 const combatRecoveryMode = process.argv.includes("--combat-recovery");
 const combatReconnectMode = process.argv.includes("--combat-reconnect");
+const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
@@ -75,7 +87,15 @@ const combatMode =
   faultMode ||
   eventMode ||
   combatRecoveryMode ||
-  combatReconnectMode;
+  combatReconnectMode ||
+  automaticMode;
+assert(
+  !(
+    automaticMode &&
+    (combatReconnectMode || combatRecoveryMode || faultMode || eventMode || recoveryMode)
+  ),
+  "Run automatic reconnect separately",
+);
 assert(
   !(combatReconnectMode && (combatRecoveryMode || faultMode || eventMode || recoveryMode)),
   "Run per-player reconnect separately",
@@ -87,21 +107,23 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = combatReconnectMode
-  ? "dist/network-combat-reconnect-evidence"
-  : combatRecoveryMode
-    ? "dist/network-combat-recovery-evidence"
-    : baselineMode
-      ? "dist/network-combat-baseline-evidence"
-      : combatMode
-        ? eventMode
-          ? "dist/network-event-evidence"
-          : faultMode
-            ? "dist/network-combat-fault-evidence"
-            : "dist/network-combat-evidence"
-        : recoveryMode
-          ? "dist/network-controller-recovery-evidence"
-          : "dist/network-controller-evidence";
+const output = automaticMode
+  ? "dist/network-combat-auto-evidence"
+  : combatReconnectMode
+    ? "dist/network-combat-reconnect-evidence"
+    : combatRecoveryMode
+      ? "dist/network-combat-recovery-evidence"
+      : baselineMode
+        ? "dist/network-combat-baseline-evidence"
+        : combatMode
+          ? eventMode
+            ? "dist/network-event-evidence"
+            : faultMode
+              ? "dist/network-combat-fault-evidence"
+              : "dist/network-combat-evidence"
+          : recoveryMode
+            ? "dist/network-controller-recovery-evidence"
+            : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -173,7 +195,7 @@ try {
             record("requestfailed", request.failure()?.errorText ?? "unknown"),
           );
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -251,6 +273,214 @@ try {
         await configureEvents(2, { dropNext: 1 });
       }
       await prepareAndStart();
+      if (automaticMode) {
+        const status = async () => {
+          room = (await (await fetch(`${base}/combat/status`)).json()) as RoomProbeStatus;
+          return room;
+        };
+        const until = async (predicate: (clients: ClientStatus[]) => boolean) => {
+          for (let i = 0; i < 240; i++) {
+            const clients = await read();
+            assert(
+              clients.every(
+                (c) => !c.error && (!c.requiresResync || c.connection.phase !== "connected"),
+              ),
+              JSON.stringify(
+                clients.map((c) => ({ slot: c.slot, error: c.error, connection: c.connection })),
+              ),
+            );
+            if (predicate(clients)) return clients;
+            await new Promise((resolve) => setTimeout(resolve, 25));
+          }
+          throw new Error("Automatic reconnect timed out");
+        };
+        const before = await until((cs) => cs.every((c) => c.snapshotTick >= 45));
+        const cut = await fetch(`${base}/combat/disconnect-peer?slot=1`, { method: "POST" });
+        assert(cut.ok);
+        const resumed = await until(
+          (cs) =>
+            cs.every((c) => c.ready && c.snapshotTick >= 90) &&
+            cs[1]?.connectionEpoch === (before[1]?.connectionEpoch ?? 0) + 1,
+        );
+        for (const [slot, current] of resumed.entries()) {
+          const prior = before[slot];
+          assert(prior);
+          assert.equal(current.documentId, prior.documentId, "Reconnect reloaded the page");
+          assert.equal(current.runEpoch, prior.runEpoch);
+          if (slot === 1) {
+            assert.equal(current.initialActor?.weapon.id, prior.authoritative?.weapon.id);
+            assert(
+              (current.initialActor?.weapon.ammo ?? 0) <= (prior.authoritative?.weapon.ammo ?? 0),
+            );
+            assert.equal(current.initialActor?.lives, prior.authoritative?.lives);
+            assert.equal(current.receipts[0]?.ack, 0);
+            assert.equal(current.events?.counts.killed ?? 0, 0);
+          } else {
+            assert.equal(current.connectionEpoch, prior.connectionEpoch);
+            assert(current.sequence > prior.sequence);
+            assert.deepEqual(
+              current.events?.receipts.slice(0, prior.events?.receipts.length),
+              prior.events?.receipts,
+            );
+          }
+        }
+        const stalledPage = pages[2];
+        assert(stalledPage);
+        await stalledPage.evaluate(() => {
+          const until = performance.now() + 350;
+          while (performance.now() < until) {
+            /* Deliberate bounded browser main-thread stall. */
+          }
+        });
+        const afterStall = await until(
+          (cs) =>
+            cs.every((c) => c.ready) &&
+            cs[2]?.connectionEpoch === (resumed[2]?.connectionEpoch ?? 0) + 1 &&
+            (cs[2]?.sequence ?? 0) >= 20,
+        );
+        assert(afterStall.every((c, slot) => c.documentId === before[slot]?.documentId));
+        const beforeRestart = await status();
+        const nextBase = await restart();
+        assert.equal(nextBase, base, "Restart changed the service origin");
+        const cold = await status();
+        assert.equal(cold.roomMode, "loading");
+        const restored = await until((cs) =>
+          cs.every((c) => c.ready && c.runEpoch === cold.runEpoch),
+        );
+        for (const [slot, client] of restored.entries()) {
+          assert.equal(client.documentId, before[slot]?.documentId);
+          assert.equal(client.sequence, 0);
+          assert.equal(client.held, 0);
+          assert.equal(client.pending, 0);
+          assert.equal(client.initialServerTick, cold.tick);
+          const boundary = client.connectionHistory.at(-1);
+          assert(boundary);
+          assert.equal(boundary.rewindTicks, Math.max(0, boundary.previousTick - cold.tick));
+          assert(boundary.rewindTicks <= 30);
+          assert.equal(client.events?.counts.killed ?? 0, 0);
+        }
+        await prepareAndStart();
+        const continued = await until((cs) => cs.every((c) => c.snapshotTick >= cold.tick + 30));
+        // An absent cohort remains stopped until the authority explicitly recovers its prefix.
+        await Promise.all(
+          pages.map((_, slot) =>
+            fetch(`${base}/combat/disconnect-peer?slot=${slot}`, { method: "POST" }).then((r) =>
+              assert(r.ok),
+            ),
+          ),
+        );
+        let empty = await status();
+        for (let i = 0; i < 40 && empty.roomMode !== "paused-empty"; i++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          empty = await status();
+        }
+        assert.equal(empty.roomMode, "paused-empty");
+        assert.equal(empty.clock.timerPending, false);
+        await new Promise((resolve) => setTimeout(resolve, 250));
+        const stillEmpty = await status();
+        assert.equal(stillEmpty.tick, empty.tick);
+        assert.equal(stillEmpty.peers.filter((p) => p.active).length, 0);
+        const recovery = await fetch(`${base}/combat/recover`, { method: "POST" });
+        assert(recovery.ok);
+        const boundary = await status();
+        const reloaded = await until((cs) =>
+          cs.every((c) => c.ready && c.runEpoch === boundary.runEpoch),
+        );
+        assert(
+          reloaded.every(
+            (c, slot) => c.documentId === before[slot]?.documentId && c.sequence === 0,
+          ),
+        );
+        await prepareAndStart();
+        const clients = await until((cs) => cs.every((c) => c.snapshotTick >= boundary.tick + 36));
+        const finalRoom = await status();
+        const common =
+          clients[0]?.receipts.filter((r) =>
+            clients.every((c) => c.receipts.some((v) => v.tick === r.tick && v.hash === r.hash)),
+          ) ?? [];
+        assert(common.length >= 10);
+        assert(
+          clients.every((c) => c.receipts.every((r) => r.correctionX === 0 && r.correctionY === 0)),
+        );
+        assert(
+          clients.every(
+            (c) =>
+              (c.events?.counts.killed ?? 0) === 0 &&
+              c.combatBaseline?.kills.reduce((n, k) => n + k.count, 0) === 2,
+          ),
+        );
+        // Losing the existing browser profile must stop resume, not mint a replacement identity.
+        const owner = pages[0];
+        assert(owner);
+        await owner.context().clearCookies();
+        const profileCut = await fetch(`${base}/combat/disconnect-peer?slot=0`, { method: "POST" });
+        assert(profileCut.ok);
+        let denied = await read();
+        for (let i = 0; i < 120 && denied[0]?.connection.phase !== "stopped"; i++) {
+          await new Promise((resolve) => setTimeout(resolve, 25));
+          denied = await read();
+        }
+        assert.equal(denied[0]?.connection.reason, "profile-required");
+        assert.equal(denied[0]?.documentId, before[0]?.documentId);
+        assert.equal(
+          (await owner.context().cookies(base)).length,
+          0,
+          "Automatic retry minted another profile",
+        );
+        const afterDenial = await status();
+        assert(afterDenial.peers.filter((p) => p.active).length === 3);
+        // An intentional takeover is terminal for the retired tab; automatic retries must not fight it.
+        const retiredPage = pages[3];
+        assert(retiredPage);
+        const replacementPage = await retiredPage.context().newPage();
+        await replacementPage.goto(`${retiredPage.url()}&scripted=1`);
+        await replacementPage.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+            ).controllerNetworkLab?.status().ready,
+        );
+        const replaced = await retiredPage.evaluate(() =>
+          (
+            globalThis as unknown as { controllerNetworkLab: { status: () => ClientStatus } }
+          ).controllerNetworkLab.status(),
+        );
+        assert.equal(replaced.connection.phase, "stopped");
+        assert.equal(replaced.connection.reason, "replaced");
+        assert.equal(replaced.connection.retryAtMs, null);
+        pages[3] = replacementPage;
+        await retiredPage.close();
+        const replacementClient = (await read())[3];
+        assert(replacementClient);
+        assert.equal(replacementClient.connectionEpoch, replaced.connectionEpoch + 1);
+        return {
+          status: "pass",
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          recordedAt: new Date().toISOString(),
+          browser: browser.version(),
+          workerBundleSha256,
+          sharedSnapshots: common.length,
+          before,
+          resumed,
+          afterStall,
+          beforeRestart,
+          cold,
+          restored,
+          continued,
+          empty,
+          stillEmpty,
+          boundary,
+          reloaded,
+          clients,
+          room: finalRoom,
+          denied,
+          afterDenial,
+          replaced,
+          replacementClient,
+          scope:
+            "Four real Chromium contexts automatically reconnect in the same documents after one peer is closed and after a fresh workerd process on the same origin; full-cohort absence remains paused until explicit authority recovery. No queued old intent/effects or replacement profile is admitted. Explicit loading/start barrier remains; pause-tail persistence/expiry alarms, production v3 authority, full impaired transport and staging timing remain open.",
+        };
+      }
       if (combatReconnectMode) {
         const status = async () => {
           room = (await (await fetch(`${base}/combat/status`)).json()) as RoomProbeStatus;
@@ -383,7 +613,7 @@ try {
         assert.equal(disconnected.membership?.members[hostSlot]?.connected, false);
         assert.notEqual(disconnected.membership?.hostSlot, hostSlot);
         await hostPage.goto(
-          `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${hostSlot}&mode=combat&scripted=1`,
+          `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${hostSlot}&mode=combat&scripted=1&manual=1`,
         );
         await hostPage.waitForFunction(
           () =>
@@ -555,7 +785,7 @@ try {
           await Promise.all(
             pages.map(async (page, slot) => {
               await page.goto(
-                `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=combat`,
+                `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=combat&manual=1`,
               );
               await page.waitForFunction(() => {
                 const lab = (

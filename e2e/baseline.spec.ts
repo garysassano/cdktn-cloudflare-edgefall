@@ -9,6 +9,8 @@ function observe(page: Page) {
     snapshot: undefined as CompactSnapshot | undefined,
     sockets: 0,
     jumpCommands: 0,
+    joins: 0,
+    resumes: 0,
   };
   page.on("websocket", (socket) => {
     evidence.sockets++;
@@ -19,13 +21,15 @@ function observe(page: Page) {
     });
     socket.on("framesent", ({ payload }) => {
       const message = JSON.parse(String(payload));
+      if (message.type === "join") evidence.joins++;
+      if (message.type === "resume") evidence.resumes++;
       if (message.type === "input" && message.input.jump) evidence.jumpCommands++;
     });
   });
   return evidence;
 }
 
-test("v2 real profile, two-player room, input, recording and reserved-slot reload", async ({
+test("v2 real profile, input, automatic reserved-slot reconnect and reload", async ({
   page,
   browser,
 }, testInfo) => {
@@ -37,6 +41,25 @@ test("v2 real profile, two-player room, input, recording and reserved-slot reloa
   partner.on("pageerror", (error) => errors.push(error.message));
   const second = observe(partner);
   const room = `baseline-${Date.now().toString(36)}`;
+  await page.addInitScript(() => {
+    const NativeWebSocket = WebSocket,
+      sockets = new Set<WebSocket>();
+    class ObservedSocket extends NativeWebSocket {
+      constructor(url: string | URL, protocols?: string | string[]) {
+        super(String(url), protocols);
+        sockets.add(this);
+        this.addEventListener("close", () => sockets.delete(this));
+      }
+    }
+    Object.assign(globalThis, {
+      WebSocket: ObservedSocket,
+      edgefallSocketTest: {
+        disconnect: () => {
+          for (const socket of sockets) socket.close(4000, "test-outage");
+        },
+      },
+    });
+  });
   try {
     for (const [client, name] of [
       [page, "Baseline One"],
@@ -80,10 +103,22 @@ test("v2 real profile, two-player room, input, recording and reserved-slot reloa
       await page.waitForTimeout(47);
     }
     const capturedTapCommands = first.jumpCommands - jumpsBeforeTaps;
+    const tickBeforeAutomatic = first.snapshot?.tick ?? 0;
+    await page.evaluate(() =>
+      (
+        globalThis as unknown as { edgefallSocketTest: { disconnect(): void } }
+      ).edgefallSocketTest.disconnect(),
+    );
+    await expect.poll(() => first.sockets).toBe(2);
+    await expect.poll(() => first.resumes).toBe(1);
+    await expect.poll(() => first.snapshot?.tick ?? 0).toBeGreaterThan(tickBeforeAutomatic);
+    expect(first.playerId).toBe(playerId);
+    expect(first.joins).toBe(1);
     const tickBeforeReload = first.snapshot?.tick ?? 0;
     await page.reload();
     await page.locator("#enterButton").click();
-    await expect.poll(() => first.sockets).toBe(2);
+    await expect.poll(() => first.sockets).toBe(3);
+    await expect.poll(() => first.resumes).toBe(2);
     await expect.poll(() => first.snapshot?.tick ?? 0).toBeGreaterThan(tickBeforeReload);
     expect(first.playerId).toBe(playerId);
     expect(first.snapshot?.players).toHaveLength(2);
@@ -101,6 +136,9 @@ test("v2 real profile, two-player room, input, recording and reserved-slot reloa
             runtime: process.version,
             roomPlayers: 2,
             freshSockets: first.sockets,
+            joins: first.joins,
+            resumes: first.resumes,
+            automaticReconnect: "Forced socket closure; same page and reserved player, no new join",
             resumePreservedPlayer: first.playerId === playerId,
             tickBeforeReload,
             tickAfterReload: first.snapshot?.tick,

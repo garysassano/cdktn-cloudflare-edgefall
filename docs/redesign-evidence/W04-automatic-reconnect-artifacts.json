@@ -1,0 +1,215 @@
+{
+  "baseCommit": "ad141e6c430e76e6b7dbb9dc89c902323967177d",
+  "artifacts": [
+    {
+      "file": "W04-automatic-reconnect-browser.json.gz",
+      "rawBytes": 2422690,
+      "bytes": 140705,
+      "rawSha256": "fe3d82523f6cebbffc267233f1b99f82da2b235ad317a637e8b122d03790da94",
+      "sha256": "931aca8a2c62e987a029800194730e8c206a80f8a9e7005cd6c438cf5fd2d6e8",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-diagnostics.json",
+      "rawBytes": 33952,
+      "bytes": 33952,
+      "rawSha256": "1d2722ae7756a1f6629f3bf102ec010de1188f617c4d14828bceeaa46ab96494",
+      "sha256": "1d2722ae7756a1f6629f3bf102ec010de1188f617c4d14828bceeaa46ab96494",
+      "gzip": false
+    },
+    {
+      "file": "W04-automatic-reconnect-manual.json.gz",
+      "rawBytes": 3046767,
+      "bytes": 175276,
+      "rawSha256": "5c9ac8b47ff0f060d724408f92bc122638a61e25f52dc8f1730d5c0138156997",
+      "sha256": "90ad21b48483a2477c924d0e76a90c50b4682d835d9d9c3d40779a21734677b4",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-cohort.json.gz",
+      "rawBytes": 3438365,
+      "bytes": 177634,
+      "rawSha256": "d49a6180e4b6a475543bf0cb7d935e652a7698361a920845be316c3a8a2fbd5a",
+      "sha256": "963487ef6c097073d065e352973f0eaf1f12a2db2e4c245d95fc525951a7fc2a",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-abort.json.gz",
+      "rawBytes": 175363,
+      "bytes": 10484,
+      "rawSha256": "c82104a6f778395c96d4e90239fbbf4311a3175de4ecaf36392eae0dfae4215a",
+      "sha256": "8e52380d493db40ab9260b6c5a9c50b46d0644aafee929929cad5fac15adc4be",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-controller.json.gz",
+      "rawBytes": 416431,
+      "bytes": 17289,
+      "rawSha256": "7e9af71c0be1d0b8d62f34e13e36cbd4ae14cad5b7e1e0b2e7a2240ccb60d4e6",
+      "sha256": "6e0e5e3c2731847b67f694e22f62289469d5128305f26769f6794e5fe5671d70",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-cohort.json.gz",
+      "rawBytes": 28649,
+      "bytes": 3096,
+      "rawSha256": "60e79f7d0d7b115544a751dc9d96ef02b55936d701b63ade92933fa30486e821",
+      "sha256": "9b6e0038dda99bed6954a732a1422345711905df0e2fe17ddf445b29faeee0a0",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-cohort-diagnostics.json",
+      "rawBytes": 18217,
+      "bytes": 18217,
+      "rawSha256": "83d721d780314d200583be2bfcd51d85590442a8239b99a18eb9aeca71fff2b3",
+      "sha256": "83d721d780314d200583be2bfcd51d85590442a8239b99a18eb9aeca71fff2b3",
+      "gzip": false
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-cohort-clients.json.gz",
+      "rawBytes": 64334,
+      "bytes": 3123,
+      "rawSha256": "e4a6cb893aa39166f5039d67d32f4eba9d63f9e0f938fb69398e65c4e0692d8c",
+      "sha256": "2af774a3347cc03a5dee3136f826ce433eec93eba418fb07b8508e8f145198fd",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline.json.gz",
+      "rawBytes": 437212,
+      "bytes": 17054,
+      "rawSha256": "46db93aada4c02ac02bcdf87b8ab6941abbf45953d547233ccd25a18b2eafcce",
+      "sha256": "9fe5d9758d2019c8eb903143d22e38e8013859e38a8502898dbdaeab38c996be",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline-diagnostics.json",
+      "rawBytes": 18268,
+      "bytes": 18268,
+      "rawSha256": "0a89a062191d4832c05e9796e15f8d16a493505b3bd58000eac166351ad458af",
+      "sha256": "0a89a062191d4832c05e9796e15f8d16a493505b3bd58000eac166351ad458af",
+      "gzip": false
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline-clients.json.gz",
+      "rawBytes": 549491,
+      "bytes": 45852,
+      "rawSha256": "2d377f4a7df4c44c7c3e564f45a5d62ce8bf9a52402ec7962e75b94d6d37eb53",
+      "sha256": "57dc0a16654708207a9a3e8c5142d22d7ca397301fc218cc8b293e62feff563d",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline-2.json.gz",
+      "rawBytes": 409395,
+      "bytes": 15254,
+      "rawSha256": "f584347d1b4db036e3c72a005c297d0413c755ec2e9e317fe18c44c93c192e43",
+      "sha256": "8cd03ceecdd27dd7437b40e30eab53a12df429326776473bcc373ff2730d30a0",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline-2-diagnostics.json",
+      "rawBytes": 17852,
+      "bytes": 17852,
+      "rawSha256": "0527ffcaffa4fc09dc891a0d3588c2dcd999e1b9295ad60b33d554536ec522d2",
+      "sha256": "0527ffcaffa4fc09dc891a0d3588c2dcd999e1b9295ad60b33d554536ec522d2",
+      "gzip": false
+    },
+    {
+      "file": "W04-automatic-reconnect-clock-baseline-2-clients.json.gz",
+      "rawBytes": 500196,
+      "bytes": 42321,
+      "rawSha256": "0d007f15d46839a82c9496afbc08d276091de0f180baaabfe74120eae97411a8",
+      "sha256": "c8a20ec0628bee7d7318b1fba94a7faf5e965c9f7426e00e9e4f60c28a4f9102",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-check.txt.gz",
+      "rawBytes": 2907,
+      "bytes": 1474,
+      "rawSha256": "45da2d30532e13cec3024c82f0b655ae115eefa6535413a4ad4623a6e87f0e4a",
+      "sha256": "c1af7d7d7d3656842e63b2923841f10c153ef41216be4d95bd17def950d40f30",
+      "gzip": true
+    },
+    {
+      "file": "W04-automatic-reconnect-production.json",
+      "rawBytes": 1343,
+      "bytes": 1343,
+      "rawSha256": "8881c880547492cf6696776678f4e7fffe4ba3ee7f1cbd8c65207f3c3ebf0fcc",
+      "sha256": "8881c880547492cf6696776678f4e7fffe4ba3ee7f1cbd8c65207f3c3ebf0fcc",
+      "gzip": false
+    }
+  ],
+  "sources": [
+    {
+      "file": "e2e/baseline.spec.ts",
+      "sha256": "4360e5d3f595d05aae08f2ba31f23ace55fb819a1297b3873a336ff5d259fe8e"
+    },
+    {
+      "file": "playwright.config.ts",
+      "sha256": "0998b941e3afb3c3068da7e288ce75871102c3b6124115980bd9c7a76e06cad7"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "4efee710476dc9756d49bd0920fa1aa4d9b7a3d7dac896b9d7d9ba15d46c4fc3"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "3fcbdc94e0d2f415a6cb2473b0be75b30dc9ef040b15d5513dc68eebbd17e436"
+    },
+    {
+      "file": "src/client/connection-port.ts",
+      "sha256": "a06fa2598befd332ae177e665f0dda2cae81809c503b648265d9d2d198d0ca2e"
+    },
+    {
+      "file": "src/client/index.ts",
+      "sha256": "f85d29c1bfdab788aa07c458aca92250183ffb6cd2ab4a135aca61cfebeaa1b6"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "a2ca42e1d489a131cb0e1fda506dd0b0938ae7492379082a34fc184e0908b1c4"
+    },
+    {
+      "file": "src/client/network.ts",
+      "sha256": "b9343af60278d20fd40766a50923fb462f084e501c7664199cc15241285e28f6"
+    },
+    {
+      "file": "src/client/scene.ts",
+      "sha256": "e02dd66e47460d808a1b9670be6e83253bb54c564dd2349ee28107220f4d3e43"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "954ed96295bab2ca6c1a157df6e8e0e078b1b5934fd2f8f9cd1e500c4a1c3787"
+    },
+    {
+      "file": "src/shared/session/admission.ts",
+      "sha256": "8141fa1736cbe7dcfabb00dd2eaa00cb12303585d0aca7dbef06a65e23142320"
+    },
+    {
+      "file": "src/shared/session/connection.ts",
+      "sha256": "8110c7be20135d67ded80906c9a741ef932dd1facb800f158f9d041e83b1213b"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "c3c3e4e1da829c8e6ff0667415b9a520185ca6df9f77d30b0ab865e82512ef71"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "2c542de2d0c1bf1fd6059f08a21cf057ec596233a063b173f44a7db1f7fe8d63"
+    },
+    {
+      "file": "test/connection.test.ts",
+      "sha256": "b5538261c05c05d02dacc62e0975eeb14ced02feb2f227971556fcd9923363b0"
+    },
+    {
+      "file": "test/fixtures/connection-port.ts",
+      "sha256": "bf83c24bb37804b3408d8d9801dce0e993a60a4966006eed3eb82b7d131e3267"
+    },
+    {
+      "file": "test/room-connection.test.ts",
+      "sha256": "da845f9b60fac931c0bbdb885b74a59984a3efdece94b82493f21758efc580d9"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ]
+}

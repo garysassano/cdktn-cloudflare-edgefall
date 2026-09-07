@@ -80,6 +80,8 @@ Open `http://localhost:8787/combat-lab.html` for the shared firearm timeline, au
 
 `pnpm test:network:controller --combat-reconnect` verifies signed profile ownership, individual socket takeover/reentry, fresh snapshot acknowledgment, healthy player continuity and SQLite recovery after reconnection. The loopback laboratory preserves the reserved player's weapon, active action and lives; its browser initializes the renderer before requesting a moving-world baseline. `--combat-recovery` retains the separate full-cohort process/write-failure recovery proof. See the [per-player reconnect evidence](./docs/redesign-evidence/W04-combat-reconnect.md) for scope and remaining production work.
 
+`pnpm test:network:controller --combat-auto-reconnect` verifies automatic recovery in the same browser documents after a peer disconnect, a browser stall and a Worker process restart. It also checks profile loss and tab takeover; an empty cohort remains paused until explicit authority recovery and the fresh-input start barrier. The production v2 client shares the bounded reconnect transport and no longer converts an expired resume into a new join. See the [automatic reconnect evidence](./docs/redesign-evidence/W04-automatic-reconnect.md), including production browser coverage and preserved host-clock failures.
+
 ## Production deployment
 
 Deploy the backing resources and Worker:

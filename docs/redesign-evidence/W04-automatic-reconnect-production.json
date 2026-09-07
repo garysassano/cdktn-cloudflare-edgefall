@@ -1,0 +1,46 @@
+{
+  "baseCommit": "ad141e6c430e76e6b7dbb9dc89c902323967177d",
+  "stats": {
+    "startTime": "2026-09-07T02:37:55.494Z",
+    "duration": 51542.772,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "v2 real profile, input, automatic reserved-slot reconnect and reload",
+      "status": "passed",
+      "durationMs": 23925,
+      "retry": 0,
+      "attachments": {
+        "sanitized-baseline-evidence": {
+          "commit": "ad141e6c430e76e6b7dbb9dc89c902323967177d",
+          "browser": "151.0.7922.34",
+          "runtime": "v24.20.0",
+          "roomPlayers": 2,
+          "freshSockets": 3,
+          "joins": 1,
+          "resumes": 2,
+          "automaticReconnect": "Forced socket closure; same page and reserved player, no new join",
+          "resumePreservedPlayer": true,
+          "tickBeforeReload": 236,
+          "tickAfterReload": 412,
+          "shortTaps": 10,
+          "capturedTapCommands": 1,
+          "impairment": "none; local workerd; SwiftShader rendering",
+          "errors": []
+        },
+        "browser-errors": []
+      }
+    },
+    {
+      "title": "v2 renders a persisted result and leaderboard from an explicitly seeded local fixture",
+      "status": "passed",
+      "durationMs": 23982,
+      "retry": 0,
+      "attachments": {}
+    }
+  ]
+}

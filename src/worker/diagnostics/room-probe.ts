@@ -659,6 +659,74 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize(parts[1]));
     await this.initialization;
     this.resolvedIdentity = await this.identity;
+    if (action === "disconnect-peer") {
+      const slot = Number(url.searchParams.get("slot"));
+      const peer = this.peers.get(slot);
+      if (
+        request.method !== "POST" ||
+        this.workload !== "combat" ||
+        this.world.roomMode !== "playing" ||
+        url.searchParams.get("slot") === null ||
+        !peer?.metrics.active
+      )
+        return new Response("Peer unavailable", { status: 409 });
+      this.disconnect(peer, "injected-outage", 1012);
+      return Response.json({ tick: this.world.tick, slot });
+    }
+    if (action === "admission") {
+      const slot = Number(url.searchParams.get("slot"));
+      const reply = (code: string, status = 200) =>
+        Response.json(
+          {
+            code,
+            roomMode: this.world.roomMode,
+            protocolMajor: 3,
+            protocolMinor: 1,
+            identity: this.resolvedIdentity,
+          },
+          { status, headers: { "Cache-Control": "no-store" } },
+        );
+      if (
+        request.method !== "GET" ||
+        url.searchParams.get("slot") === null ||
+        !Number.isInteger(slot) ||
+        slot < 0 ||
+        slot > 3 ||
+        !this.members
+      )
+        return reply("protocol-error", 400);
+      if (this.world.roomMode === "expired" || this.world.roomMode === "completed")
+        return reply("room-ended", 410);
+      if (
+        !["loading", "playing"].includes(this.world.roomMode) ||
+        this.starting ||
+        this.admissions.has(slot) ||
+        this.pendingPeers.has(slot)
+      )
+        return reply("outage", 503);
+      try {
+        admitMember(
+          this.members.state,
+          request.headers.get("X-Edgefall-Profile") ?? "",
+          slot,
+          this.world.tick === 0 && this.world.roomMode === "loading",
+          Date.now(),
+        );
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : "outage";
+        return reply(
+          reason === "reconnect-window-expired"
+            ? "reservation-expired"
+            : reason === "slot-reserved"
+              ? "room-full"
+              : reason === "profile-slot-mismatch"
+                ? "profile-required"
+                : reason,
+          409,
+        );
+      }
+      return reply("ready");
+    }
     if (action === "release-write") {
       if (request.method !== "POST" || this.workload !== "combat" || !this.heldPersistence)
         return new Response("No held write", { status: 409 });
@@ -1118,22 +1186,31 @@ export default {
       return Response.json({ authenticated: true }, { headers });
     }
     const match =
-      /^\/(standard|double|controller|combat)\/(connect|start|status|close|recover|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
+      /^\/(standard|double|controller|combat)\/(admission|connect|start|status|close|recover|disconnect-peer|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
         url.pathname,
       );
     if (!match?.[1]) return new Response("Not found", { status: 404 });
     const forwarded = new Request(request);
     forwarded.headers.delete("X-Edgefall-Profile");
-    if (match[1] === "combat" && match[2] === "connect") {
+    const cors = (response: Response) => {
+      if (origin && match[2] === "admission") {
+        response.headers.set("Access-Control-Allow-Origin", origin);
+        response.headers.set("Access-Control-Allow-Credentials", "true");
+        response.headers.set("Vary", "Origin");
+      }
+      return response;
+    };
+    if (match[1] === "combat" && (match[2] === "connect" || match[2] === "admission")) {
       if (request.method !== "GET") return new Response("Use GET", { status: 405 });
       const profile = await verifyProfileIdentity(
         profileCookie(request.headers.get("Cookie")),
         env.PROFILE_COOKIE_SECRET,
         Math.floor(Date.now() / 1000),
       );
-      if (!profile) return new Response("profile-required", { status: 401 });
+      if (!profile) return cors(Response.json({ code: "profile-required" }, { status: 401 }));
       forwarded.headers.set("X-Edgefall-Profile", profile);
     }
-    return env.ROOM_PROBES.getByName(match[1]).fetch(forwarded);
+    const response = await env.ROOM_PROBES.getByName(match[1]).fetch(forwarded);
+    return match[2] === "admission" ? cors(new Response(response.body, response)) : response;
   },
 };

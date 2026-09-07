@@ -15,6 +15,8 @@ import {
   type ServerMessage,
   WEAPON_COPY,
 } from "../game/protocol.js";
+import { type ConnectionStatus, connectionText } from "../shared/session/connection.js";
+import { browserConnectionPort } from "./connection-port.js";
 import { RoomConnection } from "./network.js";
 import { EdgefallScene, type PresentationSettings } from "./scene.js";
 
@@ -71,15 +73,19 @@ let currentRoom = "";
 let toastTimer: number | undefined;
 let settings = loadSettings();
 
-const connection = new RoomConnection({
-  events: (events) => gameScene.playEvents(events),
-  lobby: handleLobby,
-  result: showResult,
-  reward: showReward,
-  snapshot: handleSnapshot,
-  status: handleConnectionStatus,
-  warning: showToast,
-});
+const connection = new RoomConnection(
+  {
+    events: (events) => gameScene.playEvents(events),
+    lobby: handleLobby,
+    result: showResult,
+    reward: showReward,
+    snapshot: handleSnapshot,
+    status: handleConnectionStatus,
+    warning: showToast,
+  },
+  browserConnectionPort(),
+  location.origin,
+);
 gameScene.onInput = (input) => connection.sendInput(input);
 applySettings();
 
@@ -393,12 +399,16 @@ function syncOperatorButtons(): void {
   }
 }
 
-function handleConnectionStatus(
-  status: "connected" | "connecting" | "disconnected" | "reconnecting",
-): void {
-  connectionStatus.hidden = status !== "reconnecting";
-  if (status === "connecting") showToast("Opening a private crew channel…");
-  if (status === "connected") showToast("Crew channel secured.");
+function handleConnectionStatus(status: ConnectionStatus): void {
+  gameScene.setConnectionActive(status.phase === "connected");
+  connectionStatus.hidden = status.phase === "connected" || status.phase === "idle";
+  connectionStatus.textContent = connectionText(status);
+  if (status.phase === "stopped") {
+    hide(lobby);
+    hideGameHud();
+    show(landing);
+    showToast(connectionText(status));
+  }
 }
 
 function leaveRoom(): void {

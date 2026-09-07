@@ -58,6 +58,14 @@ const DEFAULT_SETTINGS: PresentationSettings = {
 
 export class EdgefallScene extends Phaser.Scene {
   onInput?: (input: InputFrame) => void;
+  private connectionActive = false;
+  setConnectionActive(active: boolean): void {
+    this.connectionActive = active;
+    if (!active) {
+      this.predictedLocal = undefined;
+      for (const key of Object.values(this.keys ?? {})) key.reset();
+    }
+  }
   private backgrounds: Phaser.GameObjects.Image[] = [];
   private bossMusic?: Phaser.Sound.BaseSound;
   private currentMusic: "biome" | "boss" | undefined;
@@ -134,6 +142,7 @@ export class EdgefallScene extends Phaser.Scene {
     this.input.mouse?.disableContextMenu();
     this.time.addEvent({
       callback: () => {
+        if (!this.connectionActive) return;
         const input = this.sampleInput();
         this.predictLocalInput(input);
         this.onInput?.(input);

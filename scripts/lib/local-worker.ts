@@ -31,10 +31,12 @@ export async function withDirectRoomWorker<T>(
   });
   const directory = await mkdtemp(join(tmpdir(), "edgefall-room-worker-"));
   const profileSecret = randomBytes(32).toString("hex");
+  let port: number | undefined;
   const create = () =>
     new Miniflare(
       convertV4MiniflareOptions({
         modules: true,
+        port,
         script: bundle.outputFiles[0]?.text,
         compatibilityDate: "2026-08-30",
         bindings: { PROFILE_COOKIE_SECRET: profileSecret },
@@ -46,6 +48,7 @@ export async function withDirectRoomWorker<T>(
   let mf = create();
   const origin = async () => {
     const url: URL = await mf.ready;
+    port = Number(url.port);
     url.hostname = "127.0.0.1";
     return url.origin;
   };
