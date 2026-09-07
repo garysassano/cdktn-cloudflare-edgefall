@@ -6,12 +6,13 @@ import { type InputIdentity, ProtocolError } from "./schema.js";
 export const EVENT_CAPABILITY = 2;
 export const EVENT_TYPE = 3;
 export const EVENT_HEADER_BYTES = 32;
-export const EVENT_RECORD_BYTES = 60;
+export const EVENT_RECORD_BYTES = 64;
 export const MAX_EVENT_BATCH = 64;
 export const MAX_EVENT_HISTORY = 512;
 export const EVENT_HISTORY_TICKS = 120;
 export const EVENT_KINDS = ["shot", "sound", "muzzle-blocked", "impact", "killed"] as const;
 export const EVENT_MATERIALS = ["none", "terrain", "shield", "body"] as const;
+export const EVENT_ORIGINS = ["player", "enemy"] as const;
 
 export interface ActionConfirmationKey {
   playerId: number;
@@ -21,6 +22,7 @@ export interface ActionConfirmationKey {
 }
 export interface GameplayEvent {
   kind: (typeof EVENT_KINDS)[number];
+  origin: (typeof EVENT_ORIGINS)[number];
   ownerId: number;
   actionInstanceId: number;
   markerIndex: number;
@@ -59,6 +61,7 @@ function identity(value: InputIdentity, expected: InputIdentity) {
 }
 export function validateGameplayEvent(event: GameplayEvent, context: EventContext): void {
   eventRequire(EVENT_KINDS.includes(event.kind), "Unknown gameplay event kind");
+  eventRequire(EVENT_ORIGINS.includes(event.origin), "Unknown event origin");
   eventRequire(EVENT_MATERIALS.includes(event.material), "Unknown impact material");
   eventCounter(event.ownerId);
   eventCounter(event.actionInstanceId);
@@ -73,11 +76,13 @@ export function validateGameplayEvent(event: GameplayEvent, context: EventContex
   if (event.targetId !== null) eventCounter(event.targetId);
   const firearm = ["shot", "sound", "muzzle-blocked"].includes(event.kind);
   if (firearm) {
-    eventRequire(event.confirmation !== null, "Missing firearm confirmation identity");
-    eventCounter(event.confirmation.playerId);
-    eventCounter(event.confirmation.controlEpoch);
-    eventCounter(event.confirmation.shotOrdinal);
-    eventRequire(event.confirmation.playerId === event.ownerId, "Confirmation owner mismatch");
+    if (event.origin === "player") {
+      eventRequire(event.confirmation !== null, "Missing firearm confirmation identity");
+      eventCounter(event.confirmation.playerId);
+      eventCounter(event.confirmation.controlEpoch);
+      eventCounter(event.confirmation.shotOrdinal);
+      eventRequire(event.confirmation.playerId === event.ownerId, "Confirmation owner mismatch");
+    } else eventRequire(event.confirmation === null, "Enemy event has player confirmation");
     eventRequire(event.targetId === null, "Unexpected firearm target");
     eventRequire(
       event.material === (event.kind === "muzzle-blocked" ? "terrain" : "none"),
@@ -145,6 +150,7 @@ export function encodeEventBatch(batch: EventBatch, context: EventContext): Uint
     w.u32(tick);
     w.u32(counter);
     w.choice(EVENT_KINDS, event.kind);
+    w.choice(EVENT_ORIGINS, event.origin);
     w.u32(event.ownerId);
     w.u32(event.actionInstanceId);
     w.u32(event.markerIndex);
@@ -198,6 +204,7 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       counter = r.u32(0, MAX_EVENT_HISTORY - 1);
     const event: GameplayEvent = {
       kind: r.choice(EVENT_KINDS),
+      origin: r.choice(EVENT_ORIGINS),
       ownerId: r.u32(1),
       actionInstanceId: r.u32(1),
       markerIndex: r.u32(0, MAX_EVENT_HISTORY - 1),

@@ -85,6 +85,7 @@ import { MembershipStorage } from "./membership-storage.js";
 interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
   PROFILE_COOKIE_SECRET: string;
+  PROBE_COMBAT_SCENARIO?: string;
 }
 interface Peer {
   generation: number;
@@ -806,7 +807,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         : createRoomWorkload(this.workload === "double" ? 2 : 1);
     if (this.workload === "combat") {
       this.members = new MembershipStorage(this.ctx.storage);
-      const initial = createCombatRuntime();
+      const requested = this.env.PROBE_COMBAT_SCENARIO ?? "range";
+      if (requested !== "range" && requested !== "rifle")
+        throw new Error("Unsupported room combat scenario");
+      const initial = createCombatRuntime(requested);
       initial.snapshot.roomMode = "lobby";
       initial.snapshot.stateHash = roomWorkloadHash(initial.snapshot);
       initial.connectedPlayerIds = [];
@@ -832,6 +836,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         },
       );
       const loaded = await this.combatStore.load();
+      if (loaded && loaded.combat.scenario !== requested)
+        throw new Error("Stored combat scenario differs from deployment");
       if (loaded && ["paused-empty", "completed", "expired"].includes(loaded.snapshot.roomMode)) {
         this.installCombat(loaded);
         this.clock = this.createClock(loaded.combat.tick);

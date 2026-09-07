@@ -1,4 +1,10 @@
 import { type GroundedEnemy, stepGroundedEnemy } from "../actors/grounded.js";
+import {
+  type RifleState,
+  cancelRifle,
+  createRifleState,
+  stepRifleAttack,
+} from "../actors/rifle.js";
 import { type LifeNotice, damagePlayer, stepPlayerLife } from "../campaign/life.js";
 import { stepFirearm } from "../combat/firearm.js";
 import {
@@ -22,10 +28,10 @@ import { worldRect, worldSocket } from "../physics/body.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
-import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES } from "./combat-content.js";
+import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES, RIFLE_PROFILE } from "./combat-content.js";
 import { FOOT_DEFINITION, footActor, footTerrain } from "./foot-fixture.js";
 
-export const COMBAT_SCENARIOS = ["range", "wall", "shield"] as const;
+export const COMBAT_SCENARIOS = ["range", "wall", "shield", "rifle"] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
   held: number;
@@ -36,6 +42,7 @@ export interface CombatTarget {
   enemy: GroundedEnemy;
   health: number;
   shield: boolean;
+  rifle: RifleState | null;
 }
 export interface CombatNotice {
   kind: "shot" | "sound" | "muzzle-blocked" | "impact" | "killed";
@@ -43,7 +50,10 @@ export interface CombatNotice {
   actionInstanceId: number;
   markerIndex: number;
   /** Captured when the marker fires; later damage may cancel the actor's action. */
-  source: { definitionId: number; controlEpoch: number; shotOrdinal: number } | null;
+  source:
+    | { definitionId: number; controlEpoch: number; shotOrdinal: number }
+    | { definitionId: number; timelineId: number }
+    | null;
   position: Point;
   impact: Impact | null;
   targetId: number | null;
@@ -131,6 +141,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     },
     health: 1,
     shield: scenario === "shield" && index === 0,
+    rifle: scenario === "rifle" ? createRifleState() : null,
   }));
   return {
     format: 1,
@@ -165,6 +176,31 @@ export function combatHurtboxes(targets: CombatTarget[], previous = targets): Hu
         delta: { x: body.x - before.x, y: body.y - before.y },
       };
     });
+  });
+}
+/** End-pose exposure with root motion over the tick. Protected entry is not a bullet shield. */
+export function playerCombatHurtboxes(
+  players: ControlledActor[],
+  previous = players,
+): HurtTarget[] {
+  return players.flatMap((player, slot) => {
+    if (player.life !== "alive" || player.invulnerableTicks > 0) return [];
+    const before = previous[slot];
+    const shape = COMBAT_SHAPES.get(
+      player.body.shapeId === FOOT_DEFINITION?.crouchedShapeId ? 7 : 3,
+    );
+    if (!before || before.body.id !== player.body.id || !shape)
+      throw new Error("Player hurtbox identity");
+    return [
+      {
+        id: player.body.id * 2,
+        entityId: player.body.id,
+        team: 1,
+        kind: "body" as const,
+        rect: worldRect(before.body, shape.rect, player.facing),
+        delta: { x: player.body.x - before.body.x, y: player.body.y - before.body.y },
+      },
+    ];
   });
 }
 
@@ -234,7 +270,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     const result = stepGroundedEnemy(
       target.enemy,
       {
-        speed: 64,
+        speed: target.rifle?.action.kind === "fire" ? 0 : 64,
         gravity: 55,
         terminalVelocity: 2048,
         bounds: { x: 0, y: 0, w: pixels(384), h: pixels(220) },
@@ -247,6 +283,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     target.enemy = result.enemy;
     if (target.enemy.removalReason) {
       target.health = 0;
+      if (target.rifle) cancelRifle(target.rifle);
       encounterEvents.push({
         kind: "resolve",
         id: target.enemy.body.id,
@@ -313,7 +350,76 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       world.events.push(notice);
     }
   }
-  const hurtboxes = combatHurtboxes(world.targets, current.targets);
+  for (const target of world.targets) {
+    if (!target.rifle || target.health === 0) continue;
+    const shape = COMBAT_SHAPES.get(4);
+    if (!shape) throw new Error("Missing rifle projectile shape");
+    const result = stepRifleAttack(
+      target.rifle,
+      target.enemy,
+      world.players,
+      tick,
+      world.nextActionId,
+      COMBAT_CATALOG,
+      RIFLE_PROFILE,
+      shape,
+      terrain,
+    );
+    target.rifle = result.state;
+    target.enemy.facing = result.facing;
+    world.nextActionId = result.nextActionId;
+    for (const item of result.markers) {
+      const muzzle = item.pose.sockets.find((socket) => socket.name === "muzzle")?.point;
+      const hand = item.pose.sockets.find((socket) => socket.name === "hand")?.point;
+      const definition = COMBAT_ATTACKS.get(item.marker.payloadId);
+      if (!muzzle || !hand || !definition) throw new Error("Missing rifle release content");
+      const position = worldSocket(target.enemy.body, muzzle, target.enemy.facing);
+      const notice: CombatNotice = {
+        kind: "sound",
+        ownerId: target.enemy.body.id,
+        actionInstanceId: item.actionInstanceId,
+        markerIndex: item.markerIndex,
+        source: { definitionId: definition.id, timelineId: target.rifle.action.definitionId },
+        position,
+        impact: null,
+        targetId: null,
+      };
+      if (item.marker.kind === "spawn-attack") {
+        notice.kind = "shot";
+        if (
+          muzzleBlocked(
+            worldSocket(target.enemy.body, hand, target.enemy.facing),
+            position,
+            shape,
+            terrain,
+          )
+        )
+          notice.kind = "muzzle-blocked";
+        else {
+          if (world.projectiles.length >= 256) throw new Error("Projectile cap requires recovery");
+          world.projectiles.push({
+            id: world.nextEntityId,
+            ownerId: target.enemy.body.id,
+            team: 2,
+            actionInstanceId: item.actionInstanceId,
+            definitionId: definition.id,
+            position,
+            velocity: {
+              x: target.rifle.aim === 0 ? definition.speed * target.enemy.facing : 0,
+              y: target.rifle.aim === 1 ? -definition.speed : 0,
+            },
+            spawnTick: tick,
+          });
+          world.nextEntityId = nextCounter(world.nextEntityId);
+        }
+      } else if (item.marker.kind !== "sound") throw new Error("Unsupported rifle marker");
+      world.events.push(notice);
+    }
+  }
+  const hurtboxes = [
+    ...combatHurtboxes(world.targets, current.targets),
+    ...playerCombatHurtboxes(world.players, current.players),
+  ];
   const impacts: Impact[] = [];
   world.projectiles = world.projectiles.filter((projectile) => {
     const definition = COMBAT_ATTACKS.get(projectile.definitionId);
@@ -357,11 +463,23 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       targetId: impact.entityId,
     };
     world.events.push(notice);
+    const slot = world.players.findIndex((player) => player.body.id === impact.entityId);
+    const player = world.players[slot];
+    if (player && impact.damage > 0) {
+      const damage = damagePlayer(player, tick, impact.damage, "classic");
+      world.players[slot] = damage.actor;
+      if (damage.notice) {
+        lifeNotices.push(damage.notice);
+        world.events.push({ ...notice, kind: "killed" });
+      }
+      continue;
+    }
     const target = world.targets.find((candidate) => candidate.enemy.body.id === impact.entityId);
     if (!target || target.health === 0 || impact.damage === 0) continue;
     target.health = Math.max(0, target.health - impact.damage);
     if (target.health === 0) {
       target.enemy.life = "removed";
+      if (target.rifle) cancelRifle(target.rifle);
       world.events.push({ ...notice, kind: "killed" });
       encounterEvents.push({
         kind: "resolve",

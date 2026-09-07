@@ -1,4 +1,4 @@
-# Arcade protocol v3.2
+# Arcade protocol v3.3
 
 This is the implemented input and acknowledgment wire contract, currently isolated from the active v2 game. All integers are little endian. Counters never wrap and must remain below `0xfffff000`; rotate connection epochs or establish a controlled new run before exhaustion. The handshake binds a controlling socket to one run/player and independently checks simulation/content/presentation identities. Unknown fields, versions, flags, reserved bits, enum values and incompatible identities fail closed.
 
@@ -7,7 +7,7 @@ This is the implemented input and acknowledgment wire contract, currently isolat
 | Header offset | Field                                          | Type    |
 | ------------- | ---------------------------------------------- | ------- |
 | 0             | Magic `0x4645` (`45 46`, EF)                   | u16     |
-| 2             | Major 3, minor 2                               | 2 × u8  |
+| 2             | Major 3, minor 3                               | 2 × u8  |
 | 4             | Type 1, flags 0                                | 2 × u8  |
 | 6             | Exact total byte length                        | u16     |
 | 8             | Nonzero run epoch                              | u32     |
@@ -66,7 +66,7 @@ An evaluator, encoding or edge-outcome failure leaves all participating queues a
 
 The separate [gameplay-event contract](./events-v3.md) defines binary event batches, retention, contiguous acknowledgment and explicit full-baseline repair.
 
-Handshake capability `0` retains the original baseline-plus-client-tick mapping. Capability `1` enables a bounded JSON `input-mapping` control message immediately before each binary snapshot, including the initial baseline. The controller laboratory requires capability `1`. Capability `3` combines input mapping with acknowledged gameplay events (bit `2`) and is required by the combat laboratory; standalone `2` and unknown combinations fail closed. Input and acknowledgment record layouts remain unchanged. Version 3.1 introduced the explicit combat snapshot section. Version 3.2 adds the independent player life-phase start tick; all handshakes and binary frame types require 3.2 and reject earlier minors. Input, acknowledgment and event record sizes remain unchanged.
+Handshake capability `0` retains the original baseline-plus-client-tick mapping. Capability `1` enables a bounded JSON `input-mapping` control message immediately before each binary snapshot, including the initial baseline. The controller laboratory requires capability `1`. Capability `3` combines input mapping with acknowledged gameplay events (bit `2`) and is required by the combat laboratory; standalone `2` and unknown combinations fail closed. Input and acknowledgment record layouts remain unchanged. Version 3.1 introduced the explicit combat snapshot section. Version 3.2 added the independent player life-phase start tick. Version 3.3 adds explicit player/enemy event origin, making event records 64 bytes. All handshakes and binary frame types require 3.3 and reject earlier minors. Input, acknowledgment and snapshot record layouts remain unchanged from 3.2.
 
 The control message has exactly `type: "input-mapping"`, `runEpoch`, `connectionEpoch`, `playerId`, `snapshotId`, `snapshotTick`, `nextSequence` and `nextCommandTick`. The decoder rejects messages above 512 UTF-8 bytes, unknown fields, invalid counters and a next-command tick other than `snapshotTick + 1`. All counters except snapshot tick are nonzero. The receiver pairs it with exactly the named snapshot and owner and requires `nextSequence = lastProcessedSequence + 1`. A missing, repeated, mismatched or unsolicited mapping requires a fresh baseline.
 

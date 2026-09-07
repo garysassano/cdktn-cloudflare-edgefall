@@ -22,6 +22,9 @@ export function combatGameplayEvents(previous: CombatLab, next: CombatLab): Game
   return next.events.map((notice) => {
     const event: GameplayEvent = {
       kind: notice.kind,
+      origin: previous.players.some((player) => player.playerId === notice.ownerId)
+        ? "player"
+        : "enemy",
       ownerId: notice.ownerId,
       actionInstanceId: notice.actionInstanceId,
       markerIndex: notice.markerIndex,
@@ -43,11 +46,12 @@ export function combatGameplayEvents(previous: CombatLab, next: CombatLab): Game
       const source = notice.source;
       if (!source) throw new Error("Missing firearm confirmation source");
       event.definitionId = source.definitionId;
-      event.confirmation = {
-        playerId: notice.ownerId,
-        controlEpoch: source.controlEpoch,
-        shotOrdinal: source.shotOrdinal,
-      };
+      if ("controlEpoch" in source)
+        event.confirmation = {
+          playerId: notice.ownerId,
+          controlEpoch: source.controlEpoch,
+          shotOrdinal: source.shotOrdinal,
+        };
     }
     return event;
   });

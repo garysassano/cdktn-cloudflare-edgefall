@@ -17,6 +17,7 @@ export async function withDirectRoomWorker<T>(
     workerBundleSha256: string,
     restart: () => Promise<string>,
   ) => Promise<T>,
+  options: { combatScenario?: "range" | "rifle" } = {},
 ): Promise<T> {
   const require = createRequire(import.meta.url);
   const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -39,7 +40,10 @@ export async function withDirectRoomWorker<T>(
         port,
         script: bundle.outputFiles[0]?.text,
         compatibilityDate: "2026-08-30",
-        bindings: { PROFILE_COOKIE_SECRET: profileSecret },
+        bindings: {
+          PROFILE_COOKIE_SECRET: profileSecret,
+          PROBE_COMBAT_SCENARIO: options.combatScenario ?? "range",
+        },
         durableObjects: { ROOM_PROBES: { className: "RoomLoadProbe", useSQLite: true } },
         resourcePersistencePath: directory,
         log: new Log(LogLevel.ERROR),

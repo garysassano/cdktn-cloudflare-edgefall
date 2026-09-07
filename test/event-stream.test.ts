@@ -25,6 +25,7 @@ import { eventDeliveryProof } from "./fixtures/event-delivery-proof.js";
 const context = combatEventContext({ runEpoch: 1, connectionEpoch: 1 });
 const shot: GameplayEvent = {
   kind: "shot",
+  origin: "player",
   ownerId: 1,
   actionInstanceId: 4,
   markerIndex: 0,
@@ -68,7 +69,7 @@ describe("bounded gameplay event transport", () => {
   it("round-trips signed Q256 and stable action identities with a fixed little-endian layout", () => {
     const bytes = encodeEventBatch(packet, context);
     expect(bytes.byteLength).toBe(32 + EVENT_RECORD_BYTES);
-    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 2, 3, 0, 92, 0]);
+    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 3, 3, 0, 96, 0]);
     const padded = new Uint8Array(bytes.length + 6);
     padded.set(bytes, 3);
     expect(decodeEventBatch(padded.subarray(3, 3 + bytes.length), context)).toEqual(packet);
@@ -78,12 +79,30 @@ describe("bounded gameplay event transport", () => {
     for (let length = 0; length < bytes.length; length++)
       expect(() => decodeEventBatch(bytes.slice(0, length), context)).toThrow();
     expect(() => decodeEventBatch(new Uint8Array([...bytes, 0]), context)).toThrow();
-    expect(() => decodeEventBatch(new Uint8Array(32 + 65 * 60), context)).toThrow();
-    for (const offset of [4, 5, 6, 8, 12, 24, 26, 28, 44, 76, 80]) {
+    expect(() => decodeEventBatch(new Uint8Array(32 + 65 * EVENT_RECORD_BYTES), context)).toThrow();
+    for (const offset of [4, 5, 6, 8, 12, 24, 26, 28, 44, 48, 80, 84]) {
       const bad = bytes.slice();
       bad[offset] = 255;
       expect(() => decodeEventBatch(bad, context), `corruption at ${offset}`).toThrow();
     }
+  });
+  it("carries enemy releases without inventing player confirmation identities", () => {
+    const enemy: GameplayEvent = {
+      ...shot,
+      origin: "enemy",
+      ownerId: 20,
+      definitionId: 3,
+      confirmation: null,
+    };
+    const batch = { ...packet, events: [{ ...firstEvent, event: enemy }] };
+    expect(decodeEventBatch(encodeEventBatch(batch, context), context)).toEqual(batch);
+    for (const event of [
+      { ...enemy, confirmation: { playerId: 20, controlEpoch: 1, shotOrdinal: 1 } },
+      { ...shot, confirmation: null },
+    ])
+      expect(() =>
+        encodeEventBatch({ ...packet, events: [{ ...firstEvent, event }] }, context),
+      ).toThrow(/confirmation/i);
   });
   it("validates the whole batch before producing any event or advancing an acknowledgment", () => {
     const stream = receiver();

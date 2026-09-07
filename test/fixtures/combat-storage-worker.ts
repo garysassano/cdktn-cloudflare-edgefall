@@ -7,6 +7,7 @@ import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
+import { recordRifleRecovery } from "./rifle-proof.js";
 
 interface Env {
   STORES: DurableObjectNamespace<CombatStorageProof>;
@@ -27,6 +28,47 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const [, name, action] = new URL(request.url).pathname.split("/");
+    if (name === "rifle") {
+      if (action === "seed" || action === "resume") {
+        const fixture = recordRifleRecovery();
+        let saved = action === "seed" ? fixture.states[28] : await store.load();
+        if (!saved || canonical(saved) !== canonical(fixture.states[saved.combat.tick]))
+          throw new Error("Rifle storage prefix mismatch");
+        if (action === "seed") await store.initialize(saved);
+        const through = action === "seed" ? 30 : 150;
+        while (saved.combat.tick < through) {
+          const end = Math.min(through, saved.combat.tick + 15);
+          const accepted = fixture.states[end];
+          if (!accepted) throw new Error("Missing rifle committed boundary");
+          const entries = fixture.entries.slice(saved.combat.tick, end);
+          this.inject = true;
+          let rolledBack = false;
+          try {
+            await store.commit(saved, entries, accepted);
+          } catch (error) {
+            rolledBack = String(error).includes("injected-storage-transaction-failure");
+          }
+          if (!rolledBack || canonical(await store.load()) !== canonical(saved))
+            throw new Error("Rifle rollback changed private continuation");
+          saved = await store.commit(saved, entries, accepted);
+        }
+      }
+      const saved = await store.load();
+      if (!saved) throw new Error("Missing rifle archive");
+      return Response.json({
+        instance: this.instance,
+        tick: saved.combat.tick,
+        hash: combatRuntimeHash(saved),
+        rifles: saved.combat.targets.map((target) => target.rifle),
+        players: saved.combat.players.map(({ life, lives, invulnerableTicks }) => ({
+          life,
+          lives,
+          invulnerableTicks,
+        })),
+        events: saved.history.entries,
+        projectiles: saved.combat.projectiles,
+      });
+    }
     let loadingChecks: string[] | null = null;
     let phaseChecks: string[] | null = null;
     let campaignChecks: string[] | null = null;
@@ -332,6 +374,7 @@ export default {
         "tail",
         "loading",
         "life",
+        "rifle",
         "campaign",
         "campaign-loss",
         "phase-lobby",

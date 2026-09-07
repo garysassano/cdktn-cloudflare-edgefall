@@ -1,5 +1,7 @@
 # Observability during redesign
 
+The [rifleman increment](W05-riflemen.md) adds source paths to bounded browser console, failed-request and HTTP diagnostics. Its final four-browser run identifies missing `/favicon.ico` requests and retains canceled admission/session/profile paths, with no page exception, client protocol error or room clock fault. Local CPU/load and deployed cadence gates remain open. The current [Cloudflare tracing documentation](https://developers.cloudflare.com/workers/observability/traces/) still requires the separate tracing switch and lists tracing billing beginning October 1, 2026; recheck sampling, retention and cost before sustained traffic.
+
 Latest read-only Cloudflare check: the supplied credential successfully listed its accessible account's Workers, with no Edgefall-named deployment present; the configured `edgefall` script returned 404/code 10007. Tracing is prepared in configuration and has no live Edgefall ingestion proof yet. [Sanitized lookup](W04-continue-cloudflare-read.json). The [continue diagnostics](W04-continues.md) add actual life/persistence/reconnection failures and two further runtime/host clock regressions; the timing gate remains open.
 
 The Wrangler configuration explicitly enables Workers traces and invocation logs at sampling rate 1, and uploads source maps. These settings take effect on deployment; no deployment or Cloudflare trace retrieval was performed during this local diagnostic change. The deployment configuration generator preserves these settings.

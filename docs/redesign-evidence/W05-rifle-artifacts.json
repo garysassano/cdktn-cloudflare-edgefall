@@ -1,0 +1,373 @@
+{
+  "baseCommit": "507ac53246db2ab8a044f7274c50ae067c0c3c2f",
+  "archiveFormat": 4,
+  "protocol": "3.3",
+  "sources": [
+    {
+      "file": "README.md",
+      "sha256": "0daa827a41ee68ac82af4deeff1c3ae5773d8816d2e20a7c8bc7ae17180b774f"
+    },
+    {
+      "file": "docs/combat-checkpoint-v3.md",
+      "sha256": "f271edd628b428630dc37404280b95b7204dbeb5c0ce6173517a46b6d22344f7"
+    },
+    {
+      "file": "docs/combat-checkpoint-v4.md",
+      "sha256": "bd49b897925c7a05c341601be0bbb159f0eecc80b817267242d83a20b5238136"
+    },
+    {
+      "file": "docs/events-v3.md",
+      "sha256": "bce62bc8b787eca30f6f59eaa196dbc9ecdb920f49187994242c9cdba9fa9561"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "f26ecef7479108aff4047aa2200e81578736c0d5d6a878e1b931ef05b2b3afcf"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "sha256": "c1cbdfb2d6da57c8780843eee4c3de5dc5f11b616c49db522a6c5afb48e317d5"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/build-client.mjs",
+      "sha256": "a8cde22b759b108aaf524c391d5c662fa5027cf6e12e011d1cee6a6688570b06"
+    },
+    {
+      "file": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "ccd0e98ef1963bc3784565a3ac7e335b26841b5af3973d1bcbec04410d2848e5"
+    },
+    {
+      "file": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "file": "scripts/lib/verify-combat-campaign.ts",
+      "sha256": "5d2cc951d38c3982bdf8201442ecffff24b7552776020236265aa6a1f6133e44"
+    },
+    {
+      "file": "scripts/lib/verify-hostile-combat.ts",
+      "sha256": "1328316d9b087d51916db500683d99df0b53fc2b7466d31c3f74cb30129747fe"
+    },
+    {
+      "file": "scripts/lib/verify-loading-connections.ts",
+      "sha256": "2f73ca0de700a76091e32d88fe0a1e0d874f42bb397b2eee79e56968a8a2d403"
+    },
+    {
+      "file": "scripts/lib/verify-room-phases.ts",
+      "sha256": "cbc8e649d6ded1cbb527c9da07c387159a4d7edf320adbaad51a5e490414c613"
+    },
+    {
+      "file": "scripts/lib/verify-stored-campaign.ts",
+      "sha256": "392836d5e427aad86ba2d32cd46ebf6e536483288378f801d7c9aab2352cfd6e"
+    },
+    {
+      "file": "scripts/lib/verify-stored-phases.ts",
+      "sha256": "00fb7cec9dcae0a3300c8718de7b104c9206bce3db534f51fe0271807796d5bb"
+    },
+    {
+      "file": "scripts/lib/verify-stored-rifle.ts",
+      "sha256": "c52d18479ff5530b6d90860547c549da283618e5af9b8bff35936ef524203488"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "f26fb31313790af82c37287efccc8606bb05968e7c66a02862e33bf2c793ba5d"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "774336ba88bbae69385ee7da661ff23af12ce87e2692b35ed107c85a389c5fdc"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "3a8b9e0bc7b86ec7f64b2dec0a45fb717ad41e0a48523eefc58a672bf8acdb35"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "3a13eb8a86097c0e5e54e730ad35d8cd87fe8d2c2d67e69ce704aa6004e7e38d"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "d09f3fb735724ea826a0a7a515e65a1a2bcf04918523d750e53d35439795488e"
+    },
+    {
+      "file": "src/client/network-lab.html",
+      "sha256": "b5359643584f5d21312de2ee5477e0163a3e452dc06c0776a7416df17e1d2e7b"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "cab7eb6c456843ece46e09b786242ce6a5f800dcf2e67a1e1fcc33a041cf3e4d"
+    },
+    {
+      "file": "src/game/actors/rifle.ts",
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "sha256": "8f0757bfdc033add72739012145bb37fc8edb52498e799a36534d56ff38844b5"
+    },
+    {
+      "file": "src/game/campaign/lifecycle.ts",
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "file": "src/game/labs/combat-campaign.ts",
+      "sha256": "0aed8a78e29ae5aeb5ab3419e003a9ce7c722b3ba637370de130a7e2296bd740"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "32df1cc580ae2164558f6ac1c28dd52320b327c2fae06ef085a1b01d9bc30ac9"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "0717635f69d22c87155149b1babc0e57860f57c6a07306ef8beb6daae6cb4726"
+    },
+    {
+      "file": "src/game/labs/foot-fixture.ts",
+      "sha256": "85e8f36498115839cc18b2bfbd2d6602d61f07db6e885f7970ee5f44ed3c610a"
+    },
+    {
+      "file": "src/game/rules.ts",
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "file": "src/game/state.ts",
+      "sha256": "8e2418b3324303564c284f0538800fece4469659b53cfdafa0709269aadde6ab"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "b1d85728c82a8fcf287a36d048e4af2cdbf26e16185c66e9e4003bd0c99148a4"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-events.ts",
+      "sha256": "f44adfc597146a0b253ad1e8cdfa547a4f3c72a9ca7b524ba37766890a475e07"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "f5574278f8bb013e588643dbc33f773b8353367166f724f781f9741371d67cb5"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "b0192fc147ba97585bb401074a5983267c3dcc55688338671c93fabd70a7402f"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "b1536425ee5685d3526035fd3117391ebe8e4daa11c2405e5284fee6396de327"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "file": "src/shared/diagnostics/room-probe-types.ts",
+      "sha256": "b0063cfe6ce023feff93e722925f2bd46d20bf30ae2af67721d2156f8eefdcdb"
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "4581443664d0ab69c93af73b8d6215b8e3f878ca258c75e1a4716c01fef79c45"
+    },
+    {
+      "file": "src/shared/prediction/controller.ts",
+      "sha256": "566253f86c89927a4ac832a295c48ebc61baaf290b67efbaae72eb9b451928e8"
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "sha256": "8db489252582bc5d6d0948e76cf4020b3a1e7a6265ebc7db0525cb186bd53f16"
+    },
+    {
+      "file": "src/shared/protocol/events.ts",
+      "sha256": "286a7ff19c8c927120debe36929ce9b0455eac6c312d145e67284ef9f2a239ed"
+    },
+    {
+      "file": "src/shared/protocol/handshake.ts",
+      "sha256": "1477b114de510de87e00ef713813ff08ac56af451c1e18aa85eaa6d86edeeac5"
+    },
+    {
+      "file": "src/shared/protocol/input-stream.ts",
+      "sha256": "e9b2b5f4d08483139edc4929d5269944d4dd16ffdca7ef1aab015ec0bdc30443"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "72d15bf65a8500f41d3cd65f50db776967b8f59b00379e02afa12aca7cd29dc9"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "8e65d6a3de891b1136af5557a0d54723545389079c6ee7f6ceb3af659426061e"
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "sha256": "45b889bb31e011c44cd2f80379d956947b578f6e6f3d84e0b60fd17d391ef546"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/shared/session/admission.ts",
+      "sha256": "f9e7ab9c68bcbe90edaecc38caa3fc79213aad3e77a95dca335436a1264ca139"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "1a4059c7e03029fb9b19cf43e4f8f718885a754d4f43dc809dae0080c4d1e6c2"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "37145fa87039ee01c3faf32cb7eeccb5521f1f6c22a7c09d1ad9ca8514a45b2b"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "a7c5b5cc457c236e7f7c9f110a4d4eda565105036684a2f7a99e3c5919dbb565"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "95394eff5da58005786b28408905007c1bec9a1224821f926dcc63bf0de1456a"
+    },
+    {
+      "file": "test/campaign-lifecycle.test.ts",
+      "sha256": "73f619712791ae056f376661645ec15a85919fd07570499698d876d0757a00dc"
+    },
+    {
+      "file": "test/combat-campaign.test.ts",
+      "sha256": "8b6284272e4a7c669e8fdb569384321b108c55a49d13e777900c41d94a014ac0"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "0fd87e5a6a7744fd7265b2b3e837f0fa40fc1572037b885c072c5dab86fc9513"
+    },
+    {
+      "file": "test/controller-prediction.test.ts",
+      "sha256": "64c667708593936a685e83122e0aa128e3d6c7d694afdb94b1d3eafcf1ae8b1c"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "a597de374a11fda27a34b090cc581fd1207897b9e7a33bb6b660b0ecb1b39825"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "b90d7b4b50119a1cd8a1fbdfcaa9412350dcd2ee1396e7690c5f2da2dc2700ce"
+    },
+    {
+      "file": "test/fixtures/campaign-proof.ts",
+      "sha256": "68dc0ea688ee4e288bad8494668f74c182de8f413202581384db8a98513df6fd"
+    },
+    {
+      "file": "test/fixtures/combat-input-driver.ts",
+      "sha256": "8669fca51a13073c1d219318441f6a579f388c213f893c7eaa3eed2f2e0c0dc7"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "1fd1572e72e7fb593251fe2944f08728447370a7d3e2746fa41ba5a4c16013be"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "3443d1f0aa6f82ed37af048f137d4a123befeee84a6e72a41938662d278e0945"
+    },
+    {
+      "file": "test/fixtures/player-life-proof.ts",
+      "sha256": "a95dd8c0c35117988cab3cef4e6f6fc2ee2f3830e1cbd15ead720f6b54f768a0"
+    },
+    {
+      "file": "test/fixtures/player-life-recovery-proof.ts",
+      "sha256": "d3d4647828819b799f933b2d25bcf11db06b47fb04db37fe8226c5a6c7c11f78"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "80396a203c2276b59a131ebe53e0eb68488046db261d770aea5b3668ac5d959e"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "13873f485daac172459229b14f89df5af4ea1d5fc55cd03468872644363a58fc"
+    },
+    {
+      "file": "test/fixtures/rifle-proof.ts",
+      "sha256": "208e4068a6b6e53f65722eb6078c4466c47bc6c4f06649f422c295bf3b7e5cc8"
+    },
+    {
+      "file": "test/input-stream.test.ts",
+      "sha256": "1dcf5595767b76011958b7e913ce544f1175618e2be8b96245d9aa512b5abc80"
+    },
+    {
+      "file": "test/player-life.test.ts",
+      "sha256": "a3734d2a54aa33f6e2a703fe013f7942e2a12304c27a4cc7eec0657d5494c52e"
+    },
+    {
+      "file": "test/rifle.test.ts",
+      "sha256": "0a24c0f663f8e42f734740dd68bc74684f5a95f8296e8695b0eb12220e933799"
+    },
+    {
+      "file": "test/room-workload.test.ts",
+      "sha256": "1f22bff0caa5bc3ec4bf460da20f6952aaa4efcab1fbc50a9de3be59f501b044"
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "sha256": "e15e86540a178f851abb80c33447445b7ebea4bde6ded1405b8f85fd490f4c85"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "W05-rifle-check.log.gz",
+      "bytes": 1250,
+      "sha256": "baa5eb9343f5ff9c0ba24540f7ecf02632815967d849ff9d73f5e2a3ad1eece0",
+      "uncompressedBytes": 2432,
+      "uncompressedSha256": "8d3610f7f2a123805e22a1981748d21db378a8b77c7b1b41d2b3232fc6125bad"
+    },
+    {
+      "file": "W05-rifle-types.log.gz",
+      "bytes": 495,
+      "sha256": "452b2c09fa8729e597d53b4cd2538d0e8302a6ecac82f26c4110d7fef9f0327e",
+      "uncompressedBytes": 932,
+      "uncompressedSha256": "fbdf1cca9b58342669a88f2dad8b314eb616e94ae42b6f36820795ac7a658e1d"
+    },
+    {
+      "file": "W05-rifle-contracts.json.gz",
+      "bytes": 11503,
+      "sha256": "e4f66d2d2e4e2c11d8522238fd3d2ba6f57c79ba21801189fe5730c4f2585016",
+      "uncompressedBytes": 153620,
+      "uncompressedSha256": "f9eb642baabd9234a545e297c4138f89a2e6c31f43ef3187be4462fbc10ed1fd"
+    },
+    {
+      "file": "W05-rifle-storage.json.gz",
+      "bytes": 11736,
+      "sha256": "f6803241404fe919ab90965a0cc0b1c3452166edb26bf438e3699936fffad20d",
+      "uncompressedBytes": 392323,
+      "uncompressedSha256": "66cad4af94cfdd059c68f6c4d60a9abc113f361814d93fdb880c0fd2c32169dc"
+    },
+    {
+      "file": "W05-rifle-browser.json.gz",
+      "bytes": 116598,
+      "sha256": "2da23e672f817c4c5fc9c01a0f011f4f1819cb47c9af45e53f4e3294c083d006",
+      "uncompressedBytes": 2510338,
+      "uncompressedSha256": "7eb39f08001f82f7345247a16ffe2ba3d34389a3814e8d331664121c021a4720"
+    },
+    {
+      "file": "W05-rifle-diagnostics.json.gz",
+      "bytes": 3336,
+      "sha256": "099fd771418fc71443d9227aa4a8e3e2fc621d4c28a75629b4e6a86845df6f31",
+      "uncompressedBytes": 22495,
+      "uncompressedSha256": "34b6ff8c969cc51e083c80ee41b3c2f52d2c6b9bd7b4e6769584214f7f56cd5a"
+    },
+    {
+      "file": "W05-rifle-raise.png",
+      "bytes": 104547,
+      "sha256": "ca7ea3cd6507fe6e0a533ba7c029596556dd2253d825cecb35deb51f99b48489"
+    },
+    {
+      "file": "W05-rifle-cleared.png",
+      "bytes": 104869,
+      "sha256": "bcafd413cef43caf96a6f89b31e996bbdb8fc6043726b9dc41c897b490617c41"
+    }
+  ]
+}

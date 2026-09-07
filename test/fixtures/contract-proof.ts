@@ -22,6 +22,7 @@ import { playerLifeProof } from "./player-life-proof.js";
 import { playerLifeRecoveryProof } from "./player-life-recovery-proof.js";
 import { predictionProof } from "./prediction-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
+import { rifleRecoveryProof } from "./rifle-proof.js";
 import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { spatialProof } from "./spatial-proof.js";
@@ -93,6 +94,7 @@ export async function contractProof() {
     campaign: campaignProof(),
     worldCombat: worldCombatProof(),
     combatRecovery: await combatRecoveryProof(),
+    rifleRecovery: await rifleRecoveryProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

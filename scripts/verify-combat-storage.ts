@@ -8,6 +8,7 @@ import { join } from "node:path";
 import { build } from "esbuild";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
+import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
 
 const require = createRequire(import.meta.url);
 const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -208,6 +209,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    rifle: await verifyStoredRifle(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     sourceSha256: source.digest("hex"),

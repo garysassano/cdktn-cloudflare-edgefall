@@ -1,36 +1,37 @@
-# Gameplay events v3.2
+# Gameplay events v3.3
 
 The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. These are engineering combat payloads; final audio, predicted effects and complete combat recovery remain separate work.
 
 ## Binary frame
 
-All fields are little endian. A type-3 event batch contains a 32-byte header and one to 64 fixed 60-byte records, at most 3,872 bytes. The run/connection identity belongs to the enclosing batch. Decoders validate its identity, exact size, content IDs, enum values, reserved fields, complete cursor sequence and event identity ordering before publishing any event.
+All fields are little endian. A type-3 event batch contains a 32-byte header and one to 64 fixed 64-byte records, at most 4,128 bytes. The run/connection identity belongs to the enclosing batch. Decoders validate its identity, exact size, content IDs, enum values, reserved fields, complete cursor sequence and event identity ordering before publishing any event.
 
 | Header offset | Field                                           | Type    |
 | ------------- | ----------------------------------------------- | ------- |
 | 0             | Magic `0x4645`                                  | u16     |
-| 2             | Major `3`, minor `2`                            | 2 × u8  |
+| 2             | Major `3`, minor `3`                            | 2 × u8  |
 | 4             | Type `3`, flags `0`                             | 2 × u8  |
 | 6             | Exact total byte length                         | u16     |
 | 8 / 12        | Run epoch / connection epoch                    | 2 × u32 |
 | 16            | Last committed world tick covered by this batch | u32     |
 | 20            | First record's delivery cursor                  | u32     |
-| 24 / 26       | Record count / record byte size `60`            | 2 × u16 |
+| 24 / 26       | Record count / record byte size `64`            | 2 × u16 |
 | 28            | Reserved zero                                   | u32     |
 
 | Record offset     | Field                                                                 | Type    |
 | ----------------- | --------------------------------------------------------------------- | ------- |
 | 0 / 4 / 8         | Delivery cursor / tick / within-tick counter                          | 3 × u32 |
 | 12                | Kind: shot `0`, sound `1`, muzzle-blocked `2`, impact `3`, killed `4` | u32     |
-| 16 / 20 / 24 / 28 | Owner / action instance / marker index / content definition           | 4 × u32 |
-| 32 / 36           | Q256 x / y, each bounded to ±2²⁴                                      | 2 × i32 |
-| 40                | Target entity, zero for none                                          | u32     |
-| 44                | Material: none `0`, terrain `1`, shield `2`, body `3`                 | u32     |
-| 48 / 52 / 56      | Confirmation player / control epoch / automatic-fire shot ordinal     | 3 × u32 |
+| 16                | Origin: player `0`, enemy `1`                                         | u32     |
+| 20 / 24 / 28 / 32 | Owner / action instance / marker index / content definition           | 4 × u32 |
+| 36 / 40           | Q256 x / y, each bounded to ±2²⁴                                      | 2 × i32 |
+| 44                | Target entity, zero for none                                          | u32     |
+| 48                | Material: none `0`, terrain `1`, shield `2`, body `3`                 | u32     |
+| 52 / 56 / 60      | Confirmation player / control epoch / automatic-fire shot ordinal     | 3 × u32 |
 
 Counters never wrap and remain below `0xfffff000`. The event identity is `(runEpoch, tick, counter)`; the counter starts at zero each tick and is bounded to 511. The separate delivery cursor starts at one and increments for every event. All active clients receive the same ordered records. A frame can start partway through a tick when a previous frame or acknowledgment ended there. Events cannot describe a tick beyond the committed header boundary. The current adapter does not filter events.
 
-Firearm markers require a complete confirmation key with the same player as the event owner. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. The kernel captures marker payload, control epoch and shot ordinal when the marker fires; a later death in the same tick can cancel the action without erasing its shot confirmation. This private notice metadata does not change the 60-byte event record. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
+Player firearm markers require a complete confirmation key with the same player as the event owner. Enemy markers carry origin `enemy` and zero confirmation fields; assigning them a player confirmation is rejected. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. The kernel captures marker payload, control epoch and shot ordinal when the marker fires; a later death in the same tick can cancel the action without erasing its shot confirmation. The explicit origin occupies one u32 in the 64-byte event record. Enemy release notices retain their authored timeline and marker identity privately for checkpoint validation. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
 
 ## Retention and acknowledgment
 

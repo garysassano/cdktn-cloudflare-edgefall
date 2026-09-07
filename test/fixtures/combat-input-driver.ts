@@ -1,3 +1,4 @@
+import { damagePlayer } from "../../src/game/campaign/life.js";
 import { canonical } from "../../src/game/core/canonical.js";
 import { Edge, Held } from "../../src/game/input/types.js";
 import {
@@ -87,7 +88,19 @@ export function recordCombatInputs(
     }
     if (!journal) throw new Error("Missing life journal");
     for (const [slot, player] of state.combat.players.entries()) {
-      const prediction = predictions[slot];
+      let prediction = predictions[slot];
+      // Movement prediction cannot know future hostile hits. Apply only the actual authoritative
+      // impact outcomes before comparing life/motion, then restore through normal reconciliation.
+      if (prediction)
+        for (const notice of state.combat.events) {
+          if (
+            notice.kind === "impact" &&
+            notice.targetId === player.body.id &&
+            notice.impact &&
+            notice.impact.damage > 0
+          )
+            prediction = damagePlayer(prediction, tick, notice.impact.damage, "classic").actor;
+        }
       if (
         !prediction ||
         canonical([

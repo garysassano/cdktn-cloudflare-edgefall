@@ -1,10 +1,13 @@
+import { rifleMode } from "../../game/actors/rifle.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
+import { actionPose } from "../../game/combat/timeline.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
 import { Edge, type InputCommand } from "../../game/input/types.js";
 import {
   COMBAT_ENTRY,
   type CombatLab,
+  type CombatScenario,
   advanceCombatLab,
   combatEncounterDefinition,
   combatEntryContext,
@@ -12,8 +15,14 @@ import {
   createCombatLab,
 } from "../../game/labs/combat.js";
 import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
-import { COMBAT_CATALOG, COMBAT_CONTENT, COMBAT_SHAPES } from "../../game/labs/combat-content.js";
+import {
+  COMBAT_CATALOG,
+  COMBAT_CONTENT,
+  COMBAT_SHAPES,
+  RIFLE_PROFILE,
+} from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
+import { worldSocket } from "../../game/physics/body.js";
 import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
 import { ARCADE, RULE_PRESETS } from "../../game/rules.js";
 import type { ControlledActor } from "../../game/state.js";
@@ -29,6 +38,7 @@ export async function combatIdentity() {
     canonical({
       content: COMBAT_CONTENT,
       campaignFormat: 1,
+      rifle: RIFLE_PROFILE,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -73,12 +83,49 @@ export function combatSnapshot(
   snapshot.players = structuredClone(combat.players);
   snapshot.vehicles = [];
   snapshot.platforms = [];
-  snapshot.threats = [];
+  snapshot.threats = combat.targets.flatMap(({ enemy, health, rifle }) => {
+    if (
+      !rifle ||
+      health === 0 ||
+      rifle.action.kind !== "fire" ||
+      combat.tick - rifle.action.stateStartTick > RIFLE_PROFILE.lastReleaseTick
+    )
+      return [];
+    const pose = actionPose(
+      COMBAT_CATALOG,
+      rifle.action.definitionId,
+      combat.tick - rifle.action.stateStartTick,
+    );
+    const socket = pose?.sockets.find((socket) => socket.name === "muzzle");
+    const attack = COMBAT_CONTENT.attacks.find((attack) => attack.id === 3);
+    if (!socket || !attack) throw new Error("Missing rifle threat content");
+    const point = worldSocket(enemy.body, socket.point, enemy.facing);
+    return [
+      {
+        actionInstanceId: rifle.action.actionInstanceId,
+        sourceId: enemy.body.id,
+        definitionId: attack.id,
+        telegraphTick: rifle.action.stateStartTick,
+        activeTick: rifle.action.stateStartTick + RIFLE_PROFILE.raiseTicks,
+        endTick: rifle.action.stateStartTick + RIFLE_PROFILE.lastReleaseTick,
+        x: point.x,
+        y: point.y,
+        vx: rifle.aim === 0 ? attack.speed * enemy.facing : 0,
+        vy: rifle.aim === 1 ? -attack.speed : 0,
+        heading: rifle.aim === 1 ? 1 : enemy.facing === -1 ? 3 : 0,
+        targetId: rifle.targetId,
+        motion: "locked" as const,
+        cancelled: false,
+        stateVersion: 1,
+        shapeId: attack.shapeId,
+      },
+    ];
+  });
   snapshot.enemies = combat.targets
     .filter((target) => target.health > 0)
-    .map(({ enemy, health, shield }) => ({
+    .map(({ enemy, health, shield, rifle }) => ({
       id: enemy.body.id,
-      definitionId: shield ? 2 : 1,
+      definitionId: rifle ? 3 : shield ? 2 : 1,
       x: enemy.body.x,
       y: enemy.body.y,
       vx: enemy.body.vx,
@@ -86,11 +133,11 @@ export function combatSnapshot(
       shapeId: enemy.body.shapeId,
       facing: enemy.facing,
       health,
-      mode: 0,
-      stateStartTick: 0,
-      actionInstanceId: 0,
-      actionDefinitionId: 0,
-      modeTicks: 0,
+      mode: rifle ? rifleMode(rifle, combat.tick, RIFLE_PROFILE) : 0,
+      stateStartTick: rifle?.action.stateStartTick ?? 0,
+      actionInstanceId: rifle?.action.kind === "fire" ? rifle.action.actionInstanceId : 0,
+      actionDefinitionId: rifle?.action.kind === "fire" ? rifle.action.definitionId : 0,
+      modeTicks: rifle?.action.kind === "fire" ? combat.tick - rifle.action.stateStartTick : 0,
       supportId: enemy.body.supportId,
       geometryRevision: 1,
     }));
@@ -152,8 +199,8 @@ export function combatSnapshot(
   snapshot.stateHash = roomWorkloadHash(snapshot);
   return snapshot;
 }
-export function createCombatWorkload() {
-  const combat = createCombatLab("range", 4);
+export function createCombatWorkload(scenario: CombatScenario = "range") {
+  const combat = createCombatLab(scenario, 4);
   return { combat, snapshot: combatSnapshot(combat) };
 }
 export function evaluateCombatTick(

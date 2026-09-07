@@ -110,7 +110,7 @@ try {
   assert.deepEqual(errors, []);
   const report = {
     schemaVersion: 1,
-    package: "W01/W03/W04",
+    package: "W01/W03/W04/W05",
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     sourceSha256: source.digest("hex"),
@@ -178,6 +178,7 @@ try {
     campaign: expected.campaign,
     worldCombat: expected.worldCombat,
     combatRecovery: expected.combatRecovery,
+    rifleRecovery: expected.rifleRecovery,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

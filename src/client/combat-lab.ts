@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { rifleMode } from "../game/actors/rifle.js";
 import { actionPose } from "../game/combat/timeline.js";
 import { canonical } from "../game/core/canonical.js";
 import { Held } from "../game/input/types.js";
@@ -13,7 +14,7 @@ import {
   replayCombatLab,
   stepCombatLab,
 } from "../game/labs/combat.js";
-import { COMBAT_CATALOG, COMBAT_SHAPES } from "../game/labs/combat-content.js";
+import { COMBAT_CATALOG, COMBAT_SHAPES, RIFLE_PROFILE } from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -251,13 +252,38 @@ class CombatScene extends Phaser.Scene {
       g.lineStyle(1, hurt.kind === "shield" ? 0xffae43 : 0xff677d);
       g.strokeRect(hurt.rect.x / 256, hurt.rect.y / 256, hurt.rect.w / 256, hurt.rect.h / 256);
     }
+    for (const target of state.targets) {
+      const rifle = target.rifle;
+      if (rifle?.action.kind !== "fire") continue;
+      const mode = rifleMode(rifle, state.tick, RIFLE_PROFILE);
+      const pose = actionPose(
+        COMBAT_CATALOG,
+        rifle.action.definitionId,
+        state.tick - rifle.action.stateStartTick,
+      );
+      const socket = pose?.sockets.find((socket) => socket.name === "muzzle");
+      if (!socket) continue;
+      const muzzle = worldSocket(target.enemy.body, socket.point, target.enemy.facing);
+      g.lineStyle(1, mode === 1 ? 0xffce60 : mode === 3 ? 0x9d91a9 : 0xff677d);
+      g.strokeCircle(muzzle.x / 256, muzzle.y / 256, 3);
+      if (mode !== 3)
+        g.lineBetween(
+          muzzle.x / 256,
+          muzzle.y / 256,
+          muzzle.x / 256 + (rifle.aim === 0 ? target.enemy.facing * 30 : 0),
+          muzzle.y / 256 - (rifle.aim === 1 ? 30 : 0),
+        );
+    }
     for (const projectile of state.projectiles) {
       if (projectile.spawnTick === state.tick) {
-        g.fillStyle(0xffe475);
+        g.fillStyle(projectile.team === 2 ? 0xff677d : 0xffe475);
         g.fillRect(projectile.position.x / 256 - 1, projectile.position.y / 256 - 1, 2, 2);
         continue;
       }
-      g.lineStyle(projectile.definitionId === 2 ? 2 : 1, 0xffe475);
+      g.lineStyle(
+        projectile.definitionId === 2 ? 2 : 1,
+        projectile.team === 2 ? 0xff677d : 0xffe475,
+      );
       g.lineBetween(
         projectile.position.x / 256,
         projectile.position.y / 256,

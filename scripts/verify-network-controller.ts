@@ -14,6 +14,7 @@ import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
 import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
+import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 
@@ -87,6 +88,7 @@ const loadingMode = process.argv.includes("--combat-loading") || phaseMode;
 const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const campaignMode = process.argv.includes("--combat-campaign");
+const hostileMode = process.argv.includes("--combat-hostile");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
@@ -97,7 +99,21 @@ const combatMode =
   combatRecoveryMode ||
   combatReconnectMode ||
   automaticMode ||
-  campaignMode;
+  campaignMode ||
+  hostileMode;
+assert(
+  !hostileMode ||
+    !(
+      campaignMode ||
+      automaticMode ||
+      combatReconnectMode ||
+      combatRecoveryMode ||
+      faultMode ||
+      eventMode ||
+      recoveryMode
+    ),
+  "Run hostile combat separately",
+);
 assert(
   !(
     automaticMode &&
@@ -116,29 +132,31 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = campaignMode
-  ? "dist/network-combat-campaign-evidence"
-  : automaticMode
-    ? "dist/network-combat-auto-evidence"
-    : combatReconnectMode
-      ? loadingMode
-        ? phaseMode
-          ? "dist/network-combat-phase-evidence"
-          : "dist/network-combat-loading-evidence"
-        : "dist/network-combat-reconnect-evidence"
-      : combatRecoveryMode
-        ? "dist/network-combat-recovery-evidence"
-        : baselineMode
-          ? "dist/network-combat-baseline-evidence"
-          : combatMode
-            ? eventMode
-              ? "dist/network-event-evidence"
-              : faultMode
-                ? "dist/network-combat-fault-evidence"
-                : "dist/network-combat-evidence"
-            : recoveryMode
-              ? "dist/network-controller-recovery-evidence"
-              : "dist/network-controller-evidence";
+const output = hostileMode
+  ? "dist/network-combat-hostile-evidence"
+  : campaignMode
+    ? "dist/network-combat-campaign-evidence"
+    : automaticMode
+      ? "dist/network-combat-auto-evidence"
+      : combatReconnectMode
+        ? loadingMode
+          ? phaseMode
+            ? "dist/network-combat-phase-evidence"
+            : "dist/network-combat-loading-evidence"
+          : "dist/network-combat-reconnect-evidence"
+        : combatRecoveryMode
+          ? "dist/network-combat-recovery-evidence"
+          : baselineMode
+            ? "dist/network-combat-baseline-evidence"
+            : combatMode
+              ? eventMode
+                ? "dist/network-event-evidence"
+                : faultMode
+                  ? "dist/network-combat-fault-evidence"
+                  : "dist/network-combat-evidence"
+              : recoveryMode
+                ? "dist/network-controller-recovery-evidence"
+                : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -186,7 +204,12 @@ sampleHost();
 // Independent host samples; no extra Worker requests or changes to scheduler clock semantics.
 const hostTimer = setInterval(sampleHost, 20);
 try {
-  const report = await withDirectRoomWorker(async (url, _alive, workerHash, restart) => {
+  const runProbe = async (
+    url: string,
+    _alive: () => void,
+    workerHash: string,
+    restart: () => Promise<string>,
+  ) => {
     const workerBundleSha256 = workerHash;
     let base = url;
     const openPages = () =>
@@ -205,14 +228,26 @@ try {
           };
           page.on("pageerror", (error) => record("pageerror", String(error)));
           page.on("console", (message) => {
-            if (message.type() === "warning" || message.type() === "error")
-              record(message.type(), message.text());
+            if (message.type() === "warning" || message.type() === "error") {
+              const source = message.location().url;
+              record(
+                message.type(),
+                `${message.text()}${source ? ` ${new URL(source).pathname}` : ""}`,
+              );
+            }
           });
           page.on("requestfailed", (request) =>
-            record("requestfailed", request.failure()?.errorText ?? "unknown"),
+            record(
+              "requestfailed",
+              `${request.failure()?.errorText ?? "unknown"} ${new URL(request.url()).pathname}`,
+            ),
           );
+          page.on("response", (response) => {
+            if (response.status() >= 400)
+              record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
+          });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -296,6 +331,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (hostileMode) {
+        const hostile = await verifyHostileCombat(pages, base, output);
+        room = hostile.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          hostile,
+          clients: hostile.clients,
+          sharedSnapshots: hostile.common.length,
+          room,
+          scope:
+            "Four Chromium contexts over local workerd WebSockets; real keyboard crouch evasion, rifle damage, player reconciliation and return-fire kill credit. Engineering geometry, no authored missions or deployed timing acceptance.",
+        };
       }
       if (campaignMode) {
         const campaign = await verifyCombatCampaign(pages, base);
@@ -541,7 +596,9 @@ try {
         const owner = pages[0];
         assert(owner);
         await owner.context().clearCookies();
-        const profileCut = await fetch(`${base}/combat/disconnect-peer?slot=0`, { method: "POST" });
+        const profileCut = await fetch(`${base}/combat/disconnect-peer?slot=0`, {
+          method: "POST",
+        });
         assert(profileCut.ok);
         let denied = await read();
         for (let i = 0; i < 120 && denied[0]?.connection.phase !== "stopped"; i++) {
@@ -1774,6 +1831,9 @@ try {
       await fetch(`${base}/${workload}/close`, { method: "POST" }).catch(() => {});
       await Promise.all(pages.map((page) => page.context().close()));
     }
+  };
+  const report = await withDirectRoomWorker(runProbe, {
+    combatScenario: hostileMode ? "rifle" : "range",
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

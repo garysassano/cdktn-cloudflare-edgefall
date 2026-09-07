@@ -1,3 +1,4 @@
+import type { RifleProfile } from "../actors/rifle.js";
 import type { FirearmCatalog, FirearmProfile } from "../combat/firearm.js";
 import { CONTRACT_FIXTURE } from "../content/contract-fixture.js";
 import type { ContentDefinition } from "../content/schema.js";
@@ -27,6 +28,40 @@ const hmg = {
 };
 COMBAT_CONTENT.weapons.push(hmg);
 COMBAT_CONTENT.attacks.push({ ...attack, id: 2, speed: pixels(18) });
+export const RIFLE_PROFILE: RifleProfile = {
+  timelineIds: [30, 31],
+  raiseTicks: 24,
+  lastReleaseTick: 36,
+  range: pixels(240),
+  upAlignment: pixels(24),
+  upHeight: pixels(48),
+  aimHeight: pixels(16),
+};
+COMBAT_CONTENT.attacks.push({ ...attack, id: 3, speed: pixels(3), lifetimeTicks: 150 });
+for (const [aim, id] of RIFLE_PROFILE.timelineIds.entries()) {
+  const muzzle = aim === 0 ? { x: pixels(15), y: pixels(-23) } : { x: pixels(2), y: pixels(-36) };
+  const poseIds = [id, id + 2, id + 4];
+  for (const [phase, poseId] of poseIds.entries())
+    COMBAT_CONTENT.poses.push({
+      id: poseId,
+      frame: `engineering-rifle-${aim}-${phase}`,
+      durationTicks: [24, 13, 35][phase] ?? 0,
+      sockets: [
+        { name: "muzzle", point: muzzle },
+        { name: "hand", point: { x: 0, y: pixels(-23) } },
+      ],
+      hurtShapeIds: [3],
+    });
+  COMBAT_CONTENT.timelines.push({
+    id,
+    durationTicks: 72,
+    poses: poseIds,
+    markers: [24, 30, 36].flatMap((tickOffset) => [
+      { tickOffset, kind: "spawn-attack" as const, payloadId: 3, socket: "muzzle" as const },
+      { tickOffset, kind: "sound" as const, payloadId: 3, socket: "muzzle" as const },
+    ]),
+  });
+}
 const profiles: FirearmProfile[] = [];
 for (const [index, weapon] of [sidearm, hmg].entries()) {
   const base = 10 + index * 4;

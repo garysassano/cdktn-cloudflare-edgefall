@@ -176,7 +176,7 @@ describe("build and content handshake", () => {
   const hello: Handshake = {
     type: "welcome",
     protocolMajor: 3,
-    protocolMinor: 2,
+    protocolMinor: 3,
     runId: "contract-fixture",
     runEpoch: 1,
     connectionEpoch: 2,
@@ -216,6 +216,7 @@ describe("build and content handshake", () => {
     for (const patch of [
       { protocolMajor: 2 },
       { protocolMinor: 1 },
+      { protocolMinor: 2 },
       { simulationHz: 30 },
       { snapshotHz: 30 },
       { capabilities: 2 },

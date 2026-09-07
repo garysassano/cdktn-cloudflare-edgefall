@@ -7,7 +7,7 @@ import {
   type InputCommand,
   type PlayerAcknowledgment,
 } from "../../game/input/types.js";
-import type { CombatLab } from "../../game/labs/combat.js";
+import type { CombatLab, CombatScenario } from "../../game/labs/combat.js";
 import {
   type CombatCampaign,
   advanceCombatCampaign,
@@ -41,8 +41,8 @@ export interface CombatConnectionChange {
   playerId: number;
   connectionEpoch: number;
 }
-export function createCombatRuntime(): CombatRuntime {
-  const state = createCombatWorkload();
+export function createCombatRuntime(scenario: CombatScenario = "range"): CombatRuntime {
+  const state = createCombatWorkload(scenario);
   const campaign = createCombatCampaign(state.combat);
   projectCombatCampaign(state.snapshot, campaign);
   state.snapshot.roomMode = "playing";

@@ -27,6 +27,7 @@ import {
   EVENT_TYPE,
   type EventBaseline,
   type EventEnvelope,
+  type GameplayEvent,
   decodeEventBaseline,
   decodeEventBatch,
 } from "../shared/protocol/events.js";
@@ -120,6 +121,9 @@ async function startLab() {
     tick: number;
     counter: number;
     kind: string;
+    origin: string;
+    ownerId: number;
+    confirmation: GameplayEvent["confirmation"];
     hash: string;
   }> = [];
   const confirmedEffects: EventEnvelope[] = [];
@@ -228,6 +232,7 @@ async function startLab() {
       connectionHistory,
       connectionStates,
       enemies: snapshot?.enemies ?? [],
+      threats: snapshot?.threats ?? [],
       projectiles: snapshot?.projectiles ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
@@ -456,6 +461,9 @@ async function startLab() {
               tick: item.tick,
               counter: item.counter,
               kind: item.event.kind,
+              origin: item.event.origin,
+              ownerId: item.event.ownerId,
+              confirmation: item.event.confirmation,
               hash: eventHash,
             });
             confirmedEffects.push(item);
@@ -630,12 +638,23 @@ async function startLab() {
           const shape = FOOT_SHAPES.get(enemy.shapeId);
           if (!shape) continue;
           const r = worldRect(enemy, shape.rect, enemy.facing);
-          g.lineStyle(1, 0xff677d);
+          g.lineStyle(1, enemy.mode === 1 ? 0xffce60 : enemy.mode === 3 ? 0x9d91a9 : 0xff677d);
           g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
         }
-        g.fillStyle(0xffe475);
-        for (const projectile of snapshot?.projectiles ?? [])
+        for (const threat of snapshot?.threats ?? []) {
+          g.lineStyle(1, (snapshot?.tick ?? 0) < threat.activeTick ? 0xffce60 : 0xff677d);
+          g.strokeCircle(threat.x / 256, threat.y / 256, 3);
+          g.lineBetween(
+            threat.x / 256,
+            threat.y / 256,
+            threat.x / 256 + Math.sign(threat.vx) * 30,
+            threat.y / 256 + Math.sign(threat.vy) * 30,
+          );
+        }
+        for (const projectile of snapshot?.projectiles ?? []) {
+          g.fillStyle(projectile.definitionId === 3 ? 0xff677d : 0xffe475);
           g.fillRect(projectile.x / 256 - 1, projectile.y / 256 - 1, 3, 2);
+        }
         for (const item of confirmedEffects) {
           const age = (snapshot?.tick ?? 0) - item.tick;
           if (age < 0 || age > 8 || item.event.kind === "sound") continue;
