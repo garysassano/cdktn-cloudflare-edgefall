@@ -1,0 +1,380 @@
+{
+  "recordedAt": "2026-09-07T02:59:58.707Z",
+  "commit": "02eade494f9b7bef0452e21d6a0736b713117a6b",
+  "sourceSha256": "8dd5ae156dd02e8a8e6846c93fe29cc7d2ea5333c808452423d2435951b34c5c",
+  "workerBundleSha256": "712b121bd8b0f4764dbf8b803189c5681d83335272f580bd460733b52d035c9f",
+  "wrangler": "4.128.0",
+  "seeded": {
+    "instance": "83ef8e50-1a8e-4f94-94d6-0dcd80dc1195",
+    "tick": 105,
+    "observedTick": 119,
+    "rollbackTick": 90,
+    "rollbackTicks": [
+      45,
+      90
+    ],
+    "hash": "a76c62c3"
+  },
+  "restored": {
+    "instance": "33e3fad5-7c98-4c72-babd-b4000308a0ed",
+    "tick": 105,
+    "roomMode": "playing",
+    "hash": "a76c62c3",
+    "nextActionId": 55,
+    "nextEntityId": 1054,
+    "eventCursor": 167,
+    "kills": [
+      {
+        "count": 0,
+        "playerId": 1
+      },
+      {
+        "count": 2,
+        "playerId": 2
+      },
+      {
+        "count": 0,
+        "playerId": 3
+      },
+      {
+        "count": 0,
+        "playerId": 4
+      }
+    ],
+    "rows": [
+      {
+        "key": "checkpoint",
+        "run_epoch": 1,
+        "tick": 60,
+        "bytes": 51639
+      },
+      {
+        "key": "segment:61",
+        "run_epoch": 1,
+        "tick": 75,
+        "bytes": 26373
+      },
+      {
+        "key": "segment:76",
+        "run_epoch": 1,
+        "tick": 90,
+        "bytes": 23182
+      },
+      {
+        "key": "head",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 8
+      },
+      {
+        "key": "segment:91",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 23183
+      }
+    ]
+  },
+  "gap": {
+    "instance": "33e3fad5-7c98-4c72-babd-b4000308a0ed",
+    "rejected": true,
+    "reason": "Error: Missing/changed combat durable segment"
+  },
+  "tail": {
+    "seededTail": {
+      "instance": "d223c1ee-fe94-4506-a228-768c6e8f8c14",
+      "tick": 59,
+      "roomMode": "playing",
+      "hash": "406fd8af",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 0,
+          "bytes": 11672
+        },
+        {
+          "key": "segment:1",
+          "run_epoch": 1,
+          "tick": 15,
+          "bytes": 31628
+        },
+        {
+          "key": "segment:16",
+          "run_epoch": 1,
+          "tick": 30,
+          "bytes": 31550
+        },
+        {
+          "key": "segment:31",
+          "run_epoch": 1,
+          "tick": 45,
+          "bytes": 31550
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        },
+        {
+          "key": "segment:46",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 29478
+        }
+      ]
+    },
+    "restoredTail": {
+      "instance": "97dcab16-4151-4cc1-a637-d20c9c253ac8",
+      "tick": 59,
+      "roomMode": "playing",
+      "hash": "406fd8af",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 0,
+          "bytes": 11672
+        },
+        {
+          "key": "segment:1",
+          "run_epoch": 1,
+          "tick": 15,
+          "bytes": 31628
+        },
+        {
+          "key": "segment:16",
+          "run_epoch": 1,
+          "tick": 30,
+          "bytes": 31550
+        },
+        {
+          "key": "segment:31",
+          "run_epoch": 1,
+          "tick": 45,
+          "bytes": 31550
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        },
+        {
+          "key": "segment:46",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 29478
+        }
+      ]
+    },
+    "pausedTail": {
+      "instance": "97dcab16-4151-4cc1-a637-d20c9c253ac8",
+      "tick": 59,
+      "roomMode": "paused-empty",
+      "hash": "7bc79535",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52078
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "coldPause": {
+      "instance": "7738be01-94e5-4b57-9d27-0b294132019d",
+      "tick": 59,
+      "roomMode": "paused-empty",
+      "hash": "7bc79535",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52078
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "expiredTail": {
+      "instance": "7738be01-94e5-4b57-9d27-0b294132019d",
+      "tick": 59,
+      "roomMode": "expired",
+      "hash": "a7002d32",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52072
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "coldExpired": {
+      "instance": "f53d7273-b61d-403d-9030-ea69a34f8db5",
+      "tick": 59,
+      "roomMode": "expired",
+      "hash": "a7002d32",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52072
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    }
+  },
+  "status": "pass",
+  "scope": "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry rollback, persisted pause and terminal non-resurrection; no deployed durability or production outbox claim."
+}

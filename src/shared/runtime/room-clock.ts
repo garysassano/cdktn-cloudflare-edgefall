@@ -39,8 +39,8 @@ export interface ClockSample {
 export interface RoomClockOptions {
   port: ClockPort;
   initialTick: number;
-  /** One synchronous world tick. No wall time or variable delta enters the simulation. */
-  step(tick: number): undefined;
+  /** One synchronous world tick, or an explicit pause before committing it. */
+  step(tick: number): undefined | "paused";
   onDiscontinuity(event: ClockDiscontinuity): void;
   onSample?(sample: ClockSample): void;
 }
@@ -204,6 +204,10 @@ export class RoomClock {
         }
         try {
           const result: unknown = this.options.step(this.tickValue + 1);
+          if (result === "paused") {
+            this.stop();
+            break;
+          }
           if (result !== undefined) {
             // Reject accidentally asynchronous adapters, including JS callers bypassing types.
             if (result instanceof Promise) void result.catch(() => {});

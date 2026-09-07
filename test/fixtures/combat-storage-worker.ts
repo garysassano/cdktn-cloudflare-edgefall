@@ -23,6 +23,49 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const action = new URL(request.url).pathname.split("/")[2];
+    if (action === "seed-tail") {
+      const { states, entries } = recordCombatRecovery();
+      let state = states[0];
+      if (!state) throw new Error("Missing tail fixture");
+      await store.initialize(state);
+      for (const [from, through] of [
+        [0, 15],
+        [15, 30],
+        [30, 45],
+        [45, 59],
+      ] as const) {
+        const accepted = states[through];
+        if (!accepted) throw new Error("Missing tail boundary");
+        state = await store.commit(state, entries.slice(from, through), accepted);
+      }
+    }
+    if (action === "pause-tail" || action === "expire-tail") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing stored tail");
+      const kind = action === "pause-tail" ? "pause" : "expire";
+      this.inject = true;
+      let failed = false;
+      try {
+        await store.transition(previous, kind);
+      } catch {
+        failed = true;
+      }
+      if (!failed || canonical(await store.load()) !== canonical(previous))
+        throw new Error("Lifecycle checkpoint did not roll back");
+      await store.transition(previous, kind);
+    }
+    if (action === "resurrect") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing expired state");
+      let rejected = false;
+      try {
+        await store.transition(previous, "recover");
+      } catch {
+        rejected = true;
+      }
+      if (!rejected || canonical(await store.load()) !== canonical(previous))
+        throw new Error("Expired room was resurrected");
+    }
     if (action === "seed") {
       const { states, entries } = recordCombatRecovery();
       let state = states[0];
@@ -68,6 +111,7 @@ export class CombatStorageProof extends DurableObject<Env> {
       return Response.json({
         instance: this.instance,
         tick: state?.combat.tick,
+        roomMode: state?.snapshot.roomMode,
         hash: state && combatRuntimeHash(state),
         nextActionId: state?.combat.nextActionId,
         nextEntityId: state?.combat.nextEntityId,
@@ -90,7 +134,7 @@ export class CombatStorageProof extends DurableObject<Env> {
 export default {
   fetch(request: Request, env: Env) {
     const name = new URL(request.url).pathname.split("/")[1];
-    if (name !== "proof") return new Response("Not found", { status: 404 });
+    if (name !== "proof" && name !== "tail") return new Response("Not found", { status: 404 });
     return env.STORES.get(env.STORES.idFromName(name)).fetch(request);
   },
 };

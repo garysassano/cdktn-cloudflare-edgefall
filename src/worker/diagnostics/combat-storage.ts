@@ -93,8 +93,8 @@ export class CombatStorage {
       state = structuredClone(accepted);
     return this.exclusive(async () => {
       const began = performance.now();
-      if (saved.length !== COMBAT_SEGMENT_TICKS)
-        throw new Error("Combat durable segment must contain 15 ticks");
+      if (saved.length < 1 || saved.length > COMBAT_SEGMENT_TICKS)
+        throw new Error("Combat durable segment must contain 1 to 15 ticks");
       const raw = await encodeAcceptedCombatJournalSegment(previous, saved, state, this.identity);
       const checkpoint = this.storage.sql
         .exec<ArchiveRow>(
@@ -141,7 +141,10 @@ export class CombatStorage {
       return state;
     });
   }
-  transition(current: CombatRuntime, kind: "start" | "recover"): Promise<CombatRuntime> {
+  transition(
+    current: CombatRuntime,
+    kind: "start" | "recover" | "pause" | "expire",
+  ): Promise<CombatRuntime> {
     const previous = structuredClone(current);
     return this.exclusive(async () => {
       const state = transitionCombatRuntime(previous, kind);
@@ -169,13 +172,13 @@ export class CombatStorage {
       // Consume every cursor before awaiting validation/digests; this is one bounded DB view.
       const rows = this.storage.sql
         .exec<ArchiveRow>(
-          "SELECT key, run_epoch, tick, payload FROM combat_archive ORDER BY tick, key LIMIT 6",
+          "SELECT key, run_epoch, tick, payload FROM combat_archive ORDER BY tick, key LIMIT 7",
         )
         .toArray();
       if (rows.length === 0) return null;
       const checkpoint = rows.find((row) => row.key === "checkpoint"),
         head = rows.find((row) => row.key === "head");
-      if (!checkpoint || !head || rows.length > 5 || !/^[a-f0-9]{8}$/u.test(head.payload))
+      if (!checkpoint || !head || rows.length > 6 || !/^[a-f0-9]{8}$/u.test(head.payload))
         throw new Error("Invalid combat durable metadata");
       let state = await decodeCombatCheckpoint(checkpoint.payload, this.identity);
       if (checkpoint.run_epoch !== state.snapshot.runEpoch || checkpoint.tick !== state.combat.tick)
@@ -184,7 +187,8 @@ export class CombatStorage {
         if (
           segment.key !== `segment:${state.combat.tick + 1}` ||
           segment.run_epoch !== state.snapshot.runEpoch ||
-          segment.tick !== state.combat.tick + COMBAT_SEGMENT_TICKS
+          segment.tick <= state.combat.tick ||
+          segment.tick > state.combat.tick + COMBAT_SEGMENT_TICKS
         )
           throw new Error("Missing/changed combat durable segment");
         state = await restoreCombatJournalSegment(state, segment.payload, this.identity);

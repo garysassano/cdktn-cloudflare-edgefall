@@ -18,6 +18,7 @@ export class CombatJournalWriter {
   private queued: CombatJournalTick[] = [];
   private queuedEnd: CombatRuntime | null = null;
   private pending: Promise<void> | null = null;
+  private sealed: Promise<CombatRuntime> | null = null;
   private failure: string | null = null;
   private accepting = true;
   constructor(
@@ -77,6 +78,9 @@ export class CombatJournalWriter {
     if (!accepted) throw new Error("Missing accepted combat boundary");
     this.queuedEnd = null;
     const entries = this.queued.splice(0, COMBAT_SEGMENT_TICKS);
+    this.write(entries, accepted);
+  }
+  private write(entries: CombatJournalTick[], accepted: CombatRuntime) {
     // Start on a microtask, after the accepted synchronous world/clock step has returned.
     this.pending = Promise.resolve()
       .then(() => this.port.commit(this.durable, entries, accepted))
@@ -102,10 +106,38 @@ export class CombatJournalWriter {
       });
     this.keepAlive(this.pending);
   }
+  /** Stop at the accepted boundary and confirm its final, possibly short segment without new ticks. */
+  seal(current: CombatRuntime): Promise<CombatRuntime> {
+    if (this.sealed) return this.sealed;
+    if (!this.accepting || this.failure)
+      return Promise.reject(new Error("Combat journal writer requires recovery"));
+    if (
+      current.combat.tick !== this.acceptedTick ||
+      combatRuntimeHash(current) !== this.acceptedHash
+    )
+      return Promise.reject(new Error("Combat seal boundary changed"));
+    const accepted = structuredClone(current);
+    this.accepting = false;
+    this.sealed = (async () => {
+      await this.pending;
+      if (this.failure) throw new Error(this.failure);
+      if (this.queued.length) {
+        this.write(this.queued.splice(0), accepted);
+        this.queuedEnd = null;
+        await this.pending;
+      }
+      if (this.failure) throw new Error(this.failure);
+      if (this.durable.combat.tick !== this.acceptedTick || this.durableHash !== this.acceptedHash)
+        throw new Error("Unconfirmed combat pause tail");
+      return structuredClone(this.durable);
+    })();
+    return this.sealed;
+  }
   /** Stop scheduling new work, wait for the in-flight write, then recover only the durable head. */
   async retire(): Promise<void> {
     this.accepting = false;
-    await this.pending;
+    if (this.sealed) await this.sealed.catch(() => {});
+    else await this.pending;
     this.queued = [];
     this.queuedEnd = null;
   }

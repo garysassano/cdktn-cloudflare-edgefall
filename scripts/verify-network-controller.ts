@@ -361,31 +361,76 @@ try {
         }
         await prepareAndStart();
         const continued = await until((cs) => cs.every((c) => c.snapshotTick >= cold.tick + 30));
-        // An absent cohort remains stopped until the authority explicitly recovers its prefix.
-        await Promise.all(
-          pages.map((_, slot) =>
-            fetch(`${base}/combat/disconnect-peer?slot=${slot}`, { method: "POST" }).then((r) =>
-              assert(r.ok),
-            ),
-          ),
-        );
+        const control = async (
+          method: "pauseConnection" | "resumeConnection",
+          slots = [0, 1, 2, 3],
+        ) =>
+          Promise.all(
+            pages
+              .filter((_, slot) => slots.includes(slot))
+              .map((page) =>
+                page.evaluate((method) => {
+                  const lab = (
+                    globalThis as unknown as {
+                      controllerNetworkLab: {
+                        pauseConnection(): void;
+                        resumeConnection(): void;
+                      };
+                    }
+                  ).controllerNetworkLab;
+                  lab[method]();
+                }, method),
+              ),
+          );
+        // Retire the transports deliberately so no automatic retry can hide the empty boundary.
+        for (let i = 0; i < 60; i++) {
+          const current = await status();
+          if (
+            (current.durability?.queuedTicks ?? 0) >= 3 &&
+            (current.durability?.queuedTicks ?? 0) <= 8
+          )
+            break;
+          await new Promise((resolve) => setTimeout(resolve, 10));
+        }
+        await control("pauseConnection");
         let empty = await status();
-        for (let i = 0; i < 40 && empty.roomMode !== "paused-empty"; i++) {
+        for (let i = 0; i < 80 && (!empty.emptyPause || empty.roomMode !== "paused-empty"); i++) {
           await new Promise((resolve) => setTimeout(resolve, 20));
           empty = await status();
         }
         assert.equal(empty.roomMode, "paused-empty");
+        assert.equal(empty.clock.tick, empty.tick);
         assert.equal(empty.clock.timerPending, false);
+        assert.equal(empty.durability?.committedTick, empty.tick);
+        assert.equal(empty.durability?.backlogTicks, 0);
+        const tail = empty.persistenceCommits.at(-1);
+        assert(
+          tail && tail.throughTick - tail.fromTick + 1 < 15,
+          "The fixture did not exercise a short pause tail",
+        );
+        assert.equal(
+          empty.alarmAtMs,
+          Math.max(...(empty.membership?.members.map((m) => m.reservedUntilMs) ?? [])),
+        );
         await new Promise((resolve) => setTimeout(resolve, 250));
         const stillEmpty = await status();
         assert.equal(stillEmpty.tick, empty.tick);
         assert.equal(stillEmpty.peers.filter((p) => p.active).length, 0);
-        const recovery = await fetch(`${base}/combat/recover`, { method: "POST" });
-        assert(recovery.ok);
-        const boundary = await status();
+        assert.equal(await restart(), base);
+        const coldPaused = await status();
+        assert.notEqual(coldPaused.instanceId, empty.instanceId);
+        assert.equal(coldPaused.roomMode, "paused-empty");
+        assert.deepEqual(coldPaused.emptyPause, empty.emptyPause);
+        assert.equal(coldPaused.alarmAtMs, empty.alarmAtMs);
+        // A reserved profile's ordinary connection request now restores the room; no /recover call.
+        await control("resumeConnection");
         const reloaded = await until((cs) =>
-          cs.every((c) => c.ready && c.runEpoch === boundary.runEpoch),
+          cs.every((c) => c.ready && c.runEpoch === empty.runEpoch + 1),
         );
+        const boundary = await status();
+        assert.equal(boundary.tick, empty.tick);
+        assert.equal(boundary.roomMode, "loading");
+        assert.equal(boundary.alarmAtMs, null);
         assert(
           reloaded.every(
             (c, slot) => c.documentId === before[slot]?.documentId && c.sequence === 0,
@@ -453,6 +498,94 @@ try {
         const replacementClient = (await read())[3];
         assert(replacementClient);
         assert.equal(replacementClient.connectionEpoch, replaced.connectionEpoch + 1);
+        await control("pauseConnection");
+        let beforeSolo = await status();
+        for (let i = 0; i < 80 && !beforeSolo.emptyPause; i++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          beforeSolo = await status();
+        }
+        assert(beforeSolo.emptyPause);
+        await control("resumeConnection", [1]);
+        const soloPage = pages[1];
+        assert(soloPage);
+        await soloPage.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as {
+                controllerNetworkLab: { status(): ClientStatus };
+              }
+            ).controllerNetworkLab.status().ready,
+        );
+        const soloBaseline = (await read())[1];
+        assert(soloBaseline && soloBaseline.error === null);
+        assert.equal(soloBaseline.sequence, 0);
+        assert.equal(soloBaseline.initialServerTick, beforeSolo.tick);
+        assert.equal(soloBaseline.documentId, before[1]?.documentId);
+        await soloPage.locator("#prepare").click();
+        assert.equal((await fetch(`${base}/combat/start`, { method: "POST" })).status, 200);
+        await soloPage.waitForFunction(
+          (tick) =>
+            (
+              globalThis as unknown as {
+                controllerNetworkLab: { status(): ClientStatus };
+              }
+            ).controllerNetworkLab.status().snapshotTick >= tick,
+          beforeSolo.tick + 24,
+        );
+        const soloContinued = (await read())[1];
+        assert(soloContinued && soloContinued.error === null);
+        assert.equal(soloContinued.events?.counts.killed ?? 0, 0);
+        const soloRoom = await status();
+        assert.equal(soloRoom.peers.filter((p) => p.active).length, 1);
+        await control("pauseConnection");
+        let expiring = await status();
+        for (let i = 0; i < 80 && !expiring.emptyPause; i++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          expiring = await status();
+        }
+        assert.equal(expiring.roomMode, "paused-empty");
+        assert(expiring.alarmAtMs && expiring.emptyPause);
+        assert.equal(await restart(), base);
+        process.stdout.write(
+          `${JSON.stringify({ stage: "waiting-for-real-expiry-alarm", deadlineMs: expiring.alarmAtMs })}\n`,
+        );
+        const expiryStarted = performance.now();
+        let expired = await status();
+        while (expired.roomMode !== "expired" && performance.now() - expiryStarted < 120_000) {
+          await new Promise((resolve) => setTimeout(resolve, 250));
+          expired = await status();
+        }
+        assert.equal(expired.roomMode, "expired", "Durable expiry alarm did not finish");
+        assert(expired.alarmDeliveries >= 1);
+        assert.equal(expired.tick, expiring.tick);
+        assert.equal(expired.clock.timerPending, false);
+        assert.equal(expired.alarmAtMs, null);
+        const expiryWaitMs = performance.now() - expiryStarted;
+        const returning = pages[1];
+        assert(returning);
+        await returning.evaluate(() =>
+          (
+            globalThis as unknown as {
+              controllerNetworkLab: { resumeConnection(): void };
+            }
+          ).controllerNetworkLab.resumeConnection(),
+        );
+        await returning.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as {
+                controllerNetworkLab: { status(): ClientStatus };
+              }
+            ).controllerNetworkLab.status().connection.phase === "stopped",
+        );
+        const afterExpiry = (await read())[1];
+        assert.equal(afterExpiry?.connection.reason, "room-ended");
+        assert.equal((await fetch(`${base}/combat/recover`, { method: "POST" })).status, 409);
+        assert.equal(await restart(), base);
+        const coldExpired = await status();
+        assert.equal(coldExpired.roomMode, "expired");
+        assert.equal(coldExpired.tick, expired.tick);
+        assert.equal(coldExpired.runEpoch, expired.runEpoch);
         return {
           status: "pass",
           baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
@@ -469,6 +602,7 @@ try {
           continued,
           empty,
           stillEmpty,
+          coldPaused,
           boundary,
           reloaded,
           clients,
@@ -477,8 +611,17 @@ try {
           afterDenial,
           replaced,
           replacementClient,
+          beforeSolo,
+          soloBaseline,
+          soloContinued,
+          soloRoom,
+          expiring,
+          expired,
+          coldExpired,
+          afterExpiry,
+          expiryWaitMs,
           scope:
-            "Four real Chromium contexts automatically reconnect in the same documents after one peer is closed and after a fresh workerd process on the same origin; full-cohort absence remains paused until explicit authority recovery. No queued old intent/effects or replacement profile is admitted. Explicit loading/start barrier remains; pause-tail persistence/expiry alarms, production v3 authority, full impaired transport and staging timing remain open.",
+            "Four real Chromium contexts recover after a peer disconnect, browser stall and same-origin process restart. Explicit transport retirement exposes the durable empty pause: the short journal tail survives another process, and an ordinary reserved-profile connection restores the exact tick without /recover. A real 90-second reservation alarm expires the empty room across process replacement and the terminal checkpoint survives another restart. Fresh input/start remains explicit. Production v3, all-mode admission, hostile/vehicle reentry and sustained timing remain open.",
         };
       }
       if (combatReconnectMode) {

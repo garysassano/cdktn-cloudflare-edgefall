@@ -6,6 +6,7 @@ import {
   createMembership,
   decodeMembership,
   disconnectMember,
+  emptyReservationDeadline,
   recoverMembership,
 } from "../src/shared/session/membership.js";
 import {
@@ -47,6 +48,23 @@ describe("signed anonymous browser identity", () => {
   });
 });
 describe("profile-bound room reservations", () => {
+  it("expires only an empty party at its final reservation deadline without extending it on wake", () => {
+    let state = admitMember(createMembership(), id, 0, true, 1000);
+    state = admitMember(state, other, 1, true, 2000);
+    expect(emptyReservationDeadline(state)).toBeNull();
+    state = disconnectMember(state, 0, 1, 3000);
+    expect(emptyReservationDeadline(state)).toBeNull();
+    state = disconnectMember(state, 1, 1, 4000);
+    expect(emptyReservationDeadline(state)).toBe(94_000);
+    expect(recoverMembership(state)).toEqual(state);
+    expect(recoverMembership(recoverMembership(state))).toEqual(state);
+    const admitted = admitMember(state, id, 0, false, 92_999);
+    expect(emptyReservationDeadline(admitted)).toBeNull();
+    const backwards = disconnectMember(admitted, 0, 2, 1000);
+    expect(backwards.members[0]?.lastSeenAtMs).toBe(92_999);
+    expect(emptyReservationDeadline(backwards)).toBe(182_999);
+    expect(emptyReservationDeadline(createMembership())).toBeNull();
+  });
   it("rejects foreign slot claims and one identity controlling multiple slots", () => {
     const joined = admitMember(createMembership(), id, 0, true, 1000);
     expect(() => admitMember(joined, other, 0, true, 1001)).toThrow("slot-reserved");

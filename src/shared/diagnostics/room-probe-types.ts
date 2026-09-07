@@ -28,6 +28,9 @@ export interface PeerMetrics {
   lastHeld: number;
 }
 export interface RoomProbeStatus {
+  emptyPause: { tick: number; runEpoch: number; hash: string } | null;
+  alarmAtMs: number | null;
+  alarmDeliveries: number;
   connections: Array<{
     slot: number;
     tick: number;

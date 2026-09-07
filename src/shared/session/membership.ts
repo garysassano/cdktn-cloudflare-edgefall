@@ -67,8 +67,8 @@ export function admitMember(
       throw new Error("reconnect-window-expired");
     owned.generation = integer(owned.generation + 1, 1, COUNTER_LIMIT - 1, "membership generation");
     owned.connected = true;
-    owned.lastSeenAtMs = now;
-    owned.reservedUntilMs = now + RECONNECT_WINDOW_MS;
+    owned.lastSeenAtMs = Math.max(now, owned.lastSeenAtMs);
+    owned.reservedUntilMs = owned.lastSeenAtMs + RECONNECT_WINDOW_MS;
   }
   state.members.sort((a, b) => a.slot - b.slot);
   return changed(state);
@@ -85,8 +85,8 @@ export function disconnectMember(
   const member = state.members.find((m) => m.slot === slot && m.generation === generation);
   if (!member?.connected) return state;
   member.connected = false;
-  member.lastSeenAtMs = now;
-  member.reservedUntilMs = now + RECONNECT_WINDOW_MS;
+  member.lastSeenAtMs = Math.max(now, member.lastSeenAtMs);
+  member.reservedUntilMs = member.lastSeenAtMs + RECONNECT_WINDOW_MS;
   return changed(state);
 }
 export function checkpointMembership(current: RoomMembership, now: number): RoomMembership {
@@ -102,8 +102,14 @@ export function checkpointMembership(current: RoomMembership, now: number): Room
 /** A restart uses the last durable heartbeat, never a newly minted 90-second window. */
 export function recoverMembership(current: RoomMembership): RoomMembership {
   const state = structuredClone(current);
+  if (!state.members.some((member) => member.connected)) return state;
   for (const member of state.members) member.connected = false;
   return changed(state);
+}
+/** Expire an empty room only after its final reserved member loses admission. */
+export function emptyReservationDeadline(state: RoomMembership): number | null {
+  if (!state.members.length || state.members.some((member) => member.connected)) return null;
+  return Math.max(...state.members.map((member) => member.reservedUntilMs));
 }
 export function decodeMembership(raw: string): RoomMembership {
   if (raw.length > 4096) throw new Error("Membership size");

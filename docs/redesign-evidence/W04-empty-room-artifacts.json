@@ -1,0 +1,155 @@
+{
+  "baseCommit": "02eade494f9b7bef0452e21d6a0736b713117a6b",
+  "artifacts": [
+    {
+      "file": "W04-empty-room-browser.json.gz",
+      "rawBytes": 2904376,
+      "bytes": 173227,
+      "rawSha256": "1138025a8c10367b6507311253957720a3084e548553ab17266926456677061a",
+      "sha256": "3a8786c434b67fd353d0cc57e7078077e498b1e101c4ee8223fd0a28a2339e25",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-diagnostics.json.gz",
+      "rawBytes": 119639,
+      "bytes": 16536,
+      "rawSha256": "5467b42f24696c1fd72a18124d0e4056ab275fac6d65a15edabe5a5fa5d41ddd",
+      "sha256": "94d5e3857832fbd159c9b7b858f9818c42baf4ebda260579ed1e69d6425b057f",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-storage.json",
+      "rawBytes": 7786,
+      "bytes": 7786,
+      "rawSha256": "3755478c7c82bf0df7f57dc11a2631ef268d21ace6cbd1ac1cf53c2205ee3d3c",
+      "sha256": "3755478c7c82bf0df7f57dc11a2631ef268d21ace6cbd1ac1cf53c2205ee3d3c",
+      "gzip": false
+    },
+    {
+      "file": "W04-empty-room-cohort.json.gz",
+      "rawBytes": 3409377,
+      "bytes": 175573,
+      "rawSha256": "9c6d1f818c569999061a5297cb3d59757a365242407ac176c15e8ca719fb8dff",
+      "sha256": "18715ea75624b5049234e09b8b4a54eb6c70b32169f18494aee19c9d60e28e99",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-baseline.json.gz",
+      "rawBytes": 837420,
+      "bytes": 48230,
+      "rawSha256": "ed16e90d90d359e49945dd2094115ef6adcb1e27403188c49171ceb8270b9590",
+      "sha256": "c9fdc7bfb44ff30ca16c1832e00acaeb5d5740ad5711911b6e01700c375594bb",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-clock-failure.json.gz",
+      "rawBytes": 215435,
+      "bytes": 9740,
+      "rawSha256": "9d82370509b3738a39405644144263a197dfd11f3576e166ed29b496ef75aa7f",
+      "sha256": "968a4b7a435a2979206cfde6102e09fde91da7eda15600dd4c0de44a6534b0e4",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-clock-clients.json.gz",
+      "rawBytes": 564504,
+      "bytes": 43703,
+      "rawSha256": "1bf09de335e5fd36e33f9d3caa7d2aa1c12f5848df096ca1252aaf186506ce01",
+      "sha256": "70d66bf81dcfa78bf3ab462668484ed35ba76d68f553fdf66c493e9dd69394a5",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-clock-diagnostics.json.gz",
+      "rawBytes": 134260,
+      "bytes": 17352,
+      "rawSha256": "4ae07300c542a30a9f820d9c9fd5904abd0da5cbc70fd17264a5414436e52aa8",
+      "sha256": "80ca896571ecbc112feb8fe0920db23031b0c057b5d99a5a5e255da6416359de",
+      "gzip": true
+    },
+    {
+      "file": "W04-empty-room-check.txt.gz",
+      "rawBytes": 2632,
+      "bytes": 1360,
+      "rawSha256": "752407408ab83be746f63856b4da109463e51cc1564e16159b7d6e7d7952efc1",
+      "sha256": "b4453831a80e8d6af9c9648d660146f90c1b7c3cab878fc4f87015febeb46527",
+      "gzip": true
+    }
+  ],
+  "sources": [
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "4efee710476dc9756d49bd0920fa1aa4d9b7a3d7dac896b9d7d9ba15d46c4fc3"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "514a0dfd6d81ad7ee34c2bb920e44ed9da38bb82e6d487678ffd5532ef7aa5e4"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "b41be7146976534c132420026051fde68c96a14faef002614cf7b0d1719cd1bf"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "16949abe76e630119e3019b300aee1b5ab5f13049ccf05740663420e4c7320b2"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "9d478d64f5ac83a7d184af2bd3899a513f48ca3465e0fbbea2ceed5c242b14f6"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "25afbafa7628a96e72a11125403ee05ccae155a22b5ab6eed8aa03a203ac2d1a"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "file": "src/shared/diagnostics/room-probe-types.ts",
+      "sha256": "131700af2b23d340707a65d12bdc816cd4d5e452c30c485a916b4e2b2d61a1fc"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/shared/session/admission.ts",
+      "sha256": "7a4664f4f0c48267dfb4f2d270b75a66d675ecffd006bafc6cebe1c6cf4d8979"
+    },
+    {
+      "file": "src/shared/session/membership.ts",
+      "sha256": "600b5fc01cd329d3464bb2b6a558ea3febd2cb551dfbd8d70d7c0e315bdd9c20"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "4257af48b9526fe088c39c618e7f10b2c0ccb6a8524132f0b54461566582acbc"
+    },
+    {
+      "file": "src/worker/diagnostics/membership-storage.ts",
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "3cd0c97fb011f1f16a47243afed7530a09f388b8033f8c76146b2a32525f63a1"
+    },
+    {
+      "file": "test/combat-writer.test.ts",
+      "sha256": "f46bda24dcce6c4a2f1ee231e2db9caf426fa75ff6aa6ff338e77fdeb95af9f3"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "0d1476060873d279f6c79a19b9ee692c0aa90ea31e1d833965bac4a8a6af2aac"
+    },
+    {
+      "file": "test/runtime/room-clock.test.ts",
+      "sha256": "5251a6deac569136e5544dc1f5274737c1b193b91ff4fb5fa92f203189226e34"
+    },
+    {
+      "file": "test/session.test.ts",
+      "sha256": "e8f21fc37d07a7a24dd0e34871370e0b6f14527d0a1894d918a7f16bfcbf78ad"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ]
+}

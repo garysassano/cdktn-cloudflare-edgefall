@@ -56,6 +56,7 @@ import {
   admitMember,
   checkpointMembership,
   disconnectMember,
+  emptyReservationDeadline,
 } from "../../shared/session/membership.js";
 import {
   PROFILE_COOKIE_NAME,
@@ -100,12 +101,16 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private holdNextPersistence = false;
   private heldPersistence: { release: () => void; reject: () => void } | null = null;
   private starting = false;
+  private pausing: Promise<void> | null = null;
+  private alarmAtMs: number | null = null;
+  private alarmDeliveries = 0;
+  private emptyPause: RoomProbeStatus["emptyPause"] = null;
   private identity: Promise<GameIdentity> = Promise.resolve(PROBE_IDENTITY);
   private failNextCombatTick = false;
   private worldFailure: string | null = null;
   private readonly peers = new Map<number, Peer>();
   private readonly pendingPeers = new Map<number, Peer>();
-  private readonly admissions = new Set<number>();
+  private readonly admissions = new Map<number, Promise<void>>();
   private members: MembershipStorage | null = null;
   private resolvedIdentity: GameIdentity = PROBE_IDENTITY;
   private staleSocketEvents = 0;
@@ -221,11 +226,109 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     } catch (error) {
       peer.metrics.lastOutputError ??= String(error).slice(0, 256);
     }
+    this.pauseEmpty();
   }
   private disconnectAll(reason: string): void {
     for (const peer of this.peers.values()) this.disconnect(peer, reason, 4003);
     for (const peer of this.pendingPeers.values()) this.disconnect(peer, reason, 4003);
     this.pendingPeers.clear();
+    if (this.workload === "combat" && this.world.roomMode !== "expired")
+      this.ctx.waitUntil(this.scheduleExpiry());
+  }
+  private hasPeers(): boolean {
+    return [...this.peers.values(), ...this.pendingPeers.values()].some(
+      (peer) => peer.metrics.active,
+    );
+  }
+  private async scheduleExpiry() {
+    const deadline = this.members && emptyReservationDeadline(this.members.state);
+    if (deadline !== null && deadline !== undefined) {
+      this.alarmAtMs = deadline;
+      await this.ctx.storage.setAlarm(deadline);
+    }
+  }
+  private async clearExpiry() {
+    this.alarmAtMs = null;
+    await this.ctx.storage.deleteAlarm();
+  }
+  private pauseEmpty(): void {
+    if (
+      this.workload !== "combat" ||
+      this.pausing ||
+      this.starting ||
+      !["playing", "loading"].includes(this.world.roomMode) ||
+      this.hasPeers()
+    )
+      return;
+    const accepted = structuredClone(this.combatRuntime());
+    this.emptyPause = null;
+    this.clock.stop();
+    this.clearWatchdog();
+    this.world.roomMode = "paused-empty";
+    this.world.stateHash = roomWorkloadHash(this.world);
+    this.starting = true;
+    this.pausing = (async () => {
+      // In-flight admissions observe the changed phase, undo their claim and settle first.
+      await Promise.all(this.admissions.values());
+      await this.scheduleExpiry();
+      if (!this.combatStore) throw new Error("Missing combat store");
+      const durable = this.combatWriter ? await this.combatWriter.seal(accepted) : accepted;
+      if (this.world.roomMode !== "paused-empty") return;
+      const paused = await this.combatStore.transition(durable, "pause");
+      if (this.world.roomMode !== "paused-empty") return;
+      this.installCombat(paused);
+      this.emptyPause = {
+        tick: paused.combat.tick,
+        runEpoch: paused.snapshot.runEpoch,
+        hash: combatRuntimeHash(paused),
+      };
+    })()
+      .catch((error) => this.pausePersistence(String(error)))
+      .finally(() => {
+        this.pausing = null;
+        this.starting = false;
+      });
+    this.ctx.waitUntil(this.pausing);
+  }
+  async alarm(): Promise<void> {
+    this.alarmDeliveries++;
+    this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize("combat"));
+    await this.initialization;
+    await this.pausing;
+    if (this.world.roomMode === "expired" || this.hasPeers()) {
+      await this.clearExpiry();
+      return;
+    }
+    if (this.starting || this.admissions.size) {
+      this.alarmAtMs = Date.now() + 1000;
+      await this.ctx.storage.setAlarm(this.alarmAtMs);
+      return;
+    }
+    const deadline = this.members && emptyReservationDeadline(this.members.state);
+    if (deadline === null || deadline === undefined) return;
+    if (Date.now() < deadline) {
+      await this.scheduleExpiry();
+      return;
+    }
+    this.starting = true;
+    this.clock.close();
+    this.clearWatchdog();
+    try {
+      await this.combatWriter?.retire();
+      this.combatWriter = null;
+      const previous = await this.combatStore?.load();
+      if (!previous || !this.combatStore) throw new Error("Missing expiry checkpoint");
+      const expired =
+        previous.snapshot.roomMode === "expired"
+          ? previous
+          : await this.combatStore.transition(previous, "expire");
+      this.installCombat(expired);
+      this.peers.clear();
+      this.pendingPeers.clear();
+      await this.clearExpiry();
+    } finally {
+      this.starting = false;
+    }
   }
   private finish(reason: string): void {
     this.clock.close();
@@ -342,7 +445,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     }
   }
 
-  private step(tick: number): undefined {
+  private step(tick: number): undefined | "paused" {
     const cpuStart = performance.now(); // Local CPU diagnostic only; never enters world arithmetic.
     const replacements = [...this.pendingPeers].sort(([a], [b]) => a - b);
     const cohort = new Map([...this.peers, ...replacements]);
@@ -356,6 +459,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           this.disconnect(peer, "reader-stalled", 4002);
         return peer.metrics.active;
       });
+    if (this.workload === "combat" && active.length === 0) {
+      this.pauseEmpty();
+      return "paused";
+    }
     const transaction = InputStream.processWorldTick<{
       snapshot: CombatRuntime["snapshot"];
       combat: CombatLab | null;
@@ -515,9 +622,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       this.world.roomMode === "playing" &&
       ![...this.peers.values()].some((peer) => peer.metrics.active)
     ) {
-      this.world.roomMode = "paused-empty";
-      this.clock.stop();
-      this.clearWatchdog();
+      if (this.workload === "combat") this.pauseEmpty();
+      else {
+        this.world.roomMode = "paused-empty";
+        this.clock.stop();
+        this.clearWatchdog();
+      }
     }
     let encodeMs = 0;
     if (tick % 3 === 0) {
@@ -533,6 +643,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (this.localCpu.length < 1200)
       this.localCpu.push([tick, performance.now() - cpuStart, encodeMs]);
     if (tick >= 1200) this.finish("tick-limit");
+    return undefined;
   }
 
   private combatRuntime(): CombatRuntime {
@@ -599,6 +710,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       runEpoch: state.snapshot.runEpoch,
     };
     this.installCombat(state);
+    this.emptyPause = null;
     this.clock = this.createClock(state.combat.tick);
     this.recoveries = state.snapshot.runEpoch - 1;
     this.persistenceFailure = null;
@@ -645,8 +757,27 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         },
       );
       const loaded = await this.combatStore.load();
-      if (loaded) await this.restoreCombat(loaded);
+      if (loaded && ["paused-empty", "expired"].includes(loaded.snapshot.roomMode)) {
+        this.installCombat(loaded);
+        this.clock = this.createClock(loaded.combat.tick);
+        this.recoveries = loaded.snapshot.runEpoch - 1;
+        if (loaded.snapshot.roomMode === "expired") this.clock.close();
+        else
+          this.emptyPause = {
+            tick: loaded.combat.tick,
+            runEpoch: loaded.snapshot.runEpoch,
+            hash: combatRuntimeHash(loaded),
+          };
+      } else if (loaded) await this.restoreCombat(loaded);
       else await this.combatStore.initialize(initial);
+      this.alarmAtMs = await this.ctx.storage.getAlarm();
+      // getAlarm() is null while the alarm itself is running; let that handler own rescheduling.
+      if (
+        this.world.roomMode !== "expired" &&
+        this.alarmAtMs === null &&
+        this.alarmDeliveries === 0
+      )
+        await this.scheduleExpiry();
     } else
       this.identity = Promise.resolve(
         this.workload === "controller" ? CONTROLLER_IDENTITY : PROBE_IDENTITY,
@@ -698,7 +829,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       if (this.world.roomMode === "expired" || this.world.roomMode === "completed")
         return reply("room-ended", 410);
       if (
-        !["loading", "playing"].includes(this.world.roomMode) ||
+        !["loading", "playing", "paused-empty"].includes(this.world.roomMode) ||
         this.starting ||
         this.admissions.has(slot) ||
         this.pendingPeers.has(slot)
@@ -783,9 +914,9 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           return new Response("Recovery unavailable", { status: 409 });
         this.clock.close();
         this.clearWatchdog();
+        this.world.roomMode = "recovering";
         this.disconnectAll("baseline-replaced");
         this.peers.clear();
-        this.world.roomMode = "recovering";
         this.starting = true;
         try {
           await this.restoreCombat();
@@ -834,6 +965,30 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return new Response("Upgrade required", { status: 426 });
       if (url.searchParams.get("slot") === null || !Number.isInteger(slot) || slot < 0 || slot > 3)
         return new Response("Invalid slot", { status: 400 });
+      if (this.workload === "combat" && this.world.roomMode === "paused-empty") {
+        if (this.starting) return new Response("Pause persistence pending", { status: 503 });
+        try {
+          if (!this.members) throw new Error("Missing room membership");
+          admitMember(
+            this.members.state,
+            request.headers.get("X-Edgefall-Profile") ?? "",
+            slot,
+            false,
+            Date.now(),
+          );
+        } catch (error) {
+          return new Response(error instanceof Error ? error.message : "Admission failed", {
+            status: 409,
+          });
+        }
+        this.starting = true;
+        try {
+          await this.restoreCombat();
+          this.peers.clear();
+        } finally {
+          this.starting = false;
+        }
+      }
       const replacing = this.workload === "combat" && this.world.roomMode === "playing";
       if (
         replacing &&
@@ -850,6 +1005,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       )
         return new Response("Room admission unavailable", { status: 409 });
       let generation = 0;
+      let settleAdmission = () => {};
       if (this.members) {
         const profileId = request.headers.get("X-Edgefall-Profile") ?? "";
         try {
@@ -861,7 +1017,14 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             Date.now(),
           );
           generation = admitted.members.find((m) => m.slot === slot)?.generation ?? 0;
-          this.admissions.add(slot);
+          let settled = () => {};
+          this.admissions.set(
+            slot,
+            new Promise<void>((resolve) => {
+              settled = resolve;
+            }),
+          );
+          settleAdmission = settled;
           const epoch = this.world.runEpoch;
           this.members.save(admitted);
           await this.ctx.storage.sync();
@@ -881,6 +1044,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           });
         } finally {
           this.admissions.delete(slot);
+          settleAdmission();
         }
       }
       const pair = new WebSocketPair();
@@ -930,6 +1094,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         this.peers.set(slot, peer);
         this.welcome(peer);
       }
+      if (this.members && peer.metrics.active) await this.clearExpiry();
       return new Response(null, { status: 101, webSocket: pair[0] });
     }
     if (action !== "status" && request.method !== "POST")
@@ -939,15 +1104,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         this.starting ||
         this.admissions.size > 0 ||
         this.world.roomMode !== "loading" ||
-        this.peers.size !== 4 ||
-        [...this.peers.values()].some(
-          (peer) =>
-            !peer.metrics.active ||
-            peer.initialBaseline !== null ||
-            (this.controllerInputs && peer.input.queuedCommands < CONTROLLER_INPUT_PREFILL_TICKS),
-        )
+        ![...this.peers.values()].some((peer) => peer.metrics.active) ||
+        [...this.peers.values()]
+          .filter((peer) => peer.metrics.active)
+          .some(
+            (peer) =>
+              !peer.metrics.active ||
+              peer.initialBaseline !== null ||
+              (this.controllerInputs && peer.input.queuedCommands < CONTROLLER_INPUT_PREFILL_TICKS),
+          )
       )
-        return new Response("Four clients required", { status: 409 });
+        return new Response("Ready connected clients required", { status: 409 });
       this.starting = true;
       try {
         if (this.workload === "combat") {
@@ -967,12 +1134,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       } finally {
         this.starting = false;
       }
-      if ([...this.peers.values()].some((peer) => !peer.metrics.active)) {
-        this.pausePersistence("start-cohort-changed");
+      if (![...this.peers.values()].some((peer) => peer.metrics.active)) {
+        this.pauseEmpty();
         return new Response("Start cohort changed", { status: 409 });
       }
       const now = performance.now();
       for (const peer of this.peers.values()) {
+        if (!peer.metrics.active) continue;
         peer.lease = new ControlLease(now);
         peer.lastAckAt = now;
       }
@@ -987,6 +1155,9 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     } else if (action === "close") this.finish("observer-closed");
     else if (action !== "status") return new Response("Not found", { status: 404 });
     const status: RoomProbeStatus = {
+      emptyPause: this.emptyPause,
+      alarmAtMs: this.alarmAtMs,
+      alarmDeliveries: this.alarmDeliveries,
       connections: this.connections,
       staleSocketEvents: this.staleSocketEvents,
       membership: this.members

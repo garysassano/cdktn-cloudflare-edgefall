@@ -81,6 +81,45 @@ try {
   const gapResponse = await fetch(`${await origin()}/proof/gap`, { method: "POST" });
   assert.equal(gapResponse.status, 409, "Missing journal segment was silently accepted");
   const gap = await gapResponse.json();
+  const tailState = async (action: string) => {
+    const response = await fetch(`${await origin()}/tail/${action}`, { method: "POST" });
+    assert(response.ok, `Tail ${action}: ${await response.clone().text()}`);
+    return (await response.json()) as {
+      instance: string;
+      tick: number;
+      roomMode: string;
+      hash: string;
+      rows: unknown[];
+    };
+  };
+  const seededTail = await tailState("seed-tail");
+  assert.equal(seededTail.tick, 59);
+  assert.equal(seededTail.rows.length, 6);
+  await runtime.dispose();
+  runtime = create();
+  const restoredTail = await tailState("restore");
+  assert.notEqual(restoredTail.instance, seededTail.instance);
+  assert.equal(restoredTail.hash, seededTail.hash);
+  assert.equal(restoredTail.tick, 59);
+  const pausedTail = await tailState("pause-tail");
+  assert.equal(pausedTail.roomMode, "paused-empty");
+  assert.equal(pausedTail.rows.length, 2);
+  await runtime.dispose();
+  runtime = create();
+  const coldPause = await tailState("restore");
+  assert.notEqual(coldPause.instance, pausedTail.instance);
+  assert.equal(coldPause.hash, pausedTail.hash);
+  assert.equal(coldPause.tick, 59);
+  assert.equal(coldPause.roomMode, "paused-empty");
+  const expiredTail = await tailState("expire-tail");
+  assert.equal(expiredTail.roomMode, "expired");
+  await runtime.dispose();
+  runtime = create();
+  const coldExpired = await tailState("resurrect");
+  assert.notEqual(coldExpired.instance, expiredTail.instance);
+  assert.equal(coldExpired.hash, expiredTail.hash);
+  assert.equal(coldExpired.roomMode, "expired");
+  assert.equal(coldExpired.tick, 59);
   const report = {
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
@@ -90,9 +129,10 @@ try {
     seeded,
     restored,
     gap,
+    tail: { seededTail, restoredTail, pausedTail, coldPause, expiredTail, coldExpired },
     status: "pass",
     scope:
-      "Owned local SQLite Durable Object and fresh workerd process. Checkpoint/journal reconstruction and atomic rollback; no production room, client recovery barrier or deployed durability claim.",
+      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry rollback, persisted pause and terminal non-resurrection; no deployed durability or production outbox claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report)}\n`);

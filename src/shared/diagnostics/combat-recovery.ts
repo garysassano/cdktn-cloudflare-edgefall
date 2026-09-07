@@ -33,10 +33,21 @@ export function combatContinuationHash(current: FullSnapshot): string {
 /** A persisted boundary replaces old input/effect generations before any replacement welcome. */
 export function transitionCombatRuntime(
   current: CombatRuntime,
-  kind: "start" | "recover",
+  kind: "start" | "recover" | "pause" | "expire",
 ): CombatRuntime {
   const state = structuredClone(current);
-  if (kind === "start") {
+  if (["completed", "expired"].includes(current.snapshot.roomMode))
+    throw new Error("Terminal combat room cannot resume");
+  if (kind === "pause" || kind === "expire") {
+    if (
+      kind === "pause"
+        ? !["loading", "playing"].includes(current.snapshot.roomMode)
+        : !["loading", "playing", "paused-empty", "recovering"].includes(current.snapshot.roomMode)
+    )
+      throw new Error("Invalid empty combat boundary");
+    state.snapshot.roomMode = kind === "pause" ? "paused-empty" : "expired";
+    state.connectedPlayerIds = [];
+  } else if (kind === "start") {
     if (current.snapshot.roomMode !== "loading")
       throw new Error("Combat start requires loading barrier");
     state.snapshot.roomMode = "playing";

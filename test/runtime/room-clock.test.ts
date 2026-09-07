@@ -49,6 +49,34 @@ function fixture(initialTick = 0) {
 }
 
 describe("deadline room clock", () => {
+  it("does not acknowledge a tick when the room pauses before committing it", () => {
+    const port = new ManualClock(),
+      samples: ClockSample[] = [];
+    let empty = true;
+    const clock = new RoomClock({
+      port,
+      initialTick: 59,
+      step: () => (empty ? "paused" : undefined),
+      onDiscontinuity: () => {
+        throw new Error("Pause is not a clock fault");
+      },
+      onSample: (sample) => samples.push(sample),
+    });
+    clock.start();
+    port.fire(17);
+    expect(clock.state).toMatchObject({
+      tick: 59,
+      mode: "stopped",
+      timerPending: false,
+      fault: null,
+    });
+    expect(samples[0]).toMatchObject({ steps: 0, lastCompletedTick: 59 });
+    empty = false;
+    port.time = 10_000;
+    clock.start();
+    port.fire(10_017);
+    expect(clock.state.tick).toBe(60);
+  });
   it("owns one timer, advances no early tick and preserves 60 Hz deadlines for six hours", () => {
     const { port, clock, ticks, faults } = fixture();
     clock.start();

@@ -25,6 +25,65 @@ function records(writer: CombatJournalWriter, from: number, through: number) {
     writer.record(entry, state(entry.tick));
 }
 describe("bounded combat persistence writer", () => {
+  it("seals a short immutable tail after the in-flight segment with no overlapping writes", async () => {
+    let confirm: (() => void) | undefined;
+    const writes: number[][] = [],
+      pauses: string[] = [];
+    const writer = new CombatJournalWriter(
+      {
+        async commit(start, entries, accepted) {
+          writes.push([start.combat.tick, entries.length, accepted.combat.tick]);
+          if (writes.length === 1)
+            await new Promise<void>((resolve) => {
+              confirm = resolve;
+            });
+          return accepted;
+        },
+      },
+      state(60),
+      (reason) => pauses.push(reason),
+      () => {},
+    );
+    records(writer, 61, 89);
+    await Promise.resolve();
+    const accepted = state(89);
+    const sealed = writer.seal(accepted);
+    accepted.combat.nextActionId++;
+    expect(() => records(writer, 90, 90)).toThrow(/recovery/);
+    expect(writes).toEqual([[60, 15, 75]]);
+    if (!confirm) throw new Error("Missing in-flight write");
+    confirm();
+    expect(combatRuntimeHash(await sealed)).toBe(combatRuntimeHash(state(89)));
+    expect(writes).toEqual([
+      [60, 15, 75],
+      [75, 14, 89],
+    ]);
+    expect(writer.status).toMatchObject({
+      committedTick: 89,
+      backlogTicks: 0,
+      accepting: false,
+      writing: false,
+    });
+    expect(pauses).toEqual([]);
+    await writer.retire();
+  });
+  it("rejects an unconfirmed pause tail but still permits recovery from the previous durable head", async () => {
+    const writer = new CombatJournalWriter(
+      {
+        commit: async () => {
+          throw new Error("tail write failed");
+        },
+      },
+      state(60),
+      () => {},
+      () => {},
+    );
+    records(writer, 61, 64);
+    await expect(writer.seal(state(63))).rejects.toThrow(/boundary changed/);
+    await expect(writer.seal(state(64))).rejects.toThrow(/tail write failed/);
+    expect(writer.status.committedTick).toBe(60);
+    await expect(writer.retire()).resolves.toBeUndefined();
+  });
   it("captures the segment boundary before later live mutations and before starting its write", async () => {
     const tasks: Promise<void>[] = [];
     const writer = new CombatJournalWriter(
@@ -169,6 +228,25 @@ describe("bounded combat persistence writer", () => {
   });
 });
 describe("persisted combat recovery boundary", () => {
+  it("pauses and expires at an exact accepted tick without advancing combat or resurrecting a terminal room", () => {
+    const previous = state(89),
+      paused = transitionCombatRuntime(previous, "pause");
+    validateCombatCheckpoint(paused);
+    expect(paused.combat).toEqual(previous.combat);
+    expect(paused.history).toEqual(previous.history);
+    expect(paused.connectedPlayerIds).toEqual([]);
+    expect(paused.snapshot).toMatchObject({ tick: 89, runEpoch: 1, roomMode: "paused-empty" });
+    const recovered = transitionCombatRuntime(paused, "recover");
+    expect(combatContinuationHash(recovered.snapshot)).toBe(
+      combatContinuationHash(paused.snapshot),
+    );
+    const expired = transitionCombatRuntime(paused, "expire");
+    validateCombatCheckpoint(expired);
+    expect(expired.combat).toEqual(previous.combat);
+    expect(expired.snapshot.roomMode).toBe("expired");
+    for (const kind of ["start", "pause", "recover", "expire"] as const)
+      expect(() => transitionCombatRuntime(expired, kind)).toThrow(/Terminal/);
+  });
   it("preserves simulation/kill/ID continuation while replacing old input and effect generations", () => {
     const previous = state(105),
       before = combatRuntimeHash(previous);

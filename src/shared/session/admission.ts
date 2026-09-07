@@ -48,7 +48,10 @@ export async function requireRoomAdmission(
           ? (admission.code as ConnectionReason)
           : "protocol-error",
       );
-    if (admission.code !== "ready" || !["loading", "playing"].includes(admission.roomMode ?? ""))
+    if (
+      admission.code !== "ready" ||
+      !["loading", "playing", "paused-empty"].includes(admission.roomMode ?? "")
+    )
       throw new RoomConnectError("protocol-error");
     if (
       admission.protocolMajor !== 3 ||

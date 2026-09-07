@@ -715,6 +715,8 @@ async function startLab() {
   Object.assign(window, {
     controllerNetworkLab: {
       status,
+      pauseConnection: () => connection.leave(),
+      resumeConnection: () => connection.start(),
       configureEvents: (faults: Partial<typeof eventFaults>) => {
         if (mode !== "combat") throw new Error("Combat event lab required");
         Object.assign(eventFaults, faults);
