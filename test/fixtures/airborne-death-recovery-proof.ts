@@ -34,7 +34,7 @@ export function recordAirborneDeath(kind: "rising" | "falling") {
     killed?.life !== "death" ||
     killed.body.grounded ||
     killed.lifeStartTick !== deathTick ||
-    killed.deathBody !== "present" ||
+    killed.bodyPresence !== "present" ||
     killed.body.vy < 0 !== rising
   )
     throw new Error("Missing real airborne rifle kill");
@@ -113,9 +113,9 @@ export async function airborneDeathRecoveryProof() {
       ready = states[deathTick + 42]?.combat.players[slot];
     if (
       entry?.life !== "respawning" ||
-      entry.deathBody !== null ||
+      entry.bodyPresence !== "present" ||
       ready?.life !== "alive" ||
-      ready.deathBody !== null ||
+      ready.bodyPresence !== "present" ||
       ready.lives !== 2
     )
       throw new Error("Airborne corpse changed life deadline/accounting");

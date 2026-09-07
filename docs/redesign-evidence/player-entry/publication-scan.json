@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "filesScanned": 87,
+  "decompressedGzip": true,
+  "rules": [
+    "private-key",
+    "github-token",
+    "literal-bearer",
+    "literal-cloudflare-token"
+  ],
+  "findings": [],
+  "scope": "Targeted credential-pattern scan of the reviewed publication candidate; no claim of exhaustive secret detection."
+}

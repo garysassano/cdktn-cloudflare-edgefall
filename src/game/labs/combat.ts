@@ -76,12 +76,12 @@ import {
   tankCombatHurtboxes,
 } from "./combat-tanks.js";
 import {
+  COMBAT_ORDNANCE,
   COMBAT_SUPPORT,
   combatCollisionIndex,
   combatEndTerrain,
   combatGeometryRevision,
   combatTerrain,
-  ordnancePlatforms,
 } from "./combat-terrain.js";
 import { FOOT_DEFINITION, footActor } from "./foot-fixture.js";
 
@@ -143,7 +143,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 8;
+  format: 9;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -182,7 +182,7 @@ export function combatEntryContext(
   if (!FOOT_DEFINITION) throw new Error("Missing life physics definition");
   const shape = COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing life entry shape");
-  const lift = scenario === "ordnance" ? ordnancePlatforms(frame.tick)[0] : undefined;
+  const lift = scenario === "ordnance" ? index.get(COMBAT_ORDNANCE[0].id)?.rect : undefined;
   return {
     shape,
     definition: FOOT_DEFINITION,
@@ -285,7 +285,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 8,
+    format: 9,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -531,8 +531,13 @@ export function advanceCombatLab(
       index,
       frame,
     );
-    if (result.status === "failed") throw new Error(`Combat body: ${result.physics.reason}`);
-    world.players[slot] = result.actor;
+    if (result.status === "failed") {
+      if (result.physics.reason !== "crushed")
+        throw new Error(`Combat body: ${result.physics.reason}`);
+      const killed = damagePlayer(life.actor, tick, 1, "classic", "crush");
+      world.players[slot] = killed.actor;
+      if (killed.notice) lifeNotices.push(killed.notice);
+    } else world.players[slot] = result.actor;
     outcomes.push({
       playerId: actor.playerId,
       jumpAccepted:
@@ -1218,7 +1223,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents };
 }
 export interface CombatRecording {
-  format: 8;
+  format: 9;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1227,7 +1232,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 8 ||
+    recording.format !== 9 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

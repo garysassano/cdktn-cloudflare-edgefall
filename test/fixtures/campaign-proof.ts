@@ -30,6 +30,26 @@ export function campaignPlayers() {
     { ...footActor(30), playerId: 2, slot: 1, body: { ...footActor(30).body, id: 2 } },
   ];
 }
+export function campaignSpectator(player: ControlledActor): ControlledActor {
+  return {
+    ...player,
+    life: "spectating",
+    health: 0,
+    lives: 0,
+    bodyPresence: "removed",
+    locomotion: "airborne",
+    body: {
+      ...player.body,
+      vx: 0,
+      vy: 0,
+      remainderX: 0,
+      remainderY: 0,
+      grounded: false,
+      supportId: null,
+      contacts: [],
+    },
+  };
+}
 export function campaignCheckpoint(tick: number, mission = 1): CheckpointEntry {
   const shape = FOOT_SHAPES.get(1);
   if (!shape) throw new Error("Missing campaign shape");
@@ -43,7 +63,13 @@ export function campaignCheckpoint(tick: number, mission = 1): CheckpointEntry {
     entries: new Map(
       [1, 2].map((playerId) => [
         playerId,
-        { shape, index, frame, anchors: [{ x: pixels((playerId - 1) * 30), y: 0 }] },
+        {
+          shape,
+          index,
+          frame,
+          fallBoundary: pixels(300),
+          anchors: [{ x: pixels((playerId - 1) * 30), y: 0 }],
+        },
       ]),
     ),
   };
@@ -90,13 +116,7 @@ export function campaignProof() {
   let players = campaignPlayers(),
     state = createCampaign("classic", 1001, 101),
     tick = 1;
-  const spectator: ControlledActor = {
-    ...required(players[1]),
-    life: "spectating",
-    health: 0,
-    lives: 0,
-  };
-  players[1] = spectator;
+  players[1] = campaignSpectator(required(players[1]));
   const boundaries = [],
     hashes: string[] = [];
   for (let mission = 1; mission <= 3; mission++) {

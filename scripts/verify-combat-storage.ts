@@ -9,6 +9,7 @@ import { build } from "esbuild";
 import { verifyStoredArea } from "./lib/verify-stored-area.js";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredDeathBody } from "./lib/verify-stored-death-body.js";
+import { verifyStoredEntry } from "./lib/verify-stored-entry.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredHmg } from "./lib/verify-stored-hmg.js";
 import { verifyStoredOrdnance } from "./lib/verify-stored-ordnance.js";
@@ -190,7 +191,7 @@ try {
       lives: Array<{
         life: string;
         lifeStartTick: number;
-        deathBody: "present" | "removed" | null;
+        bodyPresence: "present" | "removed";
         lives: number;
         invulnerableTicks: number;
       }>;
@@ -198,7 +199,7 @@ try {
   };
   const dying = await lifeState("seed-life");
   assert.equal(dying.lives[0]?.life, "death");
-  assert.equal(dying.lives[0]?.deathBody, "removed");
+  assert.equal(dying.lives[0]?.bodyPresence, "removed");
   assert.equal(dying.lives[0]?.lives, 2);
   assert.equal(dying.tick - (dying.lives[0]?.lifeStartTick ?? NaN), 21);
   await runtime.dispose();
@@ -209,7 +210,7 @@ try {
   assert.deepEqual(coldDeath.lives, dying.lives);
   const entering = await lifeState("resume-life");
   assert.equal(entering.lives[0]?.life, "respawning");
-  assert.equal(entering.lives[0]?.deathBody, null);
+  assert.equal(entering.lives[0]?.bodyPresence, "present");
   assert.equal(entering.lives[0]?.lives, 2);
   assert.equal(entering.lives[0]?.invulnerableTicks, 114);
   assert.equal(entering.tick - (entering.lives[0]?.lifeStartTick ?? NaN), 6);
@@ -252,7 +253,11 @@ try {
       await runtime.dispose();
       runtime = create();
     }),
-    deathBody: await verifyStoredDeathBody(origin, async () => {
+    bodyPresence: await verifyStoredDeathBody(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
+    movingEntry: await verifyStoredEntry(origin, async () => {
       await runtime.dispose();
       runtime = create();
     }),

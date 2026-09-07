@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "tests": 604,
+  "testFiles": 62,
+  "nativeTests": 24,
+  "physicsHash": "8fe502f5",
+  "runtimeTraceHash": "56ebd081",
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "runtimeSuiteDurationsMs": {
+    "node": 16530,
+    "workerdRequest": 13961,
+    "chromium": 13607
+  },
+  "portableEntryBoundaries": 10,
+  "duplicatePackets": 580,
+  "coldSqliteEntryBoundaries": [
+    6,
+    69,
+    105,
+    114
+  ],
+  "nativeRecordings": 17,
+  "nativeEntryRecordings": [
+    69,
+    99,
+    105,
+    111
+  ],
+  "networkSharedSnapshots": 15,
+  "observabilityConfigurationVerified": true,
+  "liveTraceIngestionVerified": false,
+  "humanStyleReview": "pending",
+  "scope": "Local protected-entry physics, safe retries, real press crush, complete baseline/archive continuation, fresh SQLite processes and keyboard/native-pixel recording proof. No production v3, deployed performance or complete W06 art/audio acceptance."
+}

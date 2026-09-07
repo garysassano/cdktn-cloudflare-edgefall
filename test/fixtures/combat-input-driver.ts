@@ -148,7 +148,7 @@ export function recordCombatInputs(
           prediction.body,
           prediction.life,
           prediction.lifeStartTick,
-          prediction.deathBody,
+          prediction.bodyPresence,
           prediction.lives,
           prediction.invulnerableTicks,
         ]) !==
@@ -156,7 +156,7 @@ export function recordCombatInputs(
             player.body,
             player.life,
             player.lifeStartTick,
-            player.deathBody,
+            player.bodyPresence,
             player.lives,
             player.invulnerableTicks,
           ])

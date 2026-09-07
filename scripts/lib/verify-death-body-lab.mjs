@@ -27,7 +27,7 @@ export async function verifyDeathBodyLab(page, read, checkRenderedPixels, checkR
           assert.equal(actor.body.grounded, false);
           assert.equal(actor.body.vy < 0, kind === "rising");
         }
-        assert.equal(actor.deathBody, "present");
+        assert.equal(actor.bodyPresence, "present");
         assert.equal(actor.lives, 2);
         assert.equal(actor.lifeStartTick, deathTick);
         assert.equal(frame.upperFrame, null);
@@ -58,18 +58,18 @@ export async function verifyDeathBodyLab(page, read, checkRenderedPixels, checkR
         samples.push({
           tick,
           life: actor.life,
-          deathBody: actor.deathBody,
+          bodyPresence: actor.bodyPresence,
           body: actor.body,
           drawing: frame?.fullBodyFrame ?? null,
         });
       prior = actor;
       if (deathTick !== null && tick === deathTick + 30) {
         assert.equal(actor.life, "respawning");
-        assert.equal(actor.deathBody, null);
+        assert.equal(actor.bodyPresence, "present");
       }
       if (deathTick !== null && tick === deathTick + 42) {
         assert.equal(actor.life, "alive");
-        assert.equal(actor.deathBody, null);
+        assert.equal(actor.bodyPresence, "present");
         break;
       }
     }
@@ -85,7 +85,7 @@ export async function verifyDeathBodyLab(page, read, checkRenderedPixels, checkR
   for (let count = 0; count < 350; count++) {
     await page.keyboard.press("Enter");
     const value = await read();
-    if (value.state.players[0].deathBody === "removed") {
+    if (value.state.players[0].bodyPresence === "removed") {
       assert.equal(value.frames[0], null);
       removed = value.state.players[0];
       await page.keyboard.up("ArrowRight");

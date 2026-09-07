@@ -150,7 +150,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 8,
+    format: 9,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -342,7 +342,7 @@ class CombatScene extends Phaser.Scene {
       );
     }
     for (const player of state.players) {
-      if (player.deathBody === "removed" || player.life === "spectating") continue;
+      if (player.bodyPresence === "removed" || player.life === "spectating") continue;
       if (nativeFrames[player.slot] && !element<HTMLInputElement>("player-overlays").checked)
         continue;
       const contact = nativeFrames[player.slot]?.contact;

@@ -7,6 +7,7 @@ import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
 import { verifyDeathBodyLab } from "./lib/verify-death-body-lab.mjs";
+import { verifyEntryLab } from "./lib/verify-entry-lab.mjs";
 
 const root = resolve("dist/client"),
   output = "dist/native-operative-evidence";
@@ -56,7 +57,7 @@ try {
         frame = lab?.nativeFrames()[0];
       return (
         actor &&
-        (actor.deathBody === "removed" || actor.life === "spectating"
+        (actor.bodyPresence === "removed" || actor.life === "spectating"
           ? frame === null
           : frame?.tick === lab.state().tick)
       );
@@ -400,6 +401,7 @@ try {
   actions.push({ kind: "death-reentry", samples: lifeSamples, resumedTick: living.state.tick });
   await checkRecording("reentry-recording.json");
   const deathBodies = await verifyDeathBodyLab(page, read, checkRenderedPixels, checkRecording);
+  const entryBodies = await verifyEntryLab(page, read, checkRenderedPixels, checkRecording);
   await page.locator("#scenario").selectOption("range");
 
   await page.locator("#players").selectOption("4");
@@ -664,6 +666,7 @@ try {
         transitions,
         actions,
         deathBodies,
+        entryBodies,
         recordings,
         reviewedClips,
         replayMatches: true,

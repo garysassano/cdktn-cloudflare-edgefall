@@ -509,7 +509,11 @@ export function predictCombatMovement(
     index,
     frame,
   );
-  if (result.status === "failed") throw new Error(`Combat prediction: ${result.physics.reason}`);
+  if (result.status === "failed") {
+    if (result.physics.reason === "crushed")
+      return damagePlayer(life.actor, tick, 1, "classic", "crush").actor;
+    throw new Error(`Combat prediction: ${result.physics.reason}`);
+  }
   result.actor.firearmAim = advanceFirearmAim(result.actor, tick, COMBAT_CATALOG);
   return result.actor.life === "alive" && result.actor.body.y > COMBAT_ENTRY.fallBoundary
     ? damagePlayer(result.actor, tick, 1, "classic", "fall").actor

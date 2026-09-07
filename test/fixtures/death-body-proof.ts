@@ -48,7 +48,7 @@ function record(actor: ControlledActor, tick: number) {
   return {
     tick,
     life: actor.life,
-    deathBody: actor.deathBody,
+    bodyPresence: actor.bodyPresence,
     lives: actor.lives,
     since: actor.lifeStartTick,
     body: actor.body,
@@ -113,7 +113,7 @@ export function deathBodyProof() {
     };
     const result = stepPlayerLife(actor, 1, "classic", deathContext(1, [ceiling], [lift]));
     check(
-      result.actor.deathBody === "removed" && result.actor.lives === 2 && result.notice === null,
+      result.actor.bodyPresence === "removed" && result.actor.lives === 2 && result.notice === null,
       "crush stalled or spent another life",
     );
     check(
@@ -133,7 +133,7 @@ export function deathBodyProof() {
       trace.push(record(actor, tick));
     }
     check(
-      actor.deathBody === "removed" && actor.lives === 2 && actor.lifeStartTick === 0,
+      actor.bodyPresence === "removed" && actor.lives === 2 && actor.lifeStartTick === 0,
       "void changed life accounting",
     );
     check(stateHash(actor.body) === stateHash(trace[1]?.body), "removed body kept integrating");
@@ -141,7 +141,7 @@ export function deathBodyProof() {
     entry.anchors = [{ x: 0, y: 0 }];
     actor = stepPlayerLife(actor, 91, "classic", entry).actor;
     check(
-      actor.life === "respawning" && actor.deathBody === null && actor.lives === 2,
+      actor.life === "respawning" && actor.bodyPresence === "present" && actor.lives === 2,
       "removed corpse blocked a safe entry",
     );
     trace.push(record(actor, 91));

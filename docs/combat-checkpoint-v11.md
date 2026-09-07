@@ -1,5 +1,7 @@
 # Diagnostic combat archive format 11
 
+Historical format 11 contract. Current body presence and protected entry use [format 12](combat-checkpoint-v12.md); format 11 archives are rejected.
+
 The combat laboratory uses archive **11**, protocol **3.10**, combat snapshot section **3**, and simulation/recording format **8**. Earlier experimental schemas are rejected. This extends [format 10](combat-checkpoint-v10.md) with authoritative corpse presence and passive death physics; the deployed v2 product remains separate.
 
 Every controlled player carries `deathBody: "present" | "removed" | null`. Only the death phase allows present or removed; alive, respawning and spectating require null. Dead players cannot own a seat or active action. Removed bodies retain their bounded last position, zero velocity and remainders, no support/contacts, false grounding and airborne locomotion. Snapshot and checkpoint validation reject inconsistent combinations. The wire stores a four-byte enum immediately after `lifeStartTick`, making each player record 304 bytes, the minimum snapshot 448 bytes and the maximum complete allocation 52,060 bytes.

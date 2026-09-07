@@ -1,0 +1,26 @@
+{
+  "format": 9,
+  "scenario": "range",
+  "players": 1,
+  "commands": [
+    [
+      {
+        "held": 0,
+        "jumpPressed": true,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 8,
+        "jumpPressed": false,
+        "firePressed": true,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ]
+  ],
+  "finalState": "{\"areas\":[],\"encounter\":{\"definitionKey\":\"{\\\"id\\\":1,\\\"members\\\":[{\\\"ambientCleanupTicks\\\":null,\\\"critical\\\":false,\\\"id\\\":20,\\\"required\\\":true,\\\"retreatAllowed\\\":false,\\\"watchdogTicks\\\":600},{\\\"ambientCleanupTicks\\\":null,\\\"critical\\\":false,\\\"id\\\":21,\\\"required\\\":true,\\\"retreatAllowed\\\":false,\\\"watchdogTicks\\\":600}],\\\"objectives\\\":[],\\\"participants\\\":[1]}\",\"failure\":null,\"kills\":[{\"count\":0,\"playerId\":1}],\"members\":[{\"activatedTick\":1,\"id\":20,\"killerId\":null,\"progressKey\":\"[56192,51200,-64,0,100,-1]\",\"reason\":null,\"resolvedTick\":null,\"status\":\"alive\",\"unchangedSince\":2,\"unreachableSince\":null,\"warnedUnchanged\":false,\"warnedUnreachable\":false},{\"activatedTick\":1,\"id\":21,\"killerId\":null,\"progressKey\":\"[71552,51200,-64,0,100,-1]\",\"reason\":null,\"resolvedTick\":null,\"status\":\"alive\",\"unchangedSince\":2,\"unreachableSince\":null,\"warnedUnchanged\":false,\"warnedUnreachable\":false}],\"objectives\":[],\"phase\":\"active\",\"receipts\":[\"{\\\"id\\\":20,\\\"kind\\\":\\\"activate\\\",\\\"sequence\\\":1,\\\"tick\\\":1}\",\"{\\\"id\\\":21,\\\"kind\\\":\\\"activate\\\",\\\"sequence\\\":2,\\\"tick\\\":1}\"],\"tick\":2},\"eventSequence\":2,\"events\":[{\"actionInstanceId\":1,\"impact\":null,\"kind\":\"shot\",\"markerIndex\":0,\"ownerId\":1,\"position\":{\"x\":12032,\"y\":48505},\"source\":{\"controlEpoch\":1,\"definitionId\":1,\"shotOrdinal\":1},\"targetId\":null},{\"actionInstanceId\":1,\"impact\":null,\"kind\":\"sound\",\"markerIndex\":1,\"ownerId\":1,\"position\":{\"x\":12032,\"y\":48505},\"source\":{\"controlEpoch\":1,\"definitionId\":1,\"shotOrdinal\":1},\"targetId\":null}],\"format\":9,\"grenades\":[],\"nextActionId\":2,\"nextEntityId\":1001,\"players\":[{\"action\":{\"actionInstanceId\":1,\"definitionId\":12,\"kind\":\"fire\",\"nextMarkerIndex\":2,\"stateStartTick\":2},\"aim\":2,\"body\":{\"contacts\":[],\"grounded\":false,\"id\":1,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":null,\"vx\":0,\"vy\":-1320,\"x\":11520,\"y\":48505},\"bodyPresence\":\"present\",\"controlEpoch\":1,\"coyoteTicks\":0,\"facing\":1,\"firearmAim\":{\"nextStepTick\":0,\"pitch\":-4},\"geometryRevision\":1,\"grenadeCooldownTicks\":0,\"grenadeStock\":10,\"health\":1,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"invulnerableTicks\":0,\"jumpBufferTicks\":0,\"lastRallyMission\":0,\"life\":\"alive\",\"lifeStartTick\":0,\"lives\":3,\"locomotion\":\"airborne\",\"meleeCooldownTicks\":0,\"playerId\":1,\"processedEdgeIds\":[0,0,0,0,0],\"reboardCooldownTicks\":0,\"slot\":0,\"vehicleId\":null,\"vehicleSpecialTicks\":0,\"weapon\":{\"ammo\":0,\"cooldownTicks\":8,\"id\":\"sidearm\",\"lastActionInstanceId\":1,\"shotOrdinal\":1}}],\"projectiles\":[{\"actionInstanceId\":1,\"definitionId\":1,\"id\":1000,\"ownerId\":1,\"position\":{\"x\":12032,\"y\":48505},\"spawnTick\":2,\"team\":1,\"velocity\":{\"x\":0,\"y\":3072}}],\"props\":[],\"scenario\":\"range\",\"strikes\":[],\"tanks\":[],\"targets\":[{\"enemy\":{\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":20,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":56192,\"y\":51200},\"facing\":-1,\"geometryRevision\":1,\"life\":\"alive\",\"removalReason\":null,\"turns\":0},\"guard\":null,\"health\":1,\"rifle\":null,\"shield\":false},{\"enemy\":{\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":21,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":-64,\"vy\":0,\"x\":71552,\"y\":51200},\"facing\":-1,\"geometryRevision\":1,\"life\":\"alive\",\"removalReason\":null,\"turns\":0},\"guard\":null,\"health\":1,\"rifle\":null,\"shield\":false}],\"tick\":2}"
+}

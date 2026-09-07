@@ -62,7 +62,7 @@ describe("controller room recovery boundary", () => {
       ...CONTROLLER_IDENTITY,
       type: "welcome",
       protocolMajor: 3,
-      protocolMinor: 10,
+      protocolMinor: 11,
       runId: "local-room-workload",
       runEpoch: world.runEpoch,
       connectionEpoch: context.connectionEpoch,

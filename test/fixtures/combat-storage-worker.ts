@@ -8,6 +8,7 @@ import { recordAirborneDeath } from "./airborne-death-recovery-proof.js";
 import { AREA_BOUNDARIES, recordAreaCombat } from "./area-proof.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
+import { recordMovingEntry } from "./entry-recovery-proof.js";
 import { recordFootCombat } from "./foot-combat-proof.js";
 import { HMG_BOUNDARIES, recordHmg } from "./hmg-proof.js";
 import {
@@ -224,25 +225,37 @@ export class CombatStorageProof extends DurableObject<Env> {
         events: saved.history.entries,
       });
     }
-    if (name === "rifle" || name === "death-rising" || name === "death-falling") {
-      if (action === "seed" || action === "resume") {
+    if (
+      name === "rifle" ||
+      name === "death-rising" ||
+      name === "death-falling" ||
+      name === "entry-moving"
+    ) {
+      const movingEntry = name === "entry-moving";
+      if (
+        action === "seed" ||
+        action === "resume" ||
+        (movingEntry && (action === "crush" || action === "entry"))
+      ) {
         const airborne =
-          name === "rifle"
+          name === "rifle" || movingEntry
             ? null
             : recordAirborneDeath(name === "death-rising" ? "rising" : "falling");
-        const fixture = airborne ?? recordRifleRecovery();
+        const fixture = movingEntry ? recordMovingEntry() : (airborne ?? recordRifleRecovery());
         let saved =
           action === "seed"
-            ? fixture.states[airborne ? airborne.deathTick - 1 : 28]
+            ? fixture.states[movingEntry ? 0 : airborne ? airborne.deathTick - 1 : 28]
             : await store.load();
         if (!saved || canonical(saved) !== canonical(fixture.states[saved.combat.tick]))
           throw new Error("Rifle storage prefix mismatch");
         if (action === "seed") await store.initialize(saved);
-        const through = airborne
-          ? airborne.deathTick + (action === "seed" ? 6 : 45)
-          : action === "seed"
-            ? 30
-            : 150;
+        const through = movingEntry
+          ? ({ seed: 6, crush: 69, entry: 105, resume: 114 }[action] ?? 114)
+          : airborne
+            ? airborne.deathTick + (action === "seed" ? 6 : 45)
+            : action === "seed"
+              ? 30
+              : 150;
         while (saved.combat.tick < through) {
           const end = Math.min(through, saved.combat.tick + 15);
           const accepted = fixture.states[end];
@@ -268,12 +281,12 @@ export class CombatStorageProof extends DurableObject<Env> {
         hash: combatRuntimeHash(saved),
         rifles: saved.combat.targets.map((target) => target.rifle),
         players: saved.combat.players.map(
-          ({ life, lives, invulnerableTicks, lifeStartTick, deathBody, body }) => ({
+          ({ life, lives, invulnerableTicks, lifeStartTick, bodyPresence, body }) => ({
             life,
             lives,
             invulnerableTicks,
             lifeStartTick,
-            deathBody,
+            bodyPresence,
             body,
           }),
         ),
@@ -558,7 +571,7 @@ export class CombatStorageProof extends DurableObject<Env> {
           playerId: player.playerId,
           life: player.life,
           lifeStartTick: player.lifeStartTick,
-          deathBody: player.deathBody,
+          bodyPresence: player.bodyPresence,
           lives: player.lives,
           invulnerableTicks: player.invulnerableTicks,
           weapon: player.weapon,
@@ -590,6 +603,7 @@ export default {
         "rifle",
         "death-rising",
         "death-falling",
+        "entry-moving",
         "foot-melee",
         "foot-grenade",
         "area-shotgun",

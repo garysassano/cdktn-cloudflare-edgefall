@@ -85,7 +85,7 @@ export interface ControlledActor extends FootActor {
   controlEpoch: number;
   /** Authoritative tick when the independent life phase began. */
   lifeStartTick: Tick;
-  deathBody: "present" | "removed" | null;
+  bodyPresence: "present" | "removed";
   invulnerableTicks: number;
   reboardCooldownTicks: number;
   vehicleSpecialTicks: number;

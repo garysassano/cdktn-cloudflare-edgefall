@@ -35,7 +35,7 @@ describe("authoritative dead body motion", () => {
     ]);
     const result = stepPlayerLife(killed, 1, "classic", context);
     expect(result.actor.body).toMatchObject({ x: pixels(3), y: pixels(-11), vx: 0, vy: 0 });
-    expect(result.actor.deathBody).toBe("present");
+    expect(result.actor.bodyPresence).toBe("present");
     const input = stepFootController(
       result.actor,
       { held: Held.Left | Held.Fire, jumpPressed: true },
@@ -52,19 +52,19 @@ describe("authoritative dead body motion", () => {
   it("removes a lethal fall immediately and rejects inconsistent restored bodies or unsupported physics", () => {
     const actor = damagePlayer(airbornePlayer(), 0, 1, "classic", "fall").actor;
     expect(actor).toMatchObject({
-      deathBody: "removed",
+      bodyPresence: "removed",
       lives: 2,
       body: { vx: 0, vy: 0, supportId: null, grounded: false, contacts: [] },
     });
-    expect(() => validatePlayerLife({ ...actor, deathBody: null }, 0, "classic")).toThrow(
-      /death body/,
-    );
+    const missing = JSON.parse(JSON.stringify(actor));
+    delete missing.bodyPresence;
+    expect(() => validatePlayerLife(missing, 0, "classic")).toThrow(/body presence/);
     expect(() =>
       validatePlayerLife({ ...actor, body: { ...actor.body, vx: 1 } }, 0, "classic"),
-    ).toThrow(/death body/);
+    ).toThrow(/body presence/);
     expect(() =>
-      validatePlayerLife({ ...airbornePlayer(), deathBody: "present" }, 0, "classic"),
-    ).toThrow(/death body/);
+      validatePlayerLife({ ...airbornePlayer(), bodyPresence: "removed" }, 0, "classic"),
+    ).toThrow(/body presence/);
     const present = damagePlayer(airbornePlayer(), 0, 1, "classic").actor;
     const context = deathContext(1);
     expect(() =>

@@ -23,7 +23,7 @@ export function operativePresentation(
   motion: OperativeMotion,
 ) {
   const action = actor.action.kind;
-  if (actor.life === "spectating" || actor.deathBody === "removed" || actor.vehicleId !== null)
+  if (actor.life === "spectating" || actor.bodyPresence === "removed" || actor.vehicleId !== null)
     return null;
   if (actor.life === "alive" && (action === "enter" || action === "exit" || action === "hurt"))
     return null;

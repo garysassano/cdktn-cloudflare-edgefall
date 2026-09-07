@@ -8,7 +8,7 @@ describe("bounded room admission preflight", () => {
       code: "ready",
       roomMode: "playing",
       protocolMajor: 3,
-      protocolMinor: 10,
+      protocolMinor: 11,
       identity: CONTROLLER_IDENTITY,
     };
     for (const roomMode of [

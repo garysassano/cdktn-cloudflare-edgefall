@@ -15,6 +15,8 @@ import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { deathBodyProof } from "./death-body-proof.js";
 import { encounterProof } from "./encounter-proof.js";
+import { entryPhysicsProof } from "./entry-proof.js";
+import { entryRecoveryProof } from "./entry-recovery-proof.js";
 import { eventDeliveryProof } from "./event-delivery-proof.js";
 import { footCombatProof } from "./foot-combat-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
@@ -100,7 +102,9 @@ export async function contractProof() {
     collision: collisionProof(),
     combat: combatProof(),
     playerLife: playerLifeProof(),
-    deathBody: deathBodyProof(),
+    bodyPresence: deathBodyProof(),
+    entryPhysics: entryPhysicsProof(),
+    entryRecovery: await entryRecoveryProof(),
     airborneDeathRecovery: await airborneDeathRecoveryProof(),
     playerLifeRecovery: await playerLifeRecoveryProof(),
     campaign: campaignProof(),

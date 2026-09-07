@@ -33,7 +33,7 @@ describe("full v3 snapshot records", () => {
     const player = first(snapshot.players);
     player.life = "death";
     player.health = 0;
-    player.deathBody = "present";
+    player.bodyPresence = "present";
     player.action = {
       kind: "ready",
       actionInstanceId: 0,
@@ -42,7 +42,7 @@ describe("full v3 snapshot records", () => {
       nextMarkerIndex: 0,
     };
     expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
-    player.deathBody = "removed";
+    player.bodyPresence = "removed";
     player.locomotion = "airborne";
     Object.assign(player.body, {
       vx: 0,
@@ -55,13 +55,16 @@ describe("full v3 snapshot records", () => {
     });
     expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
     player.body.vx = 1;
-    expect(() => encodeSnapshot(snapshot, context)).toThrow(/death body/);
+    expect(() => encodeSnapshot(snapshot, context)).toThrow(/body presence/);
     player.body.vx = 0;
     player.life = "respawning";
-    expect(() => encodeSnapshot(snapshot, context)).toThrow(/death body/);
+    player.health = 1;
+    expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
+    player.life = "alive";
+    expect(() => encodeSnapshot(snapshot, context)).toThrow(/body presence/);
     const bytes = encodeSnapshot(fixture(), context);
-    new DataView(bytes.buffer).setUint32(304, 1, true); // Present corpse on an alive player.
-    expect(() => decodeSnapshot(bytes, context)).toThrow(/death body/);
+    new DataView(bytes.buffer).setUint32(304, 1, true); // Removed body on an alive player.
+    expect(() => decodeSnapshot(bytes, context)).toThrow(/body presence/);
   });
   it.each(goldens)("matches independently packed $name ($byteLength bytes)", (golden) => {
     const bytes = Buffer.from(golden.hex, "hex");

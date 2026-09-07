@@ -74,7 +74,7 @@ describe("authoritative player lives", () => {
       life: "death",
       lifeStartTick: 1,
       lives: 2,
-      deathBody: "present",
+      bodyPresence: "present",
       body: { x: 0, y: 0, grounded: true },
     });
     expect(enterPlayer(actor, 31, "classic", blocked)).toBeNull();

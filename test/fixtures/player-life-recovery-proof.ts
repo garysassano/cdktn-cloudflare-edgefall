@@ -61,7 +61,7 @@ export async function playerLifeRecoveryProof() {
         playerId: p.playerId,
         life: p.life,
         lifeStartTick: p.lifeStartTick,
-        deathBody: p.deathBody,
+        bodyPresence: p.bodyPresence,
         lives: p.lives,
         invulnerableTicks: p.invulnerableTicks,
         weapon: p.weapon,

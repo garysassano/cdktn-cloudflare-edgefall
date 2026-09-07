@@ -13,15 +13,11 @@ import {
   campaignFinish,
   campaignPlayers,
   campaignProof,
+  campaignSpectator,
   required,
 } from "./fixtures/campaign-proof.js";
 
-const dead = (player: ControlledActor): ControlledActor => ({
-  ...player,
-  health: 0,
-  lives: 0,
-  life: "spectating",
-});
+const dead = campaignSpectator;
 describe("campaign lifecycle candidates", () => {
   it("waits for available respawns, ignores disconnected reservations and holds an empty party", () => {
     const state = createCampaign("classic", 1001, 101),
@@ -30,7 +26,7 @@ describe("campaign lifecycle candidates", () => {
     expect(evaluatePartyWipe(state, players, [1, 2], 1).phase).toBe("playing");
     expect(evaluatePartyWipe(state, players, [1], 1).phase).toBe("wipe");
     expect(evaluatePartyWipe(state, players, [], 1).phase).toBe("playing");
-    players[0] = { ...required(players[0]), life: "death", deathBody: "present", lives: 1 };
+    players[0] = { ...required(players[0]), life: "death", bodyPresence: "present", lives: 1 };
     expect(evaluatePartyWipe(state, players, [1], 1).phase).toBe("playing");
     expect(() => evaluatePartyWipe(state, players, [3], 1)).toThrow(/unknown connected/);
     expect(() => evaluatePartyWipe(state, players, [2, 1], 1)).toThrow();
@@ -102,7 +98,13 @@ describe("campaign lifecycle candidates", () => {
     expect(finishMission(state, players, [1, 2], 1, campaignFinish(1)).phase).toBe("playing");
     expect(finishMission(state, players, [1], 1, campaignFinish(1)).phase).toBe("intermission");
     const pending = players.map(
-      (p): ControlledActor => ({ ...p, life: "death", deathBody: "present", health: 0, lives: 1 }),
+      (p): ControlledActor => ({
+        ...p,
+        life: "death",
+        bodyPresence: "present",
+        health: 0,
+        lives: 1,
+      }),
     );
     expect(finishMission(state, pending, [1, 2], 1, campaignFinish(1)).phase).toBe("playing");
     expect(finishMission(state, players.map(dead), [1, 2], 1, campaignFinish(1)).phase).toBe(

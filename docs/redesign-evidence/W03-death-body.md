@@ -1,5 +1,7 @@
 # Authoritative airborne player death
 
+Historical evidence for `6255fe8`. Protected entry and the current presence contract are covered by the [subsequent entry increment](W03-player-entry.md); these format-8 artifacts retain their original source revision.
+
 An airborne player previously stopped moving after a lethal hit: damage cleared velocity and the foot controller returned inactive for non-alive actors. The shared life owner now preserves accepted airborne momentum and advances present corpses through gravity, swept collision and moving support carry. Ground contact stops horizontal motion. A fall into the void or unresolved crush/contact recovery removes the body without another life debit or a changed life clock.
 
 The explicit `deathBody` state survives public snapshots, private checkpoints and committed input replay. A blocked entry waits while a present corpse continues moving or a removed corpse stays inert. Safe entry and spectating retire the corpse on the existing deadlines. [Archive 11 and lifecycle contract](../combat-checkpoint-v11.md).

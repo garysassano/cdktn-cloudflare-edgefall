@@ -1,0 +1,53 @@
+{
+  "method": "Independent Python byte comparison against the parent revision; only header minor changes in the existing alive-player goldens. Presence enum is separately exercised by malformed and removed-body wire tests.",
+  "fixtures": [
+    {
+      "kind": "input",
+      "name": "ack-only",
+      "bytes": 32,
+      "changedOffsets": [
+        3
+      ]
+    },
+    {
+      "kind": "input",
+      "name": "one-command",
+      "bytes": 52,
+      "changedOffsets": [
+        3
+      ]
+    },
+    {
+      "kind": "input",
+      "name": "three-commands",
+      "bytes": 92,
+      "changedOffsets": [
+        3
+      ]
+    },
+    {
+      "kind": "input",
+      "name": "maximum-edges",
+      "bytes": 284,
+      "changedOffsets": [
+        3
+      ]
+    },
+    {
+      "kind": "snapshot",
+      "name": "one-player",
+      "bytes": 448,
+      "changedOffsets": [
+        3
+      ]
+    },
+    {
+      "kind": "snapshot",
+      "name": "all-sections",
+      "bytes": 988,
+      "changedOffsets": [
+        3
+      ]
+    }
+  ]
+}

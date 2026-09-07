@@ -1,0 +1,483 @@
+{
+  "baseCommit": "0853c668eadd14b040000edcc4e9c2ca152145d9",
+  "scope": "Tested local source; complete conformance, SQLite, native and four-browser hostile reports; selected entry screenshots and all 17 format-9 native recordings. Prior death-body/native-action artifacts remain at their pinned revisions. Live Cloudflare ingestion and full W06 acceptance are unverified.",
+  "sources": [
+    {
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 77732,
+      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "file": "docs/combat-checkpoint-v12.md",
+      "bytes": 2993,
+      "sha256": "9109a9ef88c7ac7b67ae36bed6ed7df47f88e243fc2e8f1f861bc19b923a3ff5"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "bytes": 14095,
+      "sha256": "35ef8028f7a20d8a9dcc831472df339f2589864ac3ec2b1f61d59faa6f6f71aa"
+    },
+    {
+      "file": "docs/redesign-evidence/W03-player-entry.md",
+      "bytes": 4612,
+      "sha256": "1ce7cb4f532c8e75d11d377ca04d09d62759a3c68361e5bff1bfd64733f78430"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "bytes": 20430,
+      "sha256": "13807064b7de749a725a72e92d53ee9360e3385368d42e142343a9b96f670496"
+    },
+    {
+      "file": "package.json",
+      "bytes": 3460,
+      "sha256": "76b99cf49e8d0d923922476e6f439ca73b291a11e77ad2efb149f51034c25971"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "bytes": 148537,
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43"
+    },
+    {
+      "file": "public/assets/art/hero/operative.atlas.json",
+      "bytes": 127780,
+      "sha256": "70036c78ff97982501fd4b48b1be386c67ec4aae831ca7b369919f63b5da69d0"
+    },
+    {
+      "file": "public/assets/art/hero/operative.png",
+      "bytes": 42397,
+      "sha256": "97ebd81da7529d03c817247804d994134b5a13c1038b2cc0fbb41501b7db6dea"
+    },
+    {
+      "file": "scripts/lib/verify-death-body-lab.mjs",
+      "bytes": 4148,
+      "sha256": "8aa4bd6615610173cdd04a604057164a08ec6c2d1bb52236a1e36fb4f0ca09de"
+    },
+    {
+      "file": "scripts/lib/verify-entry-lab.mjs",
+      "bytes": 2413,
+      "sha256": "d70253e30ad4470a660502b5183017ad5da156713ab4bb5032d10aeed5b21e64"
+    },
+    {
+      "file": "scripts/lib/verify-stored-death-body.ts",
+      "bytes": 2454,
+      "sha256": "c5d20615a8fc604ff71cb51fa46046e5c59925bfbb851a5f05ecffa1f8200d3b"
+    },
+    {
+      "file": "scripts/lib/verify-stored-entry.ts",
+      "bytes": 1835,
+      "sha256": "f3d2acf0ff2cd3ff9946bbeed2ea73b6063ea6455e7a50759113363044aff60b"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "bytes": 12970,
+      "sha256": "f772824e4af896c2188613d079c3855049b0cef9de8e56dda1640b8cc0331528"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "bytes": 11640,
+      "sha256": "fd57ceac3d2f355ccb003bffe7a4cc7755f8921ec4bcfe459a8ded6c5d0f9cd1"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "bytes": 9134,
+      "sha256": "243c39506e2014e342e861d3d7ff8374029d353d929f7f3f54bf5626fc041f64"
+    },
+    {
+      "file": "scripts/verify-native-operative.mjs",
+      "bytes": 28772,
+      "sha256": "82dfe4a7982fec13fb2001b1b501a8018d45883420544b1db2ae488194eeed5c"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "bytes": 18485,
+      "sha256": "8ac0252fc3d22a614f4da17d142ebef0bba199415400fbcfa3a94bb65ea530fd"
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "bytes": 11225,
+      "sha256": "51d4e743a1a9050322187b0df834506d3631a6cc2644ce7f606e47700e788ebf"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "bytes": 43897,
+      "sha256": "9aa203d407b3c9c9cf01d5948f4130a6457bdbe8015ad35b00e7825e48ac05fe"
+    },
+    {
+      "file": "src/game/labs/foot-fixture.ts",
+      "bytes": 2130,
+      "sha256": "9533abecc95bfa402f04eb537324f0d14e58aa31183ca9a83fc200988284a7b4"
+    },
+    {
+      "file": "src/game/physics/body.ts",
+      "bytes": 8234,
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "file": "src/game/physics/move.ts",
+      "bytes": 17278,
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c"
+    },
+    {
+      "file": "src/game/state.ts",
+      "bytes": 3612,
+      "sha256": "4618312151de37a230d246a722508e84639a19dc2528736aaad56449f943b1fb"
+    },
+    {
+      "file": "src/shared/animation/operative.ts",
+      "bytes": 5886,
+      "sha256": "99b8fa9e33261354583a38b8e0a56f90cb311cb7aa0b1abe68c3d10103ad1577"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "bytes": 35514,
+      "sha256": "e4edbf46cbe46faa693e47f3cd6e5cbdf3d41006f163404378e39ec9c9c275d5"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "bytes": 20369,
+      "sha256": "65eada490e6afb2d2af60c8a10d158bbb26651291cd64d5cecb3bfe72dea01bf"
+    },
+    {
+      "file": "src/shared/diagnostics/controller-workload.ts",
+      "bytes": 3697,
+      "sha256": "f418d8d2331fc9f769b706c480b05ced474f5eb2abb9820e6b7e50e0d3451f20"
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "bytes": 6602,
+      "sha256": "fd52bd3aa4f3b85a81daadcfc83075d841cf6ff6b8f0ae38a3276cc153b13380"
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "bytes": 8363,
+      "sha256": "2bae04d3fed56ca15549c6bd0a6924f2d0d6ad264cf9af6095d2c81d1927d994"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "bytes": 635,
+      "sha256": "62bdfbd5935c4fa06ce5ec897843cadbdf9631ccf1b6613945bb80bbf2408c9e"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "bytes": 4437,
+      "sha256": "ae6639933847c7b6c7873637fb2be5e97b3fb285c109b0f61f1c2b183e2e0255"
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "bytes": 20147,
+      "sha256": "18c1e677656ec7221cee0165498799b0507cc31980f5a8e885463b435446d557"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "bytes": 2871,
+      "sha256": "3d6620db66b3e285ba062f26165fafc873b8465b783772d289026494a4e1e8ac"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "bytes": 9004,
+      "sha256": "74176f7016cfd65abfbc27a456cdf23d1d98a4bc64c6e268b2e7dcd5c672653e"
+    },
+    {
+      "file": "test/campaign-lifecycle.test.ts",
+      "bytes": 7268,
+      "sha256": "3fa3726e13791ceb152aa94f01cebcfaad24634983657a0da2c197197aee4a51"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "bytes": 8785,
+      "sha256": "f2d28f668f255df684d12d6d085829d1f0e9282624ed9c1f1878ee47abce56db"
+    },
+    {
+      "file": "test/combat.test.ts",
+      "bytes": 11077,
+      "sha256": "38560e69b57410889ca67fdfb58c30eb2a91f185f77c5e0a6aebf2df0888b338"
+    },
+    {
+      "file": "test/controller-prediction.test.ts",
+      "bytes": 7523,
+      "sha256": "87cbfd2a167a11292302f05ce9bd80109f348c3927b0f6a4f925067524e716e0"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "bytes": 7454,
+      "sha256": "1c59dc16e30489aea6a863d05f00ffc7c1fcf4080c140b4739c89f2b398e5e88"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "bytes": 9579,
+      "sha256": "4acda1a214f8b4d8f522fb2046cfd2aae4cad114301c4f2643618da1ff6d8b54"
+    },
+    {
+      "file": "test/fixtures/airborne-death-recovery-proof.ts",
+      "bytes": 4939,
+      "sha256": "564872bd90f3a8aa92181ba51e8c507db017690973ba6236ee0691c34af53df0"
+    },
+    {
+      "file": "test/fixtures/campaign-proof.ts",
+      "bytes": 5347,
+      "sha256": "92ab65f6e70db925a402999aad25dd6b8257e13a918d211612e012c40e798ac8"
+    },
+    {
+      "file": "test/fixtures/combat-input-driver.ts",
+      "bytes": 6329,
+      "sha256": "513097a7d93211482dab36816157667969db50fb92c25454561089c6b214f907"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "bytes": 25602,
+      "sha256": "9dfb1f015ecb09b779c8b6dcad7d07410001ea52cc385f74794d0d2ba5b9221c"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "bytes": 6194,
+      "sha256": "405d073da5c2fa280367377d4ad2129389ba7a97493dc305d6f4c28631bd7736"
+    },
+    {
+      "file": "test/fixtures/death-body-proof.ts",
+      "bytes": 5977,
+      "sha256": "b6ca3b480c0ce51a3410021f93d1cae5dda80039f7f19dbbc2bd27829656988f"
+    },
+    {
+      "file": "test/fixtures/entry-proof.ts",
+      "bytes": 8540,
+      "sha256": "a45d70629a46ff42351e40a66d1d73d3dfff1f4bd258bb0617a96af226cb81f7"
+    },
+    {
+      "file": "test/fixtures/entry-recovery-proof.ts",
+      "bytes": 5332,
+      "sha256": "6f385d95cf58cbff4ff35c42a75064acc1591dd854125632112b5439c9a1c392"
+    },
+    {
+      "file": "test/fixtures/player-life-recovery-proof.ts",
+      "bytes": 5282,
+      "sha256": "199a22616ebb33fc7694d46ea9873629e39e3c07691de33c2f7d4bf4f80e2487"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "bytes": 4919,
+      "sha256": "201dd3d1c9e9ddaa9537f9d05dc2bedf8179ba229b20f4bd800007aac4486c50"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "bytes": 11694,
+      "sha256": "dae99f654cf73a12b30b5b15f96bf0878c86fa58d57bad8ad6bdafb070c349aa"
+    },
+    {
+      "file": "test/native-art.test.ts",
+      "bytes": 20374,
+      "sha256": "066aab9d183bce9cbf56bc49ed0c624df3963dae19901a23f87f5192d16120fa"
+    },
+    {
+      "file": "test/player-death-body.test.ts",
+      "bytes": 3713,
+      "sha256": "d648ac8115fe87f81ab6a346354641c27b4ebb5eb067ccba6121c93746a2ad0e"
+    },
+    {
+      "file": "test/player-entry.test.ts",
+      "bytes": 2019,
+      "sha256": "667de2b3330c468d536d1e96c3d6193d49e3c94409ccdaca2a98b9d3e260f8ac"
+    },
+    {
+      "file": "test/player-life.test.ts",
+      "bytes": 5731,
+      "sha256": "55490aeb6c639a9d03491425794639e42cceaa9173639f8a542fa682808d4233"
+    },
+    {
+      "file": "test/room-workload.test.ts",
+      "bytes": 2291,
+      "sha256": "99d98a4d1061a64a62f2fd6b7d3b248d55167e5a0640a6d97ceec655f56799c7"
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "bytes": 14301,
+      "sha256": "d13d2630660149343ea9201fa2b0aef2dd0e7b9d53d5dd297bd08b44a43da127"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "bytes": 1272,
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/player-entry/check.log.gz",
+      "bytes": 1436,
+      "sha256": "8e567da3d6c6f6114cb794dc110bbb0a89576a6380d7662d4b551cee498b968d"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/contracts.json.gz",
+      "bytes": 42575,
+      "sha256": "7afc1b7d8ccc7b8ba4178b30fffaa11c78055745be40dc54243483d4d9bc7fb9"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/contracts.log.gz",
+      "bytes": 32364,
+      "sha256": "1287be433adff212ec64c29750b64ce21153b10b5eabeec4c63cbef791f8a72c"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/death-falling-recording.json",
+      "bytes": 19124,
+      "sha256": "94902d498dd075c5178806ff16541fe60c9632702ce60514b250446ada0f3103"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/death-recording.json",
+      "bytes": 22594,
+      "sha256": "cd243ae4022e1914d71f24f003ecc2429a862ca0e80c30ddce81065d43555bfa"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/death-removed-recording.json",
+      "bytes": 27259,
+      "sha256": "6224a37242e688a8b58a48931c245a94599e27b5b09510bf76dab9fc39571ef4"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/death-rising-recording.json",
+      "bytes": 12403,
+      "sha256": "7182e6a2060fd39cf5e3dd732472e359d9815096088e09ccc7786e7124f69228"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-105.json",
+      "bytes": 21798,
+      "sha256": "31b3a2d79cc96e49edcc29033d919865a16b4b1a9411b2f049209255caba5d9c"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-105.png",
+      "bytes": 3074,
+      "sha256": "cb5b265f3b86d15d4eeba305dd679ec4863fdcb2a1f4990b4527258302ffc710"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-111.json",
+      "bytes": 23343,
+      "sha256": "c365248f54f55f21dce25d5fd7f1ffed81220320702e06c3d5ea5e7fc693f24d"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-69.json",
+      "bytes": 15426,
+      "sha256": "a1ea0285881379962bd4034bbbb2e830b5dac59bae4f4ef1c4cec86317c77f44"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-99.json",
+      "bytes": 20752,
+      "sha256": "df0e509ae4369332cadac2d9bfb2da4a5932d7b515dac5f731bfab608156c618"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-99.png",
+      "bytes": 2889,
+      "sha256": "94a3bd96203bfe681965f5da12f55319416654b771d058ff23c526d1c4072978"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/entry-press-ready-motion.png",
+      "bytes": 3092,
+      "sha256": "bae9a698a4fa9db9056649bf7ad5f0b064ef215d10e7aedb5ddfa61cf4743664"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/first-ready-projectile-overlay.png",
+      "bytes": 3088,
+      "sha256": "3a6d5e1cddce8aa88b4b8a22e6ef2eefb60afb86d9de35d834b260eed7967ad5"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/golden-verification.json",
+      "bytes": 1025,
+      "sha256": "76e6b224b29d5d8895a4a95e3361711545a06c13322c8cb4f131e886550d9494"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/grenade-air-recording.json",
+      "bytes": 7182,
+      "sha256": "30d377d6a1b483ab41915c776f7dbfd9bae9cd265ff68853c54ec2ea283e3602"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/grenade-crouch-recording.json",
+      "bytes": 7279,
+      "sha256": "da6ce4003f43d5578923e5123a51a1ff8b58a73807d4635f23ab5aed7716dcc4"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/grenade-run-recording.json",
+      "bytes": 7282,
+      "sha256": "3be9eb44a3249a45a287d956cfcbdc23c8389fdec9a373e530cfc16bccc66c2b"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/initial-native.log.gz",
+      "bytes": 624,
+      "sha256": "3afaf76078684a780ba66e0aca070912e6d4e0bf7a72359c5c405ae9958af27f"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/knife-crouch-recording.json",
+      "bytes": 13528,
+      "sha256": "832e05550cfc61e03c956567c46a7789f26b8dfec8610a8c6db7d7fa0294bfb8"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/knife-stand-recording.json",
+      "bytes": 13528,
+      "sha256": "3f44f80682d4da56d571e1418cf47af5279c47a588cba9967127fa91838b9ef3"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/motion-recording.json",
+      "bytes": 15117,
+      "sha256": "69a7f24fcc7def323914de33219f810ac29273419291bb40bdd39a7b1eef54e9"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/native.json.gz",
+      "bytes": 7723,
+      "sha256": "b3b19c6e1b30b6505f408de65f911ecc41a9316d831e95bd175431b63e37479a"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/native.log.gz",
+      "bytes": 316,
+      "sha256": "c190230a23b60eb79ded6742d13751c7ab3aa54bafbc051fc8658271a56f30fb"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/network-diagnostics.json.gz",
+      "bytes": 3237,
+      "sha256": "6a4fbc18a9ed2e1656dc147b67f76956ca1dcba6298353cfe38f5146b86cb6b1"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/network.json.gz",
+      "bytes": 119265,
+      "sha256": "8da49c31d9227c6a8cd83f88aea6a008991dcf710d6e3649762a61e4bf0cb63f"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/network.log.gz",
+      "bytes": 151,
+      "sha256": "5c807d3422ed60f76eeadaa045e2dde9802097c710cfa5fc61141c582b43c566"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/observability.json",
+      "bytes": 836,
+      "sha256": "2b533aa740602df221ab552ec76a166ddf77ce46bd72a23736e49e96da752a9e"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/publication-scan.json",
+      "bytes": 328,
+      "sha256": "312acb3f0a5593e8e463eceab27907278f7933364395c264d4949aed163a9251"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/recording.json",
+      "bytes": 4362,
+      "sha256": "eee36a0d559116ad853d7443c3bf8ba3f84804dec427a811663da563db5e9489"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/reentry-recording.json",
+      "bytes": 26928,
+      "sha256": "2ce7cbdd2e358eca18fa3722ba4a618656f6d137ce6ff9b8b4ca8e6da7215ab0"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/run-recording.json",
+      "bytes": 8197,
+      "sha256": "7970179b20649750d4be1c87b56410e73a42ab7fb6fa59f30190bf831e708a76"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/storage.json.gz",
+      "bytes": 121958,
+      "sha256": "0ac0627b4376f36aee27ef30b32162e3f36990ae9cff7feb71e790ded35cad6f"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/storage.log.gz",
+      "bytes": 78601,
+      "sha256": "2a42cf0e2b608785f0520354e3ef61de06304418ed5821a6855db45b16fb965e"
+    },
+    {
+      "file": "docs/redesign-evidence/player-entry/summary.json",
+      "bytes": 1037,
+      "sha256": "111c1b29f27d37fe2a1f6d41079e33f76c30e2035fa58b6dee0ba3c01631b74d"
+    }
+  ]
+}
