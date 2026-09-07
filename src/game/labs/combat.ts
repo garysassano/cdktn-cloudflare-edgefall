@@ -1,4 +1,5 @@
 import { type GroundedEnemy, stepGroundedEnemy } from "../actors/grounded.js";
+import { type LifeNotice, damagePlayer, stepPlayerLife } from "../campaign/life.js";
 import { stepFirearm } from "../combat/firearm.js";
 import {
   type BallisticProjectile,
@@ -18,7 +19,7 @@ import {
 } from "../encounters/lifecycle.js";
 import { HELD_MASK } from "../input/types.js";
 import { worldRect, worldSocket } from "../physics/body.js";
-import { CollisionGrid, CollisionIndex } from "../physics/grid.js";
+import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
 import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES } from "./combat-content.js";
@@ -41,6 +42,8 @@ export interface CombatNotice {
   ownerId: number;
   actionInstanceId: number;
   markerIndex: number;
+  /** Captured when the marker fires; later damage may cancel the actor's action. */
+  source: { definitionId: number; controlEpoch: number; shotOrdinal: number } | null;
   position: Point;
   impact: Impact | null;
   targetId: number | null;
@@ -59,6 +62,28 @@ export interface CombatLab {
   events: CombatNotice[];
 }
 export const COMBAT_LAB_LIMIT = 3600;
+export const COMBAT_ENTRY = {
+  firstX: pixels(45),
+  slotSpacing: pixels(4),
+  y: pixels(200),
+  fallBoundary: pixels(248),
+} as const;
+export function combatEntryContext(
+  actor: ControlledActor,
+  index: CollisionIndex,
+  frame: CollisionFrame,
+) {
+  const shape = FOOT_DEFINITION && COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
+  if (!shape) throw new Error("Missing life entry shape");
+  return {
+    shape,
+    anchors: [
+      { x: COMBAT_ENTRY.firstX + actor.slot * COMBAT_ENTRY.slotSpacing, y: COMBAT_ENTRY.y },
+    ],
+    index,
+    frame,
+  };
+}
 export function combatTerrain(scenario: CombatScenario): SweepTarget[] {
   return [
     footTerrain(100, 0, 200, 384, 16),
@@ -162,6 +187,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   const frame = { tick, geometryRevision: 1 };
   const index = new CollisionIndex(new CollisionGrid(terrain), [], frame);
   const encounterEvents: EncounterEvent[] = [];
+  const lifeNotices: LifeNotice[] = [];
   const outcomes: Array<{
     playerId: number;
     jumpAccepted: boolean;
@@ -170,7 +196,16 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
     if (!command || !FOOT_DEFINITION) throw new Error("Missing combat controller");
-    const result = stepFootController(actor, command, FOOT_DEFINITION, COMBAT_SHAPES, index, frame);
+    const life = stepPlayerLife(actor, tick, "classic", combatEntryContext(actor, index, frame));
+    if (life.notice) lifeNotices.push(life.notice);
+    const result = stepFootController(
+      life.actor,
+      command,
+      FOOT_DEFINITION,
+      COMBAT_SHAPES,
+      index,
+      frame,
+    );
     if (result.status === "failed") throw new Error(`Combat body: ${result.physics.reason}`);
     world.players[slot] = result.actor;
     outcomes.push({
@@ -236,6 +271,11 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         ownerId: actor.playerId,
         actionInstanceId: item.actionInstanceId,
         markerIndex: item.markerIndex,
+        source: {
+          definitionId: item.marker.payloadId,
+          controlEpoch: result.actor.controlEpoch,
+          shotOrdinal: result.actor.weapon.shotOrdinal,
+        },
         position,
         impact: null,
         targetId: null,
@@ -307,6 +347,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       ownerId: impact.ownerId,
       actionInstanceId: impact.actionInstanceId,
       markerIndex: 0,
+      source: null,
       position: impact.position,
       impact,
       targetId: impact.entityId,
@@ -328,6 +369,13 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       });
     }
   }
+  for (const [slot, actor] of world.players.entries()) {
+    // The range's authored lower kill boundary resolves real falls, not a client death command.
+    if (actor.life !== "alive" || actor.body.y <= COMBAT_ENTRY.fallBoundary) continue;
+    const death = damagePlayer(actor, tick, 1, "classic", "fall");
+    world.players[slot] = death.actor;
+    if (death.notice) lifeNotices.push(death.notice);
+  }
   world.encounter = lifecycle(world).step(
     world.encounter,
     tick,
@@ -341,7 +389,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       })),
     "throw",
   ).state;
-  return { state: world, outcomes };
+  return { state: world, outcomes, lifeNotices };
 }
 export interface CombatRecording {
   format: 1;

@@ -166,6 +166,42 @@ try {
     await runtime.dispose();
     runtime = create();
   });
+  const lifeState = async (action: string) => {
+    const response = await fetch(`${await origin()}/life/${action}`, { method: "POST" });
+    assert(response.ok, `Life ${action}: ${await response.clone().text()}`);
+    return (await response.json()) as {
+      instance: string;
+      tick: number;
+      hash: string;
+      lives: Array<{
+        life: string;
+        lifeStartTick: number;
+        lives: number;
+        invulnerableTicks: number;
+      }>;
+    };
+  };
+  const dying = await lifeState("seed-life");
+  assert.equal(dying.lives[0]?.life, "death");
+  assert.equal(dying.lives[0]?.lives, 2);
+  assert.equal(dying.tick - (dying.lives[0]?.lifeStartTick ?? NaN), 21);
+  await runtime.dispose();
+  runtime = create();
+  const coldDeath = await lifeState("restore");
+  assert.notEqual(coldDeath.instance, dying.instance);
+  assert.equal(coldDeath.hash, dying.hash);
+  assert.deepEqual(coldDeath.lives, dying.lives);
+  const entering = await lifeState("resume-life");
+  assert.equal(entering.lives[0]?.life, "respawning");
+  assert.equal(entering.lives[0]?.lives, 2);
+  assert.equal(entering.lives[0]?.invulnerableTicks, 114);
+  assert.equal(entering.tick - (entering.lives[0]?.lifeStartTick ?? NaN), 6);
+  await runtime.dispose();
+  runtime = create();
+  const coldEntry = await lifeState("restore");
+  assert.notEqual(coldEntry.instance, entering.instance);
+  assert.equal(coldEntry.hash, entering.hash);
+  assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
@@ -178,9 +214,10 @@ try {
     tail: { seededTail, restoredTail, pausedTail, coldPause, expiredTail, coldExpired },
     loading: { seededLoading, replacedLoading, coldLoading },
     phases,
+    life: { dying, coldDeath, entering, coldEntry, transactionRollback: ["death", "entry"] },
     status: "pass",
     scope:
-      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry/replacement rollback, guarded host boundaries, lobby/intermission pause origins, completed generation replacement and terminal non-resurrection; no campaign progression, deployed durability or production outbox claim.",
+      "Owned local SQLite Durable Object and fresh workerd processes. Death/entry delays and spent lives, full/partial journal reconstruction, atomic rollback, guarded host boundaries, pause origins and terminal non-resurrection; no campaign progression, deployed durability or production outbox claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report)}\n`);

@@ -112,6 +112,7 @@ export function writePlayer(writer: Writer, player: ControlledActor): void {
   writer.u32(player.slot, 0, 3);
   writer.u32(player.controlEpoch, 1);
   writer.choice(LIFE, player.life);
+  writer.u32(player.lifeStartTick);
   writer.choice(LOCOMOTION, player.locomotion);
   writeAction(writer, player.action);
   writer.i32(player.facing, 1);
@@ -143,6 +144,7 @@ export function readPlayer(reader: Reader): ControlledActor {
     slot: reader.u32(0, 3),
     controlEpoch: reader.u32(1),
     life: reader.choice(LIFE),
+    lifeStartTick: reader.u32(),
     locomotion: reader.choice(LOCOMOTION),
     action: readAction(reader),
     facing: reader.i32(1) as -1 | 1,

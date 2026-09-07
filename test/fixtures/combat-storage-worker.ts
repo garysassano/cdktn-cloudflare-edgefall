@@ -5,6 +5,7 @@ import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.j
 import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
+import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 
 interface Env {
   STORES: DurableObjectNamespace<CombatStorageProof>;
@@ -27,6 +28,29 @@ export class CombatStorageProof extends DurableObject<Env> {
     const [, name, action] = new URL(request.url).pathname.split("/");
     let loadingChecks: string[] | null = null;
     let phaseChecks: string[] | null = null;
+    if (action === "seed-life" || action === "resume-life") {
+      const fixture = recordPlayerLifeRecovery();
+      let state = action === "seed-life" ? fixture.states[fixture.death + 6] : await store.load();
+      if (!state) throw new Error("Missing life checkpoint fixture");
+      if (action === "seed-life") await store.initialize(state);
+      const through = action === "seed-life" ? fixture.death + 21 : fixture.entry + 6;
+      const accepted = fixture.states[through];
+      if (!accepted || canonical(state) !== canonical(fixture.states[state.combat.tick]))
+        throw new Error("Life checkpoint prefix mismatch");
+      const entries = fixture.entries.slice(state.combat.tick, through);
+      this.inject = true;
+      let rolledBack = false;
+      try {
+        await store.commit(state, entries, accepted);
+      } catch {
+        rolledBack = true;
+      }
+      if (!rolledBack || canonical(await store.load()) !== canonical(state))
+        throw new Error("Life transaction changed spent lives after rollback");
+      state = await store.commit(state, entries, accepted);
+      if (canonical(state) !== canonical(accepted))
+        throw new Error("Life storage continuation differs from authority");
+    }
     if (action === "seed-phase") {
       const phase = name?.replace("phase-", "");
       if (phase !== "lobby" && phase !== "intermission" && phase !== "completed")
@@ -220,6 +244,14 @@ export class CombatStorageProof extends DurableObject<Env> {
         nextEntityId: state?.combat.nextEntityId,
         eventCursor: state?.history.cursor,
         kills: state?.combat.encounter.kills,
+        lives: state?.combat.players.map((player) => ({
+          playerId: player.playerId,
+          life: player.life,
+          lifeStartTick: player.lifeStartTick,
+          lives: player.lives,
+          invulnerableTicks: player.invulnerableTicks,
+          weapon: player.weapon,
+        })),
         rows: this.ctx.storage.sql
           .exec(
             "SELECT key, run_epoch, tick, length(payload) AS bytes FROM combat_archive ORDER BY tick, key",
@@ -243,6 +275,7 @@ export default {
         "proof",
         "tail",
         "loading",
+        "life",
         "phase-lobby",
         "phase-intermission",
         "phase-completed",

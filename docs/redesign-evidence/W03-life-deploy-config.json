@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-09-07T05:22:51.314Z",
+  "upload_source_maps": true,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "bindingsUnchanged": true,
+  "deployed": false,
+  "liveIngestionVerified": false,
+  "dryRun": "pass"
+}

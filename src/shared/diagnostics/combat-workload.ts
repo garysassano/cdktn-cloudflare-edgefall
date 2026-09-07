@@ -1,16 +1,20 @@
+import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
 import { Edge, type InputCommand } from "../../game/input/types.js";
 import {
+  COMBAT_ENTRY,
   type CombatLab,
   advanceCombatLab,
   combatEncounterDefinition,
+  combatEntryContext,
   combatTerrain,
   createCombatLab,
 } from "../../game/labs/combat.js";
 import { COMBAT_CATALOG, COMBAT_CONTENT, COMBAT_SHAPES } from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
 import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
+import { ARCADE, RULE_PRESETS } from "../../game/rules.js";
 import type { ControlledActor } from "../../game/state.js";
 import type { PreparedPlayerTick, WorldInputOutcome } from "../protocol/input-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
@@ -23,6 +27,13 @@ export async function combatIdentity() {
   const bytes = new TextEncoder().encode(
     canonical({
       content: COMBAT_CONTENT,
+      life: {
+        rules: RULE_PRESETS,
+        deathTicks: ARCADE.deathTicks,
+        entryTicks: ARCADE.respawnEntryTicks,
+        protectionTicks: ARCADE.respawnProtectionTicks,
+        checkpoint: COMBAT_ENTRY,
+      },
       profiles: [...COMBAT_CATALOG.firearms].map(([id, profile]) => ({
         id,
         timelineIds: profile.timelineIds,
@@ -178,14 +189,18 @@ export function evaluateCombatTick(
 export function predictCombatMovement(actor: ControlledActor, command: InputCommand, tick: number) {
   if (!FOOT_DEFINITION) throw new Error("Missing combat foot definition");
   const frame = { tick, geometryRevision: 1 };
+  const index = new CollisionIndex(grid, [], frame);
+  const life = stepPlayerLife(actor, tick, "classic", combatEntryContext(actor, index, frame));
   const result = stepFootController(
-    actor,
+    life.actor,
     { held: command.held, jumpPressed: command.edges.some((edge) => edge.kind === Edge.Jump) },
     FOOT_DEFINITION,
     COMBAT_SHAPES,
-    new CollisionIndex(grid, [], frame),
+    index,
     frame,
   );
   if (result.status === "failed") throw new Error(`Combat prediction: ${result.physics.reason}`);
-  return result.actor;
+  return result.actor.life === "alive" && result.actor.body.y > COMBAT_ENTRY.fallBoundary
+    ? damagePlayer(result.actor, tick, 1, "classic", "fall").actor
+    : result.actor;
 }

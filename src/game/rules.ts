@@ -10,6 +10,8 @@ export const ARCADE = Object.freeze({
   initialLives: 3,
   initialGrenades: 10,
   respawnProtectionTicks: 120,
+  deathTicks: 30,
+  respawnEntryTicks: 12,
   boardingTicks: 12,
   reboardCooldownTicks: 30,
   vehicleSpecialHoldTicks: 30,

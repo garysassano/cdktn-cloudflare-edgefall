@@ -136,7 +136,7 @@ export const SNAPSHOT_TYPE = 2;
 export const SNAPSHOT_HEADER_BYTES = 64;
 export const CAMPAIGN_BYTES = 40;
 export const BODY_BYTES = 140;
-export const PLAYER_BYTES = 288;
+export const PLAYER_BYTES = 292;
 export const VEHICLE_BYTES = 308;
 export const ENEMY_BYTES = 64;
 export const PROJECTILE_BYTES = 48;
@@ -151,6 +151,6 @@ export const SNAPSHOT_CAPS = {
   threats: 128,
   removedIds: 512,
 } as const;
-export const MIN_SNAPSHOT_BYTES = 432;
-export const MAX_BASE_SNAPSHOT_BYTES = 39112;
-export const MAX_SNAPSHOT_BYTES = 47896;
+export const MIN_SNAPSHOT_BYTES = 436;
+export const MAX_BASE_SNAPSHOT_BYTES = 39128;
+export const MAX_SNAPSHOT_BYTES = 47912;

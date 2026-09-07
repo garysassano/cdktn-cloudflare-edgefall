@@ -46,7 +46,7 @@ const bindings: Record<string, number> = {
 function inspect(message = "") {
   element("state").textContent = JSON.stringify(state, null, 2);
   element("status").textContent =
-    `Tick ${state.tick} · ${state.encounter.phase} · ${running ? "running" : "paused"}${message ? ` · ${message}` : ""}`;
+    `Tick ${state.tick} · ${state.encounter.phase} · ${running ? "running" : "paused"} · ${state.players.map((player) => `P${player.slot + 1}: ${player.lives} lives, ${player.life}`).join(" · ")}${message ? ` · ${message}` : ""}`;
 }
 function pause() {
   running = false;

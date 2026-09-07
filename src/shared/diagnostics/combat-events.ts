@@ -1,5 +1,5 @@
 import type { CombatLab } from "../../game/labs/combat.js";
-import { COMBAT_CATALOG, COMBAT_CONTENT } from "../../game/labs/combat-content.js";
+import { COMBAT_CONTENT } from "../../game/labs/combat-content.js";
 import type { EventContext, GameplayEvent } from "../protocol/events.js";
 import type { InputIdentity } from "../protocol/schema.js";
 
@@ -40,20 +40,13 @@ export function combatGameplayEvents(previous: CombatLab, next: CombatLab): Game
         throw new Error("Missing impact attack identity");
       event.definitionId = projectile.definitionId;
     } else {
-      const actor = [...next.players, ...previous.players].find(
-        (item) =>
-          item.playerId === notice.ownerId &&
-          item.weapon.lastActionInstanceId === notice.actionInstanceId,
-      );
-      const marker =
-        actor &&
-        COMBAT_CATALOG.timelines.get(actor.action.definitionId)?.markers[notice.markerIndex];
-      if (!actor || !marker) throw new Error("Missing firearm confirmation source");
-      event.definitionId = marker.payloadId;
+      const source = notice.source;
+      if (!source) throw new Error("Missing firearm confirmation source");
+      event.definitionId = source.definitionId;
       event.confirmation = {
-        playerId: actor.playerId,
-        controlEpoch: actor.controlEpoch,
-        shotOrdinal: actor.weapon.shotOrdinal,
+        playerId: notice.ownerId,
+        controlEpoch: source.controlEpoch,
+        shotOrdinal: source.shotOrdinal,
       };
     }
     return event;

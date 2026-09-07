@@ -280,9 +280,10 @@ describe("full v3 snapshot records", () => {
       [156, MAX_MOTION + 1],
       [184, 5],
       [296, 4],
-      [324, 0],
-      [396, 8],
-      [412, 99],
+      [300, COUNTER_LIMIT],
+      [328, 0],
+      [400, 8],
+      [416, 99],
     ]) {
       const bytes = encodeSnapshot(fixture(), context);
       if (offset === undefined || value === undefined) throw new Error("Missing mutation fixture");

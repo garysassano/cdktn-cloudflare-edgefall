@@ -19,6 +19,7 @@ import {
   combatRecoveryProof,
   recordCombatRecovery,
 } from "./fixtures/combat-recovery-proof.js";
+import { playerLifeRecoveryProof } from "./fixtures/player-life-recovery-proof.js";
 
 let identity: CombatArchiveIdentity;
 let fixture: ReturnType<typeof recordCombatRecovery>;
@@ -32,6 +33,18 @@ function state(tick = 60): CombatRuntime {
   return structuredClone(value);
 }
 describe("combat checkpoint and committed applied-input journal", () => {
+  it("restores spent lives and remaining death/entry delays from full checkpoints and committed inputs", async () => {
+    const proof = await playerLifeRecoveryProof();
+    expect(proof.entryTick - proof.deathTick).toBe(30);
+    expect(proof.checkpoints.map((c) => c.players[0]?.life)).toEqual([
+      "death",
+      "alive",
+      "spectating",
+    ]);
+    expect(
+      proof.checkpoints.at(-1)?.players.every((p) => p.lives === 0 && p.life === "spectating"),
+    ).toBe(true);
+  });
   it("captures the accepted boundary immutably and checks its complete hash chain", async () => {
     const start = state(60),
       accepted = state(75),

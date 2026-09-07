@@ -10,8 +10,8 @@ import { decodeSnapshot, encodeSnapshot } from "../src/shared/protocol/snapshot.
 
 describe("populated protocol workload", () => {
   it.each([
-    { multiplier: 1 as const, bytes: 11352 },
-    { multiplier: 2 as const, bytes: 21288 },
+    { multiplier: 1 as const, bytes: 11368 },
+    { multiplier: 2 as const, bytes: 21304 },
   ])("round-trips all four recipient baselines at $bytes bytes", ({ multiplier, bytes }) => {
     const world = createRoomWorkload(multiplier);
     expect(world.players).toHaveLength(4);

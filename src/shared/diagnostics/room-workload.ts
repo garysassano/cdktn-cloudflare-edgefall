@@ -101,6 +101,7 @@ function player(slot: number): ControlledActor {
     health: 1,
     lives: 3,
     lastRallyMission: 1,
+    lifeStartTick: 0,
     processedEdgeIds: [0, 0, 0, 0, 0],
   };
 }

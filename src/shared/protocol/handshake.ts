@@ -6,8 +6,8 @@ import { ProtocolError } from "./schema.js";
 
 export interface Handshake extends GameIdentity {
   type: "welcome";
-  protocolMajor: 3;
-  protocolMinor: 1;
+  protocolMajor: typeof PROTOCOL_MAJOR;
+  protocolMinor: typeof PROTOCOL_MINOR;
   runId: string;
   runEpoch: number;
   connectionEpoch: number;

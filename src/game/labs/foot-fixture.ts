@@ -48,6 +48,7 @@ export function footActor(x = 0, y = 0): ControlledActor {
     playerId: 1,
     slot: 0,
     controlEpoch: 1,
+    lifeStartTick: 0,
     invulnerableTicks: 0,
     reboardCooldownTicks: 0,
     vehicleSpecialTicks: 0,

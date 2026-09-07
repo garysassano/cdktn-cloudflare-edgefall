@@ -50,6 +50,7 @@ import {
 } from "../../shared/protocol/input-mapping.js";
 import type { WorldInputOutcome } from "../../shared/protocol/input-stream.js";
 import { InputStream } from "../../shared/protocol/input-stream.js";
+import { PROTOCOL_MAJOR, PROTOCOL_MINOR } from "../../shared/protocol/limits.js";
 import { encodeSnapshot } from "../../shared/protocol/snapshot.js";
 import { RoomClock } from "../../shared/runtime/room-clock.js";
 import {
@@ -370,8 +371,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const welcome: Handshake = {
       ...this.resolvedIdentity,
       type: "welcome",
-      protocolMajor: 3,
-      protocolMinor: 1,
+      protocolMajor: PROTOCOL_MAJOR,
+      protocolMinor: PROTOCOL_MINOR,
       runId: "local-room-workload",
       runEpoch: this.world.runEpoch,
       connectionEpoch: this.context(slot).connectionEpoch,
@@ -882,8 +883,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           {
             code,
             roomMode: this.world.roomMode,
-            protocolMajor: 3,
-            protocolMinor: 1,
+            protocolMajor: PROTOCOL_MAJOR,
+            protocolMinor: PROTOCOL_MINOR,
             identity: this.resolvedIdentity,
           },
           { status, headers: { "Cache-Control": "no-store" } },

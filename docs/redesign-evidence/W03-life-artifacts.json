@@ -1,0 +1,333 @@
+{
+  "baseCommit": "8372053a59c01ea239dad57979467bc8f206003a",
+  "protocol": {
+    "major": 3,
+    "minor": 2
+  },
+  "sources": [
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/build-client.mjs",
+      "sha256": "a8cde22b759b108aaf524c391d5c662fa5027cf6e12e011d1cee6a6688570b06"
+    },
+    {
+      "file": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "4efee710476dc9756d49bd0920fa1aa4d9b7a3d7dac896b9d7d9ba15d46c4fc3"
+    },
+    {
+      "file": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "file": "scripts/lib/verify-loading-connections.ts",
+      "sha256": "2f73ca0de700a76091e32d88fe0a1e0d874f42bb397b2eee79e56968a8a2d403"
+    },
+    {
+      "file": "scripts/lib/verify-room-phases.ts",
+      "sha256": "cbc8e649d6ded1cbb527c9da07c387159a4d7edf320adbaad51a5e490414c613"
+    },
+    {
+      "file": "scripts/lib/verify-stored-phases.ts",
+      "sha256": "00fb7cec9dcae0a3300c8718de7b104c9206bce3db534f51fe0271807796d5bb"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "f26fb31313790af82c37287efccc8606bb05968e7c66a02862e33bf2c793ba5d"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "ba68c474cefdd0e8b1a4a132895a7e247bc016e32cb43f245d10c2cad659554a"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "dc187f8411646253a892b9d7b9701056024e0ec1ba2d6fe69590eeb036e7186c"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "6c6469165d0b6a39e7a3146ba4ef3e129d2f39d61ddb4fa76c622e10e5d62d30"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "47afe65ca7f38957a5a0374b9cc9f2e24d653e17bdd19b961173ce59a19645a8"
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "sha256": "8f0757bfdc033add72739012145bb37fc8edb52498e799a36534d56ff38844b5"
+    },
+    {
+      "file": "src/game/campaign/lifecycle.ts",
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "21fb9fd319e1bc718def44e61f85476ddf251579e234f75e1f9eb66ab16f1695"
+    },
+    {
+      "file": "src/game/labs/foot-fixture.ts",
+      "sha256": "85e8f36498115839cc18b2bfbd2d6602d61f07db6e885f7970ee5f44ed3c610a"
+    },
+    {
+      "file": "src/game/rules.ts",
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "file": "src/game/state.ts",
+      "sha256": "8e2418b3324303564c284f0538800fece4469659b53cfdafa0709269aadde6ab"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "137c9260e86b468528f3533e74035b551c9bdb5d2aa01494e230d3d167c642ef"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-events.ts",
+      "sha256": "999e1ce170687f4b6238ff999098989b9e35a42874b499b557ced29c9f5421f0"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "38a101de8593b1841c0ea82b02ae35646e6e469a978cd7d107999fb543a5759b"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "3d3794e44dce70bd58863f26edd3059d79380f01a64c58777fd1ca94ac121e13"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "ec1c81e4f2dc3afc0f92a1edeb894bc31e9f993e776ed46ec7686e2c9e414b27"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "4581443664d0ab69c93af73b8d6215b8e3f878ca258c75e1a4716c01fef79c45"
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "sha256": "8db489252582bc5d6d0948e76cf4020b3a1e7a6265ebc7db0525cb186bd53f16"
+    },
+    {
+      "file": "src/shared/protocol/handshake.ts",
+      "sha256": "1477b114de510de87e00ef713813ff08ac56af451c1e18aa85eaa6d86edeeac5"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "3ad4d2bd46eda28c8e679098ef983d9fdfe3856b75cacb2612f0869fc9ecdb6b"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "8e65d6a3de891b1136af5557a0d54723545389079c6ee7f6ceb3af659426061e"
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "sha256": "45b889bb31e011c44cd2f80379d956947b578f6e6f3d84e0b60fd17d391ef546"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/shared/session/admission.ts",
+      "sha256": "f9e7ab9c68bcbe90edaecc38caa3fc79213aad3e77a95dca335436a1264ca139"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "8ace3283c5763091976d8213b785e6e82bb929d3cada632f86e8be6b4ffee7cc"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "bf61c41f420634c6483e94488f73e9d9bf3502b9f38990e8f1f360ba0bf5fc51"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "1afd8b03adfad1768fd4c19dac7d1e2d7461b3cea7f7bb26ab6f2a73227c08ed"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "732a8f49535decdc8eddf3629479ab38952bc8406e4603c44429a6a7807a4624"
+    },
+    {
+      "file": "test/campaign-lifecycle.test.ts",
+      "sha256": "73f619712791ae056f376661645ec15a85919fd07570499698d876d0757a00dc"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "d7519e219b28bd301fb31849c47462152d357dbfd3a2253ad33b12ca0f310959"
+    },
+    {
+      "file": "test/controller-prediction.test.ts",
+      "sha256": "5153a2a50a3ee9c5e6dcd6f90f4176e78f53f57e0b8522e375770a791257cadf"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "7aba5761e22a0853bf7c5183088411e1763faf1caf7d2336ddf6cfe1dde52a81"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "3c4e9b706dd08e8ab520cce4087285af196a977411a61c606d6685878966d5c8"
+    },
+    {
+      "file": "test/fixtures/campaign-proof.ts",
+      "sha256": "68dc0ea688ee4e288bad8494668f74c182de8f413202581384db8a98513df6fd"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "583debc82d5539046ddf7f06ab4815bb684af84648db0dafe77d33f6fc9ba7a6"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "be3ae6c122d140120b527f33524921de8a77e812258801f9414e6af83bab75f5"
+    },
+    {
+      "file": "test/fixtures/player-life-proof.ts",
+      "sha256": "a95dd8c0c35117988cab3cef4e6f6fc2ee2f3830e1cbd15ead720f6b54f768a0"
+    },
+    {
+      "file": "test/fixtures/player-life-recovery-proof.ts",
+      "sha256": "0bfd5655911d93f9ae58857e3bf2b741e78c2cb2f745dfd76d9f717f33b62a87"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "9b6932eb690346e30ac59fcd830b96a4ae68704f2b9ee4f2adf8e6b1122dd698"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "991db4b27f2e319a182dae5a178610be7683dd60072022f88d8992d6fbdbccfa"
+    },
+    {
+      "file": "test/player-life.test.ts",
+      "sha256": "a3734d2a54aa33f6e2a703fe013f7942e2a12304c27a4cc7eec0657d5494c52e"
+    },
+    {
+      "file": "test/room-workload.test.ts",
+      "sha256": "1f22bff0caa5bc3ec4bf460da20f6952aaa4efcab1fbc50a9de3be59f501b044"
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "sha256": "e15e86540a178f851abb80c33447445b7ebea4bde6ded1405b8f85fd490f4c85"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "W03-life-auto-diagnostics.json.gz",
+      "bytes": 16506,
+      "sha256": "9abb2d000bb8fde4c3a066059cc254623727b654d9077f982742203da151e150",
+      "uncompressedBytes": 120155,
+      "uncompressedSha256": "fdf90fe97f150fec1bf14d1f299751a02474cbd82465d5994e77f238cacf8677"
+    },
+    {
+      "file": "W03-life-auto.json.gz",
+      "bytes": 171976,
+      "sha256": "f4fd2cf18bee3d251c41ba4b29d7946c0deaafa04f63e183a9cf935d8a732b36",
+      "uncompressedBytes": 2899510,
+      "uncompressedSha256": "631c82cfdd78535717ba3a726117d0ebc0182040af712b4321f0dbde50b48cfa"
+    },
+    {
+      "file": "W03-life-browser.json.gz",
+      "bytes": 4620,
+      "sha256": "2d23a4cd7ce6a06842c81421f3634a28f2f1b217bc46063c771fcd426e0bc5d5",
+      "uncompressedBytes": 75881,
+      "uncompressedSha256": "0b96f6c6115229671cefb7704ba2630ac6dc6bb17781d40a84df666c015ce5d1"
+    },
+    {
+      "file": "W03-life-browser.png",
+      "bytes": 118390,
+      "sha256": "35578df0865143745f7f624b6f885550f679774f3db04f3f2c3441f6e1d7e678"
+    },
+    {
+      "file": "W03-life-check-failure.log.gz",
+      "bytes": 2179,
+      "sha256": "3e7dc8a20d18624c8aceaddb1cb08eba594a5084fc76988819cc960661cc8b18",
+      "uncompressedBytes": 4852,
+      "uncompressedSha256": "a67b90db502066367444948dc54c4db239bbb0036364435f7cbf68da21f02a3d"
+    },
+    {
+      "file": "W03-life-check.log.gz",
+      "bytes": 1367,
+      "sha256": "6f743c8d2476a58b1ada6883b1bcea9ad395a1792fbb9009e033d95d144198f3",
+      "uncompressedBytes": 2684,
+      "uncompressedSha256": "57caf52cbd353fff09958b613173ecb2daf641302f79c19c66c23efcf696f9a2"
+    },
+    {
+      "file": "W03-life-confirmation-failure.log.gz",
+      "bytes": 642,
+      "sha256": "9f8adb7996c2a76635b73e4f677e63f4282f916381ebb6d36eceae88b9f46cbf",
+      "uncompressedBytes": 1356,
+      "uncompressedSha256": "4aa49037fe09dc1a2e43159828d9dd49513cd147db27df4b7743d60dad5d70d9"
+    },
+    {
+      "file": "W03-life-contracts.json.gz",
+      "bytes": 10702,
+      "sha256": "f5bb8c2fb9d74ddab98ba02dfd670c6c4a7f9e41bbb9b205cbe7fb4dee2795cd",
+      "uncompressedBytes": 145321,
+      "uncompressedSha256": "fa8d7e5858027b3902dd36dd400c08cb3627349395cd2ddaf4604a4552c8bbaa"
+    },
+    {
+      "file": "W03-life-death-recording.json.gz",
+      "bytes": 1438,
+      "sha256": "8f07da2eb6594ab055fc559796d4470582aa5ceddc0cff77dd20382ba98be690",
+      "uncompressedBytes": 20071,
+      "uncompressedSha256": "aa141ee1b2f87ed003e5185d5bac182e804a0f65a570714900cf6f3393cb9d0c"
+    },
+    {
+      "file": "W03-life-deploy-config.json",
+      "bytes": 408,
+      "sha256": "95fa6bf8d4c123cfd1dde4e5f923b34dd44412eee063a91d842468363ee61d11"
+    },
+    {
+      "file": "W03-life-entry-recording.json.gz",
+      "bytes": 1333,
+      "sha256": "83a748c231b0adc79d6069b737dd8697ca26d2a34f3eb5b5b7a25d2ebc20a1e7",
+      "uncompressedBytes": 22793,
+      "uncompressedSha256": "50f52c507acb98ad9bd7b15a5d1a6b8a119be20a82cc4bdb90140a832a67631c"
+    },
+    {
+      "file": "W03-life-phase-diagnostics.json.gz",
+      "bytes": 4751,
+      "sha256": "e0005e2dda2e46020f72a4cd5701e08dbe1da75374c98e96ff271164b6f225c6",
+      "uncompressedBytes": 34004,
+      "uncompressedSha256": "c72c7f245c212c69c9ce437485e2179749e71be826215d6efa88611d27f7d76f"
+    },
+    {
+      "file": "W03-life-phases.json.gz",
+      "bytes": 181909,
+      "sha256": "d4a8497afff5dd252c473a9de7a058f6b0b87c3aec48b7c2349cbe8ecf956d12",
+      "uncompressedBytes": 3235498,
+      "uncompressedSha256": "f4514cd6b3ac44600160df8039dab91c29c255f9c4803d82942722bc3a680b34"
+    },
+    {
+      "file": "W03-life-recovery-failure.log.gz",
+      "bytes": 708,
+      "sha256": "e1a197e42317bb79e1d2f9d0faa29b9517765a108bccf067f1373c1f840fba50",
+      "uncompressedBytes": 1650,
+      "uncompressedSha256": "29a740241be7b12284a4e52a0f37860a03527f524e3f3a252dbfd8489f674424"
+    },
+    {
+      "file": "W03-life-storage.json.gz",
+      "bytes": 4774,
+      "sha256": "d85fe3e9af178f8d97e5118f6f3bc246f698727febd7e5afcf726c29ad517d55",
+      "uncompressedBytes": 136051,
+      "uncompressedSha256": "efcc6253c5c6f93dc832b1d86b55097b3fa20d1a1c856218d56a88f65e8e5728"
+    },
+    {
+      "file": "W03-player-lives.md",
+      "bytes": 8886,
+      "sha256": "627e7791af210c3293881826b0220b937add1618879b1fdcc6ae55597c8e6f67"
+    }
+  ]
+}

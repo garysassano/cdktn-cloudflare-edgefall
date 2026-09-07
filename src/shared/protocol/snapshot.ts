@@ -145,6 +145,7 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
   for (const [index, player] of snapshot.players.entries()) {
     body(player.body);
     action(player.action);
+    check(player.lifeStartTick <= snapshot.tick, "Future life phase");
     check(player.facing === -1 || player.facing === 1, "Invalid facing");
     check(player.geometryRevision === snapshot.geometryRevision, "Controller geometry mismatch");
     check(

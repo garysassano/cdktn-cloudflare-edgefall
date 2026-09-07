@@ -1,3 +1,4 @@
+import { validatePlayerLife } from "../../game/campaign/life.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { EncounterLifecycle } from "../../game/encounters/lifecycle.js";
@@ -102,6 +103,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "player roster",
     );
     check(COMBAT_CATALOG.firearms.has(actor.weapon.id), "unsupported weapon");
+    validatePlayerLife(actor, combat.tick, snapshot.campaign.ruleset);
     if (actor.action.kind !== "ready") {
       const timeline = COMBAT_CATALOG.timelines.get(actor.action.definitionId);
       const age = combat.tick - actor.action.stateStartTick;
@@ -188,7 +190,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     );
   }
   for (const notice of combat.events) {
-    fields(notice, "kind ownerId actionInstanceId markerIndex position impact targetId");
+    fields(notice, "kind ownerId actionInstanceId markerIndex source position impact targetId");
     fields(notice.position, "x y");
     check(
       ["shot", "sound", "muzzle-blocked", "impact", "killed"].includes(notice.kind),
@@ -210,6 +212,29 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       (notice.kind === "impact" || notice.kind === "killed") === (notice.impact !== null),
       "notice impact",
     );
+    check((notice.impact === null) === (notice.source !== null), "notice source kind");
+    if (notice.source !== null) {
+      fields(notice.source, "definitionId controlEpoch shotOrdinal");
+      const owner = combat.players.find((player) => player.playerId === notice.ownerId);
+      check(
+        owner &&
+          owner.weapon.lastActionInstanceId === notice.actionInstanceId &&
+          owner.weapon.shotOrdinal === notice.source.shotOrdinal &&
+          owner.controlEpoch === notice.source.controlEpoch,
+        "notice confirmation identity",
+      );
+      integer(notice.source.shotOrdinal, 1, COUNTER_LIMIT - 1, "notice shot ordinal");
+      check(
+        [...COMBAT_CATALOG.timelines.values()].some((timeline) => {
+          const marker = timeline.markers[notice.markerIndex];
+          return (
+            marker?.payloadId === notice.source?.definitionId &&
+            marker?.kind === (notice.kind === "sound" ? "sound" : "spawn-attack")
+          );
+        }),
+        "notice marker payload",
+      );
+    }
     if (notice.impact !== null) {
       const impact = notice.impact;
       fields(

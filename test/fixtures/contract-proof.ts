@@ -4,6 +4,7 @@ import { encodeInputBatch } from "../../src/shared/protocol/codec.js";
 import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
+import { campaignProof } from "./campaign-proof.js";
 import { collisionProof } from "./collision-proof.js";
 import { combatProof } from "./combat-proof.js";
 import { combatReconnectProof } from "./combat-reconnect-proof.js";
@@ -17,6 +18,8 @@ import { inputCaptureProof } from "./input-capture-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
+import { playerLifeProof } from "./player-life-proof.js";
+import { playerLifeRecoveryProof } from "./player-life-recovery-proof.js";
 import { predictionProof } from "./prediction-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { routeProof } from "./route-proof.js";
@@ -85,6 +88,9 @@ export async function contractProof() {
     trace,
     collision: collisionProof(),
     combat: combatProof(),
+    playerLife: playerLifeProof(),
+    playerLifeRecovery: await playerLifeRecoveryProof(),
+    campaign: campaignProof(),
     worldCombat: worldCombatProof(),
     combatRecovery: await combatRecoveryProof(),
     combatReconnect: combatReconnectProof(),

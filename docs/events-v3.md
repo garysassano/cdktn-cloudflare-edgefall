@@ -1,4 +1,4 @@
-# Gameplay events v3.1
+# Gameplay events v3.2
 
 The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. These are engineering combat payloads; final audio, predicted effects and complete combat recovery remain separate work.
 
@@ -9,7 +9,7 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 | Header offset | Field                                           | Type    |
 | ------------- | ----------------------------------------------- | ------- |
 | 0             | Magic `0x4645`                                  | u16     |
-| 2             | Major `3`, minor `1`                            | 2 × u8  |
+| 2             | Major `3`, minor `2`                            | 2 × u8  |
 | 4             | Type `3`, flags `0`                             | 2 × u8  |
 | 6             | Exact total byte length                         | u16     |
 | 8 / 12        | Run epoch / connection epoch                    | 2 × u32 |
@@ -30,7 +30,7 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 
 Counters never wrap and remain below `0xfffff000`. The event identity is `(runEpoch, tick, counter)`; the counter starts at zero each tick and is bounded to 511. The separate delivery cursor starts at one and increments for every event. All active clients receive the same ordered records. A frame can start partway through a tick when a previous frame or acknowledgment ended there. Events cannot describe a tick beyond the committed header boundary. The current adapter does not filter events.
 
-Firearm markers require a complete confirmation key with the same player as the event owner. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
+Firearm markers require a complete confirmation key with the same player as the event owner. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. The kernel captures marker payload, control epoch and shot ordinal when the marker fires; a later death in the same tick can cancel the action without erasing its shot confirmation. This private notice metadata does not change the 60-byte event record. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
 
 ## Retention and acknowledgment
 

@@ -1,4 +1,5 @@
 import type { GameIdentity } from "../content-id.js";
+import { PROTOCOL_MAJOR, PROTOCOL_MINOR } from "../protocol/limits.js";
 import { type ConnectionReason, RoomConnectError } from "./connection.js";
 
 const failures = new Set<ConnectionReason>([
@@ -56,8 +57,8 @@ export async function requireRoomAdmission(
     )
       throw new RoomConnectError("protocol-error");
     if (
-      admission.protocolMajor !== 3 ||
-      admission.protocolMinor !== 1 ||
+      admission.protocolMajor !== PROTOCOL_MAJOR ||
+      admission.protocolMinor !== PROTOCOL_MINOR ||
       !admission.identity ||
       Object.entries(expected).some(
         ([key, value]) => admission.identity?.[key as keyof GameIdentity] !== value,
