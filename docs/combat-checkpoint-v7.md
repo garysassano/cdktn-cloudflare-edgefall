@@ -1,6 +1,8 @@
 # Diagnostic combat archive format 7
 
-The diagnostic world uses archive **7**, protocol **3.6**, combat snapshot section **2**, and local simulation/recording format **4**. The [format 6 contract](combat-checkpoint-v6.md) describes the existing room, campaign, rifle, knife, grenade and shield continuation. This revision adds representative shotgun and flame attacks. Earlier experimental archives and client minors are rejected; production still uses v2.
+Historical format 7 contract. Current tank and seat continuation uses [format 8](combat-checkpoint-v8.md); format 7 archives are rejected.
+
+This revision used archive **7**, protocol **3.6**, combat snapshot section **2**, and local simulation/recording format **4**. The [format 6 contract](combat-checkpoint-v6.md) describes the existing room, campaign, rifle, knife, grenade and shield continuation. This revision adds representative shotgun and flame attacks. Earlier experimental archives and client minors are rejected; production still uses v2.
 
 ## Private area state
 

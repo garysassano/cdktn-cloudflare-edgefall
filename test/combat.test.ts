@@ -14,7 +14,13 @@ import { createCombatLab, replayCombatLab, stepCombatLab } from "../src/game/lab
 import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES } from "../src/game/labs/combat-content.js";
 import { footActor, footTerrain } from "../src/game/labs/foot-fixture.js";
 
-const idle = { held: 0, firePressed: false, jumpPressed: false, grenadePressed: false };
+const idle = {
+  held: 0,
+  firePressed: false,
+  jumpPressed: false,
+  interactPressed: false,
+  grenadePressed: false,
+};
 const fire = { ...idle, held: Held.Fire, firePressed: true };
 describe("firearm action ownership", () => {
   it("changes aim and crouch pose without restarting the action or duplicating its muzzle marker", () => {
@@ -263,7 +269,7 @@ describe("ordered controller/combat/encounter integration", () => {
     }
     expect(
       replayCombatLab({
-        format: 4,
+        format: 5,
         scenario: "range",
         players: 2,
         commands,

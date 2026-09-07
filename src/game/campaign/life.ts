@@ -165,6 +165,7 @@ export function stepPlayerLife(
   check(context.frame.tick === tick, "entry collision tick mismatch");
   let actor = structuredClone(current);
   actor.invulnerableTicks = Math.max(0, actor.invulnerableTicks - 1);
+  actor.reboardCooldownTicks = Math.max(0, actor.reboardCooldownTicks - 1);
   if (actor.life === "death" && tick - actor.lifeStartTick >= ARCADE.deathTicks) {
     if (actor.lives === 0) {
       actor.life = "spectating";

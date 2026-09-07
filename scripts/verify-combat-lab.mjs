@@ -7,6 +7,7 @@ import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
+import { verifyTankLab } from "./lib/verify-tank-lab.mjs";
 
 const root = resolve("dist/client"),
   output = "dist/combat-lab-evidence";
@@ -168,7 +169,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 4);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 5);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -191,6 +192,7 @@ try {
   }
   const shield = await verifyShieldLab(page, output);
   const area = await verifyAreaLab(page, output);
+  const tank = await verifyTankLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -291,6 +293,7 @@ try {
     foot,
     shield,
     area,
+    tank,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

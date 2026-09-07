@@ -11,6 +11,12 @@ import { recordFootCombat } from "./foot-combat-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 import { recordRifleRecovery } from "./rifle-proof.js";
 import { SHIELD_BOUNDARIES, recordShieldCombat } from "./shield-proof.js";
+import {
+  TANK_BOUNDARIES,
+  TANK_DAMAGE_BOUNDARIES,
+  recordTankCombat,
+  tankDamageInput,
+} from "./tank-proof.js";
 
 interface Env {
   STORES: DurableObjectNamespace<CombatStorageProof>;
@@ -35,15 +41,31 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "shield-bash" ||
       name === "shield-break" ||
       name === "area-shotgun" ||
-      name === "area-flame"
+      name === "area-flame" ||
+      name === "tank-drive" ||
+      name === "tank-damage"
     ) {
       const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
+      const tank = name === "tank-drive" || name === "tank-damage";
+      const damage = name === "tank-damage";
       if (action !== "restore") {
-        const fixture = area ? recordAreaCombat(area) : recordShieldCombat(mode);
-        const boundaries = area ? AREA_BOUNDARIES[area] : SHIELD_BOUNDARIES[mode];
+        const fixture = tank
+          ? damage
+            ? recordTankCombat(210, tankDamageInput)
+            : recordTankCombat()
+          : area
+            ? recordAreaCombat(area)
+            : recordShieldCombat(mode);
+        const boundaries = tank
+          ? damage
+            ? TANK_DAMAGE_BOUNDARIES
+            : TANK_BOUNDARIES
+          : area
+            ? AREA_BOUNDARIES[area]
+            : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
-        if (![...boundaries, area ? 120 : 180].includes(through))
+        if (![...boundaries, tank ? (damage ? 210 : 120) : area ? 120 : 180].includes(through))
           throw new Error("Unknown shield storage boundary");
         let saved = await store.load();
         if (!saved) {
@@ -80,6 +102,8 @@ export class CombatStorageProof extends DurableObject<Env> {
         hash: combatRuntimeHash(saved),
         guard: saved.combat.targets[0]?.guard,
         areas: saved.combat.areas,
+        tanks: saved.combat.tanks,
+        vehicles: saved.snapshot.vehicles,
         volumes: saved.snapshot.combat?.volumes,
         weapons: saved.combat.players.map((player) => player.weapon),
         archiveRows: this.ctx.storage.sql
@@ -497,6 +521,8 @@ export default {
         "foot-grenade",
         "area-shotgun",
         "area-flame",
+        "tank-drive",
+        "tank-damage",
         "shield-bash",
         "shield-break",
         "campaign",

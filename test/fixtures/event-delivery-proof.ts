@@ -48,6 +48,7 @@ export function eventDeliveryProof() {
       world.players.map(() => ({
         held: Held.Fire,
         jumpPressed: false,
+        interactPressed: false,
         grenadePressed: false,
         firePressed: tick === 1,
       })),

@@ -20,7 +20,13 @@ import { CollisionGrid, CollisionIndex } from "../src/game/physics/grid.js";
 import { validateCombatCheckpoint } from "../src/shared/diagnostics/combat-checkpoint.js";
 import { recordShieldCombat, shieldCombatProof } from "./fixtures/shield-proof.js";
 
-const idle = { held: 0, jumpPressed: false, firePressed: false, grenadePressed: false };
+const idle = {
+  held: 0,
+  jumpPressed: false,
+  firePressed: false,
+  interactPressed: false,
+  grenadePressed: false,
+};
 function advance(world: CombatLab, through: number, command = idle) {
   const states = [];
   while (world.tick < through) {

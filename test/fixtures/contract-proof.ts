@@ -29,6 +29,7 @@ import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { shieldCombatProof } from "./shield-proof.js";
 import { spatialProof } from "./spatial-proof.js";
+import { tankCombatProof } from "./tank-proof.js";
 import { traversalProof } from "./traversal-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
 
@@ -101,6 +102,7 @@ export async function contractProof() {
     footCombat: await footCombatProof(),
     shieldCombat: await shieldCombatProof(),
     areaCombat: await areaCombatProof(),
+    tankCombat: await tankCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

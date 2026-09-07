@@ -50,7 +50,11 @@ describe("full v3 snapshot records", () => {
     player.body.contacts = [];
     vehicle.occupantId = player.body.id;
     vehicle.lifecycle = "occupied";
-    vehicle.controlEpoch = player.controlEpoch;
+    vehicle.controlEpoch = player.controlEpoch + 9;
+    vehicle.ownerControlEpoch = player.controlEpoch;
+    vehicle.heading = 5;
+    vehicle.facing = -1;
+    vehicle.invulnerableTicks = 30;
     const bytes = encodeSnapshot(snapshot, context);
     const decoded = decodeSnapshot(bytes, context);
     expect(decoded).toEqual(snapshot);
@@ -163,7 +167,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
-    expect(bytes.length).toBe(50984);
+    expect(bytes.length).toBe(51240);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);
@@ -305,11 +309,14 @@ describe("full v3 snapshot records", () => {
     }
   });
 
-  it("cannot reserve multiple vehicles for one on-foot member", () => {
+  it("cannot reserve multiple vehicles for one member", () => {
     const snapshot = fixture();
     const vehicle = first(snapshot.vehicles);
     vehicle.lifecycle = "boarding";
     vehicle.reservedBy = first(snapshot.players).body.id;
+    vehicle.ownerControlEpoch = first(snapshot.players).controlEpoch;
+    first(snapshot.players).vehicleId = vehicle.body.id;
+    first(snapshot.players).locomotion = "seated";
     snapshot.vehicles.push({
       ...structuredClone(vehicle),
       body: { ...structuredClone(vehicle.body), id: 21 },

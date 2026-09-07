@@ -100,6 +100,11 @@ export interface VehicleState {
   occupantId: EntityId | null;
   reservedBy: EntityId | null;
   controlEpoch: number;
+  /** Vehicle lease generation and player input generation are independent counters. */
+  ownerControlEpoch: number | null;
+  facing: -1 | 1;
+  heading: number;
+  invulnerableTicks: number;
   armor: number;
   action: ActionState;
   components: Array<{ id: number; health: number; broken: boolean }>;

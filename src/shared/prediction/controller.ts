@@ -120,9 +120,10 @@ export class ControllerPrediction {
       baseline.connectionEpoch !== original.connectionEpoch ||
       baseline.actor.playerId !== original.actor.playerId ||
       baseline.actor.body.id !== original.actor.body.id ||
-      baseline.actor.controlEpoch !== original.actor.controlEpoch ||
+      baseline.actor.controlEpoch < this.#actor.controlEpoch ||
       baseline.actor.geometryRevision !== original.actor.geometryRevision ||
-      baseline.actor.vehicleId !== original.actor.vehicleId ||
+      (baseline.actor.controlEpoch === this.#actor.controlEpoch &&
+        baseline.actor.vehicleId !== this.#actor.vehicleId) ||
       ack.playerId !== baseline.actor.playerId ||
       ack.connectionEpoch !== baseline.connectionEpoch ||
       ack.controlEpoch !== baseline.actor.controlEpoch
@@ -229,7 +230,14 @@ export class ControllerPrediction {
       for (const command of pending) {
         const target = this.#target(command, nextMapping);
         if (target !== tick + 1) this.#reject("Pending mapping needs a new baseline");
-        actor = this.#step(actor, structuredClone(command), target);
+        const applied = structuredClone(command);
+        if (applied.controlEpoch < actor.controlEpoch) {
+          applied.controlEpoch = actor.controlEpoch;
+          applied.held = 0;
+          applied.aim = 0;
+          applied.edges = [];
+        }
+        actor = this.#step(actor, applied, target);
         tick = target;
         history.set(tick, structuredClone(actor));
       }

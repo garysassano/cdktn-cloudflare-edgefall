@@ -21,7 +21,9 @@ import {
   GRENADE_PROFILE,
   RIFLE_PROFILE,
   SHIELD_PROFILE,
+  TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
+import { tankOwner, validateTankState } from "../../game/vehicles/tank.js";
 import type { GameIdentity } from "../content-id.js";
 import { Reader, Writer } from "../protocol/binary.js";
 import { readBody, writeBody } from "../protocol/controller-record.js";
@@ -91,7 +93,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   for (const decision of state.campaign.continues) {
     fields(
       decision,
-      "ordinal tick checkpointId fromRunEpoch runEpoch nextEntityIdBefore retiredEntityIds spawnedEntityIds kills",
+      "ordinal tick checkpointId fromRunEpoch runEpoch nextEntityIdBefore retiredEntityIds spawnedEntityIds retiredVehicleIds spawnedVehicleIds kills",
     );
     for (const kill of decision.kills) fields(kill, "playerId count");
   }
@@ -104,9 +106,9 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles strikes grenades areas encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets projectiles strikes grenades areas encounter events",
   );
-  check(combat.format === 4, "simulation format");
+  check(combat.format === 5, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -157,7 +159,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       const timeline = COMBAT_CATALOG.timelines.get(actor.action.definitionId);
       const age = combat.tick - actor.action.stateStartTick;
       check(
-        ["fire", "melee", "grenade"].includes(actor.action.kind) &&
+        ["fire", "melee", "grenade", "enter", "exit"].includes(actor.action.kind) &&
           timeline &&
           age >= 0 &&
           age < timeline.durationTicks &&
@@ -170,7 +172,21 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
           FOOT_ACTION_PROFILES[actor.action.kind].timelineIds.includes(actor.action.definitionId),
           "foot action timeline",
         );
+      if (actor.action.kind === "enter" || actor.action.kind === "exit")
+        check(actor.vehicleId !== null, "transfer requires seat owner");
     }
+  }
+  check(combat.tanks.length === initial.tanks.length, "tank roster");
+  for (const tank of combat.tanks) {
+    fields(
+      tank,
+      "body definitionId kind lifecycle occupantId reservedBy controlEpoch ownerControlEpoch facing heading invulnerableTicks armor action components weapon jumpBufferTicks coyoteTicks turnTicks disconnectedTicks lastGunOwnerId lastGunControlEpoch",
+    );
+    fields(tank.action, "kind actionInstanceId stateStartTick definitionId nextMarkerIndex");
+    fields(tank.weapon, "id ammo cooldownTicks shotOrdinal lastActionInstanceId");
+    validateTankState(tank, combat.tick, combat.players, TANK_PROFILE, COMBAT_CATALOG);
+    ownAction(tank.action.actionInstanceId, tankOwner(tank) ?? tank.lastGunOwnerId ?? 0);
+    ownAction(tank.weapon.lastActionInstanceId, tank.lastGunOwnerId ?? 0);
   }
   for (const [index, target] of combat.targets.entries()) {
     fields(target, "enemy health shield rifle guard");
@@ -287,7 +303,12 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "projectile lifetime",
     );
     check(
-      Math.abs(projectile.velocity.x) + Math.abs(projectile.velocity.y) === attack.speed,
+      attack.id === TANK_PROFILE.attackId
+        ? TANK_PROFILE.headings.some(
+            ({ velocity }) =>
+              velocity.x === projectile.velocity.x && velocity.y === projectile.velocity.y,
+          )
+        : Math.abs(projectile.velocity.x) + Math.abs(projectile.velocity.y) === attack.speed,
       "projectile motion",
     );
   }
@@ -302,6 +323,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     check(
       !attackIds.has(source.id) &&
         !combat.targets.some((target) => target.enemy.body.id === source.id) &&
+        !combat.tanks.some((tank) => tank.body.id === source.id) &&
         !combat.players.some((player) => player.body.id === source.id),
       "attack entity collision",
     );
@@ -455,6 +477,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     integer(notice.position.y, -MAX_POSITION, MAX_POSITION, "notice y");
     check(
       notice.targetId === null ||
+        combat.tanks.some((tank) => tank.body.id === notice.targetId) ||
         combat.targets.some((t) => t.enemy.body.id === notice.targetId) ||
         combat.players.some((p) => p.body.id === notice.targetId),
       "notice target",
@@ -466,13 +489,29 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     check((notice.impact === null) === (notice.source !== null), "notice source kind");
     if (notice.source !== null) {
       if ("controlEpoch" in notice.source) {
-        fields(notice.source, "definitionId controlEpoch shotOrdinal");
+        const source = notice.source;
+        fields(
+          source,
+          "vehicleId" in source
+            ? "definitionId controlEpoch shotOrdinal vehicleId"
+            : "definitionId controlEpoch shotOrdinal",
+        );
         const owner = combat.players.find((player) => player.playerId === notice.ownerId);
+        const tank =
+          "vehicleId" in source
+            ? combat.tanks.find((tank) => tank.body.id === source.vehicleId)
+            : null;
+        const weapon = "vehicleId" in source ? tank?.weapon : owner?.weapon;
         check(
           owner &&
-            owner.weapon.lastActionInstanceId === notice.actionInstanceId &&
-            owner.weapon.shotOrdinal === notice.source.shotOrdinal &&
-            owner.controlEpoch === notice.source.controlEpoch,
+            weapon?.lastActionInstanceId === notice.actionInstanceId &&
+            weapon.shotOrdinal === source.shotOrdinal &&
+            ("vehicleId" in source
+              ? tank?.lastGunOwnerId === owner.playerId &&
+                tank.lastGunControlEpoch === source.controlEpoch &&
+                source.definitionId === TANK_PROFILE.attackId
+              : owner.controlEpoch === source.controlEpoch &&
+                source.definitionId !== TANK_PROFILE.attackId),
           "notice confirmation identity",
         );
         integer(notice.source.shotOrdinal, 1, COUNTER_LIMIT - 1, "notice shot ordinal");
@@ -669,7 +708,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 7,
+    format: 8,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -693,7 +732,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 7 &&
+    envelope.format === 8 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

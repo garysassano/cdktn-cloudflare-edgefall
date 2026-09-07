@@ -12,6 +12,7 @@ import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
 import { verifyStoredShield } from "./lib/verify-stored-shield.js";
+import { verifyStoredTank } from "./lib/verify-stored-tank.js";
 
 const require = createRequire(import.meta.url);
 const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -212,6 +213,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    tank: await verifyStoredTank(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     area: await verifyStoredArea(origin, async () => {
       await runtime.dispose();
       runtime = create();

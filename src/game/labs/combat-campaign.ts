@@ -22,6 +22,8 @@ export interface CombatContinue {
   nextEntityIdBefore: number;
   retiredEntityIds: number[];
   spawnedEntityIds: number[];
+  retiredVehicleIds: number[];
+  spawnedVehicleIds: number[];
   kills: Array<{ playerId: number; count: number }>;
 }
 export interface CombatCampaign {
@@ -66,9 +68,9 @@ export function validateCombatCampaign(
     canonical(state.resolvedEntities) === canonical(resolvedEntities(combat)),
     "campaign resolution ledger",
   );
-  const initialIds = createCombatLab(combat.scenario, combat.players.length).targets.map(
-    (target) => target.enemy.body.id,
-  );
+  const initial = createCombatLab(combat.scenario, combat.players.length);
+  const initialVehicles = initial.tanks.map((tank) => tank.body.id);
+  const initialIds = initial.targets.map((target) => target.enemy.body.id);
   check(campaign.continues.length === state.continuesUsed, "continue decision count");
   integer(
     campaign.continues.length,
@@ -89,13 +91,33 @@ export function validateCombatCampaign(
     check(decision.runEpoch === decision.fromRunEpoch + 1, "continue generation");
     integer(
       decision.nextEntityIdBefore,
-      Math.max(...(campaign.continues[index - 1]?.spawnedEntityIds ?? initialIds)) + 1,
+      Math.max(
+        ...(campaign.continues[index - 1]?.spawnedEntityIds ?? initialIds),
+        ...(campaign.continues[index - 1]?.spawnedVehicleIds ?? initialVehicles),
+      ) + 1,
       combat.nextEntityId - 1,
       "continue allocation boundary",
     );
     check(
-      decision.spawnedEntityIds.every((id, i) => id === decision.nextEntityIdBefore + i),
+      [...decision.spawnedEntityIds, ...decision.spawnedVehicleIds].every(
+        (id, i) => id === decision.nextEntityIdBefore + i,
+      ),
       "checkpoint allocation sequence",
+    );
+    for (const ids of [decision.retiredVehicleIds, decision.spawnedVehicleIds]) {
+      check(ids.length === initialVehicles.length, "checkpoint vehicle count");
+      for (const [i, id] of ids.entries())
+        integer(
+          id,
+          i ? (ids[i - 1] ?? 0) + 1 : 1,
+          combat.nextEntityId - 1,
+          "checkpoint vehicle ID",
+        );
+    }
+    check(
+      canonical(decision.retiredVehicleIds) ===
+        canonical(campaign.continues[index - 1]?.spawnedVehicleIds ?? initialVehicles),
+      "checkpoint vehicle retirement prefix",
     );
     for (const ids of [decision.retiredEntityIds, decision.spawnedEntityIds]) {
       check(ids.length === combat.targets.length, "checkpoint entity count");
@@ -107,8 +129,10 @@ export function validateCombatCampaign(
         canonical(campaign.continues[index - 1]?.spawnedEntityIds ?? initialIds),
       "checkpoint retirement prefix",
     );
-    if (index === 0) for (const id of decision.retiredEntityIds) allocated.add(id);
-    for (const id of decision.spawnedEntityIds) {
+    if (index === 0)
+      for (const id of [...decision.retiredEntityIds, ...decision.retiredVehicleIds])
+        allocated.add(id);
+    for (const id of [...decision.spawnedEntityIds, ...decision.spawnedVehicleIds]) {
       check(!allocated.has(id), "reused checkpoint entity");
       allocated.add(id);
     }
@@ -125,6 +149,11 @@ export function validateCombatCampaign(
     lastEpoch = decision.runEpoch;
   }
   const expectedIds = campaign.continues.at(-1)?.spawnedEntityIds ?? initialIds;
+  check(
+    canonical(combat.tanks.map((tank) => tank.body.id)) ===
+      canonical(campaign.continues.at(-1)?.spawnedVehicleIds ?? initialVehicles),
+    "current checkpoint vehicle roster",
+  );
   check(
     canonical(combat.targets.map((target) => target.enemy.body.id)) === canonical(expectedIds),
     "current checkpoint entity roster",
@@ -165,6 +194,13 @@ export function continueCombatCheckpoint(
     world.nextEntityId = nextCounter(world.nextEntityId);
     return { ...target, enemy: { ...target.enemy, body: { ...target.enemy.body, id } } };
   });
+  world.tanks = template.tanks.map((tank) => {
+    const id = world.nextEntityId;
+    world.nextEntityId = nextCounter(world.nextEntityId);
+    tank.body.id = id;
+    tank.action.stateStartTick = world.tick;
+    return tank;
+  });
   world.projectiles = [];
   world.strikes = [];
   world.grenades = [];
@@ -180,7 +216,10 @@ export function continueCombatCheckpoint(
     encounterId: 1,
     requiredEntities: world.targets.map((target) => target.enemy.body.id),
     entries: new Map(
-      world.players.map((player) => [player.playerId, combatEntryContext(player, index, frame)]),
+      world.players.map((player) => [
+        player.playerId,
+        combatEntryContext(player, index, frame, world.scenario),
+      ]),
     ),
   });
   world.players = entry.players;
@@ -193,6 +232,8 @@ export function continueCombatCheckpoint(
     nextEntityIdBefore: current.nextEntityId,
     retiredEntityIds: current.targets.map((target) => target.enemy.body.id),
     spawnedEntityIds: world.targets.map((target) => target.enemy.body.id),
+    retiredVehicleIds: current.tanks.map((tank) => tank.body.id),
+    spawnedVehicleIds: world.tanks.map((tank) => tank.body.id),
     kills: structuredClone(current.encounter.kills),
   };
   return {

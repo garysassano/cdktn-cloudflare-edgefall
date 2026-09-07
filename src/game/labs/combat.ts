@@ -46,6 +46,7 @@ import { worldRect, worldSocket } from "../physics/body.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import { type SweepTarget, displacementAtContact, earliestSweep } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
+import { type TankState, createTank } from "../vehicles/tank.js";
 import {
   AREA_PROFILES,
   COMBAT_ATTACKS,
@@ -55,7 +56,17 @@ import {
   GRENADE_PROFILE,
   RIFLE_PROFILE,
   SHIELD_PROFILE,
+  TANK_PROFILE,
 } from "./combat-content.js";
+import {
+  type CombatTankConnections,
+  type SeatChanges,
+  advanceCombatTanks,
+  commitCombatSeats,
+  fireCombatTanks,
+  releaseCombatTank,
+  tankCombatHurtboxes,
+} from "./combat-tanks.js";
 import { FOOT_DEFINITION, footActor, footTerrain } from "./foot-fixture.js";
 
 export const COMBAT_SCENARIOS = [
@@ -66,6 +77,7 @@ export const COMBAT_SCENARIOS = [
   "guard",
   "shotgun",
   "flame",
+  "tank",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -73,6 +85,7 @@ export interface CombatCommand {
   jumpPressed: boolean;
   firePressed: boolean;
   grenadePressed: boolean;
+  interactPressed: boolean;
 }
 export interface CombatTarget {
   enemy: GroundedEnemy;
@@ -99,6 +112,7 @@ export interface CombatNotice {
   /** Captured when the marker fires; later damage may cancel the actor's action. */
   source:
     | { definitionId: number; controlEpoch: number; shotOrdinal: number }
+    | { definitionId: number; controlEpoch: number; shotOrdinal: number; vehicleId: number }
     | { definitionId: number; timelineId: number; stateStartTick: number }
     | { definitionId: number; spawnTick: number; sourceId: number }
     | null;
@@ -107,13 +121,14 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 4;
+  format: 5;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
   nextEntityId: number;
   eventSequence: number;
   players: ControlledActor[];
+  tanks: TankState[];
   targets: CombatTarget[];
   projectiles: BallisticProjectile[];
   strikes: MeleeStrike[];
@@ -129,17 +144,30 @@ export const COMBAT_ENTRY = {
   y: pixels(200),
   fallBoundary: pixels(248),
 } as const;
+export const COMBAT_TANK_DEPOT = {
+  firstPlayerX: pixels(36),
+  slotSpacing: pixels(56),
+  vehicleOffsetX: pixels(24),
+  y: pixels(200),
+} as const;
 export function combatEntryContext(
   actor: ControlledActor,
   index: CollisionIndex,
   frame: CollisionFrame,
+  scenario: CombatScenario = "range",
 ) {
   const shape = FOOT_DEFINITION && COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing life entry shape");
   return {
     shape,
     anchors: [
-      { x: COMBAT_ENTRY.firstX + actor.slot * COMBAT_ENTRY.slotSpacing, y: COMBAT_ENTRY.y },
+      {
+        x:
+          scenario === "tank"
+            ? COMBAT_TANK_DEPOT.firstPlayerX + actor.slot * COMBAT_TANK_DEPOT.slotSpacing
+            : COMBAT_ENTRY.firstX + actor.slot * COMBAT_ENTRY.slotSpacing,
+        y: COMBAT_ENTRY.y,
+      },
     ],
     index,
     frame,
@@ -175,7 +203,12 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
   if (!COMBAT_SCENARIOS.includes(scenario)) throw new Error("Unknown combat scenario");
   integer(count, 1, 4, "combat players");
   const players = Array.from({ length: count }, (_, slot) => {
-    const actor = footActor(45 + slot * 4, 200);
+    const actor = footActor(
+      scenario === "tank"
+        ? (COMBAT_TANK_DEPOT.firstPlayerX + slot * COMBAT_TANK_DEPOT.slotSpacing) / 256
+        : 45 + slot * 4,
+      200,
+    );
     actor.playerId = actor.body.id = slot + 1;
     actor.slot = slot;
     if (slot === 1) actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
@@ -187,13 +220,15 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     enemy: {
       body: {
         ...footActor(
-          scenario === "shotgun"
-            ? 140 + index * 30
-            : (scenario === "guard" || scenario === "flame") && index === 0
-              ? 140
-              : scenario === "flame"
-                ? 220
-                : 220 + index * 60,
+          scenario === "tank"
+            ? 300 + index * 40
+            : scenario === "shotgun"
+              ? 140 + index * 30
+              : (scenario === "guard" || scenario === "flame") && index === 0
+                ? 140
+                : scenario === "flame"
+                  ? 220
+                  : 220 + index * 60,
           200,
         ).body,
         id: 20 + index,
@@ -207,7 +242,9 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     health: 1,
     shield: scenario === "shield" && index === 0,
     rifle:
-      scenario === "rifle" || ((scenario === "guard" || scenario === "flame") && index === 1)
+      scenario === "tank" ||
+      scenario === "rifle" ||
+      ((scenario === "guard" || scenario === "flame") && index === 1)
         ? createRifleState()
         : null,
     guard:
@@ -216,13 +253,30 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 4,
+    format: 5,
     scenario,
     tick: 0,
     nextActionId: 1,
     nextEntityId: 1000,
     eventSequence: 0,
     players,
+    tanks:
+      scenario === "tank"
+        ? players.map((actor) =>
+            createTank(
+              30 + actor.slot,
+              {
+                x:
+                  COMBAT_TANK_DEPOT.firstPlayerX +
+                  actor.slot * COMBAT_TANK_DEPOT.slotSpacing +
+                  COMBAT_TANK_DEPOT.vehicleOffsetX,
+                y: COMBAT_TANK_DEPOT.y,
+              },
+              100,
+              TANK_PROFILE,
+            ),
+          )
+        : [],
     targets,
     projectiles: [],
     strikes: [],
@@ -361,7 +415,8 @@ export function playerCombatHurtboxes(
   previous = players,
 ): HurtTarget[] {
   return players.flatMap((player, slot) => {
-    if (player.life !== "alive" || player.invulnerableTicks > 0) return [];
+    if (player.life !== "alive" || player.invulnerableTicks > 0 || player.vehicleId !== null)
+      return [];
     const before = previous[slot];
     const shape = COMBAT_SHAPES.get(
       player.body.shapeId === FOOT_DEFINITION?.crouchedShapeId ? 7 : 3,
@@ -385,12 +440,24 @@ export function playerCombatHurtboxes(
 export function stepCombatLab(current: CombatLab, commands: readonly CombatCommand[]): CombatLab {
   return advanceCombatLab(current, commands).state;
 }
-export function advanceCombatLab(current: CombatLab, commands: readonly CombatCommand[]) {
+export function advanceCombatLab(
+  current: CombatLab,
+  commands: readonly CombatCommand[],
+  connections: CombatTankConnections = {
+    connectedPlayerIds: current.players.map((p) => p.playerId),
+    releasePlayerIds: [],
+  },
+) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
     integer(command.held, 0, HELD_MASK, "combat held mask");
-    if (typeof command.firePressed !== "boolean" || typeof command.jumpPressed !== "boolean")
+    if (
+      typeof command.firePressed !== "boolean" ||
+      typeof command.jumpPressed !== "boolean" ||
+      typeof command.grenadePressed !== "boolean" ||
+      typeof command.interactPressed !== "boolean"
+    )
       throw new Error("Invalid combat edges");
   }
   const world = structuredClone(current);
@@ -401,16 +468,23 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   const index = new CollisionIndex(new CollisionGrid(terrain), [], frame);
   const encounterEvents: EncounterEvent[] = [];
   const lifeNotices: LifeNotice[] = [];
+  const seatChanges: SeatChanges = new Map();
   const outcomes: Array<{
     playerId: number;
     jumpAccepted: boolean;
     fire: ActionOutcome;
     grenade: ActionOutcome;
+    interact: ActionOutcome;
   }> = [];
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
     if (!command || !FOOT_DEFINITION) throw new Error("Missing combat controller");
-    const life = stepPlayerLife(actor, tick, "classic", combatEntryContext(actor, index, frame));
+    const life = stepPlayerLife(
+      actor,
+      tick,
+      "classic",
+      combatEntryContext(actor, index, frame, world.scenario),
+    );
     if (life.notice) lifeNotices.push(life.notice);
     const result = stepFootController(
       life.actor,
@@ -429,7 +503,23 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         (result.jumpRequest === "consumed" || result.jumpRequest === "buffered"),
       fire: "none",
       grenade: "none",
+      interact: "none",
     });
+  }
+  const tankOutcomes = advanceCombatTanks(
+    world,
+    commands,
+    connections,
+    seatChanges,
+    lifeNotices,
+    index,
+    frame,
+  );
+  for (const outcome of outcomes) {
+    const tank = tankOutcomes.get(outcome.playerId);
+    if (!tank) throw new Error("Missing tank input outcome");
+    outcome.jumpAccepted ||= tank.jumpAccepted;
+    outcome.interact = tank.interact;
   }
   for (const target of world.targets) {
     if (
@@ -497,7 +587,9 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     if (!command) throw new Error("Missing firearm input");
     const result = stepFootCombatAction(
       actor,
-      command,
+      seatChanges.has(actor.playerId)
+        ? { held: 0, firePressed: false, grenadePressed: false }
+        : command,
       tick,
       world.nextActionId,
       COMBAT_CATALOG,
@@ -666,6 +758,11 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       world.events.push(notice);
     }
   }
+  const tankFire = fireCombatTanks(world, commands, seatChanges, terrain);
+  for (const outcome of outcomes) {
+    const fire = tankFire.get(outcome.playerId);
+    if (fire !== undefined) outcome.fire = fire;
+  }
   for (const target of world.targets) {
     if (!target.rifle || target.health === 0) continue;
     const shape = COMBAT_SHAPES.get(4);
@@ -739,6 +836,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   const hurtboxes = [
     ...combatHurtboxes(world.targets, tick, current.targets),
     ...playerCombatHurtboxes(world.players, current.players),
+    ...tankCombatHurtboxes(world.tanks, current.tanks),
   ];
   const impacts: Impact[] = [];
   world.areas = world.areas.flatMap((area) => {
@@ -928,6 +1026,18 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       targetId: impact.entityId,
     };
     world.events.push(notice);
+    const tank = world.tanks.find((tank) => tank.body.id === impact.entityId);
+    if (tank) {
+      if (impact.damage > 0 && tank.armor > 0 && tank.invulnerableTicks === 0) {
+        tank.armor--;
+        tank.invulnerableTicks = TANK_PROFILE.damageProtectionTicks;
+        if (tank.armor === 0) {
+          releaseCombatTank(world, tank, "destroyed", seatChanges, lifeNotices, index, frame);
+          world.events.push({ ...notice, kind: "killed" });
+        }
+      }
+      continue;
+    }
     const slot = world.players.findIndex((player) => player.body.id === impact.entityId);
     const player = world.players[slot];
     if (player && impact.damage > 0) {
@@ -1006,10 +1116,11 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       })),
     "throw",
   ).state;
-  return { state: world, outcomes, lifeNotices };
+  const seatEvents = commitCombatSeats(current, world, seatChanges);
+  return { state: world, outcomes, lifeNotices, seatEvents };
 }
 export interface CombatRecording {
-  format: 4;
+  format: 5;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1017,7 +1128,7 @@ export interface CombatRecording {
 }
 export function replayCombatLab(recording: CombatRecording) {
   if (
-    recording.format !== 4 ||
+    recording.format !== 5 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

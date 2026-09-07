@@ -172,7 +172,6 @@ export function stageCombatRuntime(
       connection.connectionEpoch === ack.connectionEpoch + 1,
       "connection generation must advance once",
     );
-    check(actor.vehicleId === null, "combat connection does not own vehicle handoff");
     check(input.input.submittedCommand === null, "new connection must begin with a fresh baseline");
     const fresh = input.input.command;
     check(
@@ -194,7 +193,12 @@ export function stageCombatRuntime(
   }
   if (connections.length) baseline.snapshot.players = structuredClone(baseline.combat.players);
   validatePrepared(baseline, prepared);
-  const result = evaluateCombatTick(baseline.combat, baseline.snapshot, prepared);
+  const result = evaluateCombatTick(
+    baseline.combat,
+    baseline.snapshot,
+    prepared,
+    connections.map((value) => value.playerId),
+  );
   if (
     !result.state.snapshot.acknowledgments.some(
       (a) => a.connectionEpoch === result.state.snapshot.connectionEpoch,
@@ -254,6 +258,7 @@ export function stageCombatRuntime(
   for (const item of prepared)
     if (item.neutralized)
       boundary.push({ kind: "neutralize", playerId: item.input.playerId, reason: "stale" });
+  boundary.push(...result.seatEvents);
   const journal: CombatJournalTick = {
     tick: state.combat.tick,
     runEpoch: state.snapshot.runEpoch,
@@ -285,7 +290,7 @@ export function replayCombatTick(
     "missing/changed journal prefix",
   );
   integer(journal.inputs.length, 0, 4, "journal input count");
-  integer(journal.boundaryEvents.length, 0, 12, "journal boundary count");
+  integer(journal.boundaryEvents.length, 0, 16, "journal boundary count");
   check(journal.acknowledgments.length === journal.inputs.length, "journal acknowledgment count");
   const prepared = journal.inputs.map(({ input }, index): PreparedPlayerTick => {
     const acknowledgment = journal.acknowledgments[index];

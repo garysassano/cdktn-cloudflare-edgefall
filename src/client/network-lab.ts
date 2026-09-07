@@ -56,6 +56,7 @@ import {
   readRoomControlState,
 } from "../shared/session/room-control.js";
 import { browserConnectionPort } from "./connection-port.js";
+import { drawTankOverlay } from "./tank-overlay.js";
 
 async function startLab() {
   const params = new URL(location.href).searchParams,
@@ -72,11 +73,11 @@ async function startLab() {
     const intro = document.getElementById("intro");
     if (intro)
       intro.textContent =
-        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts local movement; enemies, projectiles and ammo use committed snapshots. Confirmed hit/shot markers use acknowledged, deduplicated events. Predicted effects, final audio and remote interpolation remain in progress.";
+        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts movement on foot; tanks, enemies, projectiles and ammo use committed snapshots. Confirmed hit/shot markers use acknowledged, deduplicated events. Predicted effects, final audio and remote interpolation remain in progress.";
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Filled yellow boxes show shotgun reach; filled orange/red boxes show attached/traveling flame. Outlined yellow boxes show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
+        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade on foot. E boards or exits a tank; tank direction slews its turret, Space makes a short jump and Z fires its unlimited primary gun. Armor pips and entry/exit progress appear above and below the hull. Uncheck scripted input to use the keyboard. Filled yellow boxes show shotgun reach; filled orange/red boxes show attached/traveling flame. Outlined yellow boxes show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -150,6 +151,7 @@ async function startLab() {
     enemies: number;
     projectiles: number;
     volumes: number;
+    vehicles: FullSnapshot["vehicles"];
     shots: number;
     continuationHash: string | null;
   }> = [];
@@ -240,6 +242,7 @@ async function startLab() {
       threats: snapshot?.threats ?? [],
       projectiles: snapshot?.projectiles ?? [],
       volumes: snapshot?.combat?.volumes ?? [],
+      vehicles: snapshot?.vehicles ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
@@ -536,6 +539,8 @@ async function startLab() {
       pendingMapping = null;
       if (!mapping) throw new Error("Snapshot missing its input mapping");
       const correction = prediction ? prediction.reconcile(baseline, mapping).correction : null;
+      if (input && actor.controlEpoch > input.controlEpoch)
+        input.advanceControlEpoch(actor.controlEpoch);
       prediction ??= new ControllerPrediction(
         baseline,
         (a, c, t) =>
@@ -563,6 +568,7 @@ async function startLab() {
         enemies: incoming.enemies.length,
         projectiles: incoming.projectiles.length,
         volumes: incoming.combat?.volumes.length ?? 0,
+        vehicles: structuredClone(incoming.vehicles),
         shots: actor.weapon.shotOrdinal,
         tick: incoming.tick,
         hash: incoming.stateHash,
@@ -642,6 +648,7 @@ async function startLab() {
         g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
       }
       if (mode === "combat") {
+        for (const tank of snapshot?.vehicles ?? []) drawTankOverlay(g, tank, snapshot?.tick ?? 0);
         for (const enemy of snapshot?.enemies ?? []) {
           const shape = FOOT_SHAPES.get(enemy.shapeId);
           if (!shape) continue;

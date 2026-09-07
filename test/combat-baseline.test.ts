@@ -22,6 +22,7 @@ function baseline(ticks = 24) {
       world.players.map(() => ({
         held: Held.Fire,
         jumpPressed: false,
+        interactPressed: false,
         grenadePressed: false,
         firePressed: tick === 1,
       })),

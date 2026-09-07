@@ -46,6 +46,8 @@ export interface PreparedPlayerTick {
 export interface WorldInputOutcome {
   playerId: number;
   edgeResults: readonly EdgeResult[];
+  /** One published ownership generation at this same world commit boundary. */
+  controlEpoch?: number;
 }
 interface StagedTick extends PreparedPlayerTick {
   pending: PendingCommand | undefined;
@@ -337,6 +339,14 @@ export class InputStream {
         const outcome = outcomes.find((item) => item.playerId === stage.input.playerId);
         requireValue(Boolean(outcome), "Missing world input outcome");
         if (!outcome) throw new Error("Missing input outcome");
+        if (outcome.controlEpoch !== undefined) {
+          counter(outcome.controlEpoch);
+          requireValue(
+            outcome.controlEpoch === stage.acknowledgment.controlEpoch + 1,
+            "World control epoch must increment once",
+          );
+          stage.acknowledgment.controlEpoch = outcome.controlEpoch;
+        }
         return InputStream.validateTick(stage, outcome.edgeResults);
       });
       // No user callbacks, validation, encoding or observable publication after the commit point.
@@ -446,9 +456,13 @@ export class InputStream {
 
   private commitTick(stage: StagedTick): void {
     if (stage.pending) this.queue.shift();
+    const changedControl = this.ack.controlEpoch !== stage.acknowledgment.controlEpoch;
     this.ack = stage.acknowledgment;
     this.lastHeld =
-      stage.input.outcome === "applied" ? { ...copyCommand(stage.input.command), edges: [] } : null;
+      !changedControl && stage.input.outcome === "applied"
+        ? { ...copyCommand(stage.input.command), edges: [] }
+        : null;
+    if (changedControl) this.freshAtMs = null;
     this.lastServerTick = stage.input.serverTick;
     this.lastNowMs = stage.nowMs;
   }

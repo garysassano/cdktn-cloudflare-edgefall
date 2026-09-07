@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.6
+# Arcade full snapshots v3.7
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -27,7 +27,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | 48          | Room mode                      | u8 enum                  |
 | 49          | Reserved zero                  | 15 bytes                 |
 
-Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 436 bytes and the base sections can reach 39,128 bytes; the maximum combat section raises the complete frame limit to 50,984 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
+Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 436 bytes and the base sections can reach 39,384 bytes; the maximum combat section raises the complete frame limit to 51,240 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
 
 ## Record sequence and sizes
 
@@ -38,7 +38,7 @@ The 64-byte header is followed by the records below, in this exact order. Entity
 | Camera/campaign           | 40           | 1                |
 | Processed acknowledgments | 40           | Player count     |
 | Controlled players        | 292          | Player count     |
-| Vehicles                  | 308          | Vehicle count    |
+| Vehicles                  | 324          | Vehicle count    |
 | Enemies                   | 64           | Enemy count      |
 | Projectiles               | 48           | Projectile count |
 | Dynamic platforms         | 32           | Platform count   |
@@ -61,7 +61,7 @@ A weapon is 20 bytes: `id, ammo, cooldownTicks, shotOrdinal, lastActionInstanceI
 
 A 292-byte player record is: body; `playerId, slot, controlEpoch, life, lifeStartTick, locomotion`; action; `facing, aim, jumpBufferTicks, coyoteTicks, ignoredSupportId, ignoredSupportTicks, invulnerableTicks, reboardCooldownTicks, vehicleSpecialTicks, vehicleId`; weapon; `grenadeStock, grenadeCooldownTicks, meleeCooldownTicks, geometryRevision, health, lives, lastRallyMission`; then five processed edge cursors in input edge-kind order. Facing is signed ±1. Life is `alive, death, respawning, spectating`; locomotion is `grounded, airborne, crouched, seated`; aim is the input aim enum. `lifeStartTick` is an unsigned tick no later than the snapshot tick, independent of the action clock. Death, entry and spectating delays therefore survive baseline reconstruction and action cancellation. Every field of `ControlledActor` is round-tripped without reduced precision.
 
-A 308-byte vehicle record is: body; `definitionId, kind, lifecycle, occupantId, reservedBy, controlEpoch, armor`; action; weapon; component count; eight component slots of `id, health, broken`, with unused slots all zero. Kinds are `tank, walker, aircraft`; lifecycle is `available, boarding, occupied, exiting, destroying, wreck`. Component count is 0–8. Occupants are player body/entity IDs, not profile/player membership IDs. An occupant may remain attached during exit or destruction until the authoritative transfer occurs. One member cannot occupy/reserve multiple seats. Reservations require the boarding lifecycle, and a seated controller and occupied vehicle must agree on ownership/control epoch.
+A 324-byte vehicle record is: body; `definitionId, kind, lifecycle, occupantId, reservedBy, controlEpoch, armor`; action; weapon; component count; eight component slots of `id, health, broken`, with unused slots all zero; then `ownerControlEpoch` (nullable u32), `facing` (signed i32, -1 or 1), `heading` (u32, 0–7) and `invulnerableTicks` (u32, 0–65535). Kinds are `tank, walker, aircraft`; lifecycle is `available, boarding, occupied, exiting, destroying, wreck`. Component count is 0–8. Occupants are player body/entity IDs, not profile/player membership IDs. An occupant may remain attached during exit or destruction until the authoritative transfer occurs. One member cannot occupy/reserve multiple seats. Reservations require the boarding lifecycle. A seated controller must match either the reserved or occupied owner and the vehicle’s `ownerControlEpoch`. The vehicle’s own `controlEpoch` is an independent lease generation and does not have to equal the player input generation. An unclaimed vehicle has a null owner control epoch. The tank heading runs counterclockwise from right through up-right, up, up-left, left, down-left, down and down-right; hull facing remains independent.
 
 ## Other entities and threats
 
@@ -79,7 +79,7 @@ Contextual knife actions project their authored hand position, facing and shape 
 
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.6; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.7; there is no compatibility decoder for earlier minors.
 
 | Section offset | Field                                                                            | Encoding |
 | -------------- | -------------------------------------------------------------------------------- | -------- |

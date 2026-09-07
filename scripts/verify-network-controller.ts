@@ -20,6 +20,7 @@ import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
+import { verifyTankCombat } from "./lib/verify-tank-combat.js";
 
 interface ClientStatus {
   documentId: string;
@@ -97,6 +98,7 @@ const areaMode = process.argv.includes("--combat-shotgun")
     ? "flame"
     : null;
 const shieldMode = process.argv.includes("--combat-guard");
+const tankMode = process.argv.includes("--combat-tank");
 const hostileMode = process.argv.includes("--combat-hostile");
 const footMode = process.argv.includes("--combat-melee")
   ? "melee"
@@ -117,9 +119,10 @@ const combatMode =
   hostileMode ||
   !!footMode ||
   shieldMode ||
-  !!areaMode;
+  !!areaMode ||
+  tankMode;
 assert(
-  !(footMode || shieldMode || areaMode) ||
+  !(footMode || shieldMode || areaMode || tankMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -139,6 +142,7 @@ assert(
     shieldMode,
     process.argv.includes("--combat-shotgun"),
     process.argv.includes("--combat-flame"),
+    tankMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -173,37 +177,39 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = areaMode
-  ? `dist/network-combat-${areaMode}-evidence`
-  : shieldMode
-    ? "dist/network-combat-guard-evidence"
-    : footMode
-      ? `dist/network-combat-${footMode}-evidence`
-      : hostileMode
-        ? "dist/network-combat-hostile-evidence"
-        : campaignMode
-          ? "dist/network-combat-campaign-evidence"
-          : automaticMode
-            ? "dist/network-combat-auto-evidence"
-            : combatReconnectMode
-              ? loadingMode
-                ? phaseMode
-                  ? "dist/network-combat-phase-evidence"
-                  : "dist/network-combat-loading-evidence"
-                : "dist/network-combat-reconnect-evidence"
-              : combatRecoveryMode
-                ? "dist/network-combat-recovery-evidence"
-                : baselineMode
-                  ? "dist/network-combat-baseline-evidence"
-                  : combatMode
-                    ? eventMode
-                      ? "dist/network-event-evidence"
-                      : faultMode
-                        ? "dist/network-combat-fault-evidence"
-                        : "dist/network-combat-evidence"
-                    : recoveryMode
-                      ? "dist/network-controller-recovery-evidence"
-                      : "dist/network-controller-evidence";
+const output = tankMode
+  ? "dist/network-combat-tank-evidence"
+  : areaMode
+    ? `dist/network-combat-${areaMode}-evidence`
+    : shieldMode
+      ? "dist/network-combat-guard-evidence"
+      : footMode
+        ? `dist/network-combat-${footMode}-evidence`
+        : hostileMode
+          ? "dist/network-combat-hostile-evidence"
+          : campaignMode
+            ? "dist/network-combat-campaign-evidence"
+            : automaticMode
+              ? "dist/network-combat-auto-evidence"
+              : combatReconnectMode
+                ? loadingMode
+                  ? phaseMode
+                    ? "dist/network-combat-phase-evidence"
+                    : "dist/network-combat-loading-evidence"
+                  : "dist/network-combat-reconnect-evidence"
+                : combatRecoveryMode
+                  ? "dist/network-combat-recovery-evidence"
+                  : baselineMode
+                    ? "dist/network-combat-baseline-evidence"
+                    : combatMode
+                      ? eventMode
+                        ? "dist/network-event-evidence"
+                        : faultMode
+                          ? "dist/network-combat-fault-evidence"
+                          : "dist/network-combat-evidence"
+                      : recoveryMode
+                        ? "dist/network-controller-recovery-evidence"
+                        : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -296,7 +302,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -380,6 +386,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (tankMode) {
+        const tank = await verifyTankCombat(pages, base, output);
+        room = tank.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          tank,
+          clients: tank.clients,
+          sharedSnapshots: tank.common.length,
+          room,
+          scope:
+            "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
+        };
       }
       if (areaMode) {
         const area = await verifyAreaCombat(pages, base, output, areaMode);
@@ -1942,7 +1968,9 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range"),
+    combatScenario: tankMode
+      ? "tank"
+      : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

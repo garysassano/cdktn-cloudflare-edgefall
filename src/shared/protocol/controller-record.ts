@@ -186,6 +186,10 @@ export function writeVehicle(writer: Writer, vehicle: VehicleState): void {
     writer.bool(component.broken);
   }
   writer.zero((8 - vehicle.components.length) * 12);
+  writer.optionalId(vehicle.ownerControlEpoch);
+  writer.i32(vehicle.facing, 1);
+  writer.u32(vehicle.heading, 0, 7);
+  writer.u32(vehicle.invulnerableTicks, 0, 65535);
 }
 export function readVehicle(reader: Reader): VehicleState {
   const vehicle: VehicleState = {
@@ -196,6 +200,10 @@ export function readVehicle(reader: Reader): VehicleState {
     occupantId: reader.u32() || null,
     reservedBy: reader.u32() || null,
     controlEpoch: reader.u32(1),
+    ownerControlEpoch: null,
+    facing: 1,
+    heading: 0,
+    invulnerableTicks: 0,
     armor: reader.u32(0, 65535),
     action: readAction(reader),
     weapon: readWeapon(reader),
@@ -209,5 +217,9 @@ export function readVehicle(reader: Reader): VehicleState {
       broken: reader.bool(),
     });
   reader.zero((8 - count) * 12);
+  vehicle.ownerControlEpoch = reader.u32() || null;
+  vehicle.facing = reader.i32(1) as -1 | 1;
+  vehicle.heading = reader.u32(0, 7);
+  vehicle.invulnerableTicks = reader.u32(0, 65535);
   return vehicle;
 }

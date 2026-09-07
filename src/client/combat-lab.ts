@@ -25,6 +25,7 @@ import {
   SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
+import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
   const value = document.getElementById(id);
@@ -41,6 +42,7 @@ let state = createCombatLab("range"),
   accumulator = 0,
   jump = false,
   grenade = false,
+  interact = false,
   fire = false;
 const keys = new Set<string>();
 const bindings: Record<string, number> = {
@@ -63,7 +65,7 @@ function pause() {
   running = false;
   accumulator = 0;
   keys.clear();
-  jump = fire = grenade = false;
+  jump = fire = grenade = interact = false;
   element("run").textContent = "Run";
 }
 function step() {
@@ -77,8 +79,9 @@ function step() {
     jumpPressed: jump,
     firePressed: fire,
     grenadePressed: grenade,
+    interactPressed: interact,
   };
-  jump = fire = grenade = false;
+  jump = fire = grenade = interact = false;
   const inputs = state.players.map((_, slot) =>
     slot === 0
       ? command
@@ -87,6 +90,7 @@ function step() {
           jumpPressed: false,
           firePressed: false,
           grenadePressed: false,
+          interactPressed: false,
         },
   );
   try {
@@ -109,7 +113,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 4,
+    format: 5,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -124,10 +128,17 @@ surface.addEventListener("keydown", (event) => {
     if (!event.repeat && !running) step();
     return;
   }
-  if (!(event.code in bindings) && event.code !== "Space" && event.code !== "KeyC") return;
+  if (
+    !(event.code in bindings) &&
+    event.code !== "Space" &&
+    event.code !== "KeyC" &&
+    event.code !== "KeyE"
+  )
+    return;
   event.preventDefault();
   if (event.repeat) return;
   if (!keys.has(event.code)) {
+    if (event.code === "KeyE") interact = true;
     if (event.code === "Space") jump = true;
     if (event.code === "KeyZ") fire = true;
     if (event.code === "KeyC") grenade = true;
@@ -270,6 +281,7 @@ class CombatScene extends Phaser.Scene {
         g.fillCircle(point.x / 256, point.y / 256, 2);
       }
     }
+    for (const tank of state.tanks) drawTankOverlay(g, tank, state.tick);
     for (const hurt of combatHurtboxes(state.targets, state.tick)) {
       g.lineStyle(1, hurt.kind === "shield" ? 0xffae43 : 0xff677d);
       g.strokeRect(hurt.rect.x / 256, hurt.rect.y / 256, hurt.rect.w / 256, hurt.rect.h / 256);

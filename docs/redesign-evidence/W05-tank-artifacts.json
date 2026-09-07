@@ -1,0 +1,384 @@
+{
+  "baseCommit": "b3e6098de72e08be5f20929650b8bfac45ca05d2",
+  "archiveFormat": 8,
+  "protocol": "3.7",
+  "combatSectionVersion": 2,
+  "combatRecordingFormat": 5,
+  "sourceScope": "Changed/new implementation and documents relative to baseCommit plus toolchain/deployment inputs. Final required checks, replay, SQLite, keyboard network and inspector proofs cover the final behavior. Both client bundles match the final laboratory build. Initial failures precede their documented fixes.",
+  "sources": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "README.md",
+      "sha256": "2e64a38315f4f719ff5a1c68e8c44b5522c83c155242754ff86f1884105d2647"
+    },
+    {
+      "file": "docs/combat-checkpoint-v7.md",
+      "sha256": "b9909aa7848d32991811f969787060046856751297197719edc38e4f5039577a"
+    },
+    {
+      "file": "docs/combat-checkpoint-v8.md",
+      "sha256": "64d5ec6fa6038c24755aa769ebe11f588e692807ed4a255506386e03a1b4bd78"
+    },
+    {
+      "file": "docs/events-v3.md",
+      "sha256": "07cecc8b8d2bb7d8f985c26c0795c0c3eebee1e285a6717084c082711f3d62ff"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "5be5e16cb194b8fdd3c3e3c034edb10252a36d72e1133e4f1e7b9c85e1c52b53"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank.md",
+      "sha256": "fe6fd937bed4336c1d15d407ad3df3f2e9b03f80efdcf54159c03c18fb9bc012"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "sha256": "4652381045b9b27669e5a20cd9e430192325d2e86f8103cd1da4555cb344d4d3"
+    },
+    {
+      "file": "mise.toml",
+      "sha256": "aced6b92b1da65509aa7289e8ad83161edee794339f1d1f2582bdd42f22bf494"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "6726fda7a72741b8d511bd505fbf69580809c781e5d364083450797628661a59"
+    },
+    {
+      "file": "scripts/lib/verify-stored-tank.ts",
+      "sha256": "2c1e01c8f7eb26427ee1a1e46e98a7d75122af39b917c5c62c1e65862d7fcae9"
+    },
+    {
+      "file": "scripts/lib/verify-tank-combat.ts",
+      "sha256": "9d2dbe0d22f91cce4f058c9ceec7e10b2140a9890b6d7b3d9e2b546479812f18"
+    },
+    {
+      "file": "scripts/lib/verify-tank-lab.mjs",
+      "sha256": "13477e4a49473cd6b170fbae6d371f72df47882a8d1f0a5e7d88f83a181f58dc"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "e9cb6516212005b822ccc4b38c29a65ca359c760fa982fe916a4c688b6897e7a"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "b7d7607f5ce5584122a93a541d3cecee13a9c2246684ed7c013260395cd73d81"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "d99c6476521b2352603fa5288f9e1b27da7e7f0d2f718c094288cfe555be8786"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "956900d3fcf3c9898239e186c36be643aa841e1379b09011cf2c8592e8555b52"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "sha256": "d19f42ee22ee6bd1fa3aeb97a4abda9e8d6372f261109cc13da18ccd0e5e51d4"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "380694c2e2dff05e581aa3557c582555d3d938982caa08b2f540133bcdc0ba79"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "b96b17557d1f28e62fe7e40a66eb467d4dd68569fb54d95c3ffb3bddb96c9282"
+    },
+    {
+      "file": "src/client/tank-overlay.ts",
+      "sha256": "3c1f8062ecc287c086871d9d0c66e8f2dae799cdfaf8468550dfc9c88dbd0f29"
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "sha256": "59c4e43b8dd94a82617cafb20bd2693377e6c14bd296970f4eea50778eae245d"
+    },
+    {
+      "file": "src/game/labs/combat-campaign.ts",
+      "sha256": "c5c8e477a474fc61d67bb751ecac35210adf33e463a9e298835efcb3ddc02c69"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "bdc54690b38440f9fa476815e2edab81890986c574700cbc9d7386f58f09d253"
+    },
+    {
+      "file": "src/game/labs/combat-tanks.ts",
+      "sha256": "e4f5291013d507dde529030cca21ea8d4ed3b2785656ba3c6966ad82e8cbce81"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "ea57dc8f107dfcd9a51c88c6625eb41ed7a786c22893f16cae84f99c85bc61dc"
+    },
+    {
+      "file": "src/game/state.ts",
+      "sha256": "bc0e342d09f7405f5c64523f2ac48362db72d8fa9686f2db40c832ffc2d5633d"
+    },
+    {
+      "file": "src/game/vehicles/tank.ts",
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "677db2cbc20c74970d0a3f54c1323b85e1064a5cdb81c1b797ffd2bd0af45fa4"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "6fbdafb3a48a8ce297010323417d4dadf9cd1072e50cf61bb4128d1135454860"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "d9fc4b63b0219c4207744f922b716fc88b38fdadaa83825bb3fc7951f719edcb"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "4397b9688df2f790d08486b0fafe9f2fd1205cec8b5db9530e502b464c3e090c"
+    },
+    {
+      "file": "src/shared/diagnostics/controller-recovery.ts",
+      "sha256": "1d06c63706181db52deb72cd9d6b3c64076c7bfabd6b57c32d0e72fb3572ae6b"
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "8e3252b2a21d48299a67816e273af779c4c6732f21665f23cc9fd7d3392e9885"
+    },
+    {
+      "file": "src/shared/input/capture.ts",
+      "sha256": "b68ac4198917d4a548562db873133895a3604eb9fe4473c48764dd4a99c96700"
+    },
+    {
+      "file": "src/shared/prediction/controller.ts",
+      "sha256": "17940c61be7c6f18fc55ad996611bb7c3d10a46f6c9c920600da6bc3f33c60c6"
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "sha256": "8a37aca22464bccf3d7ab5677d4cc696a5cdfadb1405e4af57a5322b25fa47ed"
+    },
+    {
+      "file": "src/shared/protocol/input-stream.ts",
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "45e5e8c332a5a615018e5ad35e4e70853149818f552a66bb25abd6957f5c6cb7"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "964598cdc1b7c1eafd894749fdf776f8123d6c59d68fabc1af933dfe9afca703"
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "sha256": "74cfbfcbee0ffc37ddd009c9be75b4428277412e033254977e684cb6088d9cc0"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "65ea36cb0bf6afed497c47809735a1879bbab0a1115c77f8a01b8750ae435648"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "272055ecca6fecfd5eb261c70bd0616e3bd6e4ee2edd73357d58d9238e40d9ba"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "761b7e16572f9cd0d62529ec6a85ee6cabec940433698847b3a730e466817674"
+    },
+    {
+      "file": "test/area-attack.test.ts",
+      "sha256": "0cf3edb565bf4ab2608cd3eb42d432176072a1c1aea04798a5cfda710c96eead"
+    },
+    {
+      "file": "test/combat-baseline.test.ts",
+      "sha256": "b9743258f143246b20e8839f650a0418bcf8cfe919df9c6e1f7238a72bb50c7e"
+    },
+    {
+      "file": "test/combat.test.ts",
+      "sha256": "4ccc3be89792a5c9ae8405d48d0ef3a344b92a6722aef20d30aca76477427bb0"
+    },
+    {
+      "file": "test/control-transfer.test.ts",
+      "sha256": "4646390331720137fc52c7fbf7aed8b3dede469774bdbc36bd674fbd4d7badb7"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "92a421ff6889b66b730d021e6f0c1c01f1c3f8342871659b8db7fdbf27eab9e0"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "9cb60556cabcd3cef203bf5e9eab4c3e3c380b03de24f4b8a6ab9f51fe17e53c"
+    },
+    {
+      "file": "test/fixtures/combat-proof.ts",
+      "sha256": "0a80ab41d5d34275f4be67088cc7b4a1d0c9d20a269613652c90e800fd8178ed"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "9c599b38363b048e4fe7a51fc468f95fadde45d489b1cabf3c98cdd522220b3e"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "e9cbd7685ed191221bd35c14f2a30c32572a545834348c58e649642c855cebdb"
+    },
+    {
+      "file": "test/fixtures/event-delivery-proof.ts",
+      "sha256": "0f2e39a39b0503bc4017d0d72681f35cbc7238b389fb0b45f6a1521084b027fc"
+    },
+    {
+      "file": "test/fixtures/player-life-proof.ts",
+      "sha256": "078e79bee63dcf52f717dbcc431f260625b7c44960072f20cd31f716fc3f4c55"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "e979ef521334fefc8f27bca15ed11e2f30a907f01bce6a09b9fde8a5b851f47a"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "452d11bc15baea74c6708eae3363020cae1f669122a16b3864dc8ba94dbd5659"
+    },
+    {
+      "file": "test/fixtures/tank-proof.ts",
+      "sha256": "ea2c242879e4b4045d663e55110644674f509260706476ddf58778b400a69cc0"
+    },
+    {
+      "file": "test/foot-combat.test.ts",
+      "sha256": "18f137dd962a2fca3d1cb21f1825a3118cacb0a9a01b6b3371775a4912ec4611"
+    },
+    {
+      "file": "test/rifle.test.ts",
+      "sha256": "cb448d28a1c25e2dc249f8484038d4db0b2ad6cb72723ffa2a8cca231b84f8c8"
+    },
+    {
+      "file": "test/room-workload.test.ts",
+      "sha256": "116d097fd360a0b783c037483b57fe9b7afe187066b11dd6e0c10cb926c172fa"
+    },
+    {
+      "file": "test/shield.test.ts",
+      "sha256": "6cfa02fa31e6e469cfeb461a800a6595822813b2b1d5fab80fba1856517dfe50"
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "sha256": "4253477b7934571f87fb5edaf64702f7e5180330a059ad7cabf479464cf4801f"
+    },
+    {
+      "file": "test/tank-world.test.ts",
+      "sha256": "2a08253db1e92c369c055f79946801ff132c2b24d742072307c25c89979f5344"
+    },
+    {
+      "file": "test/tank.test.ts",
+      "sha256": "e8608dd9379b9ee809da8d7704eebd489d7c883b592753bab0e73643021e6bc9"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/W05-tank-check.log.gz",
+      "bytes": 1257,
+      "sha256": "f025f8b5db636b1f547b44eaf9c4c6b69ac1ede0424dcb38a999cca9ff612fd3"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-contracts.json.gz",
+      "bytes": 19884,
+      "sha256": "17a1d5862fe82a0b017dc58469dcffaec5e162a796120d0b69f9898a522a96b1"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-storage.json.gz",
+      "bytes": 44132,
+      "sha256": "f8f8267455c084dfb033a2baed44a7287e34cd717cdd799d975ee28e2bb6d37f"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-browser.json.gz",
+      "bytes": 141654,
+      "sha256": "283831cd813060107ceba014221147e63ea8120ee3239335a003dd36d539a719"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-diagnostics.json.gz",
+      "bytes": 2827,
+      "sha256": "07c84ecfb3b4d0e919a32eece5fc4ea00495dafa33aaa376534a2d96af111872"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-lab.json.gz",
+      "bytes": 11159,
+      "sha256": "6c3aabaea66a7c1adb9fc62bb433e35112d711ab3675eb428e446ee59f683275"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-entry-recording.json.gz",
+      "bytes": 1361,
+      "sha256": "2889046e44b432c1d1e3ece3ff36a56f69beca0c7e30c37f5f3d2834fce149be"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-gun-recording.json.gz",
+      "bytes": 1689,
+      "sha256": "2ecbf63c2f93502561c4aed5aaeffb9325114d1ae90b9303f0c7363d191f9af4"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-exit-recording.json.gz",
+      "bytes": 1792,
+      "sha256": "563ad38e6145bec9e49d9a7e630c8f30381fd679040f40deb446fd548ea4282e"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-initial-admission.log.gz",
+      "bytes": 281,
+      "sha256": "46be37ddcd6a7bae5f5a094adc783872b79e333f28462b9e0be1476f4aa44dcd"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-initial-browser-failure.json.gz",
+      "bytes": 90,
+      "sha256": "d99d2d8650d828d2c6e57ea4e34659219485272bedad138c451ff8d064cdc1ed"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-initial-diagnostics.json.gz",
+      "bytes": 18548,
+      "sha256": "ff5b62763675dae88285c2facb911458e9f74a1cef6e99a236584d710c051c35"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-first-check.log.gz",
+      "bytes": 1804,
+      "sha256": "b60463c26d1e95ca2ed48fa792a9f41de4dc6c71131aa4f4de064313a77ef9c2"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-second-check.log.gz",
+      "bytes": 2017,
+      "sha256": "a203bbf12dd68edaec8d7358266531dc308bb71e70942b8374d8f436ec947c88"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-network-jump.png",
+      "bytes": 135732,
+      "sha256": "bb82a1215cee3b6389d5b1b6fee2740e55d624472297edb452b3db7c468d9eb8"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-network-combat.png",
+      "bytes": 135808,
+      "sha256": "d3771b44ed158b7fea7dfe874968233b24ff99ccd6b827e10713c76a539166cb"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-network-exit.png",
+      "bytes": 135277,
+      "sha256": "5203cff0ce9a896c93e900143667aed07497f9c5d50eea4efcb307d1c9d74de6"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-local-entry.png",
+      "bytes": 154437,
+      "sha256": "3fe84bd9e4e35e90f2879e3f0d7177e5ad8075f03d01791812ae8785dc2efd5e"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-local-jump.png",
+      "bytes": 154302,
+      "sha256": "25d1149294d1ede719d7a5c581b012fe573a76f201db6a5a9764abbe37523020"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-tank-local-exit.png",
+      "bytes": 155214,
+      "sha256": "e67f3883adf7a3492d1158fe1ec821e07223eb93059c00fd6d9e933bd1bf7d2b"
+    }
+  ]
+}

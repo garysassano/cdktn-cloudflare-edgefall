@@ -178,8 +178,8 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
       check(
         Boolean(
           vehicle &&
-            vehicle.occupantId === player.body.id &&
-            vehicle.controlEpoch === player.controlEpoch,
+            (vehicle.occupantId ?? vehicle.reservedBy) === player.body.id &&
+            vehicle.ownerControlEpoch === player.controlEpoch,
         ),
         "Unowned controller vehicle",
       );
@@ -187,6 +187,12 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
   }
   const seatClaims = new Set<number>();
   for (const vehicle of snapshot.vehicles) {
+    check(vehicle.facing === -1 || vehicle.facing === 1, "Invalid vehicle facing");
+    check(
+      (vehicle.ownerControlEpoch !== null) ===
+        (vehicle.occupantId !== null || vehicle.reservedBy !== null),
+      "Vehicle owner input generation mismatch",
+    );
     check(vehicle.components.length <= 8, "Vehicle component count limit");
     body(vehicle.body);
     action(vehicle.action);
@@ -210,11 +216,17 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
     );
     for (const id of [vehicle.occupantId, vehicle.reservedBy]) {
       if (id !== null) {
+        check(!seatClaims.has(id), "Member claims multiple vehicle seats");
         check(
-          snapshot.players.some((p) => p.body.id === id && p.life === "alive"),
+          snapshot.players.some(
+            (p) =>
+              p.body.id === id &&
+              p.life === "alive" &&
+              p.vehicleId === vehicle.body.id &&
+              p.controlEpoch === vehicle.ownerControlEpoch,
+          ),
           "Unknown vehicle member",
         );
-        check(!seatClaims.has(id), "Member claims multiple vehicle seats");
         seatClaims.add(id);
       }
     }

@@ -8,6 +8,7 @@ import { CONTRACT_FIXTURE } from "../content/contract-fixture.js";
 import type { ContentDefinition } from "../content/schema.js";
 import { validateContent } from "../content/validate.js";
 import { pixels } from "../core/numeric.js";
+import { type TankProfile, validateTankProfile } from "../vehicles/tank.js";
 
 /** Authored engineering exposures and sockets. No final art or HMG turn-sweep acceptance. */
 export const COMBAT_CONTENT: ContentDefinition = structuredClone(CONTRACT_FIXTURE);
@@ -347,6 +348,127 @@ for (const [index, weapon] of [sidearm, hmg, shotgun, flame].entries()) {
   }
   profiles.push({ weapon, timelineIds });
 }
+const tankActor = {
+  id: 2,
+  locomotion: "grounded" as const,
+  standingShapeId: 15,
+  crouchedShapeId: 15,
+  idlePoseId: 130,
+  runSpeed: pixels(3),
+  jumpVelocity: -pixels(5),
+  gravity: 64,
+  terminalVelocity: pixels(8),
+};
+const tankDefinition = {
+  id: 1,
+  kind: "tank" as const,
+  actorId: 2,
+  armor: 3,
+  weaponId: "heavy-machine-gun" as const,
+  seat: {
+    socket: { x: 0, y: -pixels(6) },
+    ejectionCandidates: [
+      { x: pixels(30), y: 0 },
+      { x: -pixels(30), y: 0 },
+      { x: 0, y: -pixels(38) },
+    ],
+    boardingSensorShapeId: 16,
+    boardingTimelineId: 130,
+  },
+};
+export const TANK_PROFILE: TankProfile = {
+  definition: tankDefinition,
+  locomotion: tankActor,
+  exitTimelineId: 131,
+  fireTimelineIds: Array.from({ length: 8 }, (_, i) => 140 + i),
+  attackId: 16,
+  fireCadenceTicks: 5,
+  turnTicks: 3,
+  damageProtectionTicks: 30,
+  reboardTicks: 30,
+  exitProtectionTicks: 12,
+  disconnectGraceTicks: 15,
+  fallBoundary: pixels(248),
+  hardpoint: { x: 0, y: -pixels(24) },
+  headings: [
+    [26, -24, 20, 0],
+    [20, -44, 14, -14],
+    [0, -50, 0, -20],
+    [-20, -44, -14, -14],
+    [-26, -24, -20, 0],
+    [-20, -4, -14, 14],
+    [0, 2, 0, 20],
+    [20, -4, 14, 14],
+  ].map(([x = 0, y = 0, vx = 0, vy = 0]) => ({
+    muzzle: { x: pixels(x), y: pixels(y) },
+    velocity: { x: pixels(vx), y: pixels(vy) },
+  })),
+};
+COMBAT_CONTENT.actors = COMBAT_CONTENT.actors.map((actor) => (actor.id === 2 ? tankActor : actor));
+COMBAT_CONTENT.vehicles = [tankDefinition];
+COMBAT_CONTENT.shapes.push(
+  { id: 15, rect: { x: -pixels(20), y: -pixels(24), w: pixels(40), h: pixels(24) } },
+  { id: 16, rect: { x: -pixels(40), y: -pixels(40), w: pixels(80), h: pixels(40) } },
+);
+COMBAT_CONTENT.attacks.push({
+  id: 16,
+  kind: "swept-projectile",
+  shapeId: 4,
+  damage: 1,
+  lifetimeTicks: 40,
+  speed: pixels(20),
+  maxTargets: 1,
+  repeatDamageTicks: 0,
+  material: "bullet",
+});
+for (const [id, duration] of [
+  [130, 12],
+  [131, 8],
+] as const) {
+  COMBAT_CONTENT.poses.push({
+    id,
+    frame: `engineering-tank-${id === 130 ? "board" : "exit"}`,
+    durationTicks: duration,
+    sockets: [
+      { name: "seat", point: tankDefinition.seat.socket },
+      { name: "ejection", point: { x: pixels(30), y: 0 } },
+    ],
+    hurtShapeIds: [15],
+  });
+  COMBAT_CONTENT.timelines.push({
+    id,
+    durationTicks: duration,
+    poses: [id],
+    markers: [
+      {
+        tickOffset: duration - 1,
+        kind: "seat-transfer",
+        payloadId: 1,
+        socket: id === 130 ? "seat" : "ejection",
+      },
+    ],
+  });
+}
+for (const [heading, exposure] of TANK_PROFILE.headings.entries()) {
+  const id = 140 + heading;
+  COMBAT_CONTENT.poses.push({
+    id,
+    frame: `engineering-tank-fire-${heading}`,
+    durationTicks: 3,
+    sockets: [{ name: "muzzle", point: exposure.muzzle }],
+    hurtShapeIds: [15],
+  });
+  COMBAT_CONTENT.timelines.push({
+    id,
+    durationTicks: 3,
+    poses: [id],
+    markers: [
+      { tickOffset: 0, kind: "spawn-attack", payloadId: 16, socket: "muzzle" },
+      { tickOffset: 0, kind: "sound", payloadId: 16, socket: "muzzle" },
+    ],
+  });
+}
+
 validateContent(COMBAT_CONTENT);
 for (const [id, profile] of AREA_PROFILES) {
   const definition = COMBAT_CONTENT.attacks.find((attack) => attack.id === id);
@@ -359,6 +481,7 @@ export const COMBAT_CATALOG: FirearmCatalog = {
   poses: new Map(COMBAT_CONTENT.poses.map((pose) => [pose.id, pose])),
 };
 export const COMBAT_SHAPES = new Map(COMBAT_CONTENT.shapes.map((shape) => [shape.id, shape]));
+validateTankProfile(TANK_PROFILE, COMBAT_SHAPES, COMBAT_CATALOG);
 export const COMBAT_ATTACKS = new Map(
   COMBAT_CONTENT.attacks.map((definition) => [definition.id, definition]),
 );

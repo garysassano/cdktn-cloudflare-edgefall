@@ -8,6 +8,7 @@ import { canonical } from "../../game/core/canonical.js";
 import { Edge, type InputCommand } from "../../game/input/types.js";
 import {
   COMBAT_ENTRY,
+  COMBAT_TANK_DEPOT,
   type CombatLab,
   type CombatScenario,
   advanceCombatLab,
@@ -26,12 +27,14 @@ import {
   GRENADE_PROFILE,
   RIFLE_PROFILE,
   SHIELD_PROFILE,
+  TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
 import { worldSocket } from "../../game/physics/body.js";
 import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
 import { ARCADE, RULE_PRESETS } from "../../game/rules.js";
 import type { ControlledActor } from "../../game/state.js";
+import { publicTankState } from "../../game/vehicles/tank.js";
 import type { PreparedPlayerTick, WorldInputOutcome } from "../protocol/input-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
 import { controllerPeerContext } from "./controller-recovery.js";
@@ -48,12 +51,14 @@ export async function combatIdentity() {
   const bytes = new TextEncoder().encode(
     canonical({
       content: COMBAT_CONTENT,
-      campaignFormat: 1,
+      campaignFormat: 2,
       rifle: RIFLE_PROFILE,
       shield: SHIELD_PROFILE,
       areas: [...AREA_PROFILES],
       footActions: FOOT_ACTION_PROFILES,
       grenade: GRENADE_PROFILE,
+      tank: TANK_PROFILE,
+      tankDepot: COMBAT_TANK_DEPOT,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -96,7 +101,7 @@ export function combatSnapshot(
   const snapshot = structuredClone(previous);
   snapshot.tick = combat.tick;
   snapshot.players = structuredClone(combat.players);
-  snapshot.vehicles = [];
+  snapshot.vehicles = combat.tanks.map(publicTankState);
   snapshot.platforms = [];
   snapshot.threats = combat.targets.flatMap(({ enemy, health, rifle }) => {
     if (
@@ -256,13 +261,18 @@ export function combatSnapshot(
       COMBAT_CONTENT.attacks.find((attack) => attack.id === projectile.definitionId)
         ?.lifetimeTicks ?? 0,
     heading:
-      projectile.velocity.y < 0
-        ? 1
-        : projectile.velocity.y > 0
-          ? 2
-          : projectile.velocity.x < 0
-            ? 3
-            : 0,
+      projectile.definitionId === TANK_PROFILE.attackId
+        ? TANK_PROFILE.headings.findIndex(
+            ({ velocity }) =>
+              velocity.x === projectile.velocity.x && velocity.y === projectile.velocity.y,
+          )
+        : projectile.velocity.y < 0
+          ? 1
+          : projectile.velocity.y > 0
+            ? 2
+            : projectile.velocity.x < 0
+              ? 3
+              : 0,
     shapeId: 4,
   }));
   for (const grenade of combat.grenades)
@@ -331,6 +341,7 @@ export function evaluateCombatTick(
   current: CombatLab,
   previous: FullSnapshot,
   prepared: readonly PreparedPlayerTick[],
+  releasePlayerIds: readonly number[] = [],
 ) {
   if (current.tick !== previous.tick) throw new Error("Combat/snapshot boundary mismatch");
   const commands = current.players.map((actor) => {
@@ -342,9 +353,14 @@ export function evaluateCombatTick(
       jumpPressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Jump) ?? false,
       firePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.FireOnset) ?? false,
       grenadePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Grenade) ?? false,
+      interactPressed:
+        item?.input.command.edges.some((edge) => edge.kind === Edge.Interact) ?? false,
     };
   });
-  const result = advanceCombatLab(current, commands);
+  const result = advanceCombatLab(current, commands, {
+    connectedPlayerIds: prepared.map((item) => item.input.playerId),
+    releasePlayerIds,
+  });
   const outcomes: WorldInputOutcome[] = prepared.map((item) => {
     const actor = result.state.players.find((player) => player.playerId === item.input.playerId);
     const outcome = result.outcomes.find((value) => value.playerId === item.input.playerId);
@@ -352,9 +368,13 @@ export function evaluateCombatTick(
     actor.processedEdgeIds = [...item.acknowledgment.processedEdgeIds];
     let jump = false,
       grenade = false,
-      fire = false;
+      fire = false,
+      interact = false;
     return {
       playerId: actor.playerId,
+      ...(actor.controlEpoch !== item.acknowledgment.controlEpoch
+        ? { controlEpoch: actor.controlEpoch }
+        : {}),
       edgeResults: item.input.command.edges.map((edge) => {
         let accepted: "applied" | "cooldown" | "unavailable" = "unavailable";
         if (edge.kind === Edge.Jump && !jump) {
@@ -369,6 +389,10 @@ export function evaluateCombatTick(
           accepted = outcome.fire === "none" ? "unavailable" : outcome.fire;
           fire = true;
         } else if (edge.kind === Edge.FireOnset) accepted = "cooldown";
+        if (edge.kind === Edge.Interact && !interact) {
+          accepted = outcome.interact === "none" ? "unavailable" : outcome.interact;
+          interact = true;
+        } else if (edge.kind === Edge.Interact) accepted = "cooldown";
         return { ...edge, outcome: accepted };
       }),
     };
@@ -379,8 +403,13 @@ export function evaluateCombatTick(
     if (index < 0) throw new Error("Missing combat acknowledgment");
     snapshot.acknowledgments[index] = structuredClone(item.acknowledgment);
   }
+  for (const ack of snapshot.acknowledgments) {
+    const actor = result.state.players.find((player) => player.playerId === ack.playerId);
+    if (!actor) throw new Error("Missing combat ownership acknowledgment");
+    ack.controlEpoch = actor.controlEpoch;
+  }
   snapshot.stateHash = roomWorkloadHash(snapshot);
-  return { state: { combat: result.state, snapshot }, outcomes };
+  return { state: { combat: result.state, snapshot }, outcomes, seatEvents: result.seatEvents };
 }
 /** Movement prediction only until global action IDs and effect confirmations are integrated. */
 export function predictCombatMovement(actor: ControlledActor, command: InputCommand, tick: number) {

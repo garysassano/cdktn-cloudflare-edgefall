@@ -1,13 +1,44 @@
 import { stateHash } from "../../game/core/canonical.js";
 import { nextCounter } from "../../game/core/numeric.js";
+import { combatTerrain } from "../../game/labs/combat.js";
 import { continueCombatCheckpoint } from "../../game/labs/combat-campaign.js";
+import {
+  type SeatChanges,
+  commitCombatSeats,
+  releaseCombatTank,
+} from "../../game/labs/combat-tanks.js";
+import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
+import { tankOwner } from "../../game/vehicles/tank.js";
 import { createEventHistory } from "../protocol/event-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
 import { isPausableRoom, isWaitingRoom } from "../session/room-phase.js";
 import type { CombatRuntime } from "./combat-runtime.js";
 import { combatSnapshot } from "./combat-workload.js";
-import { recoverControllerWorld } from "./controller-recovery.js";
+import { renewControllerGenerations } from "./controller-recovery.js";
 import { roomWorkloadHash } from "./room-workload.js";
+
+/** Empty rooms do not tick through a grace timer; settle seats in the persisted phase boundary. */
+function settleSeats(state: CombatRuntime, playerIds: readonly number[], advanceControl = true) {
+  const before = structuredClone(state.combat),
+    changes: SeatChanges = new Map();
+  const frame = { tick: state.combat.tick, geometryRevision: state.snapshot.geometryRevision },
+    index = new CollisionIndex(new CollisionGrid(combatTerrain(state.combat.scenario)), [], frame);
+  for (const player of state.combat.players) {
+    if (!playerIds.includes(player.playerId) || player.vehicleId === null) continue;
+    const tank = state.combat.tanks.find(
+      (tank) => tankOwner(tank) === player.playerId && tank.body.id === player.vehicleId,
+    );
+    if (!tank) throw new Error("Combat vehicle handoff owner mismatch");
+    releaseCombatTank(state.combat, tank, "disconnect", changes, [], index, frame);
+  }
+  if (advanceControl) commitCombatSeats(before, state.combat, changes);
+  for (const ack of state.snapshot.acknowledgments) {
+    const actor = state.combat.players.find((player) => player.playerId === ack.playerId);
+    if (!actor) throw new Error("Missing settled seat acknowledgment");
+    ack.controlEpoch = actor.controlEpoch;
+  }
+  state.snapshot = combatSnapshot(state.combat, state.snapshot, state.campaign);
+}
 
 /** Replace one waiting connection without advancing combat or restarting its firearm action. */
 export function replaceWaitingCombatConnection(
@@ -17,10 +48,10 @@ export function replaceWaitingCombatConnection(
   if (!isWaitingRoom(current.snapshot.roomMode))
     throw new Error("Connection replacement requires waiting phase");
   const state = structuredClone(current);
+  settleSeats(state, [playerId]);
   const actor = state.combat.players.find((player) => player.playerId === playerId);
   const ack = state.snapshot.acknowledgments.find((value) => value.playerId === playerId);
   if (!actor || !ack) throw new Error("Missing loading connection owner");
-  if (actor.vehicleId !== null) throw new Error("Loading connection does not own vehicle handoff");
   ack.connectionEpoch = nextCounter(ack.connectionEpoch);
   ack.lastProcessedSequence = 0;
   ack.appliedAtServerTick = 0;
@@ -76,15 +107,16 @@ export function transitionCombatRuntime(
   if (kind === "continue") {
     if (current.snapshot.roomMode !== "intermission" || current.pausedFrom !== null)
       throw new Error("Continue requires a confirmed wipe boundary");
-    const reset = continueCombatCheckpoint(
-      current.combat,
-      current.campaign,
-      current.snapshot.runEpoch,
+    settleSeats(
+      state,
+      state.combat.players.map((player) => player.playerId),
+      false,
     );
+    const reset = continueCombatCheckpoint(state.combat, state.campaign, current.snapshot.runEpoch);
     state.combat = reset.combat;
     state.campaign = reset.campaign;
     state.snapshot = combatSnapshot(state.combat, state.snapshot, state.campaign);
-    state.snapshot = recoverControllerWorld(state.snapshot);
+    state.snapshot = renewControllerGenerations(state.snapshot);
     state.snapshot.roomMode = "loading";
     state.combat.players = structuredClone(state.snapshot.players);
     state.history = { ...createEventHistory(state.snapshot.runEpoch), tick: state.combat.tick };
@@ -108,6 +140,10 @@ export function transitionCombatRuntime(
           ].includes(current.snapshot.roomMode)
     )
       throw new Error("Invalid empty combat boundary");
+    settleSeats(
+      state,
+      state.combat.players.map((player) => player.playerId),
+    );
     state.snapshot.roomMode = kind === "pause" ? "paused-empty" : "expired";
     state.pausedFrom =
       kind === "pause" && isPausableRoom(current.snapshot.roomMode)
@@ -126,7 +162,12 @@ export function transitionCombatRuntime(
     state.snapshot.roomMode = "playing";
   } else {
     const origin = current.pausedFrom ?? current.snapshot.roomMode;
-    state.snapshot = recoverControllerWorld(current.snapshot);
+    settleSeats(
+      state,
+      state.combat.players.map((player) => player.playerId),
+      false,
+    );
+    state.snapshot = renewControllerGenerations(state.snapshot);
     if (origin === "lobby" || origin === "intermission") state.snapshot.roomMode = origin;
     state.pausedFrom = null;
     state.combat.players = structuredClone(state.snapshot.players);

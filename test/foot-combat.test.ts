@@ -20,10 +20,11 @@ const idle: CombatCommand = {
   held: 0,
   firePressed: false,
   jumpPressed: false,
+  interactPressed: false,
   grenadePressed: false,
 };
 const fire = { ...idle, held: Held.Fire, firePressed: true };
-const throwing = { ...idle, grenadePressed: true };
+const throwing = { ...idle, interactPressed: false, grenadePressed: true };
 function advance(
   initial: CombatLab,
   through: number,
@@ -202,7 +203,9 @@ describe("contextual knife and discrete grenade authority", () => {
   });
 
   it("arbitrates simultaneous fire/grenade intent once, releases at the hand and detonates after 90 flight ticks", () => {
-    const start = advanceCombatLab(createCombatLab("range"), [{ ...fire, grenadePressed: true }]);
+    const start = advanceCombatLab(createCombatLab("range"), [
+      { ...fire, interactPressed: false, grenadePressed: true },
+    ]);
     expect(start.outcomes[0]).toMatchObject({ grenade: "applied", fire: "cooldown" });
     expect(start.state.players[0]?.grenadeStock).toBe(9);
     expect(start.state.players[0]?.weapon.shotOrdinal).toBe(0);
@@ -235,6 +238,7 @@ describe("contextual knife and discrete grenade authority", () => {
     const result = advance(wall, 95, (tick) => ({
       ...idle,
       held: Held.Down,
+      interactPressed: false,
       grenadePressed: tick === 1,
     }));
     const released = result.states[4]?.grenades[0];
@@ -250,6 +254,7 @@ describe("contextual knife and discrete grenade authority", () => {
   it("cancels a throw when killed before release while a released grenade survives its owner's death", () => {
     const cancelled = advance(createCombatLab("rifle"), 100, (tick) => ({
       ...idle,
+      interactPressed: false,
       grenadePressed: tick === 75,
     }));
     expect(cancelled.states.some((state) => state.players[0]?.life === "death")).toBe(true);

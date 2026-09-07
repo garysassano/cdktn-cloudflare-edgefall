@@ -6,6 +6,21 @@ import { probeContext, roomWorkloadHash } from "./room-workload.js";
 export function recoverControllerWorld(current: FullSnapshot): FullSnapshot {
   if (current.vehicles.length || current.players.some((actor) => actor.vehicleId !== null))
     throw new Error("Controller recovery does not own vehicle handoff");
+  return renewControllerGenerations(current);
+}
+
+/** The caller settles its vehicle leases before renewing all transport/input generations. */
+export function renewControllerGenerations(current: FullSnapshot): FullSnapshot {
+  if (
+    current.players.some((actor) => actor.vehicleId !== null) ||
+    current.vehicles.some(
+      (vehicle) =>
+        vehicle.occupantId !== null ||
+        vehicle.reservedBy !== null ||
+        vehicle.ownerControlEpoch !== null,
+    )
+  )
+    throw new Error("Controller generations require settled vehicle ownership");
   const next = structuredClone(current);
   next.runEpoch = nextCounter(current.runEpoch);
   next.roomMode = "loading";

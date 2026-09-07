@@ -13,6 +13,7 @@ export function combatProof() {
     for (let tick = 1; tick <= 120; tick++) {
       const inputs = world.players.map(() => ({
         held: tick <= 100 ? Held.Fire : 0,
+        interactPressed: false,
         grenadePressed: false,
         firePressed: tick === 1,
         jumpPressed: false,

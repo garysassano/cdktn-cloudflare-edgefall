@@ -31,8 +31,19 @@ export class InputCapture {
   #lastBudgetTime: number | null = null;
   #lastSendTime: number | null = null;
 
-  constructor(readonly controlEpoch: number) {
+  constructor(private epoch: number) {
+    const controlEpoch = epoch;
     integer(controlEpoch, 1, COUNTER_LIMIT - 1, "input control epoch");
+  }
+  get controlEpoch() {
+    return this.epoch;
+  }
+  /** New samples use the new owner; already captured commands keep immutable old identities. */
+  advanceControlEpoch(controlEpoch: number) {
+    this.#guard();
+    integer(controlEpoch, this.epoch + 1, COUNTER_LIMIT - 1, "input ownership advance");
+    this.epoch = controlEpoch;
+    this.#edges.length = 0;
   }
   get held() {
     return [...this.#sources.values()].reduce((mask, binding) => mask | (binding.held ?? 0), 0);
