@@ -182,6 +182,11 @@ export class EncounterLifecycle {
       ).length + state.objectives.filter((o) => o.completedTick === null).length
     );
   }
+  /** Check a saved continuation without advancing clocks, watchdogs or event receipts. */
+  restore(state: EncounterState): EncounterState {
+    this.#validate(state);
+    return structuredClone(state);
+  }
   step(
     current: EncounterState,
     atTick: number,

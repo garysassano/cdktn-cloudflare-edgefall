@@ -11,6 +11,7 @@ import { stepFootController } from "../controller/foot.js";
 import { canonical } from "../core/canonical.js";
 import { compareContactTime, integer, nextCounter, pixels, position } from "../core/numeric.js";
 import {
+  type EncounterDefinition,
   type EncounterEvent,
   EncounterLifecycle,
   type EncounterState,
@@ -64,8 +65,10 @@ export function combatTerrain(scenario: CombatScenario): SweepTarget[] {
     ...(scenario === "wall" ? [footTerrain(101, 140, 130, 3, 70)] : []),
   ];
 }
-function lifecycle(world: Pick<CombatLab, "players" | "targets">) {
-  return new EncounterLifecycle({
+export function combatEncounterDefinition(
+  world: Pick<CombatLab, "players" | "targets">,
+): EncounterDefinition {
+  return {
     id: 1,
     participants: world.players.map((player) => player.playerId),
     members: world.targets.map(({ enemy }) => ({
@@ -77,7 +80,10 @@ function lifecycle(world: Pick<CombatLab, "players" | "targets">) {
       ambientCleanupTicks: null,
     })),
     objectives: [],
-  });
+  };
+}
+function lifecycle(world: Pick<CombatLab, "players" | "targets">) {
+  return new EncounterLifecycle(combatEncounterDefinition(world));
 }
 export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab {
   if (!COMBAT_SCENARIOS.includes(scenario)) throw new Error("Unknown combat scenario");

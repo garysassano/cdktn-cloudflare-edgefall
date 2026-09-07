@@ -2,6 +2,13 @@ import { MAX_MOTION, MAX_POSITION } from "../../game/core/numeric.js";
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { ActionState, Body } from "../../game/state.js";
 import { Reader, Writer } from "./binary.js";
+import {
+  COMBAT_HEADER_BYTES,
+  combatRecordBytes,
+  readCombat,
+  validateCombat,
+  writeCombat,
+} from "./combat-record.js";
 import { readPlayer, readVehicle, writePlayer, writeVehicle } from "./controller-record.js";
 import { ACK_BYTES, MAGIC, PROTOCOL_MAJOR, PROTOCOL_MINOR } from "./limits.js";
 import { ProtocolError } from "./schema.js";
@@ -62,6 +69,7 @@ function ordered(ids: readonly number[], label: string): void {
 
 /** Shared encoder/decoder invariants; complete validation precedes exposure to prediction. */
 function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
+  validateCombat(snapshot);
   if (
     snapshot.runEpoch !== context.runEpoch ||
     snapshot.connectionEpoch !== context.connectionEpoch
@@ -399,14 +407,14 @@ export function encodeSnapshot(snapshot: FullSnapshot, context: SnapshotContext)
     threats: snapshot.threats.length,
     removedIds: snapshot.removedIds.length,
   };
-  const length = frameLength(counts);
+  const length = frameLength(counts) + combatRecordBytes(snapshot.combat);
   validate(snapshot, context);
   const w = new Writer(length);
   w.u16(MAGIC);
   w.u8(PROTOCOL_MAJOR);
   w.u8(PROTOCOL_MINOR);
   w.u8(SNAPSHOT_TYPE);
-  w.u8(0);
+  w.u8(snapshot.combat === null ? 0 : 1);
   w.u16(length);
   w.u32(snapshot.runEpoch, 1);
   w.u32(snapshot.connectionEpoch, 1);
@@ -433,7 +441,7 @@ export function encodeSnapshot(snapshot: FullSnapshot, context: SnapshotContext)
   w.u32(snapshot.campaign.continuesUsed, 0, 65535);
   w.choice(PHASES, snapshot.campaign.phase);
   w.u32(snapshot.campaign.encounterId, 1);
-  w.u32(snapshot.campaign.remainingEnemies, 0, 256);
+  w.u32(snapshot.campaign.remainingEnemies, 0, 320);
   for (const ack of snapshot.acknowledgments) writeAck(w, ack);
   for (const player of snapshot.players) writePlayer(w, player);
   for (const vehicle of snapshot.vehicles) writeVehicle(w, vehicle);
@@ -442,6 +450,7 @@ export function encodeSnapshot(snapshot: FullSnapshot, context: SnapshotContext)
   for (const platform of snapshot.platforms) writePlatform(w, platform);
   for (const threat of snapshot.threats) writeThreat(w, threat);
   for (const id of snapshot.removedIds) w.u32(id, 1);
+  if (snapshot.combat !== null) writeCombat(w, snapshot.combat);
   check(w.offset === length, "Snapshot encoder record size mismatch");
   return w.bytes;
 }
@@ -456,11 +465,11 @@ export function decodeSnapshot(bytes: Uint8Array, context: SnapshotContext): Ful
     r.u16() === MAGIC &&
       r.u8() === PROTOCOL_MAJOR &&
       r.u8() === PROTOCOL_MINOR &&
-      r.u8() === SNAPSHOT_TYPE &&
-      r.u8() === 0 &&
-      r.u16() === bytes.byteLength,
+      r.u8() === SNAPSHOT_TYPE,
     "Snapshot frame header",
   );
+  const flags = r.u8();
+  check(flags <= 1 && r.u16() === bytes.byteLength, "Snapshot frame header");
   const header = {
     runEpoch: r.u32(1),
     connectionEpoch: r.u32(1),
@@ -483,7 +492,13 @@ export function decodeSnapshot(bytes: Uint8Array, context: SnapshotContext): Ful
     threats: r.u16(),
     removedIds: r.u16(),
   };
-  check(frameLength(counts) === bytes.byteLength, "Snapshot section lengths do not match frame");
+  const baseLength = frameLength(counts);
+  check(
+    flags === 0
+      ? baseLength === bytes.byteLength
+      : baseLength + COMBAT_HEADER_BYTES <= bytes.byteLength,
+    "Snapshot section lengths do not match frame",
+  );
   const roomMode = ROOM_MODES[r.u8()];
   check(roomMode !== undefined, "Unknown room mode");
   r.zero(15);
@@ -499,8 +514,9 @@ export function decodeSnapshot(bytes: Uint8Array, context: SnapshotContext): Ful
       continuesUsed: r.u32(0, 65535),
       phase: r.choice(PHASES),
       encounterId: r.u32(1),
-      remainingEnemies: r.u32(0, 256),
+      remainingEnemies: r.u32(0, 320),
     },
+    combat: null,
     acknowledgments: [],
     players: [],
     vehicles: [],
@@ -519,6 +535,7 @@ export function decodeSnapshot(bytes: Uint8Array, context: SnapshotContext): Ful
   for (let index = 0; index < counts.platforms; index++) snapshot.platforms.push(readPlatform(r));
   for (let index = 0; index < counts.threats; index++) snapshot.threats.push(readThreat(r));
   for (let index = 0; index < counts.removedIds; index++) snapshot.removedIds.push(r.u32(1));
+  if (flags === 1) snapshot.combat = readCombat(r);
   check(r.offset === bytes.byteLength, "Trailing snapshot bytes");
   validate(snapshot, context);
   return snapshot;

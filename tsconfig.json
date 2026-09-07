@@ -31,6 +31,7 @@
     "scripts/lib/**/*.ts",
     "scripts/compile-content.ts",
     "scripts/verify-network-controller.ts"
+    ,"scripts/verify-combat-storage.ts"
   ],
   "exclude": [
     ".gen",
@@ -39,5 +40,6 @@
     "node_modules",
     "src/client",
     "src/worker"
+    ,"test/fixtures/combat-storage-worker.ts"
   ]
 }

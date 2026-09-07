@@ -83,6 +83,7 @@ export function controllerProof(restoreAfterTick?: number) {
       geometryRevision,
       stateHash: Number.parseInt(stateHash({ actor, geometryRevision, tick }), 16),
       roomMode: "playing",
+      combat: null,
       camera: { x: 0, y: 0 },
       campaign: {
         ruleset: "classic",

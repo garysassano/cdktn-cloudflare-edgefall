@@ -117,6 +117,7 @@ export function createRoomWorkload(multiplier: 1 | 2): FullSnapshot {
     geometryRevision: 1,
     stateHash: 0,
     roomMode: "loading",
+    combat: null,
     camera: { x: 0, y: 0 },
     campaign: {
       ruleset: "classic",

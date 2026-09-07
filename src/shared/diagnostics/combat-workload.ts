@@ -4,6 +4,7 @@ import { Edge, type InputCommand } from "../../game/input/types.js";
 import {
   type CombatLab,
   advanceCombatLab,
+  combatEncounterDefinition,
   combatTerrain,
   createCombatLab,
 } from "../../game/labs/combat.js";
@@ -91,6 +92,32 @@ export function combatSnapshot(combat: CombatLab, previous = createRoomWorkload(
     .map((target) => target.enemy.body.id);
   snapshot.campaign.remainingEnemies = combat.targets.filter((target) => target.health > 0).length;
   snapshot.campaign.encounterId = 1;
+  const definition = combatEncounterDefinition(combat);
+  snapshot.combat = {
+    nextEntityId: combat.nextEntityId,
+    nextActionId: combat.nextActionId,
+    encounterEventCursor: combat.eventSequence,
+    encounterId: definition.id,
+    phase: combat.encounter.phase,
+    members: combat.encounter.members.map((member, index) => {
+      const policy = definition.members[index];
+      if (!policy || policy.id !== member.id) throw new Error("Combat roster mismatch");
+      return {
+        id: member.id,
+        required: policy.required,
+        critical: policy.critical,
+        retreatAllowed: policy.retreatAllowed,
+        status: member.status,
+        activatedTick: member.activatedTick,
+        resolvedTick: member.resolvedTick,
+        reason: member.reason,
+        killerId: member.killerId,
+      };
+    }),
+    objectives: structuredClone(combat.encounter.objectives),
+    kills: structuredClone(combat.encounter.kills),
+    failure: structuredClone(combat.encounter.failure),
+  };
   snapshot.stateHash = roomWorkloadHash(snapshot);
   return snapshot;
 }

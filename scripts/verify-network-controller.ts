@@ -8,9 +8,11 @@ import { chromium } from "@playwright/test";
 import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
 import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
+import type { CombatSnapshot } from "../src/shared/protocol/snapshot-schema.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
+  combatBaseline: CombatSnapshot | null;
   timeline: unknown[];
   slot: number;
   runEpoch: number;
@@ -59,20 +61,23 @@ interface ClientStatus {
 }
 const recoveryMode = process.argv.includes("--recovery");
 const faultMode = process.argv.includes("--combat-fault");
-const eventMode = process.argv.includes("--events");
+const baselineMode = process.argv.includes("--combat-baseline");
+const eventMode = process.argv.includes("--events") || baselineMode;
 const combatMode = process.argv.includes("--combat") || faultMode || eventMode;
 assert(!(combatMode && recoveryMode), "Combat recovery is not implemented");
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = combatMode
-  ? eventMode
-    ? "dist/network-event-evidence"
-    : faultMode
-      ? "dist/network-combat-fault-evidence"
-      : "dist/network-combat-evidence"
-  : recoveryMode
-    ? "dist/network-controller-recovery-evidence"
-    : "dist/network-controller-evidence";
+const output = baselineMode
+  ? "dist/network-combat-baseline-evidence"
+  : combatMode
+    ? eventMode
+      ? "dist/network-event-evidence"
+      : faultMode
+        ? "dist/network-combat-fault-evidence"
+        : "dist/network-combat-evidence"
+    : recoveryMode
+      ? "dist/network-controller-recovery-evidence"
+      : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -215,13 +220,14 @@ try {
         }, faults);
       };
       if (eventMode) {
+        if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
       }
       await prepareAndStart();
       if (combatMode) {
         let clients: ClientStatus[] = [];
-        const target = faultMode ? 12 : 90;
+        const target = faultMode ? 12 : baselineMode ? 165 : 90;
         for (let attempt = 0; attempt < 120; attempt++) {
           clients = await read();
           assert(
@@ -242,18 +248,31 @@ try {
           "Combat clients did not reach the target tick",
         );
         const sharedEvents =
-          clients[0]?.events?.receipts.filter((item) =>
-            clients.every((client) =>
-              client.events?.receipts.some(
-                (other) => other.cursor === item.cursor && other.hash === item.hash,
+          clients[baselineMode ? 1 : 0]?.events?.receipts.filter((item) =>
+            clients
+              .slice(baselineMode ? 1 : 0)
+              .every((client) =>
+                client.events?.receipts.some(
+                  (other) => other.cursor === item.cursor && other.hash === item.hash,
+                ),
               ),
-            ),
           ).length ?? 0;
         if (!faultMode) {
+          assert(
+            clients.every(
+              (client) =>
+                client.combatBaseline?.phase === "complete" &&
+                client.combatBaseline.kills.find((k) => k.playerId === 2)?.count === 2 &&
+                client.combatBaseline.members.every((m) => m.status === "resolved"),
+            ),
+            "Combat baseline lost terminal accounting",
+          );
           assert(sharedEvents >= 100, "Missing shared gameplay event prefix");
           assert(
             clients.every(
-              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+              (client, slot) =>
+                (client.events?.counts.killed ?? 0) === (baselineMode && slot === 0 ? 0 : 2) &&
+                !client.events?.requiresBaseline,
             ),
             "Missing or repeated confirmed kills",
           );
@@ -274,7 +293,7 @@ try {
             0,
             "Short gap unnecessarily reset the event baseline",
           );
-          await configureEvents(0, { pauseUntilBaseline: true });
+          if (!baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
           for (let attempt = 0; attempt < 160; attempt++) {
             clients = await read();
             assert(
@@ -309,7 +328,9 @@ try {
           );
           assert(
             clients.every(
-              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+              (client, slot) =>
+                (client.events?.counts.killed ?? 0) === (baselineMode && slot === 0 ? 0 : 2) &&
+                !client.events?.requiresBaseline,
             ),
             "Baseline replayed terminal events",
           );
@@ -344,7 +365,9 @@ try {
           );
           assert(
             clients.every(
-              (client) => client.events?.counts.killed === 2 && !client.events.requiresBaseline,
+              (client, slot) =>
+                (client.events?.counts.killed ?? 0) === (baselineMode && slot === 0 ? 0 : 2) &&
+                !client.events?.requiresBaseline,
             ),
             "Gap repair replayed terminal events",
           );
@@ -449,6 +472,7 @@ try {
             .digest("hex"),
           sharedSnapshots: common.length,
           sharedEvents,
+          missedKillBaseline: baselineMode,
           workerBundleSha256,
           clients,
           room,

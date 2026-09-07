@@ -6,6 +6,7 @@ import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapsh
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
 import { collisionProof } from "./collision-proof.js";
 import { combatProof } from "./combat-proof.js";
+import { combatRecoveryProof } from "./combat-recovery-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { encounterProof } from "./encounter-proof.js";
@@ -24,7 +25,7 @@ import { traversalProof } from "./traversal-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
-export function contractProof() {
+export async function contractProof() {
   const context: SnapshotContext = {
     runEpoch: 1,
     connectionEpoch: 2,
@@ -84,6 +85,7 @@ export function contractProof() {
     collision: collisionProof(),
     combat: combatProof(),
     worldCombat: worldCombatProof(),
+    combatRecovery: await combatRecoveryProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),
     controller: controllerProof(),

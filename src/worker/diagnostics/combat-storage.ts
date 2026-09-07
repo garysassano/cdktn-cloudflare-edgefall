@@ -1,0 +1,159 @@
+import {
+  COMBAT_CHECKPOINT_TICKS,
+  COMBAT_SEGMENT_TICKS,
+  type CombatArchiveIdentity,
+  decodeCombatCheckpoint,
+  encodeCombatCheckpoint,
+  encodeCombatJournalSegment,
+  restoreCombatJournalSegment,
+} from "../../shared/diagnostics/combat-checkpoint.js";
+import {
+  type CombatJournalTick,
+  type CombatRuntime,
+  combatRuntimeHash,
+  replayCombatTick,
+} from "../../shared/diagnostics/combat-runtime.js";
+
+type ArchiveRow = {
+  key: string;
+  run_epoch: number;
+  tick: number;
+  payload: string;
+};
+/** SQLite laboratory store. Caller pauses gameplay on failure/backlog; no external side effects. */
+export class CombatStorage {
+  private busy = false;
+  constructor(
+    private readonly storage: DurableObjectStorage,
+    private readonly identity: CombatArchiveIdentity,
+    private readonly beforeHeadCommit?: () => void,
+  ) {
+    storage.sql.exec(
+      "CREATE TABLE IF NOT EXISTS combat_archive (key TEXT PRIMARY KEY, run_epoch INTEGER NOT NULL, tick INTEGER NOT NULL, payload TEXT NOT NULL)",
+    );
+  }
+  private head(): ArchiveRow | undefined {
+    return this.storage.sql
+      .exec<ArchiveRow>(
+        "SELECT key, run_epoch, tick, payload FROM combat_archive WHERE key = ?",
+        "head",
+      )
+      .toArray()[0];
+  }
+  private put(key: string, runEpoch: number, tick: number, payload: string) {
+    this.storage.sql.exec(
+      "INSERT OR REPLACE INTO combat_archive (key, run_epoch, tick, payload) VALUES (?, ?, ?, ?)",
+      key,
+      runEpoch,
+      tick,
+      payload,
+    );
+  }
+  private async exclusive<T>(operation: () => Promise<T>): Promise<T> {
+    if (this.busy) throw new Error("Combat storage operation already pending");
+    this.busy = true;
+    try {
+      return await operation();
+    } finally {
+      this.busy = false;
+    }
+  }
+  initialize(current: CombatRuntime): Promise<void> {
+    const state = structuredClone(current);
+    return this.exclusive(async () => {
+      const raw = await encodeCombatCheckpoint(state, this.identity);
+      this.storage.transactionSync(() => {
+        if (
+          this.storage.sql
+            .exec<{ count: number }>("SELECT COUNT(*) AS count FROM combat_archive")
+            .one().count !== 0
+        )
+          throw new Error("Combat archive already exists; recover it explicitly");
+        this.put("checkpoint", state.snapshot.runEpoch, state.combat.tick, raw);
+        this.beforeHeadCommit?.();
+        this.put("head", state.snapshot.runEpoch, state.combat.tick, combatRuntimeHash(state));
+      });
+      await this.storage.sync();
+    });
+  }
+  commit(start: CombatRuntime, entries: readonly CombatJournalTick[]): Promise<CombatRuntime> {
+    const previous = structuredClone(start),
+      saved = structuredClone([...entries]);
+    return this.exclusive(async () => {
+      if (saved.length !== COMBAT_SEGMENT_TICKS)
+        throw new Error("Combat durable segment must contain 15 ticks");
+      const raw = await encodeCombatJournalSegment(previous, saved, this.identity);
+      let state = previous;
+      for (const entry of saved) state = replayCombatTick(state, entry);
+      const checkpoint = this.storage.sql
+        .exec<ArchiveRow>(
+          "SELECT key, run_epoch, tick, payload FROM combat_archive WHERE key = ?",
+          "checkpoint",
+        )
+        .toArray()[0];
+      if (!checkpoint) throw new Error("Missing combat checkpoint");
+      const replace = state.combat.tick - checkpoint.tick >= COMBAT_CHECKPOINT_TICKS;
+      const nextCheckpoint = replace ? await encodeCombatCheckpoint(state, this.identity) : null;
+      this.storage.transactionSync(() => {
+        const head = this.head();
+        if (
+          !head ||
+          head.run_epoch !== previous.snapshot.runEpoch ||
+          head.tick !== previous.combat.tick ||
+          head.payload !== combatRuntimeHash(previous)
+        )
+          throw new Error("Combat durable prefix changed");
+        if (nextCheckpoint !== null) {
+          this.put("checkpoint", state.snapshot.runEpoch, state.combat.tick, nextCheckpoint);
+          this.storage.sql.exec("DELETE FROM combat_archive WHERE key LIKE 'segment:%'");
+        } else
+          this.put(
+            `segment:${previous.combat.tick + 1}`,
+            state.snapshot.runEpoch,
+            state.combat.tick,
+            raw,
+          );
+        this.beforeHeadCommit?.();
+        this.put("head", state.snapshot.runEpoch, state.combat.tick, combatRuntimeHash(state));
+      });
+      // Only this confirmed boundary may advance the caller's durable cursor.
+      await this.storage.sync();
+      return state;
+    });
+  }
+  load(): Promise<CombatRuntime | null> {
+    return this.exclusive(async () => {
+      // Consume every cursor before awaiting validation/digests; this is one bounded DB view.
+      const rows = this.storage.sql
+        .exec<ArchiveRow>(
+          "SELECT key, run_epoch, tick, payload FROM combat_archive ORDER BY tick, key LIMIT 6",
+        )
+        .toArray();
+      if (rows.length === 0) return null;
+      const checkpoint = rows.find((row) => row.key === "checkpoint"),
+        head = rows.find((row) => row.key === "head");
+      if (!checkpoint || !head || rows.length > 5 || !/^[a-f0-9]{8}$/u.test(head.payload))
+        throw new Error("Invalid combat durable metadata");
+      let state = await decodeCombatCheckpoint(checkpoint.payload, this.identity);
+      if (checkpoint.run_epoch !== state.snapshot.runEpoch || checkpoint.tick !== state.combat.tick)
+        throw new Error("Combat checkpoint metadata mismatch");
+      for (const segment of rows.filter((row) => row.key !== "checkpoint" && row.key !== "head")) {
+        if (
+          segment.key !== `segment:${state.combat.tick + 1}` ||
+          segment.run_epoch !== state.snapshot.runEpoch ||
+          segment.tick !== state.combat.tick + COMBAT_SEGMENT_TICKS
+        )
+          throw new Error("Missing/changed combat durable segment");
+        state = await restoreCombatJournalSegment(state, segment.payload, this.identity);
+        if (state.combat.tick !== segment.tick) throw new Error("Combat segment metadata mismatch");
+      }
+      if (
+        head.run_epoch !== state.snapshot.runEpoch ||
+        head.tick !== state.combat.tick ||
+        head.payload !== combatRuntimeHash(state)
+      )
+        throw new Error("Missing combat durable tail");
+      return state;
+    });
+  }
+}

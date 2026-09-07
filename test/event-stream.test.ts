@@ -68,7 +68,7 @@ describe("bounded gameplay event transport", () => {
   it("round-trips signed Q256 and stable action identities with a fixed little-endian layout", () => {
     const bytes = encodeEventBatch(packet, context);
     expect(bytes.byteLength).toBe(32 + EVENT_RECORD_BYTES);
-    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 0, 3, 0, 92, 0]);
+    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 1, 3, 0, 92, 0]);
     const padded = new Uint8Array(bytes.length + 6);
     padded.set(bytes, 3);
     expect(decodeEventBatch(padded.subarray(3, 3 + bytes.length), context)).toEqual(packet);

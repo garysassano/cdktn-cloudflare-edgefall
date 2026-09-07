@@ -1,3 +1,8 @@
+import type {
+  EncounterFailure,
+  EncounterState,
+  Resolution,
+} from "../../game/encounters/lifecycle.js";
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CampaignState, ControlledActor, Point, VehicleState } from "../../game/state.js";
 
@@ -74,6 +79,28 @@ export interface ThreatSnapshot {
 export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolvedEntities"> & {
   remainingEnemies: number;
 };
+/** Public encounter accounting. Private AI/watchdog/receipt state belongs in checkpoints. */
+export interface CombatSnapshot {
+  nextEntityId: number;
+  nextActionId: number;
+  encounterEventCursor: number;
+  encounterId: number;
+  phase: EncounterState["phase"];
+  members: Array<{
+    id: number;
+    required: boolean;
+    critical: boolean;
+    retreatAllowed: boolean;
+    status: "pending" | "alive" | "resolved";
+    activatedTick: number | null;
+    resolvedTick: number | null;
+    reason: Resolution | null;
+    killerId: number | null;
+  }>;
+  objectives: EncounterState["objectives"];
+  kills: EncounterState["kills"];
+  failure: EncounterFailure | null;
+}
 export interface FullSnapshot {
   runEpoch: number;
   connectionEpoch: number;
@@ -86,6 +113,7 @@ export interface FullSnapshot {
   roomMode: (typeof ROOM_MODES)[number];
   camera: Point;
   campaign: CampaignSnapshot;
+  combat: CombatSnapshot | null;
   acknowledgments: PlayerAcknowledgment[];
   players: ControlledActor[];
   vehicles: VehicleState[];
@@ -124,4 +152,5 @@ export const SNAPSHOT_CAPS = {
   removedIds: 512,
 } as const;
 export const MIN_SNAPSHOT_BYTES = 432;
-export const MAX_SNAPSHOT_BYTES = 39112;
+export const MAX_BASE_SNAPSHOT_BYTES = 39112;
+export const MAX_SNAPSHOT_BYTES = 47896;

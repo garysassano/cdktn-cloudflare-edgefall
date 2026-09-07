@@ -182,6 +182,7 @@ async function startLab() {
       enemies: snapshot?.enemies ?? [],
       projectiles: snapshot?.projectiles ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
+      combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
       events: eventReceiver
         ? {

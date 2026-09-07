@@ -1,4 +1,4 @@
-# Gameplay events v3.0
+# Gameplay events v3.1
 
 The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. These are engineering combat payloads; final audio, predicted effects and complete combat recovery remain separate work.
 
@@ -9,7 +9,7 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 | Header offset | Field                                           | Type    |
 | ------------- | ----------------------------------------------- | ------- |
 | 0             | Magic `0x4645`                                  | u16     |
-| 2             | Major `3`, minor `0`                            | 2 × u8  |
+| 2             | Major `3`, minor `1`                            | 2 × u8  |
 | 4             | Type `3`, flags `0`                             | 2 × u8  |
 | 6             | Exact total byte length                         | u16     |
 | 8 / 12        | Run epoch / connection epoch                    | 2 × u32 |

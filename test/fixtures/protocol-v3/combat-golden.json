@@ -1,0 +1,114 @@
+[
+  {
+    "name": "pending",
+    "combat": {
+      "nextEntityId": 1000,
+      "nextActionId": 1,
+      "encounterEventCursor": 0,
+      "encounterId": 1,
+      "phase": "active",
+      "members": [
+        {
+          "id": 20,
+          "required": true,
+          "critical": false,
+          "retreatAllowed": false,
+          "status": "pending",
+          "activatedTick": null,
+          "resolvedTick": null,
+          "reason": null,
+          "killerId": null
+        },
+        {
+          "id": 21,
+          "required": true,
+          "critical": false,
+          "retreatAllowed": false,
+          "status": "pending",
+          "activatedTick": null,
+          "resolvedTick": null,
+          "reason": null,
+          "killerId": null
+        }
+      ],
+      "objectives": [],
+      "kills": [
+        {
+          "playerId": 1,
+          "count": 0
+        },
+        {
+          "playerId": 2,
+          "count": 0
+        },
+        {
+          "playerId": 3,
+          "count": 0
+        },
+        {
+          "playerId": 4,
+          "count": 0
+        }
+      ],
+      "failure": null
+    },
+    "byteLength": 144,
+    "hex": "01003000e803000001000000000000000100000000000000020000000400000000000000000000000000000000000000140000000100000000000000000000000000000000000000000000000000000015000000010000000000000000000000000000000000000000000000000000000100000000000000020000000000000003000000000000000400000000000000"
+  },
+  {
+    "name": "complete",
+    "combat": {
+      "nextEntityId": 1014,
+      "nextActionId": 15,
+      "encounterEventCursor": 4,
+      "encounterId": 1,
+      "phase": "complete",
+      "members": [
+        {
+          "id": 20,
+          "required": true,
+          "critical": false,
+          "retreatAllowed": false,
+          "status": "resolved",
+          "activatedTick": 1,
+          "resolvedTick": 10,
+          "reason": "killed",
+          "killerId": 2
+        },
+        {
+          "id": 21,
+          "required": true,
+          "critical": false,
+          "retreatAllowed": false,
+          "status": "resolved",
+          "activatedTick": 1,
+          "resolvedTick": 18,
+          "reason": "killed",
+          "killerId": 2
+        }
+      ],
+      "objectives": [],
+      "kills": [
+        {
+          "playerId": 1,
+          "count": 0
+        },
+        {
+          "playerId": 2,
+          "count": 2
+        },
+        {
+          "playerId": 3,
+          "count": 0
+        },
+        {
+          "playerId": 4,
+          "count": 0
+        }
+      ],
+      "failure": null
+    },
+    "byteLength": 144,
+    "hex": "01003000f60300000f000000040000000100000001000000020000000400000000000000000000000000000000000000140000000100000002000000020000000b00000001000000020000000000000015000000010000000200000002000000130000000100000002000000000000000100000000000000020000000200000003000000000000000400000000000000"
+  }
+]

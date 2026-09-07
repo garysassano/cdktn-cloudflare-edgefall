@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.0
+# Arcade full snapshots v3.1
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -7,8 +7,8 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | Byte offset | Field                          | Encoding                 |
 | ----------- | ------------------------------ | ------------------------ |
 | 0           | Magic EF (`0x4645`)            | u16                      |
-| 2           | Major 3, minor 0               | u8, u8                   |
-| 4           | Message type 2, flags 0        | u8, u8                   |
+| 2           | Major 3, minor 1               | u8, u8                   |
+| 4           | Message type 2, flags 0 or 1   | u8, u8                   |
 | 6           | Exact frame length             | u16                      |
 | 8           | Run epoch                      | u32, nonzero             |
 | 12          | Controlling connection epoch   | u32, nonzero             |
@@ -27,7 +27,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | 48          | Room mode                      | u8 enum                  |
 | 49          | Reserved zero                  | 15 bytes                 |
 
-Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 432 bytes and the maximum allowed counts produce exactly 39,112 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
+Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 432 bytes and the base sections can reach 39,112 bytes; the maximum combat section raises the complete frame limit to 47,896 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
 
 ## Record sequence and sizes
 
@@ -45,7 +45,7 @@ The 64-byte header is followed by the records below, in this exact order. All re
 | Hostile threats           | 64           | Threat count     |
 | Removed IDs               | 4            | Removal count    |
 
-Camera/campaign words: `camera.x` (signed), `camera.y` (signed), ruleset (`classic, accessible`), mission (1–255), checkpoint ID, continues remaining, continues used, phase (`playing, wipe, intermission, victory, defeat`), encounter ID, remaining required enemies (0–256). The shared gameplay viewport remains 384×216. Full encounter bookkeeping belongs in the authority/checkpoint; this section summarizes it for presentation.
+Camera/campaign words: `camera.x` (signed), `camera.y` (signed), ruleset (`classic, accessible`), mission (1–255), checkpoint ID, continues remaining, continues used, phase (`playing, wipe, intermission, victory, defeat`), encounter ID, remaining encounter requirements (0–320). The shared gameplay viewport remains 384×216. With the combat flag set, the remaining count equals unresolved required members plus incomplete objectives (zero for a retired encounter). The combat section below carries public lifecycle and kill accounting; private AI/watchdog/receipt continuation remains in the server checkpoint.
 
 Acknowledgments use the existing ten-word record in protocol-v3.md, in the same order as the player records. Player ID, control epoch and edge cursors must agree with the corresponding controller. The local acknowledgment must match the connection epoch, and its processed tick cannot be later than the snapshot tick. A snapshot can include repeated held-input ticks after the last processed command; prediction restores from the snapshot tick, not from the older acknowledgment tick.
 
@@ -72,6 +72,26 @@ Projectile words: `id, ownerId, actionInstanceId, definitionId, x, y, vx, vy, sp
 Dynamic platform words: `id, x, y, vx, vy, shapeId, trajectoryId, trajectoryTick`. Transforms/motion are signed. Compiled trajectory identity and phase let the predictor reproduce deterministic supports rather than inventing velocity-only extrapolation indefinitely.
 
 Threat words: `actionInstanceId, sourceId, definitionId, telegraphTick, activeTick, endTick, x, y, vx, vy, heading, targetId, motion, cancelled, stateVersion, shapeId`. Transforms/motion are signed; motion is `linear, locked, authored`. The interval satisfies `telegraphTick ≤ activeTick < endTick`. Keeping pending/active/cancelled descriptors in a full baseline avoids depending on a missed transient event to explain incoming damage. The actual visible-warning budget and threat timeline are W05/W04 acceptance work.
+
+## Combat accounting section
+
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.1; there is no 3.0 compatibility decoder.
+
+| Section offset | Field                                                                          | Encoding |
+| -------------- | ------------------------------------------------------------------------------ | -------- |
+| 0              | Section version 1, header size 48                                              | 2 × u16  |
+| 4              | Next entity ID, next action ID                                                 | 2 × u32  |
+| 12             | Encounter receipt cursor, encounter ID, phase                                  | 3 × u32  |
+| 24             | Member count 0–256, objective count 0–64, participant count 1–4, reserved zero | 4 × u16  |
+| 32             | Failure owner, failure tick, reason, cause                                     | 4 × u32  |
+
+Phase is `active, complete, retired, failed`. Failure fields are all zero when absent. Failure tick and every optional tick below use `tick + 1`, reserving zero for null; tick zero is representable. Failure reason is a one-based index into `critical-loss, forbidden-retreat, invalid-pose`; cause is a one-based index into `initial-overlap, residual-overlap, contact-limit, unresolved-contact, retreated, crushed, out-of-bounds`.
+
+Each 32-byte member is eight u32 words: `id, policyFlags, status, activatedTick, resolvedTick, resolution, killerId, reservedZero`. Policy bits are required (1), critical (2), retreat-allowed (4); other bits are invalid. Status is `pending, alive, resolved`. Resolution is null/zero or a one-based index into `killed, retreated, crushed, out-of-bounds, ambient-timeout, checkpoint-retired`. Killer IDs are nullable player IDs. Members retain terminal attribution after their visible enemy records are removed.
+
+Member records are followed by eight-byte objective records (`id, completedTick`), then eight-byte kill credits (`playerId, count`). All three tables have unique ascending IDs. Credits cover the player roster and equal kills attributed by the member ledger. The encounter ID matches the campaign; complete encounters have no unresolved requirement, retired encounters have no unresolved members, and failure fields agree with the failed phase. Allocation cursors exceed every referenced allocated entity/action ID, including removals and projectiles whose owners have disappeared.
+
+The section is `48 + 32 × members + 8 × objectives + 8 × participants` bytes, at most 8,784. The current four-player/two-target combat fixture adds 144 bytes. Decoder count/length validation happens before allocating tables. Independent Python-struct section goldens cover pending and completed encounters. This section restores accounting after missed transient effects; completing one encounter does not set whole-campaign victory. See [server checkpoint and journal](./combat-checkpoint-v1.md) for the separate private continuation format.
 
 ## Validation and baseline ownership
 

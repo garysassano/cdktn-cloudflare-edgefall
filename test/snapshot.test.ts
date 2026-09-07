@@ -127,6 +127,28 @@ describe("full v3 snapshot records", () => {
       actionInstanceId: 6000 + i,
     }));
     snapshot.removedIds = Array.from({ length: 512 }, (_, i) => 5000 + i);
+    snapshot.combat = {
+      nextEntityId: 10000,
+      nextActionId: 10000,
+      encounterEventCursor: 1024,
+      encounterId: snapshot.campaign.encounterId,
+      phase: "active",
+      members: Array.from({ length: 256 }, (_, i) => ({
+        id: 7000 + i,
+        required: true,
+        critical: false,
+        retreatAllowed: true,
+        status: "pending",
+        activatedTick: null,
+        resolvedTick: null,
+        reason: null,
+        killerId: null,
+      })),
+      objectives: Array.from({ length: 64 }, (_, i) => ({ id: 8000 + i, completedTick: null })),
+      kills: snapshot.players.map((p) => ({ playerId: p.playerId, count: 0 })),
+      failure: null,
+    };
+    snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);

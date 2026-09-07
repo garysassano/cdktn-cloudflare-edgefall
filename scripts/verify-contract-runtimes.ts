@@ -38,7 +38,7 @@ for (const path of Object.keys(bundle.metafile.inputs).sort()) {
     .update(await readFile(path))
     .update("\0");
 }
-const expected = contractProof();
+const expected = await contractProof();
 const port = 8790;
 let occupied = false;
 try {
@@ -98,6 +98,7 @@ try {
     headless: true,
   });
   const page = await browser.newPage();
+  await page.goto(`http://127.0.0.1:${port}/health`);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.addScriptTag({ content: javascript });
@@ -109,7 +110,7 @@ try {
   assert.deepEqual(errors, []);
   const report = {
     schemaVersion: 1,
-    package: "W01/W03",
+    package: "W01/W03/W04",
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     sourceSha256: source.digest("hex"),
@@ -173,6 +174,7 @@ try {
     })),
     combat: expected.combat,
     worldCombat: expected.worldCombat,
+    combatRecovery: expected.combatRecovery,
     eventDelivery: expected.eventDelivery,
     collisionResults: {
       solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,

@@ -540,7 +540,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         ...identity,
         type: "welcome",
         protocolMajor: 3,
-        protocolMinor: 0,
+        protocolMinor: 1,
         runId: "local-room-workload",
         runEpoch: this.world.runEpoch,
         connectionEpoch: this.context(slot).connectionEpoch,
