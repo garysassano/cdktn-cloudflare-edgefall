@@ -1,0 +1,116 @@
+{
+  "scope": "Derived diagnostic summaries of two verifier assertion failures before final acceptance. Neither attempt reported a runtime clock or persistence fault.",
+  "attempts": [
+    {
+      "attempt": "network-combat-loading-harness-failure",
+      "error": "Error: Loading connection boundary timed out",
+      "explanation": "The verifier indexed the input stream array by slot even though connections arrive concurrently. It now selects streams by player ID and exercises the actual host.",
+      "roomMode": "loading",
+      "tick": 0,
+      "clock": {
+        "mode": "stopped",
+        "tick": 0,
+        "timerPending": false,
+        "fault": null
+      },
+      "persistenceFailure": null,
+      "worldFailure": null,
+      "streams": [
+        {
+          "playerId": 3,
+          "queued": 0
+        },
+        {
+          "playerId": 2,
+          "queued": 0
+        },
+        {
+          "playerId": 4,
+          "queued": 0
+        },
+        {
+          "playerId": 1,
+          "queued": 5
+        }
+      ],
+      "connections": []
+    },
+    {
+      "attempt": "network-combat-loading-count-failure",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n6 !== 4\n",
+      "explanation": "The existing playing regression counted all replacements from room creation. It now checks the four new playing replacements relative to its starting boundary, preserving the two earlier loading replacements.",
+      "roomMode": "playing",
+      "tick": 299,
+      "clock": {
+        "mode": "running",
+        "tick": 299,
+        "timerPending": true,
+        "fault": null
+      },
+      "persistenceFailure": null,
+      "worldFailure": null,
+      "streams": [
+        {
+          "playerId": 2,
+          "queued": 3
+        },
+        {
+          "playerId": 4,
+          "queued": 4
+        },
+        {
+          "playerId": 3,
+          "queued": 4
+        },
+        {
+          "playerId": 1,
+          "queued": 3
+        }
+      ],
+      "connections": [
+        {
+          "tick": 0,
+          "slot": 1,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "baselineEventCursor": 0
+        },
+        {
+          "tick": 0,
+          "slot": 1,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "baselineEventCursor": 0
+        },
+        {
+          "tick": 87,
+          "slot": 0,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "baselineEventCursor": 153
+        },
+        {
+          "tick": 169,
+          "slot": 3,
+          "connectionEpoch": 5,
+          "controlEpoch": 1,
+          "baselineEventCursor": 280
+        },
+        {
+          "tick": 210,
+          "slot": 0,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "baselineEventCursor": 351
+        },
+        {
+          "tick": 243,
+          "slot": 0,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "baselineEventCursor": 396
+        }
+      ]
+    }
+  ]
+}

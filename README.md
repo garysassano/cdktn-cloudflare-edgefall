@@ -82,6 +82,8 @@ Open `http://localhost:8787/combat-lab.html` for the shared firearm timeline, au
 
 `pnpm test:network:controller --combat-auto-reconnect` verifies automatic recovery after a peer disconnect, browser stall and Worker restart, plus profile loss and tab takeover. The laboratory now persists the exact empty-room tick, restores it on a reserved player's ordinary reconnect, and permits one ready player to restart while other slots remain reserved. It also waits for a real ninety-second reservation expiry alarm and verifies the terminal state across another process restart. Fresh input and start remain explicit. See the [empty-room recovery evidence](./docs/redesign-evidence/W04-empty-room.md) and earlier [production v2 reconnect evidence](./docs/redesign-evidence/W04-automatic-reconnect.md).
 
+`pnpm test:network:controller --combat-loading` verifies connected-tab replacement and reserved-player reentry while loading. It persists a fresh connection generation without advancing combat, discards the replaced player's queued input, preserves the other players' preload and requires a fresh baseline before start. The scenario then exercises playing reconnect and durable process recovery. See the [loading connection evidence](./docs/redesign-evidence/W04-loading-connections.md).
+
 ## Production deployment
 
 Deploy the backing resources and Worker:

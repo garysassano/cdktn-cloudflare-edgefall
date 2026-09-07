@@ -1,5 +1,6 @@
 import { DurableObject } from "cloudflare:workers";
 import { canonical } from "../../src/game/core/canonical.js";
+import { transitionCombatRuntime } from "../../src/shared/diagnostics/combat-recovery.js";
 import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
@@ -23,6 +24,35 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const action = new URL(request.url).pathname.split("/")[2];
+    let loadingChecks: string[] | null = null;
+    if (action === "seed-loading") {
+      const state = recordCombatRecovery().states[45];
+      if (!state) throw new Error("Missing loading fixture");
+      await store.initialize(transitionCombatRuntime(state, "recover"));
+    }
+    if (action === "replace-loading") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing loading checkpoint");
+      this.inject = true;
+      let failed = false;
+      try {
+        await store.replaceLoadingConnection(previous, 2);
+      } catch {
+        failed = true;
+      }
+      if (!failed || canonical(await store.load()) !== canonical(previous))
+        throw new Error("Loading replacement did not roll back");
+      const replaced = await store.replaceLoadingConnection(previous, 2);
+      let staleRejected = false;
+      try {
+        await store.replaceLoadingConnection(previous, 3);
+      } catch {
+        staleRejected = true;
+      }
+      if (!staleRejected || canonical(await store.load()) !== canonical(replaced))
+        throw new Error("Stale replacement overwrote the saved boundary");
+      loadingChecks = ["sql-rollback", "changed-prefix-rejected"];
+    }
     if (action === "seed-tail") {
       const { states, entries } = recordCombatRecovery();
       let state = states[0];
@@ -112,6 +142,14 @@ export class CombatStorageProof extends DurableObject<Env> {
         instance: this.instance,
         tick: state?.combat.tick,
         roomMode: state?.snapshot.roomMode,
+        runEpoch: state?.snapshot.runEpoch,
+        connections: state?.snapshot.acknowledgments.map((ack) => ({
+          playerId: ack.playerId,
+          connectionEpoch: ack.connectionEpoch,
+          controlEpoch: ack.controlEpoch,
+          lastProcessedSequence: ack.lastProcessedSequence,
+        })),
+        loadingChecks,
         hash: state && combatRuntimeHash(state),
         nextActionId: state?.combat.nextActionId,
         nextEntityId: state?.combat.nextEntityId,
@@ -134,7 +172,8 @@ export class CombatStorageProof extends DurableObject<Env> {
 export default {
   fetch(request: Request, env: Env) {
     const name = new URL(request.url).pathname.split("/")[1];
-    if (name !== "proof" && name !== "tail") return new Response("Not found", { status: 404 });
+    if (name !== "proof" && name !== "tail" && name !== "loading")
+      return new Response("Not found", { status: 404 });
     return env.STORES.get(env.STORES.idFromName(name)).fetch(request);
   },
 };

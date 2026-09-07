@@ -12,6 +12,7 @@ import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
 import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapshot-schema.js";
 import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
+import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 
 interface ClientStatus {
   documentId: string;
@@ -33,6 +34,7 @@ interface ClientStatus {
   initialActor: FullSnapshot["players"][number] | null;
   initialServerTick: number;
   ready: boolean;
+  prepared: boolean;
   error: string | null;
   requiresResync: boolean;
   sequence: number;
@@ -77,7 +79,8 @@ interface ClientStatus {
 }
 const recoveryMode = process.argv.includes("--recovery");
 const combatRecoveryMode = process.argv.includes("--combat-recovery");
-const combatReconnectMode = process.argv.includes("--combat-reconnect");
+const loadingMode = process.argv.includes("--combat-loading");
+const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
@@ -110,7 +113,9 @@ const workload = combatMode ? "combat" : "controller";
 const output = automaticMode
   ? "dist/network-combat-auto-evidence"
   : combatReconnectMode
-    ? "dist/network-combat-reconnect-evidence"
+    ? loadingMode
+      ? "dist/network-combat-loading-evidence"
+      : "dist/network-combat-reconnect-evidence"
     : combatRecoveryMode
       ? "dist/network-combat-recovery-evidence"
       : baselineMode
@@ -223,7 +228,12 @@ try {
         ),
       );
     const prepareAndStart = async () => {
-      await Promise.all(pages.map((page) => page.locator("#prepare").click()));
+      const clients = await read();
+      await Promise.all(
+        pages.map((page, slot) =>
+          clients[slot]?.prepared ? Promise.resolve() : page.locator("#prepare").click(),
+        ),
+      );
       for (let attempt = 0; attempt < 50; attempt++) {
         room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
         if (
@@ -272,6 +282,7 @@ try {
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
       }
+      const loading = loadingMode ? await verifyLoadingConnections(pages, base) : null;
       await prepareAndStart();
       if (automaticMode) {
         const status = async () => {
@@ -829,7 +840,7 @@ try {
         assert(lastReentry);
         const clients = await waitTick(lastReentry.initialServerTick + 45);
         const finalRoom = await status();
-        assert.equal(finalRoom.connections.length, 4);
+        assert.equal(finalRoom.connections.length - beforeRoom.connections.length, 4);
         for (const [slot, original] of afterReentry.entries()) {
           if (slot === 0) continue;
           const continued = clients[slot];
@@ -884,6 +895,7 @@ try {
             wrongSlot: wrongSlot.status,
             tamperedProfile: tampered.status,
           },
+          loading,
           rejected,
           rejectedRoom,
           afterReentry,
@@ -897,7 +909,7 @@ try {
           clients,
           recovered,
           scope:
-            "Four real Chromium clients and local workerd: signed slot ownership, connected takeover, disconnected reentry, healthy peer continuity, fresh baseline acknowledgment, obsolete effect suppression, host succession metadata and SQLite restart after journaled replacements. Manual client reentry; no deployed traces, automatic retry, hostile reentry protection or completed production membership protocol.",
+            "Four real Chromium clients and local workerd: signed slot ownership, connected takeover, disconnected reentry, healthy peer continuity, fresh baseline acknowledgment, obsolete effect suppression, host succession metadata and SQLite restart after journaled replacements. The optional loading proof verifies durable generation replacement without a combat tick, discarded old preload, same-document reentry and a fresh-input start barrier. Manual client reentry; no deployed traces, automatic retry, hostile reentry protection or completed production membership protocol.",
         };
       }
       if (combatRecoveryMode) {

@@ -1,9 +1,16 @@
 import { beforeAll, describe, expect, it } from "vitest";
+import { COUNTER_LIMIT } from "../src/game/core/numeric.js";
 import {
   encodeCombatJournalSegment,
   restoreCombatJournalSegment,
+  validateCombatCheckpoint,
 } from "../src/shared/diagnostics/combat-checkpoint.js";
+import {
+  combatContinuationHash,
+  replaceLoadingCombatConnection,
+} from "../src/shared/diagnostics/combat-recovery.js";
 import { replayCombatTick, stageCombatRuntime } from "../src/shared/diagnostics/combat-runtime.js";
+import { roomWorkloadHash } from "../src/shared/diagnostics/room-workload.js";
 import type { PreparedPlayerTick } from "../src/shared/protocol/input-stream.js";
 import { combatReconnectProof, recordCombatReconnect } from "./fixtures/combat-reconnect-proof.js";
 import { combatArchiveIdentity } from "./fixtures/combat-recovery-proof.js";
@@ -13,6 +20,68 @@ beforeAll(() => {
   fixture = recordCombatReconnect();
 });
 describe("per-player combat connection replacement", () => {
+  it("replaces a waiting socket at the same tick without refilling ammunition or changing the other players", () => {
+    const previous = structuredClone(required(recordCombatReconnect(1).states[2]));
+    previous.snapshot.roomMode = "loading";
+    previous.snapshot.stateHash = roomWorkloadHash(previous.snapshot);
+    validateCombatCheckpoint(previous);
+    const saved = structuredClone(previous);
+    const replaced = replaceLoadingCombatConnection(previous, 2);
+    validateCombatCheckpoint(replaced);
+    expect(previous).toEqual(saved);
+    expect(replaced.combat.tick).toBe(previous.combat.tick);
+    expect(replaced.snapshot.runEpoch).toBe(previous.snapshot.runEpoch);
+    expect(replaced.history).toEqual(previous.history);
+    expect(replaced.combat.projectiles).toEqual(previous.combat.projectiles);
+    expect(replaced.combat.encounter).toEqual(previous.combat.encounter);
+    expect(combatContinuationHash(replaced.snapshot)).toBe(
+      combatContinuationHash(previous.snapshot),
+    );
+    for (const [index, actor] of previous.combat.players.entries()) {
+      const after = required(replaced.combat.players[index]);
+      if (actor.playerId !== 2) {
+        expect(after).toEqual(actor);
+        expect(replaced.snapshot.acknowledgments[index]).toEqual(
+          previous.snapshot.acknowledgments[index],
+        );
+        continue;
+      }
+      expect(after.weapon).toEqual(actor.weapon);
+      expect(after.action).toEqual(actor.action);
+      expect(after.controlEpoch).toBe(actor.controlEpoch);
+      expect(replaced.snapshot.acknowledgments[index]).toMatchObject({
+        connectionEpoch: required(previous.snapshot.acknowledgments[index]).connectionEpoch + 1,
+        lastProcessedSequence: 0,
+        appliedAtServerTick: 0,
+        processedEdgeIds: [0, 0, 0, 0, 0],
+      });
+    }
+  });
+  it("keeps a valid snapshot recipient after all waiting connections have been replaced", () => {
+    let state = structuredClone(required(fixture.states[0]));
+    state.snapshot.roomMode = "loading";
+    const previous = structuredClone(state.snapshot.acknowledgments);
+    for (const player of state.combat.players) {
+      state = replaceLoadingCombatConnection(state, player.playerId);
+      validateCombatCheckpoint(state);
+    }
+    expect(state.snapshot.acknowledgments.map((ack) => ack.connectionEpoch)).toEqual(
+      previous.map((ack) => ack.connectionEpoch + 1),
+    );
+    expect(state.combat.tick).toBe(0);
+  });
+  it("rejects loading replacement outside the barrier, for unknown owners, exhausted generations or vehicles", () => {
+    const previous = structuredClone(required(fixture.states[2]));
+    expect(() => replaceLoadingCombatConnection(previous, 2)).toThrow(/loading barrier/);
+    previous.snapshot.roomMode = "loading";
+    expect(() => replaceLoadingCombatConnection(previous, 99)).toThrow(/owner/);
+    const exhausted = structuredClone(previous);
+    required(exhausted.snapshot.acknowledgments[1]).connectionEpoch = COUNTER_LIMIT - 1;
+    expect(() => replaceLoadingCombatConnection(exhausted, 2)).toThrow();
+    const seated = structuredClone(previous);
+    required(seated.combat.players[1]).vehicleId = 100;
+    expect(() => replaceLoadingCombatConnection(seated, 2)).toThrow(/vehicle/);
+  });
   it("does not replenish special ammunition or replace a mid-action weapon", () => {
     const special = recordCombatReconnect(1);
     const before = required(special.states[2]?.combat.players[1]);

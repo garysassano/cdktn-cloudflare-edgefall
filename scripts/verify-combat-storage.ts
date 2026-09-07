@@ -120,6 +120,47 @@ try {
   assert.equal(coldExpired.hash, expiredTail.hash);
   assert.equal(coldExpired.roomMode, "expired");
   assert.equal(coldExpired.tick, 59);
+  const loadingState = async (action: string) => {
+    const response = await fetch(`${await origin()}/loading/${action}`, { method: "POST" });
+    assert(response.ok, `Loading ${action}: ${await response.clone().text()}`);
+    return (await response.json()) as {
+      instance: string;
+      tick: number;
+      roomMode: string;
+      runEpoch: number;
+      hash: string;
+      connections: Array<{
+        playerId: number;
+        connectionEpoch: number;
+        controlEpoch: number;
+        lastProcessedSequence: number;
+      }>;
+      loadingChecks: string[] | null;
+    };
+  };
+  const seededLoading = await loadingState("seed-loading");
+  const replacedLoading = await loadingState("replace-loading");
+  assert.equal(replacedLoading.tick, 45);
+  assert.equal(replacedLoading.runEpoch, seededLoading.runEpoch);
+  assert.equal(replacedLoading.roomMode, "loading");
+  assert.notEqual(replacedLoading.hash, seededLoading.hash);
+  assert.deepEqual(replacedLoading.loadingChecks, ["sql-rollback", "changed-prefix-rejected"]);
+  assert.deepEqual(
+    replacedLoading.connections,
+    seededLoading.connections.map((connection) => ({
+      ...connection,
+      connectionEpoch: connection.connectionEpoch + (connection.playerId === 2 ? 1 : 0),
+    })),
+  );
+  await runtime.dispose();
+  runtime = create();
+  const coldLoading = await loadingState("restore");
+  assert.notEqual(coldLoading.instance, replacedLoading.instance);
+  assert.equal(coldLoading.hash, replacedLoading.hash);
+  assert.equal(coldLoading.tick, replacedLoading.tick);
+  assert.equal(coldLoading.runEpoch, replacedLoading.runEpoch);
+  assert.equal(coldLoading.roomMode, "loading");
+  assert.deepEqual(coldLoading.connections, replacedLoading.connections);
   const report = {
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
@@ -130,9 +171,10 @@ try {
     restored,
     gap,
     tail: { seededTail, restoredTail, pausedTail, coldPause, expiredTail, coldExpired },
+    loading: { seededLoading, replacedLoading, coldLoading },
     status: "pass",
     scope:
-      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry rollback, persisted pause and terminal non-resurrection; no deployed durability or production outbox claim.",
+      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry/replacement rollback, persisted loading generation, pause and terminal non-resurrection; no deployed durability or production outbox claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report)}\n`);

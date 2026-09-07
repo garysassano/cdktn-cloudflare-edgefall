@@ -990,14 +990,18 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         }
       }
       const replacing = this.workload === "combat" && this.world.roomMode === "playing";
+      const loadingReplacement =
+        this.workload === "combat" && this.world.roomMode === "loading" && this.peers.has(slot);
       if (
-        replacing &&
+        (replacing || loadingReplacement) &&
         (this.world.players[slot]?.vehicleId !== null ||
           this.context(slot).connectionEpoch >= COUNTER_LIMIT - 2)
       )
         return new Response("Connection transition unavailable", { status: 409 });
       if (
-        (!replacing && (this.world.roomMode !== "loading" || this.peers.has(slot))) ||
+        (!replacing &&
+          (this.world.roomMode !== "loading" || (!loadingReplacement && this.peers.has(slot)))) ||
+        (loadingReplacement && this.admissions.size > 0) ||
         this.admissions.has(slot) ||
         this.pendingPeers.has(slot) ||
         this.starting ||
@@ -1006,6 +1010,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return new Response("Room admission unavailable", { status: 409 });
       let generation = 0;
       let settleAdmission = () => {};
+      let admissionSucceeded = false;
+      let persistingReplacement = false;
       if (this.members) {
         const profileId = request.headers.get("X-Edgefall-Profile") ?? "";
         try {
@@ -1017,6 +1023,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             Date.now(),
           );
           generation = admitted.members.find((m) => m.slot === slot)?.generation ?? 0;
+          // Loading replacements mutate the saved boundary; keep start and other claims outside it.
+          if (loadingReplacement) this.starting = true;
           let settled = () => {};
           this.admissions.set(
             slot,
@@ -1033,18 +1041,35 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             (replacing ? this.world.roomMode !== "playing" : this.world.roomMode !== "loading")
           )
             throw new Error("room-boundary-changed");
+          if (loadingReplacement) {
+            if (!this.combatStore) throw new Error("Missing combat store");
+            persistingReplacement = true;
+            const replacement = await this.combatStore.replaceLoadingConnection(
+              this.combatRuntime(),
+              slot + 1,
+            );
+            if (this.world.runEpoch !== epoch || this.world.roomMode !== "loading")
+              throw new Error("room-boundary-changed");
+            this.installCombat(replacement);
+          }
+          admissionSucceeded = true;
         } catch (error) {
           if (generation) {
             this.members.save(disconnectMember(this.members.state, slot, generation, Date.now()));
             const previous = this.peers.get(slot);
             if (previous) this.disconnect(previous, "admission-cancelled");
           }
+          if (persistingReplacement) this.pausePersistence(String(error));
           return new Response(error instanceof Error ? error.message : "Admission failed", {
             status: 409,
           });
         } finally {
           this.admissions.delete(slot);
           settleAdmission();
+          if (loadingReplacement) {
+            this.starting = false;
+            if (!admissionSucceeded) this.pauseEmpty();
+          }
         }
       }
       const pair = new WebSocketPair();
@@ -1091,7 +1116,17 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       pair[1].serializeAttachment({ instanceId: this.instanceId, slot, generation });
       if (replacing) this.pendingPeers.set(slot, peer);
       else {
+        const old = this.peers.get(slot);
         this.peers.set(slot, peer);
+        if (old) this.disconnect(old, "connection-replaced", 4003);
+        if (loadingReplacement)
+          this.connections.push({
+            tick: this.world.tick,
+            slot,
+            connectionEpoch: this.context(slot).connectionEpoch,
+            controlEpoch: this.world.players[slot]?.controlEpoch ?? 0,
+            baselineEventCursor: this.world.baselineEventCursor,
+          });
         this.welcome(peer);
       }
       if (this.members && peer.metrics.active) await this.clearExpiry();
@@ -1209,7 +1244,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
 
   webSocketMessage(socket: WebSocket, message: string | ArrayBuffer): void {
     const peer = [...this.peers.values()].find((value) => value.socket === socket);
-    if (!peer?.metrics.active) {
+    if (
+      !peer?.metrics.active ||
+      (this.world.roomMode === "loading" && this.admissions.has(peer.metrics.slot))
+    ) {
       this.staleSocketEvents = Math.min(1000, this.staleSocketEvents + 1);
       return;
     }
