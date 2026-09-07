@@ -1,0 +1,41 @@
+{
+  "status": "pass",
+  "scope": "Rebuilt portable proof, SQLite and room Worker bundles and checked final client bundle hashes against the passed reports. This is source/artifact alignment, not a rerun of the behavioral gates.",
+  "verified": [
+    {
+      "name": "contracts",
+      "report": "dist/contract-runtime-proof/report.json",
+      "sourceSha256": "3da8614c5fa64e04665c91a50e2f8dfa2ea66996b141b61090596a382baffe19",
+      "bundleSha256": "ac9297b2e889389754c61ee49a575e73dfdf1a6a85e233a6871efd43dee1300e",
+      "matched": true
+    },
+    {
+      "name": "storage",
+      "report": "dist/combat-storage-proof/report.json",
+      "sourceSha256": "e7733b48392cc84ce1a6d5a0571a46760b19c52e6a719d2049f8633a536a5e6b",
+      "bundleSha256": "bcaead101d8cbecaafc7c0157709b507126cb67535cc9ff8f51f6071a23f5b12",
+      "matched": true
+    },
+    {
+      "name": "networkWorker",
+      "report": "dist/network-combat-ordnance-evidence/report.json",
+      "sourceSha256": "5a47dfd46a708e7285b460d0a8564b1d427912f5cfa43d7d49a87b083d25b5c8",
+      "bundleSha256": "2869fd48e6eaf27e754c5606dd4a37a1bbdb77b27b5feb2195c31668ff358b5a",
+      "matched": true
+    },
+    {
+      "name": "networkClient",
+      "report": "dist/network-combat-ordnance-evidence/report.json",
+      "file": "dist/client/network-lab.js",
+      "bundleSha256": "9737baf684dc2aa68ba591d169295dd5262e90e6c1d9a8ca9f996a095bc7d034",
+      "matched": true
+    },
+    {
+      "name": "inspectorClient",
+      "report": "dist/combat-lab-evidence/report.json",
+      "file": "dist/client/combat-lab.js",
+      "bundleSha256": "de6cae5e189640e600eb10a9498c68e5d3f8a73fe64d367a535872ed48174893",
+      "matched": true
+    }
+  ]
+}

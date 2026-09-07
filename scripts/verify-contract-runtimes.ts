@@ -197,6 +197,7 @@ try {
     shieldCombat: expected.shieldCombat,
     areaCombat: expected.areaCombat,
     tankCombat: expected.tankCombat,
+    ordnance: expected.ordnance,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

@@ -18,6 +18,7 @@ import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
 import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
+import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
 import { verifyTankCombat } from "./lib/verify-tank-combat.js";
@@ -99,6 +100,7 @@ const areaMode = process.argv.includes("--combat-shotgun")
     : null;
 const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
+const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
 const footMode = process.argv.includes("--combat-melee")
   ? "melee"
@@ -120,9 +122,10 @@ const combatMode =
   !!footMode ||
   shieldMode ||
   !!areaMode ||
-  tankMode;
+  tankMode ||
+  ordnanceMode;
 assert(
-  !(footMode || shieldMode || areaMode || tankMode) ||
+  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -143,6 +146,7 @@ assert(
     process.argv.includes("--combat-shotgun"),
     process.argv.includes("--combat-flame"),
     tankMode,
+    ordnanceMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -177,39 +181,41 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = tankMode
-  ? "dist/network-combat-tank-evidence"
-  : areaMode
-    ? `dist/network-combat-${areaMode}-evidence`
-    : shieldMode
-      ? "dist/network-combat-guard-evidence"
-      : footMode
-        ? `dist/network-combat-${footMode}-evidence`
-        : hostileMode
-          ? "dist/network-combat-hostile-evidence"
-          : campaignMode
-            ? "dist/network-combat-campaign-evidence"
-            : automaticMode
-              ? "dist/network-combat-auto-evidence"
-              : combatReconnectMode
-                ? loadingMode
-                  ? phaseMode
-                    ? "dist/network-combat-phase-evidence"
-                    : "dist/network-combat-loading-evidence"
-                  : "dist/network-combat-reconnect-evidence"
-                : combatRecoveryMode
-                  ? "dist/network-combat-recovery-evidence"
-                  : baselineMode
-                    ? "dist/network-combat-baseline-evidence"
-                    : combatMode
-                      ? eventMode
-                        ? "dist/network-event-evidence"
-                        : faultMode
-                          ? "dist/network-combat-fault-evidence"
-                          : "dist/network-combat-evidence"
-                      : recoveryMode
-                        ? "dist/network-controller-recovery-evidence"
-                        : "dist/network-controller-evidence";
+const output = ordnanceMode
+  ? "dist/network-combat-ordnance-evidence"
+  : tankMode
+    ? "dist/network-combat-tank-evidence"
+    : areaMode
+      ? `dist/network-combat-${areaMode}-evidence`
+      : shieldMode
+        ? "dist/network-combat-guard-evidence"
+        : footMode
+          ? `dist/network-combat-${footMode}-evidence`
+          : hostileMode
+            ? "dist/network-combat-hostile-evidence"
+            : campaignMode
+              ? "dist/network-combat-campaign-evidence"
+              : automaticMode
+                ? "dist/network-combat-auto-evidence"
+                : combatReconnectMode
+                  ? loadingMode
+                    ? phaseMode
+                      ? "dist/network-combat-phase-evidence"
+                      : "dist/network-combat-loading-evidence"
+                    : "dist/network-combat-reconnect-evidence"
+                  : combatRecoveryMode
+                    ? "dist/network-combat-recovery-evidence"
+                    : baselineMode
+                      ? "dist/network-combat-baseline-evidence"
+                      : combatMode
+                        ? eventMode
+                          ? "dist/network-event-evidence"
+                          : faultMode
+                            ? "dist/network-combat-fault-evidence"
+                            : "dist/network-combat-evidence"
+                        : recoveryMode
+                          ? "dist/network-controller-recovery-evidence"
+                          : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -302,7 +308,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -386,6 +392,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (ordnanceMode) {
+        const ordnance = await verifyOrdnanceCombat(pages, base, output);
+        room = ordnance.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          ordnance,
+          clients: ordnance.clients,
+          sharedSnapshots: ordnance.common.length,
+          room,
+          scope:
+            "Four Chromium keyboard clients throw from a moving lift and observe a proved grenade crush, exact platform snapshots and duplicate event delivery. Engineering graphics; no deployed timing acceptance.",
+        };
       }
       if (tankMode) {
         const tank = await verifyTankCombat(pages, base, output);
@@ -1968,9 +1994,11 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: tankMode
-      ? "tank"
-      : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario: ordnanceMode
+      ? "ordnance"
+      : tankMode
+        ? "tank"
+        : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

@@ -152,6 +152,7 @@ async function startLab() {
     projectiles: number;
     volumes: number;
     vehicles: FullSnapshot["vehicles"];
+    platforms: FullSnapshot["platforms"];
     shots: number;
     continuationHash: string | null;
   }> = [];
@@ -243,6 +244,7 @@ async function startLab() {
       projectiles: snapshot?.projectiles ?? [],
       volumes: snapshot?.combat?.volumes ?? [],
       vehicles: snapshot?.vehicles ?? [],
+      platforms: snapshot?.platforms ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
@@ -544,7 +546,9 @@ async function startLab() {
       prediction ??= new ControllerPrediction(
         baseline,
         (a, c, t) =>
-          mode === "combat" ? predictCombatMovement(a, c, t) : stepNetworkController(a, c, t).actor,
+          mode === "combat"
+            ? predictCombatMovement(a, c, t, snapshot?.platforms.length ? "ordnance" : "range")
+            : stepNetworkController(a, c, t).actor,
         mapping,
       );
       input ??= new InputCapture(actor.controlEpoch);
@@ -569,6 +573,7 @@ async function startLab() {
         projectiles: incoming.projectiles.length,
         volumes: incoming.combat?.volumes.length ?? 0,
         vehicles: structuredClone(incoming.vehicles),
+        platforms: structuredClone(incoming.platforms),
         shots: actor.weapon.shotOrdinal,
         tick: incoming.tick,
         hash: incoming.stateHash,
@@ -640,6 +645,12 @@ async function startLab() {
       g.fillStyle(0x526075);
       for (const t of terrain)
         g.fillRect(t.rect.x / 256, t.rect.y / 256, t.rect.w / 256, t.rect.h / 256);
+      for (const platform of snapshot?.platforms ?? []) {
+        const shape = COMBAT_SHAPES.get(platform.shapeId);
+        if (!shape) throw new Error("Missing platform shape");
+        const rect = worldRect(platform, shape.rect, 1);
+        g.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+      }
       for (const actor of snapshot?.players ?? []) {
         const shape = FOOT_SHAPES.get(actor.body.shapeId);
         if (!shape) continue;

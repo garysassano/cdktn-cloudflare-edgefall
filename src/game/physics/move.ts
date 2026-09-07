@@ -47,6 +47,8 @@ export interface MovementResult extends KinematicState {
 export interface MovementOptions {
   ignoredOneWayId?: number;
   maxIterations?: number;
+  /** False when an airborne body's velocity already includes its former support's motion. */
+  carrySupport?: boolean;
   /** Required for indexed geometry, preventing a cached moving frame from being reused. */
   frame?: CollisionFrame;
 }
@@ -187,6 +189,20 @@ function touching(rect: Rect, target: SweepTarget, normal: Normal, tolerance: nu
   return gap >= 0 && gap <= tolerance && (normal.x === 0 ? horizontal : vertical);
 }
 
+/** Swept integer rounding may leave one witnessed subpixel before a retained plane. */
+function contactGap(rect: Rect, target: SweepTarget, normal: Normal): number {
+  const b = target.rect;
+  const gap =
+    normal.x === -1
+      ? b.x - rect.x - rect.w
+      : normal.x === 1
+        ? rect.x - b.x - b.w
+        : normal.y === -1
+          ? b.y - rect.y - rect.h
+          : rect.y - b.y - b.h;
+  return Math.max(0, Math.min(1, gap));
+}
+
 function closingTrap(
   rect: Rect,
   active: readonly Constraint[],
@@ -300,7 +316,8 @@ export function moveKinematic(
     state.motion.y < 0
       ? null
       : support(result.rect, targets, state.supportId, credited, options.ignoredOneWayId);
-  const carry = byId.get(startingSupport ?? 0)?.delta ?? ZERO;
+  const carry =
+    options.carrySupport === false ? ZERO : (byId.get(startingSupport ?? 0)?.delta ?? ZERO);
   // Authored platform speed + own controller motion must fit the existing tick bound.
   result.remaining = { x: motion(state.motion.x + carry.x), y: motion(state.motion.y + carry.y) };
   if (startingSupport !== null) credited.add(startingSupport);
@@ -362,8 +379,13 @@ export function moveKinematic(
       let upper = MAX_MOTION;
       for (const constraint of active) {
         const normal = constraint.normal[axis];
-        if (normal === 1) lower = Math.max(lower, constraint.delta[axis]);
-        if (normal === -1) upper = Math.min(upper, constraint.delta[axis]);
+        const target = byId.get(constraint.id);
+        if (!target) throw new Error("Missing active contact target");
+        const gap = contactGap(result.rect, target, constraint.normal);
+        // A closing plane can consume its real gap before pushing the body. Ignoring
+        // that gap rejects an exact-fit end pose as contradictory opposing motion.
+        if (normal === 1) lower = Math.max(lower, constraint.delta[axis] - gap);
+        if (normal === -1) upper = Math.min(upper, constraint.delta[axis] + gap);
         if (result.motion[axis] * normal < 0) result.motion[axis] = 0;
       }
       if (lower > upper) {

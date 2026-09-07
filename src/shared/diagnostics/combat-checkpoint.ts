@@ -2,6 +2,7 @@ import { validateRifleState } from "../../game/actors/rifle.js";
 import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
 import { validateArea } from "../../game/combat/area-attack.js";
+import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { EncounterLifecycle } from "../../game/encounters/lifecycle.js";
@@ -413,6 +414,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     } else check(area.cancelledTick === null, "released shotgun cancellation");
   }
   for (const grenade of combat.grenades) {
+    const bounds = grenadeVelocityBounds(GRENADE_PROFILE);
     fields(grenade, "id ownerId team actionInstanceId definitionId body spawnTick bounces");
     ownAttack(grenade);
     check(
@@ -434,15 +436,10 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       canonical(readBody(new Reader(writer.bytes))) === canonical(grenade.body),
       "grenade body schema",
     );
-    integer(
-      grenade.body.vx,
-      -GRENADE_PROFILE.crouchedVelocity.x,
-      GRENADE_PROFILE.crouchedVelocity.x,
-      "grenade horizontal motion",
-    );
+    integer(grenade.body.vx, -bounds.x, bounds.x, "grenade horizontal motion");
     integer(
       grenade.body.vy,
-      -GRENADE_PROFILE.terminalVelocity,
+      -bounds.up,
       GRENADE_PROFILE.terminalVelocity,
       "grenade vertical motion",
     );

@@ -22,7 +22,7 @@ import {
   stepArea,
 } from "../combat/area-attack.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
-import { type Grenade, stepGrenade } from "../combat/grenade.js";
+import { type Grenade, grenadeLaunchVelocity, stepGrenade } from "../combat/grenade.js";
 import {
   type BallisticProjectile,
   type HurtTarget,
@@ -43,7 +43,7 @@ import {
 } from "../encounters/lifecycle.js";
 import { HELD_MASK } from "../input/types.js";
 import { worldRect, worldSocket } from "../physics/body.js";
-import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
+import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
 import { type SweepTarget, displacementAtContact, earliestSweep } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
 import { type TankState, createTank } from "../vehicles/tank.js";
@@ -67,7 +67,15 @@ import {
   releaseCombatTank,
   tankCombatHurtboxes,
 } from "./combat-tanks.js";
-import { FOOT_DEFINITION, footActor, footTerrain } from "./foot-fixture.js";
+import {
+  combatCollisionIndex,
+  combatEndTerrain,
+  combatTerrain,
+  ordnancePlatforms,
+} from "./combat-terrain.js";
+import { FOOT_DEFINITION, footActor } from "./foot-fixture.js";
+
+export { combatTerrain } from "./combat-terrain.js";
 
 export const COMBAT_SCENARIOS = [
   "range",
@@ -78,6 +86,7 @@ export const COMBAT_SCENARIOS = [
   "shotgun",
   "flame",
   "tank",
+  "ordnance",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -158,6 +167,7 @@ export function combatEntryContext(
 ) {
   const shape = FOOT_DEFINITION && COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing life entry shape");
+  const lift = scenario === "ordnance" ? ordnancePlatforms(frame.tick)[0] : undefined;
   return {
     shape,
     anchors: [
@@ -165,19 +175,15 @@ export function combatEntryContext(
         x:
           scenario === "tank"
             ? COMBAT_TANK_DEPOT.firstPlayerX + actor.slot * COMBAT_TANK_DEPOT.slotSpacing
-            : COMBAT_ENTRY.firstX + actor.slot * COMBAT_ENTRY.slotSpacing,
-        y: COMBAT_ENTRY.y,
+            : COMBAT_ENTRY.firstX +
+              actor.slot * COMBAT_ENTRY.slotSpacing +
+              (lift ? lift.x - pixels(24) : 0),
+        y: lift?.y ?? COMBAT_ENTRY.y,
       },
     ],
     index,
     frame,
   };
-}
-export function combatTerrain(scenario: CombatScenario): SweepTarget[] {
-  return [
-    footTerrain(100, 0, 200, 384, 16),
-    ...(scenario === "wall" ? [footTerrain(101, 140, 130, 3, 70)] : []),
-  ];
 }
 export function combatEncounterDefinition(
   world: Pick<CombatLab, "players" | "targets">,
@@ -207,10 +213,11 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
       scenario === "tank"
         ? (COMBAT_TANK_DEPOT.firstPlayerX + slot * COMBAT_TANK_DEPOT.slotSpacing) / 256
         : 45 + slot * 4,
-      200,
+      scenario === "ordnance" ? 160 : 200,
     );
     actor.playerId = actor.body.id = slot + 1;
     actor.slot = slot;
+    if (scenario === "ordnance") actor.body.supportId = 102;
     if (slot === 1) actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
     if (scenario === "shotgun") actor.weapon = { ...actor.weapon, id: "shotgun", ammo: 24 };
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
@@ -220,15 +227,17 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     enemy: {
       body: {
         ...footActor(
-          scenario === "tank"
-            ? 300 + index * 40
-            : scenario === "shotgun"
-              ? 140 + index * 30
-              : (scenario === "guard" || scenario === "flame") && index === 0
-                ? 140
-                : scenario === "flame"
-                  ? 220
-                  : 220 + index * 60,
+          scenario === "ordnance"
+            ? 340 + index * 26
+            : scenario === "tank"
+              ? 300 + index * 40
+              : scenario === "shotgun"
+                ? 140 + index * 30
+                : (scenario === "guard" || scenario === "flame") && index === 0
+                  ? 140
+                  : scenario === "flame"
+                    ? 220
+                    : 220 + index * 60,
           200,
         ).body,
         id: 20 + index,
@@ -463,9 +472,9 @@ export function advanceCombatLab(
   const world = structuredClone(current);
   const tick = ++world.tick;
   world.events = [];
-  const terrain = combatTerrain(world.scenario);
+  const terrain = combatTerrain(world.scenario, tick);
   const frame = { tick, geometryRevision: 1 };
-  const index = new CollisionIndex(new CollisionGrid(terrain), [], frame);
+  const index = combatCollisionIndex(world.scenario, frame);
   const encounterEvents: EncounterEvent[] = [];
   const lifeNotices: LifeNotice[] = [];
   const seatChanges: SeatChanges = new Map();
@@ -640,16 +649,17 @@ export function advanceCombatLab(
           if (!shape) throw new Error("Missing grenade body");
           const handRoot = { x: actor.body.x, y: position.y };
           const delta = { x: position.x - handRoot.x, y: 0 };
-          const blocking = earliestSweep(worldRect(handRoot, shape.rect, 1), delta, terrain);
+          const blocking = earliestSweep(
+            worldRect(handRoot, shape.rect, 1),
+            delta,
+            combatEndTerrain(world.scenario, tick),
+          );
           if (blocking.overlaps.length) throw new Error("Grenade hand starts inside terrain");
           const contact = blocking.contacts[0];
           const releaseDelta = contact ? displacementAtContact(delta, contact.time) : delta;
           const release = { x: handRoot.x + releaseDelta.x, y: handRoot.y + releaseDelta.y };
           notice.position = release;
-          const velocity =
-            actor.locomotion === "crouched"
-              ? GRENADE_PROFILE.crouchedVelocity
-              : GRENADE_PROFILE.standingVelocity;
+          const velocity = grenadeLaunchVelocity(actor, GRENADE_PROFILE, index, frame);
           world.grenades.push({
             id: world.nextEntityId,
             ownerId: actor.playerId,
@@ -662,7 +672,7 @@ export function advanceCombatLab(
               id: world.nextEntityId,
               x: release.x,
               y: release.y,
-              vx: velocity.x * actor.facing,
+              vx: velocity.x,
               vy: velocity.y,
               remainderX: 0,
               remainderY: 0,
@@ -960,9 +970,37 @@ export function advanceCombatLab(
       definition = COMBAT_ATTACKS.get(grenade.definitionId);
     if (!shape || !definition) throw new Error("Missing grenade policy");
     const result = stepGrenade(grenade, GRENADE_PROFILE, shape, index, frame);
-    Object.assign(grenade, result.grenade);
-    if (!result.detonated) return true;
-    const position = { x: grenade.body.x, y: grenade.body.y };
+    if (result.status === "active") {
+      Object.assign(grenade, result.grenade);
+      return true;
+    }
+    const position = result.position;
+    if (result.status === "crushed") {
+      const colliderId = result.colliderIds[0];
+      if (colliderId === undefined) throw new Error("Grenade crush lacks a terrain witness");
+      world.events.push({
+        kind: "impact",
+        ownerId: grenade.ownerId,
+        actionInstanceId: grenade.actionInstanceId,
+        markerIndex: 0,
+        source: null,
+        position,
+        targetId: null,
+        impact: {
+          sourceId: grenade.id,
+          definitionId: grenade.definitionId,
+          actionInstanceId: grenade.actionInstanceId,
+          ownerId: grenade.ownerId,
+          colliderId,
+          entityId: null,
+          kind: "terrain",
+          damage: 0,
+          position,
+          time: { numerator: 1, denominator: 1 },
+        },
+      });
+      return false;
+    }
     world.events.push({
       kind: "explosion",
       ownerId: grenade.ownerId,
@@ -1111,7 +1149,14 @@ export function advanceCombatLab(
       .filter((target) => target.health > 0)
       .map((target) => ({
         id: target.enemy.body.id,
-        progressKey: canonical(target.enemy.body),
+        progressKey: canonical([
+          target.enemy.body.x,
+          target.enemy.body.y,
+          target.enemy.body.vx,
+          target.enemy.body.vy,
+          target.enemy.body.supportId,
+          target.enemy.facing,
+        ]),
         unreachable: false,
       })),
     "throw",

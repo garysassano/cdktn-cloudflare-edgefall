@@ -9,6 +9,7 @@ import type { ContentDefinition } from "../content/schema.js";
 import { validateContent } from "../content/validate.js";
 import { pixels } from "../core/numeric.js";
 import { type TankProfile, validateTankProfile } from "../vehicles/tank.js";
+import { COMBAT_ORDNANCE } from "./combat-terrain.js";
 
 /** Authored engineering exposures and sockets. No final art or HMG turn-sweep acceptance. */
 export const COMBAT_CONTENT: ContentDefinition = structuredClone(CONTRACT_FIXTURE);
@@ -133,6 +134,7 @@ export const GRENADE_PROFILE: GrenadeProfile = {
   radius: pixels(48),
   standingVelocity: { x: pixels(2) + 128, y: -pixels(4) - 128 },
   crouchedVelocity: { x: pixels(4), y: -pixels(1) - 128 },
+  inheritedVelocityLimit: { x: pixels(8), y: pixels(8) },
 };
 COMBAT_CONTENT.attacks.push(
   {
@@ -469,6 +471,11 @@ for (const [heading, exposure] of TANK_PROFILE.headings.entries()) {
   });
 }
 
+for (const platform of COMBAT_ORDNANCE)
+  COMBAT_CONTENT.shapes.push({
+    id: platform.shapeId,
+    rect: { x: 0, y: 0, w: platform.w, h: platform.h },
+  });
 validateContent(COMBAT_CONTENT);
 for (const [id, profile] of AREA_PROFILES) {
   const definition = COMBAT_CONTENT.attacks.find((attack) => attack.id === id);

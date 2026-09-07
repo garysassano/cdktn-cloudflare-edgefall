@@ -54,7 +54,10 @@ export function recordCombatInputs(
     };
   };
   const reconcilers = state.combat.players.map(
-    (actor) => new ControllerPrediction(baseline(state, actor.slot), predictCombatMovement),
+    (actor) =>
+      new ControllerPrediction(baseline(state, actor.slot), (a, c, t) =>
+        predictCombatMovement(a, c, t, initial.combat.scenario),
+      ),
   );
   const edgeIds = streams.map(() => new Map<EdgeKind, number>());
   let reconciliations = 0,
@@ -100,7 +103,7 @@ export function recordCombatInputs(
       }
       const player = state.combat.players[slot];
       if (!player) throw new Error("Missing life recovery player");
-      predictions.push(predictCombatMovement(player, command, tick));
+      predictions.push(predictCombatMovement(player, command, tick, initial.combat.scenario));
       reconcilers[slot]?.submit(command);
     }
     let journal: CombatJournalTick | undefined;

@@ -24,6 +24,7 @@ import {
   RIFLE_PROFILE,
   SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
+import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
@@ -236,7 +237,7 @@ class CombatScene extends Phaser.Scene {
     const g = this.overlay;
     if (!g) return;
     g.clear();
-    for (const target of combatTerrain(state.scenario)) {
+    for (const target of combatEndTerrain(state.scenario, state.tick)) {
       g.fillStyle(0x526175);
       g.fillRect(
         target.rect.x / 256,
@@ -345,7 +346,7 @@ class CombatScene extends Phaser.Scene {
         area,
         state.tick,
         profile,
-        combatTerrain(state.scenario),
+        combatTerrain(state.scenario, state.tick),
       )) {
         const r = exposure.rect,
           color = area.definitionId === 10 ? 0xffe475 : exposure.attached ? 0xff9647 : 0xff5b45;

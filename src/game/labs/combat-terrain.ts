@@ -1,0 +1,95 @@
+import { integer, pixels } from "../core/numeric.js";
+import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
+import type { SweepTarget } from "../physics/sweep.js";
+import type { CombatScenario } from "./combat.js";
+import { footTerrain } from "./foot-fixture.js";
+
+/** Engineering lift and press: deterministic world-tick trajectories, including their stops. */
+export const COMBAT_ORDNANCE = [
+  {
+    id: 102,
+    shapeId: 17,
+    x: pixels(24),
+    y: pixels(160),
+    w: pixels(240),
+    h: pixels(8),
+    start: 0,
+    end: 50,
+    dx: pixels(1),
+    dy: 0,
+  },
+  {
+    id: 103,
+    shapeId: 18,
+    x: pixels(190),
+    y: pixels(90),
+    w: pixels(132),
+    h: pixels(10),
+    start: 55,
+    end: 85,
+    dx: 0,
+    dy: pixels(2),
+  },
+] as const;
+
+export function ordnancePlatforms(tick: number) {
+  integer(tick, 0, 3601, "ordnance trajectory tick");
+  return COMBAT_ORDNANCE.map((platform, i) => {
+    const age = Math.max(0, Math.min(platform.end, tick) - platform.start);
+    const previous = Math.max(0, Math.min(platform.end, Math.max(0, tick - 1)) - platform.start);
+    return {
+      id: platform.id,
+      x: platform.x + age * platform.dx,
+      y: platform.y + age * platform.dy,
+      vx: (age - previous) * platform.dx,
+      vy: (age - previous) * platform.dy,
+      shapeId: platform.shapeId,
+      trajectoryId: i + 1,
+      trajectoryTick: tick,
+    };
+  });
+}
+
+/** Geometry at the start of this simulation tick, with exact motion through its end. */
+export function combatTerrain(scenario: CombatScenario, tick = 0): SweepTarget[] {
+  const terrain = [
+    footTerrain(100, 0, 200, 384, 16),
+    ...(scenario === "wall" ? [footTerrain(101, 140, 130, 3, 70)] : []),
+  ];
+  if (scenario === "ordnance")
+    for (const [i, platform] of ordnancePlatforms(tick).entries()) {
+      const definition = COMBAT_ORDNANCE[i];
+      if (!definition) throw new Error("Missing ordnance platform");
+      terrain.push({
+        id: platform.id,
+        kind: "solid",
+        rect: {
+          x: platform.x - platform.vx,
+          y: platform.y - platform.vy,
+          w: definition.w,
+          h: definition.h,
+        },
+        delta: { x: platform.vx, y: platform.vy },
+      });
+    }
+  return terrain;
+}
+
+/** Rendering and hand releases occur after the accepted movement boundary. */
+export function combatEndTerrain(scenario: CombatScenario, tick: number): SweepTarget[] {
+  return combatTerrain(scenario, tick).map((target) => ({
+    ...target,
+    rect: { ...target.rect, x: target.rect.x + target.delta.x, y: target.rect.y + target.delta.y },
+    delta: { x: 0, y: 0 },
+  }));
+}
+
+export function combatCollisionIndex(scenario: CombatScenario, frame: CollisionFrame) {
+  const terrain = combatTerrain(scenario, frame.tick);
+  const moving = (target: SweepTarget) => target.delta.x !== 0 || target.delta.y !== 0;
+  return new CollisionIndex(
+    new CollisionGrid(terrain.filter((target) => !moving(target))),
+    terrain.filter(moving),
+    frame,
+  );
+}

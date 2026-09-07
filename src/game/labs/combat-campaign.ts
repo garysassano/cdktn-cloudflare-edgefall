@@ -9,9 +9,9 @@ import {
   type CombatLab,
   combatEncounterDefinition,
   combatEntryContext,
-  combatTerrain,
   createCombatLab,
 } from "./combat.js";
+import { combatEndTerrain } from "./combat-terrain.js";
 
 export interface CombatContinue {
   ordinal: number;
@@ -209,7 +209,11 @@ export function continueCombatCheckpoint(
   world.eventSequence = 0;
   world.encounter = new EncounterLifecycle(combatEncounterDefinition(world)).begin(world.tick);
   const frame = { tick: world.tick, geometryRevision: 1 };
-  const index = new CollisionIndex(new CollisionGrid(combatTerrain(world.scenario)), [], frame);
+  const index = new CollisionIndex(
+    new CollisionGrid(combatEndTerrain(world.scenario, world.tick)),
+    [],
+    frame,
+  );
   const entry = stageContinue(campaign.state, world.players, world.tick, {
     mission: 1,
     id: 1,

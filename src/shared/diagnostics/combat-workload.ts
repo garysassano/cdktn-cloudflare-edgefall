@@ -29,9 +29,13 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
+import {
+  COMBAT_ORDNANCE,
+  combatCollisionIndex,
+  ordnancePlatforms,
+} from "../../game/labs/combat-terrain.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
 import { worldSocket } from "../../game/physics/body.js";
-import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
 import { ARCADE, RULE_PRESETS } from "../../game/rules.js";
 import type { ControlledActor } from "../../game/state.js";
 import { publicTankState } from "../../game/vehicles/tank.js";
@@ -41,7 +45,6 @@ import { controllerPeerContext } from "./controller-recovery.js";
 import { PROBE_IDENTITY, createRoomWorkload, roomWorkloadHash } from "./room-workload.js";
 
 export const COMBAT_TERRAIN = combatTerrain("range");
-const grid = new CollisionGrid(COMBAT_TERRAIN);
 export const COMBAT_SHAPE_IDS = new Set(COMBAT_SHAPES.keys());
 export function combatPeerContext(world: FullSnapshot, slot: number) {
   return { ...controllerPeerContext(world, slot), shapeIds: COMBAT_SHAPE_IDS };
@@ -59,6 +62,7 @@ export async function combatIdentity() {
       grenade: GRENADE_PROFILE,
       tank: TANK_PROFILE,
       tankDepot: COMBAT_TANK_DEPOT,
+      ordnance: COMBAT_ORDNANCE,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -102,7 +106,7 @@ export function combatSnapshot(
   snapshot.tick = combat.tick;
   snapshot.players = structuredClone(combat.players);
   snapshot.vehicles = combat.tanks.map(publicTankState);
-  snapshot.platforms = [];
+  snapshot.platforms = combat.scenario === "ordnance" ? ordnancePlatforms(combat.tick) : [];
   snapshot.threats = combat.targets.flatMap(({ enemy, health, rifle }) => {
     if (
       !rifle ||
@@ -302,7 +306,12 @@ export function combatSnapshot(
       .flatMap((area) => {
         const profile = AREA_PROFILES.get(area.definitionId);
         if (!profile) throw new Error("Missing area snapshot profile");
-        return areaExposures(area, combat.tick, profile, combatTerrain(combat.scenario));
+        return areaExposures(
+          area,
+          combat.tick,
+          profile,
+          combatTerrain(combat.scenario, combat.tick),
+        );
       })
       .sort((a, b) => a.id - b.id || a.lobe - b.lobe),
     nextEntityId: combat.nextEntityId,
@@ -412,11 +421,21 @@ export function evaluateCombatTick(
   return { state: { combat: result.state, snapshot }, outcomes, seatEvents: result.seatEvents };
 }
 /** Movement prediction only until global action IDs and effect confirmations are integrated. */
-export function predictCombatMovement(actor: ControlledActor, command: InputCommand, tick: number) {
+export function predictCombatMovement(
+  actor: ControlledActor,
+  command: InputCommand,
+  tick: number,
+  scenario: CombatScenario = "range",
+) {
   if (!FOOT_DEFINITION) throw new Error("Missing combat foot definition");
   const frame = { tick, geometryRevision: 1 };
-  const index = new CollisionIndex(grid, [], frame);
-  const life = stepPlayerLife(actor, tick, "classic", combatEntryContext(actor, index, frame));
+  const index = combatCollisionIndex(scenario, frame);
+  const life = stepPlayerLife(
+    actor,
+    tick,
+    "classic",
+    combatEntryContext(actor, index, frame, scenario),
+  );
   const result = stepFootController(
     life.actor,
     { held: command.held, jumpPressed: command.edges.some((edge) => edge.kind === Edge.Jump) },

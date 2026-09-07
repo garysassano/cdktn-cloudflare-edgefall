@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
+import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
 import { verifyTankLab } from "./lib/verify-tank-lab.mjs";
 
@@ -193,6 +194,7 @@ try {
   const shield = await verifyShieldLab(page, output);
   const area = await verifyAreaLab(page, output);
   const tank = await verifyTankLab(page, output);
+  const ordnance = await verifyOrdnanceLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -294,6 +296,7 @@ try {
     shield,
     area,
     tank,
+    ordnance,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

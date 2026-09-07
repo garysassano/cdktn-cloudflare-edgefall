@@ -17,7 +17,9 @@ export async function withDirectRoomWorker<T>(
     workerBundleSha256: string,
     restart: () => Promise<string>,
   ) => Promise<T>,
-  options: { combatScenario?: "range" | "rifle" | "guard" | "shotgun" | "flame" | "tank" } = {},
+  options: {
+    combatScenario?: "range" | "rifle" | "guard" | "shotgun" | "flame" | "tank" | "ordnance";
+  } = {},
 ): Promise<T> {
   const require = createRequire(import.meta.url);
   const workerRequire = createRequire(require.resolve("wrangler/package.json"));
