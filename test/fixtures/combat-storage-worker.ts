@@ -4,6 +4,7 @@ import { transitionCombatRuntime } from "../../src/shared/diagnostics/combat-rec
 import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.js";
 import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
+import { AREA_BOUNDARIES, recordAreaCombat } from "./area-proof.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
 import { recordFootCombat } from "./foot-combat-proof.js";
@@ -30,16 +31,23 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const [, name, action] = new URL(request.url).pathname.split("/");
-    if (name === "shield-bash" || name === "shield-break") {
+    if (
+      name === "shield-bash" ||
+      name === "shield-break" ||
+      name === "area-shotgun" ||
+      name === "area-flame"
+    ) {
+      const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
       if (action !== "restore") {
-        const fixture = recordShieldCombat(mode);
+        const fixture = area ? recordAreaCombat(area) : recordShieldCombat(mode);
+        const boundaries = area ? AREA_BOUNDARIES[area] : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
-        if (![...SHIELD_BOUNDARIES[mode], 180].includes(through))
+        if (![...boundaries, area ? 120 : 180].includes(through))
           throw new Error("Unknown shield storage boundary");
         let saved = await store.load();
         if (!saved) {
-          if (through !== SHIELD_BOUNDARIES[mode][0]) throw new Error("Missing shield seed");
+          if (through !== boundaries[0]) throw new Error("Missing shield seed");
           const seed = fixture.states[through];
           if (!seed) throw new Error("Missing shield seed boundary");
           await store.initialize(seed);
@@ -71,6 +79,9 @@ export class CombatStorageProof extends DurableObject<Env> {
         tick: saved.combat.tick,
         hash: combatRuntimeHash(saved),
         guard: saved.combat.targets[0]?.guard,
+        areas: saved.combat.areas,
+        volumes: saved.snapshot.combat?.volumes,
+        weapons: saved.combat.players.map((player) => player.weapon),
         archiveRows: this.ctx.storage.sql
           .exec<{ count: number }>("SELECT COUNT(*) AS count FROM combat_archive")
           .one().count,
@@ -484,6 +495,8 @@ export default {
         "rifle",
         "foot-melee",
         "foot-grenade",
+        "area-shotgun",
+        "area-flame",
         "shield-bash",
         "shield-break",
         "campaign",

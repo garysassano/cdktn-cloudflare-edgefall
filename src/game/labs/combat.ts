@@ -14,6 +14,13 @@ import {
   stepShield,
 } from "../actors/shield.js";
 import { type LifeNotice, damagePlayer, stepPlayerLife } from "../campaign/life.js";
+import {
+  type AreaAnchor,
+  type AreaAttack,
+  cancelArea,
+  emitArea,
+  stepArea,
+} from "../combat/area-attack.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
 import { type Grenade, stepGrenade } from "../combat/grenade.js";
 import {
@@ -40,6 +47,7 @@ import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/g
 import { type SweepTarget, displacementAtContact, earliestSweep } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
 import {
+  AREA_PROFILES,
   COMBAT_ATTACKS,
   COMBAT_CATALOG,
   COMBAT_SHAPES,
@@ -50,7 +58,15 @@ import {
 } from "./combat-content.js";
 import { FOOT_DEFINITION, footActor, footTerrain } from "./foot-fixture.js";
 
-export const COMBAT_SCENARIOS = ["range", "wall", "shield", "rifle", "guard"] as const;
+export const COMBAT_SCENARIOS = [
+  "range",
+  "wall",
+  "shield",
+  "rifle",
+  "guard",
+  "shotgun",
+  "flame",
+] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
   held: number;
@@ -91,7 +107,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 3;
+  format: 4;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -102,6 +118,7 @@ export interface CombatLab {
   projectiles: BallisticProjectile[];
   strikes: MeleeStrike[];
   grenades: Grenade[];
+  areas: AreaAttack[];
   encounter: EncounterState;
   events: CombatNotice[];
 }
@@ -162,12 +179,23 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     actor.playerId = actor.body.id = slot + 1;
     actor.slot = slot;
     if (slot === 1) actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
+    if (scenario === "shotgun") actor.weapon = { ...actor.weapon, id: "shotgun", ammo: 24 };
+    if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
     return actor;
   });
   const targets: CombatTarget[] = Array.from({ length: 2 }, (_, index) => ({
     enemy: {
       body: {
-        ...footActor(scenario === "guard" && index === 0 ? 140 : 220 + index * 60, 200).body,
+        ...footActor(
+          scenario === "shotgun"
+            ? 140 + index * 30
+            : (scenario === "guard" || scenario === "flame") && index === 0
+              ? 140
+              : scenario === "flame"
+                ? 220
+                : 220 + index * 60,
+          200,
+        ).body,
         id: 20 + index,
       },
       facing: -1,
@@ -179,11 +207,16 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     health: 1,
     shield: scenario === "shield" && index === 0,
     rifle:
-      scenario === "rifle" || (scenario === "guard" && index === 1) ? createRifleState() : null,
-    guard: scenario === "guard" && index === 0 ? createShieldState(SHIELD_PROFILE) : null,
+      scenario === "rifle" || ((scenario === "guard" || scenario === "flame") && index === 1)
+        ? createRifleState()
+        : null,
+    guard:
+      (scenario === "guard" || scenario === "flame") && index === 0
+        ? createShieldState(SHIELD_PROFILE)
+        : null,
   }));
   return {
-    format: 3,
+    format: 4,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -194,8 +227,34 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     projectiles: [],
     strikes: [],
     grenades: [],
+    areas: [],
     encounter: lifecycle({ players, targets }).begin(),
     events: [],
+  };
+}
+
+export function combatAreaAnchor(
+  world: Pick<CombatLab, "players" | "tick">,
+  area: AreaAttack,
+): AreaAnchor | null {
+  const actor = world.players.find((actor) => actor.playerId === area.ownerId);
+  if (
+    actor?.life !== "alive" ||
+    actor.vehicleId !== null ||
+    actor.action.kind !== "fire" ||
+    actor.action.actionInstanceId !== area.actionInstanceId
+  )
+    return null;
+  const pose = actionPose(
+    COMBAT_CATALOG,
+    actor.action.definitionId,
+    world.tick - actor.action.stateStartTick,
+  );
+  const socket = pose?.sockets.find((socket) => socket.name === "muzzle");
+  if (!socket) throw new Error("Missing attached volume socket");
+  return {
+    origin: worldSocket(actor.body, socket.point, actor.facing),
+    heading: actor.aim === 1 ? 1 : actor.aim === 2 ? 2 : actor.facing === 1 ? 0 : 3,
   };
 }
 
@@ -546,8 +605,46 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         const hand = item.pose.sockets.find((socket) => socket.name === "hand")?.point;
         if (!definition || !shape || !hand) throw new Error("Missing release definition");
         notice.kind = "shot";
-        if (muzzleBlocked(worldSocket(actor.body, hand, actor.facing), position, shape, terrain))
-          notice.kind = "muzzle-blocked";
+        const areaProfile = AREA_PROFILES.get(definition.id);
+        const clearance = areaProfile ? COMBAT_SHAPES.get(4) : shape;
+        if (!clearance) throw new Error("Missing muzzle clearance shape");
+        const blocked = muzzleBlocked(
+          worldSocket(actor.body, hand, actor.facing),
+          position,
+          clearance,
+          terrain,
+        );
+        if (areaProfile) {
+          let area = world.areas.find((area) => area.actionInstanceId === item.actionInstanceId);
+          if (!area) {
+            if (world.areas.length >= 16) throw new Error("Area attack cap requires recovery");
+            area = {
+              id: world.nextEntityId,
+              ownerId: actor.playerId,
+              team: 1,
+              actionInstanceId: item.actionInstanceId,
+              definitionId: definition.id,
+              startTick: result.actor.action.stateStartTick,
+              emitted: 0,
+              cancelledTick: null,
+              lobes: [],
+              hits: [],
+            };
+            world.areas.push(area);
+            world.nextEntityId = nextCounter(world.nextEntityId);
+          }
+          emitArea(
+            area,
+            tick,
+            areaProfile,
+            {
+              origin: position,
+              heading: actor.aim === 1 ? 1 : actor.aim === 2 ? 2 : actor.facing === 1 ? 0 : 3,
+            },
+            blocked,
+          );
+          if (blocked) notice.kind = "muzzle-blocked";
+        } else if (blocked) notice.kind = "muzzle-blocked";
         else {
           if (world.projectiles.length >= 256) throw new Error("Projectile cap requires recovery");
           world.projectiles.push({
@@ -644,6 +741,22 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     ...playerCombatHurtboxes(world.players, current.players),
   ];
   const impacts: Impact[] = [];
+  world.areas = world.areas.flatMap((area) => {
+    const definition = COMBAT_ATTACKS.get(area.definitionId),
+      profile = AREA_PROFILES.get(area.definitionId);
+    if (!definition || !profile) throw new Error("Missing area policy");
+    const result = stepArea(
+      area,
+      tick,
+      definition,
+      profile,
+      combatAreaAnchor(world, area),
+      terrain,
+      hurtboxes,
+    );
+    impacts.push(...result.impacts);
+    return result.attack ? [result.attack] : [];
+  });
   for (const target of world.targets) {
     const guard = target.guard;
     if (!guard || target.health === 0 || guard.phase !== "bash") continue;
@@ -875,6 +988,11 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         player.action.actionInstanceId === strike.actionInstanceId,
     ),
   );
+  for (const area of world.areas) {
+    const profile = AREA_PROFILES.get(area.definitionId);
+    if (!profile) throw new Error("Missing area cancellation policy");
+    if (!combatAreaAnchor(world, area)) cancelArea(area, tick, profile);
+  }
   world.encounter = lifecycle(world).step(
     world.encounter,
     tick,
@@ -891,7 +1009,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   return { state: world, outcomes, lifeNotices };
 }
 export interface CombatRecording {
-  format: 3;
+  format: 4;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -899,7 +1017,7 @@ export interface CombatRecording {
 }
 export function replayCombatLab(recording: CombatRecording) {
   if (
-    recording.format !== 3 ||
+    recording.format !== 4 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

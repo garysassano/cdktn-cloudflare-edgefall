@@ -44,6 +44,7 @@ describe("combat baseline accounting", () => {
     expect(decoded.combat).toMatchObject({
       phase: "complete",
       encounterEventCursor: 4,
+      volumes: [],
       kills: [
         { playerId: 1, count: 0 },
         { playerId: 2, count: 2 },
@@ -115,7 +116,7 @@ describe("combat baseline accounting", () => {
     for (const [offset, value] of [
       [3, 0],
       [5, 2],
-      [start, 2],
+      [start, 1],
       [start + 2, 44],
       [start + 25, 2],
       [start + 30, 1],

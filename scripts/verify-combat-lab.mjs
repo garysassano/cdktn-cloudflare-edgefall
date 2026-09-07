@@ -5,6 +5,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
+import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
 
 const root = resolve("dist/client"),
@@ -22,6 +23,10 @@ for (const file of [
   "grenade-active.json",
   "melee.png",
   "grenade.png",
+  "shotgun-volumes.png",
+  "flame-volumes.png",
+  "shotgun-active.json",
+  "flame-active.json",
   "shield-34.png",
   "shield-66.png",
   "shield-95.png",
@@ -163,7 +168,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 3);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 4);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -185,6 +190,7 @@ try {
     foot.push({ mode, active, final: await read() });
   }
   const shield = await verifyShieldLab(page, output);
+  const area = await verifyAreaLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -284,6 +290,7 @@ try {
     scenarios,
     foot,
     shield,
+    area,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

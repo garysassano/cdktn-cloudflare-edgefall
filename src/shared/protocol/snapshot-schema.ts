@@ -1,3 +1,4 @@
+import type { AreaExposure } from "../../game/combat/area-attack.js";
 import type {
   EncounterFailure,
   EncounterState,
@@ -5,6 +6,7 @@ import type {
 } from "../../game/encounters/lifecycle.js";
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CampaignState, ControlledActor, Point, VehicleState } from "../../game/state.js";
+import { MAX_COMBAT_BYTES } from "./combat-record.js";
 
 export const ROOM_MODES = [
   "lobby",
@@ -81,6 +83,7 @@ export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolve
 };
 /** Public encounter accounting. Private AI/watchdog/receipt state belongs in checkpoints. */
 export interface CombatSnapshot {
+  volumes: AreaExposure[];
   nextEntityId: number;
   nextActionId: number;
   encounterEventCursor: number;
@@ -153,4 +156,4 @@ export const SNAPSHOT_CAPS = {
 } as const;
 export const MIN_SNAPSHOT_BYTES = 436;
 export const MAX_BASE_SNAPSHOT_BYTES = 39128;
-export const MAX_SNAPSHOT_BYTES = 47912;
+export const MAX_SNAPSHOT_BYTES = MAX_BASE_SNAPSHOT_BYTES + MAX_COMBAT_BYTES;

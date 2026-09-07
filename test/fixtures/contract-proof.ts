@@ -4,6 +4,7 @@ import { encodeInputBatch } from "../../src/shared/protocol/codec.js";
 import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
+import { areaCombatProof } from "./area-proof.js";
 import { campaignProof } from "./campaign-proof.js";
 import { collisionProof } from "./collision-proof.js";
 import { combatProof } from "./combat-proof.js";
@@ -99,6 +100,7 @@ export async function contractProof() {
     rifleRecovery: await rifleRecoveryProof(),
     footCombat: await footCombatProof(),
     shieldCombat: await shieldCombatProof(),
+    areaCombat: await areaCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

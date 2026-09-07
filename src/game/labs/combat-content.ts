@@ -1,5 +1,6 @@
 import type { RifleProfile } from "../actors/rifle.js";
 import type { ShieldProfile } from "../actors/shield.js";
+import { type AreaProfile, validateAreaProfile } from "../combat/area-attack.js";
 import type { FirearmCatalog, FirearmProfile } from "../combat/firearm.js";
 import type { FootActionProfiles } from "../combat/foot-actions.js";
 import type { GrenadeProfile } from "../combat/grenade.js";
@@ -17,6 +18,8 @@ COMBAT_CONTENT.shapes.push(
   { id: 10, rect: { x: pixels(-3), y: pixels(-3), w: pixels(6), h: pixels(6) } },
   { id: 11, rect: { x: pixels(-48), y: pixels(-48), w: pixels(96), h: pixels(96) } },
   { id: 12, rect: { x: 0, y: pixels(-10), w: pixels(30), h: pixels(24) } },
+  { id: 13, rect: { x: 0, y: pixels(-3), w: pixels(20), h: pixels(6) } },
+  { id: 14, rect: { x: 0, y: pixels(-8), w: pixels(14), h: pixels(8) } },
 );
 const sidearm = COMBAT_CONTENT.weapons[0];
 const attack = COMBAT_CONTENT.attacks[0];
@@ -35,6 +38,87 @@ const hmg = {
 };
 COMBAT_CONTENT.weapons.push(hmg);
 COMBAT_CONTENT.attacks.push({ ...attack, id: 2, speed: pixels(18) });
+const shotgun = {
+  ...sidearm,
+  id: "shotgun" as const,
+  attackId: 10,
+  cadenceTicks: 28,
+  ammoPerAction: 1,
+  pickupAmmo: 24,
+  visualFamily: "fixture-shotgun",
+  audioFamily: "fixture-shotgun",
+};
+const flame = {
+  ...sidearm,
+  id: "flamethrower" as const,
+  attackId: 11,
+  cadenceTicks: 30,
+  ammoPerAction: 1,
+  pickupAmmo: 30,
+  visualFamily: "fixture-flame",
+  audioFamily: "fixture-flame",
+};
+COMBAT_CONTENT.weapons.push(shotgun, flame);
+COMBAT_CONTENT.attacks.push(
+  {
+    id: 10,
+    kind: "shot-volume",
+    shapeId: 13,
+    damage: 4,
+    lifetimeTicks: 6,
+    speed: 0,
+    maxTargets: 16,
+    repeatDamageTicks: 0,
+    material: "bullet",
+  },
+  {
+    id: 11,
+    kind: "flame-volumes",
+    shapeId: 14,
+    damage: 1,
+    lifetimeTicks: 30,
+    speed: 0,
+    maxTargets: 16,
+    repeatDamageTicks: 6,
+    material: "heat",
+  },
+);
+export const AREA_PROFILES: ReadonlyMap<number, AreaProfile> = new Map([
+  [
+    10,
+    {
+      kind: "shot-volume",
+      emissionOffsets: [0],
+      attachedTicks: 0,
+      maximumReach: pixels(110),
+      frames: [20, 40, 60, 80, 100, 110].map((length, age) => ({
+        x: 0,
+        y: -pixels(3 + age * 2),
+        w: pixels(length),
+        h: pixels(6 + age * 4),
+      })),
+    },
+  ],
+  [
+    11,
+    {
+      kind: "flame-volumes",
+      emissionOffsets: [0, 6, 12],
+      attachedTicks: 6,
+      maximumReach: pixels(90),
+      frames: Array.from({ length: 18 }, (_, age) => {
+        const width = age < 6 ? ([14, 18, 24, 28, 32, 36][age] ?? 0) : 36;
+        const height = age < 6 ? 8 + Math.min(age, 3) * 2 : age < 14 ? 14 : 10;
+        return {
+          x: age < 6 ? 0 : (age - 5) * (pixels(4) + 128),
+          y: pixels((age < 6 ? ([-4, -2, 0, 2, 4, 2][age] ?? 0) : 2) - height / 2),
+          w: pixels(width),
+          h: pixels(height),
+        };
+      }),
+    },
+  ],
+]);
 export const FOOT_ACTION_PROFILES: FootActionProfiles = {
   melee: { timelineIds: [40, 41], cooldownTicks: 18 },
   grenade: { timelineIds: [50, 51], cooldownTicks: 20 },
@@ -205,10 +289,12 @@ COMBAT_CONTENT.timelines.push(
   },
 );
 const profiles: FirearmProfile[] = [];
-for (const [index, weapon] of [sidearm, hmg].entries()) {
+for (const [index, weapon] of [sidearm, hmg, shotgun, flame].entries()) {
   const base = 10 + index * 4;
   const timelineIds: [number, number, number, number] = [base, base + 1, base + 2, base + 3];
   weapon.timelineId = base;
+  const duration = weapon.id === "flamethrower" ? 30 : weapon.id === "shotgun" ? 12 : 4;
+  const emissions = AREA_PROFILES.get(weapon.attackId)?.emissionOffsets ?? [0];
   for (const [poseIndex, id] of timelineIds.entries()) {
     const muzzle = [
       { x: pixels(15), y: pixels(-23) },
@@ -220,7 +306,7 @@ for (const [index, weapon] of [sidearm, hmg].entries()) {
     COMBAT_CONTENT.poses.push({
       id,
       frame: `engineering-${weapon.id}-${poseIndex}`,
-      durationTicks: 4,
+      durationTicks: duration,
       sockets: [
         { name: "muzzle", point: muzzle },
         { name: "hand", point: { x: 0, y: poseIndex === 3 ? pixels(-12) : pixels(-23) } },
@@ -229,18 +315,44 @@ for (const [index, weapon] of [sidearm, hmg].entries()) {
     });
     COMBAT_CONTENT.timelines.push({
       id,
-      durationTicks: 4,
+      durationTicks: duration,
       poses: [id],
       markers: [
-        { tickOffset: 0, kind: "spawn-attack", payloadId: weapon.attackId, socket: "muzzle" },
-        { tickOffset: 0, kind: "sound", payloadId: weapon.attackId, socket: "muzzle" },
-        { tickOffset: 2, kind: "sound", payloadId: weapon.attackId, socket: "hand" },
+        ...emissions.flatMap((tickOffset) => [
+          {
+            tickOffset,
+            kind: "spawn-attack" as const,
+            payloadId: weapon.attackId,
+            socket: "muzzle" as const,
+          },
+          {
+            tickOffset,
+            kind: "sound" as const,
+            payloadId: weapon.attackId,
+            socket: "muzzle" as const,
+          },
+        ]),
+        ...(weapon.id === "flamethrower"
+          ? []
+          : [
+              {
+                tickOffset: 2,
+                kind: "sound" as const,
+                payloadId: weapon.attackId,
+                socket: "hand" as const,
+              },
+            ]),
       ],
     });
   }
   profiles.push({ weapon, timelineIds });
 }
 validateContent(COMBAT_CONTENT);
+for (const [id, profile] of AREA_PROFILES) {
+  const definition = COMBAT_CONTENT.attacks.find((attack) => attack.id === id);
+  if (!definition) throw new Error("Missing area attack definition");
+  validateAreaProfile(profile, definition);
+}
 export const COMBAT_CATALOG: FirearmCatalog = {
   firearms: new Map(profiles.map((profile) => [profile.weapon.id, profile])),
   timelines: new Map(COMBAT_CONTENT.timelines.map((timeline) => [timeline.id, timeline])),

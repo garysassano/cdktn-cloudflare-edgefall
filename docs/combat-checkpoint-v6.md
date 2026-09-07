@@ -1,5 +1,7 @@
 # Combat checkpoint and applied-input journal v6
 
+Historical format 6 contract. Current area-attack continuation uses [format 7](combat-checkpoint-v7.md); format 6 archives are rejected.
+
 The diagnostic combat room uses archive format `6` and client protocol `3.5`. The archive preserves private world state, input acknowledgments, allocation/action cursors, encounter receipts, output event history, pause origin and campaign decisions. It supports the range, wall, passive shield, attacking rifle and mixed active guard/rifle fixtures. Authored mission progression and the production v3 room remain unfinished.
 
 ## Identity and reconstruction

@@ -131,6 +131,18 @@ describe("full v3 snapshot records", () => {
       nextEntityId: 10000,
       nextActionId: 10000,
       encounterEventCursor: 1024,
+      volumes: Array.from({ length: 64 }, (_, i) => ({
+        id: 9000 + Math.floor(i / 4),
+        ownerId: 1,
+        actionInstanceId: 9000 + Math.floor(i / 4),
+        definitionId: 11,
+        spawnTick: snapshot.tick,
+        endTick: snapshot.tick + 30,
+        rect: { x: 0, y: 0, w: 3584, h: 2048 },
+        heading: 0 as const,
+        lobe: i % 4,
+        attached: true,
+      })),
       encounterId: snapshot.campaign.encounterId,
       phase: "active",
       members: Array.from({ length: 256 }, (_, i) => ({
@@ -151,6 +163,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
+    expect(bytes.length).toBe(50984);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);

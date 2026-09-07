@@ -1,16 +1,19 @@
 import { validateRifleState } from "../../game/actors/rifle.js";
 import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
+import { validateArea } from "../../game/combat/area-attack.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { EncounterLifecycle } from "../../game/encounters/lifecycle.js";
 import {
   COMBAT_LAB_LIMIT,
+  combatAreaAnchor,
   combatEncounterDefinition,
   createCombatLab,
 } from "../../game/labs/combat.js";
 import { validateCombatCampaign } from "../../game/labs/combat-campaign.js";
 import {
+  AREA_PROFILES,
   COMBAT_ATTACKS,
   COMBAT_CATALOG,
   COMBAT_SHAPES,
@@ -101,16 +104,20 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles strikes grenades encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles strikes grenades areas encounter events",
   );
-  check(combat.format === 3, "simulation format");
+  check(combat.format === 4, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
   integer(combat.strikes.length, 0, 4, "combat checkpoint strikes");
   integer(combat.grenades.length, 0, 32, "combat checkpoint grenades");
+  integer(combat.areas.length, 0, 16, "combat area budget");
   integer(
-    combat.projectiles.length + combat.strikes.length + combat.grenades.length,
+    combat.projectiles.length +
+      combat.strikes.length +
+      combat.grenades.length +
+      combat.areas.length,
     0,
     256,
     "attack entity budget",
@@ -331,6 +338,57 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
           combat.targets.some((target) => target.enemy.body.id === id),
         "melee hit ledger",
       );
+  }
+  const areaActions = new Set<number>();
+  for (const area of combat.areas) {
+    fields(
+      area,
+      "id ownerId team actionInstanceId definitionId startTick emitted cancelledTick lobes hits",
+    );
+    ownAttack(area);
+    check(!areaActions.has(area.actionInstanceId), "duplicate area action");
+    areaActions.add(area.actionInstanceId);
+    const definition = COMBAT_ATTACKS.get(area.definitionId),
+      profile = AREA_PROFILES.get(area.definitionId);
+    check(definition && profile, "area attack definition");
+    for (const lobe of area.lobes) {
+      fields(lobe, "index origin heading reach");
+      fields(lobe.origin, "x y");
+    }
+    for (const hit of area.hits) fields(hit, "entityId nextTick");
+    validateArea(
+      area,
+      combat.tick,
+      definition,
+      profile,
+      combat.targets.map((target) => target.enemy.body.id),
+    );
+    const anchor = combatAreaAnchor(combat, area);
+    if (anchor) {
+      const owner = combat.players.find((player) => player.playerId === area.ownerId);
+      check(owner?.action.stateStartTick === area.startTick, "area action start");
+      check(
+        COMBAT_CATALOG.timelines
+          .get(owner.action.definitionId)
+          ?.markers.some(
+            (marker) => marker.kind === "spawn-attack" && marker.payloadId === area.definitionId,
+          ),
+        "area action definition",
+      );
+    }
+    if (profile.kind === "flame-volumes") {
+      check((anchor === null) === (area.cancelledTick !== null), "flame action cancellation");
+      for (const lobe of area.lobes) {
+        const age = combat.tick - area.startTick - (profile.emissionOffsets[lobe.index] ?? 0);
+        if (age < profile.attachedTicks)
+          check(
+            anchor &&
+              canonical(lobe.origin) === canonical(anchor.origin) &&
+              lobe.heading === anchor.heading,
+            "attached flame anchor",
+          );
+      }
+    } else check(area.cancelledTick === null, "released shotgun cancellation");
   }
   for (const grenade of combat.grenades) {
     fields(grenade, "id ownerId team actionInstanceId definitionId body spawnTick bounces");
@@ -611,7 +669,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 6,
+    format: 7,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -635,7 +693,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 6 &&
+    envelope.format === 7 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

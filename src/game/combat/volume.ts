@@ -166,24 +166,77 @@ export function meleeHits(
     definition.shapeId !== shape.id
   )
     throw new Error("Invalid melee policy");
+  return rectangularHits(
+    source,
+    definition,
+    worldRect(hand, shape.rect, facing),
+    delta,
+    occlusionOrigin,
+    terrain,
+    hurtboxes,
+    hitIds,
+  );
+}
+
+/** Authored area attacks share exact moving-hurtbox and material occlusion rules. */
+export function rectangularHits(
+  source: AttackSource,
+  definition: AttackDefinition,
+  volume: Rect,
+  delta: Point,
+  occlusionOrigin: Point,
+  terrain: readonly SweepTarget[],
+  hurtboxes: readonly HurtTarget[],
+  hitIds: readonly number[] = [],
+): Impact[] {
+  if (
+    definition.id !== source.definitionId ||
+    !["melee", "shot-volume", "flame-volumes"].includes(definition.kind)
+  )
+    throw new Error("Invalid rectangular attack policy");
   validateQuery(source, terrain, hurtboxes);
   integer(hitIds.length, 0, definition.maxTargets, "melee hit budget");
   for (const id of hitIds) integer(id, 1, COUNTER_LIMIT - 1, "melee hit identity");
   if (new Set(hitIds).size !== hitIds.length) throw new Error("Duplicate melee hit identity");
-  const volume = worldRect(hand, shape.rect, facing);
   sweepBounds(volume, delta);
   sweepBounds({ ...occlusionOrigin, w: 0, h: 0 }, delta);
   const enemies = targets(source, hurtboxes),
     shields = enemies.filter((target) => target.kind === "shield"),
     hits: Impact[] = [];
-  for (const target of enemies.filter((target) => target.kind === "body")) {
+  for (const target of enemies.filter(
+    (target) => target.kind === "body" || definition.kind !== "melee",
+  )) {
     const hit = sweepAabb(volume, delta, target.rect, target.delta);
     if (!hit) continue;
     const time = hit.kind === "overlap" ? { numerator: 0, denominator: 1 } : hit.time;
-    const origin = at(occlusionOrigin, delta, time),
-      point = nearest(origin, { ...target.rect, ...at(target.rect, target.delta, time) });
+    const origin = at(occlusionOrigin, delta, time);
+    const exposed = { ...target.rect, ...at(target.rect, target.delta, time) };
+    const currentVolume = { ...volume, ...at(volume, delta, time) };
+    const x = Math.max(exposed.x, currentVolume.x),
+      y = Math.max(exposed.y, currentVolume.y);
+    const point = nearest(origin, {
+      x,
+      y,
+      w: Math.max(0, Math.min(exposed.x + exposed.w, currentVolume.x + currentVolume.w) - x),
+      h: Math.max(0, Math.min(exposed.y + exposed.h, currentVolume.y + currentVolume.h) - y),
+    });
     const blocked = occluder(origin, point, time, terrain, shields);
     if (blocked?.target.kind === "terrain") continue;
+    if (blocked && definition.kind !== "melee") {
+      const shield = {
+        ...blocked.target.rect,
+        ...at(blocked.target.rect, blocked.target.delta, time),
+      };
+      // A detached lobe may be beyond a shield. It cannot deal heat to a face
+      // outside its current exposure just because that face occludes the root ray.
+      if (
+        shield.x > currentVolume.x + currentVolume.w ||
+        shield.x + shield.w < currentVolume.x ||
+        shield.y > currentVolume.y + currentVolume.h ||
+        shield.y + shield.h < currentVolume.y
+      )
+        continue;
+    }
     hits.push(
       blocked
         ? impact(
@@ -193,7 +246,7 @@ export function meleeHits(
             at(origin, { x: point.x - origin.x, y: point.y - origin.y }, blocked.time),
             0,
           )
-        : impact(source, target, time, point, definition.damage),
+        : impact(source, target, time, point, target.kind === "shield" ? 0 : definition.damage),
     );
   }
   return ordered(hits, definition.maxTargets, hitIds);

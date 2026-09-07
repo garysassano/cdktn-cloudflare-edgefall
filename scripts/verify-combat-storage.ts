@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { build } from "esbuild";
+import { verifyStoredArea } from "./lib/verify-stored-area.js";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
@@ -211,6 +212,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    area: await verifyStoredArea(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     shield: await verifyStoredShield(origin, async () => {
       await runtime.dispose();
       runtime = create();

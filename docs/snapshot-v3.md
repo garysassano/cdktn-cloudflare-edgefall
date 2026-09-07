@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.5
+# Arcade full snapshots v3.6
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -7,7 +7,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | Byte offset | Field                          | Encoding                 |
 | ----------- | ------------------------------ | ------------------------ |
 | 0           | Magic EF (`0x4645`)            | u16                      |
-| 2           | Major 3, minor 5               | u8, u8                   |
+| 2           | Major 3, minor 6               | u8, u8                   |
 | 4           | Message type 2, flags 0 or 1   | u8, u8                   |
 | 6           | Exact frame length             | u16                      |
 | 8           | Run epoch                      | u32, nonzero             |
@@ -27,11 +27,11 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | 48          | Room mode                      | u8 enum                  |
 | 49          | Reserved zero                  | 15 bytes                 |
 
-Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 436 bytes and the base sections can reach 39,128 bytes; the maximum combat section raises the complete frame limit to 47,912 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
+Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 436 bytes and the base sections can reach 39,128 bytes; the maximum combat section raises the complete frame limit to 50,984 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
 
 ## Record sequence and sizes
 
-The 64-byte header is followed by the records below, in this exact order. All record fields are four-byte little-endian words. Unsigned words are u32, signed fields are i32, booleans are exactly 0 or 1, and nullable IDs use zero for null. Non-null IDs must be positive. Definition/shape table indices fit 1–65,535, except explicitly idle/unset action definitions and static trajectory IDs may be zero. Counters stay below `0xfffff000`; positions are bounded to ±2^24 subpixels and velocities to ±2^16 subpixels per tick. Timer/ammo/health counters are bounded to 65,535. Enum values are zero-based positions in the lists below.
+The 64-byte header is followed by the records below, in this exact order. Entity record fields are four-byte little-endian words; the combat section declares its u16 fields separately. Unsigned words are u32, signed fields are i32, booleans are exactly 0 or 1, and nullable IDs use zero for null. Non-null IDs must be positive. Definition/shape table indices fit 1–65,535, except explicitly idle/unset action definitions and static trajectory IDs may be zero. Counters stay below `0xfffff000`; positions are bounded to ±2^24 subpixels and velocities to ±2^16 subpixels per tick. Timer/ammo/health counters are bounded to 65,535. Enum values are zero-based positions in the lists below.
 
 | Section                   | Record bytes | Count            |
 | ------------------------- | ------------ | ---------------- |
@@ -79,15 +79,15 @@ Contextual knife actions project their authored hand position, facing and shape 
 
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.5; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.6; there is no compatibility decoder for earlier minors.
 
-| Section offset | Field                                                                          | Encoding |
-| -------------- | ------------------------------------------------------------------------------ | -------- |
-| 0              | Section version 1, header size 48                                              | 2 × u16  |
-| 4              | Next entity ID, next action ID                                                 | 2 × u32  |
-| 12             | Encounter receipt cursor, encounter ID, phase                                  | 3 × u32  |
-| 24             | Member count 0–256, objective count 0–64, participant count 1–4, reserved zero | 4 × u16  |
-| 32             | Failure owner, failure tick, reason, cause                                     | 4 × u32  |
+| Section offset | Field                                                                            | Encoding |
+| -------------- | -------------------------------------------------------------------------------- | -------- |
+| 0              | Section version 2, header size 48                                                | 2 × u16  |
+| 4              | Next entity ID, next action ID                                                   | 2 × u32  |
+| 12             | Encounter receipt cursor, encounter ID, phase                                    | 3 × u32  |
+| 24             | Member count 0–256, objective count 0–64, participant count 1–4, area count 0–64 | 4 × u16  |
+| 32             | Failure owner, failure tick, reason, cause                                       | 4 × u32  |
 
 Phase is `active, complete, retired, failed`. Failure fields are all zero when absent. Failure tick and every optional tick below use `tick + 1`, reserving zero for null; tick zero is representable. Failure reason is a one-based index into `critical-loss, forbidden-retreat, invalid-pose`; cause is a one-based index into `initial-overlap, residual-overlap, contact-limit, unresolved-contact, retreated, crushed, out-of-bounds`.
 
@@ -95,7 +95,7 @@ Each 32-byte member is eight u32 words: `id, policyFlags, status, activatedTick,
 
 Member records are followed by eight-byte objective records (`id, completedTick`), then eight-byte kill credits (`playerId, count`). All three tables have unique ascending IDs. Credits cover the player roster and equal kills attributed by the member ledger. The encounter ID matches the campaign; complete encounters have no unresolved requirement, retired encounters have no unresolved members, and failure fields agree with the failed phase. Allocation cursors exceed every referenced allocated entity/action ID, including removals and projectiles whose owners have disappeared.
 
-The section is `48 + 32 × members + 8 × objectives + 8 × participants` bytes, at most 8,784. The current four-player/two-target combat fixture adds 144 bytes. Decoder count/length validation happens before allocating tables. Independent Python-struct section goldens cover pending and completed encounters. This section restores accounting after missed transient effects; completing one encounter does not set whole-campaign victory. See [server checkpoint and journal](./combat-checkpoint-v3.md) for the separate private continuation format.
+The section is `48 + 32 × members + 8 × objectives + 8 × participants + 48 × areas` bytes, at most 11,856. The four-player/two-target fixture adds 144 bytes with no active areas, 336 bytes during four shotgun blasts, and up to 720 bytes during twelve flame lobes. Decoder count/length validation happens before allocating tables. Independent Python-struct section goldens cover pending and completed encounters and an attached flame exposure. This section restores accounting after missed transient effects; completing one encounter does not set whole-campaign victory. See [server checkpoint and journal](./combat-checkpoint-v7.md) for the separate private continuation format.
 
 ## Validation and baseline ownership
 
@@ -105,6 +105,14 @@ The room/client adapter must separately enforce monotonic applied snapshot IDs, 
 
 ## Active shield projection
 
-Enemy definition 4 identifies active shield infantry. Modes 0–5 encode brace, advance, turn, bash, stunned and dead; modes 6–11 retain those phases after the shield has broken permanently. The action ID, timeline ID, start tick and mode age identify the exact continuation. An unstarted pending guard has age zero. The shield is raised in brace/advance and the first 12 bash ticks, lowered during turns and the remaining bash, and absent after break. Integrity amounts, committed target/turn facing and the per-bash hit ledger remain private in archive 6.
+Enemy definition 4 identifies active shield infantry. Modes 0–5 encode brace, advance, turn, bash, stunned and dead; modes 6–11 retain those phases after the shield has broken permanently. The action ID, timeline ID, start tick and mode age identify the exact continuation. An unstarted pending guard has age zero. The shield is raised in brace/advance and the first 12 bash ticks, lowered during turns and the remaining bash, and absent after break. Integrity amounts, committed target/turn facing and the per-bash hit ledger remain private in archive 7.
 
-The 30-tick bash projects an attached threat with attack 6 and shape 12 from windup through its four active ticks (offsets 12–15). It uses the enemy body as source, a global action identity, committed target and facing, and an authored hand socket. This projection and the shield-break event extend protocol 3.5 without increasing snapshot or event record sizes. See the [private continuation contract](combat-checkpoint-v6.md).
+The 30-tick bash projects an attached threat with attack 6 and shape 12 from windup through its four active ticks (offsets 12–15). It uses the enemy body as source, a global action identity, committed target and facing, and an authored hand socket. This projection and the shield-break event extend protocol 3.5 without increasing snapshot or event record sizes. See the [private continuation contract](combat-checkpoint-v7.md).
+
+## Authored area exposures
+
+Combat section version 2 appends 48-byte area records after kill credits. Each record contains six u32 fields (`id, ownerId, actionInstanceId, definitionId, spawnTick, endTick`), signed i32 `rect.x, rect.y`, unsigned u32 `rect.w, rect.h, heading`, then u16 `lobe, attached`. Headings are right/up/down/left (0–3), lobe index is 0–3, and attachment is exactly 0 or 1. Positions retain Q256 precision, positive dimensions are at most 65,536 subpixels, endpoints remain in position bounds, and `spawnTick ≤ snapshot.tick < endTick` with at most 120 lifetime ticks.
+
+Records are strictly ordered by source ID then lobe index. Lobes sharing a source also share its player owner, action ID and definition. Area IDs cannot collide with visible entities, retained encounter members or removals. Source and action IDs participate in allocation-cursor validation. There are at most 64 records; the private world separately limits area groups to 16.
+
+These are the actual terrain-clipped damage rectangles for shotgun definition 10 and flame definition 11. Clients draw them directly without reconstructing hit shapes from velocity or guessing clipping from visual particles. An impact can refer to an earlier point along the tick's swept exposure. New emissions and heading changes use endpoint exposure; attached motion sweeps eligible moving hurtboxes. Per-target cooldowns, blocked emission history, retained reach and cancellation state stay in the private archive. Expired or completely clipped lobes have no public rectangle.

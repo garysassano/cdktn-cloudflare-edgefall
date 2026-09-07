@@ -195,6 +195,7 @@ try {
     rifleRecovery: expected.rifleRecovery,
     footCombat: expected.footCombat,
     shieldCombat: expected.shieldCombat,
+    areaCombat: expected.areaCombat,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

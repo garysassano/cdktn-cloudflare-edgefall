@@ -168,6 +168,7 @@ export function continueCombatCheckpoint(
   world.projectiles = [];
   world.strikes = [];
   world.grenades = [];
+  world.areas = [];
   world.events = [];
   world.eventSequence = 0;
   world.encounter = new EncounterLifecycle(combatEncounterDefinition(world)).begin(world.tick);

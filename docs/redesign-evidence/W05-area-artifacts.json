@@ -1,0 +1,307 @@
+{
+  "baseCommit": "cbc14e5cb716d16a82a2b3de47acb514a703c93a",
+  "archiveFormat": 7,
+  "protocol": "3.6",
+  "combatSectionVersion": 2,
+  "combatRecordingFormat": 4,
+  "sourceScope": "Changed and new source/docs relative to baseCommit, plus toolchain/deployment inputs. Final required checks, runtime/SQLite and network proofs cover the final behavior. The inspector bundle matches the final build. Earlier focused failures and the first probe precede their documented fixes.",
+  "sources": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "README.md",
+      "sha256": "c3cc39468f382e8f742e77ea395e8bb6ccc459f10a3a44aad4e425e068e56222"
+    },
+    {
+      "file": "docs/combat-checkpoint-v6.md",
+      "sha256": "f40dca3b1782eda89732418d7c6eca0b6ff31ab8edaaa5bbe4b2deec07392eaa"
+    },
+    {
+      "file": "docs/combat-checkpoint-v7.md",
+      "sha256": "565e7ff97b3c9051432c5897615cdbdf6151b5f2b4b556e371435cec5390d5fe"
+    },
+    {
+      "file": "docs/events-v3.md",
+      "sha256": "e0e86253359984d3f164f407dff786376bb6b84c6c8545ae5b605b8fea3c35ed"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "a386ca8a7df95e5cf224a17ae5295ec12620d10cddac1cc1e3aaf2da4be7ca28"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-weapons.md",
+      "sha256": "a9107a1edc23245298d6d83f13e92bbaeda8ccc63b490d0fecb9e04ba78aac0d"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "sha256": "3ab89c93c5c58f989b12b61c1051e8806fdd82a1ee1df994cefb108847ac87e8"
+    },
+    {
+      "file": "mise.toml",
+      "sha256": "aced6b92b1da65509aa7289e8ad83161edee794339f1d1f2582bdd42f22bf494"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "61359566f31fba701909c0201617c50f95837af5890533960d504e8fc8e6c709"
+    },
+    {
+      "file": "scripts/lib/verify-area-combat.ts",
+      "sha256": "fe814abc37c45c1f8d710cf55c99889b03d5895b959433cf2fb2142e7bada8c6"
+    },
+    {
+      "file": "scripts/lib/verify-area-lab.mjs",
+      "sha256": "e12ae4b7a49eb23e98aa0f0105c402f3e93e484dcc54fb481174c276b838d10d"
+    },
+    {
+      "file": "scripts/lib/verify-stored-area.ts",
+      "sha256": "fb32f47fd462fc5979863728d40d6a250b605a2962927b9a45f18afd51dff669"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "13aacc42b6d0fa3787b47450e7bfab04ed0db59176af47c080244a9903c00914"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "6426240f38e231c68b206092e0cdb46ee8bf59b6adc530cc10bd43be2cb55eb6"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "8cf0881f7fe58ad11369cef71bf7e9fdbcb6a7cca2c1fd77c6b69d133bc68a58"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "87051a79a2001bd0bcf9b49d8388e4421de0587ba36c8b087ef6ce1859dbc623"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "sha256": "c41ed21351a82428a04b8f1d5f8d2becd8008c79d3d63a2e686a51af81844bb1"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "230a55f387af6fb15200702facc5da5848c2b114cee3ac58450eb91d3c9ac403"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "c98ea4aab3b500d59797477abdb75c08764ff694437c6e8dea6c20ab5ca55bc5"
+    },
+    {
+      "file": "src/game/combat/area-attack.ts",
+      "sha256": "2b7826fb8db923257a0d6bcd905db994206f69d25a688e496d01e00855f2eebc"
+    },
+    {
+      "file": "src/game/combat/volume.ts",
+      "sha256": "7d2a0137febe29c6a8eae6396e9ee2572528aa9fca500ca974526df269769ee9"
+    },
+    {
+      "file": "src/game/labs/combat-campaign.ts",
+      "sha256": "5ae19410e9f25b87a67efc90d4cd28caabe9fab2fbb33ad4356a833d1df69ee4"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "ef6a5d0861030079a0cc4c4a17978df2c3599cb6ca6722eae485d749339fae96"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "4462efebee4c33ec5b7dfad94d15661982d6c89d404210810f4924fc46765fb7"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "1f274489a781533df93086b648aea3a37d291bbaa0adc8c962044be6cde24b77"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "5424cae5dd15fad9520a6b2bef44743b41e19cf52eaab07285e98e15f3411cd2"
+    },
+    {
+      "file": "src/shared/protocol/combat-record.ts",
+      "sha256": "28394dbb661ff79214f704cf3271c78c2691c38fca87c215078a2f5c646dd073"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "bf00d6019bdeea15f193a7ed237fad991f336b574e09fe5ec8627ec37c872e0a"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "022b29990890cfa16355a4097b146fbe4c6bfa62724e5456bae896e6d3d3fbd4"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "dfe119aa0f5e2dad9e8f4675e1e142935ca079f510b62a2f33f5869017819f7d"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "fd31e2b345189cc32393ca2c2692e678d286efbf68f15559aaa035c809268862"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "d40f4380030412b62a626001ae49eaea4bfd87e139b2e4e5e1aaf20f9b8fd11d"
+    },
+    {
+      "file": "test/area-attack.test.ts",
+      "sha256": "f44fa5eeff839cf41f8d541d79615f3378a8393c095a3fc857c7fafa7139412f"
+    },
+    {
+      "file": "test/area-recovery.test.ts",
+      "sha256": "8d8a9a8590ab201349769709387b6df7e1e758ba97cbe34a37948fc63e92120a"
+    },
+    {
+      "file": "test/combat-baseline.test.ts",
+      "sha256": "5ba62724be2496cf37999f9b6e5dad88f7246bf2a9dfaf4ef3d1aaf21b8fa8ee"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "0ab60ea0e41082a4ab35e9b0819bd2b33bece31ce2a96884c354d83602ace733"
+    },
+    {
+      "file": "test/combat.test.ts",
+      "sha256": "050d5f3ad024ede94d67d68693570e9c857d29945e187d14e3443bbf6e03caf3"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "364a63c5ee05a60772eacd588873411bf04053246a0676df66c0812f0527c783"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "1acddb89fb027028cadb340b55f40c3000615ed28058904c0acf98bfc4e84c41"
+    },
+    {
+      "file": "test/fixtures/area-proof.ts",
+      "sha256": "6a2ab6eb266ad7a2d5277353372957daee391104e4adea7d5fbb5a57a6ad3f1a"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "21cbbd78f5a2e4c927f81c71ab7f715b2d682cda6ce4027a053dbbf9687d066e"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "6cfeb888196c7394b39c6fdbf217750b5b9cb739bc081a14e647d4e7f36f8a31"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/combat-golden.json",
+      "sha256": "775069fc62da15cfbd8b9bae46d8268eedaeedbb03240802bec93c731dd0fdf7"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "aa416b72d93c3e5053f09774acd2015270e5d061909cc3ee1410a63ce2a44a3b"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "e0bd157f601173945ef214e4687439ebe8458a421b19e52743fa7fca3c779156"
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "sha256": "ad860ee7e2764383ce5775def24fdc93634b73670dbfec8df58e5c5c8134b236"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/W05-area-check.log.gz",
+      "sha256": "2b1d5b7fb3f57c0c1a735d723f697c3352e64b43ccc6c78b4a9ebd18e658d885",
+      "bytes": 1256
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-contracts.json.gz",
+      "sha256": "f44ef2148fbef9eebc6a60400e434b5df6f17fe374a8a7ba0750164981e80dd6",
+      "bytes": 18229
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-first-focused.log.gz",
+      "sha256": "0f8ac0588d3bc5999f97b40c05b558e8ddd9239c3bdfb4c3f703ec6cec15db16",
+      "bytes": 875
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-first-probe.log.gz",
+      "sha256": "2035dff24bffad9e9ca243c582fe5f8cad1df349325ceda0e4d0518d21c096a7",
+      "bytes": 341
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-browser.json.gz",
+      "sha256": "3f3a106f9a91ee1c080f8620410baeaba79fc2110c134741663d4a146e025b70",
+      "bytes": 54214
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-diagnostics.json.gz",
+      "sha256": "aedf1f9424bbeb861b909fc68c0ff72224cc5216f3618729d108398c96a088aa",
+      "bytes": 2206
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-local.png",
+      "sha256": "428a406754d3e46b159a46f57baf88db2bba436f65291187bea17423d5ab26a9",
+      "bytes": 148310
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-network-active.png",
+      "sha256": "2f13eef53cb9e807a6573b974cec6a4f83af9e04ea529fc9ddeecf0dd961c1b9",
+      "bytes": 123776
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-network-finished.png",
+      "sha256": "1b0d9d24cdf931a73c345cb78a9b4c68253583f713a5c384e9030ab4d4cde5ee",
+      "bytes": 124221
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-flame-recording.json.gz",
+      "sha256": "6bac3b2e24bd994cc6c97632afc8a27d8445f86448c7f45cb546b6826d8b81c3",
+      "bytes": 1430
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-lab.json.gz",
+      "sha256": "ff7f5bc62aa2269a3b0b98cc0718d927c5b861372c0c329b4dd2e69eb298a7ce",
+      "bytes": 9773
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-second-focused.log.gz",
+      "sha256": "836387c57b6d0a3a46353cadbafeb3c39243960dc69e0e94b5803a9e7ccb7b8b",
+      "bytes": 772
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-browser.json.gz",
+      "sha256": "6141f9e1c82e82273157ccb633f79251f81582c1557bf5bea2e6c009485fc0a3",
+      "bytes": 37017
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-diagnostics.json.gz",
+      "sha256": "c2f78e4bf21a0ca1989a3febbd20c0b7197ecf96e37e1583f55c9b185179cb37",
+      "bytes": 2171
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-local.png",
+      "sha256": "682dd26f90f64bb990a569258cac4fa211f406e4d60b3fae3da493a8caff0837",
+      "bytes": 148963
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-network-active.png",
+      "sha256": "74f93a424b8ea20d5568b12897793bed723b5b2303040598a254b8c1bb1eac40",
+      "bytes": 124391
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-network-finished.png",
+      "sha256": "641bc650fe0e33f47b40597c4d478788049287360c8d6354aab0eaf738a42baf",
+      "bytes": 124743
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-shotgun-recording.json.gz",
+      "sha256": "0f59227935727042c9f1f3b71603a0383eab598d6793855b452c375decd11948",
+      "bytes": 1448
+    },
+    {
+      "file": "docs/redesign-evidence/W05-area-storage.json.gz",
+      "sha256": "d3d236e8d89d366e36bbac64eb16c45ff6821e33f3f064b160355b5f1919ca50",
+      "bytes": 31055
+    }
+  ]
+}

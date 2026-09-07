@@ -1,6 +1,7 @@
 import { rifleMode } from "../../game/actors/rifle.js";
 import { shieldMode } from "../../game/actors/shield.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
+import { areaExposures } from "../../game/combat/area-attack.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
@@ -17,6 +18,7 @@ import {
 } from "../../game/labs/combat.js";
 import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
 import {
+  AREA_PROFILES,
   COMBAT_CATALOG,
   COMBAT_CONTENT,
   COMBAT_SHAPES,
@@ -49,6 +51,7 @@ export async function combatIdentity() {
       campaignFormat: 1,
       rifle: RIFLE_PROFILE,
       shield: SHIELD_PROFILE,
+      areas: [...AREA_PROFILES],
       footActions: FOOT_ACTION_PROFILES,
       grenade: GRENADE_PROFILE,
       life: {
@@ -285,6 +288,13 @@ export function combatSnapshot(
   snapshot.campaign.encounterId = 1;
   const definition = combatEncounterDefinition(combat);
   snapshot.combat = {
+    volumes: combat.areas
+      .flatMap((area) => {
+        const profile = AREA_PROFILES.get(area.definitionId);
+        if (!profile) throw new Error("Missing area snapshot profile");
+        return areaExposures(area, combat.tick, profile, combatTerrain(combat.scenario));
+      })
+      .sort((a, b) => a.id - b.id || a.lobe - b.lobe),
     nextEntityId: combat.nextEntityId,
     nextActionId: combat.nextActionId,
     encounterEventCursor: combat.eventSequence,

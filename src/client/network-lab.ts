@@ -76,7 +76,7 @@ async function startLab() {
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Yellow rectangles show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
+        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Filled yellow boxes show shotgun reach; filled orange/red boxes show attached/traveling flame. Outlined yellow boxes show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -149,6 +149,7 @@ async function startLab() {
     correctionChanged: boolean;
     enemies: number;
     projectiles: number;
+    volumes: number;
     shots: number;
     continuationHash: string | null;
   }> = [];
@@ -238,6 +239,7 @@ async function startLab() {
       enemies: snapshot?.enemies ?? [],
       threats: snapshot?.threats ?? [],
       projectiles: snapshot?.projectiles ?? [],
+      volumes: snapshot?.combat?.volumes ?? [],
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
@@ -560,6 +562,7 @@ async function startLab() {
         continuationHash: mode === "combat" ? combatContinuationHash(incoming) : null,
         enemies: incoming.enemies.length,
         projectiles: incoming.projectiles.length,
+        volumes: incoming.combat?.volumes.length ?? 0,
         shots: actor.weapon.shotOrdinal,
         tick: incoming.tick,
         hash: incoming.stateHash,
@@ -689,6 +692,15 @@ async function startLab() {
             threat.x / 256 + Math.sign(threat.vx) * 30,
             threat.y / 256 + Math.sign(threat.vy) * 30,
           );
+        }
+        for (const exposure of snapshot?.combat?.volumes ?? []) {
+          const r = exposure.rect,
+            color =
+              exposure.definitionId === 10 ? 0xffe475 : exposure.attached ? 0xff9647 : 0xff5b45;
+          g.fillStyle(color, 0.3);
+          g.fillRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+          g.lineStyle(1, color);
+          g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
         }
         for (const projectile of snapshot?.projectiles ?? []) {
           if (projectile.definitionId === 5) {

@@ -13,6 +13,7 @@ import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapsh
 import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
+import { verifyAreaCombat } from "./lib/verify-area-combat.js";
 import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
 import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
@@ -90,6 +91,11 @@ const loadingMode = process.argv.includes("--combat-loading") || phaseMode;
 const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const campaignMode = process.argv.includes("--combat-campaign");
+const areaMode = process.argv.includes("--combat-shotgun")
+  ? "shotgun"
+  : process.argv.includes("--combat-flame")
+    ? "flame"
+    : null;
 const shieldMode = process.argv.includes("--combat-guard");
 const hostileMode = process.argv.includes("--combat-hostile");
 const footMode = process.argv.includes("--combat-melee")
@@ -110,9 +116,10 @@ const combatMode =
   campaignMode ||
   hostileMode ||
   !!footMode ||
-  shieldMode;
+  shieldMode ||
+  !!areaMode;
 assert(
-  !(footMode || shieldMode) ||
+  !(footMode || shieldMode || areaMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -130,6 +137,8 @@ assert(
     process.argv.includes("--combat-melee"),
     process.argv.includes("--combat-grenade"),
     shieldMode,
+    process.argv.includes("--combat-shotgun"),
+    process.argv.includes("--combat-flame"),
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -164,35 +173,37 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = shieldMode
-  ? "dist/network-combat-guard-evidence"
-  : footMode
-    ? `dist/network-combat-${footMode}-evidence`
-    : hostileMode
-      ? "dist/network-combat-hostile-evidence"
-      : campaignMode
-        ? "dist/network-combat-campaign-evidence"
-        : automaticMode
-          ? "dist/network-combat-auto-evidence"
-          : combatReconnectMode
-            ? loadingMode
-              ? phaseMode
-                ? "dist/network-combat-phase-evidence"
-                : "dist/network-combat-loading-evidence"
-              : "dist/network-combat-reconnect-evidence"
-            : combatRecoveryMode
-              ? "dist/network-combat-recovery-evidence"
-              : baselineMode
-                ? "dist/network-combat-baseline-evidence"
-                : combatMode
-                  ? eventMode
-                    ? "dist/network-event-evidence"
-                    : faultMode
-                      ? "dist/network-combat-fault-evidence"
-                      : "dist/network-combat-evidence"
-                  : recoveryMode
-                    ? "dist/network-controller-recovery-evidence"
-                    : "dist/network-controller-evidence";
+const output = areaMode
+  ? `dist/network-combat-${areaMode}-evidence`
+  : shieldMode
+    ? "dist/network-combat-guard-evidence"
+    : footMode
+      ? `dist/network-combat-${footMode}-evidence`
+      : hostileMode
+        ? "dist/network-combat-hostile-evidence"
+        : campaignMode
+          ? "dist/network-combat-campaign-evidence"
+          : automaticMode
+            ? "dist/network-combat-auto-evidence"
+            : combatReconnectMode
+              ? loadingMode
+                ? phaseMode
+                  ? "dist/network-combat-phase-evidence"
+                  : "dist/network-combat-loading-evidence"
+                : "dist/network-combat-reconnect-evidence"
+              : combatRecoveryMode
+                ? "dist/network-combat-recovery-evidence"
+                : baselineMode
+                  ? "dist/network-combat-baseline-evidence"
+                  : combatMode
+                    ? eventMode
+                      ? "dist/network-event-evidence"
+                      : faultMode
+                        ? "dist/network-combat-fault-evidence"
+                        : "dist/network-combat-evidence"
+                    : recoveryMode
+                      ? "dist/network-controller-recovery-evidence"
+                      : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -205,6 +216,8 @@ for (const name of [
   "failure.png",
   "four-player-controller.png",
   "diagnostics.json",
+  "area-active.png",
+  "area-finished.png",
 ])
   await rm(`${output}/${name}`, { force: true });
 execFileSync("node", ["scripts/build-client.mjs", "--lab"], { stdio: "pipe" });
@@ -283,7 +296,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -367,6 +380,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (areaMode) {
+        const area = await verifyAreaCombat(pages, base, output, areaMode);
+        room = area.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          area,
+          clients: area.clients,
+          sharedSnapshots: area.common.length,
+          room,
+          scope:
+            "Four Chromium contexts over local workerd WebSockets; actual shotgun/flame keyboard action, exact public rectangles, one charge per player, material damage and duplicate event delivery. Engineering range; no final media or deployed timing acceptance.",
+        };
       }
       if (shieldMode) {
         const shield = await verifyShieldCombat(pages, base, output);
@@ -1909,7 +1942,7 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: shieldMode ? "guard" : hostileMode ? "rifle" : "range",
+    combatScenario: areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range"),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

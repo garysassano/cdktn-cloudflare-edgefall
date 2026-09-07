@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { rifleMode } from "../game/actors/rifle.js";
 import { shieldMode, shieldPresentation } from "../game/actors/shield.js";
+import { areaExposures } from "../game/combat/area-attack.js";
 import { actionPose } from "../game/combat/timeline.js";
 import { canonical } from "../game/core/canonical.js";
 import { Held } from "../game/input/types.js";
@@ -16,6 +17,7 @@ import {
   stepCombatLab,
 } from "../game/labs/combat.js";
 import {
+  AREA_PROFILES,
   COMBAT_CATALOG,
   COMBAT_SHAPES,
   GRENADE_PROFILE,
@@ -107,7 +109,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 3,
+    format: 4,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -323,6 +325,23 @@ class CombatScene extends Phaser.Scene {
           muzzle.x / 256 + (rifle.aim === 0 ? target.enemy.facing * 30 : 0),
           muzzle.y / 256 - (rifle.aim === 1 ? 30 : 0),
         );
+    }
+    for (const area of state.areas) {
+      const profile = AREA_PROFILES.get(area.definitionId);
+      if (!profile) continue;
+      for (const exposure of areaExposures(
+        area,
+        state.tick,
+        profile,
+        combatTerrain(state.scenario),
+      )) {
+        const r = exposure.rect,
+          color = area.definitionId === 10 ? 0xffe475 : exposure.attached ? 0xff9647 : 0xff5b45;
+        g.fillStyle(color, 0.3);
+        g.fillRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+        g.lineStyle(1, color);
+        g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+      }
     }
     for (const grenade of state.grenades) {
       g.fillStyle(0xa4e488);
