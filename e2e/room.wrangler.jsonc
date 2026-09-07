@@ -5,6 +5,8 @@
   "main": "../src/worker/diagnostics/room-probe.ts",
   "compatibility_date": "2026-08-30",
   "workers_dev": false,
+  // Disposable local fixture only. Direct workerd proofs generate an ephemeral signing key.
+  "vars": { "PROFILE_COOKIE_SECRET": "local-room-laboratory-only-never-deploy-this-key" },
   "durable_objects": { "bindings": [{ "name": "ROOM_PROBES", "class_name": "RoomLoadProbe" }] },
   "migrations": [{ "tag": "room-load-probe-v1", "new_sqlite_classes": ["RoomLoadProbe"] }]
 }

@@ -68,13 +68,19 @@ async function startLab() {
     if (!el) throw new Error(`Missing ${id}`);
     return el as T;
   }
-  const socket = new WebSocket(
-    `${base.origin.replace("http:", "ws:")}/${mode}/connect?slot=${slot}`,
-  );
-  socket.binaryType = "arraybuffer";
+  if (mode === "combat") {
+    const profile = await fetch(`${base.origin}/profile`, {
+      method: "POST",
+      credentials: "include",
+    });
+    if (!profile.ok) throw new Error(`Profile admission failed: ${profile.status}`);
+  }
+  if (params.get("scripted") === "1") element<HTMLInputElement>("scripted").checked = true;
+  let socket: WebSocket;
   let welcome: Handshake | null = null,
     snapshot: FullSnapshot | null = null,
     prediction: ControllerPrediction | null = null;
+  let initialActor: FullSnapshot["players"][number] | null = null;
   let inputStopped = false;
   let pendingMapping: InputMapping | null = null;
   let eventReceiver: EventReceiver | null = null;
@@ -200,6 +206,9 @@ async function startLab() {
       clockOriginMs: performance.timeOrigin,
       timeline: includeTimeline ? timeline : [],
       runEpoch: welcome?.runEpoch ?? 0,
+      connectionEpoch: welcome?.connectionEpoch ?? 0,
+      baselineEventCursor: welcome?.baselineEventCursor ?? 0,
+      initialActor,
       initialServerTick: welcome?.initialServerTick ?? 0,
       inputStopped,
       ready: welcome !== null && snapshot !== null,
@@ -314,203 +323,223 @@ async function startLab() {
     });
     inputClock.start();
   }
+  function prepareInput() {
+    if (prepared) throw new Error("Already prepared");
+    prepared = true;
+    for (let i = 0; i < CONTROLLER_INPUT_PREFILL_TICKS; i++) {
+      capture();
+      if (i % 3 === 2 || i === CONTROLLER_INPUT_PREFILL_TICKS - 1) flush(true);
+    }
+  }
   element("prepare").onclick = () => {
     try {
-      if (prepared) throw new Error("Already prepared");
-      prepared = true;
-      for (let i = 0; i < CONTROLLER_INPUT_PREFILL_TICKS; i++) {
-        capture();
-        if (i % 3 === 2 || i === CONTROLLER_INPUT_PREFILL_TICKS - 1) flush(true);
-      }
+      prepareInput();
       inspect();
     } catch (e) {
       error ??= String(e);
       inspect();
     }
   };
-  socket.addEventListener("message", (event) => {
-    try {
-      if (typeof event.data === "string") {
-        if (!welcome) {
-          welcome = decodeHandshake(event.data, identity);
-          if (
-            welcome.capabilities !==
-            (mode === "combat"
-              ? INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY
-              : INPUT_MAPPING_CAPABILITY)
-          )
-            throw new Error("Required input/event capabilities missing");
-        } else {
-          if (pendingMapping) throw new Error("Unpaired input mapping");
-          if (mode === "combat" && JSON.parse(event.data).type === "resync-required") {
-            if (pendingEventBaseline) throw new Error("Unpaired event baseline");
-            pendingEventBaseline = decodeEventBaseline(event.data, welcome);
-            return;
+  function connectSocket() {
+    socket = new WebSocket(`${base.origin.replace("http:", "ws:")}/${mode}/connect?slot=${slot}`);
+    socket.binaryType = "arraybuffer";
+    socket.addEventListener("message", (event) => {
+      try {
+        if (typeof event.data === "string") {
+          if (!welcome) {
+            welcome = decodeHandshake(event.data, identity);
+            if (
+              welcome.capabilities !==
+              (mode === "combat"
+                ? INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY
+                : INPUT_MAPPING_CAPABILITY)
+            )
+              throw new Error("Required input/event capabilities missing");
+          } else {
+            if (pendingMapping) throw new Error("Unpaired input mapping");
+            if (mode === "combat" && JSON.parse(event.data).type === "resync-required") {
+              if (pendingEventBaseline) throw new Error("Unpaired event baseline");
+              pendingEventBaseline = decodeEventBaseline(event.data, welcome);
+              return;
+            }
+            pendingMapping = decodeInputMapping(event.data);
+            trace(
+              "mapping",
+              pendingMapping.nextSequence,
+              pendingMapping.nextSequence,
+              pendingMapping.nextCommandTick,
+            );
           }
-          pendingMapping = decodeInputMapping(event.data);
-          trace(
-            "mapping",
-            pendingMapping.nextSequence,
-            pendingMapping.nextSequence,
-            pendingMapping.nextCommandTick,
-          );
-        }
-        return;
-      }
-      if (!welcome || !(event.data instanceof ArrayBuffer))
-        throw new Error("Missing welcome/binary data");
-      const context = {
-        ...probeContext(slot),
-        runEpoch: welcome.runEpoch,
-        connectionEpoch: welcome.connectionEpoch,
-        playerId: welcome.playerId,
-      };
-      if (new Uint8Array(event.data)[4] === EVENT_TYPE) {
-        if (mode !== "combat" || !eventReceiver || pendingMapping || pendingEventBaseline)
-          throw new Error("Unexpected gameplay event frame");
-        let batch = decodeEventBatch(new Uint8Array(event.data), combatEventContext(context));
-        if (eventFaults.dropNext > 0 || eventFaults.pauseUntilBaseline) {
-          eventFaults.dropNext = Math.max(0, eventFaults.dropNext - 1);
-          eventFramesDropped++;
           return;
         }
-        try {
-          // Application-consumer fault, distinct from dropping an intact wire frame.
-          if (eventFaults.gapNext) {
-            const nextCursor = eventReceiver.cursor + 1;
-            const fresh = batch.events.filter((item) => item.cursor >= nextCursor);
-            if (fresh.length > 1 && fresh[0]?.cursor === nextCursor) {
-              // Dropping a replayed duplicate does not create a gap. Omit the next unconsumed
-              // event and retain a later event so the consumer must request its baseline.
-              batch = { ...batch, events: fresh.slice(1) };
-              eventFaults.gapNext = false;
-              eventGapsInjected++;
+        if (!welcome || !(event.data instanceof ArrayBuffer))
+          throw new Error("Missing welcome/binary data");
+        const context = {
+          ...probeContext(slot),
+          runEpoch: welcome.runEpoch,
+          connectionEpoch: welcome.connectionEpoch,
+          playerId: welcome.playerId,
+        };
+        if (new Uint8Array(event.data)[4] === EVENT_TYPE) {
+          if (mode !== "combat" || !eventReceiver || pendingMapping || pendingEventBaseline)
+            throw new Error("Unexpected gameplay event frame");
+          let batch = decodeEventBatch(new Uint8Array(event.data), combatEventContext(context));
+          if (eventFaults.dropNext > 0 || eventFaults.pauseUntilBaseline) {
+            eventFaults.dropNext = Math.max(0, eventFaults.dropNext - 1);
+            eventFramesDropped++;
+            return;
+          }
+          try {
+            // Application-consumer fault, distinct from dropping an intact wire frame.
+            if (eventFaults.gapNext) {
+              const nextCursor = eventReceiver.cursor + 1;
+              const fresh = batch.events.filter((item) => item.cursor >= nextCursor);
+              if (fresh.length > 1 && fresh[0]?.cursor === nextCursor) {
+                // Dropping a replayed duplicate does not create a gap. Omit the next unconsumed
+                // event and retain a later event so the consumer must request its baseline.
+                batch = { ...batch, events: fresh.slice(1) };
+                eventFaults.gapNext = false;
+                eventGapsInjected++;
+              }
+            }
+            const accepted = eventReceiver.consume(batch);
+            if (eventFaults.duplicate) accepted.push(...eventReceiver.consume(batch));
+            for (const item of accepted) {
+              eventHash = stateHash([eventHash, { runEpoch: welcome.runEpoch, ...item }]);
+              eventCounts[item.event.kind] = (eventCounts[item.event.kind] ?? 0) + 1;
+              eventReceipts.push({
+                cursor: item.cursor,
+                tick: item.tick,
+                counter: item.counter,
+                kind: item.event.kind,
+                hash: eventHash,
+              });
+              confirmedEffects.push(item);
+            }
+            if (eventReceipts.length > 512) eventReceipts.splice(0, eventReceipts.length - 512);
+            if (confirmedEffects.length > 512)
+              confirmedEffects.splice(0, confirmedEffects.length - 512);
+          } catch (failure) {
+            if (!(failure instanceof ProtocolError) || failure.code !== "resync-required")
+              throw failure;
+            if (!eventRepairRequested) {
+              socket.send(
+                JSON.stringify({
+                  type: "event-resync-request",
+                  runEpoch: welcome.runEpoch,
+                  connectionEpoch: welcome.connectionEpoch,
+                  lastEventCursor: eventReceiver.cursor,
+                }),
+              );
+              eventRepairRequested = true;
             }
           }
-          const accepted = eventReceiver.consume(batch);
-          if (eventFaults.duplicate) accepted.push(...eventReceiver.consume(batch));
-          for (const item of accepted) {
-            eventHash = stateHash([eventHash, { runEpoch: welcome.runEpoch, ...item }]);
-            eventCounts[item.event.kind] = (eventCounts[item.event.kind] ?? 0) + 1;
-            eventReceipts.push({
-              cursor: item.cursor,
-              tick: item.tick,
-              counter: item.counter,
-              kind: item.event.kind,
-              hash: eventHash,
-            });
-            confirmedEffects.push(item);
-          }
-          if (eventReceipts.length > 512) eventReceipts.splice(0, eventReceipts.length - 512);
-          if (confirmedEffects.length > 512)
-            confirmedEffects.splice(0, confirmedEffects.length - 512);
-        } catch (failure) {
-          if (!(failure instanceof ProtocolError) || failure.code !== "resync-required")
-            throw failure;
-          if (!eventRepairRequested) {
-            socket.send(
-              JSON.stringify({
-                type: "event-resync-request",
-                runEpoch: welcome.runEpoch,
-                connectionEpoch: welcome.connectionEpoch,
-                lastEventCursor: eventReceiver.cursor,
-              }),
-            );
-            eventRepairRequested = true;
+          return;
+        }
+        const initial = snapshot === null;
+        const incoming = snapshot
+          ? decodeSnapshot(new Uint8Array(event.data), context)
+          : decodeInitialSnapshot(new Uint8Array(event.data), welcome, context);
+        if (incoming.stateHash !== roomWorkloadHash(incoming))
+          throw new Error("World digest mismatch");
+        if (
+          snapshot &&
+          (incoming.tick < snapshot.tick || incoming.snapshotId <= snapshot.snapshotId)
+        )
+          throw new Error("Snapshot regression");
+        const actor = incoming.players[slot],
+          acknowledgment = incoming.acknowledgments[slot];
+        if (!actor || !acknowledgment) throw new Error("Missing local controller");
+        if (initial) initialActor = structuredClone(actor);
+        trace(
+          "snapshot",
+          acknowledgment.lastProcessedSequence,
+          acknowledgment.lastProcessedSequence,
+          incoming.tick,
+        );
+        const baseline = {
+          snapshotId: incoming.snapshotId,
+          runEpoch: incoming.runEpoch,
+          connectionEpoch: incoming.connectionEpoch,
+          tick: incoming.tick,
+          actor,
+          acknowledgment,
+        };
+        const mapping = pendingMapping;
+        pendingMapping = null;
+        if (!mapping) throw new Error("Snapshot missing its input mapping");
+        const correction = prediction ? prediction.reconcile(baseline, mapping).correction : null;
+        prediction ??= new ControllerPrediction(
+          baseline,
+          (a, c, t) =>
+            mode === "combat"
+              ? predictCombatMovement(a, c, t)
+              : stepNetworkController(a, c, t).actor,
+          mapping,
+        );
+        input ??= new InputCapture(actor.controlEpoch);
+        snapshot = incoming;
+        if (mode === "combat") {
+          eventReceiver ??= new EventReceiver(combatEventContext(context), incoming);
+          if (pendingEventBaseline) {
+            eventReceiver.installBaseline(incoming, pendingEventBaseline);
+            pendingEventBaseline = null;
+            eventRepairRequested = false;
+            eventFaults.pauseUntilBaseline = false;
+            confirmedEffects.length = 0;
+            // Explicit acceptance couples this full snapshot to its replacement event prefix.
+            sendCommands([]);
           }
         }
-        return;
-      }
-      const incoming = snapshot
-        ? decodeSnapshot(new Uint8Array(event.data), context)
-        : decodeInitialSnapshot(new Uint8Array(event.data), welcome, context);
-      if (incoming.stateHash !== roomWorkloadHash(incoming))
-        throw new Error("World digest mismatch");
-      if (snapshot && (incoming.tick < snapshot.tick || incoming.snapshotId <= snapshot.snapshotId))
-        throw new Error("Snapshot regression");
-      const actor = incoming.players[slot],
-        acknowledgment = incoming.acknowledgments[slot];
-      if (!actor || !acknowledgment) throw new Error("Missing local controller");
-      trace(
-        "snapshot",
-        acknowledgment.lastProcessedSequence,
-        acknowledgment.lastProcessedSequence,
-        incoming.tick,
-      );
-      const baseline = {
-        snapshotId: incoming.snapshotId,
-        runEpoch: incoming.runEpoch,
-        connectionEpoch: incoming.connectionEpoch,
-        tick: incoming.tick,
-        actor,
-        acknowledgment,
-      };
-      const mapping = pendingMapping;
-      pendingMapping = null;
-      if (!mapping) throw new Error("Snapshot missing its input mapping");
-      const correction = prediction ? prediction.reconcile(baseline, mapping).correction : null;
-      prediction ??= new ControllerPrediction(
-        baseline,
-        (a, c, t) =>
-          mode === "combat" ? predictCombatMovement(a, c, t) : stepNetworkController(a, c, t).actor,
-        mapping,
-      );
-      input ??= new InputCapture(actor.controlEpoch);
-      snapshot = incoming;
-      if (mode === "combat") {
-        eventReceiver ??= new EventReceiver(combatEventContext(context), incoming);
-        if (pendingEventBaseline) {
-          eventReceiver.installBaseline(incoming, pendingEventBaseline);
-          pendingEventBaseline = null;
-          eventRepairRequested = false;
-          eventFaults.pauseUntilBaseline = false;
-          confirmedEffects.length = 0;
-          // Explicit acceptance couples this full snapshot to its replacement event prefix.
-          sendCommands([]);
+        if (receipts.length >= 500) throw new Error("Receipt history bound");
+        receipts.push({
+          continuationHash: mode === "combat" ? combatContinuationHash(incoming) : null,
+          enemies: incoming.enemies.length,
+          projectiles: incoming.projectiles.length,
+          shots: actor.weapon.shotOrdinal,
+          tick: incoming.tick,
+          hash: incoming.stateHash,
+          bytes: event.data.byteLength,
+          y: actor.body.y,
+          shape: actor.body.shapeId,
+          ack: acknowledgment.lastProcessedSequence,
+          correctionX: correction?.x ?? 0,
+          correctionY: correction?.y ?? 0,
+          correctionChanged: correction?.changed ?? false,
+        });
+        if (initial && mode === "combat" && incoming.roomMode === "playing") prepareInput();
+        if (prepared && incoming.roomMode === "playing") {
+          if (inputStopped) sendCommands([]);
+          else startCaptureClock();
+        } else if (incoming.roomMode !== "loading") {
+          fail("Room lifecycle requires a fresh input baseline");
         }
+        inspect();
+      } catch (e) {
+        fail(e);
       }
-      if (receipts.length >= 500) throw new Error("Receipt history bound");
-      receipts.push({
-        continuationHash: mode === "combat" ? combatContinuationHash(incoming) : null,
-        enemies: incoming.enemies.length,
-        projectiles: incoming.projectiles.length,
-        shots: actor.weapon.shotOrdinal,
-        tick: incoming.tick,
-        hash: incoming.stateHash,
-        bytes: event.data.byteLength,
-        y: actor.body.y,
-        shape: actor.body.shapeId,
-        ack: acknowledgment.lastProcessedSequence,
-        correctionX: correction?.x ?? 0,
-        correctionY: correction?.y ?? 0,
-        correctionChanged: correction?.changed ?? false,
-      });
-      if (prepared && incoming.roomMode === "playing") {
-        if (inputStopped) sendCommands([]);
-        else startCaptureClock();
-      } else if (incoming.roomMode !== "loading") {
-        fail("Room lifecycle requires a fresh input baseline");
-      }
+    });
+    socket.addEventListener("close", (event) => {
+      element("reconnect").hidden = false;
+      inputClock?.close();
+      neutral();
+      if (event.reason !== "observer-closed") error ??= `closed: ${event.code} ${event.reason}`;
       inspect();
-    } catch (e) {
-      fail(e);
-    }
-  });
-  socket.addEventListener("close", (event) => {
-    element("reconnect").hidden = false;
-    inputClock?.close();
-    neutral();
-    if (event.reason !== "observer-closed") error ??= `closed: ${event.code} ${event.reason}`;
-    inspect();
-  });
-  element("reconnect").onclick = () => location.reload();
-  socket.addEventListener("error", () => {
-    fail("WebSocket failure");
+    });
+    element("reconnect").onclick = () => location.reload();
+    socket.addEventListener("error", () => {
+      fail("WebSocket failure");
+    });
+  }
+  let rendered = () => {};
+  const rendererReady = new Promise<void>((resolve) => {
+    rendered = resolve;
   });
   class NetworkScene extends Phaser.Scene {
     private graphics?: Phaser.GameObjects.Graphics;
     create() {
       this.graphics = this.add.graphics();
+      this.game.events.once(Phaser.Core.Events.POST_RENDER, rendered);
     }
     update() {
       const g = this.graphics;
@@ -567,6 +596,9 @@ async function startLab() {
     scene: NetworkScene,
     audio: { noAudio: true },
   });
+  // GPU startup must finish before requesting a baseline from an already moving world.
+  await rendererReady;
+  connectSocket();
   Object.assign(window, {
     controllerNetworkLab: {
       status,

@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-09-07T01:36:01.292Z",
+  "commit": "893a35dd26589dc9fe07dde517e7c13fd31e1147",
+  "sourceSha256": "1f49321851f944ffff0530478fe3aacbec7699ba2284861ff7c9991ac6e7c7e1",
+  "workerBundleSha256": "a19fad23133a526ccbe59ebfd1d8b19ee49b7c2800240edf57d78f4c59de579d",
+  "wrangler": "4.128.0",
+  "seeded": {
+    "instance": "5b257804-e7ed-4478-af0a-a20720be3191",
+    "tick": 105,
+    "observedTick": 119,
+    "rollbackTick": 90,
+    "rollbackTicks": [
+      45,
+      90
+    ],
+    "hash": "a76c62c3"
+  },
+  "restored": {
+    "instance": "0b7b0dad-0db7-4c74-ab51-1ab91b3310cf",
+    "tick": 105,
+    "hash": "a76c62c3",
+    "nextActionId": 55,
+    "nextEntityId": 1054,
+    "eventCursor": 167,
+    "kills": [
+      {
+        "count": 0,
+        "playerId": 1
+      },
+      {
+        "count": 2,
+        "playerId": 2
+      },
+      {
+        "count": 0,
+        "playerId": 3
+      },
+      {
+        "count": 0,
+        "playerId": 4
+      }
+    ],
+    "rows": [
+      {
+        "key": "checkpoint",
+        "run_epoch": 1,
+        "tick": 60,
+        "bytes": 51639
+      },
+      {
+        "key": "segment:61",
+        "run_epoch": 1,
+        "tick": 75,
+        "bytes": 26373
+      },
+      {
+        "key": "segment:76",
+        "run_epoch": 1,
+        "tick": 90,
+        "bytes": 23182
+      },
+      {
+        "key": "head",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 8
+      },
+      {
+        "key": "segment:91",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 23183
+      }
+    ]
+  },
+  "gap": {
+    "instance": "0b7b0dad-0db7-4c74-ab51-1ab91b3310cf",
+    "rejected": true,
+    "reason": "Error: Missing/changed combat durable segment"
+  },
+  "status": "pass",
+  "scope": "Owned local SQLite Durable Object and fresh workerd process. Checkpoint/journal reconstruction and atomic rollback; no production room, client recovery barrier or deployed durability claim."
+}

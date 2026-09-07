@@ -1,8 +1,10 @@
 import { DurableObject } from "cloudflare:workers";
+import { COUNTER_LIMIT } from "../../game/core/numeric.js";
 import type { CombatLab } from "../../game/labs/combat.js";
 import type { GameIdentity } from "../../shared/content-id.js";
 import { combatEventContext } from "../../shared/diagnostics/combat-events.js";
 import {
+  type CombatConnectionChange,
   type CombatJournalTick,
   type CombatRuntime,
   combatRuntimeHash,
@@ -50,13 +52,28 @@ import type { WorldInputOutcome } from "../../shared/protocol/input-stream.js";
 import { InputStream } from "../../shared/protocol/input-stream.js";
 import { encodeSnapshot } from "../../shared/protocol/snapshot.js";
 import { RoomClock } from "../../shared/runtime/room-clock.js";
+import {
+  admitMember,
+  checkpointMembership,
+  disconnectMember,
+} from "../../shared/session/membership.js";
+import {
+  PROFILE_COOKIE_NAME,
+  profileCookie,
+  signProfileIdentity,
+  verifyProfileIdentity,
+} from "../../shared/session/profile.js";
 import { ControlLease } from "../runtime/control-lease.js";
 import { CombatStorage } from "./combat-storage.js";
+import { MembershipStorage } from "./membership-storage.js";
 
 interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
+  PROFILE_COOKIE_SECRET: string;
 }
 interface Peer {
+  generation: number;
+  initialBaseline: { snapshotId: number; cursor: number } | null;
   baselineTick: number;
   socket: WebSocket;
   input: InputStream;
@@ -87,6 +104,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private failNextCombatTick = false;
   private worldFailure: string | null = null;
   private readonly peers = new Map<number, Peer>();
+  private readonly pendingPeers = new Map<number, Peer>();
+  private readonly admissions = new Set<number>();
+  private members: MembershipStorage | null = null;
+  private resolvedIdentity: GameIdentity = PROBE_IDENTITY;
+  private staleSocketEvents = 0;
+  private readonly connections: RoomProbeStatus["connections"] = [];
   private readonly localCpu: RoomProbeStatus["localCpu"] = [];
   private readonly callbacks: RoomProbeStatus["callbacks"] = [];
   private readonly timers: RoomProbeStatus["timers"] = [];
@@ -188,6 +211,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     peer.metrics.active = false;
     peer.metrics.closeReason = reason;
     peer.metrics.lastHeld = 0;
+    if (this.members)
+      this.members.save(
+        disconnectMember(this.members.state, peer.metrics.slot, peer.generation, Date.now()),
+      );
     if (reason === "lease-expired") peer.metrics.expiredAtTick = decisionTick;
     try {
       peer.socket.close(code, reason);
@@ -197,6 +224,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   }
   private disconnectAll(reason: string): void {
     for (const peer of this.peers.values()) this.disconnect(peer, reason, 4003);
+    for (const peer of this.pendingPeers.values()) this.disconnect(peer, reason, 4003);
+    this.pendingPeers.clear();
   }
   private finish(reason: string): void {
     this.clock.close();
@@ -209,20 +238,62 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private context(slot: number) {
     return this.controllerInputs ? controllerPeerContext(this.world, slot) : probeContext(slot);
   }
+  private newInput(slot: number, baselineServerTick: number) {
+    return new InputStream({
+      ...this.context(slot),
+      controlEpoch: this.world.players[slot]?.controlEpoch ?? 1,
+      baselineServerTick,
+    });
+  }
+  private welcome(peer: Peer): void {
+    const slot = peer.metrics.slot;
+    const welcome: Handshake = {
+      ...this.resolvedIdentity,
+      type: "welcome",
+      protocolMajor: 3,
+      protocolMinor: 1,
+      runId: "local-room-workload",
+      runEpoch: this.world.runEpoch,
+      connectionEpoch: this.context(slot).connectionEpoch,
+      playerId: slot + 1,
+      entityId: slot + 1,
+      simulationHz: 60,
+      snapshotHz: 20,
+      initialServerTick: this.world.tick,
+      capabilities:
+        this.workload === "combat"
+          ? ((INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY) as 3)
+          : this.controllerInputs
+            ? INPUT_MAPPING_CAPABILITY
+            : 0,
+      baselineSnapshotId: this.world.snapshotId + 1,
+      baselineEventCursor: this.world.baselineEventCursor,
+      buildId: "4".repeat(64),
+    };
+    try {
+      peer.socket.send(JSON.stringify(welcome));
+      this.world.stateHash = roomWorkloadHash(this.world);
+      this.snapshot(peer, undefined, true);
+    } catch (error) {
+      peer.metrics.lastOutputError = String(error).slice(0, 256);
+      this.disconnect(peer, "welcome-failed", 4002);
+    }
+  }
 
-  private snapshot(peer: Peer, requestedRepair?: EventBaseline["reason"]): void {
-    if (peer.pendingEventBaseline) return;
+  private snapshot(peer: Peer, requestedRepair?: EventBaseline["reason"], initial = false): void {
+    if (peer.pendingEventBaseline || peer.initialBaseline) return;
     this.world.snapshotId++;
     const context = this.context(peer.metrics.slot);
     this.world.connectionEpoch = context.connectionEpoch;
     const bytes = encodeSnapshot(this.world, context);
-    const batches = this.eventHistory
-      ? eventBatches(
-          this.eventHistory,
-          peer.input.deliveryAcknowledgments.event,
-          context.connectionEpoch,
-        )
-      : [];
+    const batches =
+      this.eventHistory && !initial
+        ? eventBatches(
+            this.eventHistory,
+            peer.input.deliveryAcknowledgments.event,
+            context.connectionEpoch,
+          )
+        : [];
     let baseline: EventBaseline | null = null;
     if (requestedRepair || batches === null) {
       if (++peer.metrics.eventBaselines > 8) throw new Error("Event baseline repair limit");
@@ -255,6 +326,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     peer.input.recordSent(this.world.snapshotId, cursor);
     peer.metrics.eventSentCursor = cursor;
     peer.pendingEventBaseline = baseline;
+    if (initial && this.workload === "combat")
+      peer.initialBaseline = { snapshotId: this.world.snapshotId, cursor };
     peer.metrics.snapshots++;
     peer.metrics.snapshotBytes += bytes.byteLength;
   }
@@ -271,7 +344,9 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
 
   private step(tick: number): undefined {
     const cpuStart = performance.now(); // Local CPU diagnostic only; never enters world arithmetic.
-    const active = [...this.peers]
+    const replacements = [...this.pendingPeers].sort(([a], [b]) => a - b);
+    const cohort = new Map([...this.peers, ...replacements]);
+    const active = [...cohort]
       .sort(([a], [b]) => a - b)
       .filter(([, peer]) => {
         if (!peer.metrics.active) return false;
@@ -294,10 +369,14 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       (prepared) => {
         if (this.workload === "combat") {
           if (!this.combat || !this.eventHistory) throw new Error("Missing combat world/history");
-          const result = stageCombatRuntime(this.combatRuntime(), prepared);
+          const changes: CombatConnectionChange[] = replacements.map(([slot, peer]) => ({
+            playerId: slot + 1,
+            connectionEpoch: peer.input.acknowledgment.connectionEpoch,
+          }));
+          const result = stageCombatRuntime(this.combatRuntime(), prepared, changes);
           const history = result.state.history;
           for (const [slot] of active) {
-            const context = this.context(slot);
+            const context = controllerPeerContext(result.state.snapshot, slot);
             encodeSnapshot(
               { ...result.state.snapshot, connectionEpoch: context.connectionEpoch },
               context,
@@ -382,6 +461,23 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.combat = transaction.state.combat;
     this.eventHistory = transaction.state.history;
     this.connectedPlayerIds = transaction.state.connectedPlayerIds;
+    for (const [slot, peer] of replacements) {
+      const old = this.peers.get(slot);
+      if (old) this.disconnect(old, "connection-replaced", 4003);
+      this.peers.set(slot, peer);
+      this.pendingPeers.delete(slot);
+      peer.baselineTick = tick;
+      peer.input = this.newInput(slot, tick);
+      peer.lastAckAt = this.sampledNow;
+      peer.lease = new ControlLease(this.sampledNow);
+      this.connections.push({
+        tick,
+        slot,
+        connectionEpoch: this.context(slot).connectionEpoch,
+        controlEpoch: this.world.players[slot]?.controlEpoch ?? 0,
+        baselineEventCursor: this.world.baselineEventCursor,
+      });
+    }
     if (transaction.state.journal) {
       try {
         if (!this.combatWriter) throw new Error("Missing combat journal writer");
@@ -391,6 +487,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         this.pausePersistence(String(error));
       }
     }
+    for (const [, peer] of replacements) if (peer.metrics.active) this.welcome(peer);
     for (const processed of transaction.processed) {
       const slot = this.world.players.find(
         (actor) => actor.playerId === processed.input.playerId,
@@ -521,6 +618,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         ? createControllerWorkload()
         : createRoomWorkload(this.workload === "double" ? 2 : 1);
     if (this.workload === "combat") {
+      this.members = new MembershipStorage(this.ctx.storage);
       const initial = createCombatRuntime();
       initial.snapshot.roomMode = "loading";
       initial.snapshot.stateHash = roomWorkloadHash(initial.snapshot);
@@ -543,6 +641,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.failNextPersistence = false;
             throw new Error("injected-combat-storage-failure");
           }
+          if (this.members) this.members.save(checkpointMembership(this.members.state, Date.now()));
         },
       );
       const loaded = await this.combatStore.load();
@@ -559,7 +658,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const action = parts[2];
     this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize(parts[1]));
     await this.initialization;
-    const identity = await this.identity;
+    this.resolvedIdentity = await this.identity;
     if (action === "release-write") {
       if (request.method !== "POST" || this.workload !== "combat" || !this.heldPersistence)
         return new Response("No held write", { status: 409 });
@@ -667,14 +766,64 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return new Response("Upgrade required", { status: 426 });
       if (url.searchParams.get("slot") === null || !Number.isInteger(slot) || slot < 0 || slot > 3)
         return new Response("Invalid slot", { status: 400 });
-      if (this.world.roomMode !== "loading" || this.peers.has(slot))
-        return new Response("Probe full or started", { status: 409 });
+      const replacing = this.workload === "combat" && this.world.roomMode === "playing";
+      if (
+        replacing &&
+        (this.world.players[slot]?.vehicleId !== null ||
+          this.context(slot).connectionEpoch >= COUNTER_LIMIT - 2)
+      )
+        return new Response("Connection transition unavailable", { status: 409 });
+      if (
+        (!replacing && (this.world.roomMode !== "loading" || this.peers.has(slot))) ||
+        this.admissions.has(slot) ||
+        this.pendingPeers.has(slot) ||
+        this.starting ||
+        this.connections.length >= 32
+      )
+        return new Response("Room admission unavailable", { status: 409 });
+      let generation = 0;
+      if (this.members) {
+        const profileId = request.headers.get("X-Edgefall-Profile") ?? "";
+        try {
+          const admitted = admitMember(
+            this.members.state,
+            profileId,
+            slot,
+            this.world.tick === 0 && !replacing,
+            Date.now(),
+          );
+          generation = admitted.members.find((m) => m.slot === slot)?.generation ?? 0;
+          this.admissions.add(slot);
+          const epoch = this.world.runEpoch;
+          this.members.save(admitted);
+          await this.ctx.storage.sync();
+          if (
+            this.world.runEpoch !== epoch ||
+            (replacing ? this.world.roomMode !== "playing" : this.world.roomMode !== "loading")
+          )
+            throw new Error("room-boundary-changed");
+        } catch (error) {
+          if (generation) {
+            this.members.save(disconnectMember(this.members.state, slot, generation, Date.now()));
+            const previous = this.peers.get(slot);
+            if (previous) this.disconnect(previous, "admission-cancelled");
+          }
+          return new Response(error instanceof Error ? error.message : "Admission failed", {
+            status: 409,
+          });
+        } finally {
+          this.admissions.delete(slot);
+        }
+      }
       const pair = new WebSocketPair();
       const peer: Peer = {
+        generation,
+        initialBaseline: null,
         baselineTick: this.world.tick,
         socket: pair[1],
         input: new InputStream({
           ...this.context(slot),
+          connectionEpoch: this.context(slot).connectionEpoch + (replacing ? 1 : 0),
           controlEpoch: this.world.players[slot]?.controlEpoch ?? 1,
           baselineServerTick: this.world.tick,
         }),
@@ -706,35 +855,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           lastHeld: 0,
         },
       };
-      this.peers.set(slot, peer);
       this.ctx.acceptWebSocket(pair[1]);
-      pair[1].serializeAttachment({ instanceId: this.instanceId, slot });
-      const welcome: Handshake = {
-        ...identity,
-        type: "welcome",
-        protocolMajor: 3,
-        protocolMinor: 1,
-        runId: "local-room-workload",
-        runEpoch: this.world.runEpoch,
-        connectionEpoch: this.context(slot).connectionEpoch,
-        playerId: slot + 1,
-        entityId: slot + 1,
-        simulationHz: 60,
-        snapshotHz: 20,
-        initialServerTick: this.world.tick,
-        capabilities:
-          this.workload === "combat"
-            ? ((INPUT_MAPPING_CAPABILITY | EVENT_CAPABILITY) as 3)
-            : this.controllerInputs
-              ? INPUT_MAPPING_CAPABILITY
-              : 0,
-        baselineSnapshotId: this.world.snapshotId + 1,
-        baselineEventCursor: this.world.baselineEventCursor,
-        buildId: "4".repeat(64),
-      };
-      pair[1].send(JSON.stringify(welcome));
-      this.world.stateHash = roomWorkloadHash(this.world);
-      this.publishSnapshot(peer);
+      pair[1].serializeAttachment({ instanceId: this.instanceId, slot, generation });
+      if (replacing) this.pendingPeers.set(slot, peer);
+      else {
+        this.peers.set(slot, peer);
+        this.welcome(peer);
+      }
       return new Response(null, { status: 101, webSocket: pair[0] });
     }
     if (action !== "status" && request.method !== "POST")
@@ -742,11 +869,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (action === "start") {
       if (
         this.starting ||
+        this.admissions.size > 0 ||
         this.world.roomMode !== "loading" ||
         this.peers.size !== 4 ||
         [...this.peers.values()].some(
           (peer) =>
             !peer.metrics.active ||
+            peer.initialBaseline !== null ||
             (this.controllerInputs && peer.input.queuedCommands < CONTROLLER_INPUT_PREFILL_TICKS),
         )
       )
@@ -790,6 +919,15 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     } else if (action === "close") this.finish("observer-closed");
     else if (action !== "status") return new Response("Not found", { status: 404 });
     const status: RoomProbeStatus = {
+      connections: this.connections,
+      staleSocketEvents: this.staleSocketEvents,
+      membership: this.members
+        ? {
+            epoch: this.members.state.epoch,
+            hostSlot: this.members.state.hostSlot,
+            members: this.members.state.members.map(({ profileId: _private, ...member }) => member),
+          }
+        : null,
       instanceId: this.instanceId,
       worldFailure: this.worldFailure,
       durability: this.combatWriter?.status ?? null,
@@ -803,6 +941,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         requiresResync: peer.input.requiresResync,
         delivery: peer.input.deliveryAcknowledgments,
         pendingEventBaseline: peer.pendingEventBaseline,
+        initialBaseline: peer.initialBaseline,
       })),
       combat: this.combat
         ? {
@@ -831,7 +970,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
 
   webSocketMessage(socket: WebSocket, message: string | ArrayBuffer): void {
     const peer = [...this.peers.values()].find((value) => value.socket === socket);
-    if (!peer?.metrics.active) return;
+    if (!peer?.metrics.active) {
+      this.staleSocketEvents = Math.min(1000, this.staleSocketEvents + 1);
+      return;
+    }
     if (
       (typeof message === "string" ? message.length > 512 : message.byteLength > 284) ||
       (this.world.roomMode !== "playing" &&
@@ -849,7 +991,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       lastSequence = 0;
     try {
       if (typeof message === "string") {
-        if (this.workload !== "combat") throw new Error("Unexpected event control");
+        if (this.workload !== "combat" || peer.initialBaseline)
+          throw new Error("Unexpected event control");
         const request = decodeEventResyncRequest(message, this.context(peer.metrics.slot));
         if (
           request.lastEventCursor < peer.input.deliveryAcknowledgments.event ||
@@ -861,6 +1004,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       }
       const previousAck = peer.input.deliveryAcknowledgments.snapshot;
       const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
+      if (
+        peer.initialBaseline &&
+        (batch.snapshotAck !== peer.initialBaseline.snapshotId ||
+          batch.eventAck !== peer.initialBaseline.cursor)
+      )
+        throw new Error("Fresh baseline acknowledgment required");
       if (this.controllerInputs) {
         firstSequence = batch.commands[0]?.sequence ?? 0;
         lastSequence = batch.commands.at(-1)?.sequence ?? 0;
@@ -872,6 +1021,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         peer.eventBeforeBaseline,
       );
       const result = peer.input.receive(new Uint8Array(message), now, this.clock.state.tick);
+      if (!result.duplicate) peer.initialBaseline = null;
       if (eventBaselineAccepted && !result.duplicate) peer.pendingEventBaseline = null;
       this.traceInput(
         peer,
@@ -911,6 +1061,15 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   webSocketClose(socket: WebSocket): void {
     const peer = [...this.peers.values()].find((value) => value.socket === socket);
     if (peer) this.disconnect(peer, "socket-closed");
+    else {
+      const pending = [...this.pendingPeers.values()].find((value) => value.socket === socket);
+      if (pending) {
+        this.disconnect(pending, "socket-closed");
+        this.pendingPeers.delete(pending.metrics.slot);
+        const previous = this.peers.get(pending.metrics.slot);
+        if (previous) this.disconnect(previous, "admission-cancelled");
+      } else this.staleSocketEvents = Math.min(1000, this.staleSocketEvents + 1);
+    }
   }
   webSocketError(socket: WebSocket): void {
     this.webSocketClose(socket);
@@ -918,16 +1077,63 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
 }
 
 export default {
-  fetch(request: Request, env: ProbeEnv): Response | Promise<Response> {
+  async fetch(request: Request, env: ProbeEnv): Promise<Response> {
     const url = new URL(request.url);
     if (!["localhost", "127.0.0.1"].includes(url.hostname))
       return new Response("Local only", { status: 403 });
     if (url.pathname === "/health") return Response.json({ fixture: "edgefall-room-load-probe" });
+    const origin = request.headers.get("Origin");
+    if (origin) {
+      try {
+        const source = new URL(origin);
+        if (
+          source.protocol !== "http:" ||
+          !["localhost", "127.0.0.1"].includes(source.hostname) ||
+          source.origin !== origin
+        )
+          return new Response("Local origin required", { status: 403 });
+      } catch {
+        return new Response("Invalid origin", { status: 403 });
+      }
+    }
+    if (url.pathname === "/profile") {
+      if (request.method !== "POST") return new Response("Use POST", { status: 405 });
+      const now = Math.floor(Date.now() / 1000);
+      const existing = await verifyProfileIdentity(
+        profileCookie(request.headers.get("Cookie")),
+        env.PROFILE_COOKIE_SECRET,
+        now,
+      );
+      const headers = new Headers({ "Cache-Control": "no-store" });
+      if (origin) {
+        headers.set("Access-Control-Allow-Origin", origin);
+        headers.set("Access-Control-Allow-Credentials", "true");
+        headers.set("Vary", "Origin");
+      }
+      if (!existing)
+        headers.set(
+          "Set-Cookie",
+          `${PROFILE_COOKIE_NAME}=${await signProfileIdentity(crypto.randomUUID(), now + 3600, env.PROFILE_COOKIE_SECRET)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=3600`,
+        );
+      return Response.json({ authenticated: true }, { headers });
+    }
     const match =
       /^\/(standard|double|controller|combat)\/(connect|start|status|close|recover|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
         url.pathname,
       );
     if (!match?.[1]) return new Response("Not found", { status: 404 });
-    return env.ROOM_PROBES.getByName(match[1]).fetch(request);
+    const forwarded = new Request(request);
+    forwarded.headers.delete("X-Edgefall-Profile");
+    if (match[1] === "combat" && match[2] === "connect") {
+      if (request.method !== "GET") return new Response("Use GET", { status: 405 });
+      const profile = await verifyProfileIdentity(
+        profileCookie(request.headers.get("Cookie")),
+        env.PROFILE_COOKIE_SECRET,
+        Math.floor(Date.now() / 1000),
+      );
+      if (!profile) return new Response("profile-required", { status: 401 });
+      forwarded.headers.set("X-Edgefall-Profile", profile);
+    }
+    return env.ROOM_PROBES.getByName(match[1]).fetch(forwarded);
   },
 };

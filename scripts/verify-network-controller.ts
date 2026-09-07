@@ -2,13 +2,14 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { createServer } from "node:http";
+import { createServer, request as httpRequest } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
+import { encodeInputBatch } from "../src/shared/protocol/codec.js";
 import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
-import type { CombatSnapshot } from "../src/shared/protocol/snapshot-schema.js";
+import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapshot-schema.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 
 interface ClientStatus {
@@ -16,6 +17,9 @@ interface ClientStatus {
   timeline: unknown[];
   slot: number;
   runEpoch: number;
+  connectionEpoch: number;
+  baselineEventCursor: number;
+  initialActor: FullSnapshot["players"][number] | null;
   initialServerTick: number;
   ready: boolean;
   error: string | null;
@@ -28,7 +32,7 @@ interface ClientStatus {
   held: number;
   pendingEdges: number;
   inputClock: { mode: string; tick: number } | null;
-  authoritative: { controlEpoch: number; processedEdgeIds: number[] } | null;
+  authoritative: FullSnapshot["players"][number] | null;
   events:
     | (EventReceiver["status"] & {
         counts: Record<string, number>;
@@ -62,11 +66,20 @@ interface ClientStatus {
 }
 const recoveryMode = process.argv.includes("--recovery");
 const combatRecoveryMode = process.argv.includes("--combat-recovery");
+const combatReconnectMode = process.argv.includes("--combat-reconnect");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
 const combatMode =
-  process.argv.includes("--combat") || faultMode || eventMode || combatRecoveryMode;
+  process.argv.includes("--combat") ||
+  faultMode ||
+  eventMode ||
+  combatRecoveryMode ||
+  combatReconnectMode;
+assert(
+  !(combatReconnectMode && (combatRecoveryMode || faultMode || eventMode || recoveryMode)),
+  "Run per-player reconnect separately",
+);
 assert(!(combatMode && recoveryMode), "Use --combat-recovery for durable combat recovery");
 assert(
   !(combatRecoveryMode && (faultMode || eventMode)),
@@ -74,19 +87,21 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = combatRecoveryMode
-  ? "dist/network-combat-recovery-evidence"
-  : baselineMode
-    ? "dist/network-combat-baseline-evidence"
-    : combatMode
-      ? eventMode
-        ? "dist/network-event-evidence"
-        : faultMode
-          ? "dist/network-combat-fault-evidence"
-          : "dist/network-combat-evidence"
-      : recoveryMode
-        ? "dist/network-controller-recovery-evidence"
-        : "dist/network-controller-evidence";
+const output = combatReconnectMode
+  ? "dist/network-combat-reconnect-evidence"
+  : combatRecoveryMode
+    ? "dist/network-combat-recovery-evidence"
+    : baselineMode
+      ? "dist/network-combat-baseline-evidence"
+      : combatMode
+        ? eventMode
+          ? "dist/network-event-evidence"
+          : faultMode
+            ? "dist/network-combat-fault-evidence"
+            : "dist/network-combat-evidence"
+        : recoveryMode
+          ? "dist/network-controller-recovery-evidence"
+          : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -236,6 +251,282 @@ try {
         await configureEvents(2, { dropNext: 1 });
       }
       await prepareAndStart();
+      if (combatReconnectMode) {
+        const status = async () => {
+          room = (await (await fetch(`${base}/combat/status`)).json()) as RoomProbeStatus;
+          return room;
+        };
+        const waitTick = async (tick: number) => {
+          for (let attempt = 0; attempt < 120; attempt++) {
+            const clients = await read();
+            assert(
+              clients.every((c) => !c.error && !c.requiresResync),
+              JSON.stringify(
+                clients.map((c) => ({ slot: c.slot, tick: c.snapshotTick, error: c.error })),
+              ),
+            );
+            if (clients.every((c) => c.snapshotTick >= tick)) return clients;
+            await new Promise((resolve) => setTimeout(resolve, 25));
+          }
+          throw new Error("Reconnect progression timed out");
+        };
+        const before = await waitTick(42),
+          beforeRoom = await status();
+        const denied = (slot: number, headers: Record<string, string>) =>
+          new Promise<{ status: number; body: string }>((resolve, reject) => {
+            const req = httpRequest(
+              `${base}/combat/connect?slot=${slot}`,
+              {
+                headers: {
+                  ...headers,
+                  Upgrade: "websocket",
+                  Connection: "Upgrade",
+                  "Sec-WebSocket-Version": "13",
+                  "Sec-WebSocket-Key": "ZWRnZWZhbGwtcHJvYmUtMQ==",
+                },
+              },
+              (res) => {
+                let body = "";
+                res.setEncoding("utf8");
+                res.on("data", (chunk: string) => {
+                  body += chunk;
+                  if (body.length > 512) req.destroy(new Error("Unbounded admission response"));
+                });
+                res.on("end", () => resolve({ status: res.statusCode ?? 0, body }));
+              },
+            );
+            req.on("upgrade", (_res, socket) => {
+              socket.destroy();
+              reject(new Error("Unauthorized socket admitted"));
+            });
+            req.on("error", reject);
+            req.setTimeout(2000, () => req.destroy(new Error("Admission timeout")));
+            req.end();
+          });
+        const missing = await denied(0, { "X-Edgefall-Profile": "forged-owner" });
+        assert.equal(missing.status, 401);
+        const foreignOrigin = await fetch(`${base}/profile`, {
+          method: "POST",
+          headers: { Origin: "https://example.com" },
+        });
+        assert.equal(foreignOrigin.status, 403);
+        const stranger = await fetch(`${base}/profile`, { method: "POST" });
+        const strangerCookie = stranger.headers.get("set-cookie")?.split(";")[0];
+        assert(strangerCookie);
+        const foreign = await denied(0, { Cookie: strangerCookie });
+        assert.equal(foreign.status, 409);
+        assert.equal(foreign.body, "in-progress");
+        const owner = pages[0];
+        assert(owner);
+        const cookie = (await owner.context().cookies(base))
+          .map((c) => `${c.name}=${c.value}`)
+          .join("; ");
+        const wrongSlot = await denied(1, { Cookie: cookie });
+        assert.equal(wrongSlot.status, 409);
+        assert.equal(wrongSlot.body, "profile-slot-mismatch");
+        const tampered = await denied(0, { Cookie: `${cookie}.extra` });
+        assert.equal(tampered.status, 401);
+        const replacement = await owner.context().newPage();
+        await replacement.goto(`${owner.url()}&scripted=1`);
+        await replacement.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+            ).controllerNetworkLab?.status().ready,
+        );
+        pages[0] = replacement;
+        const installed = (await read())[0];
+        assert(installed);
+        const afterTakeover = await waitTick(installed.initialServerTick + 30);
+        const retired = await owner.evaluate(() =>
+          (
+            globalThis as unknown as { controllerNetworkLab: { status: () => ClientStatus } }
+          ).controllerNetworkLab.status(),
+        );
+        assert(retired.error?.includes("connection-replaced"));
+        await owner.close();
+        const takeoverRoom = await status();
+        assert(takeoverRoom.staleSocketEvents > 0, "Old close must be fenced");
+        const returning = afterTakeover[0];
+        assert(returning && before[0]);
+        assert.equal(returning.connectionEpoch, before[0].connectionEpoch + 1);
+        assert.equal(returning.initialActor?.controlEpoch, before[0].authoritative?.controlEpoch);
+        assert.equal(returning.initialActor?.lives, before[0].authoritative?.lives);
+        assert.equal(returning.initialActor?.health, before[0].authoritative?.health);
+        assert.equal(returning.receipts[0]?.ack, 0);
+        assert(returning.baselineEventCursor > 0);
+        assert.equal(returning.events?.counts.killed ?? 0, 0);
+        assert(returning.events?.receipts.every((e) => e.cursor > returning.baselineEventCursor));
+        for (const [slot, original] of before.entries()) {
+          const current = afterTakeover[slot];
+          assert(current);
+          assert.equal(current.runEpoch, original.runEpoch);
+          if (slot === 0) continue;
+          assert.equal(current.connectionEpoch, original.connectionEpoch);
+          assert(current.sequence > original.sequence);
+          assert.deepEqual(
+            current.events?.receipts.slice(0, original.events?.receipts.length),
+            original.events?.receipts,
+          );
+        }
+        // Leave the host disconnected long enough to observe succession, then reuse its cookie.
+        const hostSlot = takeoverRoom.membership?.hostSlot;
+        assert(hostSlot !== null && hostSlot !== undefined);
+        const hostPage = pages[hostSlot];
+        assert(hostPage);
+        await hostPage.goto("about:blank");
+        let disconnected = await status();
+        for (let i = 0; i < 40 && disconnected.membership?.members[hostSlot]?.connected; i++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          disconnected = await status();
+        }
+        assert.equal(disconnected.membership?.members[hostSlot]?.connected, false);
+        assert.notEqual(disconnected.membership?.hostSlot, hostSlot);
+        await hostPage.goto(
+          `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${hostSlot}&mode=combat&scripted=1`,
+        );
+        await hostPage.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+            ).controllerNetworkLab?.status().ready,
+        );
+        const rejoined = (await read())[hostSlot];
+        assert(rejoined);
+        const afterReentry = await waitTick(rejoined.initialServerTick + 30);
+        assert.equal(
+          afterReentry[hostSlot]?.connectionEpoch,
+          (afterTakeover[hostSlot]?.connectionEpoch ?? 0) + 1,
+        );
+        assert.equal((await status()).membership?.hostSlot, disconnected.membership?.hostSlot);
+        // An authenticated replacement still cannot submit gameplay before acknowledging welcome.
+        const unacknowledged = encodeInputBatch({
+          runEpoch: returning.runEpoch,
+          connectionEpoch: (afterReentry[0]?.connectionEpoch ?? 0) + 1,
+          packetSequence: 1,
+          snapshotAck: 0,
+          eventAck: 0,
+          commands: [{ sequence: 1, clientTick: 0, controlEpoch: 1, held: 0, aim: 0, edges: [] }],
+        });
+        const rejected = await replacement.evaluate(
+          ({ url, bytes }) =>
+            new Promise<{ code: number; reason: string }>((resolve, reject) => {
+              const socket = new WebSocket(url);
+              socket.binaryType = "arraybuffer";
+              const timeout = setTimeout(() => {
+                socket.close();
+                reject(new Error("Missing baseline rejection"));
+              }, 2000);
+              let sent = false;
+              socket.onmessage = (event) => {
+                if (!sent && event.data instanceof ArrayBuffer) {
+                  sent = true;
+                  socket.send(new Uint8Array(bytes));
+                }
+              };
+              socket.onclose = (event) => {
+                clearTimeout(timeout);
+                resolve({ code: event.code, reason: event.reason });
+              };
+            }),
+          {
+            url: `${base.replace("http:", "ws:")}/combat/connect?slot=0`,
+            bytes: [...unacknowledged],
+          },
+        );
+        assert.equal(rejected.code, 4004);
+        const rejectedRoom = await status();
+        assert.equal(
+          rejectedRoom.peers.find((p) => p.slot === 0)?.lastInputError,
+          "Fresh baseline acknowledgment required",
+        );
+        assert.equal(
+          rejectedRoom.inputStreams.find((s) => s.acknowledgment.playerId === 1)?.acknowledgment
+            .lastProcessedSequence,
+          0,
+        );
+        await replacement.reload();
+        await replacement.waitForFunction(
+          () =>
+            (
+              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+            ).controllerNetworkLab?.status().ready,
+        );
+        const lastReentry = (await read())[0];
+        assert(lastReentry);
+        const clients = await waitTick(lastReentry.initialServerTick + 45);
+        const finalRoom = await status();
+        assert.equal(finalRoom.connections.length, 4);
+        for (const [slot, original] of afterReentry.entries()) {
+          if (slot === 0) continue;
+          const continued = clients[slot];
+          assert(continued);
+          assert.equal(continued.connectionEpoch, original.connectionEpoch);
+          assert(continued.sequence > original.sequence);
+        }
+        assert(finalRoom.peers.every((p) => p.active && !p.lastInputError && !p.lastOutputError));
+        assert(finalRoom.inputStreams.every((s) => s.initialBaseline === null));
+        assert.equal(
+          finalRoom.combat?.world.encounter.kills.reduce((sum, k) => sum + k.count, 0),
+          2,
+        );
+        assert.equal(clients[0]?.events?.counts.killed ?? 0, 0);
+        assert(
+          finalRoom.durability &&
+            finalRoom.durability.committedTick >= lastReentry.initialServerTick,
+        );
+        const common =
+          clients[0]?.receipts.filter((r) =>
+            clients.every((c) => c.receipts.some((v) => v.tick === r.tick && v.hash === r.hash)),
+          ) ?? [];
+        assert(common.length >= 8, "Insufficient shared continuation snapshots");
+        assert(
+          clients.every((c) => c.receipts.every((r) => r.correctionX === 0 && r.correctionY === 0)),
+        );
+        // Fresh process reconstructs the latest checkpoint/journal prefix after the replacements.
+        base = await restart();
+        const recovered = await status();
+        assert.equal(recovered.worldFailure, null);
+        assert.equal(recovered.runEpoch, finalRoom.runEpoch + 1);
+        assert(recovered.tick >= lastReentry.initialServerTick);
+        const members = recovered.membership;
+        assert(members);
+        assert(members.members.every((m) => !m.connected));
+        assert.equal(members.members[0]?.generation, finalRoom.membership?.members[0]?.generation);
+        assert.equal(
+          recovered.combat?.world.encounter.kills.reduce((sum, k) => sum + k.count, 0),
+          2,
+        );
+        return {
+          status: "pass",
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          recordedAt: new Date().toISOString(),
+          browser: browser.version(),
+          workerBundleSha256,
+          sharedSnapshots: common.length,
+          authorization: {
+            missingProfile: missing.status,
+            foreignOrigin: foreignOrigin.status,
+            foreignProfile: foreign.status,
+            wrongSlot: wrongSlot.status,
+            tamperedProfile: tampered.status,
+          },
+          rejected,
+          rejectedRoom,
+          afterReentry,
+          before,
+          beforeRoom,
+          afterTakeover,
+          retired,
+          takeoverRoom,
+          disconnected,
+          room: finalRoom,
+          clients,
+          recovered,
+          scope:
+            "Four real Chromium clients and local workerd: signed slot ownership, connected takeover, disconnected reentry, healthy peer continuity, fresh baseline acknowledgment, obsolete effect suppression, host succession metadata and SQLite restart after journaled replacements. Manual client reentry; no deployed traces, automatic retry, hostile reentry protection or completed production membership protocol.",
+        };
+      }
       if (combatRecoveryMode) {
         const status = async () => {
           const response = await fetch(`${base}/combat/status`);

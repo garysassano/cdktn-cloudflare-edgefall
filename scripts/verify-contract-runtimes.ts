@@ -175,6 +175,7 @@ try {
     combat: expected.combat,
     worldCombat: expected.worldCombat,
     combatRecovery: expected.combatRecovery,
+    combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {
       solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,

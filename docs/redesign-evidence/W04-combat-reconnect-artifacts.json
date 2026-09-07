@@ -1,0 +1,175 @@
+{
+  "baseCommit": "893a35dd26589dc9fe07dde517e7c13fd31e1147",
+  "artifacts": [
+    {
+      "file": "W04-combat-reconnect-browser.json.gz",
+      "rawBytes": 3132606,
+      "bytes": 171584,
+      "rawSha256": "aa129711925fb52eb6d88e2a56e3d285e7482e8cd50fe32d98253c292004d3ea",
+      "sha256": "2100a176a17e7b5cb87dcbaf0e8b8fe520c439940a8eaf8567dcff9a7332d3e6",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-diagnostics.json",
+      "rawBytes": 24590,
+      "bytes": 24590,
+      "rawSha256": "bd3ae162c021b4056e72974319d7aa3dbdf8929233c76463bed40a14eb2978b7",
+      "sha256": "bd3ae162c021b4056e72974319d7aa3dbdf8929233c76463bed40a14eb2978b7",
+      "gzip": false
+    },
+    {
+      "file": "W04-combat-reconnect-contracts.json.gz",
+      "rawBytes": 132179,
+      "bytes": 9524,
+      "rawSha256": "8d7c97cc652baa13deb1ed5fc4d2ae1bd32f516bae096bae6adb5b92121f8984",
+      "sha256": "49615fb47b4e8ca5ddaad8adc31808ffb741456fedb553406805d5614984ce61",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-storage.json",
+      "rawBytes": 1924,
+      "bytes": 1924,
+      "rawSha256": "a8f4daa6f834fc5801f989802b4f4914b4835c6f3081e406a97b8c78a7f77c4a",
+      "sha256": "a8f4daa6f834fc5801f989802b4f4914b4835c6f3081e406a97b8c78a7f77c4a",
+      "gzip": false
+    },
+    {
+      "file": "W04-combat-reconnect-cohort-recovery.json.gz",
+      "rawBytes": 3358687,
+      "bytes": 170298,
+      "rawSha256": "0acb87bc3df7d031d9be5069ac97ad54a0787a18328c0482173b4c0307a39935",
+      "sha256": "93b3dfddc76c6e5910df089fdd7ad9dcedab211e3f2c69901cd19dba2d052cff",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-baseline.json.gz",
+      "rawBytes": 826029,
+      "bytes": 47687,
+      "rawSha256": "c4b84a8a03f8d2b313c2aa9715c2ca4a917220fc33393fa517d99b72b7031f60",
+      "sha256": "b35d7616125f4debed276797531222d18ac904e8f00c86d195e73aac86b004cc",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-abort.json.gz",
+      "rawBytes": 170275,
+      "bytes": 9836,
+      "rawSha256": "28e1d94f674b13507af70467c038bb21094047a75f4dd8fe6de2e17ea52dfd5d",
+      "sha256": "836cec6aa5e19749caad0cd842ad9c6f126a3e0555a740962899cb2c3579e8e1",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-controller-recovery.json.gz",
+      "rawBytes": 397190,
+      "bytes": 15552,
+      "rawSha256": "31e68c038830e99eb33d0eeb67bf86faec04211e85d8354f1bb1c6bfc9b9489d",
+      "sha256": "a6d471f3d742d2aedc532972aec53c53fb1c8c00a4fd7a1ae7a67b65bbe4fd29",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-startup-failure.json.gz",
+      "rawBytes": 279389,
+      "bytes": 11249,
+      "rawSha256": "8f54092dbdc2c736c2da3e955c7723a5a91dc6dd69fd2ce98c37acb342d72cf9",
+      "sha256": "1aefaed070df83c5d2546ac75b410b390c0bcf6aad589fc9b5a4bb008b58da7d",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-startup-clients.json.gz",
+      "rawBytes": 271745,
+      "bytes": 24196,
+      "rawSha256": "4ec553ef787ad93c53fe8f880d2c7cd3804ac883a1a366c3b72631a1ed17c650",
+      "sha256": "1445fb02d07d608d0d6daafd8239ef5a99d61d1ff1bdbb8c0f10a18e5e741a96",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-startup-diagnostics.json",
+      "rawBytes": 13926,
+      "bytes": 13926,
+      "rawSha256": "d16d803698aef0c42fc52d37d01bd926b9b933fae8415772c740ab935c5bbcf2",
+      "sha256": "d16d803698aef0c42fc52d37d01bd926b9b933fae8415772c740ab935c5bbcf2",
+      "gzip": false
+    },
+    {
+      "file": "W04-combat-reconnect-harness-failure.json.gz",
+      "rawBytes": 153608,
+      "bytes": 7325,
+      "rawSha256": "289aa2e4fcf176d5d197f4e855ec3190218b26bf6c1c17ca237e668857e29029",
+      "sha256": "2a534e3fd8119150fde9d639c4c6327bef9709749d56f501139bcbfdc26feb18",
+      "gzip": true
+    },
+    {
+      "file": "W04-combat-reconnect-check.txt.gz",
+      "rawBytes": 2908,
+      "bytes": 1473,
+      "rawSha256": "fdcef6a70a0079ecfc936c7e76dce33a4910376e7625ebe11dc49c4c73d7dcc0",
+      "sha256": "ba81d4318ba7405c6a0a24d214504f03b7923a740f0826e1c6307490f185bcdd",
+      "gzip": true
+    }
+  ],
+  "sources": [
+    {
+      "file": "e2e/room.wrangler.jsonc",
+      "sha256": "65bcfe80bd12f3396de3cc391fbfee886b86e56f42786b6448f3420305fcdb1c"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "5cd8fe93e42e94ec1f786bf04c20d2fb1eb89b6e97d20bed687499df0e7d186f"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "91317bdbb499418f1fe1ce60cb73596923cac2449bdb39afe3de0b8bd97a2bb3"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "06379b6a638d00e7769601c48e65600900f7e2490f0f3e65655ddf5dd5e839f0"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "3ccd563c2566ada5cc3b33dbdf936e4b216b7a998478e0c45233a80f50449e54"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "961433c764c5a3694c13d882cb3d4609ba2880cad43cfebe8a3b936286181111"
+    },
+    {
+      "file": "src/shared/diagnostics/room-probe-types.ts",
+      "sha256": "9867ba35153fe464c03bf5d34422f2479c5d8eb2a7983252a2221e141a6a6412"
+    },
+    {
+      "file": "src/shared/session/membership.ts",
+      "sha256": "003e0f6905824bb5393dcfe24291c62be70d54e4ddfa9d0fe7414bcd75a0df30"
+    },
+    {
+      "file": "src/shared/session/profile.ts",
+      "sha256": "d8ed90e094903cef85cc1c7c8a77ea75318f26aa9826caac7020f4ee08101771"
+    },
+    {
+      "file": "src/worker/diagnostics/membership-storage.ts",
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "6a8f840a302f71af26ff48c73ff04b22437f656ec49ce382704cf408f0b05547"
+    },
+    {
+      "file": "src/worker/index.ts",
+      "sha256": "244b8a151cde3c30f1f8fa0d654df384d490841ac4859509a835b01161915488"
+    },
+    {
+      "file": "test/combat-reconnect.test.ts",
+      "sha256": "2e053ba81ae27b8dc7c9514ef3f7d2b168b4e8b5262cb65df4d045755935c7fe"
+    },
+    {
+      "file": "test/fixtures/combat-reconnect-proof.ts",
+      "sha256": "1de15ab01b7f6359376a9aef6635637d0fa35b6609dc78d9c6abb0df6a36d653"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "3ab54188c1a03fffb650367afd6afbf267ac65436542c748695ef2af6e605a47"
+    },
+    {
+      "file": "test/session.test.ts",
+      "sha256": "eccdd59bde187c181e53e03ce2196b5d9338440f3861ee1f0a309bdf1a116586"
+    }
+  ]
+}

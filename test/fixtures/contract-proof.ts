@@ -6,6 +6,7 @@ import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapsh
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
 import { collisionProof } from "./collision-proof.js";
 import { combatProof } from "./combat-proof.js";
+import { combatReconnectProof } from "./combat-reconnect-proof.js";
 import { combatRecoveryProof } from "./combat-recovery-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
@@ -86,6 +87,7 @@ export async function contractProof() {
     combat: combatProof(),
     worldCombat: worldCombatProof(),
     combatRecovery: await combatRecoveryProof(),
+    combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),
     controller: controllerProof(),

@@ -1,6 +1,7 @@
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CombatLab } from "../../game/labs/combat.js";
 import type { EventBaseline, EventEnvelope } from "../protocol/events.js";
+import type { RoomMember } from "../session/membership.js";
 import type { CombatJournalWriter } from "./combat-writer.js";
 
 export interface PeerMetrics {
@@ -27,6 +28,19 @@ export interface PeerMetrics {
   lastHeld: number;
 }
 export interface RoomProbeStatus {
+  connections: Array<{
+    slot: number;
+    tick: number;
+    connectionEpoch: number;
+    controlEpoch: number;
+    baselineEventCursor: number;
+  }>;
+  staleSocketEvents: number;
+  membership: {
+    epoch: number;
+    hostSlot: number | null;
+    members: Array<Omit<RoomMember, "profileId">>;
+  } | null;
   instanceId: string;
   worldFailure: string | null;
   persistenceFailure: string | null;
@@ -52,6 +66,7 @@ export interface RoomProbeStatus {
     requiresResync: boolean;
     delivery: { snapshot: number; event: number };
     pendingEventBaseline: EventBaseline | null;
+    initialBaseline: { snapshotId: number; cursor: number } | null;
   }>;
   combat: {
     world: CombatLab;

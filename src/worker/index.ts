@@ -1,10 +1,15 @@
 import { dailyDateFromRoom } from "../game/daily.js";
 import { dailySeed } from "../game/simulation.js";
+import {
+  PROFILE_COOKIE_NAME,
+  profileCookie,
+  signProfileIdentity,
+  verifyProfileIdentity,
+} from "../shared/session/profile.js";
 import { EdgefallRoom } from "./room.js";
 
 export { EdgefallRoom };
 
-const PROFILE_COOKIE = "edgefall_profile";
 const PROFILE_MAX_AGE = 60 * 60 * 24 * 365;
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store",
@@ -151,62 +156,21 @@ async function getOrCreateProfile(request: Request, env: Env): Promise<BrowserPr
     .bind(id, now, now)
     .run();
   const expires = Math.floor(Date.now() / 1_000) + PROFILE_MAX_AGE;
-  const signature = await signProfile(`${id}.${expires}`, env.PROFILE_COOKIE_SECRET);
+  const signed = await signProfileIdentity(id, expires, env.PROFILE_COOKIE_SECRET);
   const secure = new URL(request.url).protocol === "https:" ? "; Secure" : "";
   return {
     id,
-    setCookie: `${PROFILE_COOKIE}=${id}.${expires}.${signature}; Path=/; Max-Age=${PROFILE_MAX_AGE}; HttpOnly; SameSite=Strict${secure}`,
+    setCookie: `${PROFILE_COOKIE_NAME}=${signed}; Path=/; Max-Age=${PROFILE_MAX_AGE}; HttpOnly; SameSite=Strict${secure}`,
   };
 }
 
 async function readProfile(request: Request, env: Env): Promise<BrowserProfile | undefined> {
-  const cookie = parseCookies(request.headers.get("Cookie"))[PROFILE_COOKIE];
-  if (!cookie) return undefined;
-  const [id, expiresText, signature] = cookie.split(".");
-  const expires = Number.parseInt(expiresText ?? "", 10);
-  if (!id || !signature || !Number.isSafeInteger(expires) || expires <= Date.now() / 1_000)
-    return undefined;
-  const expected = await signProfile(`${id}.${expires}`, env.PROFILE_COOKIE_SECRET);
-  if (!constantTimeEqual(signature, expected)) return undefined;
+  const id = await verifyProfileIdentity(
+    profileCookie(request.headers.get("Cookie")),
+    env.PROFILE_COOKIE_SECRET,
+    Math.floor(Date.now() / 1000),
+  );
+  if (!id) return undefined;
   const found = await env.RUNS.prepare("SELECT id FROM profiles WHERE id = ?").bind(id).first();
   return found ? { id } : undefined;
-}
-
-async function signProfile(payload: string, secret: string): Promise<string> {
-  if (secret.length < 32)
-    throw new Error("PROFILE_COOKIE_SECRET must contain at least 32 characters");
-  const key = await crypto.subtle.importKey(
-    "raw",
-    new TextEncoder().encode(secret),
-    { hash: "SHA-256", name: "HMAC" },
-    false,
-    ["sign"],
-  );
-  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
-  return base64Url(new Uint8Array(signature));
-}
-
-function base64Url(bytes: Uint8Array): string {
-  let binary = "";
-  for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/u, "");
-}
-
-function constantTimeEqual(left: string, right: string): boolean {
-  if (left.length !== right.length) return false;
-  let difference = 0;
-  for (let index = 0; index < left.length; index += 1) {
-    difference |= left.charCodeAt(index) ^ right.charCodeAt(index);
-  }
-  return difference === 0;
-}
-
-function parseCookies(header: string | null): Record<string, string> {
-  const cookies: Record<string, string> = {};
-  for (const part of header?.split(";") ?? []) {
-    const separator = part.indexOf("=");
-    if (separator <= 0) continue;
-    cookies[part.slice(0, separator).trim()] = part.slice(separator + 1).trim();
-  }
-  return cookies;
 }

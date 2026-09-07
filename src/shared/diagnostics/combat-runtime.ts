@@ -25,6 +25,10 @@ export interface CombatJournalTick extends JournalTick {
   acknowledgments: PlayerAcknowledgment[];
   beforeHash: string;
 }
+export interface CombatConnectionChange {
+  playerId: number;
+  connectionEpoch: number;
+}
 export function createCombatRuntime(): CombatRuntime {
   const state = createCombatWorkload();
   state.snapshot.roomMode = "playing";
@@ -128,9 +132,56 @@ function validatePrepared(current: CombatRuntime, prepared: readonly PreparedPla
 export function stageCombatRuntime(
   current: CombatRuntime,
   prepared: readonly PreparedPlayerTick[],
+  connections: readonly CombatConnectionChange[] = [],
 ) {
-  validatePrepared(current, prepared);
-  const result = evaluateCombatTick(current.combat, current.snapshot, prepared);
+  integer(connections.length, 0, 4, "combat connection changes");
+  const baseline = connections.length ? structuredClone(current) : current;
+  let previousConnectionPlayer = 0;
+  for (const connection of connections) {
+    const actor = baseline.combat.players.find((p) => p.playerId === connection.playerId);
+    const ack = baseline.snapshot.acknowledgments.find((a) => a.playerId === connection.playerId);
+    const input = prepared.find((p) => p.input.playerId === connection.playerId);
+    check(
+      actor && ack && input && connection.playerId > previousConnectionPlayer,
+      "connection owner/order",
+    );
+    integer(connection.connectionEpoch, 1, COUNTER_LIMIT - 1, "connection epoch");
+    check(
+      connection.connectionEpoch === ack.connectionEpoch + 1,
+      "connection generation must advance once",
+    );
+    check(actor.vehicleId === null, "combat connection does not own vehicle handoff");
+    check(input.input.submittedCommand === null, "new connection must begin with a fresh baseline");
+    const fresh = input.input.command;
+    check(
+      fresh.sequence === 0 &&
+        fresh.clientTick === 0 &&
+        fresh.held === 0 &&
+        fresh.aim === 0 &&
+        fresh.edges.length === 0,
+      "new connection must discard prior intent",
+    );
+    previousConnectionPlayer = connection.playerId;
+    // A new socket does not change on-foot ownership or restart an in-progress firearm action.
+    actor.jumpBufferTicks = 0;
+    actor.processedEdgeIds = [0, 0, 0, 0, 0];
+    ack.connectionEpoch = connection.connectionEpoch;
+    ack.lastProcessedSequence = 0;
+    ack.appliedAtServerTick = 0;
+    ack.processedEdgeIds = [0, 0, 0, 0, 0];
+  }
+  if (connections.length) baseline.snapshot.players = structuredClone(baseline.combat.players);
+  validatePrepared(baseline, prepared);
+  const result = evaluateCombatTick(baseline.combat, baseline.snapshot, prepared);
+  if (
+    !result.state.snapshot.acknowledgments.some(
+      (a) => a.connectionEpoch === result.state.snapshot.connectionEpoch,
+    )
+  ) {
+    const recipient = result.state.snapshot.acknowledgments[0];
+    if (!recipient) throw new Error("Missing snapshot recipient");
+    result.state.snapshot.connectionEpoch = recipient.connectionEpoch;
+  }
   const history = stageEventTick(
     current.history,
     result.state.combat.tick,
@@ -145,7 +196,16 @@ export function stageCombatRuntime(
   for (const player of current.combat.players) {
     const was = current.connectedPlayerIds.includes(player.playerId),
       connected = connectedPlayerIds.includes(player.playerId);
-    if (was !== connected) {
+    const replacement = connections.find((value) => value.playerId === player.playerId);
+    if (replacement) {
+      boundary.push({ kind: "neutralize", playerId: player.playerId, reason: "disconnect" });
+      boundary.push({
+        kind: "connection",
+        playerId: player.playerId,
+        connectionEpoch: replacement.connectionEpoch,
+        connected: true,
+      });
+    } else if (was !== connected) {
       const ack = state.snapshot.acknowledgments.find((a) => a.playerId === player.playerId);
       if (!ack) throw new Error("Missing combat connection owner");
       boundary.push({
@@ -208,7 +268,14 @@ export function replayCombatTick(
       ),
     };
   });
-  const result = stageCombatRuntime(current, prepared);
+  const connections = journal.boundaryEvents.flatMap(({ event }): CombatConnectionChange[] => {
+    if (event.kind !== "connection" || !event.connected) return [];
+    const before = current.snapshot.acknowledgments.find((a) => a.playerId === event.playerId);
+    return before && event.connectionEpoch !== before.connectionEpoch
+      ? [{ playerId: event.playerId, connectionEpoch: event.connectionEpoch }]
+      : [];
+  });
+  const result = stageCombatRuntime(current, prepared, connections);
   check(canonical(result.journal) === canonical(journal), "journal outcome/boundary/hash mismatch");
   return result.state;
 }

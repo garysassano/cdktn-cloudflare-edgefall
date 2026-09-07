@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { createHash } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { createServer } from "node:net";
@@ -30,12 +30,14 @@ export async function withDirectRoomWorker<T>(
     write: false,
   });
   const directory = await mkdtemp(join(tmpdir(), "edgefall-room-worker-"));
+  const profileSecret = randomBytes(32).toString("hex");
   const create = () =>
     new Miniflare(
       convertV4MiniflareOptions({
         modules: true,
         script: bundle.outputFiles[0]?.text,
         compatibilityDate: "2026-08-30",
+        bindings: { PROFILE_COOKIE_SECRET: profileSecret },
         durableObjects: { ROOM_PROBES: { className: "RoomLoadProbe", useSQLite: true } },
         resourcePersistencePath: directory,
         log: new Log(LogLevel.ERROR),
