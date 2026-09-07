@@ -4,6 +4,7 @@ import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
+import { combatContinuationHash } from "../shared/diagnostics/combat-recovery.js";
 import {
   COMBAT_TERRAIN,
   combatIdentity,
@@ -59,7 +60,7 @@ async function startLab() {
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires. The deterministic fixture holds fire in all four clients. Commands are captured independently at 60 Hz and sent in bounded batches. Fire, projectiles and kill credit come from the same accepted world tick. This local diagnostic room does not implement combat recovery.";
+        "Arrows/WASD move and aim, Space jumps, Z fires. The deterministic fixture holds fire in all four clients. Fire, projectiles and kill credit come from the same accepted world tick. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -110,6 +111,7 @@ async function startLab() {
     enemies: number;
     projectiles: number;
     shots: number;
+    continuationHash: string | null;
   }> = [];
   const bindings: Record<string, InputBinding> = {
     ArrowLeft: { held: Held.Left },
@@ -374,10 +376,16 @@ async function startLab() {
         }
         try {
           // Application-consumer fault, distinct from dropping an intact wire frame.
-          if (eventFaults.gapNext && batch.events.length > 1) {
-            batch = { ...batch, events: batch.events.slice(1) };
-            eventFaults.gapNext = false;
-            eventGapsInjected++;
+          if (eventFaults.gapNext) {
+            const nextCursor = eventReceiver.cursor + 1;
+            const fresh = batch.events.filter((item) => item.cursor >= nextCursor);
+            if (fresh.length > 1 && fresh[0]?.cursor === nextCursor) {
+              // Dropping a replayed duplicate does not create a gap. Omit the next unconsumed
+              // event and retain a later event so the consumer must request its baseline.
+              batch = { ...batch, events: fresh.slice(1) };
+              eventFaults.gapNext = false;
+              eventGapsInjected++;
+            }
           }
           const accepted = eventReceiver.consume(batch);
           if (eventFaults.duplicate) accepted.push(...eventReceiver.consume(batch));
@@ -463,6 +471,7 @@ async function startLab() {
       }
       if (receipts.length >= 500) throw new Error("Receipt history bound");
       receipts.push({
+        continuationHash: mode === "combat" ? combatContinuationHash(incoming) : null,
         enemies: incoming.enemies.length,
         projectiles: incoming.projectiles.length,
         shots: actor.weapon.shotOrdinal,
@@ -488,7 +497,7 @@ async function startLab() {
     }
   });
   socket.addEventListener("close", (event) => {
-    element("reconnect").hidden = mode === "combat";
+    element("reconnect").hidden = false;
     inputClock?.close();
     neutral();
     if (event.reason !== "observer-closed") error ??= `closed: ${event.code} ${event.reason}`;

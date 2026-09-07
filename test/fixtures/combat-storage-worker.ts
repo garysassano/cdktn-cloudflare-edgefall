@@ -32,11 +32,13 @@ export class CombatStorageProof extends DurableObject<Env> {
       const rollbackTicks: number[] = [];
       for (let start = 0; start < 105; start += 15) {
         const segment = entries.slice(start, start + 15);
+        const accepted = states[start + 15];
+        if (!accepted) throw new Error("Missing accepted fixture");
         if (start === 45 || start === 90) {
           this.inject = true;
           let failed = false;
           try {
-            await store.commit(state, segment);
+            await store.commit(state, segment, accepted);
           } catch {
             failed = true;
           }
@@ -46,7 +48,7 @@ export class CombatStorageProof extends DurableObject<Env> {
           rollbackTick = restored.combat.tick;
           rollbackTicks.push(rollbackTick);
         }
-        state = await store.commit(state, segment);
+        state = await store.commit(state, segment, accepted);
       }
       if (canonical(state) !== canonical(states[105]))
         throw new Error("Stored input replay differs from authority");

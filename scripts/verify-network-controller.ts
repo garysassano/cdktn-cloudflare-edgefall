@@ -28,7 +28,7 @@ interface ClientStatus {
   held: number;
   pendingEdges: number;
   inputClock: { mode: string; tick: number } | null;
-  authoritative: { processedEdgeIds: number[] } | null;
+  authoritative: { controlEpoch: number; processedEdgeIds: number[] } | null;
   events:
     | (EventReceiver["status"] & {
         counts: Record<string, number>;
@@ -57,27 +57,36 @@ interface ClientStatus {
     enemies: number;
     projectiles: number;
     shots: number;
+    continuationHash: string | null;
   }>;
 }
 const recoveryMode = process.argv.includes("--recovery");
+const combatRecoveryMode = process.argv.includes("--combat-recovery");
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
-const combatMode = process.argv.includes("--combat") || faultMode || eventMode;
-assert(!(combatMode && recoveryMode), "Combat recovery is not implemented");
+const combatMode =
+  process.argv.includes("--combat") || faultMode || eventMode || combatRecoveryMode;
+assert(!(combatMode && recoveryMode), "Use --combat-recovery for durable combat recovery");
+assert(
+  !(combatRecoveryMode && (faultMode || eventMode)),
+  "Run durable recovery separately from event/world faults",
+);
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = baselineMode
-  ? "dist/network-combat-baseline-evidence"
-  : combatMode
-    ? eventMode
-      ? "dist/network-event-evidence"
-      : faultMode
-        ? "dist/network-combat-fault-evidence"
-        : "dist/network-combat-evidence"
-    : recoveryMode
-      ? "dist/network-controller-recovery-evidence"
-      : "dist/network-controller-evidence";
+const output = combatRecoveryMode
+  ? "dist/network-combat-recovery-evidence"
+  : baselineMode
+    ? "dist/network-combat-baseline-evidence"
+    : combatMode
+      ? eventMode
+        ? "dist/network-event-evidence"
+        : faultMode
+          ? "dist/network-combat-fault-evidence"
+          : "dist/network-combat-evidence"
+      : recoveryMode
+        ? "dist/network-controller-recovery-evidence"
+        : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -123,7 +132,9 @@ sampleHost();
 // Independent host samples; no extra Worker requests or changes to scheduler clock semantics.
 const hostTimer = setInterval(sampleHost, 20);
 try {
-  const report = await withDirectRoomWorker(async (base, _assertAlive, workerBundleSha256) => {
+  const report = await withDirectRoomWorker(async (url, _alive, workerHash, restart) => {
+    const workerBundleSha256 = workerHash;
+    let base = url;
     const openPages = () =>
       Promise.all(
         Array.from({ length: 4 }, async (_, slot) => {
@@ -225,6 +236,263 @@ try {
         await configureEvents(2, { dropNext: 1 });
       }
       await prepareAndStart();
+      if (combatRecoveryMode) {
+        const status = async () => {
+          const response = await fetch(`${base}/combat/status`);
+          assert(response.ok, `Combat status: ${response.status}`);
+          room = (await response.json()) as RoomProbeStatus;
+          return room;
+        };
+        const waitForTick = async (tick: number) => {
+          for (let attempt = 0; attempt < 120; attempt++) {
+            const clients = await read();
+            assert(
+              clients.every((client) => !client.error && !client.requiresResync),
+              JSON.stringify(
+                clients.map((c) => ({ slot: c.slot, tick: c.snapshotTick, error: c.error })),
+              ),
+            );
+            if (clients.every((client) => client.snapshotTick >= tick)) return clients;
+            await new Promise((resolve) => setTimeout(resolve, 25));
+          }
+          throw new Error("Combat recovery progression timed out");
+        };
+        const reopen = async (boundary: RoomProbeStatus, old: ClientStatus[]) => {
+          assert.equal(boundary.roomMode, "loading");
+          assert.equal(boundary.clock.tick, boundary.tick);
+          assert.equal(boundary.clock.timerPending, false);
+          await Promise.all(
+            pages.map(async (page, slot) => {
+              await page.goto(
+                `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=combat`,
+              );
+              await page.waitForFunction(() => {
+                const lab = (
+                  globalThis as unknown as {
+                    controllerNetworkLab?: { status: () => ClientStatus };
+                  }
+                ).controllerNetworkLab;
+                return lab?.status().ready || lab?.status().error;
+              });
+              await page.locator("#scripted").check();
+            }),
+          );
+          const baselines = await read();
+          for (const client of baselines) {
+            assert.equal(client.error, null);
+            assert.equal(client.runEpoch, boundary.runEpoch);
+            assert.equal(client.initialServerTick, boundary.tick);
+            assert.equal(client.sequence, 0);
+            assert.equal(client.pending, 0);
+            assert.equal(client.events?.cursor, 0);
+            assert.equal(client.events?.receipts.length, 0);
+            assert.equal(
+              client.authoritative?.controlEpoch,
+              (old[client.slot]?.authoritative?.controlEpoch ?? 0) + 1,
+            );
+            assert.deepEqual(client.authoritative?.processedEdgeIds, [0, 0, 0, 0, 0]);
+            const previous = old[client.slot]?.receipts.find(
+              (receipt) => receipt.tick === boundary.tick,
+            );
+            assert(previous, `Missing prior public baseline at restored tick ${boundary.tick}`);
+            assert.equal(
+              client.receipts[0]?.continuationHash,
+              previous.continuationHash,
+              "Combat continuation changed at recovery boundary",
+            );
+            assert.equal(
+              client.combatBaseline?.kills.find((kill) => kill.playerId === 2)?.count,
+              2,
+            );
+          }
+          const premature = await fetch(`${base}/combat/start`, { method: "POST" });
+          assert.equal(premature.status, 409, "Combat resumed without fresh preloaded input");
+          await prepareAndStart();
+          return baselines;
+        };
+        await waitForTick(90);
+        const beforeRestart = await status();
+        assert(beforeRestart.durability && beforeRestart.durability.committedTick >= 75);
+        assert.equal(beforeRestart.clock.fault, null);
+        assert.equal(beforeRestart.persistenceFailure, null);
+        // Dispose the owned workerd process while its room is playing; create another process using
+        // only the same SQLite directory. This is orderly process replacement, not power-loss proof.
+        base = await restart();
+        const boundary = await status();
+        const retiredClients = await read(true);
+        assert.notEqual(boundary.instanceId, beforeRestart.instanceId);
+        assert.equal(boundary.runEpoch, beforeRestart.runEpoch + 1);
+        assert(boundary.recoveryBoundary);
+        assert.equal(boundary.recoveryBoundary.fromRunEpoch, beforeRestart.runEpoch);
+        assert(boundary.tick >= beforeRestart.durability.committedTick);
+        assert.equal(boundary.tick % 15, 0);
+        assert(
+          retiredClients.every(
+            (client) => client.error?.includes("closed:") && client.inputClock?.mode === "closed",
+          ),
+          "Old process retained input capture",
+        );
+        const rewindTicks = retiredClients.map((client) =>
+          Math.max(0, client.snapshotTick - boundary.tick),
+        );
+        const rewindLimit = beforeRestart.durability.limitTicks;
+        assert(rewindTicks.every((ticks) => ticks <= rewindLimit));
+        const baselines = await reopen(boundary, retiredClients);
+        const continued = await waitForTick(boundary.tick + 45);
+        assert(
+          continued.every((client) => (client.events?.counts.killed ?? 0) === 0),
+          "Recovery replayed old kill effects",
+        );
+        const armedResponse = await fetch(`${base}/combat/fail-next-write`, { method: "POST" });
+        assert.equal(armedResponse.status, 200);
+        const armed = await armedResponse.json();
+        let paused = await status();
+        for (let attempt = 0; attempt < 80 && !paused.persistenceFailure; attempt++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          paused = await status();
+        }
+        assert(
+          paused.persistenceFailure?.includes("injected-combat-storage-failure"),
+          "Write failure was not injected",
+        );
+        assert.equal(paused.roomMode, "recovering");
+        assert.equal(paused.worldFailure, null);
+        assert.equal(paused.clock.fault, null, "Accepted tick became a clock failure");
+        assert.equal(paused.clock.tick, paused.tick);
+        assert.equal(paused.clock.timerPending, false);
+        assert(paused.durability);
+        assert.equal(paused.durability.acceptedTick, paused.tick);
+        assert(paused.durability.backlogTicks >= 15 && paused.durability.backlogTicks <= 30);
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        assert.equal((await status()).tick, paused.tick, "Room advanced after failed persistence");
+        const failedClients = await read(true);
+        assert(
+          failedClients.every((client) => client.error?.includes("persistence-recovery")),
+          "Failed writer retained old sockets",
+        );
+        const recover = await fetch(`${base}/combat/recover`, { method: "POST" });
+        assert.equal(recover.status, 200);
+        const failedBoundary = await status();
+        assert.equal(failedBoundary.runEpoch, boundary.runEpoch + 1);
+        assert.equal(failedBoundary.tick, paused.durability.committedTick);
+        assert.equal(
+          failedBoundary.recoveryBoundary?.restoredHash,
+          paused.durability.committedHash,
+        );
+        const failureBaselines = await reopen(failedBoundary, failedClients);
+        const afterFailure = await waitForTick(failedBoundary.tick + 30);
+        const holdResponse = await fetch(`${base}/combat/hold-next-write`, { method: "POST" });
+        assert.equal(holdResponse.status, 200);
+        const hold = await holdResponse.json();
+        let stalled = await status();
+        for (let attempt = 0; attempt < 80 && !stalled.persistenceFailure; attempt++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          stalled = await status();
+        }
+        assert.equal(stalled.persistenceFailure, "journal-backlog-limit");
+        assert.equal(stalled.persistenceHeld, true);
+        assert.equal(stalled.roomMode, "recovering");
+        assert.equal(stalled.worldFailure, null);
+        assert.equal(stalled.clock.fault, null);
+        assert.equal(stalled.clock.tick, stalled.tick);
+        assert.equal(stalled.clock.timerPending, false);
+        assert(stalled.durability);
+        assert.equal(stalled.durability.backlogTicks, 30);
+        assert.equal(stalled.durability.queuedTicks, 15);
+        assert.equal(stalled.durability.writing, true);
+        assert.equal(stalled.durability.acceptedTick, stalled.tick);
+        const releasedResponse = await fetch(`${base}/combat/release-write`, { method: "POST" });
+        assert.equal(releasedResponse.status, 200);
+        let released = await status();
+        for (let attempt = 0; attempt < 80 && released.durability?.writing; attempt++) {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          released = await status();
+        }
+        assert.equal(released.durability?.committedTick, stalled.durability.committedTick + 15);
+        assert.equal(released.tick, stalled.tick, "Late confirmation resumed paused gameplay");
+        assert.equal(released.roomMode, "recovering");
+        assert.equal(released.durability?.accepting, false);
+        assert.equal(released.durability?.writing, false);
+        const stalledClients = await read(true);
+        assert(stalledClients.every((client) => client.error?.includes("persistence-recovery")));
+        const backlogRecover = await fetch(`${base}/combat/recover`, { method: "POST" });
+        assert.equal(backlogRecover.status, 200);
+        const backlogBoundary = await status();
+        assert.equal(backlogBoundary.runEpoch, failedBoundary.runEpoch + 1);
+        assert.equal(backlogBoundary.tick, released.durability?.committedTick);
+        assert.equal(
+          backlogBoundary.recoveryBoundary?.restoredHash,
+          released.durability?.committedHash,
+        );
+        const backlogBaselines = await reopen(backlogBoundary, stalledClients);
+        const clients = await waitForTick(backlogBoundary.tick + 30);
+        room = await status();
+        assert.equal(room.clock.fault, null);
+        assert.equal(room.persistenceFailure, null);
+        assert(room.durability && room.durability.committedTick >= backlogBoundary.tick + 15);
+        assert(
+          clients.every(
+            (client) =>
+              (client.events?.counts.killed ?? 0) === 0 &&
+              client.combatBaseline?.kills.find((kill) => kill.playerId === 2)?.count === 2,
+          ),
+        );
+        assert(
+          [...continued, ...afterFailure, ...clients].every((client) =>
+            client.receipts.every(
+              (receipt) => receipt.correctionX === 0 && receipt.correctionY === 0,
+            ),
+          ),
+          "Recovered movement diverged",
+        );
+        await pages[0]?.screenshot({ path: `${output}/four-player-controller.png` });
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          workerBundleSha256,
+          sharedSnapshots:
+            clients[0]?.receipts.filter((receipt) =>
+              clients.every((client) =>
+                client.receipts.some(
+                  (other) => other.tick === receipt.tick && other.hash === receipt.hash,
+                ),
+              ),
+            ).length ?? 0,
+          clients,
+          room,
+          restart: {
+            before: beforeRestart,
+            boundary,
+            retiredClients,
+            baselines,
+            rewindTicks,
+            continued,
+          },
+          writeFailure: {
+            armed,
+            paused,
+            clients: failedClients,
+            boundary: failedBoundary,
+            baselines: failureBaselines,
+            continued: afterFailure,
+          },
+          backlog: {
+            hold,
+            stalled,
+            released,
+            clients: stalledClients,
+            boundary: backlogBoundary,
+            baselines: backlogBaselines,
+          },
+          scope:
+            "Four real browser WebSocket clients, fresh local workerd process/SQLite recovery, persisted epoch and fresh-input barriers, continued combat, injected transactional write failure and slow-write backlog pause; no power-loss, deployed durability, automatic reconnect or sustained timing acceptance",
+        };
+      }
       if (combatMode) {
         let clients: ClientStatus[] = [];
         const target = faultMode ? 12 : baselineMode ? 165 : 90;
@@ -587,7 +855,10 @@ try {
             slot: client.slot,
             timeline: client.timeline,
           })),
-          repeatNeutralization: { held: repeatInput.held, pendingEdges: repeatInput.pendingEdges },
+          repeatNeutralization: {
+            held: repeatInput.held,
+            pendingEdges: repeatInput.pendingEdges,
+          },
           scope:
             "Four-browser in-memory authority-approved session rotation and restart at a preserved nonzero tick; no durable crash recovery, automatic reconnect or long-running timing acceptance",
         };

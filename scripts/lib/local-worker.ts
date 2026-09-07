@@ -1,14 +1,22 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
+import { mkdtemp, rm } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { createServer } from "node:net";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { build } from "esbuild";
 
 /** A/B control that removes Wrangler's local proxy, using the exact same installed workerd. */
 export async function withDirectRoomWorker<T>(
-  run: (base: string, assertAlive: () => void, workerBundleSha256: string) => Promise<T>,
+  run: (
+    base: string,
+    assertAlive: () => void,
+    workerBundleSha256: string,
+    restart: () => Promise<string>,
+  ) => Promise<T>,
 ): Promise<T> {
   const require = createRequire(import.meta.url);
   const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -21,27 +29,43 @@ export async function withDirectRoomWorker<T>(
     format: "esm",
     write: false,
   });
-  const mf = new Miniflare(
-    convertV4MiniflareOptions({
-      modules: true,
-      script: bundle.outputFiles[0]?.text,
-      compatibilityDate: "2026-08-30",
-      durableObjects: { ROOM_PROBES: { className: "RoomLoadProbe", useSQLite: true } },
-      log: new Log(LogLevel.ERROR),
-    }),
-  );
-  try {
+  const directory = await mkdtemp(join(tmpdir(), "edgefall-room-worker-"));
+  const create = () =>
+    new Miniflare(
+      convertV4MiniflareOptions({
+        modules: true,
+        script: bundle.outputFiles[0]?.text,
+        compatibilityDate: "2026-08-30",
+        durableObjects: { ROOM_PROBES: { className: "RoomLoadProbe", useSQLite: true } },
+        resourcePersistencePath: directory,
+        log: new Log(LogLevel.ERROR),
+      }),
+    );
+  let mf = create();
+  const origin = async () => {
     const url: URL = await mf.ready;
     url.hostname = "127.0.0.1";
+    return url.origin;
+  };
+  try {
     return await run(
-      url.origin,
+      await origin(),
       () => {},
       createHash("sha256")
         .update(bundle.outputFiles[0]?.text ?? "")
         .digest("hex"),
+      async () => {
+        await mf.dispose();
+        mf = create();
+        return origin();
+      },
     );
   } finally {
-    await mf.dispose();
+    try {
+      await mf.dispose();
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
   }
 }
 

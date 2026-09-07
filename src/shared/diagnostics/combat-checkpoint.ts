@@ -21,7 +21,12 @@ import { PROTOCOL_MAJOR, PROTOCOL_MINOR } from "../protocol/limits.js";
 import { decodeSnapshot, encodeSnapshot } from "../protocol/snapshot.js";
 import { BODY_BYTES } from "../protocol/snapshot-schema.js";
 import { combatEventContext } from "./combat-events.js";
-import { type CombatJournalTick, type CombatRuntime, replayCombatTick } from "./combat-runtime.js";
+import {
+  type CombatJournalTick,
+  type CombatRuntime,
+  combatRuntimeHash,
+  replayCombatTick,
+} from "./combat-runtime.js";
 import { combatSnapshot } from "./combat-workload.js";
 import { roomWorkloadHash } from "./room-workload.js";
 
@@ -375,10 +380,44 @@ export async function encodeCombatJournalSegment(
   integer(saved.length, 1, COMBAT_SEGMENT_TICKS, "journal segment ticks");
   let state = start;
   for (const entry of saved) state = replayCombatTick(state, entry);
+  return encodeAcceptedCombatJournalSegment(start, saved, state, expected);
+}
+/**
+ * Capture the already accepted authority transaction without re-running 15 ticks on its event loop.
+ * Only the live coordinated commit may supply `accepted`; archives are always resimulated on load.
+ */
+export async function encodeAcceptedCombatJournalSegment(
+  start: CombatRuntime,
+  entries: readonly CombatJournalTick[],
+  accepted: CombatRuntime,
+  expected: CombatArchiveIdentity,
+): Promise<string> {
+  const saved = structuredClone([...entries]);
+  integer(saved.length, 1, COMBAT_SEGMENT_TICKS, "journal segment ticks");
+  let hash = combatRuntimeHash(start);
+  for (const [index, entry] of saved.entries()) {
+    check(
+      entry.runEpoch === start.snapshot.runEpoch &&
+        entry.tick === start.combat.tick + index + 1 &&
+        entry.beforeHash === hash &&
+        entry.assertions.length === 1 &&
+        entry.assertions[0]?.kind === "state-hash" &&
+        /^[a-f0-9]{8}$/u.test(entry.assertions[0].value),
+      "accepted journal prefix",
+    );
+    hash = entry.assertions[0].value;
+  }
+  validateCombatCheckpoint(accepted);
+  check(
+    accepted.snapshot.runEpoch === start.snapshot.runEpoch &&
+      accepted.combat.tick === start.combat.tick + saved.length &&
+      combatRuntimeHash(accepted) === hash,
+    "accepted journal boundary",
+  );
   const segment: CombatJournalSegment = {
     runEpoch: start.snapshot.runEpoch,
     fromTick: start.combat.tick + 1,
-    throughTick: state.combat.tick,
+    throughTick: accepted.combat.tick,
     entries: saved,
   };
   return seal("journal", segment, { ...expected });

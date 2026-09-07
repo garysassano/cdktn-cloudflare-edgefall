@@ -1,6 +1,7 @@
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CombatLab } from "../../game/labs/combat.js";
 import type { EventBaseline, EventEnvelope } from "../protocol/events.js";
+import type { CombatJournalWriter } from "./combat-writer.js";
 
 export interface PeerMetrics {
   slot: number;
@@ -28,6 +29,23 @@ export interface PeerMetrics {
 export interface RoomProbeStatus {
   instanceId: string;
   worldFailure: string | null;
+  persistenceFailure: string | null;
+  persistenceHeld: boolean;
+  /** Local elapsed preparation/confirmation durations; these are not production CPU measurements. */
+  persistenceCommits: Array<{
+    runEpoch: number;
+    fromTick: number;
+    throughTick: number;
+    prepareMs: number;
+    confirmMs: number;
+  }>;
+  durability: CombatJournalWriter["status"] | null;
+  recoveryBoundary: {
+    fromRunEpoch: number;
+    restoredTick: number;
+    restoredHash: string;
+    runEpoch: number;
+  } | null;
   inputStreams: Array<{
     acknowledgment: PlayerAcknowledgment;
     queued: number;

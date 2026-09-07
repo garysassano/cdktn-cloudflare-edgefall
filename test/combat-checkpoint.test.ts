@@ -4,6 +4,7 @@ import {
   COMBAT_ARCHIVE_MAX_BYTES,
   type CombatArchiveIdentity,
   decodeCombatCheckpoint,
+  encodeAcceptedCombatJournalSegment,
   encodeCombatCheckpoint,
   encodeCombatJournalSegment,
   restoreCombatJournalSegment,
@@ -31,6 +32,43 @@ function state(tick = 60): CombatRuntime {
   return structuredClone(value);
 }
 describe("combat checkpoint and committed applied-input journal", () => {
+  it("captures the accepted boundary immutably and checks its complete hash chain", async () => {
+    const start = state(60),
+      accepted = state(75),
+      entries = structuredClone(fixture.entries.slice(60, 75));
+    const pending = encodeAcceptedCombatJournalSegment(start, entries, accepted, identity);
+    accepted.combat.nextActionId++;
+    entries.pop();
+    const raw = await pending;
+    expect(raw).toBe(
+      await encodeCombatJournalSegment(state(60), fixture.entries.slice(60, 75), identity),
+    );
+    expect(await restoreCombatJournalSegment(state(60), raw, identity)).toEqual(state(75));
+    await expect(
+      encodeAcceptedCombatJournalSegment(
+        state(60),
+        fixture.entries.slice(60, 75),
+        state(74),
+        identity,
+      ),
+    ).rejects.toThrow(/boundary/);
+    const changed = structuredClone(fixture.entries.slice(60, 75));
+    if (!changed[4]) throw new Error("Missing journal fixture");
+    changed[4].beforeHash = "00000000";
+    await expect(
+      encodeAcceptedCombatJournalSegment(state(60), changed, state(75), identity),
+    ).rejects.toThrow(/prefix/);
+  });
+  it("resimulates archived decisions on load even when the captured boundary hash matches", async () => {
+    const entries = structuredClone(fixture.entries.slice(60, 75));
+    const input = entries[2]?.inputs[0]?.input;
+    if (!input) throw new Error("Missing journal fixture");
+    input.command.held = 0;
+    // Only the coordinated authority may capture accepted entries. A changed decision with a valid
+    // envelope checksum and unchanged asserted hashes still fails semantic reconstruction at load.
+    const raw = await encodeAcceptedCombatJournalSegment(state(60), entries, state(75), identity);
+    await expect(restoreCombatJournalSegment(state(60), raw, identity)).rejects.toThrow();
+  });
   it("reconstructs the exact committed world including private continuation and excludes uncommitted ticks", async () => {
     expect(await combatRecoveryProof()).toMatchObject({
       checkpointTick: 60,

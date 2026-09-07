@@ -1,15 +1,16 @@
 import { DurableObject } from "cloudflare:workers";
 import type { CombatLab } from "../../game/labs/combat.js";
 import type { GameIdentity } from "../../shared/content-id.js";
+import { combatEventContext } from "../../shared/diagnostics/combat-events.js";
 import {
-  combatEventContext,
-  combatGameplayEvents,
-} from "../../shared/diagnostics/combat-events.js";
-import {
-  combatIdentity,
-  createCombatWorkload,
-  evaluateCombatTick,
-} from "../../shared/diagnostics/combat-workload.js";
+  type CombatJournalTick,
+  type CombatRuntime,
+  combatRuntimeHash,
+  createCombatRuntime,
+  stageCombatRuntime,
+} from "../../shared/diagnostics/combat-runtime.js";
+import { combatIdentity } from "../../shared/diagnostics/combat-workload.js";
+import { CombatJournalWriter } from "../../shared/diagnostics/combat-writer.js";
 import {
   controllerPeerContext,
   recoverControllerWorld,
@@ -32,9 +33,7 @@ import { decodeInputBatch } from "../../shared/protocol/codec.js";
 import {
   type EventHistory,
   acceptsEventBaseline,
-  createEventHistory,
   eventBatches,
-  stageEventTick,
 } from "../../shared/protocol/event-stream.js";
 import {
   EVENT_CAPABILITY,
@@ -52,6 +51,7 @@ import { InputStream } from "../../shared/protocol/input-stream.js";
 import { encodeSnapshot } from "../../shared/protocol/snapshot.js";
 import { RoomClock } from "../../shared/runtime/room-clock.js";
 import { ControlLease } from "../runtime/control-lease.js";
+import { CombatStorage } from "./combat-storage.js";
 
 interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
@@ -74,6 +74,15 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private world = createRoomWorkload(1);
   private combat: CombatLab | null = null;
   private eventHistory: EventHistory | null = null;
+  private connectedPlayerIds: number[] = [];
+  private combatStore: CombatStorage | null = null;
+  private combatWriter: CombatJournalWriter | null = null;
+  private recoveryBoundary: RoomProbeStatus["recoveryBoundary"] = null;
+  private persistenceFailure: string | null = null;
+  private failNextPersistence = false;
+  private holdNextPersistence = false;
+  private heldPersistence: { release: () => void; reject: () => void } | null = null;
+  private starting = false;
   private identity: Promise<GameIdentity> = Promise.resolve(PROBE_IDENTITY);
   private failNextCombatTick = false;
   private worldFailure: string | null = null;
@@ -110,7 +119,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   }
   private sampledNow = 0;
   private watchdog: ReturnType<typeof setTimeout> | null = null;
-  private initialized = false;
+  private initialization: Promise<void> | null = null;
   private recoveries = 0;
   private clock = this.createClock(0);
   private createClock(initialTick: number): RoomClock {
@@ -161,7 +170,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
 
   constructor(ctx: DurableObjectState, env: ProbeEnv) {
     super(ctx, env);
-    // Recovery is deliberately not faked by recreating empty input streams after a wake.
+    // Old input generations close; combat initialization restores SQLite before a new welcome.
     for (const socket of ctx.getWebSockets()) socket.close(1012, "probe-restarted");
   }
 
@@ -194,6 +203,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.clearWatchdog();
     this.world.roomMode = "expired";
     this.disconnectAll(reason);
+    this.heldPersistence?.reject();
   }
 
   private context(slot: number) {
@@ -271,22 +281,21 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           this.disconnect(peer, "reader-stalled", 4002);
         return peer.metrics.active;
       });
-    const transaction = InputStream.processWorldTick(
+    const transaction = InputStream.processWorldTick<{
+      snapshot: CombatRuntime["snapshot"];
+      combat: CombatLab | null;
+      history: EventHistory | null;
+      connectedPlayerIds: number[];
+      journal: CombatJournalTick | null;
+    }>(
       active.map(([, peer]) => peer.input),
       tick,
       this.sampledNow,
       (prepared) => {
         if (this.workload === "combat") {
           if (!this.combat || !this.eventHistory) throw new Error("Missing combat world/history");
-          const result = evaluateCombatTick(this.combat, this.world, prepared);
-          const history = stageEventTick(
-            this.eventHistory,
-            tick,
-            combatGameplayEvents(this.combat, result.state.combat),
-            combatEventContext(this.context(0)),
-          );
-          result.state.snapshot.baselineEventCursor = history.cursor;
-          result.state.snapshot.stateHash = roomWorkloadHash(result.state.snapshot);
+          const result = stageCombatRuntime(this.combatRuntime(), prepared);
+          const history = result.state.history;
           for (const [slot] of active) {
             const context = this.context(slot);
             encodeSnapshot(
@@ -304,7 +313,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.failNextCombatTick = false;
             throw new Error("injected-combat-commit-failure");
           }
-          return { ...result, state: { ...result.state, history } };
+          return { ...result, state: { ...result.state, journal: result.journal } };
         }
         const candidate = structuredClone(this.world);
         const outcomes: WorldInputOutcome[] = prepared.map(({ input }) => ({
@@ -358,7 +367,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           encodeSnapshot({ ...candidate, connectionEpoch: context.connectionEpoch }, context);
         }
         return {
-          state: { snapshot: candidate, combat: this.combat, history: this.eventHistory },
+          state: {
+            snapshot: candidate,
+            combat: this.combat,
+            history: this.eventHistory,
+            connectedPlayerIds: this.connectedPlayerIds,
+            journal: null,
+          },
           outcomes,
         };
       },
@@ -366,6 +381,16 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.world = transaction.state.snapshot;
     this.combat = transaction.state.combat;
     this.eventHistory = transaction.state.history;
+    this.connectedPlayerIds = transaction.state.connectedPlayerIds;
+    if (transaction.state.journal) {
+      try {
+        if (!this.combatWriter) throw new Error("Missing combat journal writer");
+        this.combatWriter.record(transaction.state.journal, this.combatRuntime());
+      } catch (error) {
+        // This tick has committed. Pause output/input without turning it into a clock step failure.
+        this.pausePersistence(String(error));
+      }
+    }
     for (const processed of transaction.processed) {
       const slot = this.world.players.find(
         (actor) => actor.playerId === processed.input.playerId,
@@ -389,7 +414,10 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       if (processed.neutralized && peer.metrics.neutralizedAtTick === null)
         peer.metrics.neutralizedAtTick = tick;
     }
-    if (![...this.peers.values()].some((peer) => peer.metrics.active)) {
+    if (
+      this.world.roomMode === "playing" &&
+      ![...this.peers.values()].some((peer) => peer.metrics.active)
+    ) {
       this.world.roomMode = "paused-empty";
       this.clock.stop();
       this.clearWatchdog();
@@ -410,36 +438,156 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (tick >= 1200) this.finish("tick-limit");
   }
 
+  private combatRuntime(): CombatRuntime {
+    if (!this.combat || !this.eventHistory) throw new Error("Missing combat continuation");
+    return {
+      combat: this.combat,
+      snapshot: this.world,
+      history: this.eventHistory,
+      connectedPlayerIds: this.connectedPlayerIds,
+    };
+  }
+  private installCombat(state: CombatRuntime) {
+    this.world = state.snapshot;
+    this.combat = state.combat;
+    this.eventHistory = state.history;
+    this.connectedPlayerIds = state.connectedPlayerIds;
+  }
+  private pausePersistence(reason: string) {
+    this.persistenceFailure ??= reason.slice(0, 256);
+    this.clock.stop();
+    this.clearWatchdog();
+    if (this.world.roomMode !== "expired") this.world.roomMode = "recovering";
+    this.disconnectAll("persistence-recovery");
+  }
+  private async persistCombat(
+    start: CombatRuntime,
+    entries: readonly CombatJournalTick[],
+    accepted: CombatRuntime,
+  ) {
+    if (!this.combatStore) throw new Error("Missing combat store");
+    if (this.holdNextPersistence) {
+      this.holdNextPersistence = false;
+      // Loopback-only slow I/O injection. It cannot hold a process open indefinitely.
+      await new Promise<void>((resolve, reject) => {
+        const rejectHeld = () => {
+          clearTimeout(timeout);
+          this.heldPersistence = null;
+          reject(new Error("injected-combat-write-hold-expired"));
+        };
+        const timeout = setTimeout(rejectHeld, 2000);
+        this.heldPersistence = {
+          release: () => {
+            clearTimeout(timeout);
+            this.heldPersistence = null;
+            resolve();
+          },
+          reject: rejectHeld,
+        };
+      });
+    }
+    return this.combatStore.commit(start, entries, accepted);
+  }
+  private async restoreCombat(loaded: CombatRuntime | null = null) {
+    if (!this.combatStore) throw new Error("Missing combat store");
+    await this.combatWriter?.retire();
+    this.combatWriter = null;
+    const previous = loaded ?? (await this.combatStore.load());
+    if (!previous) throw new Error("Missing durable combat world");
+    const state = await this.combatStore.transition(previous, "recover");
+    this.recoveryBoundary = {
+      fromRunEpoch: previous.snapshot.runEpoch,
+      restoredTick: previous.combat.tick,
+      restoredHash: combatRuntimeHash(previous),
+      runEpoch: state.snapshot.runEpoch,
+    };
+    this.installCombat(state);
+    this.clock = this.createClock(state.combat.tick);
+    this.recoveries = state.snapshot.runEpoch - 1;
+    this.persistenceFailure = null;
+    this.worldFailure = null;
+  }
+  private async initialize(workload: string | undefined) {
+    this.workload =
+      workload === "combat"
+        ? "combat"
+        : workload === "controller"
+          ? "controller"
+          : workload === "double"
+            ? "double"
+            : "standard";
+    this.world =
+      this.workload === "controller"
+        ? createControllerWorkload()
+        : createRoomWorkload(this.workload === "double" ? 2 : 1);
+    if (this.workload === "combat") {
+      const initial = createCombatRuntime();
+      initial.snapshot.roomMode = "loading";
+      initial.snapshot.stateHash = roomWorkloadHash(initial.snapshot);
+      initial.connectedPlayerIds = [];
+      this.installCombat(initial);
+      this.identity = combatIdentity();
+      const { simulationVersion, simulationBuild, contentFormat, contentHash } =
+        await this.identity;
+      this.combatStore = new CombatStorage(
+        this.ctx.storage,
+        {
+          simulationVersion,
+          simulationBuild,
+          contentFormat,
+          contentHash,
+          runId: "local-room-workload",
+        },
+        () => {
+          if (this.failNextPersistence) {
+            this.failNextPersistence = false;
+            throw new Error("injected-combat-storage-failure");
+          }
+        },
+      );
+      const loaded = await this.combatStore.load();
+      if (loaded) await this.restoreCombat(loaded);
+      else await this.combatStore.initialize(initial);
+    } else
+      this.identity = Promise.resolve(
+        this.workload === "controller" ? CONTROLLER_IDENTITY : PROBE_IDENTITY,
+      );
+  }
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const parts = url.pathname.split("/");
     const action = parts[2];
-    if (!this.initialized) {
-      this.initialized = true;
-      this.workload =
-        parts[1] === "combat"
-          ? "combat"
-          : parts[1] === "controller"
-            ? "controller"
-            : parts[1] === "double"
-              ? "double"
-              : "standard";
-      this.world =
-        this.workload === "controller"
-          ? createControllerWorkload()
-          : createRoomWorkload(this.workload === "double" ? 2 : 1);
-      if (this.workload === "combat") {
-        const initial = createCombatWorkload();
-        this.world = initial.snapshot;
-        this.combat = initial.combat;
-        this.eventHistory = createEventHistory(this.world.runEpoch);
-        this.identity = combatIdentity();
-      } else
-        this.identity = Promise.resolve(
-          this.workload === "controller" ? CONTROLLER_IDENTITY : PROBE_IDENTITY,
-        );
-    }
+    this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize(parts[1]));
+    await this.initialization;
     const identity = await this.identity;
+    if (action === "release-write") {
+      if (request.method !== "POST" || this.workload !== "combat" || !this.heldPersistence)
+        return new Response("No held write", { status: 409 });
+      this.heldPersistence.release();
+      return Response.json({ released: true });
+    }
+    if (action === "hold-next-write") {
+      if (
+        request.method !== "POST" ||
+        this.workload !== "combat" ||
+        this.world.roomMode !== "playing" ||
+        this.heldPersistence ||
+        this.holdNextPersistence
+      )
+        return new Response("Write hold unavailable", { status: 409 });
+      this.holdNextPersistence = true;
+      return Response.json({ tick: this.world.tick });
+    }
+    if (action === "fail-next-write") {
+      if (
+        request.method !== "POST" ||
+        this.workload !== "combat" ||
+        this.world.roomMode !== "playing"
+      )
+        return new Response("Fault injection unavailable", { status: 409 });
+      this.failNextPersistence = true;
+      return Response.json({ tick: this.world.tick, durability: this.combatWriter?.status });
+    }
     if (action === "fail-next-tick") {
       if (
         request.method !== "POST" ||
@@ -459,6 +607,31 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     }
     if (action === "recover") {
       if (request.method !== "POST") return new Response("Use POST", { status: 405 });
+      if (this.workload === "combat") {
+        if (
+          this.starting ||
+          this.recoveries >= 4 ||
+          !["playing", "recovering", "paused-empty"].includes(this.world.roomMode)
+        )
+          return new Response("Recovery unavailable", { status: 409 });
+        this.clock.close();
+        this.clearWatchdog();
+        this.disconnectAll("baseline-replaced");
+        this.peers.clear();
+        this.world.roomMode = "recovering";
+        this.starting = true;
+        try {
+          await this.restoreCombat();
+        } finally {
+          this.starting = false;
+        }
+        return Response.json({
+          runEpoch: this.world.runEpoch,
+          tick: this.world.tick,
+          roomMode: this.world.roomMode,
+          recoveryBoundary: this.recoveryBoundary,
+        });
+      }
       if (
         this.workload !== "controller" ||
         this.recoveries >= 4 ||
@@ -568,6 +741,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       return new Response("Use POST", { status: 405 });
     if (action === "start") {
       if (
+        this.starting ||
         this.world.roomMode !== "loading" ||
         this.peers.size !== 4 ||
         [...this.peers.values()].some(
@@ -577,6 +751,29 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         )
       )
         return new Response("Four clients required", { status: 409 });
+      this.starting = true;
+      try {
+        if (this.workload === "combat") {
+          if (!this.combatStore) throw new Error("Missing combat store");
+          const started = await this.combatStore.transition(this.combatRuntime(), "start");
+          this.installCombat(started);
+          this.combatWriter = new CombatJournalWriter(
+            { commit: (start, entries, accepted) => this.persistCombat(start, entries, accepted) },
+            started,
+            (reason) => this.pausePersistence(reason),
+            (work) => this.ctx.waitUntil(work),
+          );
+        }
+      } catch (error) {
+        this.pausePersistence(String(error));
+        return new Response("Combat start persistence failed", { status: 503 });
+      } finally {
+        this.starting = false;
+      }
+      if ([...this.peers.values()].some((peer) => !peer.metrics.active)) {
+        this.pausePersistence("start-cohort-changed");
+        return new Response("Start cohort changed", { status: 409 });
+      }
       const now = performance.now();
       for (const peer of this.peers.values()) {
         peer.lease = new ControlLease(now);
@@ -595,6 +792,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const status: RoomProbeStatus = {
       instanceId: this.instanceId,
       worldFailure: this.worldFailure,
+      durability: this.combatWriter?.status ?? null,
+      persistenceFailure: this.persistenceFailure,
+      persistenceHeld: this.heldPersistence !== null,
+      persistenceCommits: this.combatStore?.commits ?? [],
+      recoveryBoundary: this.recoveryBoundary,
       inputStreams: [...this.peers.values()].map((peer) => ({
         acknowledgment: peer.input.acknowledgment,
         queued: peer.input.queuedCommands,
@@ -722,7 +924,7 @@ export default {
       return new Response("Local only", { status: 403 });
     if (url.pathname === "/health") return Response.json({ fixture: "edgefall-room-load-probe" });
     const match =
-      /^\/(standard|double|controller|combat)\/(connect|start|status|close|recover|fail-next-tick)$/u.exec(
+      /^\/(standard|double|controller|combat)\/(connect|start|status|close|recover|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
         url.pathname,
       );
     if (!match?.[1]) return new Response("Not found", { status: 404 });

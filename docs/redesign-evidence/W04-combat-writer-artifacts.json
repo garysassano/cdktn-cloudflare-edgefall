@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "encoding": "gzip of original UTF-8 JSON report bytes",
+  "artifacts": [
+    {
+      "file": "W04-combat-writer-abort.json.gz",
+      "jsonBytes": 153356,
+      "jsonSha256": "ba4f92ed8684757e0405bf3ea86ee551b5499296c7b41607a79dc6d0459a04f1",
+      "archiveBytes": 9062,
+      "archiveSha256": "7180409bf912bef9c04945c7e9207460ee5b500cd6255c03516f4a985bdcfdbc"
+    },
+    {
+      "file": "W04-combat-writer-baseline.json.gz",
+      "jsonBytes": 828186,
+      "jsonSha256": "62581e40126e70621197e01eb8329377500f66f148741c545da5b724264d401e",
+      "archiveBytes": 46950,
+      "archiveSha256": "bb5b833c71cc88098ce3c4f2b1f65d983c93084a04648a2864bc540b6150c69d"
+    },
+    {
+      "file": "W04-combat-writer-browser.json.gz",
+      "jsonBytes": 3295942,
+      "jsonSha256": "e21d10935abcb25628d1225d5d663118f60387dafb73393ab7352ccec6f503c5",
+      "archiveBytes": 160172,
+      "archiveSha256": "9cdd80f463e40c7f119e177898004117e1eb0f3ce110b308b02979ec39629e65"
+    },
+    {
+      "file": "W04-combat-writer-clock-failed-clients.json.gz",
+      "jsonBytes": 1312931,
+      "jsonSha256": "3e2a97af8e2a92bd1b198c63df3cdb43938648e462e85b1952f05850e9e289c0",
+      "archiveBytes": 98918,
+      "archiveSha256": "807ef25116145f86e73dcbe20de0a7363cbfa678f23971830907e4138e9646cb"
+    },
+    {
+      "file": "W04-combat-writer-clock-failure.json.gz",
+      "jsonBytes": 992927,
+      "jsonSha256": "7e8c89845400063def9d8631e517203ab7b31b09cfd9bc9c7ec67a795b2f1426",
+      "archiveBytes": 34836,
+      "archiveSha256": "aaa04e396bda1d1bca6d3051ee011d8cc038916ba0b51fa23262873107515bd9"
+    },
+    {
+      "file": "W04-combat-writer-controller-recovery.json.gz",
+      "jsonBytes": 373968,
+      "jsonSha256": "063156d5837406815d247e7217225c3237ec801d04514cb6873b0781ab213087",
+      "archiveBytes": 15287,
+      "archiveSha256": "310689c0d84d8c53c8cda1e87ee116301849d0be6857754d72ccfb6bdd72e90b"
+    },
+    {
+      "file": "W04-combat-writer-input-failed-clients.json.gz",
+      "jsonBytes": 164707,
+      "jsonSha256": "c82c59e56b5c1e7842c37163f9a95ada994c285257317439f1ce9afec7099a81",
+      "archiveBytes": 15735,
+      "archiveSha256": "94af62e049db059e779cac60a9d1b0bdda45c6c5fa63a01f1258689cfe8292bf"
+    },
+    {
+      "file": "W04-combat-writer-input-failure.json.gz",
+      "jsonBytes": 137173,
+      "jsonSha256": "dc4a20184bdc5f79b97842c3125dec0c0094fd4307ac64be045f5010ceaf30a6",
+      "archiveBytes": 6700,
+      "archiveSha256": "d2de21c1b315a37919775a3a22194fa120b16858da17d43c05953a16a34a3be6"
+    }
+  ]
+}

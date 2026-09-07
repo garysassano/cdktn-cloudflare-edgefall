@@ -3,15 +3,15 @@ import {
   COMBAT_SEGMENT_TICKS,
   type CombatArchiveIdentity,
   decodeCombatCheckpoint,
+  encodeAcceptedCombatJournalSegment,
   encodeCombatCheckpoint,
-  encodeCombatJournalSegment,
   restoreCombatJournalSegment,
 } from "../../shared/diagnostics/combat-checkpoint.js";
+import { transitionCombatRuntime } from "../../shared/diagnostics/combat-recovery.js";
 import {
   type CombatJournalTick,
   type CombatRuntime,
   combatRuntimeHash,
-  replayCombatTick,
 } from "../../shared/diagnostics/combat-runtime.js";
 
 type ArchiveRow = {
@@ -23,6 +23,13 @@ type ArchiveRow = {
 /** SQLite laboratory store. Caller pauses gameplay on failure/backlog; no external side effects. */
 export class CombatStorage {
   private busy = false;
+  readonly commits: Array<{
+    runEpoch: number;
+    fromTick: number;
+    throughTick: number;
+    prepareMs: number;
+    confirmMs: number;
+  }> = [];
   constructor(
     private readonly storage: DurableObjectStorage,
     private readonly identity: CombatArchiveIdentity,
@@ -76,15 +83,19 @@ export class CombatStorage {
       await this.storage.sync();
     });
   }
-  commit(start: CombatRuntime, entries: readonly CombatJournalTick[]): Promise<CombatRuntime> {
+  commit(
+    start: CombatRuntime,
+    entries: readonly CombatJournalTick[],
+    accepted: CombatRuntime,
+  ): Promise<CombatRuntime> {
     const previous = structuredClone(start),
-      saved = structuredClone([...entries]);
+      saved = structuredClone([...entries]),
+      state = structuredClone(accepted);
     return this.exclusive(async () => {
+      const began = performance.now();
       if (saved.length !== COMBAT_SEGMENT_TICKS)
         throw new Error("Combat durable segment must contain 15 ticks");
-      const raw = await encodeCombatJournalSegment(previous, saved, this.identity);
-      let state = previous;
-      for (const entry of saved) state = replayCombatTick(state, entry);
+      const raw = await encodeAcceptedCombatJournalSegment(previous, saved, state, this.identity);
       const checkpoint = this.storage.sql
         .exec<ArchiveRow>(
           "SELECT key, run_epoch, tick, payload FROM combat_archive WHERE key = ?",
@@ -94,6 +105,7 @@ export class CombatStorage {
       if (!checkpoint) throw new Error("Missing combat checkpoint");
       const replace = state.combat.tick - checkpoint.tick >= COMBAT_CHECKPOINT_TICKS;
       const nextCheckpoint = replace ? await encodeCombatCheckpoint(state, this.identity) : null;
+      const preparedAt = performance.now();
       this.storage.transactionSync(() => {
         const head = this.head();
         if (
@@ -117,6 +129,37 @@ export class CombatStorage {
         this.put("head", state.snapshot.runEpoch, state.combat.tick, combatRuntimeHash(state));
       });
       // Only this confirmed boundary may advance the caller's durable cursor.
+      await this.storage.sync();
+      if (this.commits.length < 80)
+        this.commits.push({
+          runEpoch: state.snapshot.runEpoch,
+          fromTick: previous.combat.tick + 1,
+          throughTick: state.combat.tick,
+          prepareMs: preparedAt - began,
+          confirmMs: performance.now() - preparedAt,
+        });
+      return state;
+    });
+  }
+  transition(current: CombatRuntime, kind: "start" | "recover"): Promise<CombatRuntime> {
+    const previous = structuredClone(current);
+    return this.exclusive(async () => {
+      const state = transitionCombatRuntime(previous, kind);
+      const raw = await encodeCombatCheckpoint(state, this.identity);
+      this.storage.transactionSync(() => {
+        const head = this.head();
+        if (
+          !head ||
+          head.run_epoch !== previous.snapshot.runEpoch ||
+          head.tick !== previous.combat.tick ||
+          head.payload !== combatRuntimeHash(previous)
+        )
+          throw new Error("Combat boundary prefix changed");
+        this.put("checkpoint", state.snapshot.runEpoch, state.combat.tick, raw);
+        this.storage.sql.exec("DELETE FROM combat_archive WHERE key LIKE 'segment:%'");
+        this.beforeHeadCommit?.();
+        this.put("head", state.snapshot.runEpoch, state.combat.tick, combatRuntimeHash(state));
+      });
       await this.storage.sync();
       return state;
     });

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-09-07T00:37:42.400027+00:00",
+  "accountsStatus": 200,
+  "visibleAccounts": 1,
+  "configuredWorker": "edgefall",
+  "accounts": [
+    {
+      "workersListStatus": 200,
+      "matchingWorkers": [],
+      "settingsStatus": 404,
+      "settingsErrorCodes": [10007]
+    }
+  ],
+  "localConfiguration": {
+    "upload_source_maps": true,
+    "observability": {
+      "enabled": true,
+      "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 1 },
+      "traces": { "enabled": true, "head_sampling_rate": 1 }
+    }
+  },
+  "scope": "Read-only check of accounts accessible with the supplied credential; no account identifiers or credentials retained. No matching deployed Worker was found. Live trace ingestion remains unverified."
+}
