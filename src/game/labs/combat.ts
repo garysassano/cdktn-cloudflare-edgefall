@@ -22,6 +22,7 @@ import {
   stepArea,
 } from "../combat/area-attack.js";
 import {
+  type DestructibleDefinition,
   type DestructibleState,
   createDestructible,
   damageDestructible,
@@ -79,7 +80,6 @@ import {
   COMBAT_ORDNANCE,
   COMBAT_SUPPORT,
   combatCollisionIndex,
-  combatEndTerrain,
   combatGeometryRevision,
   combatTerrain,
 } from "./combat-terrain.js";
@@ -114,6 +114,16 @@ export interface CombatTarget {
   shield: boolean;
   rifle: RifleState | null;
   guard: ShieldState | null;
+}
+/** Tick-local mission geometry and external damage targets, consumed by the same combat kernel. */
+export interface CombatStage {
+  terrain: SweepTarget[];
+  destructibles: readonly DestructibleDefinition[];
+  enemyBounds: { x: number; y: number; w: number; h: number };
+  fallBoundary: number;
+  entry: Point;
+  activeEnemyIds: ReadonlySet<number>;
+  extraHurtboxes: readonly HurtTarget[];
 }
 export interface CombatNotice {
   kind:
@@ -390,6 +400,8 @@ function meleeEligible(
   terrain: SweepTarget[],
   tick: number,
   props: readonly DestructibleState[],
+  definitions: readonly DestructibleDefinition[],
+  extraHurtboxes: readonly HurtTarget[],
 ): boolean {
   const definition = COMBAT_ATTACKS.get(4),
     shape = COMBAT_SHAPES.get(9);
@@ -411,7 +423,11 @@ function meleeEligible(
       actor.facing,
       { x: actor.body.x, y: hand.y },
       terrain,
-      [...combatHurtboxes(targets, tick), ...destructibleHurtboxes(props, COMBAT_SUPPORT)],
+      [
+        ...combatHurtboxes(targets, tick),
+        ...destructibleHurtboxes(props, definitions),
+        ...extraHurtboxes,
+      ],
     ).some((hit) => hit.damage > 0)
   );
 }
@@ -481,6 +497,7 @@ export function advanceCombatLab(
     connectedPlayerIds: current.players.map((p) => p.playerId),
     releasePlayerIds: [],
   },
+  stage?: CombatStage,
 ) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
@@ -497,13 +514,25 @@ export function advanceCombatLab(
   const world = structuredClone(current);
   const tick = ++world.tick;
   world.events = [];
-  const physicalTerrain = combatTerrain(world.scenario, tick, world.props);
+  const physicalTerrain = stage?.terrain ?? combatTerrain(world.scenario, tick, world.props);
+  const active = (target: CombatTarget) => !stage || stage.activeEnemyIds.has(target.enemy.body.id);
+  const destructibles = stage?.destructibles ?? COMBAT_SUPPORT;
   const terrain = physicalTerrain.filter(
     (target) => !world.props.some((prop) => prop.id === target.id),
   );
   const frame = { tick, geometryRevision: combatGeometryRevision(world.props) };
-  const index = combatCollisionIndex(world.scenario, frame, world.props);
+  const index = combatCollisionIndex(world.scenario, frame, world.props, physicalTerrain);
   const encounterEvents: EncounterEvent[] = [];
+  const activatedIds = new Set<number>();
+  const activateTarget = (id: number) => {
+    if (
+      !activatedIds.has(id) &&
+      world.encounter.members.some((member) => member.id === id && member.status === "pending")
+    ) {
+      activatedIds.add(id);
+      encounterEvents.push({ kind: "activate", id, sequence: ++world.eventSequence, tick });
+    }
+  };
   const lifeNotices: LifeNotice[] = [];
   const seatChanges: SeatChanges = new Map();
   const outcomes: Array<{
@@ -516,12 +545,15 @@ export function advanceCombatLab(
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
     if (!command || !FOOT_DEFINITION) throw new Error("Missing combat controller");
-    const life = stepPlayerLife(
-      actor,
-      tick,
-      "classic",
-      combatEntryContext(actor, index, frame, world.scenario),
-    );
+    const life = stepPlayerLife(actor, tick, "classic", {
+      ...combatEntryContext(actor, index, frame, world.scenario),
+      ...(stage
+        ? {
+            fallBoundary: stage.fallBoundary,
+            anchors: [{ x: stage.entry.x + actor.slot * pixels(24), y: stage.entry.y }],
+          }
+        : {}),
+    });
     if (life.notice) lifeNotices.push(life.notice);
     const result = stepFootController(
       life.actor,
@@ -564,17 +596,8 @@ export function advanceCombatLab(
     outcome.interact = tank.interact;
   }
   for (const target of world.targets) {
-    if (
-      world.encounter.members.some(
-        (member) => member.id === target.enemy.body.id && member.status === "pending",
-      )
-    )
-      encounterEvents.push({
-        kind: "activate",
-        id: target.enemy.body.id,
-        sequence: ++world.eventSequence,
-        tick,
-      });
+    if (!active(target)) continue;
+    activateTarget(target.enemy.body.id);
     if (target.health === 0) continue;
     const shieldStep =
       target.guard &&
@@ -601,7 +624,7 @@ export function advanceCombatLab(
         turnAtBoundary: !target.guard && target.rifle?.action.kind !== "fire",
         gravity: 55,
         terminalVelocity: 2048,
-        bounds: { x: 0, y: 0, w: pixels(384), h: pixels(220) },
+        bounds: stage?.enemyBounds ?? { x: 0, y: 0, w: pixels(384), h: pixels(220) },
       },
       shape,
       index,
@@ -636,7 +659,15 @@ export function advanceCombatLab(
       world.nextActionId,
       COMBAT_CATALOG,
       FOOT_ACTION_PROFILES,
-      meleeEligible(actor, world.targets, terrain, tick, world.props),
+      meleeEligible(
+        actor,
+        world.targets,
+        terrain,
+        tick,
+        world.props,
+        destructibles,
+        stage?.extraHurtboxes ?? [],
+      ),
     );
     world.players[slot] = result.actor;
     world.nextActionId = result.nextActionId;
@@ -685,7 +716,15 @@ export function advanceCombatLab(
           const blocking = earliestSweep(
             worldRect(handRoot, shape.rect, 1),
             delta,
-            combatEndTerrain(world.scenario, tick),
+            physicalTerrain.map((target) => ({
+              ...target,
+              rect: {
+                ...target.rect,
+                x: target.rect.x + target.delta.x,
+                y: target.rect.y + target.delta.y,
+              },
+              delta: { x: 0, y: 0 },
+            })),
           );
           if (blocking.overlaps.length) throw new Error("Grenade hand starts inside terrain");
           const contact = blocking.contacts[0];
@@ -804,7 +843,7 @@ export function advanceCombatLab(
     if (fire !== undefined) outcome.fire = fire;
   }
   for (const target of world.targets) {
-    if (!target.rifle || target.health === 0) continue;
+    if (!active(target) || !target.rifle || target.health === 0) continue;
     const shape = COMBAT_SHAPES.get(4);
     if (!shape) throw new Error("Missing rifle projectile shape");
     const result = stepRifleAttack(
@@ -874,10 +913,13 @@ export function advanceCombatLab(
     }
   }
   const hurtboxes = [
+    // Authored actors remain material before AI activation. A long-range round must
+    // meet an intact shield before it can enter the body behind it.
     ...combatHurtboxes(world.targets, tick, current.targets),
     ...playerCombatHurtboxes(world.players, current.players),
     ...tankCombatHurtboxes(world.tanks, current.tanks),
-    ...destructibleHurtboxes(world.props, COMBAT_SUPPORT),
+    ...destructibleHurtboxes(world.props, destructibles),
+    ...(stage?.extraHurtboxes ?? []),
   ];
   const impacts: Impact[] = [];
   world.areas = world.areas.flatMap((area) => {
@@ -898,7 +940,7 @@ export function advanceCombatLab(
   });
   for (const target of world.targets) {
     const guard = target.guard;
-    if (!guard || target.health === 0 || guard.phase !== "bash") continue;
+    if (!active(target) || !guard || target.health === 0 || guard.phase !== "bash") continue;
     const age = tick - guard.action.stateStartTick;
     if (
       age < SHIELD_PROFILE.bashActiveTick ||
@@ -1127,6 +1169,7 @@ export function advanceCombatLab(
       continue;
     }
     const target = world.targets.find((candidate) => candidate.enemy.body.id === impact.entityId);
+    if (target && target.health > 0) activateTarget(target.enemy.body.id);
     if (target?.guard && target.health > 0 && impact.kind === "shield") {
       const definition = COMBAT_ATTACKS.get(impact.definitionId);
       if (!definition) throw new Error("Unknown shield damage definition");
@@ -1181,7 +1224,11 @@ export function advanceCombatLab(
   }
   for (const [slot, actor] of world.players.entries()) {
     // The range's authored lower kill boundary resolves real falls, not a client death command.
-    if (actor.life !== "alive" || actor.body.y <= COMBAT_ENTRY.fallBoundary) continue;
+    if (
+      actor.life !== "alive" ||
+      actor.body.y <= (stage?.fallBoundary ?? COMBAT_ENTRY.fallBoundary)
+    )
+      continue;
     const death = damagePlayer(actor, tick, 1, "classic", "fall");
     world.players[slot] = death.actor;
     if (death.notice) lifeNotices.push(death.notice);
@@ -1204,7 +1251,9 @@ export function advanceCombatLab(
     tick,
     encounterEvents,
     world.targets
-      .filter((target) => target.health > 0)
+      .filter(
+        (target) => target.health > 0 && (active(target) || activatedIds.has(target.enemy.body.id)),
+      )
       .map((target) => ({
         id: target.enemy.body.id,
         progressKey: canonical([
@@ -1220,7 +1269,7 @@ export function advanceCombatLab(
     "throw",
   ).state;
   const seatEvents = commitCombatSeats(current, world, seatChanges);
-  return { state: world, outcomes, lifeNotices, seatEvents };
+  return { state: world, outcomes, lifeNotices, seatEvents, impacts };
 }
 export interface CombatRecording {
   format: 9;

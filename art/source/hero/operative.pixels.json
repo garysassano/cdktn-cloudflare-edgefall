@@ -2814,6 +2814,2015 @@
         "..oBttuuo..oBtttuuo.....",
         "..oooooooo.oooooooo....."
       ]
+    },
+    {
+      "id": "upper-hmg-16",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "oCccCoAablAo...",
+        "oCCCooAabTvo...",
+        ".ooo.oAAaavAo..",
+        ".....oAGGGGgo..",
+        ".....oAGgGgGgo.",
+        ".....oxGgGffggo",
+        ".....oxGgGGfggo",
+        "......oGgGnGgo.",
+        ".......GgGoogo.",
+        ".......GgGooo..",
+        ".......GgGGogo.",
+        ".......GGgGogo.",
+        ".......oGgGoo..",
+        ".......oGgGoo..",
+        ".......oGgGoo..",
+        ".......oGgGoo..",
+        ".......oGgGMo..",
+        ".......oGGMMo..",
+        ".......oGfgMo..",
+        ".......oGGGM...",
+        ".......oMMMo...",
+        ".......oMMMo...",
+        ".......oMMMo...",
+        ".......ooioo...",
+        ".......ooMoo...",
+        ".......ooMoo...",
+        ".......ooooo...",
+        ".......ooooo..."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          0
+        ],
+        "grip": [
+          2,
+          -7
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-16-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "oCccCoAablAo...",
+        "oCCCooAabTvo...",
+        ".ooo.oAAaavAo..",
+        ".....oAGGGGgo..",
+        ".....oAGgGgGgo.",
+        ".....oxGgGffggo",
+        ".....oxGgGGfggo",
+        "......oGgGoogo.",
+        ".......GgGoogo.",
+        ".......GgGMoo..",
+        ".......GgGGogo.",
+        ".......GGgGogo.",
+        ".......oGgGoo..",
+        ".......oGgGoo..",
+        ".......oGgGoo..",
+        ".......oGgGMo..",
+        ".......oGGMMo..",
+        ".......oGfgMo..",
+        ".......oGGGMo..",
+        ".......oMMMo...",
+        ".......oMMMo...",
+        ".......oMMMo...",
+        ".......ooioo...",
+        ".......ooMoo...",
+        ".......ooMoo...",
+        ".......ooooo...",
+        ".......ooooo..."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -1
+        ],
+        "grip": [
+          2,
+          -8
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-200",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.......",
+        "....oHhhhSskssso......",
+        "....oHhhSkkwekko......",
+        ".....oHhSkkkkkso......",
+        ".....oHhSSkkksso......",
+        "......ooSSksoo........",
+        "..oooooAAovSoo........",
+        ".oCdddcoAavlvao.......",
+        "oCcdcccoAablvvao......",
+        "oCcccCcoAabTvoAgggo...",
+        "oCcccCcoAabTvoGffgG...",
+        "oCccCCcoAaAGggfffgg...",
+        ".oCCCCooooogfffggG....",
+        "..ooooooGGGoggGGo.....",
+        "...oAAooGgGogGGo....oo",
+        "....oAooGgGGoao.......",
+        ".....oooGGgGoxo.......",
+        ".....oxoMGgGoxo.......",
+        ".....oNoMGgGooo.......",
+        ".....oNNoGgGGoo.......",
+        "......oooGGgGoo.......",
+        "........oMGGMMo.......",
+        ".........MGfgMo.......",
+        ".........MGGGMoo......",
+        "..........oMMMoo......",
+        "..........oMMMooo.....",
+        "..........oooiooo.....",
+        "...........oooMoo.....",
+        "...........oooMoo.....",
+        "............ooooo....."
+      ],
+      "sockets": {
+        "muzzle": [
+          6,
+          -7
+        ],
+        "grip": [
+          3,
+          -13
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-200-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.......",
+        "....oHhhhSskssso......",
+        "....oHhhSkkwekko......",
+        ".....oHhSkkkkkso......",
+        ".....oHhSSkkksso......",
+        "......ooSSksoo........",
+        "..oooooAAovSoo........",
+        ".oCdddcoAavlvao.......",
+        "oCcdcccoAablvvao......",
+        "oCcccCcoAabTvoAgggo...",
+        "oCcccCcoAabTvoGffgG...",
+        "oCccCCoooooGggfffgg...",
+        ".oCCCCooooogfffggG....",
+        "..oooooMGGGoggGGo.....",
+        "...oAAoMGgGogGGo....oo",
+        "....oAoMGgGGoao.......",
+        ".....oooGGgGoxo.......",
+        ".....oxoMGgGoxo.......",
+        ".....oNooGgGooo.......",
+        ".....oNNMGgGGoo.......",
+        "......ooMGGGMoo.......",
+        "........MMGfgMo.......",
+        "........MMGGGMo.......",
+        ".........ooMMMoo......",
+        "..........oMMMoo......",
+        "..........oooioo......",
+        "..........oooMoo......",
+        "...........oooMo......",
+        "...........ooooo......"
+      ],
+      "sockets": {
+        "muzzle": [
+          6,
+          -8
+        ],
+        "grip": [
+          3,
+          -14
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-201",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.......",
+        "....oHhhhSskssso......",
+        "....oHhhSkkwekko......",
+        ".....oHhSkkkkkso......",
+        ".....oHhSSkkksso......",
+        "......ooSSksoo........",
+        "..oooooAAovSoo........",
+        ".oCdddcoAavlvao.......",
+        "oCcdcccoAablvvao......",
+        "oCcccCcoAabTvoAgggo...",
+        "oCcccCoooooTvoGffgG...",
+        "oCccCCooooooggfffgg...",
+        ".oCCCCooMmMooffggG....",
+        "..ooooooGGGMooGGo.....",
+        "...oAAooGgGGMooo....oo",
+        "....oAaoGGgGGGoo......",
+        ".....oAAoGGggGGoo.....",
+        ".....oxxxoGGGGGMoo....",
+        ".....oNNNnMMGGfgMoo...",
+        ".....oNNNnMMMGGGMMoo..",
+        "......ooooMMMMMMMMooo.",
+        ".............ooMMMooo.",
+        "..............ooooioo.",
+        "...............ooooMo.",
+        "................ooooo."
+      ],
+      "sockets": {
+        "muzzle": [
+          11,
+          -12
+        ],
+        "grip": [
+          6,
+          -17
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-201-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.......",
+        "....oHhhhSskssso......",
+        "....oHhhSkkwekko......",
+        ".....oHhSkkkkkso......",
+        ".....oHhSSkkksso......",
+        "......ooSSksoo........",
+        "..oooooAAovSoo........",
+        ".oCdddcoAavlvao.......",
+        "oCcdcccoAablvvao......",
+        "oCcccCcoAabTvoAgggo...",
+        "oCcccCoooooTvoGffgG...",
+        "oCccCCoMmMooggfffgg...",
+        ".oCCCCoMMmMooffggG....",
+        "..oooooMGGGMooGGo.....",
+        "...oAAooGgGGMooo....oo",
+        "....oAaoGGgGGGoo......",
+        ".....oAAoGGgGGMoo.....",
+        ".....oxxxoGGGfgMoo....",
+        ".....oNNNnMMGGGMMoo...",
+        ".....oNNNnMMMMMMMooo..",
+        "......ooooMMMMMMMoooo.",
+        ".............ooooiooo.",
+        "..............ooooMoo.",
+        "...............oooooo.",
+        "................ooooo."
+      ],
+      "sockets": {
+        "muzzle": [
+          10,
+          -13
+        ],
+        "grip": [
+          5,
+          -18
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-202",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAablvvao........",
+        "oCcccCcoAabTvoAgggo.....",
+        "oCcccCoooooTvoGffgG.....",
+        "oCccCCooooooogfffgg.....",
+        ".oCCCCooMmmmMooogG......",
+        "..ooooooGGGGGGMooo......",
+        "...oAAooGggggGGGGMoooo..",
+        "....oAaoGGGGGggGfgMMooo.",
+        ".....oAAAooMGGGGGGMMoooo",
+        ".....oxxxyxMMMyMMMMMiooo",
+        ".....oNNNnnMMMMooooooMMo",
+        ".....oNNNnnMMMM..ooooooo",
+        "......oooooooo.....ooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -17
+        ],
+        "grip": [
+          8,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-202-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo..........",
+        ".....oohhjhhhoo........",
+        "....ohhhjjjhhhho.......",
+        "....ohhjjhhhhho........",
+        "....oHhhhSskssso.......",
+        "....oHhhSkkwekko.......",
+        ".....oHhSkkkkkso.......",
+        ".....oHhSSkkksso.......",
+        "......ooSSksoo.........",
+        "..oooooAAovSoo.........",
+        ".oCdddcoAavlvao........",
+        "oCcdcccoAablvvao.......",
+        "oCcccCcoAabTvoAgggo....",
+        "oCcccooooooTvoGffgG....",
+        "oCccCooMmMooogfffgg....",
+        ".oCCCooMMmmMoooogG.....",
+        "..oooooMGGGGGmMooo.....",
+        "...oAoooGgggGGGGMooooo.",
+        "....oAaoGGGGggGfgMMoooo",
+        ".....oAAAoMGGGGGGMMoooo",
+        ".....oxxxyMMMMoMMMMiMoo",
+        ".....oNNNnMMMMoooooooMo",
+        ".....oNNNnnnnno..oooooo",
+        "......oooooooo........."
+      ],
+      "sockets": {
+        "muzzle": [
+          13,
+          -17
+        ],
+        "grip": [
+          7,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-14",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.............",
+        ".....oohhjhhhoo...........",
+        "....ohhhjjjhhhho..........",
+        "....ohhjjhhhhho...........",
+        "....oHhhhSskssso..........",
+        "....oHhhSkkwekko..........",
+        ".....oHhSkkkkkso..........",
+        ".....oHhSSkkksso..........",
+        "......ooSSksoo............",
+        "..oooooAAovSoo............",
+        ".oCdddcoAavlvao...........",
+        "oCcdcccoAablvvao..........",
+        "oCcccCcoAabTvoAgggo.......",
+        "oCcccCoooooooooooooooooooo",
+        "oCccCCooMmmmmmGGGMmMMooooo",
+        ".oCCCCooMMGGGGGGfgMMMiMMoo",
+        "..ooooooGGGggggGGGMMMooooo",
+        "...oAAooGggGGGGGoooooooooo",
+        "....oAaaGGGGMMy...........",
+        ".....oAAAAAMMMM...........",
+        ".....oxxxyxMMMM...........",
+        ".....oNNNnnnqqo...........",
+        ".....oNNNnnnnno...........",
+        "......oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-14-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAablvvao.........",
+        "oCcccCcoAabTvoAgggo......",
+        "oCcccoooooooooooooooooooo",
+        "oCccCooMmmmmmGGGMmMMooooo",
+        ".oCCCooMMMGGGGGfgMMMiMMoo",
+        "..oooooMGGGgggGGGMMMooooo",
+        "...oAoooGggGGGGoooooooooo",
+        "....oAaaGGGGMyo..........",
+        ".....oAAAAMMMMo..........",
+        ".....oxxxyMMMMo..........",
+        ".....oNNNnnnqqo..........",
+        ".....oNNNnnnnno..........",
+        "......oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -23
+        ],
+        "grip": [
+          7,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-203",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso...ooooo",
+        "......ooSSksoo...ooooooo",
+        "..oooooAAovSoooooooooMMo",
+        ".oCdddcoAavloooMmmMMiooo",
+        "oCcdcccoAooooMmGGMMMoooo",
+        "oCcccCcooooMmGGGfgMMooo.",
+        "oCcccCooMmmmGGgGGGooo...",
+        "oCccCCooMMMGGgGGGog.....",
+        ".oCCCCooMGGGgGGogG......",
+        "..ooooooGGggGGyGo.......",
+        "...oAAooGgGGGMMo....oo..",
+        "....oAaaGGGMMMM.........",
+        ".....oAAAAAAxxo.........",
+        ".....oxxxyxxxxo.........",
+        ".....oNNNnnnqqo.........",
+        ".....oNNNnnnnno.........",
+        "......oooooooo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -29
+        ],
+        "grip": [
+          8,
+          -26
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-203-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo..........",
+        ".....oohhjhhhoo........",
+        "....ohhhjjjhhhho.......",
+        "....ohhjjhhhhho........",
+        "....oHhhhSskssso.......",
+        "....oHhhSkkwekko.......",
+        ".....oHhSkkkkkso.......",
+        ".....oHhSSkkksso.......",
+        "......ooSSksoo...oooooo",
+        "..oooooAAovSoooooooooMo",
+        ".oCdddcoAavloooMmMMiMoo",
+        "oCcdcccoAooooMGGMMMoooo",
+        "oCcccCcoooMmmGGfgMMoooo",
+        "oCcccoooMmmMGGGGGoooo..",
+        "oCccCooMmMGGGgGGoog....",
+        ".oCCCooMMGGggGGogG.....",
+        "..oooooMGGgGGGGGo......",
+        "...oAoooGgGGMyGo....oo.",
+        "....oAaaGGGMMMo........",
+        ".....oAAAAMMMMo........",
+        ".....oxxxyxxxxo........",
+        ".....oNNNnnnqqo........",
+        ".....oNNNnnnnno........",
+        "......oooooooo........."
+      ],
+      "sockets": {
+        "muzzle": [
+          13,
+          -29
+        ],
+        "grip": [
+          7,
+          -26
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-204",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.ooooo.",
+        "....oHhhhSsksssooooMo.",
+        "....oHhhSkkwekooooioo.",
+        ".....oHhSkkkkooMMMooo.",
+        ".....oHhSSkkooMmMMooo.",
+        "......ooSSkooGGMMMoo..",
+        "..oooooAAoooGGfgMoo...",
+        ".oCdddcoAooMGGGGoo....",
+        "oCcdcccoooMGGgGoo.....",
+        "oCcccCcooMmGgGGoggo...",
+        "oCcccCooMmGGgGoffgG...",
+        "oCccCCooMGGgGGfffgg...",
+        ".oCCCCooMGgGGyfggG....",
+        "..ooooooGGgGMMGGo.....",
+        "...oAAooGgGGMMGo....oo",
+        "....oAaaGGGAAao.......",
+        ".....oAAAAAAxxo.......",
+        ".....oxxxyxxxxo.......",
+        ".....oNNNnnnqqo.......",
+        ".....oNNNnnnnno.......",
+        "......oooooooo........"
+      ],
+      "sockets": {
+        "muzzle": [
+          11,
+          -34
+        ],
+        "grip": [
+          6,
+          -29
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-204-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.ooooo.",
+        "....oHhhhSsksssoooooo.",
+        "....oHhhSkkwekooooMoo.",
+        ".....oHhSkkkkooooiooo.",
+        ".....oHhSSkkooMMMoooo.",
+        "......ooSSkooMmMMooo..",
+        "..oooooAAoooGGMMMoo...",
+        ".oCdddcoAooGGfgMoo....",
+        "oCcdcccoooMGGGGoo.....",
+        "oCcccCcooMGGgGooggo...",
+        "oCcccCooMmGgGGoffgG...",
+        "oCccCCoMmGGgGMfffgg...",
+        ".oCCCCoMMGgGGMfggG....",
+        "..oooooMGGgGMMGGo.....",
+        "...oAAooGgGGMMGo....oo",
+        "....oAaaGGGAAao.......",
+        ".....oAAAAAAxxo.......",
+        ".....oxxxyxxxxo.......",
+        ".....oNNNnnnqqo.......",
+        ".....oNNNnnnnno.......",
+        "......oooooooo........"
+      ],
+      "sockets": {
+        "muzzle": [
+          10,
+          -33
+        ],
+        "grip": [
+          5,
+          -28
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-205",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooooooo.....",
+        ".....oohhjhoooMoo.....",
+        "....ohhhjjjoooMoo.....",
+        "....ohhjjhoooiooo.....",
+        "....oHhhhSoMMMooo.....",
+        "....oHhhSkoMMMoo......",
+        ".....oHhSoGGMMoo......",
+        ".....oHhSoGfgMoo......",
+        "......ooooGGGMo.......",
+        "..oooooAoGGgGoo.......",
+        ".oCdddcooGgGGoo.......",
+        "oCcdcccoMGgGooao......",
+        "oCcccCcoMGgGooAgggo...",
+        "oCcccCooMGgGMoGffgG...",
+        "oCccCCooGGgGMgfffgg...",
+        ".oCCCCooGgGGMffggG....",
+        "..ooooooGgGMMgGGo.....",
+        "...oAAooGgGggGGo....oo",
+        "....oAaaGGGAAao.......",
+        ".....oAAAAAAxxo.......",
+        ".....oxxxyxxxxo.......",
+        ".....oNNNnnnqqo.......",
+        ".....oNNNnnnnno.......",
+        "......oooooooo........"
+      ],
+      "sockets": {
+        "muzzle": [
+          6,
+          -37
+        ],
+        "grip": [
+          3,
+          -31
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-205-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhooooo......",
+        "....ohhhjjjoooMo......",
+        "....ohhjjhoooMoo......",
+        "....oHhhhSoooioo......",
+        "....oHhhSkoMMMoo......",
+        ".....oHhSooMMMoo......",
+        ".....oHhSoGGMMoo......",
+        "......ooooGfgMo.......",
+        "..oooooAoMGGGoo.......",
+        ".oCdddcooGGgGoo.......",
+        "oCcdcccooGgGGoao......",
+        "oCcccCcoMGgGooAgggo...",
+        "oCcccCooMGgGooGffgG...",
+        "oCccCCoMGGgGogfffgg...",
+        ".oCCCCoMGgGGfffggG....",
+        "..oooooMGgGMggGGo.....",
+        "...oAAooGgGMgGGo....oo",
+        "....oAooGGGAAao.......",
+        ".....oAAAAAAxxo.......",
+        ".....oxxxyxxxxo.......",
+        ".....oNNNnnnqqo.......",
+        ".....oNNNnnnnno.......",
+        "......oooooooo........"
+      ],
+      "sockets": {
+        "muzzle": [
+          6,
+          -36
+        ],
+        "grip": [
+          3,
+          -30
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-15",
+      "channel": "upper",
+      "at": [
+        15,
+        8
+      ],
+      "rows": [
+        ".........ooooo",
+        ".........ooooo",
+        ".........ooMoo",
+        ".........ooMoo",
+        ".........ooioo",
+        ".........oMMMo",
+        "...oooo..oMMMo",
+        "..ohjjhoooMmMo",
+        ".ohjjhhhhoGGMo",
+        ".ohHhSksooGfgo",
+        ".oHhSkwsooGGGo",
+        "..oSSkksooGgGo",
+        "...oSkkSgoGgGo",
+        "....oSSkSoGgGo",
+        "...oAvSSkGGgGo",
+        ".oooAavvSGgGGM",
+        "oCddcAablGgGMM",
+        "oCcdcAabTGgGMM",
+        "oCcccAabTGgGMM",
+        "oCccCAaaAGgGoo",
+        ".oCCoAaaAGGG..",
+        "..oooAAAAxo...",
+        ".....oxxyxxo..",
+        ".....oNNnnno..",
+        "......ooooo..."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -38
+        ],
+        "grip": [
+          2,
+          -31
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-15-kick",
+      "channel": "upper",
+      "at": [
+        15,
+        9
+      ],
+      "rows": [
+        ".........ooooo",
+        ".........ooooo",
+        ".........ooMoo",
+        ".........ooMoo",
+        ".........ooioo",
+        "...oooo..oMMMo",
+        "..ohjjhoooMMMo",
+        ".ohjjhhhhoMmMo",
+        ".ohHhSksooGGMo",
+        ".oHhSkwsooGfgo",
+        "..oSSkksooGGGo",
+        "...oSkkSgoGgGo",
+        "....oSSkSoGgGo",
+        "...oAvSSkGGgGo",
+        ".oooAavvSGgGGo",
+        "oCddcAablGgGMM",
+        "oCcdcAabTGgGMM",
+        "oCcccAabTGgGMM",
+        "oCccCAaaAGgGMM",
+        ".oCCoAaaAGGGoo",
+        "..oooAAAAxo...",
+        ".....oxxyxxo..",
+        ".....oNNnnno..",
+        "......ooooo..."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -37
+        ],
+        "grip": [
+          2,
+          -30
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-17",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo.............",
+        "....oohhjhhhoo...........",
+        "...ohhhjjjhhhho..........",
+        "...oHhhhhhhho............",
+        "....oHhSkkssso...........",
+        "....oHSkwekksso..........",
+        ".....oSSkkksso...........",
+        "..oooooASksoo............",
+        ".oCddcoAovSoo............",
+        "oCcdccoAavlvao...........",
+        "oCcccCoAablvAoo..........",
+        "oCcccCoAabTvoAgggo.......",
+        "oCCCCooGGGGvoGffgG.......",
+        ".ooo.ooGggGGGGGoooooooooo",
+        ".....ooGGGggggGGMmMMooooo",
+        ".....ooMMGGGGGGfgMMMiMMoo",
+        ".....ooMMMMMMGGGGMMMooooo",
+        ".....oooooMMyMooooooooooo",
+        "..........MMMy...........",
+        "..........MMMM...........",
+        "..........MMMM..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -12
+        ],
+        "grip": [
+          8,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-hmg-17-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo............",
+        "....oohhjhhhoo..........",
+        "...ohhhjjjhhhho.........",
+        "...oHhhhhhhho...........",
+        "....oHhSkkssso..........",
+        "....oHSkwekksso.........",
+        ".....oSSkkksso..........",
+        "..oooooASksoo...........",
+        ".oCddcoAovSoo...........",
+        "oCcdccoAavlvao..........",
+        "oCcccCoAablvAoo.........",
+        "oCcccCoAabTvoAgggo......",
+        "oCCCCooGGGGvoGffgG......",
+        ".ooooooGggGGGGoooooooooo",
+        "....ooMGGGgggGGMmMMooooo",
+        "....ooMMMGGGGGfgMMMiMMoo",
+        "....ooMMMMMMGGGGMMMooooo",
+        "....oooooMMyMooooooooooo",
+        ".........MMMy...........",
+        ".........MMMM...........",
+        ".........MMMM..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -12
+        ],
+        "grip": [
+          7,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-horizontal",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAablvvao.........",
+        "oCcccCcoAabTvoAgggo......",
+        "oCcccCcoAabTvoGffgG......",
+        "oCccCCcotuuuuuGGGMuttoooo",
+        ".oCCCCoottGGGGGGfgtMMiMMo",
+        "..ooooAoGGGggggGGGtttoooo",
+        "...oAAaaGggGGGGG....oo...",
+        "....oAaaGGGGAao..........",
+        ".....oAAAAAAxxo..........",
+        ".....oxxxyxxxxo..........",
+        ".....oNNNnnnqqo..........",
+        ".....oNNNnnnnno..........",
+        "......oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-horizontal-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAablvvao........",
+        "oCcccCcoAabTvoAgggo.....",
+        "oCcccCcoAabTvoGffgG.....",
+        "oCccCCotuuuuuGGGMuttoooo",
+        ".oCCCCotttGGGGGfgtMMiMMo",
+        "..oooootGGGgggGGGtttoooo",
+        "...oAAaaGggGGGGo....oo..",
+        "....oAaaGGGGAao.........",
+        ".....oAAAAAAxxo.........",
+        ".....oxxxyxxxxo.........",
+        ".....oNNNnnnqqo.........",
+        ".....oNNNnnnnno.........",
+        "......oooooooo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -23
+        ],
+        "grip": [
+          7,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-horizontal-recover",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAablvvao.........",
+        "oCcccCcoAabTvoAgggo......",
+        "oCcccCcoAabTvoGffgG......",
+        "oCccCCcotuuuGGMuuuuttoooo",
+        ".oCCCCoottGGGfgttttMMiMMo",
+        "..ooooAoGGGgGGGttttttoooo",
+        "...oAAaaGggGGGGo....oo...",
+        "....oAaaGGGGAao..........",
+        ".....oAAAAAAxxo..........",
+        ".....oxxxyxxxxo..........",
+        ".....oNNNnnnqqo..........",
+        ".....oNNNnnnnno..........",
+        "......oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          5,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-up",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "..........oMo",
+        "...oooo...oio",
+        "..ohjjhoo.tMt",
+        ".ohjjhhhhotMt",
+        ".ohHhSkso.tut",
+        ".oHhSkwsoGGGM",
+        "..oSSkksoGGfg",
+        "...oSkkSgGGGG",
+        "....oSSkSgGgG",
+        "...oAvSSkSGgG",
+        ".oooAavvSGGgG",
+        "oCddcAablGgGG",
+        "oCcdcAabTGgGt",
+        "oCcccAabTGgGt",
+        "oCccCAaaAGgGt",
+        ".oCCoAaaAGGGo",
+        "..oooAAAAxo..",
+        ".....oxxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -36
+        ],
+        "grip": [
+          2,
+          -29
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-up-kick",
+      "channel": "upper",
+      "at": [
+        15,
+        12
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "...oooo...oMo",
+        "..ohjjhoo.oio",
+        ".ohjjhhhhotMt",
+        ".ohHhSkso.tMt",
+        ".oHhSkwsoGtut",
+        "..oSSkksoGGGM",
+        "...oSkkSgGGfg",
+        "....oSSkSgGGG",
+        "...oAvSSkSGgG",
+        ".oooAavvSGGgG",
+        "oCddcAablGgGG",
+        "oCcdcAabTGgGt",
+        "oCcccAabTGgGt",
+        "oCccCAaaAGgGt",
+        ".oCCoAaaAGGGt",
+        "..oooAAAAxooo",
+        ".....oxxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -35
+        ],
+        "grip": [
+          2,
+          -28
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-up-recover",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "..........oMo",
+        "...oooo...oio",
+        "..ohjjhoo.tMt",
+        ".ohjjhhhhotMt",
+        ".ohHhSkso.tut",
+        ".oHhSkwsoGtut",
+        "..oSSkksoGtut",
+        "...oSkkSgGtut",
+        "....oSSkSgGGM",
+        "...oAvSSkSGfg",
+        ".oooAavvSSGGG",
+        "oCddcAablGGgG",
+        "oCcdcAabTGgGG",
+        "oCcccAabTGgGt",
+        "oCccCAaaAGgGt",
+        ".oCCoAaaAGGGo",
+        "..oooAAAAxo..",
+        ".....oxxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -36
+        ],
+        "grip": [
+          2,
+          -26
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-down",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "oCccCoAablAo...",
+        "oCCCooAabTvo...",
+        ".ooo.oAAaavAo..",
+        ".....oAGGGGgo..",
+        ".....oAGgGgGgo.",
+        ".....oxGgGffggo",
+        ".....oxGgGGfggo",
+        "......oGgGnGgo.",
+        ".......GgGoGgo.",
+        ".......GgGogo..",
+        ".......GgGGggo.",
+        ".......GGgGggo.",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GGMgo..",
+        "........Gfg.o..",
+        "........GGG....",
+        "........ttt....",
+        "........tMt....",
+        "........tMt....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          0
+        ],
+        "grip": [
+          2,
+          -7
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-down-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "oCccCoAablAo...",
+        "oCCCooAabTvo...",
+        ".ooo.oAAaavAo..",
+        ".....oAGGGGgo..",
+        ".....oAGgGgGgo.",
+        ".....oxGgGffggo",
+        ".....oxGgGGfggo",
+        "......oGgGnGgo.",
+        ".......GgGoGgo.",
+        ".......GgGtgo..",
+        ".......GgGGggo.",
+        ".......GGgGggo.",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GGMgo..",
+        "........Gfggo..",
+        "........GGG.o..",
+        "........ttt....",
+        "........tMt....",
+        "........tMt....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -1
+        ],
+        "grip": [
+          2,
+          -8
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-down-recover",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "oCccCoAablAo...",
+        "oCCCooAabTvo...",
+        ".ooo.oAAaavAo..",
+        ".....oAGGGGgo..",
+        ".....oAGgGgGgo.",
+        ".....oxGgGffggo",
+        ".....oxGgGGfggo",
+        "......oGgGnGgo.",
+        ".......GgGoGgo.",
+        ".......GgGGgo..",
+        ".......GGgGggo.",
+        "........GgGggo.",
+        "........GgGgo..",
+        "........GgGgo..",
+        "........GGMgo..",
+        "........Gfggo..",
+        "........GGGgo..",
+        "........tutgo..",
+        "........tut.o..",
+        "........tut....",
+        "........ttt....",
+        "........tMt....",
+        "........tMt....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          0
+        ],
+        "grip": [
+          2,
+          -10
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-crouch",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo............",
+        "....oohhjhhhoo..........",
+        "...ohhhjjjhhhho.........",
+        "...oHhhhhhhho...........",
+        "....oHhSkkssso..........",
+        "....oHSkwekksso.........",
+        ".....oSSkkksso..........",
+        "..oooooASksoo...........",
+        ".oCddcoAovSoo...........",
+        "oCcdccoAavlvao..........",
+        "oCcccCoAablvAoo.........",
+        "oCcccCoAabTvoAgggo......",
+        "oCCCCooGGGGvoGffgG......",
+        ".ooo.oAGggGGGGGfgg......",
+        ".....ooGGGggggGGMuttoooo",
+        ".....oottGGGGGGfgtMMiMMo",
+        "......ottttttGGGGtttoooo",
+        ".......oooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -12
+        ],
+        "grip": [
+          8,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-crouch-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo...........",
+        "....oohhjhhhoo.........",
+        "...ohhhjjjhhhho........",
+        "...oHhhhhhhho..........",
+        "....oHhSkkssso.........",
+        "....oHSkwekksso........",
+        ".....oSSkkksso.........",
+        "..oooooASksoo..........",
+        ".oCddcoAovSoo..........",
+        "oCcdccoAavlvao.........",
+        "oCcccCoAablvAoo........",
+        "oCcccCoAabTvoAgggo.....",
+        "oCCCCooGGGGvoGffgG.....",
+        ".ooo.oAGggGGGGffgg.....",
+        ".....otGGGgggGGMuttoooo",
+        ".....otttGGGGGfgtMMiMMo",
+        ".....ottttttGGGGtttoooo",
+        ".......oooooo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -12
+        ],
+        "grip": [
+          7,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-shotgun-crouch-recover",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo............",
+        "....oohhjhhhoo..........",
+        "...ohhhjjjhhhho.........",
+        "...oHhhhhhhho...........",
+        "....oHhSkkssso..........",
+        "....oHSkwekksso.........",
+        ".....oSSkkksso..........",
+        "..oooooASksoo...........",
+        ".oCddcoAovSoo...........",
+        "oCcdccoAavlvao..........",
+        "oCcccCoAablvAoo.........",
+        "oCcccCoAabTvoAgggo......",
+        "oCCCCooGGGTvoGffgG......",
+        ".ooo.oAGgGGGgfffgg......",
+        ".....ooGGggGGMuuuuttoooo",
+        ".....ootGGGGfgttttMMiMMo",
+        "......otttGGGGttttttoooo",
+        ".......oooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -12
+        ],
+        "grip": [
+          5,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-horizontal",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAablvvao.........",
+        "oCcccCcoAabTvoAgggo......",
+        "oooooocoAabTvoGffgG......",
+        "ooryrocoCdddddGGGMdCCoooo",
+        ".orrroooCCGGGGGGfgCMMiMMo",
+        ".orrroAoGGGggggGGGCCCoooo",
+        ".orrroaaGggGGGGG....oo...",
+        ".orrroaMGGGGAao..........",
+        ".orrMMMAAAAAxxo..........",
+        ".oooooxxxyxxxxo..........",
+        ".....oNNNnnnqqo..........",
+        ".....oNNNnnnnno..........",
+        "......oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-horizontal-kick",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAablvvao........",
+        "oCcccCcoAabTvoAgggo.....",
+        "oooooocoAabTvoGffgG.....",
+        "ooryrooCdddddGGGMdCCoooo",
+        ".orrrooCCCGGGGGfgCMMiMMo",
+        ".orrrooCGGGgggGGGCCCoooo",
+        ".orrroaaGggGGGGo....oo..",
+        ".orrroaMGGGGAao.........",
+        ".orrMMMAAAAAxxo.........",
+        ".oooooxxxyxxxxo.........",
+        ".....oNNNnnnqqo.........",
+        ".....oNNNnnnnno.........",
+        "......oooooooo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -23
+        ],
+        "grip": [
+          7,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-horizontal-recover",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAablvvao.........",
+        "oCcccCcoAabTvoAgggo......",
+        "oooooocoAabTvoGffgG......",
+        "oorRrocoCdddddGGGMdCCoooo",
+        ".orrroooCCGGGGGGfgCMMiMMo",
+        ".orrroAoGGGggggGGGCCCoooo",
+        ".orrroaaGggGGGGG....oo...",
+        ".orrroaMGGGGAao..........",
+        ".orrMMMAAAAAxxo..........",
+        ".oooooxxxyxxxxo..........",
+        ".....oNNNnnnqqo..........",
+        ".....oNNNnnnnno..........",
+        "......oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-up",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "..........oMo",
+        "...oooo...oio",
+        "..ohjjhoo.CMC",
+        ".ohjjhhhhoCMC",
+        ".ohHhSkso.CdC",
+        ".oHhSkwsoGGGM",
+        "..oSSkksoGGfg",
+        "...oSkkSgGGGG",
+        "....oSSkSMGgG",
+        "...oAvSSkMGgG",
+        ".oooooovMGGgG",
+        "oCoryrobMGgGG",
+        "oCorrroMTGgGC",
+        "oCorrroMTGgGC",
+        "oCorrrMaAGgGC",
+        ".oorrrMaAGGGo",
+        "..orrMoAAxo..",
+        "..oooooxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -36
+        ],
+        "grip": [
+          2,
+          -29
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-up-kick",
+      "channel": "upper",
+      "at": [
+        15,
+        12
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "...oooo...oMo",
+        "..ohjjhoo.oio",
+        ".ohjjhhhhoCMC",
+        ".ohHhSkso.CMC",
+        ".oHhSkwsoGCdC",
+        "..oSSkksoGGGM",
+        "...oSkkSgGGfg",
+        "....oSSkSgGGG",
+        "...oAvSSkMGgG",
+        ".oooooovMGGgG",
+        "oCoryrobMGgGG",
+        "oCorrroMTGgGC",
+        "oCorrroMTGgGC",
+        "oCorrrMaAGgGC",
+        ".oorrrMaAGGGC",
+        "..orrMoAAxooo",
+        "..oooooxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -35
+        ],
+        "grip": [
+          2,
+          -28
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-up-recover",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "..........ooo",
+        "..........oMo",
+        "..........oMo",
+        "...oooo...oio",
+        "..ohjjhoo.CMC",
+        ".ohjjhhhhoCMC",
+        ".ohHhSkso.CdC",
+        ".oHhSkwsoGGGM",
+        "..oSSkksoGGfg",
+        "...oSkkSgGGGG",
+        "....oSSkSMGgG",
+        "...oAvSSkMGgG",
+        ".oooooovMGGgG",
+        "oCorRrobMGgGG",
+        "oCorrroMTGgGC",
+        "oCorrroMTGgGC",
+        "oCorrrMaAGgGC",
+        ".oorrrMaAGGGo",
+        "..orrMoAAxo..",
+        "..oooooxyxxo.",
+        ".....oNNnnno.",
+        "......ooooo.."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -36
+        ],
+        "grip": [
+          2,
+          -29
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-down",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "ooooooAablAo...",
+        "oryrooAabTvo...",
+        "orrrooAAaavAo..",
+        "orrrooAGGGGgo..",
+        "orrrooAGgGgGgo.",
+        "orrrooxGgGffggo",
+        "orrMooxGgGGfggo",
+        "oooMo.oGgGnGgo.",
+        "....M..GgGoGgo.",
+        "....M..GgGogo..",
+        "....M..GgGGggo.",
+        "....M..GGgGggo.",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        "......M.GgGgo..",
+        "......M.GgGgo..",
+        "......M.GGMgo..",
+        "......M.Gfg.o..",
+        ".......MGGG....",
+        ".......MCCC....",
+        "........CMC....",
+        "........CMC....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          0
+        ],
+        "grip": [
+          2,
+          -7
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-down-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "ooooooAablAo...",
+        "oryrooAabTvo...",
+        "orrrooAAaavAo..",
+        "orrrooAGGGGgo..",
+        "orrrooAGgGgGgo.",
+        "orrrooxGgGffggo",
+        "orrMooxGgGGfggo",
+        "oooMo.oGgGnGgo.",
+        "....M..GgGoGgo.",
+        "....M..GgGCgo..",
+        "....M..GgGGggo.",
+        ".....M.GGgGggo.",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        "......M.GgGgo..",
+        "......M.GGMgo..",
+        "......M.Gfggo..",
+        ".......MGGG.o..",
+        ".......MCCC....",
+        "........CMC....",
+        "........CMC....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -1
+        ],
+        "grip": [
+          2,
+          -8
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-down-recover",
+      "channel": "upper",
+      "at": [
+        17,
+        13
+      ],
+      "rows": [
+        ".......ooooo...",
+        ".....oohhjjhhoo",
+        "....ohhhjjhhho.",
+        "....oHhhhhhho..",
+        "....oHhhSkksso.",
+        ".....oHSkwekso.",
+        "......oSSkksso.",
+        "..ooooAoSkkso..",
+        ".oCddcAAoSSo...",
+        "oCcccoAabvo....",
+        "ooooooAablAo...",
+        "orRrooAabTvo...",
+        "orrrooAAaavAo..",
+        "orrrooAGGGGgo..",
+        "orrrooAGgGgGgo.",
+        "orrrooxGgGffggo",
+        "orrMooxGgGGfggo",
+        "oooMo.oGgGnGgo.",
+        "....M..GgGoGgo.",
+        "....M..GgGogo..",
+        "....M..GgGGggo.",
+        "....M..GGgGggo.",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        ".....M..GgGgo..",
+        "......M.GgGgo..",
+        "......M.GgGgo..",
+        "......M.GGMgo..",
+        "......M.Gfg.o..",
+        ".......MGGG....",
+        ".......MCCC....",
+        "........CMC....",
+        "........CMC....",
+        "........oio....",
+        "........oMo....",
+        "........oMo....",
+        "........ooo...."
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          0
+        ],
+        "grip": [
+          2,
+          -7
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-crouch",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo............",
+        "....oohhjhhhoo..........",
+        "...ohhhjjjhhhho.........",
+        "...oHhhhhhhho...........",
+        "....oHhSkkssso..........",
+        "....oHSkwekksso.........",
+        ".....oSSkkksso..........",
+        "..oooooASksoo...........",
+        ".oCddcoAovSoo...........",
+        "oCcdccoAavlvao..........",
+        "oooooCoAablvAoo.........",
+        "oryroCoAabTvoAgggo......",
+        "orrroooGGGGvoGffgG......",
+        "orrrooAGggGGGGGfgg......",
+        "orrroooGGGggggGGMdCCoooo",
+        "orrroooCCGGGGGGfgCMMiMMo",
+        "orrMMMMMCCCCCGGGGCCCoooo",
+        "ooooo..oMMMMMM.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -12
+        ],
+        "grip": [
+          8,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-crouch-kick",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo...........",
+        "....oohhjhhhoo.........",
+        "...ohhhjjjhhhho........",
+        "...oHhhhhhhho..........",
+        "....oHhSkkssso.........",
+        "....oHSkwekksso........",
+        ".....oSSkkksso.........",
+        "..oooooASksoo..........",
+        ".oCddcoAovSoo..........",
+        "oCcdccoAavlvao.........",
+        "oooooCoAablvAoo........",
+        "oryroCoAabTvoAgggo.....",
+        "orrroooGGGGvoGffgG.....",
+        "orrrooAGggGGGGffgg.....",
+        "orrrooCGGGgggGGMdCCoooo",
+        "orrrooCCCGGGGGfgCMMiMMo",
+        "orrMMMMMCCCCGGGGCCCoooo",
+        "ooooo..oMMMMM.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          14,
+          -12
+        ],
+        "grip": [
+          7,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-flame-crouch-recover",
+      "channel": "upper",
+      "at": [
+        17,
+        21
+      ],
+      "rows": [
+        "......oooooo............",
+        "....oohhjhhhoo..........",
+        "...ohhhjjjhhhho.........",
+        "...oHhhhhhhho...........",
+        "....oHhSkkssso..........",
+        "....oHSkwekksso.........",
+        ".....oSSkkksso..........",
+        "..oooooASksoo...........",
+        ".oCddcoAovSoo...........",
+        "oCcdccoAavlvao..........",
+        "oooooCoAablvAoo.........",
+        "orRroCoAabTvoAgggo......",
+        "orrroooGGGGvoGffgG......",
+        "orrrooAGggGGGGGfgg......",
+        "orrroooGGGggggGGMdCCoooo",
+        "orrroooCCGGGGGGfgCMMiMMo",
+        "orrMMMMMCCCCCGGGGCCCoooo",
+        "ooooo..oMMMMMM.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -12
+        ],
+        "grip": [
+          8,
+          -12
+        ]
+      }
     }
   ],
   "clips": [
@@ -3298,6 +5307,556 @@
         {
           "frame": "body-reentry-ready",
           "ticks": 3
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.16",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-16",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-16-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-16",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.200",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-200",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-200-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-200",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.201",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-201",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-201-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-201",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.202",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-202",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-202-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-202",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.14",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-14",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-14-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-14",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.203",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-203",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-203-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-203",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.204",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-204",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-204-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-204",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.205",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-205",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-205-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-205",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.15",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-15",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-15-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-15",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.hmg.17",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-hmg-17",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-hmg-17-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-hmg-17",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.shotgun.horizontal",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-shotgun-horizontal",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-shotgun-horizontal-kick",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-shotgun-horizontal-recover",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-shotgun-horizontal",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.shotgun.up",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-shotgun-up",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-shotgun-up-kick",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-shotgun-up-recover",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-shotgun-up",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.shotgun.down",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-shotgun-down",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-shotgun-down-kick",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-shotgun-down-recover",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-shotgun-down",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.shotgun.crouch",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-shotgun-crouch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-shotgun-crouch-kick",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-shotgun-crouch-recover",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-shotgun-crouch",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.flame.horizontal",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-flame-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-horizontal-recover",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.flame.up",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-flame-up",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-up-recover",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.flame.down",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-flame-down",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-down-recover",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.fire.flame.crouch",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-flame-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-recover",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-kick",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-flame-crouch-recover",
+          "ticks": 2
         }
       ]
     }

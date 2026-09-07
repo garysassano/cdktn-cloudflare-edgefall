@@ -1,0 +1,453 @@
+{
+  "frames": {
+    "base/sky-top": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/sky-bottom": {
+      "frame": {
+        "x": 134,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/cloud-bank": {
+      "frame": {
+        "x": 266,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/sea": {
+      "frame": {
+        "x": 398,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/far-warehouse": {
+      "frame": {
+        "x": 530,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/harbor-crane": {
+      "frame": {
+        "x": 662,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/warehouse": {
+      "frame": {
+        "x": 794,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/quay-wall": {
+      "frame": {
+        "x": 926,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/catwalk": {
+      "frame": {
+        "x": 2,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/quay-step": {
+      "frame": {
+        "x": 134,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/pier-pile": {
+      "frame": {
+        "x": 266,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/lamp": {
+      "frame": {
+        "x": 398,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/bollard": {
+      "frame": {
+        "x": 530,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/crate": {
+      "frame": {
+        "x": 662,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/cache-hmg": {
+      "frame": {
+        "x": 794,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/cache-shotgun": {
+      "frame": {
+        "x": 926,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/cache-flame": {
+      "frame": {
+        "x": 2,
+        "y": 266,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/cache-sidearm": {
+      "frame": {
+        "x": 134,
+        "y": 266,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    }
+  },
+  "meta": {
+    "image": "breakwater-quay.png",
+    "size": {
+      "w": 1056,
+      "h": 396
+    },
+    "edgefall": {
+      "format": 2,
+      "sourceId": "breakwater-quay",
+      "sourceSha256": "598f054db40ff0c6774ad3cf1de83914759e1ad8ca7642c31b3b0bf7ba1cc13c",
+      "root": [
+        0,
+        0
+      ],
+      "variants": [
+        "base"
+      ],
+      "drawings": {
+        "sky-top": {
+          "channel": "full-body"
+        },
+        "sky-bottom": {
+          "channel": "full-body"
+        },
+        "cloud-bank": {
+          "channel": "full-body"
+        },
+        "sea": {
+          "channel": "full-body"
+        },
+        "far-warehouse": {
+          "channel": "full-body"
+        },
+        "harbor-crane": {
+          "channel": "full-body"
+        },
+        "warehouse": {
+          "channel": "full-body"
+        },
+        "quay-wall": {
+          "channel": "full-body"
+        },
+        "catwalk": {
+          "channel": "full-body"
+        },
+        "quay-step": {
+          "channel": "full-body"
+        },
+        "pier-pile": {
+          "channel": "full-body"
+        },
+        "lamp": {
+          "channel": "full-body"
+        },
+        "bollard": {
+          "channel": "full-body"
+        },
+        "crate": {
+          "channel": "full-body"
+        },
+        "cache-hmg": {
+          "channel": "full-body"
+        },
+        "cache-shotgun": {
+          "channel": "full-body"
+        },
+        "cache-flame": {
+          "channel": "full-body"
+        },
+        "cache-sidearm": {
+          "channel": "full-body"
+        }
+      },
+      "clips": [
+        {
+          "id": "breakwater-quay.idle",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "sky-top",
+              "ticks": 1
+            }
+          ]
+        }
+      ],
+      "approval": "pending"
+    }
+  }
+}

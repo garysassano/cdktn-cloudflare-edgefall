@@ -1,0 +1,37 @@
+{
+  "scope": "Local source and generated deployment configuration only; live trace ingestion is unverified.",
+  "configs": [
+    {
+      "path": "wrangler.jsonc",
+      "upload_source_maps": true,
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "enabled": true,
+          "invocation_logs": true,
+          "head_sampling_rate": 1
+        },
+        "traces": {
+          "enabled": true,
+          "head_sampling_rate": 1
+        }
+      }
+    },
+    {
+      "path": ".wrangler.deploy.json",
+      "upload_source_maps": true,
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "enabled": true,
+          "invocation_logs": true,
+          "head_sampling_rate": 1
+        },
+        "traces": {
+          "enabled": true,
+          "head_sampling_rate": 1
+        }
+      }
+    }
+  ]
+}

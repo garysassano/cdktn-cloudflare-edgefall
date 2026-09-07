@@ -1,3 +1,4 @@
+import { HMG_SWEEP } from "../../game/labs/combat-content.js";
 import type { ControlledActor } from "../../game/state.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
 import { type OperativeMotion, operativeMode } from "./operative-motion.js";
@@ -14,6 +15,20 @@ export const OPERATIVE_ACTIONS = {
   50: { kind: "grenade", clip: "upper.grenade" },
   51: { kind: "grenade", clip: "upper.grenade.crouch" },
 } as const;
+export const OPERATIVE_ARSENAL = [
+  ...[...HMG_SWEEP.headings.map((heading) => heading.timelineId), 17].map((timelineId) => ({
+    timelineId,
+    frame: `upper-hmg-${timelineId}`,
+    clip: `upper.fire.hmg.${timelineId}`,
+  })),
+  ...["shotgun", "flame"].flatMap((weapon, index) =>
+    ["horizontal", "up", "down", "crouch"].map((aim, offset) => ({
+      timelineId: 18 + index * 4 + offset,
+      frame: `upper-${weapon}-${aim}`,
+      clip: `upper.fire.${weapon}.${aim}`,
+    })),
+  ),
+];
 
 /** Cosmetic state is sampled from accepted action/life clocks, never animation callbacks. */
 export function operativePresentation(
@@ -29,7 +44,7 @@ export function operativePresentation(
     return null;
   if (
     actor.life === "alive" &&
-    actor.weapon.id !== "sidearm" &&
+    !["sidearm", "heavy-machine-gun", "shotgun", "flamethrower"].includes(actor.weapon.id) &&
     action !== "melee" &&
     action !== "grenade"
   )
@@ -92,19 +107,39 @@ export function operativePresentation(
       upper = sample(binding.clip, tick - actor.action.stateStartTick);
       timelineId = actor.action.definitionId;
     } else {
-      timelineId = OPERATIVE_POSES[aim];
-      upper =
-        action === "fire"
-          ? sample(`upper.fire.${aim.slice(6)}`, tick - actor.action.stateStartTick)
-          : aim !== "upper-horizontal"
-            ? aim
-            : transitionActive && motion.transition === "land"
-              ? sample("upper.land.horizontal", transitionAge)
-              : motion.mode === "run"
-                ? sample("upper.run.horizontal", runAge)
-                : motion.mode === "idle" && !transitionActive
-                  ? sample("upper.idle.horizontal", tick)
-                  : aim;
+      if (actor.weapon.id !== "sidearm") {
+        const index =
+          aim === "upper-up" ? 1 : aim === "upper-down" ? 2 : aim === "upper-crouch" ? 3 : 0;
+        timelineId =
+          action === "fire"
+            ? actor.action.definitionId
+            : actor.weapon.id === "heavy-machine-gun"
+              ? index === 3
+                ? 17
+                : (HMG_SWEEP.headings.find((h) => h.pitch === actor.firearmAim.pitch)?.timelineId ??
+                  14)
+              : (actor.weapon.id === "shotgun" ? 18 : 22) + index;
+        const binding = OPERATIVE_ARSENAL.find((b) => b.timelineId === timelineId);
+        if (!binding) throw new Error("Missing native firearm binding");
+        upper =
+          action === "fire"
+            ? sample(binding.clip, tick - actor.action.stateStartTick)
+            : binding.frame;
+      } else {
+        timelineId = OPERATIVE_POSES[aim];
+        upper =
+          action === "fire"
+            ? sample(`upper.fire.${aim.slice(6)}`, tick - actor.action.stateStartTick)
+            : aim !== "upper-horizontal"
+              ? aim
+              : transitionActive && motion.transition === "land"
+                ? sample("upper.land.horizontal", transitionAge)
+                : motion.mode === "run"
+                  ? sample("upper.run.horizontal", runAge)
+                  : motion.mode === "idle" && !transitionActive
+                    ? sample("upper.idle.horizontal", tick)
+                    : aim;
+      }
     }
   }
   const variant = `p${actor.slot + 1}`;

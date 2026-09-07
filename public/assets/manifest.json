@@ -44,6 +44,16 @@
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "provenance": "Original indexed-pixel source in art/source/vehicles/kestrel.pixels.json; pnpm art:export rebuilds the atlas. Human style review pending."
+    },
+    "edgefall-native-breakwater-quay": {
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "provenance": "Original indexed-pixel source in art/source/environment/breakwater-quay.pixels.json; pnpm art:export rebuilds the atlas. Human style review pending."
+    },
+    "edgefall-native-lock-engine": {
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "provenance": "Original indexed-pixel source in art/source/bosses/lock-engine.pixels.json; pnpm art:export rebuilds the atlas. Human style review pending."
     }
   },
   "assets": [
@@ -219,22 +229,22 @@
     },
     {
       "path": "assets/art/hero/operative.png",
-      "bytes": 42397,
-      "sha256": "97ebd81da7529d03c817247804d994134b5a13c1038b2cc0fbb41501b7db6dea",
+      "bytes": 71442,
+      "sha256": "d52d896e2980e8acfe5eb49f1eaeecfbcc312959ddb13e61cfbc9334a3204148",
       "source": "edgefall-native-operative",
       "licence": "Project-original",
       "maxBytes": 500000,
       "png": {
         "width": 544,
-        "height": 2584,
+        "height": 4080,
         "colorType": 6
       },
       "atlas": "assets/art/hero/operative.atlas.json"
     },
     {
       "path": "assets/art/hero/operative.atlas.json",
-      "bytes": 127780,
-      "sha256": "70036c78ff97982501fd4b48b1be386c67ec4aae831ca7b369919f63b5da69d0",
+      "bytes": 213746,
+      "sha256": "a96a2f170688d212526add909ffb68e97af51975bada4f88ac7b52bacfe57069",
       "source": "edgefall-native-operative",
       "licence": "Project-original",
       "maxBytes": 256000
@@ -302,6 +312,50 @@
       "bytes": 42294,
       "sha256": "df22b0263c4b2ac632d75fa491b15dc62fba2022a2be134b0ce4f9769e99ea8a",
       "source": "edgefall-native-kestrel",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/environment/breakwater-quay.png",
+      "bytes": 6498,
+      "sha256": "f01d081c938d30ae45e6c9231f65a8ad2160e18eec4fc05b9e494122566177bd",
+      "source": "edgefall-native-breakwater-quay",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1056,
+        "height": 396,
+        "colorType": 6
+      },
+      "atlas": "assets/art/environment/breakwater-quay.atlas.json"
+    },
+    {
+      "path": "assets/art/environment/breakwater-quay.atlas.json",
+      "bytes": 8108,
+      "sha256": "096ed48d75e0c25d013acf73d92dda97406f55a0639c5678a407d30bb288a5c1",
+      "source": "edgefall-native-breakwater-quay",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/bosses/lock-engine.png",
+      "bytes": 3473,
+      "sha256": "a33c15cfd84b5256f165aa03ff04c2c9847bf36fdf4c0d6c96eb5a9ee741f1de",
+      "source": "edgefall-native-lock-engine",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1056,
+        "height": 132,
+        "colorType": 6
+      },
+      "atlas": "assets/art/bosses/lock-engine.atlas.json"
+    },
+    {
+      "path": "assets/art/bosses/lock-engine.atlas.json",
+      "bytes": 3950,
+      "sha256": "ccc5cbe691d44d6ff2346ab637660a059c53002a1defdeaba6667692b1f17617",
+      "source": "edgefall-native-lock-engine",
       "licence": "Project-original",
       "maxBytes": 256000
     }

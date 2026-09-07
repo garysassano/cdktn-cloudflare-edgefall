@@ -1,0 +1,167 @@
+{
+  "scope": "Historical failed local captures and isolated controls from this increment, followed by a passing check with the committed probe. Physical-device audio and host clock diagnosis remain open.",
+  "historicalControls": [
+    {
+      "mode": "muted",
+      "muted": true,
+      "monotonicMs": 50015.30000001192,
+      "wallMs": 49115,
+      "audioSeconds": 42.27192743764172,
+      "state": "running",
+      "sampleRate": 44100
+    },
+    {
+      "mode": "unmuted",
+      "muted": false,
+      "monotonicMs": 50016.59999999404,
+      "wallMs": 48222,
+      "audioSeconds": 2.577414965986395,
+      "state": "running",
+      "sampleRate": 44100
+    },
+    {
+      "mode": "disabled-output",
+      "args": [
+        "--disable-audio-output"
+      ],
+      "monotonicMs": 50016.10000002384,
+      "wallMs": 48187,
+      "audioSeconds": 50.00997732426304,
+      "state": "running",
+      "sampleRate": 44100
+    }
+  ],
+  "historicalFailedMissionCapture": {
+    "wallMs": 47411,
+    "monotonicMs": 49179.5,
+    "acceptedClockMs": 49181.19999998808,
+    "renderedFrames": 2951,
+    "rendererMs": 49181.379999999896,
+    "maximumFrameMs": 25.900000005960464,
+    "videoSeconds": 49.6,
+    "audioCues": 559,
+    "audioDropped": 16,
+    "audioState": "running",
+    "audioSeconds": 43.51419501133787,
+    "maxStalledAudioTicks": 28,
+    "droppedExamples": [
+      {
+        "tick": 2760,
+        "kind": "hmg",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2764,
+        "kind": "impact",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2765,
+        "kind": "hmg",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2769,
+        "kind": "impact",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2770,
+        "kind": "hmg",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2774,
+        "kind": "shield",
+        "audioTime": 43.456145124716556,
+        "earliestEnd": 43.50648526077097
+      },
+      {
+        "tick": 2929,
+        "kind": "impact",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2930,
+        "kind": "hmg",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2934,
+        "kind": "impact",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2935,
+        "kind": "hmg",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2939,
+        "kind": "impact",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2940,
+        "kind": "hmg",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2944,
+        "kind": "impact",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2945,
+        "kind": "hmg",
+        "audioTime": 43.61868480725624,
+        "earliestEnd": 43.636326530612244
+      },
+      {
+        "tick": 2949,
+        "kind": "death",
+        "audioTime": 43.64190476190476,
+        "earliestEnd": 43.71546485260771
+      },
+      {
+        "tick": 2949,
+        "kind": "entry",
+        "audioTime": 43.64190476190476,
+        "earliestEnd": 43.71546485260771
+      }
+    ]
+  },
+  "historicalFailedQuarterCapture": {
+    "wallMs": 190719,
+    "monotonicMs": 196675.30000001192,
+    "acceptedClockMs": 196675.5,
+    "rendererMs": 196675.47000000475,
+    "maximumFrameMs": 27.30000001192093,
+    "videoSeconds": 181.933333
+  },
+  "currentProbe": {
+    "mode": "disabled-output",
+    "browser": "151.0.7922.34",
+    "durationMs": 50000,
+    "monotonicMs": 50015,
+    "wallMs": 48111,
+    "audioSeconds": 50.00997732426304,
+    "state": "running",
+    "sampleRate": 44100,
+    "driftSeconds": -0.005022675736960025,
+    "status": "pass",
+    "scope": "Looped licensed sample and AudioContext only; no game, recorder or physical-device acceptance."
+  }
+}

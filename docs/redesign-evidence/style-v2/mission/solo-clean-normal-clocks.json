@@ -1,0 +1,17 @@
+{
+  "wallMs": 47363,
+  "monotonicMs": 49180.40000000596,
+  "acceptedClockMs": 49181.5,
+  "renderedFrames": 2951,
+  "rendererMs": 49181.35999999989,
+  "maximumFrameMs": 24.5,
+  "videoSeconds": 49.625,
+  "audioCues": 575,
+  "audioDropped": 0,
+  "audioState": "running",
+  "audioSeconds": 49.18857142857143,
+  "maxStalledAudioTicks": 1,
+  "droppedExamples": [],
+  "capturedAudioPeak": 0.501808762550354,
+  "capturedAudioRms": 0.049079593158453755
+}

@@ -1,0 +1,98 @@
+{
+  "status": "pass",
+  "art": [
+    {
+      "id": "breakwater-quay",
+      "source": "art/source/environment/breakwater-quay.pixels.json",
+      "sourceSha256": "598f054db40ff0c6774ad3cf1de83914759e1ad8ca7642c31b3b0bf7ba1cc13c",
+      "drawings": 18,
+      "root": [
+        0,
+        0
+      ],
+      "frameHashes": {
+        "base/sky-top": "4160bc9fa1477cc05a2bef75bcf5053066bfda384b027e7f634362659ec514c0",
+        "base/sky-bottom": "bf4144657d3d960c3dd4490e0793b1371d738f1dd374ec075abf865b7f8ee585",
+        "base/cloud-bank": "ef424dadac2264b9fddab640b68c3459e3ed1da76c2dcf94838f5c5b6a1d38af",
+        "base/sea": "42288d6fa35d6d1f7ce65987ac0740de3c02b27d03fa67937e8b9bf8e0158377",
+        "base/far-warehouse": "058e9e6077af7a858dc66468b2297d34c31b68aa1faa7515160d93a5e68c8908",
+        "base/harbor-crane": "6e9329bd527493803b192308f418f6621c57259b24d0f6c76064f54f1a4a4a47",
+        "base/warehouse": "326c083b41cfaacbead3d835199e3663c803845a6e86c3736dc2eea9f4e2e7ec",
+        "base/quay-wall": "967abc3d5c8c0ba19033bb2584baad10b2ac91c453df4c1b00045d1d591f8786",
+        "base/catwalk": "a90292ec779663dde0254622bfa27740bf6d155ef3d46d8714778a16e795f4cb",
+        "base/quay-step": "b2fbed130c3f00e0f7a88614a46535828caef2f2f04ff5a6e206fc037029af36",
+        "base/pier-pile": "84f977b67905f5d104b487146a064a40fedd44e6b8bb2b0b1fb31842e8c4c599",
+        "base/lamp": "623cd734e1acb8c41c419c4072f281b5b20b38c18a935600fe6a450d781d89f4",
+        "base/bollard": "219be76335220d4961185b344525227d41dc9a0ae390aef26f91b4090a22e635",
+        "base/crate": "46955971031439459fb880572cd439f9ac20ada290accc3d96fa1e08a53ceb59",
+        "base/cache-hmg": "3d06467974c35744caef45028daee020b3e6b972104f589f305502005aa44d9f",
+        "base/cache-shotgun": "d39355f01524a5d08a6ce70e13f97f2c6946b9b34004a6753cda25ac1d4a32e9",
+        "base/cache-flame": "ce5e8c3cac0baab7316584c424f6e44fbda260d5fd3341350e436c88d8e12a8f",
+        "base/cache-sidearm": "c6718aaad6c1c08223baf6f9892fd627cd56150654803720e830276b378965e0"
+      },
+      "image": {
+        "width": 1056,
+        "height": 396,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "da7e71e71fd2477f59a0f19fb2a76d3cd2e17815de485b562acd04c77a8c48af",
+        "alpha": {
+          "transparent": 336803,
+          "opaque": 81373,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": 21,
+        "expected": {
+          "width": 1056,
+          "height": 396
+        },
+        "pixelScale": 1,
+        "nonuniformBlocks": 0,
+        "canImportUnchanged": true,
+        "findings": []
+      }
+    },
+    {
+      "id": "lock-engine",
+      "source": "art/source/bosses/lock-engine.pixels.json",
+      "sourceSha256": "41a097e11bea66c76ef9eebd70651314e3c692b44f5fd4b00bc5bc44f93f9e3b",
+      "drawings": 7,
+      "root": [
+        64,
+        112
+      ],
+      "frameHashes": {
+        "base/engine-idle": "8c0f627775399c7e822d74b488ecc9f204d5b5d9a2e36eac1b2f98b5a6f242c9",
+        "base/engine-windup": "99fe608d661b712e135617d2b73f344497fdcacd056de53da919cb2a2b6f412c",
+        "base/engine-fire": "3cb0c2fcef6880cd815e985e6ab86dee745de53b72d47d5c43051b493bb92db9",
+        "base/engine-recoil": "ab627501c2a9d933de159aae3786d981ef1b3117e3e06ae798bcf3c21c4bc84c",
+        "base/engine-open": "49a3d47c8699e7ec5dc7a17a823924123ccc282a37b6984b1fbbe01ab02e344c",
+        "base/engine-hit": "1327f23f436e80ed7557b6c292d5baf3d505a35c39336df0d8105984e1bf71a6",
+        "base/engine-wreck": "56a5279b647cfbdb0b7686befb8aa37c3d75a75b817d75d29a76ea345601d1c9"
+      },
+      "image": {
+        "width": 1056,
+        "height": 132,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "56afc9641b5f7131206f386faaf0c000c308ea8cbb60ec3b8e21b00418fc7de3",
+        "alpha": {
+          "transparent": 73982,
+          "opaque": 65410,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": 23,
+        "expected": {
+          "width": 1056,
+          "height": 132
+        },
+        "pixelScale": 1,
+        "nonuniformBlocks": 0,
+        "canImportUnchanged": true,
+        "findings": []
+      }
+    }
+  ],
+  "humanReview": "pending",
+  "scope": "Native original scenery, caches, destructible and mechanical-target candidates for the continuous W06 lane. Human style approval remains open."
+}

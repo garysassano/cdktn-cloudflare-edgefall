@@ -35,7 +35,6 @@ import {
 } from "../shared/animation/cast.js";
 import { operativeFootfalls } from "../shared/animation/combat-audio.js";
 import type { NativeAtlas } from "../shared/animation/native.js";
-import { operativePresentation } from "../shared/animation/operative.js";
 import {
   type OperativeMotion,
   advanceOperativeMotion,
@@ -43,6 +42,7 @@ import {
 } from "../shared/animation/operative-motion.js";
 import { CastAudio } from "./cast-audio.js";
 import { NativeCast } from "./native-cast.js";
+import { NativeOperative } from "./native-operative.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -67,7 +67,7 @@ const keys = new Set<string>();
 const audio = new CastAudio();
 let castFrames: CastDrawing[] = [];
 let castMotion = initialCastMotion(state);
-let nativeFrames: Array<ReturnType<typeof operativePresentation>> = [];
+let nativeFrames: ReturnType<NativeOperative["draw"]> = [];
 let nativeAtlas: NativeAtlas | undefined;
 let motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
 function nextMotion(before: CombatLab, next: CombatLab, current: OperativeMotion[]) {
@@ -326,44 +326,19 @@ if (new URLSearchParams(location.search).get("cast") === "1") {
 }
 class CombatScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Graphics;
-  private atlas?: NativeAtlas;
   private cast?: NativeCast;
-  private operative: Array<{
-    legs: Phaser.GameObjects.Image;
-    upper: Phaser.GameObjects.Image;
-    fullBody: Phaser.GameObjects.Image;
-  }> = [];
+  private hero?: NativeOperative;
   constructor() {
     super("combat-lab");
   }
   preload() {
     NativeCast.preload(this);
-    this.load.atlas(
-      "operative",
-      "/assets/art/hero/operative.png",
-      "/assets/art/hero/operative.atlas.json",
-    );
-    this.load.json("operative-metadata", "/assets/art/hero/operative.atlas.json");
+    NativeOperative.preload(this);
   }
   create() {
     this.cast = new NativeCast(this);
-    this.atlas = this.cache.json.get("operative-metadata") as NativeAtlas;
-    nativeAtlas = this.atlas;
-    for (let slot = 0; slot < 4; slot++)
-      this.operative.push({
-        legs: this.add
-          .image(0, 0, "operative", `p${slot + 1}/legs-idle`)
-          .setDepth(1)
-          .setVisible(false),
-        upper: this.add
-          .image(0, 0, "operative", `p${slot + 1}/upper-horizontal`)
-          .setDepth(1)
-          .setVisible(false),
-        fullBody: this.add
-          .image(0, 0, "operative", `p${slot + 1}/body-death-hit`)
-          .setDepth(1)
-          .setVisible(false),
-      });
+    this.hero = new NativeOperative(this);
+    nativeAtlas = this.hero.atlas;
     this.overlay = this.add.graphics().setDepth(2);
     inspect();
   }
@@ -386,31 +361,8 @@ class CombatScene extends Phaser.Scene {
     const showCast = element<HTMLInputElement>("native-cast").checked,
       castOverlays = !showCast || element<HTMLInputElement>("cast-overlays").checked;
     castFrames = this.cast?.draw(state, castMotion, showCast) ?? [];
-    nativeFrames = state.players.map((player, slot) =>
-      this.atlas && motion[slot] && element<HTMLInputElement>("native-operative").checked
-        ? operativePresentation(player, state.tick, this.atlas, motion[slot])
-        : null,
-    );
-    for (const [slot, images] of this.operative.entries()) {
-      const drawing = nativeFrames[slot];
-      for (const [channel, image] of Object.entries(images)) {
-        const frame =
-          drawing &&
-          (channel === "legs"
-            ? drawing.legsFrame
-            : channel === "upper"
-              ? drawing.upperFrame
-              : drawing.fullBodyFrame);
-        image.setVisible(Boolean(frame));
-        if (!drawing || !frame) continue;
-        image
-          .setFrame(frame)
-          .setOrigin(drawing.originX, drawing.originY)
-          .setFlipX(drawing.flipX)
-          .setPosition(drawing.x, drawing.y)
-          .setScale(1);
-      }
-    }
+    nativeFrames =
+      this.hero?.draw(state, motion, element<HTMLInputElement>("native-operative").checked) ?? [];
     for (const target of combatEndTerrain(state.scenario, state.tick, state.props)) {
       g.fillStyle(0x526175);
       g.fillRect(

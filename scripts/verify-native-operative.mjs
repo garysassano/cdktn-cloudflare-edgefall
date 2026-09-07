@@ -94,9 +94,9 @@ try {
   };
   // Compare every opaque native pixel to the actual browser canvas in both
   // directions. Metadata-only assertions would miss an incorrect Phaser origin.
-  const checkRenderedPixels = async (label) => {
+  const checkRenderedPixels = async (label, slot = 0) => {
     const { frames } = await read(),
-      drawing = frames[0];
+      drawing = frames[slot];
     const shot = await canvas.screenshot({ path: `${output}/${label}.png` });
     const actual = await sharp(shot).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
     const scale = actual.info.width / 384;
@@ -404,9 +404,14 @@ try {
   const entryBodies = await verifyEntryLab(page, read, checkRenderedPixels, checkRecording);
   await page.locator("#scenario").selectOption("range");
 
+  // Slot two is the frontmost drawing here; the four-slot fixture intentionally
+  // overlaps its starting bodies and would occlude this pixel comparison.
+  await page.locator("#players").selectOption("2");
+  await page.waitForFunction(() => globalThis.combatLab.nativeFrames().length === 2);
+  assert.equal((await read()).frames[1].upperFrame, "p2/upper-hmg-14");
+  await checkRenderedPixels("hmg-player-two", 1);
   await page.locator("#players").selectOption("4");
   await page.waitForFunction(() => globalThis.combatLab.nativeFrames().length === 4);
-  assert.equal((await read()).frames[1], null, "Undrawn HMG must keep engineering fallback");
   await canvas.screenshot({ path: `${output}/four-slots.png` });
   await page.goto(`${base}/art-review.html#native`);
   await page.waitForFunction(() => document.querySelector("#native").dataset.ready === "true");

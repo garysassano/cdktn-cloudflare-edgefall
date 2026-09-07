@@ -1,0 +1,218 @@
+{
+  "frames": {
+    "base/engine-idle": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-windup": {
+      "frame": {
+        "x": 134,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-fire": {
+      "frame": {
+        "x": 266,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-recoil": {
+      "frame": {
+        "x": 398,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-open": {
+      "frame": {
+        "x": 530,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-hit": {
+      "frame": {
+        "x": 662,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    },
+    "base/engine-wreck": {
+      "frame": {
+        "x": 794,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      }
+    }
+  },
+  "meta": {
+    "image": "lock-engine.png",
+    "size": {
+      "w": 1056,
+      "h": 132
+    },
+    "edgefall": {
+      "format": 2,
+      "sourceId": "lock-engine",
+      "sourceSha256": "41a097e11bea66c76ef9eebd70651314e3c692b44f5fd4b00bc5bc44f93f9e3b",
+      "root": [
+        64,
+        112
+      ],
+      "variants": [
+        "base"
+      ],
+      "drawings": {
+        "engine-idle": {
+          "channel": "full-body",
+          "sockets": {
+            "muzzle": [
+              -58,
+              -23
+            ]
+          }
+        },
+        "engine-windup": {
+          "channel": "full-body",
+          "sockets": {
+            "muzzle": [
+              -58,
+              -23
+            ]
+          }
+        },
+        "engine-fire": {
+          "channel": "full-body",
+          "sockets": {
+            "muzzle": [
+              -58,
+              -23
+            ]
+          }
+        },
+        "engine-recoil": {
+          "channel": "full-body"
+        },
+        "engine-open": {
+          "channel": "full-body"
+        },
+        "engine-hit": {
+          "channel": "full-body"
+        },
+        "engine-wreck": {
+          "channel": "full-body"
+        }
+      },
+      "clips": [
+        {
+          "id": "lock-engine.idle",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "engine-idle",
+              "ticks": 1
+            }
+          ]
+        }
+      ],
+      "approval": "pending"
+    }
+  }
+}

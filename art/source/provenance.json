@@ -71,8 +71,8 @@
     {
       "id": "operative-native-01",
       "file": "art/source/hero/operative.pixels.json",
-      "bytes": 77732,
-      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc",
+      "bytes": 137318,
+      "sha256": "309c62602b688e0aac8b43ec1a736a61018fe3f2243a7e98604c1e4831679ab0",
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "role": "native-benchmark-candidate",
@@ -128,6 +128,38 @@
       "role": "native-benchmark-candidate",
       "references": [],
       "method": "Original literal palette-indexed pixel rows; no sampled reference pixels, runtime figure generation or whole-character rotation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "breakwater-quay",
+      "file": "art/source/environment/breakwater-quay.pixels.json",
+      "bytes": 122647,
+      "sha256": "598f054db40ff0c6774ad3cf1de83914759e1ad8ca7642c31b3b0bf7ba1cc13c",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed source rows for Breakwater Approach; no sampled reference pixels or runtime figure generation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "lock-engine",
+      "file": "art/source/bosses/lock-engine.pixels.json",
+      "bytes": 99049,
+      "sha256": "41a097e11bea66c76ef9eebd70651314e3c692b44f5fd4b00bc5bc44f93f9e3b",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed source rows for Breakwater Approach; no sampled reference pixels or runtime figure generation.",
       "export": "pnpm art:export",
       "humanReview": {
         "status": "pending",

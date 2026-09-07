@@ -6,7 +6,11 @@ import { CONTRACT_FIXTURE } from "../../src/game/content/contract-fixture.js";
 import { COMBAT_CATALOG } from "../../src/game/labs/combat-content.js";
 import { ARCADE } from "../../src/game/rules.js";
 import { nativeExposure } from "../../src/shared/animation/native.js";
-import { OPERATIVE_ACTIONS, OPERATIVE_POSES } from "../../src/shared/animation/operative.js";
+import {
+  OPERATIVE_ACTIONS,
+  OPERATIVE_ARSENAL,
+  OPERATIVE_POSES,
+} from "../../src/shared/animation/operative.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -58,6 +62,29 @@ for (const [frame, id] of bindings) {
   );
 }
 const run = built.source.clips.find((clip) => clip.id === "legs.run");
+for (const binding of OPERATIVE_ARSENAL) {
+  const timeline = COMBAT_CATALOG.timelines.get(binding.timelineId),
+    clip = built.source.clips.find((c) => c.id === binding.clip);
+  assert(timeline && clip, "Missing arsenal action/clip");
+  assert.equal(
+    clip.exposures.reduce((sum, e) => sum + e.ticks, 0),
+    timeline.durationTicks,
+  );
+  for (const marker of timeline.markers.filter((m) => m.socket === "muzzle")) {
+    const pose = actionPose(COMBAT_CATALOG, binding.timelineId, marker.tickOffset),
+      muzzle = pose?.sockets.find((s) => s.name === "muzzle")?.point;
+    assert(muzzle, "Missing authoritative arsenal socket");
+    assert.deepEqual(
+      built.atlas.meta.edgefall.drawings[nativeExposure(clip, marker.tickOffset)]?.sockets?.muzzle,
+      [muzzle.x / 256, muzzle.y / 256],
+      "Arsenal release muzzle differs from simulation",
+    );
+  }
+  assert(
+    new Set(clip.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size >= 2,
+    "Arsenal recoil/pulse drawings must differ",
+  );
+}
 for (const drawing of Object.values(built.atlas.meta.edgefall.drawings))
   if (drawing.sockets?.muzzle) assert(drawing.sockets.grip, "Native firearm lacks a grip");
 const actionBindings = Object.entries(OPERATIVE_ACTIONS);
@@ -149,6 +176,7 @@ const report = {
   contactTravelPixelsPerTick: runSpeed,
   contacts,
   sidearmRecoilClips: bindings.length,
+  arsenalBindings: OPERATIVE_ARSENAL,
   actionBindings,
   fullBodyClips: ["body.death", "body.reentry"],
   bindings: bindings.map(([frame, poseId]) => ({ frame, poseId })),
@@ -156,7 +184,7 @@ const report = {
   frameHashes: built.frameHashes,
   humanReview: "pending",
   scope:
-    "Native operative benchmark candidate. Indexed pixels, action/life exposure durations, active/release hand sockets, firearm grips and sidearm muzzles are checked. Vehicle acting, remaining weapons, final motion/feel and W06 acceptance remain open.",
+    "Native operative benchmark candidate. Indexed pixels, action/life exposure durations, active/release hand sockets, firearm grips and sidearm/HMG/shotgun/flame muzzles are checked. Final weapon acting, effects, motion/feel and W06 acceptance remain open.",
 };
 const manifestPath = "public/assets/manifest.json",
   manifest = JSON.parse(await readFile(manifestPath, "utf8"));

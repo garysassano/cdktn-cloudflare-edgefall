@@ -3,12 +3,12 @@ import { type NativeAtlas, nativeExposure } from "./native.js";
 import type { OperativeMotion } from "./operative-motion.js";
 
 export const COMBAT_AUDIO = {
-  sidearm: { file: "carbine-shot.ogg", gain: 0.45, rate: 1.1 },
-  hmg: { file: "rivet-shot.ogg", gain: 0.32, rate: 1.05 },
-  rifle: { file: "carbine-shot.ogg", gain: 0.38, rate: 0.72 },
-  shotgun: { file: "scatter-shot.ogg", gain: 0.65, rate: 0.84 },
-  flame: { file: "beam-loop.ogg", gain: 0.3, rate: 0.64 },
-  tank: { file: "rivet-shot.ogg", gain: 0.58, rate: 0.66 },
+  sidearm: { file: "carbine-shot.ogg", gain: 0.45, rate: 1.1, duration: 0.22 },
+  hmg: { file: "rivet-shot.ogg", gain: 0.32, rate: 1.05, duration: 0.12 },
+  rifle: { file: "carbine-shot.ogg", gain: 0.38, rate: 0.72, duration: 0.25 },
+  shotgun: { file: "scatter-shot.ogg", gain: 0.65, rate: 0.84, duration: 0.35 },
+  flame: { file: "beam-loop.ogg", gain: 0.3, rate: 0.64, duration: 0.36 },
+  tank: { file: "rivet-shot.ogg", gain: 0.58, rate: 0.66, duration: 0.19 },
   knife: { file: "melee.ogg", gain: 0.5, rate: 1 },
   bash: { file: "impact-light.ogg", gain: 0.6, rate: 0.45 },
   throw: { file: "footstep-b.ogg", gain: 0.3, rate: 1.5 },

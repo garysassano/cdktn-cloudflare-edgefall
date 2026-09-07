@@ -227,7 +227,14 @@ describe("native operative source and playback", () => {
       other = createCombatLab("range", 2).players[1];
     if (!actor || !other) throw new Error("Missing operative");
     const motion = initialOperativeMotion(actor, 0);
-    expect(operativePresentation(other, 0, built.atlas, motion)).toBeNull();
+    expect(
+      operativePresentation(
+        { ...other, weapon: { ...other.weapon, id: "rocket-launcher" } },
+        0,
+        built.atlas,
+        motion,
+      ),
+    ).toBeNull();
     for (const kind of ["enter", "exit", "hurt"] as const)
       expect(
         operativePresentation(
@@ -242,6 +249,50 @@ describe("native operative source and playback", () => {
     ).toBeNull();
     expect(operativePresentation({ ...actor, vehicleId: 5 }, 0, built.atlas, motion)).toBeNull();
   });
+  it.each(["heavy-machine-gun", "shotgun", "flamethrower"] as const)(
+    "keeps %s releases on native muzzles through aim changes and reflection",
+    (weapon) => {
+      for (const facing of [-1, 1] as const) {
+        let state = createCombatLab("range"),
+          releases = 0;
+        const player = state.players[0];
+        if (!player) throw new Error("Missing arsenal player");
+        player.facing = facing;
+        player.weapon.id = weapon;
+        player.weapon.ammo = 200;
+        let motion = initialOperativeMotion(player, 0);
+        for (let tick = 1; tick <= 96; tick++) {
+          const before = state.players[0];
+          if (!before) throw new Error("Missing previous arsenal player");
+          state = stepCombatLab(state, [
+            {
+              held: Held.Fire | (tick % 36 < 12 ? Held.Up : tick % 36 < 24 ? Held.Down : 0),
+              firePressed: tick === 1,
+              jumpPressed: tick === 24 || tick === 72,
+              grenadePressed: false,
+              interactPressed: false,
+            },
+          ]);
+          const actor = state.players[0];
+          if (!actor) throw new Error("Missing arsenal player");
+          motion = advanceOperativeMotion(before, actor, motion, tick, built.atlas);
+          const drawing = operativePresentation(actor, tick, built.atlas, motion);
+          expect(drawing).not.toBeNull();
+          for (const event of state.events.filter(
+            (e) => e.kind === "shot" && e.ownerId === actor.playerId,
+          )) {
+            expect(drawing?.muzzle).toEqual({
+              x: Math.round(event.position.x / 256),
+              y: Math.round(event.position.y / 256),
+            });
+            expect(drawing?.flipX).toBe(facing === -1);
+            releases++;
+          }
+        }
+        expect(releases).toBeGreaterThan(2);
+      }
+    },
+  );
   it("matches planted contact positions at successive authored exposure boundaries", () => {
     const run = built.source.clips[0];
     if (!run) throw new Error("Missing run");

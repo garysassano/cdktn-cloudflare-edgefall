@@ -30,6 +30,7 @@
     "scripts/bench-collision-grid.ts",
     "scripts/lib/**/*.ts",
     "scripts/compile-content.ts",
+    "scripts/compile-benchmark.ts",
     "scripts/verify-network-controller.ts",
     "scripts/verify-combat-storage.ts",
     "scripts/assets/**/*.ts"

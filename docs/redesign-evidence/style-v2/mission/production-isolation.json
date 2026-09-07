@@ -1,0 +1,67 @@
+{
+  "status": "pass",
+  "scope": "Local ordinary client build and Worker dry run; no deployment or live trace retrieval.",
+  "excluded": [
+    {
+      "path": "lab.html",
+      "present": false
+    },
+    {
+      "path": "lab.js",
+      "present": false
+    },
+    {
+      "path": "controller-lab.html",
+      "present": false
+    },
+    {
+      "path": "controller-lab.js",
+      "present": false
+    },
+    {
+      "path": "network-lab.html",
+      "present": false
+    },
+    {
+      "path": "network-lab.js",
+      "present": false
+    },
+    {
+      "path": "combat-lab.html",
+      "present": false
+    },
+    {
+      "path": "combat-lab.js",
+      "present": false
+    },
+    {
+      "path": "art-review.html",
+      "present": false
+    },
+    {
+      "path": "art-review.js",
+      "present": false
+    },
+    {
+      "path": "benchmark.html",
+      "present": false
+    },
+    {
+      "path": "benchmark.js",
+      "present": false
+    },
+    {
+      "path": "art-review/operative.pixels.json",
+      "present": false
+    },
+    {
+      "path": "engineering-terrain.png",
+      "present": false
+    }
+  ],
+  "hashes": {
+    "dist/client/client.js": "0ebbc88619b3f7fbf63b64fe4dfedbdba7cd35c149032807caafd50f32eb8ea2",
+    "dist/wrangler/index.js": "7b6aa848c6a15a6da8a42f1988517adf29999d587526043ddd5085fb8276ecc9",
+    "dist/wrangler/index.js.map": "bebe62bff09056a4d163ef492d68df3c1417b2a9ded327bce84af852ab2fc199"
+  }
+}

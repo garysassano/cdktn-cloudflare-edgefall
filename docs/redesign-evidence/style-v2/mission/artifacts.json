@@ -1,0 +1,1836 @@
+{
+  "format": 1,
+  "baseCommit": "f3215307753c1311f886215850d469007eb8dfcb",
+  "scope": "Continuous local solo Breakwater candidate and current browser regressions. Full co-op, final effects/music, human approval and production v3 integration remain open.",
+  "humanStyleReview": "pending",
+  "liveTraceIngestion": "unverified",
+  "validation": {
+    "check": {
+      "tests": 621,
+      "files": 64
+    },
+    "mission": {
+      "acceptedBoundaries": 2949,
+      "simulationSeconds": 49.15,
+      "screenshots": 18,
+      "videos": 3,
+      "audioCuesPerVideo": 575,
+      "audioDropped": 0,
+      "contentHash": "49c187c979cc8e1b743d154438fb782301eb51ad5f638f7d5f3f87bc49306c5b"
+    },
+    "cast": {
+      "runs": 4,
+      "acceptedBoundaries": 455,
+      "pixelChecks": 10,
+      "videos": 6
+    },
+    "operative": {
+      "recordingImports": 17,
+      "reviewedClips": 37,
+      "pixelChecks": 13
+    },
+    "testedBundles": {
+      "dist/client/benchmark.js": "8da0d0444249b4b2a6fa9cb86388158886e0088a57534fc26dca50fbf4285f88",
+      "dist/client/combat-lab.js": "a95e6e8811a83b51915054c08ff6945706d982e6a9dad6a4ede5900d6db04964"
+    },
+    "operativeBundleSha256": "a95e6e8811a83b51915054c08ff6945706d982e6a9dad6a4ede5900d6db04964"
+  },
+  "sourceFingerprints": [
+    {
+      "path": "art/source/bosses/lock-engine.pixels.json",
+      "sha256": "41a097e11bea66c76ef9eebd70651314e3c692b44f5fd4b00bc5bc44f93f9e3b"
+    },
+    {
+      "path": "art/source/enemies/breakwater.pixels.json",
+      "sha256": "85e6c20ab31a7d10e5b889b05c8d8d9806e1eeb19076bcf75ef6210b16c70ca8"
+    },
+    {
+      "path": "art/source/enemies/quay-watch.pixels.json",
+      "sha256": "3aab5ed3ab202bc72fa4af52421dca139a1dabf8cb9d73eeef03179f02c6edd9"
+    },
+    {
+      "path": "art/source/environment/breakwater-quay.pixels.json",
+      "sha256": "598f054db40ff0c6774ad3cf1de83914759e1ad8ca7642c31b3b0bf7ba1cc13c"
+    },
+    {
+      "path": "art/source/hero/key-pose-study-01.png",
+      "sha256": "8a64f75ad10e99486e2124558bec7fb6e798ed5453648c03c3610f5a8fccf7d0"
+    },
+    {
+      "path": "art/source/hero/key-pose-study-01.prompt.txt",
+      "sha256": "220ec36db3e20a108d508fc90ef8016f6d1ccc88b371fff1914f5d2a8473d301"
+    },
+    {
+      "path": "art/source/hero/key-pose-study-02.png",
+      "sha256": "5ada3987353137b43f7a17b180a1e845ca364b8954711bd1204d13fc89e74b05"
+    },
+    {
+      "path": "art/source/hero/key-pose-study-02.prompt.txt",
+      "sha256": "d1ff8e13a9e409e9ccf3383fed19648812cc09a4525795dbe01a99141f71abc2"
+    },
+    {
+      "path": "art/source/hero/operative.pixels.json",
+      "sha256": "309c62602b688e0aac8b43ec1a736a61018fe3f2243a7e98604c1e4831679ab0"
+    },
+    {
+      "path": "art/source/provenance.json",
+      "sha256": "32baab3f98d35843d2b3305e4da23b1f5a19bb51385fcff75f54b15291917b09"
+    },
+    {
+      "path": "art/source/vehicles/kestrel.pixels.json",
+      "sha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84"
+    },
+    {
+      "path": "content/engineering/README.md",
+      "sha256": "f1658805557becc2fee7a6bf4eba9c2b50ca743f1812e90c64bd6f146a6bc41f"
+    },
+    {
+      "path": "content/engineering/navigation.ldtk",
+      "sha256": "5b6637b99cbdb300337c949fab6331282508e8f8009038263a6ff9bf22e98301"
+    },
+    {
+      "path": "content/engineering/terrain.png",
+      "sha256": "db04ec948db7f056562d9e8bef0c029dd98bf630f9d1a60708cebcdea764e627"
+    },
+    {
+      "path": "package.json",
+      "sha256": "2c89e091816ccbfbf1228778a565bce43d0845d3ae454b18da78f0016d0cc820"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43"
+    },
+    {
+      "path": "public/assets/art/bosses/lock-engine.atlas.json",
+      "sha256": "ccc5cbe691d44d6ff2346ab637660a059c53002a1defdeaba6667692b1f17617"
+    },
+    {
+      "path": "public/assets/art/bosses/lock-engine.png",
+      "sha256": "a33c15cfd84b5256f165aa03ff04c2c9847bf36fdf4c0d6c96eb5a9ee741f1de"
+    },
+    {
+      "path": "public/assets/art/cinder-railworks.png",
+      "sha256": "718541fa816871337aa60d3c626807e71419f978978ce81545af63bf88719b39"
+    },
+    {
+      "path": "public/assets/art/enemies/breakwater.atlas.json",
+      "sha256": "d02bf9246f12f66999a5025e23e72edb978e38c848a8b55ba382dfec2163810e"
+    },
+    {
+      "path": "public/assets/art/enemies/breakwater.png",
+      "sha256": "b170c695f475552d6b5a978e7bc1a6f9ac7a19baaff71d69060aa0d4a7ca0cd6"
+    },
+    {
+      "path": "public/assets/art/enemies/quay-watch.atlas.json",
+      "sha256": "78e0008fd37f2e39df1ea2afefb4f37f27668145c5548c7d8f525efbe735cbc7"
+    },
+    {
+      "path": "public/assets/art/enemies/quay-watch.png",
+      "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70"
+    },
+    {
+      "path": "public/assets/art/environment/breakwater-quay.atlas.json",
+      "sha256": "096ed48d75e0c25d013acf73d92dda97406f55a0639c5678a407d30bb288a5c1"
+    },
+    {
+      "path": "public/assets/art/environment/breakwater-quay.png",
+      "sha256": "f01d081c938d30ae45e6c9231f65a8ad2160e18eec4fc05b9e494122566177bd"
+    },
+    {
+      "path": "public/assets/art/hero/operative.atlas.json",
+      "sha256": "a96a2f170688d212526add909ffb68e97af51975bada4f88ac7b52bacfe57069"
+    },
+    {
+      "path": "public/assets/art/hero/operative.png",
+      "sha256": "d52d896e2980e8acfe5eb49f1eaeecfbcc312959ddb13e61cfbc9334a3204148"
+    },
+    {
+      "path": "public/assets/art/rook-benchmark.json",
+      "sha256": "b31f993683c4b5637bac2bfba2431491d476b1adab775a6a6c50fe543df20929"
+    },
+    {
+      "path": "public/assets/art/rook-benchmark.png",
+      "sha256": "ec5e12548469e6ca0eaab4c8491480b5311e42eedf9d547b3d72df48f18c6c5c"
+    },
+    {
+      "path": "public/assets/art/vehicles/kestrel.atlas.json",
+      "sha256": "df22b0263c4b2ac632d75fa491b15dc62fba2022a2be134b0ce4f9769e99ea8a"
+    },
+    {
+      "path": "public/assets/art/vehicles/kestrel.png",
+      "sha256": "0e49a7e6e5e042b9fbc946519b2a94d8ddd755639970c548475aa8af2359b0b5"
+    },
+    {
+      "path": "public/assets/audio/beam-loop.ogg",
+      "sha256": "d6edcbde2c7190e275ef3eba08a8886129153a361cd0e16dc0fb58206deb5e53"
+    },
+    {
+      "path": "public/assets/audio/biome-loop.ogg",
+      "sha256": "21233e95b5e2c167293484c9906264c632a5f1fe45744d1d5b52ba1dfb0a18fb"
+    },
+    {
+      "path": "public/assets/audio/boss-loop.ogg",
+      "sha256": "a24f6f6f76063d8e0442b15e660896ec4dd11a7be45d19f71088408e002c99f8"
+    },
+    {
+      "path": "public/assets/audio/carbine-shot.ogg",
+      "sha256": "0bf468769b48a834dc1c6e38e457f2c71159b010225a9aedf84316795e8cc3e5"
+    },
+    {
+      "path": "public/assets/audio/dodge.ogg",
+      "sha256": "5d85717cfca231f7da7887cef5f44b2131bbe3308eb0c1fee0b4f9e61d59b571"
+    },
+    {
+      "path": "public/assets/audio/explosion.ogg",
+      "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae"
+    },
+    {
+      "path": "public/assets/audio/footstep-a.ogg",
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe"
+    },
+    {
+      "path": "public/assets/audio/footstep-b.ogg",
+      "sha256": "507a75eb19b897087855a3be3cf11a12d7fa37d143ad535eeebe0b8031c7325d"
+    },
+    {
+      "path": "public/assets/audio/impact-light.ogg",
+      "sha256": "92d5db6bfc672d9dc1b4f390b2900504f013187fa36335472554fafefa9050b1"
+    },
+    {
+      "path": "public/assets/audio/melee.ogg",
+      "sha256": "4237fa2cd80364ad81cd0af44f67d7497f1c5edcc7bdb02cd22be2ba4580c83d"
+    },
+    {
+      "path": "public/assets/audio/player-hit.ogg",
+      "sha256": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3"
+    },
+    {
+      "path": "public/assets/audio/reward.ogg",
+      "sha256": "59e7591f7a068882767bc1fd61edabf479b78787466d3a70bc49dfa0533777d2"
+    },
+    {
+      "path": "public/assets/audio/rivet-shot.ogg",
+      "sha256": "1b3a14886d25a471273eec5d55ff3a7e7c7c6df4e82f3659046dafed982a76d4"
+    },
+    {
+      "path": "public/assets/audio/scatter-shot.ogg",
+      "sha256": "caede23d2b65299acdc4e9cab16d06c247d69c7ca1c74caa5e9da21cbdbc1400"
+    },
+    {
+      "path": "public/assets/audio/victory.ogg",
+      "sha256": "1010c9b566d6c090ff03a4aaaf7439e26eb4cc4f20373800d0b7e6a9057b795d"
+    },
+    {
+      "path": "public/assets/manifest.json",
+      "sha256": "812772e77529e4f0e3c1fb50f135182d69a924439c075f441a0cfccd7989eba9"
+    },
+    {
+      "path": "scripts/assets/export-breakwater.ts",
+      "sha256": "8665347e4ecdb1e6e3103ee37bf2fb450b178ee54454c7e4c57137ca3bfc7015"
+    },
+    {
+      "path": "scripts/assets/export-cast.ts",
+      "sha256": "b00f96b900e705db2569a04194f04fc9cecf172d46b128f4c4f6ea70e2169c8f"
+    },
+    {
+      "path": "scripts/assets/export-native.ts",
+      "sha256": "16c69977f564a9a12190cd39fcef6f7ec2d5b781343e2ea4c7ec1313bc5e57de"
+    },
+    {
+      "path": "scripts/assets/review-breakwater.ts",
+      "sha256": "a3a8718f15807052c23d9dca78c71769df88110dadb23ee101ec0d6943c94a53"
+    },
+    {
+      "path": "scripts/assets/review-studies.ts",
+      "sha256": "f007944d8359b9bb3f4e5ae0f0f4089fbe93c809d1facc29d9c5d52f6a55ec15"
+    },
+    {
+      "path": "scripts/bench-collision-grid.ts",
+      "sha256": "503887de42580fba74f7bbcfd827ffa654c967210f60b864402d8d776be9ba4b"
+    },
+    {
+      "path": "scripts/bench-room-network.ts",
+      "sha256": "22aff8593a7f2130110500a02228745cca5648369fef630700dfffbffd9be1c4"
+    },
+    {
+      "path": "scripts/bench-room.ts",
+      "sha256": "7438c7eb9569cba8db27405a04d852719ab44262518352d27b467c7c2581fc8a"
+    },
+    {
+      "path": "scripts/build-client.mjs",
+      "sha256": "35d894a2ad76b5482857b30f5644d5da0d8e7ac9653b9b431958937a8f6376b2"
+    },
+    {
+      "path": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "path": "scripts/build-diagram.py",
+      "sha256": "619f562922c7173244c5915c71db50d47fd81c51771eac53a8ddf399ba8a33bd"
+    },
+    {
+      "path": "scripts/capture-baseline.mjs",
+      "sha256": "dbf535c5754a181ee357e184654b908a1b46f11731d71def09291535c129f029"
+    },
+    {
+      "path": "scripts/compile-benchmark.ts",
+      "sha256": "d4627570c57c1294d8820cae2fdfaf8a05bb63efefa5baf958cf3631f9825604"
+    },
+    {
+      "path": "scripts/compile-content.ts",
+      "sha256": "60119179ef625d928e470d516a52f41bd3fcb4e80459601cd23431264f1472e5"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/LICENSE",
+      "sha256": "f409a37a40e823efefddac3140d991141633d4db3cec4f8667bc23b846dcc335"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/README.md",
+      "sha256": "110048b6f37d25a159820455adc1f0ed3b01bcac2689da484d05397ad4da2941"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/schema.json",
+      "sha256": "b96ca8a106d12c5bf8aa42da223a4ceb02e93dcfbb0d1b49fbbaeb9959264bda"
+    },
+    {
+      "path": "scripts/lib/art-image.ts",
+      "sha256": "27477695d8d7e1a5f0e4597be09e5dad79986e4d4d9bcc5821de50e6566d01fe"
+    },
+    {
+      "path": "scripts/lib/art-studies.ts",
+      "sha256": "a6ae466aabf973c5858ff96dfe79a3105772c554cec1d04b854d80dbee45eab1"
+    },
+    {
+      "path": "scripts/lib/ldtk.ts",
+      "sha256": "948ba920e0d74268d5e6bfb2ad9b4848f4d2d3303370b646876b03f8d0cb99e8"
+    },
+    {
+      "path": "scripts/lib/local-worker.ts",
+      "sha256": "90bbf49f955f82eb2fa4e46a9708db89727ca752dbd0d85a333b38559ab7e171"
+    },
+    {
+      "path": "scripts/lib/native-art.ts",
+      "sha256": "9af6981942c9754a9b0473b5213ce188d6d0b249b9480ea12ae45a1609e0ec95"
+    },
+    {
+      "path": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "path": "scripts/lib/verify-area-combat.ts",
+      "sha256": "fe814abc37c45c1f8d710cf55c99889b03d5895b959433cf2fb2142e7bada8c6"
+    },
+    {
+      "path": "scripts/lib/verify-area-lab.mjs",
+      "sha256": "e12ae4b7a49eb23e98aa0f0105c402f3e93e484dcc54fb481174c276b838d10d"
+    },
+    {
+      "path": "scripts/lib/verify-combat-campaign.ts",
+      "sha256": "5d2cc951d38c3982bdf8201442ecffff24b7552776020236265aa6a1f6133e44"
+    },
+    {
+      "path": "scripts/lib/verify-death-body-lab.mjs",
+      "sha256": "8aa4bd6615610173cdd04a604057164a08ec6c2d1bb52236a1e36fb4f0ca09de"
+    },
+    {
+      "path": "scripts/lib/verify-entry-lab.mjs",
+      "sha256": "d70253e30ad4470a660502b5183017ad5da156713ab4bb5032d10aeed5b21e64"
+    },
+    {
+      "path": "scripts/lib/verify-foot-combat.ts",
+      "sha256": "42f61b1587bdce8679a90a53536b26df1a5bcc5a9ea61c37ceb2a71803f9e81a"
+    },
+    {
+      "path": "scripts/lib/verify-hmg-combat.ts",
+      "sha256": "92a5b72594f1ac374796c3ca8a9823183369d09d22f97f01168b3d4943f10b45"
+    },
+    {
+      "path": "scripts/lib/verify-hmg-lab.mjs",
+      "sha256": "9cc458e2b1d0bf5fa3d9ce23038ab58d9562d37d6a5013dc1df62b06c9edb695"
+    },
+    {
+      "path": "scripts/lib/verify-hostile-combat.ts",
+      "sha256": "1328316d9b087d51916db500683d99df0b53fc2b7466d31c3f74cb30129747fe"
+    },
+    {
+      "path": "scripts/lib/verify-loading-connections.ts",
+      "sha256": "2f73ca0de700a76091e32d88fe0a1e0d874f42bb397b2eee79e56968a8a2d403"
+    },
+    {
+      "path": "scripts/lib/verify-ordnance-combat.ts",
+      "sha256": "27a63ea3823d87a3ea2e3838c995a747eaa8cb441f4b8e3331579e7d591ea3b2"
+    },
+    {
+      "path": "scripts/lib/verify-ordnance-lab.mjs",
+      "sha256": "196038ba21e732ab3f0f5ad0dbcae20f72809dda60176fbaf8eddfd2af127951"
+    },
+    {
+      "path": "scripts/lib/verify-room-phases.ts",
+      "sha256": "cbc8e649d6ded1cbb527c9da07c387159a4d7edf320adbaad51a5e490414c613"
+    },
+    {
+      "path": "scripts/lib/verify-shield-combat.ts",
+      "sha256": "b5ed492e12ebc722693905331fa1ff6e8b35169e75584823163325fce14e1525"
+    },
+    {
+      "path": "scripts/lib/verify-shield-lab.mjs",
+      "sha256": "97ae1a7f3f7e388026c5952ce8a6d01d423a264ce6e656e98d1a75fbb7a231ed"
+    },
+    {
+      "path": "scripts/lib/verify-stored-area.ts",
+      "sha256": "fb32f47fd462fc5979863728d40d6a250b605a2962927b9a45f18afd51dff669"
+    },
+    {
+      "path": "scripts/lib/verify-stored-campaign.ts",
+      "sha256": "392836d5e427aad86ba2d32cd46ebf6e536483288378f801d7c9aab2352cfd6e"
+    },
+    {
+      "path": "scripts/lib/verify-stored-death-body.ts",
+      "sha256": "c5d20615a8fc604ff71cb51fa46046e5c59925bfbb851a5f05ecffa1f8200d3b"
+    },
+    {
+      "path": "scripts/lib/verify-stored-entry.ts",
+      "sha256": "f3d2acf0ff2cd3ff9946bbeed2ea73b6063ea6455e7a50759113363044aff60b"
+    },
+    {
+      "path": "scripts/lib/verify-stored-foot-combat.ts",
+      "sha256": "43f743c33c2e97e10dfda7fd23e1294deee1876979d5ca96e0a5d4379a9c7eeb"
+    },
+    {
+      "path": "scripts/lib/verify-stored-hmg.ts",
+      "sha256": "2ffc5443a93f3d981df1d7e7b693220677e329a3c060f121daf5918d193adf83"
+    },
+    {
+      "path": "scripts/lib/verify-stored-ordnance.ts",
+      "sha256": "42407307ac3b9cd569e9deaab0fbf7b6d6dda193d7b16dd41566e9537b36078d"
+    },
+    {
+      "path": "scripts/lib/verify-stored-phases.ts",
+      "sha256": "00fb7cec9dcae0a3300c8718de7b104c9206bce3db534f51fe0271807796d5bb"
+    },
+    {
+      "path": "scripts/lib/verify-stored-rifle.ts",
+      "sha256": "c52d18479ff5530b6d90860547c549da283618e5af9b8bff35936ef524203488"
+    },
+    {
+      "path": "scripts/lib/verify-stored-shield.ts",
+      "sha256": "6496b1b13bd461dffe111b91c7c8f15d33f8fc564abfc35d2f2b3b3db0a0bb07"
+    },
+    {
+      "path": "scripts/lib/verify-stored-support.ts",
+      "sha256": "3344798dbefacb39d3822d76ae44206b8de0340cf0df5b817a05dcdd8287f220"
+    },
+    {
+      "path": "scripts/lib/verify-stored-tank.ts",
+      "sha256": "2c1e01c8f7eb26427ee1a1e46e98a7d75122af39b917c5c62c1e65862d7fcae9"
+    },
+    {
+      "path": "scripts/lib/verify-support-combat.ts",
+      "sha256": "c855c1cf4e5fce38ecc9b16502626834749b8bca94020ace8367d7e28dfbbb4f"
+    },
+    {
+      "path": "scripts/lib/verify-support-lab.mjs",
+      "sha256": "078a0fc1026d7b4ce324d2a2cbea1ffef89d0f90790af931890e7d75dcd9efa9"
+    },
+    {
+      "path": "scripts/lib/verify-tank-combat.ts",
+      "sha256": "9d2dbe0d22f91cce4f058c9ceec7e10b2140a9890b6d7b3d9e2b546479812f18"
+    },
+    {
+      "path": "scripts/lib/verify-tank-lab.mjs",
+      "sha256": "13477e4a49473cd6b170fbae6d371f72df47882a8d1f0a5e7d88f83a181f58dc"
+    },
+    {
+      "path": "scripts/probe-browser-audio.mjs",
+      "sha256": "3e23459c72ad53d1b57483c43570fe0461b27d8d2021c53dd3ad13c70459ea2b"
+    },
+    {
+      "path": "scripts/probe-native-timers.mjs",
+      "sha256": "d51c7aa204e358c2fb48eb2703d2bcf05854b078cd0cc61591db98d5ceeb851a"
+    },
+    {
+      "path": "scripts/validate-assets.mjs",
+      "sha256": "aa81f03c5c9212ab58b925a487169bca3233235c46911740c9a9e14f1f82bf65"
+    },
+    {
+      "path": "scripts/validate-content.ts",
+      "sha256": "8beda063a8bc590304797eaacef1a55af91ef62ef4d87522ceb7197aa4194e5a"
+    },
+    {
+      "path": "scripts/verify-art-review.mjs",
+      "sha256": "55b08f6f9441e6dfbbe6b6353c6f91913a377fd034f5c779870296a093f436dc"
+    },
+    {
+      "path": "scripts/verify-breakwater.mjs",
+      "sha256": "3ab182196d01b4d90b33d27fe487fea5e312bf18275501e3fb0cb05e9c27a809"
+    },
+    {
+      "path": "scripts/verify-combat-lab.mjs",
+      "sha256": "f772824e4af896c2188613d079c3855049b0cef9de8e56dda1640b8cc0331528"
+    },
+    {
+      "path": "scripts/verify-combat-storage.ts",
+      "sha256": "fd57ceac3d2f355ccb003bffe7a4cc7755f8921ec4bcfe459a8ded6c5d0f9cd1"
+    },
+    {
+      "path": "scripts/verify-contract-runtimes.ts",
+      "sha256": "243c39506e2014e342e861d3d7ff8374029d353d929f7f3f54bf5626fc041f64"
+    },
+    {
+      "path": "scripts/verify-controller-lab.mjs",
+      "sha256": "ad7198af2e1cfed7629e90a3ce8e2347d040093f0f8b4c89cf5b54d54dfefefa"
+    },
+    {
+      "path": "scripts/verify-native-cast.mjs",
+      "sha256": "04daf8e5cefeeece42460c7dc463e1568e694b322909aa87ea6e0ddb7b57ea89"
+    },
+    {
+      "path": "scripts/verify-native-operative.mjs",
+      "sha256": "57d5bdf775a2a718dd658997c666e95f905d1f7929370bcd61a0e06191d38af5"
+    },
+    {
+      "path": "scripts/verify-network-controller.ts",
+      "sha256": "28c5ec4fff94e8b0ad3e0e836236bea8269e97fcf8bdfc3db463a5ae74e9db54"
+    },
+    {
+      "path": "src/assets/arch-diagram-dark.svg",
+      "sha256": "c9ce39f1db521c9fb2e768f15493a94745b06aa0e4380d923728e84aeb8875f3"
+    },
+    {
+      "path": "src/assets/arch-diagram.svg",
+      "sha256": "864235a1ead6b5192a7ca91664c276ff77ec47d315fb1cebec0f683c1a5fc87d"
+    },
+    {
+      "path": "src/client/art-review.html",
+      "sha256": "b58edeee161967d74f0a63a207dc9fdd6aedfa6f6f228ba2df7f2c58ee494096"
+    },
+    {
+      "path": "src/client/art-review.ts",
+      "sha256": "62345a2bdb3f6a3d01301900b7348fe319a2fb3ed6359d02b6885948302fd70f"
+    },
+    {
+      "path": "src/client/benchmark.html",
+      "sha256": "b0752c0dc572002b7471ab43af7fb7614bf6d56a4da53c0c0806f8dbe334eadd"
+    },
+    {
+      "path": "src/client/benchmark.ts",
+      "sha256": "edc669c174a3aabd289d4d4d528c475f52327f79b31cd0f6fd315ec0b8165fcf"
+    },
+    {
+      "path": "src/client/breakwater-scenery.ts",
+      "sha256": "558de646dc033334695630c8478d585b2b1d0c3a00d312078da19d58de52c67c"
+    },
+    {
+      "path": "src/client/cast-audio.ts",
+      "sha256": "4aca794fe09910539446943a1618d611cd7ee0070bca1da1571a4284fd947c81"
+    },
+    {
+      "path": "src/client/combat-lab.html",
+      "sha256": "2e3fcd2f6b6c983db5e74fae6bd94dca91f056a32536b52a79e07c782abf3a97"
+    },
+    {
+      "path": "src/client/combat-lab.ts",
+      "sha256": "dff0fae830112b626a5a4fc2e4e7a716370c2bea06302e196da5a13b10e7e5f3"
+    },
+    {
+      "path": "src/client/connection-port.ts",
+      "sha256": "a06fa2598befd332ae177e665f0dda2cae81809c503b648265d9d2d198d0ca2e"
+    },
+    {
+      "path": "src/client/controller-lab.html",
+      "sha256": "12a6e0dd85e6a911db8bf4019ba320e9045441a6988fdefab000caecef74dd18"
+    },
+    {
+      "path": "src/client/controller-lab.ts",
+      "sha256": "067648197f0ea0f17ebf74362763f92b221c202685e13df520432df921f02cf9"
+    },
+    {
+      "path": "src/client/favicon.svg",
+      "sha256": "7b496d707dc8e2089aca998552761bcdfc6d6218fbede93ba19ce2548fa38c0c"
+    },
+    {
+      "path": "src/client/index.html",
+      "sha256": "1e3ed4e81cf8ee5804c2d2feab391c4057b57d6fac68bc3eda81711e1204a8e9"
+    },
+    {
+      "path": "src/client/index.ts",
+      "sha256": "f85d29c1bfdab788aa07c458aca92250183ffb6cd2ab4a135aca61cfebeaa1b6"
+    },
+    {
+      "path": "src/client/lab.html",
+      "sha256": "262338001a4504c4ddf8b1738a2c0174f591942b243c6289770dcd68a94ec613"
+    },
+    {
+      "path": "src/client/lab.ts",
+      "sha256": "b5bae0804df01af54d50cc40bb2212a4bc6ab229ad7e59375dff054c4658defa"
+    },
+    {
+      "path": "src/client/native-cast.ts",
+      "sha256": "70ce790bffb4fac2f4e2acc63fdde3f81933566aac295026149d3223bc7968cc"
+    },
+    {
+      "path": "src/client/native-operative.ts",
+      "sha256": "0eb8f8f4d342b8a325931a16712b035c1b2dad86fdc6bd28f77d0fb7e1666a76"
+    },
+    {
+      "path": "src/client/native-review.ts",
+      "sha256": "36e04c27e93797f53788e216e22e633ead8df86b081cb072c05783ff119f6ce2"
+    },
+    {
+      "path": "src/client/network-lab.html",
+      "sha256": "b5359643584f5d21312de2ee5477e0163a3e452dc06c0776a7416df17e1d2e7b"
+    },
+    {
+      "path": "src/client/network-lab.ts",
+      "sha256": "1efe759fd4777d5cfe59e04b7d7af380286d26bddcdf6d5cea91da6f2ba3f31f"
+    },
+    {
+      "path": "src/client/network.ts",
+      "sha256": "b9343af60278d20fd40766a50923fb462f084e501c7664199cc15241285e28f6"
+    },
+    {
+      "path": "src/client/scene.ts",
+      "sha256": "e02dd66e47460d808a1b9670be6e83253bb54c564dd2349ee28107220f4d3e43"
+    },
+    {
+      "path": "src/client/styles.css",
+      "sha256": "728babf7e7b0cfd2edcf1bf278d4c0649e61e5a8518f31fdaa040ebda7b35d34"
+    },
+    {
+      "path": "src/client/tank-overlay.ts",
+      "sha256": "3c1f8062ecc287c086871d9d0c66e8f2dae799cdfaf8468550dfc9c88dbd0f29"
+    },
+    {
+      "path": "src/client/tsconfig.json",
+      "sha256": "e06c323752afdfa81db0375d5d332259850ff832b3880d0c0db2d9deb258d3c2"
+    },
+    {
+      "path": "src/game/actors/grounded.ts",
+      "sha256": "34453a81e8a70927d65fad1c3eee28153eba1f0919ae678dd9967204fa201e51"
+    },
+    {
+      "path": "src/game/actors/rifle.ts",
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "path": "src/game/actors/routed.ts",
+      "sha256": "6b7f245a326636844f1bf4c8ae70333ebf69f469af3c96ea4afc119a30c742e3"
+    },
+    {
+      "path": "src/game/actors/shield.ts",
+      "sha256": "21b43b9f58197d513a9f1416347585431101fe9d41e3484aa7ba6ef804630d94"
+    },
+    {
+      "path": "src/game/campaign/life.ts",
+      "sha256": "51d4e743a1a9050322187b0df834506d3631a6cc2644ce7f606e47700e788ebf"
+    },
+    {
+      "path": "src/game/campaign/lifecycle.ts",
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "path": "src/game/combat/area-attack.ts",
+      "sha256": "2b7826fb8db923257a0d6bcd905db994206f69d25a688e496d01e00855f2eebc"
+    },
+    {
+      "path": "src/game/combat/destructible.ts",
+      "sha256": "20d263861a87fb9cb08fb9581b29e82bf09ad7efecb1e68dcb43bc7b02309716"
+    },
+    {
+      "path": "src/game/combat/firearm-aim.ts",
+      "sha256": "bb03a22db77438c3a90459aff13fbcf183fafa18bb2df8740eb2f11371b59177"
+    },
+    {
+      "path": "src/game/combat/firearm.ts",
+      "sha256": "fba5d427a50fbf0f54968155cdae3ee42849ac18df2cf7ec98b7c63bfed24bc0"
+    },
+    {
+      "path": "src/game/combat/foot-actions.ts",
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "path": "src/game/combat/grenade.ts",
+      "sha256": "6a7a2dae0167846667defd575e7b9e72ce653ffc972a122b9f9150cfb1521502"
+    },
+    {
+      "path": "src/game/combat/projectile.ts",
+      "sha256": "3fc7adc53f43299d3ec3a42b6362ad0365decca449ceb75f4558d0d63233fd99"
+    },
+    {
+      "path": "src/game/combat/timeline.ts",
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "path": "src/game/combat/volume.ts",
+      "sha256": "9c03c1eb56ca9cf160d8aba57d5dc47db2f7e371b571579a103de06774007e3b"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "b023926056f255084be8d854da036d500b342a38b3a4d941c807123de7adf15b"
+    },
+    {
+      "path": "src/game/content/compiled/navigation.json",
+      "sha256": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb"
+    },
+    {
+      "path": "src/game/content/contract-fixture.ts",
+      "sha256": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733"
+    },
+    {
+      "path": "src/game/content/schema.ts",
+      "sha256": "96ba58e1114e68babe3cb2d50326f05a79ea487219b5534249d27d31cbe7f09c"
+    },
+    {
+      "path": "src/game/content/validate.ts",
+      "sha256": "9d537c19476cd462ca088b08d9bedfada83f0a614fef5518c5b33750bc1c9fc7"
+    },
+    {
+      "path": "src/game/controller/foot.ts",
+      "sha256": "f0c78961f3ed22b589d734362f0ddb7ae58dfe80bed25f9d03df7490bfd9e254"
+    },
+    {
+      "path": "src/game/core/canonical.ts",
+      "sha256": "4b255b5104b2ddba1e4155cfc40b23e81b0d58b75c45f5f2b9c7ae2c284b315e"
+    },
+    {
+      "path": "src/game/core/numeric.ts",
+      "sha256": "55d339dbef7fd2e42956f399780e060a0bfe1fc3a70ad4354e918f2342e0b5a1"
+    },
+    {
+      "path": "src/game/daily.ts",
+      "sha256": "52fc74cd0280c02d76c1cb55affc1f60a3178dc72d6afc26607cbdf0c42d7fe7"
+    },
+    {
+      "path": "src/game/encounters/lifecycle.ts",
+      "sha256": "0d634d4973657351af7bf4f2de48707e6e7df1beb04ffa0a53b9150526965c28"
+    },
+    {
+      "path": "src/game/input/journal.ts",
+      "sha256": "f47e52eca4f44a64a32d3e9ab3c7f7b7cf663fecc63c5b8c26289df5be170c44"
+    },
+    {
+      "path": "src/game/input/types.ts",
+      "sha256": "262d7214882ebff5185233d55c40ebf7fe4640fc1077d8c1650fe23b6ceb6c5b"
+    },
+    {
+      "path": "src/game/labs/baseline.ts",
+      "sha256": "225a4135c87c8a2c9db25ab13f67b22f8fb13f5ba74976ff41493f42aa687b83"
+    },
+    {
+      "path": "src/game/labs/combat-campaign.ts",
+      "sha256": "0194e0eb386e395fcf975373d8e2a84c3db65e4e6886db7656d04aad58dc6cf5"
+    },
+    {
+      "path": "src/game/labs/combat-content.ts",
+      "sha256": "23eb376a1f7653ae208af5d868f114b6f0ddd27a1f001a9b420e4bdbda6d5a35"
+    },
+    {
+      "path": "src/game/labs/combat-tanks.ts",
+      "sha256": "e4f5291013d507dde529030cca21ea8d4ed3b2785656ba3c6966ad82e8cbce81"
+    },
+    {
+      "path": "src/game/labs/combat-terrain.ts",
+      "sha256": "14d455e2231f3cc749d49d801702cb11828b1ea85634928a869eaa8186544100"
+    },
+    {
+      "path": "src/game/labs/combat.ts",
+      "sha256": "9d7b2fafaa69fc69848af0de839dbfb74d54e17fc3ba2f5d19129a68762bd3fe"
+    },
+    {
+      "path": "src/game/labs/compiled.ts",
+      "sha256": "39e3f19c508b31cbf2d698c0941e9a06a8f82cd49db259f1f2040191470c10fa"
+    },
+    {
+      "path": "src/game/labs/controller.ts",
+      "sha256": "d2c9fe612f40a76a43db41dd59babaae6721f6e0a225ec3e8bf6b511085c4223"
+    },
+    {
+      "path": "src/game/labs/encounter.ts",
+      "sha256": "9c265e4e022b7ec0755038142442025a4ce434b59b62f29e78122500fe02f6a2"
+    },
+    {
+      "path": "src/game/labs/foot-fixture.ts",
+      "sha256": "9533abecc95bfa402f04eb537324f0d14e58aa31183ca9a83fc200988284a7b4"
+    },
+    {
+      "path": "src/game/labs/route.ts",
+      "sha256": "cd09b11d08c5278386c58b0a7081cb593876509609c4a89b28f24bfafca5db77"
+    },
+    {
+      "path": "src/game/labs/routed.ts",
+      "sha256": "83455f74588b7b94c34e34727f06da52896db11dfe9f31e2481db7b3c7151d80"
+    },
+    {
+      "path": "src/game/labs/traversal.ts",
+      "sha256": "cd9176887d43a3716877b7ec0af95d40daf17b317aa7411156a37df86f7337ef"
+    },
+    {
+      "path": "src/game/missions/breakwater-boss.ts",
+      "sha256": "e72c02cefe55d29bda08845cb8f737d1a0a148d7a0dd02ecc0ea7777e66ed941"
+    },
+    {
+      "path": "src/game/missions/breakwater-content.ts",
+      "sha256": "0a7cf6c039db72568fdadde1dd72be3e188435434eba1226a506286da2f0c2a2"
+    },
+    {
+      "path": "src/game/missions/breakwater.ts",
+      "sha256": "8284c4b3819aeb1bc90c55e2e19246653378a2f125043f28be5c29238093c9d8"
+    },
+    {
+      "path": "src/game/missions/compiled/breakwater.json",
+      "sha256": "ed1c1f658899b244a0bb69722ef888db078b6e9c4b0f89cd3afe9a24eba0a40d"
+    },
+    {
+      "path": "src/game/navigation/follower.ts",
+      "sha256": "fb3a3372e712569ada9457dd8663901cccbfc50b6bd10355797350aa66a4e74f"
+    },
+    {
+      "path": "src/game/navigation/graph.ts",
+      "sha256": "f6e70130fede0f86edf122fd5464adb9430bf18f5e5c77cb84e948745e7f3d45"
+    },
+    {
+      "path": "src/game/navigation/links.ts",
+      "sha256": "f59de65fac0d050a0128de698514638818b75c764ef19a55541e515c4542b0fd"
+    },
+    {
+      "path": "src/game/navigation/spans.ts",
+      "sha256": "821d56156ecdb63d34af99d5ef7a214ff6a0e62d084bfc71fd8a377dcd1994dd"
+    },
+    {
+      "path": "src/game/physics/body.ts",
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "path": "src/game/physics/grid.ts",
+      "sha256": "63fd7c6356b2304ab011fa8ba4d097d21540ffac468e3026d3a61dcd98b2c8c0"
+    },
+    {
+      "path": "src/game/physics/move.ts",
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c"
+    },
+    {
+      "path": "src/game/physics/sweep.ts",
+      "sha256": "98f5d4b8b156fc896f03303e40f3cfa599eef9d3b2279a1f40414feb1240cf22"
+    },
+    {
+      "path": "src/game/protocol.ts",
+      "sha256": "a02fc1b6869bc5c337e7463e3e527c7613b80ef678ca13ea620bc39f0e71cad3"
+    },
+    {
+      "path": "src/game/rules.ts",
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "path": "src/game/simulation.ts",
+      "sha256": "ebbbba47487cb98ddf5cf480cb2a52a8c4b8d11cc95d04c832ed8831c9421b27"
+    },
+    {
+      "path": "src/game/state.ts",
+      "sha256": "4618312151de37a230d246a722508e84639a19dc2528736aaad56449f943b1fb"
+    },
+    {
+      "path": "src/game/vehicles/tank.ts",
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "05f7db4db5bfef4124c6e9928f4c93e7fe06db7f485adf2f957231679e743eed"
+    },
+    {
+      "path": "src/shared/animation/breakwater.ts",
+      "sha256": "7c348b3dad000900790f392408416e0f77c548d31718fb22727c3b2632059bde"
+    },
+    {
+      "path": "src/shared/animation/cast.ts",
+      "sha256": "c37818f9b15f35060b8d7e02322e8d5090dd1b998b248c71bece41743461d762"
+    },
+    {
+      "path": "src/shared/animation/combat-audio.ts",
+      "sha256": "53e4cc2a1105dd9acdeeb84b6f05babe86189647bd0c72b3ea5871cc106820a1"
+    },
+    {
+      "path": "src/shared/animation/native.ts",
+      "sha256": "79a3585b9250890779fac844aa05e3cd32d4d6992307144e1f2cc75a725698dc"
+    },
+    {
+      "path": "src/shared/animation/operative-motion.ts",
+      "sha256": "7039e45d6af8e9a3e6fe5cad470cc79e2cf7e97a08fc7710bac474f825376a7a"
+    },
+    {
+      "path": "src/shared/animation/operative.ts",
+      "sha256": "221853e1cc6dc423db21f21c77be7f70b7d56c34a9086e9c9a03054a8c1db856"
+    },
+    {
+      "path": "src/shared/content-id.ts",
+      "sha256": "77421fd1db43cd4d59a41d4ba8035fd983d7c988713d4573b124a4c989a615e2"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "e4edbf46cbe46faa693e47f3cd6e5cbdf3d41006f163404378e39ec9c9c275d5"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-events.ts",
+      "sha256": "ec4dcab37ecd899d85f2bba5f3d084db8e3f180be72e1840279678cd77d05322"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "7c5f178093c976c2d45fdb16144281968766da71f1003e14bead9fa18ec16a8d"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "d9fc4b63b0219c4207744f922b716fc88b38fdadaa83825bb3fc7951f719edcb"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "65eada490e6afb2d2af60c8a10d158bbb26651291cd64d5cecb3bfe72dea01bf"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-recovery.ts",
+      "sha256": "1d06c63706181db52deb72cd9d6b3c64076c7bfabd6b57c32d0e72fb3572ae6b"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-workload.ts",
+      "sha256": "f418d8d2331fc9f769b706c480b05ced474f5eb2abb9820e6b7e50e0d3451f20"
+    },
+    {
+      "path": "src/shared/diagnostics/room-probe-types.ts",
+      "sha256": "b0063cfe6ce023feff93e722925f2bd46d20bf30ae2af67721d2156f8eefdcdb"
+    },
+    {
+      "path": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "fd52bd3aa4f3b85a81daadcfc83075d841cf6ff6b8f0ae38a3276cc153b13380"
+    },
+    {
+      "path": "src/shared/input/capture.ts",
+      "sha256": "d198f3dfe7d8222aca7fffba0ea51f27fc9a0da06de6c72c15d1b741dd7440d5"
+    },
+    {
+      "path": "src/shared/prediction/controller.ts",
+      "sha256": "d63255a9ce4fa116afb6b8e1070ea9d5cd601013d9a6ad8b847d1a34d615a56d"
+    },
+    {
+      "path": "src/shared/protocol/baseline.ts",
+      "sha256": "dc197db206ebbc836a6af6a872814f8af131d3c1afdaa41644068b375f00c67c"
+    },
+    {
+      "path": "src/shared/protocol/binary.ts",
+      "sha256": "dd7a67c3128985f0502143ace7e2f52c4d64674d316c993f94c48823872580d3"
+    },
+    {
+      "path": "src/shared/protocol/codec.ts",
+      "sha256": "b3d09cdc4681a20c22387148a6c32f306b4d93bc1feeb5b280becfe6c7967bd8"
+    },
+    {
+      "path": "src/shared/protocol/combat-record.ts",
+      "sha256": "0721d575319d314c3dbef68dddab44713fc73e5eade5db01722aca875746f47e"
+    },
+    {
+      "path": "src/shared/protocol/controller-record.ts",
+      "sha256": "2bae04d3fed56ca15549c6bd0a6924f2d0d6ad264cf9af6095d2c81d1927d994"
+    },
+    {
+      "path": "src/shared/protocol/event-stream.ts",
+      "sha256": "ef226d106fd858368ae6356acc5d603be043d281410acbbc067ec2bf0c0813b6"
+    },
+    {
+      "path": "src/shared/protocol/events.ts",
+      "sha256": "c69149ea7333636214a038dec3be7eb503ad87e4d7e3f7a38eeafcdc1d0c6045"
+    },
+    {
+      "path": "src/shared/protocol/handshake.ts",
+      "sha256": "1477b114de510de87e00ef713813ff08ac56af451c1e18aa85eaa6d86edeeac5"
+    },
+    {
+      "path": "src/shared/protocol/input-mapping.ts",
+      "sha256": "25fc28e2d6bd3ff17ae8c81baa4f4ae4c5152bcea1e6e9720edfd5aeb0f15aaf"
+    },
+    {
+      "path": "src/shared/protocol/input-stream.ts",
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "path": "src/shared/protocol/limits.ts",
+      "sha256": "62bdfbd5935c4fa06ce5ec897843cadbdf9631ccf1b6613945bb80bbf2408c9e"
+    },
+    {
+      "path": "src/shared/protocol/schema.ts",
+      "sha256": "4da61549320633fa16fbc20f2d8a4293deafe766074d87875c47fbb9c5d09fbc"
+    },
+    {
+      "path": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "ae6639933847c7b6c7873637fb2be5e97b3fb285c109b0f61f1c2b183e2e0255"
+    },
+    {
+      "path": "src/shared/protocol/snapshot.ts",
+      "sha256": "18c1e677656ec7221cee0165498799b0507cc31980f5a8e885463b435446d557"
+    },
+    {
+      "path": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "path": "src/shared/session/admission.ts",
+      "sha256": "f9e7ab9c68bcbe90edaecc38caa3fc79213aad3e77a95dca335436a1264ca139"
+    },
+    {
+      "path": "src/shared/session/connection.ts",
+      "sha256": "8110c7be20135d67ded80906c9a741ef932dd1facb800f158f9d041e83b1213b"
+    },
+    {
+      "path": "src/shared/session/membership.ts",
+      "sha256": "582c3c6fb12ef996543f659e4adf0e0ce599309311805e6a303cdedc2814039c"
+    },
+    {
+      "path": "src/shared/session/profile.ts",
+      "sha256": "d8ed90e094903cef85cc1c7c8a77ea75318f26aa9826caac7020f4ee08101771"
+    },
+    {
+      "path": "src/shared/session/room-control.ts",
+      "sha256": "39bd3121db8bcdde8db4aca7f7ee8486c7b0b612d5bde0da5e0d6d6f68ae068d"
+    },
+    {
+      "path": "src/shared/session/room-phase.ts",
+      "sha256": "63a7812db4326c8310b1c830838bfde3063fa543beaa2c25bc5236c26a5fe3ec"
+    },
+    {
+      "path": "src/stacks/edgefall-stack.ts",
+      "sha256": "dc1b44ca11cf6992b1aa0652e1ead380b780950b7784942b9bc1aa3408d08ff1"
+    },
+    {
+      "path": "src/worker/assets.d.ts",
+      "sha256": "023261b1bbd6b5a26b8cd58b8310da259d39dadcc6fbe33a7bff5fecaa458bd6"
+    },
+    {
+      "path": "src/worker/diagnostics/clock-probe.ts",
+      "sha256": "feeedabf5651ebc58f2616dc4d79d10c59aa406e6e52e28f251627912aaa16c6"
+    },
+    {
+      "path": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "636689ad4203be65ebfff00a30333359013b385279c1446db19b466ed68c8b42"
+    },
+    {
+      "path": "src/worker/diagnostics/membership-storage.ts",
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "path": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "f37f5096a801ff8078402ba19af383ac26387aaf083cc4d6b1d50d42c0db4fbd"
+    },
+    {
+      "path": "src/worker/env.d.ts",
+      "sha256": "3d798e579591ac1ae7b96f717f4a9bf9c611dced6f640b78d9b06f531e0a4455"
+    },
+    {
+      "path": "src/worker/index.ts",
+      "sha256": "244b8a151cde3c30f1f8fa0d654df384d490841ac4859509a835b01161915488"
+    },
+    {
+      "path": "src/worker/room.ts",
+      "sha256": "f79c9e5f6520672299a066c1471f5a7845bd5114d804a91a8c1de16ffe4f73fd"
+    },
+    {
+      "path": "src/worker/runtime/control-lease.ts",
+      "sha256": "405a5d11ff1d1d770418f81f489a713d0514bb6a8ff31bcccab0597a547b5ed3"
+    },
+    {
+      "path": "src/worker/tsconfig.json",
+      "sha256": "df32ca2bbce14d9e7e05626a261c051783c226e97e3c2cc2384de55140ba92fa"
+    },
+    {
+      "path": "test/admission.test.ts",
+      "sha256": "3d6620db66b3e285ba062f26165fafc873b8465b783772d289026494a4e1e8ac"
+    },
+    {
+      "path": "test/arcade-core.test.ts",
+      "sha256": "4791bd73aaf2dc00931a45bd7ca6ac621305848a496336e1fb60368ff0ee0595"
+    },
+    {
+      "path": "test/arcade-protocol.test.ts",
+      "sha256": "74176f7016cfd65abfbc27a456cdf23d1d98a4bc64c6e268b2e7dcd5c672653e"
+    },
+    {
+      "path": "test/area-attack.test.ts",
+      "sha256": "0cf3edb565bf4ab2608cd3eb42d432176072a1c1aea04798a5cfda710c96eead"
+    },
+    {
+      "path": "test/area-recovery.test.ts",
+      "sha256": "8d8a9a8590ab201349769709387b6df7e1e758ba97cbe34a37948fc63e92120a"
+    },
+    {
+      "path": "test/art-import.test.ts",
+      "sha256": "ade845f74fcc90771625bf99da8989f7ff57cd7d00fba16fabbcbd353e0f700e"
+    },
+    {
+      "path": "test/baseline-regressions.test.ts",
+      "sha256": "38b62ff3b345fdec2f083bfe2714c90297d3463ca08e866d0eb2120b2ed8c763"
+    },
+    {
+      "path": "test/breakwater.test.ts",
+      "sha256": "9f560fbb8ea758dea17ce3b999f30be8fe87c63f058331cd66f49c7922fc8f6a"
+    },
+    {
+      "path": "test/campaign-lifecycle.test.ts",
+      "sha256": "3fa3726e13791ceb152aa94f01cebcfaad24634983657a0da2c197197aee4a51"
+    },
+    {
+      "path": "test/client-lifecycle.test.ts",
+      "sha256": "4d39d5fe40ccfd13b30d018a6eb049a7248ed0df52e37ae7f9c21156f8b1795b"
+    },
+    {
+      "path": "test/client-shell.test.ts",
+      "sha256": "7208a44a3bcb2e433e131ec9b480eedd863dc89f9769615f9b0e6041da3a7983"
+    },
+    {
+      "path": "test/combat-baseline.test.ts",
+      "sha256": "b9743258f143246b20e8839f650a0418bcf8cfe919df9c6e1f7238a72bb50c7e"
+    },
+    {
+      "path": "test/combat-campaign.test.ts",
+      "sha256": "8b6284272e4a7c669e8fdb569384321b108c55a49d13e777900c41d94a014ac0"
+    },
+    {
+      "path": "test/combat-checkpoint.test.ts",
+      "sha256": "f2d28f668f255df684d12d6d085829d1f0e9282624ed9c1f1878ee47abce56db"
+    },
+    {
+      "path": "test/combat-reconnect.test.ts",
+      "sha256": "ab8fa1cd51f21b9549bae2c3faf210d2f02485d4b2b2926c4773649df87a7866"
+    },
+    {
+      "path": "test/combat-writer.test.ts",
+      "sha256": "837b7df5a23746db8e06dbbd2a5ece961481d9eaaf7ac2337a3fe6c7568ee7f3"
+    },
+    {
+      "path": "test/combat.test.ts",
+      "sha256": "38560e69b57410889ca67fdfb58c30eb2a91f185f77c5e0a6aebf2df0888b338"
+    },
+    {
+      "path": "test/connection.test.ts",
+      "sha256": "b5538261c05c05d02dacc62e0975eeb14ced02feb2f227971556fcd9923363b0"
+    },
+    {
+      "path": "test/control-transfer.test.ts",
+      "sha256": "478a934556fb39b3217220696d123a162d42cb0444ef4586bf773516cce656bc"
+    },
+    {
+      "path": "test/controller-lab.test.ts",
+      "sha256": "4576f12f612cba8eaec8f517c9a39c997b725652fd49503718d9f7a8e7b78a4c"
+    },
+    {
+      "path": "test/controller-prediction.test.ts",
+      "sha256": "87cbfd2a167a11292302f05ce9bd80109f348c3927b0f6a4f925067524e716e0"
+    },
+    {
+      "path": "test/controller-recovery.test.ts",
+      "sha256": "1c59dc16e30489aea6a863d05f00ffc7c1fcf4080c140b4739c89f2b398e5e88"
+    },
+    {
+      "path": "test/destructible.test.ts",
+      "sha256": "737755072d675630652e20724b7feb4f4111958f586bb8496c762b1d8fededae"
+    },
+    {
+      "path": "test/encounter-lifecycle.test.ts",
+      "sha256": "3d3f3e311c4af0e3d090cd64224f391bcfc8a650f1aeabae73e9373eaba4c302"
+    },
+    {
+      "path": "test/event-stream.test.ts",
+      "sha256": "4acda1a214f8b4d8f522fb2046cfd2aae4cad114301c4f2643618da1ff6d8b54"
+    },
+    {
+      "path": "test/fixtures/airborne-death-recovery-proof.ts",
+      "sha256": "564872bd90f3a8aa92181ba51e8c507db017690973ba6236ee0691c34af53df0"
+    },
+    {
+      "path": "test/fixtures/area-proof.ts",
+      "sha256": "6a2ab6eb266ad7a2d5277353372957daee391104e4adea7d5fbb5a57a6ad3f1a"
+    },
+    {
+      "path": "test/fixtures/breakwater-proof.ts",
+      "sha256": "f8c88502739287855db51888fe8c663b3123c348abffb3d97c121a2db3860876"
+    },
+    {
+      "path": "test/fixtures/campaign-proof.ts",
+      "sha256": "92ab65f6e70db925a402999aad25dd6b8257e13a918d211612e012c40e798ac8"
+    },
+    {
+      "path": "test/fixtures/collision-proof.ts",
+      "sha256": "9be692226f73a2d99e478a0790827974868321acb389b34e30582ee9fb04d2b5"
+    },
+    {
+      "path": "test/fixtures/combat-input-driver.ts",
+      "sha256": "513097a7d93211482dab36816157667969db50fb92c25454561089c6b214f907"
+    },
+    {
+      "path": "test/fixtures/combat-proof.ts",
+      "sha256": "0a80ab41d5d34275f4be67088cc7b4a1d0c9d20a269613652c90e800fd8178ed"
+    },
+    {
+      "path": "test/fixtures/combat-reconnect-proof.ts",
+      "sha256": "1de15ab01b7f6359376a9aef6635637d0fa35b6609dc78d9c6abb0df6a36d653"
+    },
+    {
+      "path": "test/fixtures/combat-recovery-proof.ts",
+      "sha256": "ebe9977c3d10a246098e2591a075e91819bdc4699900270c9f30640fe0f91d98"
+    },
+    {
+      "path": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "9dfb1f015ecb09b779c8b6dcad7d07410001ea52cc385f74794d0d2ba5b9221c"
+    },
+    {
+      "path": "test/fixtures/compiled-level-proof.ts",
+      "sha256": "ce5cb67300871c1bb188b335761e50ba3f638a3819c2e44de5eba1f73b82ed29"
+    },
+    {
+      "path": "test/fixtures/connection-port.ts",
+      "sha256": "bf83c24bb37804b3408d8d9801dce0e993a60a4966006eed3eb82b7d131e3267"
+    },
+    {
+      "path": "test/fixtures/contract-proof.ts",
+      "sha256": "405d073da5c2fa280367377d4ad2129389ba7a97493dc305d6f4c28631bd7736"
+    },
+    {
+      "path": "test/fixtures/contract-worker.ts",
+      "sha256": "971fd23d8c2dad6021c4c6f42654471afc1fe940f16298930b30bff596988e34"
+    },
+    {
+      "path": "test/fixtures/controller-proof.ts",
+      "sha256": "e0cd2c9ec5e0c27ee6b3f7d530bc97202d097a42d8f56d9dadb046390da1b269"
+    },
+    {
+      "path": "test/fixtures/death-body-proof.ts",
+      "sha256": "b6ca3b480c0ce51a3410021f93d1cae5dda80039f7f19dbbc2bd27829656988f"
+    },
+    {
+      "path": "test/fixtures/encounter-proof.ts",
+      "sha256": "ced08a65468e2270d0edf9cba1813b16894fd9a68eb8194bee888911a1f32705"
+    },
+    {
+      "path": "test/fixtures/entry-proof.ts",
+      "sha256": "a45d70629a46ff42351e40a66d1d73d3dfff1f4bd258bb0617a96af226cb81f7"
+    },
+    {
+      "path": "test/fixtures/entry-recovery-proof.ts",
+      "sha256": "6f385d95cf58cbff4ff35c42a75064acc1591dd854125632112b5439c9a1c392"
+    },
+    {
+      "path": "test/fixtures/event-delivery-proof.ts",
+      "sha256": "0f2e39a39b0503bc4017d0d72681f35cbc7238b389fb0b45f6a1521084b027fc"
+    },
+    {
+      "path": "test/fixtures/foot-combat-proof.ts",
+      "sha256": "76da357696bfd5649d0cb4bc9cea142be5eefb6ca93c99915e517b1a7610678a"
+    },
+    {
+      "path": "test/fixtures/foot-fixture.ts",
+      "sha256": "f881bdff97509e037f9e6e5a7a804ee87d8b63e4e96e60485cf20c258d1564b5"
+    },
+    {
+      "path": "test/fixtures/grounded-proof.ts",
+      "sha256": "e5969a11936dffd2c9f7272453ab01477d130ce6584c40ec3097f89e6c92faba"
+    },
+    {
+      "path": "test/fixtures/hmg-proof.ts",
+      "sha256": "7a9dd1d8c73d13e36ed0ca14862c3646491a5b44c262fc99c5ec02b4ca0bc0eb"
+    },
+    {
+      "path": "test/fixtures/input-capture-proof.ts",
+      "sha256": "b77e19b698069d6cf00be22f4909d2b2868556378a909e7310d4a3341a92eebf"
+    },
+    {
+      "path": "test/fixtures/input-flow-proof.ts",
+      "sha256": "053bccfb1ea80e7bbf0e59b89bc3e952b2a9ea9c5ffd648a7e7e286eb68222be"
+    },
+    {
+      "path": "test/fixtures/mapped-prediction-proof.ts",
+      "sha256": "2d7aed7fee93abbadcf9fc55f528cb25a3a4167dc73c1f30cf16f0aad14197f0"
+    },
+    {
+      "path": "test/fixtures/movement-proof.ts",
+      "sha256": "d8a7f7ca1d4aabbb3291b2c2454199beda3f69590e6fd5d46942d5a290376dcb"
+    },
+    {
+      "path": "test/fixtures/navigation-proof.ts",
+      "sha256": "a769e94b6102882c716dab2a389e61777e6c517100fc7108fc06f096bdbca12a"
+    },
+    {
+      "path": "test/fixtures/ordnance-proof.ts",
+      "sha256": "077ebb35ce5452fa4d490f756c6eccebcdb9359adac3c14cc7cf58451261d945"
+    },
+    {
+      "path": "test/fixtures/player-life-proof.ts",
+      "sha256": "078e79bee63dcf52f717dbcc431f260625b7c44960072f20cd31f716fc3f4c55"
+    },
+    {
+      "path": "test/fixtures/player-life-recovery-proof.ts",
+      "sha256": "199a22616ebb33fc7694d46ea9873629e39e3c07691de33c2f7d4bf4f80e2487"
+    },
+    {
+      "path": "test/fixtures/prediction-proof.ts",
+      "sha256": "74df55395397cd79bce13db612c4cd5b7b03c3dab486f76ce0fbc99ac0591b8a"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/combat-golden.json",
+      "sha256": "91243dd6023f4fba88fc97db71692f0d503c15f36f23d1b67f6a2799cffd1751"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "201dd3d1c9e9ddaa9537f9d05dc2bedf8179ba229b20f4bd800007aac4486c50"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "dae99f654cf73a12b30b5b15f96bf0878c86fa58d57bad8ad6bdafb070c349aa"
+    },
+    {
+      "path": "test/fixtures/rifle-proof.ts",
+      "sha256": "fbde9e2ca3acfd90e65d51c611b0ddbabe9bb9c84000484ec1fceb8c34aa93da"
+    },
+    {
+      "path": "test/fixtures/route-proof.ts",
+      "sha256": "e2a55b75de2cfc8725f8e1c0eb0022a791becac747cb2969cdedfd63ead482d1"
+    },
+    {
+      "path": "test/fixtures/routed-enemy-proof.ts",
+      "sha256": "6cf36f683fe1f9d964fa66c8105e070614ebbf1fbf3dee36e2d6511cf26a670b"
+    },
+    {
+      "path": "test/fixtures/shield-proof.ts",
+      "sha256": "9f4190bb5838c14da2606cbc8da5032d3067b07bb672c5edd7d38e8c514cfa66"
+    },
+    {
+      "path": "test/fixtures/spatial-proof.ts",
+      "sha256": "04fae7f29ca204c9311cf090d6c0e95d2d49fc0af6f27785b339d2bfd26b4c4b"
+    },
+    {
+      "path": "test/fixtures/support-proof.ts",
+      "sha256": "9bd55f84ef489a040bc3fc05cbc7ca6020eb9ba46f1f752735a061b4b314dac0"
+    },
+    {
+      "path": "test/fixtures/tank-proof.ts",
+      "sha256": "ea2c242879e4b4045d663e55110644674f509260706476ddf58778b400a69cc0"
+    },
+    {
+      "path": "test/fixtures/traversal-proof.ts",
+      "sha256": "5c5683ee4678c9ab5d798ab998a85626760cd074c5e977945d9e101403bd21f8"
+    },
+    {
+      "path": "test/fixtures/world-combat-proof.ts",
+      "sha256": "98f2d3c1ce4ebbf291045ffc3da5b2848118f488c6659094a3c6fc633d159972"
+    },
+    {
+      "path": "test/foot-combat.test.ts",
+      "sha256": "18f137dd962a2fca3d1cb21f1825a3118cacb0a9a01b6b3371775a4912ec4611"
+    },
+    {
+      "path": "test/foot-controller.test.ts",
+      "sha256": "ed1dbd57c633180fce48186a54e3665abf49587abd7a3ff19236d063d787e61b"
+    },
+    {
+      "path": "test/grenade-platform.test.ts",
+      "sha256": "d1663e35793c4948317c432f6c7c0c7cad2a01fe16aa2a815e13f14ceb7df5ea"
+    },
+    {
+      "path": "test/grounded-enemy.test.ts",
+      "sha256": "170bf5e9cc2df9cd6bab0dc729487a8e0fec6e954eb89e2a00f08556c051544d"
+    },
+    {
+      "path": "test/hmg-sweep.test.ts",
+      "sha256": "c2bc4a0a4036cd01e70e0b057908c41c556c3c734ae916b0de596909d6a1f4a9"
+    },
+    {
+      "path": "test/input-capture.test.ts",
+      "sha256": "526c5c978e08af7b104c4dd173bdf8edcc5897b03619a384d5d38deffd16a829"
+    },
+    {
+      "path": "test/input-flow.test.ts",
+      "sha256": "09b84f568b0c304da912eaf741b88c00cb6f69dc1e59639806593a8e0d31fe6f"
+    },
+    {
+      "path": "test/input-mapping.test.ts",
+      "sha256": "f925bf8c1e029b90d38983c78824fe51306873dc62e4c63f1ea6b5cc73343b24"
+    },
+    {
+      "path": "test/input-stream.test.ts",
+      "sha256": "1dcf5595767b76011958b7e913ce544f1175618e2be8b96245d9aa512b5abc80"
+    },
+    {
+      "path": "test/ldtk-compiler.test.ts",
+      "sha256": "14c82a3e3a6c020bf67cd3605d4da5f6530fdb8cc721b1fe45f12458aa70e6c1"
+    },
+    {
+      "path": "test/native-art.test.ts",
+      "sha256": "88e453ee790daaf6c7058bf9f6c7e1f49e975ff445b4b060f0572d5215d78406"
+    },
+    {
+      "path": "test/native-cast.test.ts",
+      "sha256": "7cc733f112e60befb5bcecce6a253b422cf02ecc8d406c56f7c61c3096647d03"
+    },
+    {
+      "path": "test/navigation-graph.test.ts",
+      "sha256": "32c23aae3cf3af20d7f9c79ef36261d0346e046ab757d89533bc221fd2fa526a"
+    },
+    {
+      "path": "test/navigation-links.test.ts",
+      "sha256": "733ff897027f2f72404f74ac442d6db1ffdbfed98dd6edab726aace22a9244f7"
+    },
+    {
+      "path": "test/navigation-spans.test.ts",
+      "sha256": "4a6291d61af2298444556f4b4cfa351b1b0e89d386873ff9a90f26b77ab34d06"
+    },
+    {
+      "path": "test/network-model.test.ts",
+      "sha256": "e9a07c596f8eb7ef202adb7b120596885069d308e1a3595dee4457438b0bf79f"
+    },
+    {
+      "path": "test/physics-grid.test.ts",
+      "sha256": "e38c00f7932d54c3f183982b5849924ccc48457b773604484baa2bba351fbd3b"
+    },
+    {
+      "path": "test/physics-move.test.ts",
+      "sha256": "ba2d3e1d4b5989a516701014b7c47f3f38fa0334941b57931d53be7a4ec1fa06"
+    },
+    {
+      "path": "test/physics-sweep.test.ts",
+      "sha256": "71dd2eb1cbe21d1a5c8dfd1ca60fba17cbdd94560dcb305b7eb7c6925ba6a364"
+    },
+    {
+      "path": "test/player-death-body.test.ts",
+      "sha256": "d648ac8115fe87f81ab6a346354641c27b4ebb5eb067ccba6121c93746a2ad0e"
+    },
+    {
+      "path": "test/player-entry.test.ts",
+      "sha256": "667de2b3330c468d536d1e96c3d6193d49e3c94409ccdaca2a98b9d3e260f8ac"
+    },
+    {
+      "path": "test/player-life.test.ts",
+      "sha256": "55490aeb6c639a9d03491425794639e42cceaa9173639f8a542fa682808d4233"
+    },
+    {
+      "path": "test/protocol.test.ts",
+      "sha256": "728e2563d32f38197b9d7f79a49ad1315fc4af2019a215b2973750d78d16c9aa"
+    },
+    {
+      "path": "test/rifle.test.ts",
+      "sha256": "cb448d28a1c25e2dc249f8484038d4db0b2ad6cb72723ffa2a8cca231b84f8c8"
+    },
+    {
+      "path": "test/room-connection.test.ts",
+      "sha256": "da845f9b60fac931c0bbdb885b74a59984a3efdece94b82493f21758efc580d9"
+    },
+    {
+      "path": "test/room-control.test.ts",
+      "sha256": "8698f389f80d9ecfe0d3df6e7aff3ff7d113e203d9075eb546e35c8bfcbf8397"
+    },
+    {
+      "path": "test/room-workload.test.ts",
+      "sha256": "99d98a4d1061a64a62f2fd6b7d3b248d55167e5a0640a6d97ceec655f56799c7"
+    },
+    {
+      "path": "test/routed-enemy.test.ts",
+      "sha256": "e486d64b4331c853dd46ea2d45deffb7daf1e9ba7543e4b7ab9b4cdc4d976814"
+    },
+    {
+      "path": "test/runtime/control-lease.test.ts",
+      "sha256": "2f9b7b47a74115146a27656cd6e709ded2d934ea7a9ce510df451a95093b302e"
+    },
+    {
+      "path": "test/runtime/room-clock.test.ts",
+      "sha256": "5251a6deac569136e5544dc1f5274737c1b193b91ff4fb5fa92f203189226e34"
+    },
+    {
+      "path": "test/session.test.ts",
+      "sha256": "655d4d6c15e5587b537091fdf795239abdf9535b70bd64def6c849539efde7c1"
+    },
+    {
+      "path": "test/shield.test.ts",
+      "sha256": "6cfa02fa31e6e469cfeb461a800a6595822813b2b1d5fab80fba1856517dfe50"
+    },
+    {
+      "path": "test/simulation.test.ts",
+      "sha256": "11dae7a3675e6c88e204b3bc4e5ca731bbcb884810a475becbf8752de00dd16d"
+    },
+    {
+      "path": "test/snapshot.test.ts",
+      "sha256": "d13d2630660149343ea9201fa2b0aef2dd0e7b9d53d5dd297bd08b44a43da127"
+    },
+    {
+      "path": "test/stack.test.ts",
+      "sha256": "44f71393b19117ab0b75736a32b1a7ce31a79db51cc5cea590b11175b2d556be"
+    },
+    {
+      "path": "test/tank-world.test.ts",
+      "sha256": "2a08253db1e92c369c055f79946801ff132c2b24d742072307c25c89979f5344"
+    },
+    {
+      "path": "test/tank.test.ts",
+      "sha256": "e8608dd9379b9ee809da8d7704eebd489d7c883b592753bab0e73643021e6bc9"
+    },
+    {
+      "path": "test/worker-routing.test.ts",
+      "sha256": "1fc7a033545653cd78048a5b79eae3e9d12c9999ef2532a869878cd30f7f5149"
+    },
+    {
+      "path": "test/world-input-transaction.test.ts",
+      "sha256": "600deb62cae3873f07f821cf3f9b50fdce2c814ae9234616b1ae1cb888f6dd87"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d4d595858b07395f798406faedc8fdb60a125ab05d6be1e544be4b22c2789c06"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "d3f713bf444d5606c1e46d9740aaf2adab61c9a6af71e1b0d234cc8e7389fa5d"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "0000-apron-clean.png",
+      "bytes": 6553,
+      "sha256": "f307acffeb36afebdab9ead82bc17ce2bc037f639fcd175a015c41962fadb842",
+      "originalSha256": "f307acffeb36afebdab9ead82bc17ce2bc037f639fcd175a015c41962fadb842"
+    },
+    {
+      "path": "0000-apron-debug.png",
+      "bytes": 6652,
+      "sha256": "3355e829a05af0cdc57d03de9f40cbfda0a7713363b603a6a4fda5414467dcc6",
+      "originalSha256": "3355e829a05af0cdc57d03de9f40cbfda0a7713363b603a6a4fda5414467dcc6"
+    },
+    {
+      "path": "0702-grenade-clean.png",
+      "bytes": 7118,
+      "sha256": "b5defd19bf55b4728135ebff386c6cfd112f7e07dbc35dc7fe0dab24d855f173",
+      "originalSha256": "b5defd19bf55b4728135ebff386c6cfd112f7e07dbc35dc7fe0dab24d855f173"
+    },
+    {
+      "path": "0702-grenade-debug.png",
+      "bytes": 7286,
+      "sha256": "3f131b7fb32d3affb0d370ab12ed3251b880a7e937d60f78bba497aed952a5bf",
+      "originalSha256": "3f131b7fb32d3affb0d370ab12ed3251b880a7e937d60f78bba497aed952a5bf"
+    },
+    {
+      "path": "0915-shotgun-clean.png",
+      "bytes": 8103,
+      "sha256": "f85f92e0b4ecb4906125fab6f18e2e8b0c3fe952df8f856c83527491ff555cde",
+      "originalSha256": "f85f92e0b4ecb4906125fab6f18e2e8b0c3fe952df8f856c83527491ff555cde"
+    },
+    {
+      "path": "0915-shotgun-debug.png",
+      "bytes": 8211,
+      "sha256": "b97adca329d320946051eb41000a4736d26ce218adcc7da93a326a40953c26d7",
+      "originalSha256": "b97adca329d320946051eb41000a4736d26ce218adcc7da93a326a40953c26d7"
+    },
+    {
+      "path": "1365-flame-clean.png",
+      "bytes": 7751,
+      "sha256": "3528611c2429de82967ee2bc3e77ee9c82f9f4c7eb24216bfcf02cec08230b86",
+      "originalSha256": "3528611c2429de82967ee2bc3e77ee9c82f9f4c7eb24216bfcf02cec08230b86"
+    },
+    {
+      "path": "1365-flame-debug.png",
+      "bytes": 7816,
+      "sha256": "362db9be47361bc16cb7cd6cc0b5107b5d08f0a91bc0e4504e0771e8452a7fa1",
+      "originalSha256": "362db9be47361bc16cb7cd6cc0b5107b5d08f0a91bc0e4504e0771e8452a7fa1"
+    },
+    {
+      "path": "1525-boarding-clean.png",
+      "bytes": 6933,
+      "sha256": "4409e5f6bea77cd50fe57c926bac02653409e2493c6365e8a30eee89a9fec189",
+      "originalSha256": "4409e5f6bea77cd50fe57c926bac02653409e2493c6365e8a30eee89a9fec189"
+    },
+    {
+      "path": "1525-boarding-debug.png",
+      "bytes": 7020,
+      "sha256": "a0197df409af91d79ec168b40862c0b7151050757b5e350781e090b3f0778865",
+      "originalSha256": "a0197df409af91d79ec168b40862c0b7151050757b5e350781e090b3f0778865"
+    },
+    {
+      "path": "1596-tank-jump-clean.png",
+      "bytes": 6257,
+      "sha256": "4aef598dd488e6bf6259868fbac027fbafc26354a95247b1b41aab5cd1b9980c",
+      "originalSha256": "4aef598dd488e6bf6259868fbac027fbafc26354a95247b1b41aab5cd1b9980c"
+    },
+    {
+      "path": "1596-tank-jump-debug.png",
+      "bytes": 6243,
+      "sha256": "e6fc7cac1063de5c273ff27501b2fb20f3a7353d58459a9d3b655dce942a5013",
+      "originalSha256": "e6fc7cac1063de5c273ff27501b2fb20f3a7353d58459a9d3b655dce942a5013"
+    },
+    {
+      "path": "1970-ejection-clean.png",
+      "bytes": 7973,
+      "sha256": "f1e7a9c6db656e7b4487aeb77f42f33b6c71b493448cb8bc6aec4fe194c5ae59",
+      "originalSha256": "f1e7a9c6db656e7b4487aeb77f42f33b6c71b493448cb8bc6aec4fe194c5ae59"
+    },
+    {
+      "path": "1970-ejection-debug.png",
+      "bytes": 8333,
+      "sha256": "cc1a852bda81243f87cf06d7643de5120a7c878da18ea62b1fdb3ece98669413",
+      "originalSha256": "cc1a852bda81243f87cf06d7643de5120a7c878da18ea62b1fdb3ece98669413"
+    },
+    {
+      "path": "2040-aperture-clean.png",
+      "bytes": 7748,
+      "sha256": "dcd594422f71cc3f29f521caf344379adc61ef188b507264bd0a2502a30add91",
+      "originalSha256": "dcd594422f71cc3f29f521caf344379adc61ef188b507264bd0a2502a30add91"
+    },
+    {
+      "path": "2040-aperture-debug.png",
+      "bytes": 8357,
+      "sha256": "d4f8e16617cb9d6688655f7fdea8db1b14190a7e7288d4ecebd424a044dcf5a9",
+      "originalSha256": "d4f8e16617cb9d6688655f7fdea8db1b14190a7e7288d4ecebd424a044dcf5a9"
+    },
+    {
+      "path": "2949-victory-clean.png",
+      "bytes": 7462,
+      "sha256": "49c4188dc1c3d4a26ed012082aaff843d3b0b5112c9dd4415364623bbc04bbf1",
+      "originalSha256": "49c4188dc1c3d4a26ed012082aaff843d3b0b5112c9dd4415364623bbc04bbf1"
+    },
+    {
+      "path": "2949-victory-debug.png",
+      "bytes": 7598,
+      "sha256": "67eba46e62412655712fbf09751857fbb63bd2dc3ec76d5698e6ed91dbf74466",
+      "originalSha256": "67eba46e62412655712fbf09751857fbb63bd2dc3ec76d5698e6ed91dbf74466"
+    },
+    {
+      "path": "audio-diagnostics.json",
+      "bytes": 4367,
+      "sha256": "4bf9bec5ac893deaa55930fcaa33a20c87be645fdb0450c9e7607a4d40af88f0",
+      "originalSha256": "4bf9bec5ac893deaa55930fcaa33a20c87be645fdb0450c9e7607a4d40af88f0"
+    },
+    {
+      "path": "breakwater-quay-black-1x.png",
+      "bytes": 24553,
+      "sha256": "65cfbad485b998ae22970b9f9af90b4feb4159dd307ed23bf0da56b76cbd7886",
+      "originalSha256": "65cfbad485b998ae22970b9f9af90b4feb4159dd307ed23bf0da56b76cbd7886"
+    },
+    {
+      "path": "breakwater-quay-black-4x.png",
+      "bytes": 203979,
+      "sha256": "10efd3ef9ce8d9017e45bdad93e21ac9cb429d2ef9097c93ba62c5b1246e3830",
+      "originalSha256": "10efd3ef9ce8d9017e45bdad93e21ac9cb429d2ef9097c93ba62c5b1246e3830"
+    },
+    {
+      "path": "breakwater-quay-chroma-1x.png",
+      "bytes": 24368,
+      "sha256": "eebb98e8810311ec0f69e2af96428f4eab723546448cf2a6fdfabf31fc9ae46f",
+      "originalSha256": "eebb98e8810311ec0f69e2af96428f4eab723546448cf2a6fdfabf31fc9ae46f"
+    },
+    {
+      "path": "breakwater-quay-chroma-4x.png",
+      "bytes": 205094,
+      "sha256": "7baa1d294fe1bd7f3dd4f43196ce9768fb0d0afb91f4df5b4cb0b0f3493c9237",
+      "originalSha256": "7baa1d294fe1bd7f3dd4f43196ce9768fb0d0afb91f4df5b4cb0b0f3493c9237"
+    },
+    {
+      "path": "breakwater-quay-white-1x.png",
+      "bytes": 17407,
+      "sha256": "a5b44a8b06d4a31ed44624a45a12225c218759f546b5a0eaae748860e117179b",
+      "originalSha256": "a5b44a8b06d4a31ed44624a45a12225c218759f546b5a0eaae748860e117179b"
+    },
+    {
+      "path": "breakwater-quay-white-4x.png",
+      "bytes": 99719,
+      "sha256": "3a435d11e1d889bbc5f1829477952b18d01b0836d38ea3aa84badb4c4720988a",
+      "originalSha256": "3a435d11e1d889bbc5f1829477952b18d01b0836d38ea3aa84badb4c4720988a"
+    },
+    {
+      "path": "browser.log.gz",
+      "bytes": 1165,
+      "sha256": "f7f2ec5219a90160d4fe244c98c975b158a916e070559b4a90b3ad693c97e295",
+      "originalSha256": "fc7a00add398ebbac2393db4a2c710dce6fd50b8304457bcfba58d7034588cdf"
+    },
+    {
+      "path": "cast-regression.json.gz",
+      "bytes": 3680,
+      "sha256": "15f9c3cc2c00bde4764a79e17e1e438bb7e7dd810742882a8cb3bebdd4b69b37",
+      "originalSha256": "52a8b242eb46a67d8781380f8057e060e5ffb2ace59ff2794fe8cf803f3e0e90"
+    },
+    {
+      "path": "cast-regression.log.gz",
+      "bytes": 375,
+      "sha256": "2d82bbc3e557122b1c06e1ab2f56868ad85da156375219f86cdb39cbfb3c42f2",
+      "originalSha256": "c866cb10bd7c2a81d2ed10d33f32e2cf86e8f7c5f126f99a3f38c06b8863f5cd"
+    },
+    {
+      "path": "check.log.gz",
+      "bytes": 1550,
+      "sha256": "7de262633e1147aac2c9d20aa679ba685d551ef97bf86fc74b88fb6452aa8727",
+      "originalSha256": "8356e6efdbd1aaad39801203169b65030ccae5f5eb0c35c7640364480b0ba030"
+    },
+    {
+      "path": "contact-sheets.log.gz",
+      "bytes": 138,
+      "sha256": "c686c0c46935b75b9037a15507dc65e9620bed7846bb6f7c3a587ee5ecf93ae8",
+      "originalSha256": "7e587d2ca22bc07fe95828f2ac07a27d1c27957f772ac679e984486347f97697"
+    },
+    {
+      "path": "lock-engine-black-1x.png",
+      "bytes": 8596,
+      "sha256": "38bd8605646d33d1ef45056cd7b45202c257542739c0ff2a123c2bd6dd055ca8",
+      "originalSha256": "38bd8605646d33d1ef45056cd7b45202c257542739c0ff2a123c2bd6dd055ca8"
+    },
+    {
+      "path": "lock-engine-black-4x.png",
+      "bytes": 84562,
+      "sha256": "abd0b80eac3f9a7e0d0e1610c46dfc2616566c57e816ff3b4871b8be0441d1a1",
+      "originalSha256": "abd0b80eac3f9a7e0d0e1610c46dfc2616566c57e816ff3b4871b8be0441d1a1"
+    },
+    {
+      "path": "lock-engine-chroma-1x.png",
+      "bytes": 8483,
+      "sha256": "d124805ea7d305ead90740465699ea0b870b20bcf94b35311f5963f6e0525b80",
+      "originalSha256": "d124805ea7d305ead90740465699ea0b870b20bcf94b35311f5963f6e0525b80"
+    },
+    {
+      "path": "lock-engine-chroma-4x.png",
+      "bytes": 84510,
+      "sha256": "910d5de400b6aef337ba6fe19f39967f64ba46183cedf4f4939e8bd49a25519d",
+      "originalSha256": "910d5de400b6aef337ba6fe19f39967f64ba46183cedf4f4939e8bd49a25519d"
+    },
+    {
+      "path": "lock-engine-white-1x.png",
+      "bytes": 7326,
+      "sha256": "3fed9f103ee65f1ef3f19daad9e8552c33027aebed33e82b18f7d40e3e1326b2",
+      "originalSha256": "3fed9f103ee65f1ef3f19daad9e8552c33027aebed33e82b18f7d40e3e1326b2"
+    },
+    {
+      "path": "lock-engine-white-4x.png",
+      "bytes": 59570,
+      "sha256": "b4a52df3dda275fe9b5889ee41fc8c915c1812f4f7c067de70693c3ef5e3d114",
+      "originalSha256": "b4a52df3dda275fe9b5889ee41fc8c915c1812f4f7c067de70693c3ef5e3d114"
+    },
+    {
+      "path": "observability.json",
+      "bytes": 843,
+      "sha256": "ed3c20884b26a9e11271e9c55eacedf4f45b841c461b273071abd677964e0cef",
+      "originalSha256": "ed3c20884b26a9e11271e9c55eacedf4f45b841c461b273071abd677964e0cef"
+    },
+    {
+      "path": "operative-black-1x.png",
+      "bytes": 25825,
+      "sha256": "76cd7d10e9b1dc4b827fc8d3b7c42943b531c3e9bc495baec043e0aa6f93a2a2",
+      "originalSha256": "76cd7d10e9b1dc4b827fc8d3b7c42943b531c3e9bc495baec043e0aa6f93a2a2"
+    },
+    {
+      "path": "operative-black-4x.png",
+      "bytes": 168199,
+      "sha256": "448e7bf692d38d525808afcacdabdc07cb1ee6d2684e550636e8b080086da73a",
+      "originalSha256": "448e7bf692d38d525808afcacdabdc07cb1ee6d2684e550636e8b080086da73a"
+    },
+    {
+      "path": "operative-chroma-1x.png",
+      "bytes": 25681,
+      "sha256": "c1af897cab22e119267aba408c7e47bfcf4ff207c1ac3c1015e7ade7d5e3057e",
+      "originalSha256": "c1af897cab22e119267aba408c7e47bfcf4ff207c1ac3c1015e7ade7d5e3057e"
+    },
+    {
+      "path": "operative-chroma-4x.png",
+      "bytes": 169340,
+      "sha256": "a2d5e4709c6c6c2f5a8b601776bb663d56f8c826971279b07abf31ad92e84895",
+      "originalSha256": "a2d5e4709c6c6c2f5a8b601776bb663d56f8c826971279b07abf31ad92e84895"
+    },
+    {
+      "path": "operative-regression.json.gz",
+      "bytes": 8151,
+      "sha256": "9f5c388431192997c7387e85b65393a3340858a191a0fa210b900e04603e4fe2",
+      "originalSha256": "df0cb73ff339505b8f592f0912ce5e1d4be3443f58947fb177ef4e3f38364b6b"
+    },
+    {
+      "path": "operative-regression.log.gz",
+      "bytes": 314,
+      "sha256": "1ef61890cb09290d6770ff96a55f9581fcfd6e7b469419a7974c5de4f0492bc6",
+      "originalSha256": "e8dc4ffda0a5455b178726b40f5be4071b4d1bf29fa3f63e3bd9e4201e627474"
+    },
+    {
+      "path": "operative-white-1x.png",
+      "bytes": 21578,
+      "sha256": "8b0baa65e1c73e2f61ec9a0d2fe47caacc2c26b455e3a17afb71fe09b37ebd31",
+      "originalSha256": "8b0baa65e1c73e2f61ec9a0d2fe47caacc2c26b455e3a17afb71fe09b37ebd31"
+    },
+    {
+      "path": "operative-white-4x.png",
+      "bytes": 81370,
+      "sha256": "3745fec58ec9a191ba8be52b016111b2759996cbb89d7d53fc3b6476a715c7c6",
+      "originalSha256": "3745fec58ec9a191ba8be52b016111b2759996cbb89d7d53fc3b6476a715c7c6"
+    },
+    {
+      "path": "production-isolation.json",
+      "bytes": 1432,
+      "sha256": "2c1842e20e409f564ba4af54818cb672aeb9ea8b729d624a635c168776492a21",
+      "originalSha256": "2c1842e20e409f564ba4af54818cb672aeb9ea8b729d624a635c168776492a21"
+    },
+    {
+      "path": "report.json.gz",
+      "bytes": 110160,
+      "sha256": "37b89a84d8b7b33ca313a4e11b400f263e54a1ff3a801630e5bb9588b0d01c13",
+      "originalSha256": "48373aa681f740eebd183cd50e1e6a282d2dca627442a0893addd2ec85c9229a"
+    },
+    {
+      "path": "solo-clean-normal-clocks.json",
+      "bytes": 446,
+      "sha256": "c884af0c80703561e54b4e7eab5bf8345a7fe053de18ba508a416a8259f1a37d",
+      "originalSha256": "c884af0c80703561e54b4e7eab5bf8345a7fe053de18ba508a416a8259f1a37d"
+    },
+    {
+      "path": "solo-clean-normal.mp4",
+      "bytes": 1475624,
+      "sha256": "9e53a585f2c115d1048805f2b5cccb2149f50e2f3922e268ee471efa4afa44d9",
+      "originalSha256": "9e53a585f2c115d1048805f2b5cccb2149f50e2f3922e268ee471efa4afa44d9"
+    },
+    {
+      "path": "solo-clean-normal.webm",
+      "bytes": 5455538,
+      "sha256": "978113cecfba20f243af42b241ffc6a262014d016a1b1a069ebd4f4b81edbcb9",
+      "originalSha256": "978113cecfba20f243af42b241ffc6a262014d016a1b1a069ebd4f4b81edbcb9"
+    },
+    {
+      "path": "solo-clean-quarter-clocks.json",
+      "bytes": 472,
+      "sha256": "935dd3d93a9f5ad79e342ed7b6222a979f6defb46300190532edb0bf51ff75b8",
+      "originalSha256": "935dd3d93a9f5ad79e342ed7b6222a979f6defb46300190532edb0bf51ff75b8"
+    },
+    {
+      "path": "solo-clean-quarter.mp4",
+      "bytes": 3515504,
+      "sha256": "6f56f8d4f5f02a2bbfb9636fb5d416fe4c45f6db1e60325198ec189649b42510",
+      "originalSha256": "6f56f8d4f5f02a2bbfb9636fb5d416fe4c45f6db1e60325198ec189649b42510"
+    },
+    {
+      "path": "solo-clean-quarter.webm",
+      "bytes": 11738585,
+      "sha256": "45e0d798f79042e69ef31ea30330a150327d706ae8f75714493d2252cca80906",
+      "originalSha256": "45e0d798f79042e69ef31ea30330a150327d706ae8f75714493d2252cca80906"
+    },
+    {
+      "path": "solo-debug-normal-clocks.json",
+      "bytes": 470,
+      "sha256": "e6b763bea390750cdb5a616f470bccf1db861fd71f31750cf90766facc8b45a9",
+      "originalSha256": "e6b763bea390750cdb5a616f470bccf1db861fd71f31750cf90766facc8b45a9"
+    },
+    {
+      "path": "solo-debug-normal.mp4",
+      "bytes": 1501105,
+      "sha256": "6e5a991df0f1877b508f0ab78ee2feced8124306c20a9e341c9718c912ece1e3",
+      "originalSha256": "6e5a991df0f1877b508f0ab78ee2feced8124306c20a9e341c9718c912ece1e3"
+    },
+    {
+      "path": "solo-debug-normal.webm",
+      "bytes": 5520131,
+      "sha256": "5c9f8e367af46aab39a2807fe4b834554f2f93ea39f9f00c25e6b1169043f71e",
+      "originalSha256": "5c9f8e367af46aab39a2807fe4b834554f2f93ea39f9f00c25e6b1169043f71e"
+    },
+    {
+      "path": "solo.recording.json",
+      "bytes": 310959,
+      "sha256": "9d44ff27ae22591de0eb20183423bf6d701f25ddf284323b9a963c1ddb175aab",
+      "originalSha256": "9d44ff27ae22591de0eb20183423bf6d701f25ddf284323b9a963c1ddb175aab"
+    }
+  ]
+}

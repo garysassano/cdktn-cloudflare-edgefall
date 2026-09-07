@@ -129,8 +129,9 @@ export function combatCollisionIndex(
   scenario: CombatScenario,
   frame: CollisionFrame,
   props: readonly DestructibleState[] = [],
+  terrainOverride?: SweepTarget[],
 ) {
-  const terrain = combatTerrain(scenario, frame.tick, props);
+  const terrain = terrainOverride ?? combatTerrain(scenario, frame.tick, props);
   const moving = (target: SweepTarget) => target.delta.x !== 0 || target.delta.y !== 0;
   return new CollisionIndex(
     new CollisionGrid(terrain.filter((target) => !moving(target))),

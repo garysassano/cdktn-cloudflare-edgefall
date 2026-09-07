@@ -7,9 +7,13 @@ export class CastAudio {
   private gain?: GainNode;
   private capture?: MediaStreamAudioDestinationNode;
   private recorder?: MediaRecorder;
+  private captureChunks: Blob[] = [];
   private loading?: Promise<void>;
   private readonly buffers = new Map<string, AudioBuffer>();
-  private readonly voices = new Set<AudioBufferSourceNode>();
+  private readonly voices = new Map<
+    AudioBufferSourceNode,
+    { end: number; gain: GainNode; pan: StereoPannerNode }
+  >();
   private readonly recent = new Set<string>();
   private readonly cues: CombatCue[] = [];
   private enabled = false;
@@ -17,6 +21,20 @@ export class CastAudio {
   private volume = 0.4;
   private dropped = 0;
   private lastTick = -1;
+  private listenerX = 192;
+  private lastAudioTime = -1;
+  private stalledAudioTicks = 0;
+  private maxStalledAudioTicks = 0;
+  private readonly droppedExamples: Array<{
+    tick: number;
+    kind: string;
+    audioTime: number;
+    earliestEnd: number;
+  }> = [];
+  setListenerX(x: number): void {
+    if (!Number.isFinite(x)) throw new Error("Invalid audio listener position");
+    this.listenerX = x;
+  }
   async setEnabled(enabled: boolean): Promise<void> {
     this.enabled = enabled;
     if (!enabled) {
@@ -28,8 +46,6 @@ export class CastAudio {
       this.gain = this.context.createGain();
       this.gain.gain.value = this.volume;
       this.gain.connect(this.context.destination);
-      this.capture = this.context.createMediaStreamDestination();
-      this.gain.connect(this.capture);
     }
     if (!this.ready && !this.loading) {
       const context = this.context;
@@ -56,8 +72,19 @@ export class CastAudio {
     if (this.gain) this.gain.gain.value = value;
   }
   hush(): void {
-    for (const voice of this.voices) voice.stop();
-    this.voices.clear();
+    for (const voice of this.voices.keys()) {
+      voice.stop();
+      this.releaseVoice(voice);
+    }
+  }
+  private releaseVoice(source: AudioBufferSourceNode): void {
+    const voice = this.voices.get(source);
+    if (!voice) return;
+    source.onended = null;
+    source.disconnect();
+    voice.gain.disconnect();
+    voice.pan.disconnect();
+    this.voices.delete(source);
   }
   reset(): void {
     this.hush();
@@ -65,12 +92,27 @@ export class CastAudio {
     this.cues.length = 0;
     this.lastTick = -1;
     this.dropped = 0;
+    this.droppedExamples.length = 0;
+    this.lastAudioTime = -1;
+    this.stalledAudioTicks = this.maxStalledAudioTicks = 0;
   }
-  consume(before: CombatLab, next: CombatLab, footfalls: readonly number[]): void {
+  consume(
+    before: CombatLab,
+    next: CombatLab,
+    footfalls: readonly number[],
+    extraCues: readonly CombatCue[] = [],
+  ): void {
     if (next.tick === this.lastTick) return;
     this.lastTick = next.tick;
     if (!this.enabled || !this.ready || this.context?.state !== "running" || !this.gain) return;
-    for (const cue of combatAudioCues(before, next, footfalls)) {
+    const audioTime = this.context.currentTime;
+    this.stalledAudioTicks = audioTime === this.lastAudioTime ? this.stalledAudioTicks + 1 : 0;
+    this.lastAudioTime = audioTime;
+    this.maxStalledAudioTicks = Math.max(this.maxStalledAudioTicks, this.stalledAudioTicks);
+    // Audio completion callbacks can reach JS late. Only still-scheduled samples own a voice.
+    for (const [source, voice] of this.voices)
+      if (voice.end <= audioTime) this.releaseVoice(source);
+    for (const cue of [...combatAudioCues(before, next, footfalls), ...extraCues]) {
       if (this.recent.has(cue.id)) continue;
       this.recent.add(cue.id);
       if (this.recent.size > 1024) this.recent.delete(this.recent.values().next().value ?? "");
@@ -78,6 +120,13 @@ export class CastAudio {
         buffer = this.buffers.get(profile.file);
       if (!buffer || this.voices.size >= 24) {
         this.dropped++;
+        if (this.droppedExamples.length < 32)
+          this.droppedExamples.push({
+            tick: next.tick,
+            kind: cue.kind,
+            audioTime,
+            earliestEnd: Math.min(...[...this.voices.values()].map((v) => v.end)),
+          });
         continue;
       }
       const source = this.context.createBufferSource(),
@@ -86,16 +135,20 @@ export class CastAudio {
       source.buffer = buffer;
       source.playbackRate.value = profile.rate;
       gain.gain.value = profile.gain;
-      pan.pan.value = Math.max(-0.7, Math.min(0.7, (cue.x - 192) / 192));
+      const start = this.context.currentTime,
+        duration = Math.min(
+          buffer.duration / profile.rate,
+          "duration" in profile ? profile.duration : 0.75,
+        ),
+        fade = Math.min(0.015, duration / 4);
+      gain.gain.setValueAtTime(profile.gain, start + duration - fade);
+      gain.gain.linearRampToValueAtTime(0, start + duration);
+      pan.pan.value = Math.max(-0.7, Math.min(0.7, (cue.x - this.listenerX) / 192));
       source.connect(gain).connect(pan).connect(this.gain);
-      this.voices.add(source);
-      source.onended = () => {
-        this.voices.delete(source);
-        source.disconnect();
-        gain.disconnect();
-        pan.disconnect();
-      };
-      source.start();
+      this.voices.set(source, { end: start + duration, gain, pan });
+      source.onended = () => this.releaseVoice(source);
+      source.start(start);
+      source.stop(start + duration);
       this.cues.push(cue);
       if (this.cues.length > 2048) this.cues.shift();
     }
@@ -105,29 +158,40 @@ export class CastAudio {
       !this.enabled ||
       !this.ready ||
       this.context?.state !== "running" ||
-      !this.capture ||
+      !this.gain ||
       this.recorder
     )
       throw new Error("Enable audio before starting a new capture");
+    this.capture = this.context.createMediaStreamDestination();
+    this.gain.connect(this.capture);
     const stream = video
       ? new MediaStream([...video.getVideoTracks(), ...this.capture.stream.getAudioTracks()])
       : this.capture.stream;
     this.recorder = new MediaRecorder(stream, {
       mimeType: video ? "video/webm;codecs=vp9,opus" : "audio/webm;codecs=opus",
     });
-    this.recorder.start();
+    this.captureChunks = [];
+    this.recorder.ondataavailable = (event) => {
+      if (event.data.size) this.captureChunks.push(event.data);
+    };
+    this.recorder.start(1000);
   }
   stopCapture(): Promise<Blob> {
     const recorder = this.recorder;
     if (recorder?.state !== "recording") throw new Error("No active audio capture");
     return new Promise((resolve, reject) => {
-      const chunks: Blob[] = [];
-      recorder.ondataavailable = (event) => chunks.push(event.data);
       recorder.onerror = () => reject(new Error("Audio capture failed"));
       recorder.onstop = () => {
         for (const track of recorder.stream.getVideoTracks()) track.stop();
+        if (this.capture) {
+          this.gain?.disconnect(this.capture);
+          for (const track of this.capture.stream.getTracks()) track.stop();
+          this.capture = undefined;
+        }
         this.recorder = undefined;
-        resolve(new Blob(chunks, { type: recorder.mimeType }));
+        const blob = new Blob(this.captureChunks, { type: recorder.mimeType });
+        this.captureChunks = [];
+        resolve(blob);
       };
       recorder.stop();
     });
@@ -137,9 +201,12 @@ export class CastAudio {
       enabled: this.enabled,
       ready: this.ready,
       state: this.context?.state ?? "locked",
+      contextSeconds: this.context?.currentTime ?? 0,
       decodedSamples: this.buffers.size,
       activeVoices: this.voices.size,
       dropped: this.dropped,
+      droppedExamples: [...this.droppedExamples],
+      maxStalledAudioTicks: this.maxStalledAudioTicks,
       cues: [...this.cues],
     };
   }

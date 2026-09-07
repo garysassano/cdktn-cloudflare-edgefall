@@ -112,10 +112,15 @@ const report = {
   videos: [],
   scope:
     "Original cast and licensed sound mix in separate local diagnostic scenes. Not the continuous W06 mission benchmark or a human approval.",
+  browserAudioOutput:
+    "Chromium --disable-audio-output; WebAudio and MediaRecorder are active. Physical-device output remains unverified.",
 };
 let browser;
 try {
-  browser = await chromium.launch({ executablePath: process.env.EDGEFALL_CHROMIUM_PATH });
+  browser = await chromium.launch({
+    executablePath: process.env.EDGEFALL_CHROMIUM_PATH,
+    args: ["--disable-audio-output"],
+  });
   const page = await browser.newPage({ viewport: { width: 1280, height: 1500 } }),
     errors = [];
   page.on("pageerror", (error) => errors.push(String(error)));
