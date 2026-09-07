@@ -21,6 +21,7 @@ export const EVENT_KINDS = [
   "action-sound",
   "explosion",
   "shield-break",
+  "prop-destroyed",
 ] as const;
 export const EVENT_MATERIALS = ["none", "terrain", "shield", "body"] as const;
 export const EVENT_ORIGINS = ["player", "enemy"] as const;
@@ -116,6 +117,8 @@ export function validateGameplayEvent(event: GameplayEvent, context: EventContex
       "Invalid impact target",
     );
     if (event.kind === "killed") eventRequire(event.material === "body", "Invalid kill material");
+    if (event.kind === "prop-destroyed")
+      eventRequire(event.material === "body", "Invalid prop destruction material");
     if (event.kind === "shield-break")
       eventRequire(event.material === "shield", "Invalid shield break material");
   }

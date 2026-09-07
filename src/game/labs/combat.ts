@@ -21,6 +21,13 @@ import {
   emitArea,
   stepArea,
 } from "../combat/area-attack.js";
+import {
+  type DestructibleState,
+  createDestructible,
+  damageDestructible,
+  destructibleHurtboxes,
+  detachDestroyedSupport,
+} from "../combat/destructible.js";
 import { firearmVelocity } from "../combat/firearm-aim.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
 import { type Grenade, grenadeLaunchVelocity, stepGrenade } from "../combat/grenade.js";
@@ -69,8 +76,10 @@ import {
   tankCombatHurtboxes,
 } from "./combat-tanks.js";
 import {
+  COMBAT_SUPPORT,
   combatCollisionIndex,
   combatEndTerrain,
+  combatGeometryRevision,
   combatTerrain,
   ordnancePlatforms,
 } from "./combat-terrain.js";
@@ -89,6 +98,7 @@ export const COMBAT_SCENARIOS = [
   "tank",
   "ordnance",
   "hmg",
+  "support",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -116,7 +126,8 @@ export interface CombatNotice {
     | "throw"
     | "action-sound"
     | "explosion"
-    | "shield-break";
+    | "shield-break"
+    | "prop-destroyed";
   ownerId: number;
   actionInstanceId: number;
   markerIndex: number;
@@ -132,7 +143,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 6;
+  format: 7;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -141,6 +152,7 @@ export interface CombatLab {
   players: ControlledActor[];
   tanks: TankState[];
   targets: CombatTarget[];
+  props: DestructibleState[];
   projectiles: BallisticProjectile[];
   strikes: MeleeStrike[];
   grenades: Grenade[];
@@ -226,23 +238,27 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
     return actor;
   });
+  const props = scenario === "support" ? COMBAT_SUPPORT.map(createDestructible) : [];
   const targets: CombatTarget[] = Array.from({ length: 2 }, (_, index) => ({
     enemy: {
       body: {
         ...footActor(
-          scenario === "ordnance"
-            ? 340 + index * 26
-            : scenario === "tank"
-              ? 300 + index * 40
-              : scenario === "shotgun"
-                ? 140 + index * 30
-                : (scenario === "guard" || scenario === "flame") && index === 0
-                  ? 140
-                  : scenario === "flame"
-                    ? 220
-                    : 220 + index * 60,
-          200,
+          scenario === "support"
+            ? 220 + index * 60
+            : scenario === "ordnance"
+              ? 340 + index * 26
+              : scenario === "tank"
+                ? 300 + index * 40
+                : scenario === "shotgun"
+                  ? 140 + index * 30
+                  : (scenario === "guard" || scenario === "flame") && index === 0
+                    ? 140
+                    : scenario === "flame"
+                      ? 220
+                      : 220 + index * 60,
+          scenario === "support" ? 160 : 200,
         ).body,
+        ...(scenario === "support" ? { supportId: 104 } : {}),
         id: 20 + index,
       },
       facing: -1,
@@ -256,16 +272,16 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     rifle:
       scenario === "tank" ||
       scenario === "rifle" ||
-      ((scenario === "guard" || scenario === "flame") && index === 1)
+      ((scenario === "guard" || scenario === "flame" || scenario === "support") && index === 1)
         ? createRifleState()
         : null,
     guard:
-      (scenario === "guard" || scenario === "flame") && index === 0
+      (scenario === "guard" || scenario === "flame" || scenario === "support") && index === 0
         ? createShieldState(SHIELD_PROFILE)
         : null,
   }));
   return {
-    format: 6,
+    format: 7,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -290,6 +306,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
           )
         : [],
     targets,
+    props,
     projectiles: [],
     strikes: [],
     grenades: [],
@@ -368,6 +385,7 @@ function meleeEligible(
   targets: CombatTarget[],
   terrain: SweepTarget[],
   tick: number,
+  props: readonly DestructibleState[],
 ): boolean {
   const definition = COMBAT_ATTACKS.get(4),
     shape = COMBAT_SHAPES.get(9);
@@ -389,7 +407,7 @@ function meleeEligible(
       actor.facing,
       { x: actor.body.x, y: hand.y },
       terrain,
-      combatHurtboxes(targets, tick),
+      [...combatHurtboxes(targets, tick), ...destructibleHurtboxes(props, COMBAT_SUPPORT)],
     ).some((hit) => hit.damage > 0)
   );
 }
@@ -475,9 +493,12 @@ export function advanceCombatLab(
   const world = structuredClone(current);
   const tick = ++world.tick;
   world.events = [];
-  const terrain = combatTerrain(world.scenario, tick);
-  const frame = { tick, geometryRevision: 1 };
-  const index = combatCollisionIndex(world.scenario, frame);
+  const physicalTerrain = combatTerrain(world.scenario, tick, world.props);
+  const terrain = physicalTerrain.filter(
+    (target) => !world.props.some((prop) => prop.id === target.id),
+  );
+  const frame = { tick, geometryRevision: combatGeometryRevision(world.props) };
+  const index = combatCollisionIndex(world.scenario, frame, world.props);
   const encounterEvents: EncounterEvent[] = [];
   const lifeNotices: LifeNotice[] = [];
   const seatChanges: SeatChanges = new Map();
@@ -606,7 +627,7 @@ export function advanceCombatLab(
       world.nextActionId,
       COMBAT_CATALOG,
       FOOT_ACTION_PROFILES,
-      meleeEligible(actor, world.targets, terrain, tick),
+      meleeEligible(actor, world.targets, terrain, tick, world.props),
     );
     world.players[slot] = result.actor;
     world.nextActionId = result.nextActionId;
@@ -717,7 +738,7 @@ export function advanceCombatLab(
           worldSocket(actor.body, hand, actor.facing),
           position,
           clearance,
-          terrain,
+          physicalTerrain,
         );
         if (areaProfile) {
           let area = world.areas.find((area) => area.actionInstanceId === item.actionInstanceId);
@@ -768,7 +789,7 @@ export function advanceCombatLab(
       world.events.push(notice);
     }
   }
-  const tankFire = fireCombatTanks(world, commands, seatChanges, terrain);
+  const tankFire = fireCombatTanks(world, commands, seatChanges, physicalTerrain);
   for (const outcome of outcomes) {
     const fire = tankFire.get(outcome.playerId);
     if (fire !== undefined) outcome.fire = fire;
@@ -786,7 +807,7 @@ export function advanceCombatLab(
       COMBAT_CATALOG,
       RIFLE_PROFILE,
       shape,
-      terrain,
+      physicalTerrain,
     );
     target.rifle = result.state;
     target.enemy.facing = result.facing;
@@ -818,7 +839,7 @@ export function advanceCombatLab(
             worldSocket(target.enemy.body, hand, target.enemy.facing),
             position,
             shape,
-            terrain,
+            physicalTerrain,
           )
         )
           notice.kind = "muzzle-blocked";
@@ -847,6 +868,7 @@ export function advanceCombatLab(
     ...combatHurtboxes(world.targets, tick, current.targets),
     ...playerCombatHurtboxes(world.players, current.players),
     ...tankCombatHurtboxes(world.tanks, current.tanks),
+    ...destructibleHurtboxes(world.props, COMBAT_SUPPORT),
   ];
   const impacts: Impact[] = [];
   world.areas = world.areas.flatMap((area) => {
@@ -1064,6 +1086,14 @@ export function advanceCombatLab(
       targetId: impact.entityId,
     };
     world.events.push(notice);
+    const prop = world.props.find((prop) => prop.id === impact.entityId);
+    if (prop) {
+      const attack = COMBAT_ATTACKS.get(impact.definitionId);
+      if (!attack) throw new Error("Missing prop attack definition");
+      if (damageDestructible(prop, impact, attack, tick))
+        world.events.push({ ...notice, kind: "prop-destroyed" });
+      continue;
+    }
     const tank = world.tanks.find((tank) => tank.body.id === impact.entityId);
     if (tank) {
       if (impact.damage > 0 && tank.armor > 0 && tank.invulnerableTicks === 0) {
@@ -1121,6 +1151,25 @@ export function advanceCombatLab(
       });
     }
   }
+  const geometryRevision = combatGeometryRevision(world.props);
+  if (geometryRevision !== frame.geometryRevision) {
+    const removed = new Set(world.props.filter((prop) => prop.health === 0).map((prop) => prop.id));
+    for (const actor of world.players) {
+      const detached = detachDestroyedSupport(actor.body, removed);
+      actor.geometryRevision = geometryRevision;
+      if (detached && actor.locomotion !== "seated") actor.locomotion = "airborne";
+      if (actor.ignoredSupportId !== null && removed.has(actor.ignoredSupportId)) {
+        actor.ignoredSupportId = null;
+        actor.ignoredSupportTicks = 0;
+      }
+    }
+    for (const { enemy } of world.targets) {
+      detachDestroyedSupport(enemy.body, removed);
+      enemy.geometryRevision = geometryRevision;
+    }
+    for (const tank of world.tanks) detachDestroyedSupport(tank.body, removed);
+    for (const grenade of world.grenades) detachDestroyedSupport(grenade.body, removed);
+  }
   for (const [slot, actor] of world.players.entries()) {
     // The range's authored lower kill boundary resolves real falls, not a client death command.
     if (actor.life !== "alive" || actor.body.y <= COMBAT_ENTRY.fallBoundary) continue;
@@ -1165,7 +1214,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents };
 }
 export interface CombatRecording {
-  format: 6;
+  format: 7;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1173,7 +1222,7 @@ export interface CombatRecording {
 }
 export function replayCombatLab(recording: CombatRecording) {
   if (
-    recording.format !== 6 ||
+    recording.format !== 7 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

@@ -4,11 +4,14 @@ import type { Reader, Writer } from "./binary.js";
 import { ProtocolError } from "./schema.js";
 import type { CombatSnapshot, FullSnapshot } from "./snapshot-schema.js";
 
-export const COMBAT_HEADER_BYTES = 48;
+export const COMBAT_HEADER_BYTES = 52;
 export const COMBAT_MEMBER_BYTES = 32;
 export const AREA_EXPOSURE_BYTES = 48;
 export const MAX_AREA_EXPOSURES = 64;
-export const MAX_COMBAT_BYTES = 8784 + AREA_EXPOSURE_BYTES * MAX_AREA_EXPOSURES;
+export const DESTRUCTIBLE_BYTES = 24;
+export const MAX_DESTRUCTIBLES = 32;
+export const MAX_COMBAT_BYTES =
+  8788 + AREA_EXPOSURE_BYTES * MAX_AREA_EXPOSURES + DESTRUCTIBLE_BYTES * MAX_DESTRUCTIBLES;
 const PHASES = ["active", "complete", "retired", "failed"] as const;
 const STATUSES = ["pending", "alive", "resolved"] as const;
 const RESOLUTIONS = [
@@ -33,7 +36,13 @@ const CAUSES = [
 function check(ok: unknown, message: string): asserts ok {
   if (!ok) throw new ProtocolError("malformed", `Combat baseline: ${message}`);
 }
-function length(members: number, objectives: number, kills: number, volumes: number) {
+function length(
+  members: number,
+  objectives: number,
+  kills: number,
+  volumes: number,
+  props: number,
+) {
   check(Number.isInteger(members) && members >= 0 && members <= 256, "member count");
   check(Number.isInteger(objectives) && objectives >= 0 && objectives <= 64, "objective count");
   check(Number.isInteger(kills) && kills >= 1 && kills <= 4, "participant count");
@@ -41,7 +50,9 @@ function length(members: number, objectives: number, kills: number, volumes: num
     Number.isInteger(volumes) && volumes >= 0 && volumes <= MAX_AREA_EXPOSURES,
     "area volume count",
   );
+  check(Number.isInteger(props) && props >= 0 && props <= MAX_DESTRUCTIBLES, "destructible count");
   return (
+    props * DESTRUCTIBLE_BYTES +
     COMBAT_HEADER_BYTES +
     members * COMBAT_MEMBER_BYTES +
     (objectives + kills) * 8 +
@@ -56,6 +67,7 @@ export function combatRecordBytes(combat: CombatSnapshot | null) {
         combat.objectives.length,
         combat.kills.length,
         combat.volumes.length,
+        combat.props.length,
       );
 }
 function writeTick(w: Writer, tick: number | null) {
@@ -74,7 +86,7 @@ function readOptional<T extends string>(r: Reader, values: readonly T[]): T | nu
   return index === 0 ? null : (values[index - 1] ?? null);
 }
 export function writeCombat(w: Writer, combat: CombatSnapshot) {
-  w.u16(2);
+  w.u16(3);
   w.u16(COMBAT_HEADER_BYTES);
   w.u32(combat.nextEntityId, 1);
   w.u32(combat.nextActionId, 1);
@@ -85,10 +97,20 @@ export function writeCombat(w: Writer, combat: CombatSnapshot) {
   w.u16(combat.objectives.length);
   w.u16(combat.kills.length);
   w.u16(combat.volumes.length);
+  w.u16(combat.props.length);
+  w.zero(2);
   w.optionalId(combat.failure?.id ?? null);
   writeTick(w, combat.failure?.tick ?? null);
   writeOptional(w, FAILURES, combat.failure?.reason ?? null);
   writeOptional(w, CAUSES, combat.failure?.cause ?? null);
+  for (const prop of combat.props) {
+    w.u32(prop.id, 1);
+    w.u32(prop.definitionId, 1);
+    w.u32(prop.health, 0, 65535);
+    writeTick(w, prop.destroyedTick);
+    w.optionalId(prop.destroyerId);
+    w.optionalId(prop.destroyActionId);
+  }
   for (const member of combat.members) {
     w.u32(member.id, 1);
     for (const flag of [member.required, member.critical, member.retreatAllowed])
@@ -137,7 +159,7 @@ export function writeCombat(w: Writer, combat: CombatSnapshot) {
 }
 export function readCombat(r: Reader): CombatSnapshot {
   const start = r.offset;
-  check(r.u16() === 2 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
+  check(r.u16() === 3 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
   const cursors = {
     nextEntityId: r.u32(1),
     nextActionId: r.u32(1),
@@ -148,9 +170,11 @@ export function readCombat(r: Reader): CombatSnapshot {
   const members = r.u16(),
     objectives = r.u16(),
     kills = r.u16(),
-    volumes = r.u16();
+    volumes = r.u16(),
+    props = r.u16();
+  r.zero(2);
   check(
-    start + length(members, objectives, kills, volumes) === r.bytes.byteLength,
+    start + length(members, objectives, kills, volumes, props) === r.bytes.byteLength,
     "section length",
   );
   const id = r.u32() || null,
@@ -169,11 +193,21 @@ export function readCombat(r: Reader): CombatSnapshot {
       id !== null && tick !== null && reason !== null && cause !== null
         ? { id, tick, reason, cause }
         : null,
+    props: [],
     members: [],
     objectives: [],
     kills: [],
     volumes: [],
   };
+  for (let i = 0; i < props; i++)
+    combat.props.push({
+      id: r.u32(1),
+      definitionId: r.u32(1),
+      health: r.u32(0, 65535),
+      destroyedTick: readTick(r),
+      destroyerId: r.u32() || null,
+      destroyActionId: r.u32() || null,
+    });
   for (let i = 0; i < members; i++) {
     const id = r.u32(1),
       flags = r.u32(0, 7);
@@ -236,6 +270,7 @@ export function validateCombat(snapshot: FullSnapshot) {
       "unordered/duplicate IDs",
     );
   }
+  ordered(combat.props.map((p) => p.id));
   ordered(combat.members.map((m) => m.id));
   ordered(combat.objectives.map((o) => o.id));
   ordered(combat.kills.map((k) => k.playerId));
@@ -303,6 +338,45 @@ export function validateCombat(snapshot: FullSnapshot) {
           value <= snapshot.tick &&
           value < COUNTER_LIMIT - 1),
       "future/invalid tick",
+    );
+  }
+  const propOwners = new Set([...participants, ...combat.members.map((m) => m.id)]);
+  for (const prop of combat.props) {
+    time(prop.destroyedTick);
+    check(prop.id < combat.nextEntityId, "unallocated prop identity");
+    check(
+      Number.isSafeInteger(prop.health) && prop.health >= 0 && prop.health <= 65535,
+      "prop health",
+    );
+    check(
+      Number.isSafeInteger(prop.definitionId) &&
+        prop.definitionId > 0 &&
+        prop.definitionId < COUNTER_LIMIT,
+      "prop definition",
+    );
+    check((prop.health === 0) === snapshot.removedIds.includes(prop.id), "prop removal mismatch");
+    check(
+      ![
+        ...combat.members.map((m) => m.id),
+        ...participants,
+        ...snapshot.vehicles.map((v) => v.body.id),
+        ...snapshot.projectiles.map((p) => p.id),
+        ...snapshot.platforms.map((p) => p.id),
+        ...combat.volumes.map((v) => v.id),
+      ].includes(prop.id),
+      "prop identity reused",
+    );
+    check(
+      prop.health > 0
+        ? prop.destroyedTick === null && prop.destroyerId === null && prop.destroyActionId === null
+        : prop.destroyedTick !== null &&
+            prop.destroyedTick > 0 &&
+            prop.destroyerId !== null &&
+            propOwners.has(prop.destroyerId) &&
+            Number.isSafeInteger(prop.destroyActionId) &&
+            (prop.destroyActionId ?? 0) > 0 &&
+            (prop.destroyActionId ?? COUNTER_LIMIT) < combat.nextActionId,
+      "prop destruction attribution",
     );
   }
   for (const m of combat.members) {

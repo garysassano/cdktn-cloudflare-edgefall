@@ -1,8 +1,22 @@
+import type { DestructibleDefinition, DestructibleState } from "../combat/destructible.js";
 import { integer, pixels } from "../core/numeric.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import type { CombatScenario } from "./combat.js";
 import { footTerrain } from "./foot-fixture.js";
+
+/** An authored scaffold spans a real void. Infantry stands above its damageable face. */
+export const COMBAT_SUPPORT: readonly DestructibleDefinition[] = [
+  {
+    id: 104,
+    definitionId: 1,
+    rect: { x: pixels(176), y: pixels(160), w: pixels(152), h: pixels(56) },
+    health: 8,
+  },
+];
+export function combatGeometryRevision(props: readonly DestructibleState[]): number {
+  return 1 + props.filter((prop) => prop.health === 0).length;
+}
 
 /** Engineering lift and press: deterministic world-tick trajectories, including their stops. */
 export const COMBAT_ORDNANCE = [
@@ -51,7 +65,30 @@ export function ordnancePlatforms(tick: number) {
 }
 
 /** Geometry at the start of this simulation tick, with exact motion through its end. */
-export function combatTerrain(scenario: CombatScenario, tick = 0): SweepTarget[] {
+export function combatTerrain(
+  scenario: CombatScenario,
+  tick = 0,
+  props: readonly DestructibleState[] = [],
+): SweepTarget[] {
+  if (scenario === "support") {
+    if (props.length !== COMBAT_SUPPORT.length) throw new Error("Missing support state");
+    return [
+      footTerrain(100, 0, 200, 152, 16),
+      ...props
+        .filter((prop) => prop.health > 0)
+        .map((prop) => {
+          const definition = COMBAT_SUPPORT.find((definition) => definition.id === prop.id);
+          if (!definition) throw new Error("Unknown support geometry");
+          return {
+            id: prop.id,
+            kind: "solid" as const,
+            rect: { ...definition.rect },
+            delta: { x: 0, y: 0 },
+          };
+        }),
+      footTerrain(105, 352, 200, 32, 16),
+    ];
+  }
   const terrain = [
     footTerrain(100, 0, 200, 384, 16),
     ...(scenario === "wall" ? [footTerrain(101, 140, 130, 3, 70)] : []),
@@ -76,16 +113,24 @@ export function combatTerrain(scenario: CombatScenario, tick = 0): SweepTarget[]
 }
 
 /** Rendering and hand releases occur after the accepted movement boundary. */
-export function combatEndTerrain(scenario: CombatScenario, tick: number): SweepTarget[] {
-  return combatTerrain(scenario, tick).map((target) => ({
+export function combatEndTerrain(
+  scenario: CombatScenario,
+  tick: number,
+  props: readonly DestructibleState[] = [],
+): SweepTarget[] {
+  return combatTerrain(scenario, tick, props).map((target) => ({
     ...target,
     rect: { ...target.rect, x: target.rect.x + target.delta.x, y: target.rect.y + target.delta.y },
     delta: { x: 0, y: 0 },
   }));
 }
 
-export function combatCollisionIndex(scenario: CombatScenario, frame: CollisionFrame) {
-  const terrain = combatTerrain(scenario, frame.tick);
+export function combatCollisionIndex(
+  scenario: CombatScenario,
+  frame: CollisionFrame,
+  props: readonly DestructibleState[] = [],
+) {
+  const terrain = combatTerrain(scenario, frame.tick, props);
   const moving = (target: SweepTarget) => target.delta.x !== 0 || target.delta.y !== 0;
   return new CollisionIndex(
     new CollisionGrid(terrain.filter((target) => !moving(target))),

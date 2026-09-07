@@ -53,10 +53,15 @@ export function recordCombatInputs(
       acknowledgment,
     };
   };
+  let predictionProps = state.combat.props,
+    loadedGeometryRevision = state.snapshot.geometryRevision;
   const reconcilers = state.combat.players.map(
     (actor) =>
-      new ControllerPrediction(baseline(state, actor.slot), (a, c, t) =>
-        predictCombatMovement(a, c, t, initial.combat.scenario),
+      new ControllerPrediction(
+        baseline(state, actor.slot),
+        (a, c, t) => predictCombatMovement(a, c, t, initial.combat.scenario, predictionProps),
+        undefined,
+        () => loadedGeometryRevision,
       ),
   );
   const edgeIds = streams.map(() => new Map<EdgeKind, number>());
@@ -103,7 +108,9 @@ export function recordCombatInputs(
       }
       const player = state.combat.players[slot];
       if (!player) throw new Error("Missing life recovery player");
-      predictions.push(predictCombatMovement(player, command, tick, initial.combat.scenario));
+      predictions.push(
+        predictCombatMovement(player, command, tick, initial.combat.scenario, state.combat.props),
+      );
       reconcilers[slot]?.submit(command);
     }
     let journal: CombatJournalTick | undefined;
@@ -114,6 +121,8 @@ export function recordCombatInputs(
     });
     state = committed.state;
     if (sequence % 3 === 0 || state.snapshot.roomMode !== "playing") {
+      predictionProps = state.combat.props;
+      loadedGeometryRevision = state.snapshot.geometryRevision;
       for (const [slot, reconciler] of reconcilers.entries())
         reconciler.reconcile(baseline(state, slot));
       reconciliations++;

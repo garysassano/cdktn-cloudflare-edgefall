@@ -62,7 +62,7 @@ function nearest(origin: Point, rect: Rect): Point {
 }
 function targets(source: AttackSource, hurtboxes: readonly HurtTarget[]) {
   return hurtboxes.filter(
-    (target) => target.team !== source.team && target.entityId !== source.ownerId,
+    (target) => (target.solid || target.team !== source.team) && target.entityId !== source.ownerId,
   );
 }
 function occluder(
@@ -76,7 +76,7 @@ function occluder(
     ...terrain
       .filter((target) => target.kind === "solid")
       .map((target) => ({ ...target, entityId: null, kind: "terrain" as const, priority: 0 })),
-    ...shields.map((target) => ({ ...target, priority: 1 })),
+    ...shields.map((target) => ({ ...target, priority: target.solid ? 0 : 1 })),
   ];
   let first: { target: (typeof candidates)[number]; time: ContactTime } | null = null;
   for (const target of candidates) {
@@ -201,7 +201,7 @@ export function rectangularHits(
   sweepBounds(volume, delta);
   sweepBounds({ ...occlusionOrigin, w: 0, h: 0 }, delta);
   const enemies = targets(source, hurtboxes),
-    shields = enemies.filter((target) => target.kind === "shield"),
+    shields = enemies.filter((target) => target.kind === "shield" || target.solid),
     hits: Impact[] = [];
   for (const target of enemies.filter(
     (target) => target.kind === "body" || definition.kind !== "melee",
@@ -244,7 +244,7 @@ export function rectangularHits(
             blocked.target as HurtTarget,
             time,
             at(origin, { x: point.x - origin.x, y: point.y - origin.y }, blocked.time),
-            0,
+            blocked.target.kind === "body" ? definition.damage : 0,
           )
         : impact(source, target, time, point, target.kind === "shield" ? 0 : definition.damage),
     );
@@ -272,7 +272,7 @@ export function explosionHits(
   position(center.y);
   validateQuery(source, terrain, hurtboxes);
   const enemies = targets(source, hurtboxes),
-    shields = enemies.filter((target) => target.kind === "shield"),
+    shields = enemies.filter((target) => target.kind === "shield" || target.solid),
     hits: Impact[] = [];
   for (const target of enemies.filter((target) => target.kind === "body")) {
     const point = nearest(center, {
@@ -292,7 +292,7 @@ export function explosionHits(
             blocked.target as HurtTarget,
             END,
             at(center, { x: point.x - center.x, y: point.y - center.y }, blocked.time),
-            0,
+            blocked.target.kind === "body" ? definition.damage : 0,
           )
         : impact(source, target, END, point, definition.damage),
     );

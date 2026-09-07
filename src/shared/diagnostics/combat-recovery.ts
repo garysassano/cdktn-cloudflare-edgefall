@@ -1,12 +1,12 @@
 import { stateHash } from "../../game/core/canonical.js";
 import { nextCounter } from "../../game/core/numeric.js";
-import { combatTerrain } from "../../game/labs/combat.js";
 import { continueCombatCheckpoint } from "../../game/labs/combat-campaign.js";
 import {
   type SeatChanges,
   commitCombatSeats,
   releaseCombatTank,
 } from "../../game/labs/combat-tanks.js";
+import { combatEndTerrain } from "../../game/labs/combat-terrain.js";
 import { CollisionGrid, CollisionIndex } from "../../game/physics/grid.js";
 import { tankOwner } from "../../game/vehicles/tank.js";
 import { createEventHistory } from "../protocol/event-stream.js";
@@ -22,7 +22,13 @@ function settleSeats(state: CombatRuntime, playerIds: readonly number[], advance
   const before = structuredClone(state.combat),
     changes: SeatChanges = new Map();
   const frame = { tick: state.combat.tick, geometryRevision: state.snapshot.geometryRevision },
-    index = new CollisionIndex(new CollisionGrid(combatTerrain(state.combat.scenario)), [], frame);
+    index = new CollisionIndex(
+      new CollisionGrid(
+        combatEndTerrain(state.combat.scenario, state.combat.tick, state.combat.props),
+      ),
+      [],
+      frame,
+    );
   for (const player of state.combat.players) {
     if (!playerIds.includes(player.playerId) || player.vehicleId === null) continue;
     const tank = state.combat.tanks.find(

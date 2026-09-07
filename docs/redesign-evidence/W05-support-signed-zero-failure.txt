@@ -1,0 +1,39 @@
+Excerpt: initial cross-runtime assertion, before the full expected/actual payload. Final source canonicalizes the stationary horizontal velocity.
+
+$ tsx scripts/verify-contract-runtimes.ts
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: workerd differs from Node
++ actual - expected
+... Skipped lines
+
+  {
+    admitted: {
+      admitted: 1,
+      duplicate: false,
+      renewed: true
+...
+                  supportId: 104,
++                 vx: 0,
+-                 vx: -0,
+                  vy: 0,
+                  x: 56320,
+                  y: 40960
+                },
+                facing: -1,
+...
+                  supportId: 104,
++                 vx: 0,
+-                 vx: -0,
+                  vy: 0,
+                  x: 56320,
+                  y: 40960
+                },
+                facing: -1,
+
+    at <anonymous> (/home/user/git/cdktn-cloudflare-edgefall/scripts/verify-contract-runtimes.ts:103:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',

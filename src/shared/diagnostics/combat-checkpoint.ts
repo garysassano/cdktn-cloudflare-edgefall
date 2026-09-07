@@ -2,6 +2,7 @@ import { validateRifleState } from "../../game/actors/rifle.js";
 import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
 import { validateArea } from "../../game/combat/area-attack.js";
+import { validateDestructibles } from "../../game/combat/destructible.js";
 import { validateFirearmAim } from "../../game/combat/firearm-aim.js";
 import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
 import { canonical } from "../../game/core/canonical.js";
@@ -25,6 +26,7 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
+import { COMBAT_SUPPORT, combatGeometryRevision } from "../../game/labs/combat-terrain.js";
 import { tankOwner, validateTankState } from "../../game/vehicles/tank.js";
 import type { GameIdentity } from "../content-id.js";
 import { Reader, Writer } from "../protocol/binary.js";
@@ -108,9 +110,9 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets projectiles strikes grenades areas encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles strikes grenades areas encounter events",
   );
-  check(combat.format === 6, "simulation format");
+  check(combat.format === 7, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -128,6 +130,19 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   integer(combat.events.length, 0, MAX_EVENT_HISTORY, "combat checkpoint notices");
   const initial = createCombatLab(combat.scenario, combat.players.length);
+  validateDestructibles(
+    combat.props,
+    combat.scenario === "support" ? COMBAT_SUPPORT : [],
+    combat.tick,
+    [...combat.players.map((p) => p.playerId), ...combat.targets.map((t) => t.enemy.body.id)],
+    combat.nextActionId,
+  );
+  check(
+    snapshot.geometryRevision === combatGeometryRevision(combat.props),
+    "committed geometry revision",
+  );
+  for (const prop of combat.props)
+    fields(prop, "id definitionId health destroyedTick destroyerId destroyActionId");
   const actionOwners = new Map<number, number>();
   const ownAction = (actionId: number, ownerId: number) => {
     integer(actionId, 0, combat.nextActionId - 1, "action allocation");
@@ -136,6 +151,9 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     check(owner === undefined || owner === ownerId, "action owner collision");
     actionOwners.set(actionId, ownerId);
   };
+  for (const prop of combat.props)
+    if (prop.destroyActionId !== null && prop.destroyerId !== null)
+      ownAction(prop.destroyActionId, prop.destroyerId);
   check(combat.targets.length === initial.targets.length, "target roster");
   const lifecycle = new EncounterLifecycle(combatEncounterDefinition(combat));
   lifecycle.restore(combat.encounter);
@@ -225,6 +243,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         combat.players,
         COMBAT_CATALOG,
         SHIELD_PROFILE,
+        [...combat.props.map((prop) => prop.id), ...combat.tanks.map((tank) => tank.body.id)],
       );
     }
     if (target.rifle) {
@@ -369,7 +388,8 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     for (const [index, id] of strike.hitIds.entries())
       check(
         (index === 0 || id > (strike.hitIds[index - 1] ?? 0)) &&
-          combat.targets.some((target) => target.enemy.body.id === id),
+          (combat.targets.some((target) => target.enemy.body.id === id) ||
+            combat.props.some((prop) => prop.id === id)),
         "melee hit ledger",
       );
   }
@@ -390,13 +410,10 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       fields(lobe.origin, "x y");
     }
     for (const hit of area.hits) fields(hit, "entityId nextTick");
-    validateArea(
-      area,
-      combat.tick,
-      definition,
-      profile,
-      combat.targets.map((target) => target.enemy.body.id),
-    );
+    validateArea(area, combat.tick, definition, profile, [
+      ...combat.targets.map((target) => target.enemy.body.id),
+      ...combat.props.map((prop) => prop.id),
+    ]);
     const anchor = combatAreaAnchor(combat, area);
     if (anchor) {
       const owner = combat.players.find((player) => player.playerId === area.ownerId);
@@ -471,6 +488,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         "action-sound",
         "explosion",
         "shield-break",
+        "prop-destroyed",
       ].includes(notice.kind),
       "notice kind",
     );
@@ -485,13 +503,15 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     integer(notice.position.y, -MAX_POSITION, MAX_POSITION, "notice y");
     check(
       notice.targetId === null ||
+        combat.props.some((prop) => prop.id === notice.targetId) ||
         combat.tanks.some((tank) => tank.body.id === notice.targetId) ||
         combat.targets.some((t) => t.enemy.body.id === notice.targetId) ||
         combat.players.some((p) => p.body.id === notice.targetId),
       "notice target",
     );
     check(
-      ["impact", "killed", "shield-break"].includes(notice.kind) === (notice.impact !== null),
+      ["impact", "killed", "shield-break", "prop-destroyed"].includes(notice.kind) ===
+        (notice.impact !== null),
       "notice impact",
     );
     check((notice.impact === null) === (notice.source !== null), "notice source kind");
@@ -611,6 +631,17 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         "impact material",
       );
       check(notice.kind !== "killed" || impact.kind === "body", "kill material");
+      if (notice.kind === "prop-destroyed") {
+        const prop = combat.props.find((prop) => prop.id === notice.targetId);
+        check(
+          impact.kind === "body" &&
+            prop?.health === 0 &&
+            prop.destroyedTick === combat.tick &&
+            prop.destroyerId === notice.ownerId &&
+            prop.destroyActionId === notice.actionInstanceId,
+          "prop destruction attribution",
+        );
+      }
       if (notice.kind === "shield-break") {
         const broken = combat.targets.find(
           (target) => target.enemy.body.id === notice.targetId,
@@ -716,7 +747,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 9,
+    format: 10,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -740,7 +771,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 9 &&
+    envelope.format === 10 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

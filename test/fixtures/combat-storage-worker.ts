@@ -17,6 +17,7 @@ import {
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 import { recordRifleRecovery } from "./rifle-proof.js";
 import { SHIELD_BOUNDARIES, recordShieldCombat } from "./shield-proof.js";
+import { SUPPORT_BOUNDARIES, recordSupport } from "./support-proof.js";
 import {
   TANK_BOUNDARIES,
   TANK_DAMAGE_BOUNDARIES,
@@ -52,7 +53,8 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "tank-damage" ||
       name === "ordnance-press" ||
       name === "ordnance-delayed" ||
-      name === "hmg-sweep"
+      name === "hmg-sweep" ||
+      name === "support-fall"
     ) {
       const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
@@ -61,36 +63,41 @@ export class CombatStorageProof extends DurableObject<Env> {
       const ordnance = name === "ordnance-press" || name === "ordnance-delayed";
       const ordnanceStart = name === "ordnance-delayed" ? 6 : 1;
       const hmg = name === "hmg-sweep";
+      const support = name === "support-fall";
       if (action !== "restore") {
-        const fixture = hmg
-          ? recordHmg()
-          : ordnance
-            ? recordOrdnance(ordnanceStart)
-            : tank
-              ? damage
-                ? recordTankCombat(210, tankDamageInput)
-                : recordTankCombat()
-              : area
-                ? recordAreaCombat(area)
-                : recordShieldCombat(mode);
-        const boundaries = hmg
-          ? HMG_BOUNDARIES
-          : ordnance
-            ? ordnanceStart === 1
-              ? ORDNANCE_BOUNDARIES
-              : DELAYED_ORDNANCE_BOUNDARIES
-            : tank
-              ? damage
-                ? TANK_DAMAGE_BOUNDARIES
-                : TANK_BOUNDARIES
-              : area
-                ? AREA_BOUNDARIES[area]
-                : SHIELD_BOUNDARIES[mode];
+        const fixture = support
+          ? recordSupport()
+          : hmg
+            ? recordHmg()
+            : ordnance
+              ? recordOrdnance(ordnanceStart)
+              : tank
+                ? damage
+                  ? recordTankCombat(210, tankDamageInput)
+                  : recordTankCombat()
+                : area
+                  ? recordAreaCombat(area)
+                  : recordShieldCombat(mode);
+        const boundaries = support
+          ? SUPPORT_BOUNDARIES
+          : hmg
+            ? HMG_BOUNDARIES
+            : ordnance
+              ? ordnanceStart === 1
+                ? ORDNANCE_BOUNDARIES
+                : DELAYED_ORDNANCE_BOUNDARIES
+              : tank
+                ? damage
+                  ? TANK_DAMAGE_BOUNDARIES
+                  : TANK_BOUNDARIES
+                : area
+                  ? AREA_BOUNDARIES[area]
+                  : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
         if (
           ![
             ...boundaries,
-            hmg || ordnance ? 120 : tank ? (damage ? 210 : 120) : area ? 120 : 180,
+            support || hmg || ordnance ? 120 : tank ? (damage ? 210 : 120) : area ? 120 : 180,
           ].includes(through)
         )
           throw new Error("Unknown shield storage boundary");
@@ -131,6 +138,15 @@ export class CombatStorageProof extends DurableObject<Env> {
         areas: saved.combat.areas,
         tanks: saved.combat.tanks,
         vehicles: saved.snapshot.vehicles,
+        support: support
+          ? {
+              props: saved.combat.props,
+              targets: saved.combat.targets,
+              players: saved.combat.players,
+              geometryRevision: saved.snapshot.geometryRevision,
+              encounter: saved.combat.encounter,
+            }
+          : undefined,
         hmg: hmg
           ? { players: saved.combat.players, projectiles: saved.combat.projectiles }
           : undefined,
@@ -563,6 +579,7 @@ export default {
         "ordnance-press",
         "ordnance-delayed",
         "hmg-sweep",
+        "support-fall",
         "shield-bash",
         "shield-break",
         "campaign",

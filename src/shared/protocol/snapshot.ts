@@ -70,12 +70,16 @@ function ordered(ids: readonly number[], label: string): void {
 /** Shared encoder/decoder invariants; complete validation precedes exposure to prediction. */
 function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
   validateCombat(snapshot);
+  context.validateGeometry?.(snapshot);
   if (
     snapshot.runEpoch !== context.runEpoch ||
     snapshot.connectionEpoch !== context.connectionEpoch
   )
     throw new ProtocolError("identity-mismatch", "Snapshot belongs to another run/socket");
-  if (snapshot.geometryRevision !== context.geometryRevision)
+  if (
+    snapshot.geometryRevision !== context.geometryRevision &&
+    !context.geometryRevisions?.has(snapshot.geometryRevision)
+  )
     throw new ProtocolError("resync-required", "Snapshot geometry is not loaded");
   check(
     snapshot.acknowledgments.length === snapshot.players.length,
@@ -92,6 +96,7 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
     snapshot.enemies.map((e) => e.id),
     snapshot.projectiles.map((p) => p.id),
     snapshot.platforms.map((p) => p.id),
+    snapshot.combat?.props.filter((p) => p.health > 0).map((p) => p.id) ?? [],
   ];
   for (const group of groups) {
     ordered(group, "entity IDs");
@@ -498,7 +503,10 @@ export function decodeSnapshot(bytes: Uint8Array, context: SnapshotContext): Ful
   };
   if (header.runEpoch !== context.runEpoch || header.connectionEpoch !== context.connectionEpoch)
     throw new ProtocolError("identity-mismatch", "Snapshot belongs to another run/socket");
-  if (header.geometryRevision !== context.geometryRevision)
+  if (
+    header.geometryRevision !== context.geometryRevision &&
+    !context.geometryRevisions?.has(header.geometryRevision)
+  )
     throw new ProtocolError("resync-required", "Snapshot geometry is not loaded");
   const counts: Counts = {
     players: r.u8(),

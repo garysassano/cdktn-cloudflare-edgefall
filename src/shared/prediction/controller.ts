@@ -38,8 +38,14 @@ export class ControllerPrediction {
   #history = new Map<number, ControlledActor>();
   #stopped = false;
   readonly #usesMappings: boolean;
+  readonly #loadedGeometry: (() => number) | undefined;
   #mapping: InputMapping | null = null;
-  constructor(baseline: PredictionBaseline, step: Step, mapping?: InputMapping) {
+  constructor(
+    baseline: PredictionBaseline,
+    step: Step,
+    mapping?: InputMapping,
+    loadedGeometry?: () => number,
+  ) {
     for (const value of [baseline.runEpoch, baseline.connectionEpoch])
       integer(value, 1, COUNTER_LIMIT - 1, "prediction epoch");
     integer(baseline.tick, 0, COUNTER_LIMIT - 2, "prediction baseline tick");
@@ -52,6 +58,7 @@ export class ControllerPrediction {
     this.#initial = structuredClone(baseline);
     this.#usesMappings = mapping !== undefined;
     this.#step = step;
+    this.#loadedGeometry = loadedGeometry;
     this.#actor = structuredClone(baseline.actor);
     this.#tick = baseline.tick;
     this.#baselineTick = baseline.tick;
@@ -121,7 +128,9 @@ export class ControllerPrediction {
       baseline.actor.playerId !== original.actor.playerId ||
       baseline.actor.body.id !== original.actor.body.id ||
       baseline.actor.controlEpoch < this.#actor.controlEpoch ||
-      baseline.actor.geometryRevision !== original.actor.geometryRevision ||
+      baseline.actor.geometryRevision !==
+        (this.#loadedGeometry?.() ?? original.actor.geometryRevision) ||
+      baseline.actor.geometryRevision < this.#actor.geometryRevision ||
       (baseline.actor.controlEpoch === this.#actor.controlEpoch &&
         baseline.actor.vehicleId !== this.#actor.vehicleId) ||
       ack.playerId !== baseline.actor.playerId ||

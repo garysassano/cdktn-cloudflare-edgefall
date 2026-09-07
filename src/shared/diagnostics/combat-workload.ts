@@ -2,6 +2,7 @@ import { rifleMode } from "../../game/actors/rifle.js";
 import { shieldMode } from "../../game/actors/shield.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
 import { areaExposures } from "../../game/combat/area-attack.js";
+import { type DestructibleState, validateDestructibles } from "../../game/combat/destructible.js";
 import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { stepFootController } from "../../game/controller/foot.js";
@@ -32,7 +33,9 @@ import {
 } from "../../game/labs/combat-content.js";
 import {
   COMBAT_ORDNANCE,
+  COMBAT_SUPPORT,
   combatCollisionIndex,
+  combatGeometryRevision,
   ordnancePlatforms,
 } from "../../game/labs/combat-terrain.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
@@ -48,7 +51,61 @@ import { PROBE_IDENTITY, createRoomWorkload, roomWorkloadHash } from "./room-wor
 export const COMBAT_TERRAIN = combatTerrain("range");
 export const COMBAT_SHAPE_IDS = new Set(COMBAT_SHAPES.keys());
 export function combatPeerContext(world: FullSnapshot, slot: number) {
-  return { ...controllerPeerContext(world, slot), shapeIds: COMBAT_SHAPE_IDS };
+  return {
+    ...controllerPeerContext(world, slot),
+    shapeIds: COMBAT_SHAPE_IDS,
+    ...combatGeometryContext(),
+  };
+}
+/** This diagnostic content has two loaded scaffold revisions; arbitrary world revisions stay rejected. */
+export function combatGeometryContext() {
+  return {
+    geometryRevisions: new Set([1, 2]),
+    validateGeometry: (snapshot: FullSnapshot) => {
+      const combat = snapshot.combat;
+      if (!combat) throw new Error("Missing combat geometry baseline");
+      validateDestructibles(
+        combat.props,
+        combat.props.length ? COMBAT_SUPPORT : [],
+        snapshot.tick,
+        [...snapshot.players.map((p) => p.playerId), ...combat.members.map((m) => m.id)],
+        combat.nextActionId,
+      );
+      if (snapshot.geometryRevision !== combatGeometryRevision(combat.props))
+        throw new Error("Destructible geometry revision mismatch");
+    },
+  };
+}
+/** Within one run, accepted solid removals are permanent and retain their original attribution. */
+export function validateCombatGeometryTransition(previous: FullSnapshot, incoming: FullSnapshot) {
+  const before = previous.combat?.props,
+    after = incoming.combat?.props;
+  if (
+    !before ||
+    !after ||
+    before.length !== after.length ||
+    incoming.geometryRevision < previous.geometryRevision
+  )
+    throw new Error("Combat geometry roster/revision changed unexpectedly");
+  for (const [index, prop] of before.entries()) {
+    const next = after[index];
+    if (
+      !next ||
+      next.id !== prop.id ||
+      next.definitionId !== prop.definitionId ||
+      next.health > prop.health ||
+      (prop.health === 0 && canonical(next) !== canonical(prop)) ||
+      (prop.health > 0 && next.destroyedTick !== null && next.destroyedTick <= previous.tick)
+    )
+      throw new Error("Destructible history regressed or changed attribution");
+  }
+}
+export function combatSnapshotScenario(snapshot: FullSnapshot): CombatScenario {
+  return snapshot.combat?.props.length
+    ? "support"
+    : snapshot.platforms.length
+      ? "ordnance"
+      : "range";
 }
 /** Real content digest; simulation/presentation identities remain explicitly diagnostic. */
 export async function combatIdentity() {
@@ -64,6 +121,7 @@ export async function combatIdentity() {
       tank: TANK_PROFILE,
       tankDepot: COMBAT_TANK_DEPOT,
       ordnance: COMBAT_ORDNANCE,
+      support: COMBAT_SUPPORT,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -106,6 +164,7 @@ export function combatSnapshot(
 ): FullSnapshot {
   const snapshot = structuredClone(previous);
   snapshot.tick = combat.tick;
+  snapshot.geometryRevision = combatGeometryRevision(combat.props);
   snapshot.players = structuredClone(combat.players);
   snapshot.vehicles = combat.tanks.map(publicTankState);
   snapshot.platforms = combat.scenario === "ordnance" ? ordnancePlatforms(combat.tick) : [];
@@ -251,7 +310,7 @@ export function combatSnapshot(
           ? combat.tick - rifle.action.stateStartTick
           : 0,
       supportId: enemy.body.supportId,
-      geometryRevision: 1,
+      geometryRevision: snapshot.geometryRevision,
     }));
   snapshot.projectiles = combat.projectiles.map((projectile) => ({
     id: projectile.id,
@@ -299,11 +358,14 @@ export function combatSnapshot(
   snapshot.projectiles.sort((a, b) => a.id - b.id);
   snapshot.removedIds = combat.targets
     .filter((target) => target.health === 0)
-    .map((target) => target.enemy.body.id);
+    .map((target) => target.enemy.body.id)
+    .concat(combat.props.filter((prop) => prop.health === 0).map((prop) => prop.id))
+    .sort((a, b) => a - b);
   snapshot.campaign.remainingEnemies = combat.targets.filter((target) => target.health > 0).length;
   snapshot.campaign.encounterId = 1;
   const definition = combatEncounterDefinition(combat);
   snapshot.combat = {
+    props: structuredClone(combat.props),
     volumes: combat.areas
       .flatMap((area) => {
         const profile = AREA_PROFILES.get(area.definitionId);
@@ -312,7 +374,7 @@ export function combatSnapshot(
           area,
           combat.tick,
           profile,
-          combatTerrain(combat.scenario, combat.tick),
+          combatTerrain(combat.scenario, combat.tick, combat.props),
         );
       })
       .sort((a, b) => a.id - b.id || a.lobe - b.lobe),
@@ -428,10 +490,11 @@ export function predictCombatMovement(
   command: InputCommand,
   tick: number,
   scenario: CombatScenario = "range",
+  props: readonly DestructibleState[] = [],
 ) {
   if (!FOOT_DEFINITION) throw new Error("Missing combat foot definition");
-  const frame = { tick, geometryRevision: 1 };
-  const index = combatCollisionIndex(scenario, frame);
+  const frame = { tick, geometryRevision: combatGeometryRevision(props) };
+  const index = combatCollisionIndex(scenario, frame, props);
   const life = stepPlayerLife(
     actor,
     tick,

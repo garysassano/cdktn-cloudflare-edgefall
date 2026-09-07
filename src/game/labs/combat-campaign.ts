@@ -201,6 +201,8 @@ export function continueCombatCheckpoint(
     tank.action.stateStartTick = world.tick;
     return tank;
   });
+  world.props = structuredClone(template.props);
+  for (const player of world.players) player.geometryRevision = 1;
   world.projectiles = [];
   world.strikes = [];
   world.grenades = [];
@@ -210,7 +212,7 @@ export function continueCombatCheckpoint(
   world.encounter = new EncounterLifecycle(combatEncounterDefinition(world)).begin(world.tick);
   const frame = { tick: world.tick, geometryRevision: 1 };
   const index = new CollisionIndex(
-    new CollisionGrid(combatEndTerrain(world.scenario, world.tick)),
+    new CollisionGrid(combatEndTerrain(world.scenario, world.tick, world.props)),
     [],
     frame,
   );

@@ -32,6 +32,7 @@ import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { shieldCombatProof } from "./shield-proof.js";
 import { spatialProof } from "./spatial-proof.js";
+import { supportProof } from "./support-proof.js";
 import { tankCombatProof } from "./tank-proof.js";
 import { traversalProof } from "./traversal-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
@@ -108,6 +109,7 @@ export async function contractProof() {
     tankCombat: await tankCombatProof(),
     ordnance: await ordnanceProof(),
     hmg: await hmgProof(),
+    support: await supportProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

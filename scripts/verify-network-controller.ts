@@ -22,6 +22,7 @@ import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
+import { verifySupportCombat } from "./lib/verify-support-combat.js";
 import { verifyTankCombat } from "./lib/verify-tank-combat.js";
 
 interface ClientStatus {
@@ -101,6 +102,7 @@ const areaMode = process.argv.includes("--combat-shotgun")
     : null;
 const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
+const supportMode = process.argv.includes("--combat-support");
 const hmgMode = process.argv.includes("--combat-hmg");
 const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
@@ -126,9 +128,10 @@ const combatMode =
   !!areaMode ||
   tankMode ||
   ordnanceMode ||
-  hmgMode;
+  hmgMode ||
+  supportMode;
 assert(
-  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode) ||
+  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -151,6 +154,7 @@ assert(
     tankMode,
     ordnanceMode,
     hmgMode,
+    supportMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -185,43 +189,45 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = hmgMode
-  ? "dist/network-combat-hmg-evidence"
-  : ordnanceMode
-    ? "dist/network-combat-ordnance-evidence"
-    : tankMode
-      ? "dist/network-combat-tank-evidence"
-      : areaMode
-        ? `dist/network-combat-${areaMode}-evidence`
-        : shieldMode
-          ? "dist/network-combat-guard-evidence"
-          : footMode
-            ? `dist/network-combat-${footMode}-evidence`
-            : hostileMode
-              ? "dist/network-combat-hostile-evidence"
-              : campaignMode
-                ? "dist/network-combat-campaign-evidence"
-                : automaticMode
-                  ? "dist/network-combat-auto-evidence"
-                  : combatReconnectMode
-                    ? loadingMode
-                      ? phaseMode
-                        ? "dist/network-combat-phase-evidence"
-                        : "dist/network-combat-loading-evidence"
-                      : "dist/network-combat-reconnect-evidence"
-                    : combatRecoveryMode
-                      ? "dist/network-combat-recovery-evidence"
-                      : baselineMode
-                        ? "dist/network-combat-baseline-evidence"
-                        : combatMode
-                          ? eventMode
-                            ? "dist/network-event-evidence"
-                            : faultMode
-                              ? "dist/network-combat-fault-evidence"
-                              : "dist/network-combat-evidence"
-                          : recoveryMode
-                            ? "dist/network-controller-recovery-evidence"
-                            : "dist/network-controller-evidence";
+const output = supportMode
+  ? "dist/network-combat-support-evidence"
+  : hmgMode
+    ? "dist/network-combat-hmg-evidence"
+    : ordnanceMode
+      ? "dist/network-combat-ordnance-evidence"
+      : tankMode
+        ? "dist/network-combat-tank-evidence"
+        : areaMode
+          ? `dist/network-combat-${areaMode}-evidence`
+          : shieldMode
+            ? "dist/network-combat-guard-evidence"
+            : footMode
+              ? `dist/network-combat-${footMode}-evidence`
+              : hostileMode
+                ? "dist/network-combat-hostile-evidence"
+                : campaignMode
+                  ? "dist/network-combat-campaign-evidence"
+                  : automaticMode
+                    ? "dist/network-combat-auto-evidence"
+                    : combatReconnectMode
+                      ? loadingMode
+                        ? phaseMode
+                          ? "dist/network-combat-phase-evidence"
+                          : "dist/network-combat-loading-evidence"
+                        : "dist/network-combat-reconnect-evidence"
+                      : combatRecoveryMode
+                        ? "dist/network-combat-recovery-evidence"
+                        : baselineMode
+                          ? "dist/network-combat-baseline-evidence"
+                          : combatMode
+                            ? eventMode
+                              ? "dist/network-event-evidence"
+                              : faultMode
+                                ? "dist/network-combat-fault-evidence"
+                                : "dist/network-combat-evidence"
+                            : recoveryMode
+                              ? "dist/network-controller-recovery-evidence"
+                              : "dist/network-controller-evidence";
 // This generated directory belongs to this invocation, including scenario-specific screenshots.
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -271,6 +277,7 @@ try {
       "scripts/lib/local-worker.ts",
       "scripts/lib/room-host-control.ts",
       ...(hmgMode ? ["scripts/lib/verify-hmg-combat.ts"] : []),
+      ...(supportMode ? ["scripts/lib/verify-support-combat.ts"] : []),
     ])
       sources.push({
         file,
@@ -291,7 +298,7 @@ try {
           browser: browser.version(),
           sources,
           scope:
-            "Captured before opening clients; retained for pass or failure. Working-tree bundle hashes do not assert a clean base commit. Listed verifier sources cover the entry, Worker launcher, host control and HMG helper when selected.",
+            "Captured before opening clients; retained for pass or failure. Working-tree bundle hashes do not assert a clean base commit. Listed verifier sources cover the entry, Worker launcher, host control and selected HMG/support helper.",
         },
         null,
         2,
@@ -333,7 +340,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -417,6 +424,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (supportMode) {
+        const support = await verifySupportCombat(pages, base, output);
+        room = support.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          support,
+          clients: support.clients,
+          sharedSnapshots: support.common.length,
+          room,
+          scope:
+            "Four real keyboard clients send two short fire taps each. Their accepted attacks destroy authored support, both enemies fall under gravity into the terminal boundary, and clients agree on geometry, destruction attribution and the terminal ledger. Local workerd engineering proof; deployed timing and final media remain open.",
+        };
       }
       if (hmgMode) {
         const hmg = await verifyHmgCombat(pages, base, output);
@@ -2039,13 +2066,15 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: hmgMode
-      ? "hmg"
-      : ordnanceMode
-        ? "ordnance"
-        : tankMode
-          ? "tank"
-          : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario: supportMode
+      ? "support"
+      : hmgMode
+        ? "hmg"
+        : ordnanceMode
+          ? "ordnance"
+          : tankMode
+            ? "tank"
+            : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

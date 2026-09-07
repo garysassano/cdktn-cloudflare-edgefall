@@ -10,6 +10,7 @@ import {
   GRENADE_PROFILE,
   SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
+import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
@@ -17,8 +18,11 @@ import { combatContinuationHash } from "../shared/diagnostics/combat-recovery.js
 import {
   COMBAT_SHAPE_IDS,
   COMBAT_TERRAIN,
+  combatGeometryContext,
   combatIdentity,
+  combatSnapshotScenario,
   predictCombatMovement,
+  validateCombatGeometryTransition,
 } from "../shared/diagnostics/combat-workload.js";
 import {
   CONTROLLER_IDENTITY,
@@ -118,6 +122,7 @@ async function startLab() {
   let welcome: Handshake | null = null,
     snapshot: FullSnapshot | null = null,
     prediction: ControllerPrediction | null = null;
+  let movementSnapshot: FullSnapshot | null = null;
   let initialActor: FullSnapshot["players"][number] | null = null;
   let inputStopped = false;
   let pendingMapping: InputMapping | null = null;
@@ -252,6 +257,8 @@ async function startLab() {
       volumes: snapshot?.combat?.volumes ?? [],
       vehicles: snapshot?.vehicles ?? [],
       platforms: snapshot?.platforms ?? [],
+      props: snapshot?.combat?.props ?? [],
+      geometryRevision: snapshot?.geometryRevision ?? null,
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
@@ -451,7 +458,7 @@ async function startLab() {
         throw new Error("Missing welcome/binary data");
       const context = {
         ...probeContext(slot),
-        ...(mode === "combat" ? { shapeIds: COMBAT_SHAPE_IDS } : {}),
+        ...(mode === "combat" ? { shapeIds: COMBAT_SHAPE_IDS, ...combatGeometryContext() } : {}),
         runEpoch: welcome.runEpoch,
         connectionEpoch: welcome.connectionEpoch,
         playerId: welcome.playerId,
@@ -523,6 +530,7 @@ async function startLab() {
         throw new Error("World digest mismatch");
       if (snapshot && (incoming.tick < snapshot.tick || incoming.snapshotId <= snapshot.snapshotId))
         throw new Error("Snapshot regression");
+      if (mode === "combat" && snapshot) validateCombatGeometryTransition(snapshot, incoming);
       const actor = incoming.players[slot],
         acknowledgment = incoming.acknowledgments[slot];
       if (!actor || !acknowledgment) throw new Error("Missing local controller");
@@ -555,6 +563,9 @@ async function startLab() {
       const mapping = pendingMapping;
       pendingMapping = null;
       if (!mapping) throw new Error("Snapshot missing its input mapping");
+      if (snapshot && incoming.geometryRevision < snapshot.geometryRevision)
+        throw new Error("Geometry revision regressed");
+      movementSnapshot = incoming;
       const correction = prediction ? prediction.reconcile(baseline, mapping).correction : null;
       if (input && actor.controlEpoch > input.controlEpoch)
         input.advanceControlEpoch(actor.controlEpoch);
@@ -562,9 +573,16 @@ async function startLab() {
         baseline,
         (a, c, t) =>
           mode === "combat"
-            ? predictCombatMovement(a, c, t, snapshot?.platforms.length ? "ordnance" : "range")
+            ? predictCombatMovement(
+                a,
+                c,
+                t,
+                movementSnapshot ? combatSnapshotScenario(movementSnapshot) : "range",
+                movementSnapshot?.combat?.props ?? [],
+              )
             : stepNetworkController(a, c, t).actor,
         mapping,
+        () => movementSnapshot?.geometryRevision ?? 1,
       );
       input ??= new InputCapture(actor.controlEpoch);
       snapshot = incoming;
@@ -661,7 +679,13 @@ async function startLab() {
       if (!g) return;
       g.clear();
       g.fillStyle(0x526075);
-      for (const t of terrain)
+      for (const t of mode === "combat" && snapshot
+        ? combatEndTerrain(
+            combatSnapshotScenario(snapshot),
+            snapshot.tick,
+            snapshot.combat?.props ?? [],
+          ).filter((target) => !snapshot?.platforms.some((platform) => platform.id === target.id))
+        : terrain)
         g.fillRect(t.rect.x / 256, t.rect.y / 256, t.rect.w / 256, t.rect.h / 256);
       for (const platform of snapshot?.platforms ?? []) {
         const shape = COMBAT_SHAPES.get(platform.shapeId);

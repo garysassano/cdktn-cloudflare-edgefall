@@ -192,6 +192,7 @@ export function validateShield(
   players: readonly ControlledActor[],
   catalog: ActionCatalog,
   profile: ShieldProfile,
+  additionalHitIds: readonly number[] = [],
 ) {
   if (!SHIELD_PHASES.includes(state.phase)) throw new Error("Invalid shield phase");
   integer(state.integrity, 0, profile.integrity, "shield integrity");
@@ -256,7 +257,7 @@ export function validateShield(
       state.phase !== "bash" ||
       age < profile.bashActiveTick ||
       (index > 0 && id <= (state.hitIds[index - 1] ?? 0)) ||
-      !players.some((player) => player.body.id === id)
+      (!players.some((player) => player.body.id === id) && !additionalHitIds.includes(id))
     )
       throw new Error("Invalid bash hit ledger");
   }

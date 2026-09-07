@@ -1,0 +1,74 @@
+{
+  "baseCommit": "09ba048b958739c1447b1f0d4ad17142f4eed1e4",
+  "status": "pass",
+  "scope": "Independent reconstruction from the current working tree using the executed build options. This verifies artifact identity, not production timing or deployment.",
+  "checks": [
+    {
+      "name": "contracts",
+      "report": "dist/contract-runtime-proof/report.json",
+      "sourceSha256": "ba7bb11298c5a79576ca3a2e4e7f80c0fcf56a5ea14463f9906ab7210cd1c86e",
+      "bundleSha256": "d644a83b40b75fb8dfa3c5bc80cc005a01302d3b2ea1614f6a8de6b419cc09ca",
+      "matched": true
+    },
+    {
+      "name": "sqlite",
+      "report": "dist/combat-storage-proof/report.json",
+      "sourceSha256": "31e7b220b1297f23b91687e9ff435297e2bbf3e85b96dd07ef670a8b9ec49866",
+      "bundleSha256": "f350eaf7ecb7e1cba4987d8a9353cd6c15ec9524aa8b7bc103ab4f086ef0a4c8",
+      "matched": true
+    },
+    {
+      "name": "networkWorker",
+      "report": "dist/network-combat-support-evidence/execution.json",
+      "sourceSha256": "561bec835775e5afcf5d384faf095a265777e0d4bdcc5f1380c32989e7c54046",
+      "bundleSha256": "1d8e30bcd1a5579410d863d74bad54f62ced1b02d12a8869fbef6e9494b43367",
+      "matched": true
+    },
+    {
+      "name": "networkClient",
+      "report": "dist/network-combat-support-evidence/execution.json",
+      "sourceSha256": "09e14b6109045d77b971f3ecbfa6405d9d92c26f575e9c0ff3b11cd322bb0be7",
+      "bundleSha256": "5d401de0b7bd6a24b53d1201ad97d19a7aa33eb046041f7954bae11610d505e3",
+      "matched": true
+    },
+    {
+      "name": "inspectorClient",
+      "report": "dist/combat-lab-evidence/report.json",
+      "sourceSha256": "d4b160667d0fa085957b7fb0053813fff224690fff143047c337789c91b18f07",
+      "bundleSha256": "fdd68785ba4121dd4efad1d2efcbfecab18be376d7de7b9eb954f68667b04d29",
+      "matched": true
+    },
+    {
+      "name": "executedNetworkVerifier",
+      "sources": [
+        {
+          "file": "scripts/verify-network-controller.ts",
+          "sha256": "28c5ec4fff94e8b0ad3e0e836236bea8269e97fcf8bdfc3db463a5ae74e9db54"
+        },
+        {
+          "file": "scripts/lib/local-worker.ts",
+          "sha256": "90bbf49f955f82eb2fa4e46a9708db89727ca752dbd0d85a333b38559ab7e171"
+        },
+        {
+          "file": "scripts/lib/room-host-control.ts",
+          "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+        },
+        {
+          "file": "scripts/lib/verify-support-combat.ts",
+          "sha256": "c855c1cf4e5fce38ecc9b16502626834749b8bca94020ace8367d7e28dfbbb4f"
+        }
+      ],
+      "matched": true
+    }
+  ],
+  "unchangedGuards": [
+    {
+      "file": "src/shared/protocol/input-stream.ts",
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    }
+  ]
+}

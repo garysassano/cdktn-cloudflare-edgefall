@@ -26,7 +26,8 @@ export async function withDirectRoomWorker<T>(
       | "flame"
       | "tank"
       | "ordnance"
-      | "hmg";
+      | "hmg"
+      | "support";
   } = {},
 ): Promise<T> {
   const require = createRequire(import.meta.url);

@@ -145,7 +145,7 @@ export function stepGroundedEnemy(
         turns++;
       }
       body.vx = 0;
-    } else body.vx = definition.speed * facing;
+    } else body.vx = definition.speed === 0 ? 0 : definition.speed * facing;
     body.vy = 0;
   }
   body.vy = motion(Math.min(definition.terminalVelocity, body.vy + definition.gravity));

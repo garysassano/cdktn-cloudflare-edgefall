@@ -1,4 +1,5 @@
 import type { AreaExposure } from "../../game/combat/area-attack.js";
+import type { DestructibleState } from "../../game/combat/destructible.js";
 import type {
   EncounterFailure,
   EncounterState,
@@ -83,6 +84,7 @@ export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolve
 };
 /** Public encounter accounting. Private AI/watchdog/receipt state belongs in checkpoints. */
 export interface CombatSnapshot {
+  props: DestructibleState[];
   volumes: AreaExposure[];
   nextEntityId: number;
   nextActionId: number;
@@ -133,6 +135,9 @@ export interface SnapshotContext {
   geometryRevision: number;
   /** The negotiated content's collision table must exist before decoding for prediction. */
   shapeIds: ReadonlySet<number>;
+  /** Only fully loaded revisions may pass the header; validateGeometry checks their complete state. */
+  geometryRevisions?: ReadonlySet<number>;
+  validateGeometry?: (snapshot: FullSnapshot) => void;
 }
 
 export const SNAPSHOT_TYPE = 2;

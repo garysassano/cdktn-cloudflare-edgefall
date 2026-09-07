@@ -9,33 +9,13 @@ import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
 import { verifyHmgLab } from "./lib/verify-hmg-lab.mjs";
 import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
+import { verifySupportLab } from "./lib/verify-support-lab.mjs";
 import { verifyTankLab } from "./lib/verify-tank-lab.mjs";
 
 const root = resolve("dist/client"),
   output = "dist/combat-lab-evidence";
+await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
-for (const file of [
-  "report.json",
-  "failure.json",
-  "combat.png",
-  "recording.json",
-  "life.png",
-  "life-death.json",
-  "life-entry.json",
-  "melee-active.json",
-  "grenade-active.json",
-  "melee.png",
-  "grenade.png",
-  "shotgun-volumes.png",
-  "flame-volumes.png",
-  "shotgun-active.json",
-  "flame-active.json",
-  "shield-34.png",
-  "shield-66.png",
-  "shield-95.png",
-  "shield-broken.json",
-])
-  await rm(`${output}/${file}`, { force: true });
 const server = createServer(async (request, response) => {
   try {
     const path = resolve(root, `.${new URL(request.url, "http://localhost").pathname}`);
@@ -171,7 +151,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 6);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 7);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -197,6 +177,7 @@ try {
   const tank = await verifyTankLab(page, output);
   const ordnance = await verifyOrdnanceLab(page, output);
   const hmg = await verifyHmgLab(page, output);
+  const support = await verifySupportLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -300,6 +281,7 @@ try {
     tank,
     ordnance,
     hmg,
+    support,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

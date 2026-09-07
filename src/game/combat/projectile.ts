@@ -20,6 +20,8 @@ export interface HurtTarget {
   entityId: number;
   team: number;
   kind: "body" | "shield";
+  /** A damageable solid competes with concrete and occludes attacks behind its face. */
+  solid?: boolean;
   rect: Rect;
   delta: Point;
 }
@@ -62,8 +64,15 @@ export function sweepProjectile(
       kind: "terrain" as const,
     })),
     ...hurtboxes
-      .filter((target) => target.entityId !== projectile.ownerId && target.team !== projectile.team)
-      .map((target) => ({ ...target, priority: target.kind === "shield" ? 1 : 2 })),
+      .filter(
+        (target) =>
+          target.entityId !== projectile.ownerId &&
+          (target.solid || target.team !== projectile.team),
+      )
+      .map((target) => ({
+        ...target,
+        priority: target.solid ? 0 : target.kind === "shield" ? 1 : 2,
+      })),
   ];
   const ids = new Set<number>();
   let first: { target: (typeof candidates)[number]; time: Impact["time"] } | null = null;

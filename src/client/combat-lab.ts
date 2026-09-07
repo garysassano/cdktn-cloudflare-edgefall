@@ -115,7 +115,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 6,
+    format: 7,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -238,7 +238,7 @@ class CombatScene extends Phaser.Scene {
     const g = this.overlay;
     if (!g) return;
     g.clear();
-    for (const target of combatEndTerrain(state.scenario, state.tick)) {
+    for (const target of combatEndTerrain(state.scenario, state.tick, state.props)) {
       g.fillStyle(0x526175);
       g.fillRect(
         target.rect.x / 256,
@@ -356,7 +356,7 @@ class CombatScene extends Phaser.Scene {
         area,
         state.tick,
         profile,
-        combatTerrain(state.scenario, state.tick),
+        combatTerrain(state.scenario, state.tick, state.props),
       )) {
         const r = exposure.rect,
           color = area.definitionId === 10 ? 0xffe475 : exposure.attached ? 0xff9647 : 0xff5b45;
