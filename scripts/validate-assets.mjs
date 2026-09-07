@@ -80,7 +80,7 @@ if (failures.length > 0) {
   for (const failure of failures) console.error(`asset validation: ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Validated ${records.size} licensed assets, including the complete animation atlas.`);
+  console.log(`Validated ${records.size} licensed assets and registered atlases.`);
 }
 
 async function walk(directory) {
@@ -142,6 +142,10 @@ async function validateAtlas(imagePath, atlasPath, expectedPng) {
       failures.push(`${atlasPath}: frame ${name} lies outside the image`);
     }
   }
+  if (atlas.meta?.edgefall?.format === 2) {
+    validateNativeAtlas(atlas, atlasPath);
+    return;
+  }
   const animations = atlas.meta?.edgefall?.animations ?? {};
   for (const tag of REQUIRED_ANIMATIONS) {
     const animationFrames = animations[tag];
@@ -158,4 +162,120 @@ async function validateAtlas(imagePath, atlasPath, expectedPng) {
     if (!REQUIRED_ANIMATIONS.includes(tag))
       failures.push(`${atlasPath}: undeclared animation tag ${tag}`);
   }
+}
+
+function validateNativeAtlas(atlas, atlasPath) {
+  const data = atlas.meta.edgefall,
+    frames = atlas.frames ?? {},
+    sizes = new Set();
+  const fail = (message) => failures.push(`${atlasPath}: ${message}`);
+  if (
+    data.approval !== "pending" ||
+    !/^[a-z][a-z0-9-]+$/.test(data.sourceId) ||
+    !/^[a-f0-9]{64}$/.test(data.sourceSha256)
+  )
+    fail("invalid native provenance");
+  if (
+    !Array.isArray(data.root) ||
+    data.root.length !== 2 ||
+    !data.root.every((n) => Number.isSafeInteger(n) && n >= 0)
+  )
+    fail("invalid native root");
+  const variants = data.variants ?? [];
+  if (
+    !Array.isArray(variants) ||
+    variants.length < 1 ||
+    variants.length > 4 ||
+    new Set(variants).size !== variants.length ||
+    !variants.every((id) => /^p[1-4]$/.test(id))
+  ) {
+    fail("invalid native palettes");
+    return;
+  }
+  const drawings = data.drawings ?? {},
+    known = new Set();
+  if (!Object.keys(drawings).length) fail("empty native drawings");
+  for (const [id, drawing] of Object.entries(drawings)) {
+    if (!["legs", "upper"].includes(drawing.channel)) fail(`invalid native channel ${id}`);
+    for (const variant of variants) {
+      const name = `${variant}/${id}`,
+        value = frames[name],
+        f = value?.frame;
+      known.add(name);
+      if (
+        !f ||
+        value.rotated !== false ||
+        value.trimmed !== false ||
+        value.sourceSize?.w !== f.w ||
+        value.sourceSize?.h !== f.h ||
+        value.spriteSourceSize?.x !== 0 ||
+        value.spriteSourceSize?.y !== 0 ||
+        value.spriteSourceSize?.w !== f.w ||
+        value.spriteSourceSize?.h !== f.h
+      ) {
+        fail(`native frame must retain its canvas ${name}`);
+        continue;
+      }
+      sizes.add(`${f.w}:${f.h}`);
+      if (data.root?.[0] > f.w || data.root?.[1] > f.h) fail(`root outside ${name}`);
+      const muzzle = drawing.sockets?.muzzle;
+      if (
+        drawing.sockets &&
+        (drawing.channel !== "upper" ||
+          !Array.isArray(muzzle) ||
+          muzzle.length !== 2 ||
+          !muzzle.every(Number.isSafeInteger) ||
+          muzzle[0] + data.root[0] < 0 ||
+          muzzle[0] + data.root[0] > f.w ||
+          muzzle[1] + data.root[1] < 0 ||
+          muzzle[1] + data.root[1] > f.h)
+      )
+        fail(`invalid native socket ${name}`);
+    }
+  }
+  if (sizes.size !== 1 || Object.keys(frames).some((name) => !known.has(name)))
+    fail("native frame inventory differs from declared drawings/palettes");
+  const rectangles = Object.values(frames)
+    .map((value) => value.frame)
+    .filter(Boolean);
+  for (const [index, a] of rectangles.entries()) {
+    if (
+      a.x < 2 ||
+      a.y < 2 ||
+      a.x + a.w + 2 > atlas.meta.size.w ||
+      a.y + a.h + 2 > atlas.meta.size.h
+    )
+      fail("native frame lacks edge padding");
+    for (const b of rectangles.slice(index + 1))
+      if (
+        a.x - 2 < b.x + b.w + 2 &&
+        a.x + a.w + 2 > b.x - 2 &&
+        a.y - 2 < b.y + b.h + 2 &&
+        a.y + a.h + 2 > b.y - 2
+      )
+        fail("native frames or their padding overlap");
+  }
+  const clips = new Set();
+  for (const clip of data.clips ?? []) {
+    if (
+      !clip.id ||
+      clips.has(clip.id) ||
+      !["loop", "hold-last"].includes(clip.mode) ||
+      !Array.isArray(clip.exposures) ||
+      !clip.exposures.length
+    ) {
+      fail("invalid native clip");
+      continue;
+    }
+    clips.add(clip.id);
+    for (const e of clip.exposures)
+      if (
+        !Number.isSafeInteger(e.ticks) ||
+        e.ticks < 1 ||
+        e.ticks > 120 ||
+        drawings[e.frame]?.channel !== clip.channel
+      )
+        fail(`invalid exposure in ${clip.id}`);
+  }
+  if (!clips.size) fail("empty native clips");
 }

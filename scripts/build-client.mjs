@@ -37,6 +37,10 @@ if (process.argv.includes("--lab")) {
     stdio: "inherit",
   });
   await cp(
+    join(root, "art", "source", "hero", "operative.pixels.json"),
+    join(outputDirectory, "art-review", "operative.pixels.json"),
+  );
+  await cp(
     join(root, "content", "engineering", "terrain.png"),
     join(outputDirectory, "engineering-terrain.png"),
   );

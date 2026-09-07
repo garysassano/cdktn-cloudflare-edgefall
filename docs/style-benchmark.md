@@ -1,6 +1,6 @@
 # Edgefall style benchmark
 
-This document records the legacy v2 product's asset prompts and original benchmark. The arcade redesign uses the [W06 source review and replacement benchmark](redesign-evidence/style-v2/README.md); its first concept studies require revision and do not constitute final animation or style approval.
+This document records the legacy v2 product's asset prompts and original benchmark. The arcade redesign uses the [W06 source review and replacement benchmark](redesign-evidence/style-v2/README.md). A native operative candidate now renders separate legs and sidearm aim drawings in the local combat inspector; silhouette and motion revisions, the remaining representative media and human style approval are still required.
 
 Status: **review required before producing the remaining final art and audio**.
 

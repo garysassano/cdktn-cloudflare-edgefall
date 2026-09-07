@@ -66,5 +66,25 @@
         ]
       }
     }
+  ],
+  "nativeDrawings": [
+    {
+      "id": "operative-native-01",
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 13003,
+      "sha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [
+        "hero-key-poses-01"
+      ],
+      "method": "Explicit palette-indexed pixel rows authored by Codex; design reference only, no sampled concept pixels.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    }
   ]
 }

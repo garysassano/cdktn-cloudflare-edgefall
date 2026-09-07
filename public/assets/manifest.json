@@ -24,6 +24,11 @@
       "licence": "CC0-1.0",
       "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "sourceUrl": "https://kenney.nl/assets/music-jingles"
+    },
+    "edgefall-native-operative": {
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "provenance": "Hand-authored indexed-pixel source in art/source/hero/operative.pixels.json, concept design reference hero-key-poses-01. Exported with pnpm art:export. Human style review pending."
     }
   },
   "assets": [
@@ -34,7 +39,11 @@
       "source": "edgefall-original",
       "licence": "Project-original",
       "maxBytes": 3000000,
-      "png": { "width": 1672, "height": 941, "colorType": 2 }
+      "png": {
+        "width": 1672,
+        "height": 941,
+        "colorType": 2
+      }
     },
     {
       "path": "assets/art/rook-benchmark.json",
@@ -51,7 +60,11 @@
       "source": "edgefall-original",
       "licence": "Project-original",
       "maxBytes": 3000000,
-      "png": { "width": 1536, "height": 1024, "colorType": 6 },
+      "png": {
+        "width": 1536,
+        "height": 1024,
+        "colorType": 6
+      },
       "atlas": "assets/art/rook-benchmark.json"
     },
     {
@@ -188,6 +201,28 @@
       "licence": "CC0-1.0",
       "maxBytes": 250000,
       "originalFile": "NES00.ogg"
+    },
+    {
+      "path": "assets/art/hero/operative.png",
+      "bytes": 8124,
+      "sha256": "485f41ed15499983812e072984d3d73f07bbec8c037076015f68c5c11156e018",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 544,
+        "height": 544,
+        "colorType": 6
+      },
+      "atlas": "assets/art/hero/operative.atlas.json"
+    },
+    {
+      "path": "assets/art/hero/operative.atlas.json",
+      "bytes": 24427,
+      "sha256": "511e5ce35e079b5366146fe2bc47d271df04ba47135cfbdd63e0807987f3486a",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 100000
     }
   ]
 }

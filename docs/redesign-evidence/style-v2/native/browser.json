@@ -1,0 +1,314 @@
+{
+  "status": "pass",
+  "baseCommit": "1445125cbc8e02c4d404ce300e217263f1d7bfd6",
+  "browser": "151.0.7922.34",
+  "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7",
+  "bundleSha256": "e7fc59b61454021696ffdcc3e437fd70d3253151bc7b75d3da38dc794e58fdd5",
+  "captures": [
+    {
+      "label": "standing-right",
+      "pixels": 434,
+      "tick": 0,
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "poseId": 10,
+      "x": 45,
+      "y": 200,
+      "flipX": false,
+      "originX": 0.375,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 60,
+        "y": 177
+      },
+      "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+    },
+    {
+      "label": "standing-left",
+      "pixels": 434,
+      "tick": 2,
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "poseId": 10,
+      "x": 42,
+      "y": 200,
+      "flipX": true,
+      "originX": 0.625,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 27,
+        "y": 177
+      },
+      "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+    }
+  ],
+  "run": [
+    {
+      "tick": 1,
+      "legs": "p1/legs-run-0",
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 2,
+      "legs": "p1/legs-run-1",
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 3,
+      "legs": "p1/legs-run-1",
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 4,
+      "legs": "p1/legs-run-2",
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 5,
+      "legs": "p1/legs-run-2",
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 6,
+      "legs": "p1/legs-run-3",
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 7,
+      "legs": "p1/legs-run-3",
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 8,
+      "legs": "p1/legs-run-4",
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 9,
+      "legs": "p1/legs-run-4",
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 10,
+      "legs": "p1/legs-run-5",
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 11,
+      "legs": "p1/legs-run-5",
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 12,
+      "legs": "p1/legs-run-6",
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 13,
+      "legs": "p1/legs-run-6",
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 14,
+      "legs": "p1/legs-run-7",
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 15,
+      "legs": "p1/legs-run-7",
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 16,
+      "legs": "p1/legs-run-0",
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 17,
+      "legs": "p1/legs-run-0",
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 18,
+      "legs": "p1/legs-run-1",
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 19,
+      "legs": "p1/legs-run-1",
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 20,
+      "legs": "p1/legs-run-2",
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 21,
+      "legs": "p1/legs-run-2",
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 22,
+      "legs": "p1/legs-run-3",
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 23,
+      "legs": "p1/legs-run-3",
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 24,
+      "legs": "p1/legs-run-4",
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    }
+  ],
+  "poses": [
+    {
+      "name": "crouch",
+      "frame": {
+        "tick": 1,
+        "variant": "p1",
+        "upperFrame": "p1/upper-crouch",
+        "legsFrame": "p1/legs-crouch",
+        "poseId": 13,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 60,
+          "y": 188
+        },
+        "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+      },
+      "shot": {
+        "x": 15360,
+        "y": 48128
+      }
+    },
+    {
+      "name": "up",
+      "frame": {
+        "tick": 1,
+        "variant": "p1",
+        "upperFrame": "p1/upper-up",
+        "legsFrame": "p1/legs-idle",
+        "poseId": 11,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 164
+        },
+        "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 41984
+      }
+    },
+    {
+      "name": "air-down",
+      "frame": {
+        "tick": 2,
+        "variant": "p1",
+        "upperFrame": "p1/upper-down",
+        "legsFrame": "p1/legs-rise",
+        "poseId": 12,
+        "x": 45,
+        "y": 189,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 189
+        },
+        "sourceSha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 48505
+      }
+    }
+  ],
+  "replayMatches": true,
+  "paletteVariants": 4,
+  "reviewedRunFrames": 8,
+  "reviewBackgrounds": 5,
+  "footage": [
+    {
+      "file": "run-fire-normal.webm",
+      "speed": 1,
+      "endTick": 240,
+      "shots": 30,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    },
+    {
+      "file": "run-fire-quarter.webm",
+      "speed": 0.25,
+      "endTick": 64,
+      "shots": 8,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    }
+  ],
+  "errors": [],
+  "humanReview": "pending",
+  "scope": "Native source and local rendering candidate. Pixel-exact facing/root checks, independent run/fire and cardinal muzzle release, local replay and palette review; final animation quality, other actions/weapons/audio and multiplayer footage remain open."
+}

@@ -1,3 +1,5 @@
+import { startNativeReview } from "./native-review.js";
+
 interface StudyReview {
   id: string;
   file: string;
@@ -99,4 +101,9 @@ async function startReview() {
 }
 startReview().catch((error: unknown) => {
   element("status").textContent = error instanceof Error ? error.message : "Source review failed";
+});
+startNativeReview().catch((error: unknown) => {
+  const message = error instanceof Error ? error.message : "Native review failed";
+  element("native-status").textContent = message;
+  element("native").dataset.error = message;
 });

@@ -1,0 +1,273 @@
+{
+  "baseCommit": "1445125cbc8e02c4d404ce300e217263f1d7bfd6",
+  "scope": "W06 native operative candidate: indexed-pixel export, separate legs/aim, root and muzzle contracts, actual browser rendering/replay, source review and local motion captures. Human style acceptance and complete benchmark remain open.",
+  "sources": [
+    {
+      "file": "README.md",
+      "bytes": 16383,
+      "sha256": "6861ad0df898ee0a4e696f2fdd87bf07594683dec222128c54bb335d3153262f"
+    },
+    {
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 13003,
+      "sha256": "ab78c15de7efccb083c84b37a84e1cc2fa9c5b5baedc25b8a323d70944f7cab7"
+    },
+    {
+      "file": "art/source/provenance.json",
+      "bytes": 3279,
+      "sha256": "e177f9c94280be5b96812dbc2ed0d54c605e9ddd73a3d6a53f8eb3cd8012c434"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/README.md",
+      "bytes": 11211,
+      "sha256": "87fb88d7b60c43b48062d7406b97040dfe3386b3c8a61ee998ef8f821f52f425"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/source-review.json",
+      "bytes": 4620,
+      "sha256": "17938976cb1eee061358be675acebd31a79c20bb90bc2ff6f3c6406994f452ef"
+    },
+    {
+      "file": "docs/style-benchmark.md",
+      "bytes": 8182,
+      "sha256": "94c30707428aab48208bf8dc7117c0fec58b062329df25f2f4aade73ec3a2e1c"
+    },
+    {
+      "file": "package.json",
+      "bytes": 3460,
+      "sha256": "76b99cf49e8d0d923922476e6f439ca73b291a11e77ad2efb149f51034c25971"
+    },
+    {
+      "file": "public/assets/art/hero/operative.atlas.json",
+      "bytes": 24427,
+      "sha256": "511e5ce35e079b5366146fe2bc47d271df04ba47135cfbdd63e0807987f3486a"
+    },
+    {
+      "file": "public/assets/art/hero/operative.png",
+      "bytes": 8124,
+      "sha256": "485f41ed15499983812e072984d3d73f07bbec8c037076015f68c5c11156e018"
+    },
+    {
+      "file": "public/assets/manifest.json",
+      "bytes": 7856,
+      "sha256": "5d95f3d93ee219d72ed1a40d9ca7b34ac294d36387a16b7fba4ce30cca20ff19"
+    },
+    {
+      "file": "scripts/assets/export-native.ts",
+      "bytes": 5688,
+      "sha256": "bc8a3aba40d9f2d256ef5c92a0de872837e5c9bac078f707b28a7908cb768b14"
+    },
+    {
+      "file": "scripts/build-client.mjs",
+      "bytes": 2163,
+      "sha256": "de56a337497b664d1d0165f6d8febdc9be3020cee41aefa5e886e94aef438c68"
+    },
+    {
+      "file": "scripts/lib/native-art.ts",
+      "bytes": 7103,
+      "sha256": "2f892a12ecf36857a88e7d2e63ccc7ff489d45acc6b7646d26157f551214d8f5"
+    },
+    {
+      "file": "scripts/validate-assets.mjs",
+      "bytes": 9552,
+      "sha256": "01db1c39c6f8f72185fdea721e63bd4de2c123004339628da4891d2197de56e3"
+    },
+    {
+      "file": "scripts/verify-native-operative.mjs",
+      "bytes": 12610,
+      "sha256": "027777436e8555474bb827fb75e49af7c4131458abad64ea013a1f66571a557e"
+    },
+    {
+      "file": "src/client/art-review.html",
+      "bytes": 7022,
+      "sha256": "702dd109278f1c1f190427056a2f2e65a33aecc1445869977f40bbcab00d0cc9"
+    },
+    {
+      "file": "src/client/art-review.ts",
+      "bytes": 4968,
+      "sha256": "62345a2bdb3f6a3d01301900b7348fe319a2fb3ed6359d02b6885948302fd70f"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "bytes": 3644,
+      "sha256": "b4504dc7ed137c048aa4b3c13fffc8c944347a9f02c47e61bd9b10671efe0b83"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "bytes": 16331,
+      "sha256": "bc7562ca73ddb916f8630e9a786603e32bc7212c95d017d2dfcfa28a037edd75"
+    },
+    {
+      "file": "src/client/native-review.ts",
+      "bytes": 4856,
+      "sha256": "aacac0b769abfffe366a8cf7c8a42e2a23a791f0a63a104b7566ac6820402898"
+    },
+    {
+      "file": "src/shared/animation/native.ts",
+      "bytes": 1741,
+      "sha256": "72d0a1b911b4208962183a836563422fabecda647b26498f6953136176acf365"
+    },
+    {
+      "file": "src/shared/animation/operative.ts",
+      "bytes": 2486,
+      "sha256": "4d9f6b2f64cd7218a3ccd6f4dd507aa380a0b4a19878a42d9f9a6e094ec2a76b"
+    },
+    {
+      "file": "test/native-art.test.ts",
+      "bytes": 7299,
+      "sha256": "301c6b3d1ec4921348dff6b187befedb77ef9fccdcffc491b753462f2b588742"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/style-v2/native-frames.json",
+      "bytes": 6953,
+      "sha256": "65fd4f151102021963d9842b69bbbc10d5b75c1a8bbb9160cb7ee4675006325a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/air-down-debug.png",
+      "bytes": 3034,
+      "sha256": "63e630c6a84cfc9f9348bb48b4ad5e5ae6cb3d9f0956d0158505bf9168632b2f"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/air-down.png",
+      "bytes": 2945,
+      "sha256": "d62a169c6185642de764c278a7faae46e4fa7b27ef431819ec126ebe68568837"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/browser.json",
+      "bytes": 6888,
+      "sha256": "dcbf48ac1493c376cdac23026805d920d6f9d56e7d32a172bc98d9f4b3218c25"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/browser.log.gz",
+      "bytes": 314,
+      "sha256": "6f12176ee801269c4fd4e1afcd14b714b06d15eabd06c50964b03cc09b8e7e78"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/check.log.gz",
+      "bytes": 1447,
+      "sha256": "05c3ef75ce3f621b1e4bc4341601e0c7ed488b8b5cd25e3e07bcc210393b6959"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/combat-browser.json.gz",
+      "bytes": 18884,
+      "sha256": "9c2aeef23100c2034d6b1e9ebd32121903e5652d5f163b9d3855cf5407f6da85"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/combat-browser.log.gz",
+      "bytes": 128,
+      "sha256": "78a10a4c6cc51292429cc6ebd642ce874d5a79915ad8af27516c5599c817723b"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/concept-browser.json",
+      "bytes": 1119,
+      "sha256": "7a3b15e41f11a20c5e73a02e7dc555daa0bac921ec35aaa8f9ddb16f864a1e34"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/concept-browser.log.gz",
+      "bytes": 84,
+      "sha256": "77f155120f4b1b1015a8d7ae941bf14a82283a3a7b7d90c0344f65bde282bd2a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/crouch.png",
+      "bytes": 2953,
+      "sha256": "f7132b02c7bc0ecb8208416b8b57345361b5fd79d17a90a1d2d1e59c191589c6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/four-slots.png",
+      "bytes": 3655,
+      "sha256": "c3c80a2df6397f1c735497b4701c349037bca9bdd51d10f350863cd53e42fa63"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/palettes-1x.png",
+      "bytes": 2942,
+      "sha256": "48761b961edcf75de963bce99e66d41428a109d992e1fbfd9fd7269c15ff6349"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/palettes-4x.png",
+      "bytes": 4556,
+      "sha256": "bcb33ba0f70e2d99aaf7a3b408561110de0f51948906ad5780b700d6b7b97831"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/production-isolation.json",
+      "bytes": 347,
+      "sha256": "e0883f3ed64e795700051e65f81c1512abf82faaa25a1d9affd8846d132da136"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/recording.json",
+      "bytes": 4333,
+      "sha256": "6e2b1d18dc003ff4732e896d23b20d014892c036e4d1cf8e47429a25fecd60fe"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-0.png",
+      "bytes": 3101,
+      "sha256": "6944442a77602d031e02defb2a4951467e908f990a8165ec2d79316ebe342e7d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-1.png",
+      "bytes": 3084,
+      "sha256": "2b47cfb9541a93ab8ddf81d92cc319efbdea63c0fc03f21e551341b1502ee918"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-2.png",
+      "bytes": 3049,
+      "sha256": "d11b10b01814b4de05db6a71d1fd7a79d75e936193b3f659c010995bde2f3a83"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-3.png",
+      "bytes": 3059,
+      "sha256": "52572ec5bba013a2c8bc12112f13a6573f640e8392e8421c50ca5e37d195aca6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-4.png",
+      "bytes": 3119,
+      "sha256": "c6ee5137e21547b38413ed918b6b9cc24dc1f220039baec1fcec34271635f0a0"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-5.png",
+      "bytes": 3082,
+      "sha256": "d5e10005cc1d5328c5844c5002dd78dfdc8556bc463e026cd68435c3607e8851"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-6.png",
+      "bytes": 3037,
+      "sha256": "63a870b99b6dac03df998ad2043c975139d98e6e0ce9bde266e06f7929902a8e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-7.png",
+      "bytes": 3083,
+      "sha256": "707047362861a4cf5b6d001a69dec0fff2b05ddba25f7b05a5d5fc3ef9698a6d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-fire-normal.webm",
+      "bytes": 257696,
+      "sha256": "2ba6e5e0804f2e20385ebb8cc42569c7bca986c4ba006347756a8b2c9109a22a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/run-fire-quarter.webm",
+      "bytes": 229531,
+      "sha256": "72aefcf50bd7f5cdecee82fb996b959a8b2ff02cd21fe60fae38e563f6387000"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/standing-left.png",
+      "bytes": 3002,
+      "sha256": "5d0a6938d70d77f896a7ec3549eba5ecb185154d6fb3b3323f86a70a7e8b2510"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/standing-right.png",
+      "bytes": 3004,
+      "sha256": "dfb2a62dc4a0b9158b098ec2d9e3e8dd50a1f38e112124a85aa3fe33360ab2a0"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/up.png",
+      "bytes": 2896,
+      "sha256": "a634e97d6891e4c17080d1f23d8da8841667699b960f2804f0091912c5f1ee55"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native/video-metadata.json",
+      "bytes": 658,
+      "sha256": "ffbda488cb33eb7476a736a0b981fef7624ee4743fad9c5d8ec6f0b43143f3aa"
+    }
+  ]
+}

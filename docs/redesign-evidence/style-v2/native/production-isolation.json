@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "omitted": [
+    "art-review.html",
+    "art-review.js",
+    "art-review",
+    "combat-lab.html",
+    "combat-lab.js"
+  ],
+  "candidateAtlas": "Present as a registered static asset; ordinary v2 client does not select native drawings.",
+  "clientSha256": "0ebbc88619b3f7fbf63b64fe4dfedbdba7cd35c149032807caafd50f32eb8ea2"
+}

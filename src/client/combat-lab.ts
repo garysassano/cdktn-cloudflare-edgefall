@@ -27,6 +27,8 @@ import {
 } from "../game/labs/combat-content.js";
 import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
+import type { NativeAtlas } from "../shared/animation/native.js";
+import { operativePresentation } from "../shared/animation/operative.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -47,6 +49,7 @@ let state = createCombatLab("range"),
   interact = false,
   fire = false;
 const keys = new Set<string>();
+let nativeFrames: Array<ReturnType<typeof operativePresentation>> = [];
 const bindings: Record<string, number> = {
   ArrowLeft: Held.Left,
   KeyA: Held.Left,
@@ -215,17 +218,40 @@ element<HTMLInputElement>("import").onchange = async (event) => {
 };
 class CombatScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Graphics;
+  private atlas?: NativeAtlas;
+  private operative: Array<{ legs: Phaser.GameObjects.Image; upper: Phaser.GameObjects.Image }> =
+    [];
   constructor() {
     super("combat-lab");
   }
+  preload() {
+    this.load.atlas(
+      "operative",
+      "/assets/art/hero/operative.png",
+      "/assets/art/hero/operative.atlas.json",
+    );
+    this.load.json("operative-metadata", "/assets/art/hero/operative.atlas.json");
+  }
   create() {
-    this.overlay = this.add.graphics();
+    this.atlas = this.cache.json.get("operative-metadata") as NativeAtlas;
+    for (let slot = 0; slot < 4; slot++)
+      this.operative.push({
+        legs: this.add
+          .image(0, 0, "operative", `p${slot + 1}/legs-idle`)
+          .setDepth(1)
+          .setVisible(false),
+        upper: this.add
+          .image(0, 0, "operative", `p${slot + 1}/upper-horizontal`)
+          .setDepth(1)
+          .setVisible(false),
+      });
+    this.overlay = this.add.graphics().setDepth(2);
     inspect();
   }
   update(_time: number, delta: number) {
     if (running) {
-      accumulator += delta;
-      if (accumulator > 250) {
+      accumulator += delta * Number(element<HTMLSelectElement>("speed").value);
+      if (delta > 250 || accumulator > 250) {
         pause();
         inspect("presentation stalled; recording paused");
       }
@@ -238,6 +264,24 @@ class CombatScene extends Phaser.Scene {
     const g = this.overlay;
     if (!g) return;
     g.clear();
+    nativeFrames = state.players.map((player) =>
+      this.atlas && element<HTMLInputElement>("native-operative").checked
+        ? operativePresentation(player, state.tick, this.atlas)
+        : null,
+    );
+    for (const [slot, images] of this.operative.entries()) {
+      const drawing = nativeFrames[slot];
+      for (const [channel, image] of Object.entries(images)) {
+        image.setVisible(Boolean(drawing));
+        if (!drawing) continue;
+        image
+          .setFrame(channel === "legs" ? drawing.legsFrame : drawing.upperFrame)
+          .setOrigin(drawing.originX, drawing.originY)
+          .setFlipX(drawing.flipX)
+          .setPosition(drawing.x, drawing.y)
+          .setScale(1);
+      }
+    }
     for (const target of combatEndTerrain(state.scenario, state.tick, state.props)) {
       g.fillStyle(0x526175);
       g.fillRect(
@@ -248,6 +292,8 @@ class CombatScene extends Phaser.Scene {
       );
     }
     for (const player of state.players) {
+      if (nativeFrames[player.slot] && !element<HTMLInputElement>("player-overlays").checked)
+        continue;
       const shape = COMBAT_SHAPES.get(player.body.shapeId);
       if (!shape) continue;
       const rect = worldRect(player.body, shape.rect, player.facing);
@@ -419,5 +465,10 @@ new Phaser.Game({
   banner: false,
 });
 Object.assign(globalThis, {
-  combatLab: { state: () => structuredClone(state), recording, running: () => running },
+  combatLab: {
+    state: () => structuredClone(state),
+    recording,
+    running: () => running,
+    nativeFrames: () => structuredClone(nativeFrames),
+  },
 });
