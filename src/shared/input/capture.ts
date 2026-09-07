@@ -8,7 +8,12 @@ import {
   HELD_MASK,
   type InputCommand,
 } from "../../game/input/types.js";
-import { MAX_COMMANDS, MAX_EDGES_PER_COMMAND, MAX_QUEUED_COMMANDS } from "../protocol/limits.js";
+import {
+  MAX_CLIENT_LEAD_TICKS,
+  MAX_COMMANDS,
+  MAX_EDGES_PER_COMMAND,
+  MAX_QUEUED_COMMANDS,
+} from "../protocol/limits.js";
 import { ProtocolError } from "../protocol/schema.js";
 
 export interface InputBinding {
@@ -18,6 +23,13 @@ export interface InputBinding {
 export const MAX_CAPTURE_EDGES = 64;
 export const INPUT_FRAME_RATE = 30;
 export const INPUT_FRAME_BURST = 10;
+
+/** Admission uses the issued initial offset, independently of later prediction remapping. */
+export function inputSequenceLimit(initialServerTick: number, snapshotTick: number): number {
+  integer(initialServerTick, 0, COUNTER_LIMIT - 1, "input baseline tick");
+  integer(snapshotTick, initialServerTick, COUNTER_LIMIT - 1, "validated snapshot tick");
+  return Math.min(COUNTER_LIMIT - 1, snapshotTick + MAX_CLIENT_LEAD_TICKS) - initialServerTick;
+}
 
 /** Fresh connection/control baseline only. Capture ticks and transport flushing are independent. */
 export class InputCapture {
@@ -131,9 +143,15 @@ export class InputCapture {
     this.#commands.push(command);
     return structuredClone(command);
   }
-  /** 20 Hz normal batches; edges flush on their capture tick within a 30 Hz/burst-10 budget. */
-  takeBatch(nowMs: number, force = false): InputCommand[] | null {
+  /** The caller supplies the last validated snapshot's sequence limit; force only bypasses batching delay. */
+  takeBatch(nowMs: number, throughSequence: number, force = false): InputCommand[] | null {
     this.#guard();
+    if (
+      !Number.isSafeInteger(throughSequence) ||
+      throughSequence < 0 ||
+      throughSequence >= COUNTER_LIMIT
+    )
+      this.#reject("Invalid input send window");
     if (!Number.isFinite(nowMs) || nowMs < 0 || nowMs < (this.#lastBudgetTime ?? 0))
       this.#reject("Input transport clock invalid/regressed");
     if (this.#lastBudgetTime !== null)
@@ -143,10 +161,13 @@ export class InputCapture {
       );
     this.#lastBudgetTime = nowMs;
     if (!this.#commands.length) return null;
-    const batch = this.#commands.slice(0, MAX_COMMANDS);
+    const batch = this.#commands
+      .slice(0, MAX_COMMANDS)
+      .filter((command) => command.sequence <= throughSequence);
+    if (!batch.length) return null;
     const due =
       force ||
-      batch.length === MAX_COMMANDS ||
+      this.#commands.length >= MAX_COMMANDS ||
       batch.some((command) => command.edges.length > 0) ||
       (this.#lastSendTime !== null && nowMs - this.#lastSendTime >= 50);
     if (!due || this.#tokens < 1) return null;

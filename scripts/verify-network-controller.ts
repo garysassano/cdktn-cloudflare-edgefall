@@ -222,22 +222,9 @@ const output = hmgMode
                           : recoveryMode
                             ? "dist/network-controller-recovery-evidence"
                             : "dist/network-controller-evidence";
+// This generated directory belongs to this invocation, including scenario-specific screenshots.
+await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
-// Each invocation owns its results; a failed run must never leave an older pass report.
-for (const name of [
-  "report.json",
-  "movement-report.json",
-  "phase-report.json",
-  "loading-report.json",
-  "failure.json",
-  "failed-clients.json",
-  "failure.png",
-  "four-player-controller.png",
-  "diagnostics.json",
-  "area-active.png",
-  "area-finished.png",
-])
-  await rm(`${output}/${name}`, { force: true });
 execFileSync("node", ["scripts/build-client.mjs", "--lab"], { stdio: "pipe" });
 const root = resolve("dist/client");
 const server = createServer(async (req, res) => {
@@ -278,6 +265,38 @@ try {
     restart: () => Promise<string>,
   ) => {
     const workerBundleSha256 = workerHash;
+    const sources = [];
+    for (const file of [
+      "scripts/verify-network-controller.ts",
+      "scripts/lib/local-worker.ts",
+      "scripts/lib/room-host-control.ts",
+      ...(hmgMode ? ["scripts/lib/verify-hmg-combat.ts"] : []),
+    ])
+      sources.push({
+        file,
+        sha256: createHash("sha256")
+          .update(await readFile(file))
+          .digest("hex"),
+      });
+    await writeFile(
+      `${output}/execution.json`,
+      `${JSON.stringify(
+        {
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          browser: browser.version(),
+          sources,
+          scope:
+            "Captured before opening clients; retained for pass or failure. Working-tree bundle hashes do not assert a clean base commit. Listed verifier sources cover the entry, Worker launcher, host control and HMG helper when selected.",
+        },
+        null,
+        2,
+      )}\n`,
+    );
     let base = url;
     const openPages = () =>
       Promise.all(

@@ -24,7 +24,7 @@ describe("independent input capture", () => {
     const command = input.capture(0);
     expect(command.held).toBe(0);
     expect(command.edges).toEqual([{ kind: Edge.FireOnset, id: 1 }]);
-    expect(input.takeBatch(16)).toEqual([command]);
+    expect(input.takeBatch(16, input.sequence)).toEqual([command]);
     expect(input.capture(0).edges).toEqual([]);
   });
   it("keeps aliases held until all physical sources release", () => {
@@ -64,7 +64,7 @@ describe("independent input capture", () => {
       packetSequence: 1,
       snapshotAck: 0,
       eventAck: 0,
-      commands: input.takeBatch(33) ?? [],
+      commands: input.takeBatch(33, input.sequence) ?? [],
     };
     expect(decodeInputBatch(encodeInputBatch(batch), { runEpoch: 1, connectionEpoch: 1 })).toEqual(
       batch,
@@ -79,7 +79,7 @@ describe("independent input capture", () => {
     const frames = [];
     for (let tick = 1; tick <= 60; tick++) {
       input.capture(0);
-      const batch = input.takeBatch((tick * 1000) / 60);
+      const batch = input.takeBatch((tick * 1000) / 60, input.sequence);
       if (batch) frames.push(batch);
     }
     expect(frames).toHaveLength(20);
@@ -95,7 +95,7 @@ describe("independent input capture", () => {
     input.press("jump", { edge: Edge.Jump });
     input.neutralize();
     expect(input.capture(0)).toMatchObject({ held: 0, edges: [] });
-    expect(input.takeBatch(20, true)?.[0]).toEqual(before);
+    expect(input.takeBatch(20, input.sequence, true)?.[0]).toEqual(before);
     input.press("jump", { edge: Edge.Jump });
     expect(input.capture(0).edges).toEqual([{ kind: Edge.Jump, id: 2 }]);
   });
@@ -103,13 +103,13 @@ describe("independent input capture", () => {
     const input = new InputCapture(1);
     for (let i = 0; i < 10; i++) {
       input.capture(0);
-      expect(input.takeBatch(0, true)).toHaveLength(1);
+      expect(input.takeBatch(0, input.sequence, true)).toHaveLength(1);
     }
     input.press("jump", { edge: Edge.Jump });
     input.capture(0);
-    expect(input.takeBatch(0, true)).toBeNull();
+    expect(input.takeBatch(0, input.sequence, true)).toBeNull();
     expect(input.pending).toBe(1);
-    expect(input.takeBatch(34)?.[0]?.edges).toEqual([{ kind: Edge.Jump, id: 1 }]);
+    expect(input.takeBatch(34, input.sequence)?.[0]?.edges).toEqual([{ kind: Edge.Jump, id: 1 }]);
   });
   it("fails explicitly on edge or command overflow without evicting captured history", () => {
     const edges = new InputCapture(1);
@@ -128,8 +128,8 @@ describe("independent input capture", () => {
   });
   it("does not allow transport-clock regression to refill tokens", () => {
     const input = new InputCapture(1);
-    input.takeBatch(50);
-    expect(() => input.takeBatch(49)).toThrow(/clock/);
+    input.takeBatch(50, input.sequence);
+    expect(() => input.takeBatch(49, input.sequence)).toThrow(/clock/);
     expect(input.requiresResync).toBe(true);
   });
   it("does not expose mutable commands retained for later sending", () => {
@@ -140,6 +140,9 @@ describe("independent input capture", () => {
     const edge = local.edges[0];
     if (!edge) throw new Error("Missing captured edge");
     edge.id = 9;
-    expect(input.takeBatch(0)?.[0]).toMatchObject({ held: 0, edges: [{ kind: Edge.Jump, id: 1 }] });
+    expect(input.takeBatch(0, input.sequence)?.[0]).toMatchObject({
+      held: 0,
+      edges: [{ kind: Edge.Jump, id: 1 }],
+    });
   });
 });

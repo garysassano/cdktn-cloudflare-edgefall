@@ -1,0 +1,132 @@
+{
+  "status": "pass",
+  "scope": "Rebuilt portable and diagnostic Worker bundles, final HMG/controller client bundles and executed verifier sources match retained reports. Earlier failed verifier versions are retained explicitly. Admission, protocol limits, room scheduler and diagnostic Worker source match the base commit. This is artifact alignment, not a new behavioral or timing test.",
+  "verified": [
+    {
+      "name": "contracts",
+      "report": "docs/redesign-evidence/W04-input-flow-contracts.json.gz",
+      "sourceSha256": "5210006585985f429d2cae9f6140171a0a4788bbb3e7bb40417a5315031851f8",
+      "bundleSha256": "6b94605b0b8bdd40495b523ac8dddbfd42c2ab1c66fd24b03f0ee0b042aaf5d8",
+      "matched": true
+    },
+    {
+      "name": "networkWorker",
+      "executions": ["hmg", "controller"],
+      "sourceSha256": "2698aad8a5490ef1a475703d6928fca81f57005a851afc2791a924ca153d8d08",
+      "bundleSha256": "98fb4d5e447af0410875f683e9bbb1b74e64bc5b02b1b1eb67959068edb5ad59",
+      "matched": true
+    },
+    {
+      "name": "hmgClientAndVerifier",
+      "report": "docs/redesign-evidence/W04-input-flow-hmg-network.json.gz",
+      "bundleSha256": "6d915a65530425723bac33962d1f0dfb0f5db85a998fc4cdcbc26c5e3592726d",
+      "verifierSources": [
+        {
+          "file": "scripts/verify-network-controller.ts",
+          "sha256": "0892574607fc2b2624facd8ea9b8d545aef4f3b167b0dc78803007bf375b3ac2"
+        },
+        {
+          "file": "scripts/lib/local-worker.ts",
+          "sha256": "a65fe22c46ef20378d8cc543180842ca507633b4c43cb1e9fbd42c0bb4e66de1"
+        },
+        {
+          "file": "scripts/lib/room-host-control.ts",
+          "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+        },
+        {
+          "file": "scripts/lib/verify-hmg-combat.ts",
+          "sha256": "92a5b72594f1ac374796c3ca8a9823183369d09d22f97f01168b3d4943f10b45"
+        }
+      ],
+      "matched": true
+    },
+    {
+      "name": "controllerClientAndVerifier",
+      "report": "docs/redesign-evidence/W04-input-flow-controller-network.json.gz",
+      "bundleSha256": "6d915a65530425723bac33962d1f0dfb0f5db85a998fc4cdcbc26c5e3592726d",
+      "verifierSources": [
+        {
+          "file": "scripts/verify-network-controller.ts",
+          "sha256": "0892574607fc2b2624facd8ea9b8d545aef4f3b167b0dc78803007bf375b3ac2"
+        },
+        {
+          "file": "scripts/lib/local-worker.ts",
+          "sha256": "a65fe22c46ef20378d8cc543180842ca507633b4c43cb1e9fbd42c0bb4e66de1"
+        },
+        {
+          "file": "scripts/lib/room-host-control.ts",
+          "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+        }
+      ],
+      "matched": true
+    }
+  ],
+  "earlierSources": [
+    {
+      "attempt": "first",
+      "original": "scripts/verify-network-controller.ts",
+      "retained": "docs/redesign-evidence/W04-input-flow-first-network-verifier.ts.gz",
+      "sha256": "d901d7767be7da3ca82bb13ec8e1422bcd02676698fba931b062611399cdced6"
+    },
+    {
+      "attempt": "first",
+      "original": "scripts/lib/local-worker.ts",
+      "retained": "scripts/lib/local-worker.ts",
+      "sha256": "a65fe22c46ef20378d8cc543180842ca507633b4c43cb1e9fbd42c0bb4e66de1"
+    },
+    {
+      "attempt": "first",
+      "original": "scripts/lib/room-host-control.ts",
+      "retained": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "attempt": "first",
+      "original": "scripts/lib/verify-hmg-combat.ts",
+      "retained": "docs/redesign-evidence/W04-input-flow-second-hmg-verifier.ts.gz",
+      "sha256": "1398c3c7dffd4458605e5b05ea3595b4fa0fa8561d8abcd1185521d42255f23f"
+    },
+    {
+      "attempt": "second",
+      "original": "scripts/verify-network-controller.ts",
+      "retained": "scripts/verify-network-controller.ts",
+      "sha256": "0892574607fc2b2624facd8ea9b8d545aef4f3b167b0dc78803007bf375b3ac2"
+    },
+    {
+      "attempt": "second",
+      "original": "scripts/lib/local-worker.ts",
+      "retained": "scripts/lib/local-worker.ts",
+      "sha256": "a65fe22c46ef20378d8cc543180842ca507633b4c43cb1e9fbd42c0bb4e66de1"
+    },
+    {
+      "attempt": "second",
+      "original": "scripts/lib/room-host-control.ts",
+      "retained": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "attempt": "second",
+      "original": "scripts/lib/verify-hmg-combat.ts",
+      "retained": "docs/redesign-evidence/W04-input-flow-second-hmg-verifier.ts.gz",
+      "sha256": "1398c3c7dffd4458605e5b05ea3595b4fa0fa8561d8abcd1185521d42255f23f"
+    }
+  ],
+  "unchangedGuards": [
+    {
+      "file": "src/shared/protocol/input-stream.ts",
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "b387e46bc2a074484e17d3f18a9d9f5de0a7a95c748e2bc405adaee5625724d6"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "4f99f761d21d8cb1da019213862c8da387a86e94e052cecbac3aaa3d93371ad1"
+    }
+  ]
+}

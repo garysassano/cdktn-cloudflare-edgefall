@@ -21,7 +21,7 @@ export function inputCaptureProof() {
     if (tick === 20) input.press("left", { held: Held.Left });
     if (tick === 25) input.neutralize();
     input.capture(0);
-    const commands = input.takeBatch((tick * 1000) / 60);
+    const commands = input.takeBatch((tick * 1000) / 60, input.sequence);
     if (commands) {
       const packet = encodeInputBatch({
         runEpoch: 1,
@@ -34,7 +34,7 @@ export function inputCaptureProof() {
       frames.push(decodeInputBatch(packet, { runEpoch: 1, connectionEpoch: 1 }).commands);
     }
   }
-  const remainder = input.takeBatch(1001, true);
+  const remainder = input.takeBatch(1001, input.sequence, true);
   if (remainder) frames.push(remainder);
   const commands = frames.flat();
   if (commands.length !== 60 || input.pending !== 0) throw new Error("Lost captured command");

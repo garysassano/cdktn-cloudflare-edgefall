@@ -39,7 +39,7 @@ describe("controller room recovery boundary", () => {
           packetSequence: ++packetSequence,
           snapshotAck: 0,
           eventAck: 0,
-          commands: capture.takeBatch(0, true) ?? [],
+          commands: capture.takeBatch(0, capture.sequence, true) ?? [],
         }),
         0,
         0,

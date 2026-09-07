@@ -18,6 +18,7 @@ import { footCombatProof } from "./foot-combat-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { hmgProof } from "./hmg-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
+import { inputFlowProof } from "./input-flow-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
@@ -122,6 +123,7 @@ export async function contractProof() {
     prediction: predictionProof(),
     mappedPrediction: mappedPredictionProof(),
     inputCapture: inputCaptureProof(),
+    inputFlow: [inputFlowProof(), inputFlowProof(720)],
     routedEnemy: routedEnemyProof(),
     controllerBoundaries: controllerBoundaryProof(),
     restoredController: controllerProof(599),

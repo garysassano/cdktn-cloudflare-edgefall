@@ -1,0 +1,23 @@
+{
+  "scope": "Read-only host inspection on 2026-09-07. Configuration was not changed; these observations do not identify the cause of the captured backward wall-clock steps.",
+  "kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "clocksource": "tsc",
+  "availableClocksources": [
+    "tsc",
+    "hyperv_clocksource_tsc_page",
+    "hyperv_clocksource_msr",
+    "acpi_pm"
+  ],
+  "NTP": true,
+  "NTPSynchronized": true,
+  "services": {
+    "systemd-timesyncd": "active",
+    "chrony": "inactive",
+    "chronyd": "inactive"
+  },
+  "timesyncdJournal": {
+    "from": "2026-09-07 15:20:00 Europe/Berlin",
+    "through": "2026-09-07 16:15:00 Europe/Berlin",
+    "result": "No entries"
+  }
+}

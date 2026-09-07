@@ -27,7 +27,7 @@ import {
   stepNetworkController,
 } from "../shared/diagnostics/controller-workload.js";
 import { probeContext, roomWorkloadHash } from "../shared/diagnostics/room-workload.js";
-import { type InputBinding, InputCapture } from "../shared/input/capture.js";
+import { type InputBinding, InputCapture, inputSequenceLimit } from "../shared/input/capture.js";
 import { ControllerPrediction } from "../shared/prediction/controller.js";
 import { decodeInitialSnapshot } from "../shared/protocol/baseline.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
@@ -286,6 +286,8 @@ async function startLab() {
       ),
       sequence: input?.sequence ?? 0,
       unsent: input?.pending ?? 0,
+      sendThroughSequence:
+        welcome && snapshot ? inputSequenceLimit(welcome.initialServerTick, snapshot.tick) : 0,
       held: input?.held ?? 0,
       pendingEdges: input?.pendingEdges ?? 0,
       inputClock: inputClock?.state ?? null,
@@ -365,8 +367,14 @@ async function startLab() {
     trace("capture", command.sequence, command.sequence, prediction.tick);
   }
   function flush(force = false) {
-    const commands = input?.takeBatch(performance.now(), force);
+    if (!welcome || !snapshot || error) return false;
+    const commands = input?.takeBatch(
+      performance.now(),
+      inputSequenceLimit(welcome.initialServerTick, snapshot.tick),
+      force,
+    );
     if (commands) sendCommands(commands);
+    return Boolean(commands);
   }
   function startCaptureClock() {
     if (inputClock || !input || inputStopped) return;
@@ -595,8 +603,11 @@ async function startLab() {
       if (initial && !connection.ready(generation)) return;
       if (initial && mode === "combat" && incoming.roomMode === "playing") prepareInput();
       if (prepared && incoming.roomMode === "playing") {
-        if (inputStopped) sendCommands([]);
-        else startCaptureClock();
+        // Snapshot receipt releases transport credit; capture keeps its independent 60 Hz clock.
+        const sent = flush(inputStopped);
+        if (inputStopped) {
+          if (!sent) sendCommands([]);
+        } else startCaptureClock();
       } else if (["lobby", "intermission", "completed"].includes(incoming.roomMode)) {
         inputClock?.stop();
         input?.neutralize();
@@ -908,12 +919,11 @@ async function startLab() {
         Object.assign(eventFaults, faults);
       },
       stopInput: () => {
-        // Send already captured commands before suspending to preserve sequence identity.
-        flush(true);
-        if (input?.pending) throw new Error("Input stop could not flush captured commands");
+        // Stop new capture; retained commands drain within authority's window on later snapshots.
         inputStopped = true;
         inputClock?.stop();
         neutral();
+        flush(true);
       },
     },
   });

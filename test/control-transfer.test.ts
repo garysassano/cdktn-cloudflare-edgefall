@@ -134,7 +134,7 @@ describe("atomic controller ownership handoff", () => {
       held: Held.Fire,
       edges: [],
     });
-    expect(capture.takeBatch(0, true)).toEqual([old, fresh]);
+    expect(capture.takeBatch(0, capture.sequence, true)).toEqual([old, fresh]);
     capture.release("grenade");
     capture.press("grenade", { edge: Edge.Grenade });
     expect(capture.capture(0).edges).toEqual([{ kind: Edge.Grenade, id: 2 }]);

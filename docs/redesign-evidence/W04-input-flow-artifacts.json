@@ -1,0 +1,702 @@
+{
+  "baseCommit": "2bed6cf7a61f939e3b3ad01368798aa9b75a887c",
+  "protocol": "3.8",
+  "archiveFormat": 9,
+  "combatRecordingFormat": 6,
+  "sourceScope": "Portable and diagnostic Worker bundle inputs, changed/new implementation and documentation, verifier and toolchain inputs. Required check passes 558 tests. Two input-flow boundary fixtures agree in Node/Chromium/workerd; four keyboards pass the HMG sweep through tick 160, and the controller stop/lease regression passes through room tick 424. Final bundles and verifier sources match captured hashes. The earlier clock failure, verifier timing-history mistake, and executed earlier verifier sources are retained. Host-clock and full impairment/deployed timing gates remain open.",
+  "sources": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "README.md",
+      "sha256": "1d822bf42749ec5b363e6f11815df99cd94cf886af24cd43941ec50fecd16d5e"
+    },
+    {
+      "file": "docs/combat-checkpoint-v9.md",
+      "sha256": "3f965547103776aef9853ab9f5e20682f0a66a58e74ba10e19810799d9345aa8"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "b07a647244986c8c9c5b2f99e7c5a0fa365b71e3e719fd6c8476d05292c4a331"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow.md",
+      "sha256": "fa76a93e100ebb2dd6ef16630510f874e360404f372ab89d01be28991567a6e1"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-acceptance-audit.md",
+      "sha256": "d6378995f1a4121bfb158b024ce055309ddf06700eff690921ea8fe5c5f24f7e"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-hmg-sweep.md",
+      "sha256": "a35b8c0c7351f8f49cd318fa7ff92e2315bc8987c05cf71ddf82b70da2e42bdd"
+    },
+    {
+      "file": "mise.toml",
+      "sha256": "aced6b92b1da65509aa7289e8ad83161edee794339f1d1f2582bdd42f22bf494"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/build-client.mjs",
+      "sha256": "a8cde22b759b108aaf524c391d5c662fa5027cf6e12e011d1cee6a6688570b06"
+    },
+    {
+      "file": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "file": "scripts/lib/verify-hmg-combat.ts",
+      "sha256": "92a5b72594f1ac374796c3ca8a9823183369d09d22f97f01168b3d4943f10b45"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "e3b504b0ac08cdc7d624a8d4846a9a79a7f32b9fecf015abf8899297ec78501a"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "0892574607fc2b2624facd8ea9b8d545aef4f3b167b0dc78803007bf375b3ac2"
+    },
+    {
+      "file": "src/client/network-lab.html",
+      "sha256": "b5359643584f5d21312de2ee5477e0163a3e452dc06c0776a7416df17e1d2e7b"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "197370d38385f85434bfc5b831297f8bfa10158dfce942f44dd3a6846c9a0273"
+    },
+    {
+      "file": "src/game/actors/grounded.ts",
+      "sha256": "2e0f8b1f58b643aaa4a99b35bc77fcddfdd658eaa780d0e5ee77f8ec973d8d26"
+    },
+    {
+      "file": "src/game/actors/rifle.ts",
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "file": "src/game/actors/routed.ts",
+      "sha256": "6b7f245a326636844f1bf4c8ae70333ebf69f469af3c96ea4afc119a30c742e3"
+    },
+    {
+      "file": "src/game/actors/shield.ts",
+      "sha256": "b2b6aa50db411ae88f6272e2f149e5b79f2a85806e290967d8a140ffb1bfe2ac"
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "sha256": "1c9e376c4ba9a56213afc21fcc51a2aa3fc89d38b0f72d53e3373480d5e43905"
+    },
+    {
+      "file": "src/game/campaign/lifecycle.ts",
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "file": "src/game/combat/area-attack.ts",
+      "sha256": "2b7826fb8db923257a0d6bcd905db994206f69d25a688e496d01e00855f2eebc"
+    },
+    {
+      "file": "src/game/combat/firearm-aim.ts",
+      "sha256": "bb03a22db77438c3a90459aff13fbcf183fafa18bb2df8740eb2f11371b59177"
+    },
+    {
+      "file": "src/game/combat/firearm.ts",
+      "sha256": "fba5d427a50fbf0f54968155cdae3ee42849ac18df2cf7ec98b7c63bfed24bc0"
+    },
+    {
+      "file": "src/game/combat/foot-actions.ts",
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "file": "src/game/combat/grenade.ts",
+      "sha256": "6a7a2dae0167846667defd575e7b9e72ce653ffc972a122b9f9150cfb1521502"
+    },
+    {
+      "file": "src/game/combat/projectile.ts",
+      "sha256": "1b49b9e44c9487e368e2a1de82bce6bfc2272809c1180ab1d3175d3c573e5f7a"
+    },
+    {
+      "file": "src/game/combat/timeline.ts",
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "file": "src/game/combat/volume.ts",
+      "sha256": "7d2a0137febe29c6a8eae6396e9ee2572528aa9fca500ca974526df269769ee9"
+    },
+    {
+      "file": "src/game/content/compiled/navigation.json",
+      "sha256": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb"
+    },
+    {
+      "file": "src/game/content/contract-fixture.ts",
+      "sha256": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733"
+    },
+    {
+      "file": "src/game/content/validate.ts",
+      "sha256": "9d537c19476cd462ca088b08d9bedfada83f0a614fef5518c5b33750bc1c9fc7"
+    },
+    {
+      "file": "src/game/controller/foot.ts",
+      "sha256": "f0c78961f3ed22b589d734362f0ddb7ae58dfe80bed25f9d03df7490bfd9e254"
+    },
+    {
+      "file": "src/game/core/canonical.ts",
+      "sha256": "4b255b5104b2ddba1e4155cfc40b23e81b0d58b75c45f5f2b9c7ae2c284b315e"
+    },
+    {
+      "file": "src/game/core/numeric.ts",
+      "sha256": "55d339dbef7fd2e42956f399780e060a0bfe1fc3a70ad4354e918f2342e0b5a1"
+    },
+    {
+      "file": "src/game/encounters/lifecycle.ts",
+      "sha256": "0d634d4973657351af7bf4f2de48707e6e7df1beb04ffa0a53b9150526965c28"
+    },
+    {
+      "file": "src/game/input/types.ts",
+      "sha256": "262d7214882ebff5185233d55c40ebf7fe4640fc1077d8c1650fe23b6ceb6c5b"
+    },
+    {
+      "file": "src/game/labs/combat-campaign.ts",
+      "sha256": "30bc478e3485f662fffa11bba235b1b3a95730567efa9386caaf6f9b562d7837"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "23eb376a1f7653ae208af5d868f114b6f0ddd27a1f001a9b420e4bdbda6d5a35"
+    },
+    {
+      "file": "src/game/labs/combat-tanks.ts",
+      "sha256": "e4f5291013d507dde529030cca21ea8d4ed3b2785656ba3c6966ad82e8cbce81"
+    },
+    {
+      "file": "src/game/labs/combat-terrain.ts",
+      "sha256": "d311e7d6f494df11b4fb6fa280158dad2efe7614c0fa7c0893f0d696dce689b2"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "e72209e0abcd7d42a419438ec9e255e7c67f6cdaf5daf09e01527df86de308f0"
+    },
+    {
+      "file": "src/game/labs/compiled.ts",
+      "sha256": "39e3f19c508b31cbf2d698c0941e9a06a8f82cd49db259f1f2040191470c10fa"
+    },
+    {
+      "file": "src/game/labs/controller.ts",
+      "sha256": "d2c9fe612f40a76a43db41dd59babaae6721f6e0a225ec3e8bf6b511085c4223"
+    },
+    {
+      "file": "src/game/labs/encounter.ts",
+      "sha256": "9c265e4e022b7ec0755038142442025a4ce434b59b62f29e78122500fe02f6a2"
+    },
+    {
+      "file": "src/game/labs/foot-fixture.ts",
+      "sha256": "cc13674aecbe113047a1c2620fa2e3f76a8b30e3349339b2b67feba87f6531a6"
+    },
+    {
+      "file": "src/game/labs/route.ts",
+      "sha256": "cd09b11d08c5278386c58b0a7081cb593876509609c4a89b28f24bfafca5db77"
+    },
+    {
+      "file": "src/game/labs/routed.ts",
+      "sha256": "83455f74588b7b94c34e34727f06da52896db11dfe9f31e2481db7b3c7151d80"
+    },
+    {
+      "file": "src/game/labs/traversal.ts",
+      "sha256": "cd9176887d43a3716877b7ec0af95d40daf17b317aa7411156a37df86f7337ef"
+    },
+    {
+      "file": "src/game/navigation/follower.ts",
+      "sha256": "fb3a3372e712569ada9457dd8663901cccbfc50b6bd10355797350aa66a4e74f"
+    },
+    {
+      "file": "src/game/navigation/graph.ts",
+      "sha256": "f6e70130fede0f86edf122fd5464adb9430bf18f5e5c77cb84e948745e7f3d45"
+    },
+    {
+      "file": "src/game/navigation/links.ts",
+      "sha256": "f59de65fac0d050a0128de698514638818b75c764ef19a55541e515c4542b0fd"
+    },
+    {
+      "file": "src/game/navigation/spans.ts",
+      "sha256": "821d56156ecdb63d34af99d5ef7a214ff6a0e62d084bfc71fd8a377dcd1994dd"
+    },
+    {
+      "file": "src/game/physics/body.ts",
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "file": "src/game/physics/grid.ts",
+      "sha256": "63fd7c6356b2304ab011fa8ba4d097d21540ffac468e3026d3a61dcd98b2c8c0"
+    },
+    {
+      "file": "src/game/physics/move.ts",
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c"
+    },
+    {
+      "file": "src/game/physics/sweep.ts",
+      "sha256": "98f5d4b8b156fc896f03303e40f3cfa599eef9d3b2279a1f40414feb1240cf22"
+    },
+    {
+      "file": "src/game/rules.ts",
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "file": "src/game/vehicles/tank.ts",
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "44b5aede6c99396c1dcebb9d912fad8d72146345485aed4961f0d0eba07204d6"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-events.ts",
+      "sha256": "ec4dcab37ecd899d85f2bba5f3d084db8e3f180be72e1840279678cd77d05322"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "6fbdafb3a48a8ce297010323417d4dadf9cd1072e50cf61bb4128d1135454860"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "d9fc4b63b0219c4207744f922b716fc88b38fdadaa83825bb3fc7951f719edcb"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "9aa94800f963302d2a97a8dbba9e5d8990c641bfbc11e993928a8765859db712"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "file": "src/shared/diagnostics/controller-recovery.ts",
+      "sha256": "1d06c63706181db52deb72cd9d6b3c64076c7bfabd6b57c32d0e72fb3572ae6b"
+    },
+    {
+      "file": "src/shared/diagnostics/controller-workload.ts",
+      "sha256": "6c3f0ba853738609961bd5623210de5dc42a47406c195c88be59c3429569cb89"
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "ab7d6bef0a9bcd941bf7811adcb41115e2a550f7b3d8f90545ca52314eae8f26"
+    },
+    {
+      "file": "src/shared/input/capture.ts",
+      "sha256": "d198f3dfe7d8222aca7fffba0ea51f27fc9a0da06de6c72c15d1b741dd7440d5"
+    },
+    {
+      "file": "src/shared/prediction/controller.ts",
+      "sha256": "17940c61be7c6f18fc55ad996611bb7c3d10a46f6c9c920600da6bc3f33c60c6"
+    },
+    {
+      "file": "src/shared/protocol/binary.ts",
+      "sha256": "dd7a67c3128985f0502143ace7e2f52c4d64674d316c993f94c48823872580d3"
+    },
+    {
+      "file": "src/shared/protocol/codec.ts",
+      "sha256": "b3d09cdc4681a20c22387148a6c32f306b4d93bc1feeb5b280becfe6c7967bd8"
+    },
+    {
+      "file": "src/shared/protocol/combat-record.ts",
+      "sha256": "28394dbb661ff79214f704cf3271c78c2691c38fca87c215078a2f5c646dd073"
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "sha256": "1d3d55bb5d9f1913da8a2cdbbb81e94456e0d8d3a2af0b9255781cce11aad47e"
+    },
+    {
+      "file": "src/shared/protocol/event-stream.ts",
+      "sha256": "ef226d106fd858368ae6356acc5d603be043d281410acbbc067ec2bf0c0813b6"
+    },
+    {
+      "file": "src/shared/protocol/events.ts",
+      "sha256": "e1476d3d449e72845c64cba86b50d5d1edf331539c746894b01fb91b6ea67539"
+    },
+    {
+      "file": "src/shared/protocol/input-mapping.ts",
+      "sha256": "25fc28e2d6bd3ff17ae8c81baa4f4ae4c5152bcea1e6e9720edfd5aeb0f15aaf"
+    },
+    {
+      "file": "src/shared/protocol/input-stream.ts",
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "b387e46bc2a074484e17d3f18a9d9f5de0a7a95c748e2bc405adaee5625724d6"
+    },
+    {
+      "file": "src/shared/protocol/schema.ts",
+      "sha256": "4da61549320633fa16fbc20f2d8a4293deafe766074d87875c47fbb9c5d09fbc"
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "064da28cad0480e484472f05486b317982fea73924c589fc1eaa492712603f11"
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "sha256": "83584016c9cd5e2a8baef25aa626aa30fae44cab69d7a4205a44e85636da7462"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/shared/session/membership.ts",
+      "sha256": "582c3c6fb12ef996543f659e4adf0e0ce599309311805e6a303cdedc2814039c"
+    },
+    {
+      "file": "src/shared/session/profile.ts",
+      "sha256": "d8ed90e094903cef85cc1c7c8a77ea75318f26aa9826caac7020f4ee08101771"
+    },
+    {
+      "file": "src/shared/session/room-control.ts",
+      "sha256": "39bd3121db8bcdde8db4aca7f7ee8486c7b0b612d5bde0da5e0d6d6f68ae068d"
+    },
+    {
+      "file": "src/shared/session/room-phase.ts",
+      "sha256": "63a7812db4326c8310b1c830838bfde3063fa543beaa2c25bc5236c26a5fe3ec"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "636689ad4203be65ebfff00a30333359013b385279c1446db19b466ed68c8b42"
+    },
+    {
+      "file": "src/worker/diagnostics/membership-storage.ts",
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "4f99f761d21d8cb1da019213862c8da387a86e94e052cecbac3aaa3d93371ad1"
+    },
+    {
+      "file": "src/worker/runtime/control-lease.ts",
+      "sha256": "405a5d11ff1d1d770418f81f489a713d0514bb6a8ff31bcccab0597a547b5ed3"
+    },
+    {
+      "file": "test/control-transfer.test.ts",
+      "sha256": "478a934556fb39b3217220696d123a162d42cb0444ef4586bf773516cce656bc"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "6aa60e3594f6119e772bc9e8c79639c950ee21849acdd128fd8b31387fc48e20"
+    },
+    {
+      "file": "test/fixtures/area-proof.ts",
+      "sha256": "6a2ab6eb266ad7a2d5277353372957daee391104e4adea7d5fbb5a57a6ad3f1a"
+    },
+    {
+      "file": "test/fixtures/campaign-proof.ts",
+      "sha256": "68dc0ea688ee4e288bad8494668f74c182de8f413202581384db8a98513df6fd"
+    },
+    {
+      "file": "test/fixtures/collision-proof.ts",
+      "sha256": "9be692226f73a2d99e478a0790827974868321acb389b34e30582ee9fb04d2b5"
+    },
+    {
+      "file": "test/fixtures/combat-input-driver.ts",
+      "sha256": "d8adb2fc5fc942004e4a31918eafcd23a37c9ad0a52b73de8fd12aee8814b982"
+    },
+    {
+      "file": "test/fixtures/combat-proof.ts",
+      "sha256": "0a80ab41d5d34275f4be67088cc7b4a1d0c9d20a269613652c90e800fd8178ed"
+    },
+    {
+      "file": "test/fixtures/combat-reconnect-proof.ts",
+      "sha256": "1de15ab01b7f6359376a9aef6635637d0fa35b6609dc78d9c6abb0df6a36d653"
+    },
+    {
+      "file": "test/fixtures/combat-recovery-proof.ts",
+      "sha256": "ebe9977c3d10a246098e2591a075e91819bdc4699900270c9f30640fe0f91d98"
+    },
+    {
+      "file": "test/fixtures/compiled-level-proof.ts",
+      "sha256": "ce5cb67300871c1bb188b335761e50ba3f638a3819c2e44de5eba1f73b82ed29"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "59981a8b4a4984b38dbf2d217ad5dcc501ab493c1e8dd2958e0251222934ee98"
+    },
+    {
+      "file": "test/fixtures/controller-proof.ts",
+      "sha256": "e0cd2c9ec5e0c27ee6b3f7d530bc97202d097a42d8f56d9dadb046390da1b269"
+    },
+    {
+      "file": "test/fixtures/encounter-proof.ts",
+      "sha256": "ced08a65468e2270d0edf9cba1813b16894fd9a68eb8194bee888911a1f32705"
+    },
+    {
+      "file": "test/fixtures/event-delivery-proof.ts",
+      "sha256": "0f2e39a39b0503bc4017d0d72681f35cbc7238b389fb0b45f6a1521084b027fc"
+    },
+    {
+      "file": "test/fixtures/foot-combat-proof.ts",
+      "sha256": "76da357696bfd5649d0cb4bc9cea142be5eefb6ca93c99915e517b1a7610678a"
+    },
+    {
+      "file": "test/fixtures/foot-fixture.ts",
+      "sha256": "f881bdff97509e037f9e6e5a7a804ee87d8b63e4e96e60485cf20c258d1564b5"
+    },
+    {
+      "file": "test/fixtures/grounded-proof.ts",
+      "sha256": "e5969a11936dffd2c9f7272453ab01477d130ce6584c40ec3097f89e6c92faba"
+    },
+    {
+      "file": "test/fixtures/hmg-proof.ts",
+      "sha256": "7a9dd1d8c73d13e36ed0ca14862c3646491a5b44c262fc99c5ec02b4ca0bc0eb"
+    },
+    {
+      "file": "test/fixtures/input-capture-proof.ts",
+      "sha256": "b77e19b698069d6cf00be22f4909d2b2868556378a909e7310d4a3341a92eebf"
+    },
+    {
+      "file": "test/fixtures/input-flow-proof.ts",
+      "sha256": "053bccfb1ea80e7bbf0e59b89bc3e952b2a9ea9c5ffd648a7e7e286eb68222be"
+    },
+    {
+      "file": "test/fixtures/mapped-prediction-proof.ts",
+      "sha256": "2d7aed7fee93abbadcf9fc55f528cb25a3a4167dc73c1f30cf16f0aad14197f0"
+    },
+    {
+      "file": "test/fixtures/movement-proof.ts",
+      "sha256": "d8a7f7ca1d4aabbb3291b2c2454199beda3f69590e6fd5d46942d5a290376dcb"
+    },
+    {
+      "file": "test/fixtures/navigation-proof.ts",
+      "sha256": "a769e94b6102882c716dab2a389e61777e6c517100fc7108fc06f096bdbca12a"
+    },
+    {
+      "file": "test/fixtures/ordnance-proof.ts",
+      "sha256": "077ebb35ce5452fa4d490f756c6eccebcdb9359adac3c14cc7cf58451261d945"
+    },
+    {
+      "file": "test/fixtures/player-life-proof.ts",
+      "sha256": "078e79bee63dcf52f717dbcc431f260625b7c44960072f20cd31f716fc3f4c55"
+    },
+    {
+      "file": "test/fixtures/player-life-recovery-proof.ts",
+      "sha256": "d3d4647828819b799f933b2d25bcf11db06b47fb04db37fe8226c5a6c7c11f78"
+    },
+    {
+      "file": "test/fixtures/prediction-proof.ts",
+      "sha256": "74df55395397cd79bce13db612c4cd5b7b03c3dab486f76ce0fbc99ac0591b8a"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "52dfda62a502bcf80e1081ae082580c7863c55ba47e5c88639d4b33960ecf9a8"
+    },
+    {
+      "file": "test/fixtures/rifle-proof.ts",
+      "sha256": "fbde9e2ca3acfd90e65d51c611b0ddbabe9bb9c84000484ec1fceb8c34aa93da"
+    },
+    {
+      "file": "test/fixtures/route-proof.ts",
+      "sha256": "e2a55b75de2cfc8725f8e1c0eb0022a791becac747cb2969cdedfd63ead482d1"
+    },
+    {
+      "file": "test/fixtures/routed-enemy-proof.ts",
+      "sha256": "6cf36f683fe1f9d964fa66c8105e070614ebbf1fbf3dee36e2d6511cf26a670b"
+    },
+    {
+      "file": "test/fixtures/shield-proof.ts",
+      "sha256": "9f4190bb5838c14da2606cbc8da5032d3067b07bb672c5edd7d38e8c514cfa66"
+    },
+    {
+      "file": "test/fixtures/spatial-proof.ts",
+      "sha256": "04fae7f29ca204c9311cf090d6c0e95d2d49fc0af6f27785b339d2bfd26b4c4b"
+    },
+    {
+      "file": "test/fixtures/tank-proof.ts",
+      "sha256": "ea2c242879e4b4045d663e55110644674f509260706476ddf58778b400a69cc0"
+    },
+    {
+      "file": "test/fixtures/traversal-proof.ts",
+      "sha256": "5c5683ee4678c9ab5d798ab998a85626760cd074c5e977945d9e101403bd21f8"
+    },
+    {
+      "file": "test/fixtures/world-combat-proof.ts",
+      "sha256": "98f2d3c1ce4ebbf291045ffc3da5b2848118f488c6659094a3c6fc633d159972"
+    },
+    {
+      "file": "test/input-capture.test.ts",
+      "sha256": "526c5c978e08af7b104c4dd173bdf8edcc5897b03619a384d5d38deffd16a829"
+    },
+    {
+      "file": "test/input-flow.test.ts",
+      "sha256": "09b84f568b0c304da912eaf741b88c00cb6f69dc1e59639806593a8e0d31fe6f"
+    },
+    {
+      "file": "tsconfig.json",
+      "sha256": "eccd5b985382303313da9f23a089d698c99b6d548c5ba250d099b6256f799909"
+    },
+    {
+      "file": "worker-configuration.d.ts",
+      "sha256": "f5823dc43e7ce5f73dd17cb1277fb86b021de37c42f6fbb89901f81f6810a582"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-check.log.gz",
+      "bytes": 1256,
+      "sha256": "a29376178fc580cb550dbea4b5e778ab62a9044b631f43b170861bcb4dde79e2"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-contracts.json.gz",
+      "bytes": 33677,
+      "sha256": "8f2482cdcdb8deafe30d48af14e72aaa29479fdf8e9e92f5ed6bea0b75049e7d"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-controller-diagnostics.json.gz",
+      "bytes": 4714,
+      "sha256": "65e92576fc4ed53253d926da53b2712f81300bc4f7d0566456b2c1ad6c36a2bd"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-controller-execution.json",
+      "bytes": 1011,
+      "sha256": "a64b15ee1208b50d7b40d1b346f3ac262ea3ce4f5b5913b2a147bb26bd3a4b28"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-controller-network.json.gz",
+      "bytes": 84239,
+      "sha256": "4b5e8ec95a457de97332071923ca67e1402ea348956e97f6ffdb9b9d280a454a"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-controller-network.log.gz",
+      "bytes": 139,
+      "sha256": "64bdb0df247734a3a5487414f504bcfeda7f08a227e19b03c211aef30ab76479"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-diagnosis.json",
+      "bytes": 7215,
+      "sha256": "8e72a37ad7c3c4096958fecb45a2b98f75b124d1fd7ced74798c402d4b052a82"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg-clients.json.gz",
+      "bytes": 3191,
+      "sha256": "6cffdbfc85eec633a74660f7ce10ff4dd96b5550cb6365617ece9af53f2a3538"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg-diagnostics.json.gz",
+      "bytes": 1540,
+      "sha256": "95c6634abe158bbbbf268d1c2b46f98e6a870186024750e98f050d664c5c90be"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg-execution.json",
+      "bytes": 1157,
+      "sha256": "446359a65085d18339e53401124e8f1902529dfe5beb898ae1e87389d73160d1"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg-failure.json.gz",
+      "bytes": 2958,
+      "sha256": "0d29a93add24f48b5a8f01850a83355d63ee89b2f957060a6b9696f72432b3aa"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg-failure.png",
+      "bytes": 140253,
+      "sha256": "4563297be8f82edda4f1a49719e5a14729a8aac0934ce4e05da4f9671e45a247"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-hmg.log.gz",
+      "bytes": 487,
+      "sha256": "aa28a7198fe5f42766e2598d21eb9fb178f46c9f18f97daa2f673617676bf148"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-first-network-verifier.ts.gz",
+      "bytes": 17971,
+      "sha256": "51de3037dd2e246fa5a458b0600cff7606c698fd04015bc34647116e169006e2"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-focused-tests.log.gz",
+      "bytes": 177,
+      "sha256": "91aa81d9ef6962ee0c88f3adee2d4bca3bdad4db6a95eda30b459644dda11b2d"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-diagnostics.json.gz",
+      "bytes": 2809,
+      "sha256": "ee6ee02c094a1ddfc592c4f1a6d00568f88a2417ff41917ec488aa11cea04912"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-down.png",
+      "bytes": 134402,
+      "sha256": "8d30e272815add73eef3075ee26a0190cf5880eba6d083f99543ab0f9ce66183"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-execution.json",
+      "bytes": 1157,
+      "sha256": "987731a42ae4727c230cf446c2cf67040b888751165fb986c8ba69c98aacd05e"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-network.json.gz",
+      "bytes": 187696,
+      "sha256": "fb633a345d6b1d1eba051e7e4f3d22979df09fa416020f80d36711e8f5d4fe38"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-network.log.gz",
+      "bytes": 150,
+      "sha256": "fbe59bc088fe5c120c4b82d90e87b3bbd8cf7237f435a150dee0e32ba664b349"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-hmg-up.png",
+      "bytes": 134582,
+      "sha256": "77413b72c6ace1b4795414e699cd6846fbdb06f07064db9d6bba0b745b19010c"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-host-clock.json",
+      "bytes": 681,
+      "sha256": "f2c13ae9e2efa005e0d3f00eea8db81dcb00673861ce9f321befbe48d44ec477"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-initial-typecheck.log.gz",
+      "bytes": 861,
+      "sha256": "39de33a1933d16bf619a86cf185c299eb7d0f4c9564cd6317a5137df05c29a27"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg-clients.json.gz",
+      "bytes": 50857,
+      "sha256": "51f3965e154273a69bffd147ce957f4a0af4e3e5cf6500d0bab465def68b455a"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg-diagnostics.json.gz",
+      "bytes": 2940,
+      "sha256": "f33ac39c16d51b7635618ed377022fe198cf5b78db11a454f2ad676e5bbdf508"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg-execution.json",
+      "bytes": 1157,
+      "sha256": "f0427cc903daedc3536072a4adedd72e088bccf2ab3eba7a7dc1eaeae41bcb71"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg-failure.json.gz",
+      "bytes": 15693,
+      "sha256": "7992c576e3235d9e0221dc3fb0c3298d7550812f97c5caca1e3387a247be43db"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg-verifier.ts.gz",
+      "bytes": 2586,
+      "sha256": "a23c2019c18060809f6ee1cb3eaafcdbe008713824443e3ea0d306c2b63c5071"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-second-hmg.log.gz",
+      "bytes": 523,
+      "sha256": "8a57e1c94f6e56bf63455c4203d36c650539bc14e8c8b9354872f8c34bed188b"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-secret-scan.json",
+      "bytes": 625,
+      "sha256": "b9b7b52eeb9cd63b097ca55d81757eb03c324721b8c7e082d6cda2fe313ad01d"
+    },
+    {
+      "file": "docs/redesign-evidence/W04-input-flow-source-verification.json",
+      "bytes": 5288,
+      "sha256": "92b027fb0b181e49bf9721cf4d971b326429e621e7c500a653646edc34e748fa"
+    }
+  ]
+}

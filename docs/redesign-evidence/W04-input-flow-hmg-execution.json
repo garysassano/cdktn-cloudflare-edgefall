@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-07T14:29:44.277Z",
+  "baseCommit": "2bed6cf7a61f939e3b3ad01368798aa9b75a887c",
+  "workerBundleSha256": "98fb4d5e447af0410875f683e9bbb1b74e64bc5b02b1b1eb67959068edb5ad59",
+  "bundleSha256": "6d915a65530425723bac33962d1f0dfb0f5db85a998fc4cdcbc26c5e3592726d",
+  "browser": "151.0.7922.34",
+  "sources": [
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "0892574607fc2b2624facd8ea9b8d545aef4f3b167b0dc78803007bf375b3ac2"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "a65fe22c46ef20378d8cc543180842ca507633b4c43cb1e9fbd42c0bb4e66de1"
+    },
+    {
+      "file": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "file": "scripts/lib/verify-hmg-combat.ts",
+      "sha256": "92a5b72594f1ac374796c3ca8a9823183369d09d22f97f01168b3d4943f10b45"
+    }
+  ],
+  "scope": "Captured before opening clients; retained for pass or failure. Working-tree bundle hashes do not assert a clean base commit. Listed verifier sources cover the entry, Worker launcher, host control and HMG helper when selected."
+}

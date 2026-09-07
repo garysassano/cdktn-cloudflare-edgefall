@@ -62,6 +62,8 @@ After an authoritative seat outcome, the adapter advances `controlEpoch` once be
 
 An evaluator, encoding or edge-outcome failure leaves all participating queues and acknowledgments unchanged and stops those streams until a fresh baseline. Invalid read-only timing/cohort preconditions do not execute the world and can be corrected by the caller. Evaluators must avoid external mutation and I/O; the transaction cannot undo arbitrary callback side effects or provide durable database atomicity. The loopback controller, synthetic and combat room workloads use this boundary. The combat workload stages its event history and cursor with the world, validates each recipient's binary snapshot and new events before committing, then publishes only the accepted event prefix.
 
+The network laboratory computes its outgoing sequence ceiling from the last fully validated snapshot and issued initial server tick: `min(counterCeiling, snapshotTick + 6) - initialServerTick`. Transport sends only the eligible contiguous prefix and retains later commands unchanged. Capture remains independent at 60 Hz; forced flushing still obeys the sequence and frame-token bounds. Prediction remapping does not enlarge this admission window. See the [input flow evidence](redesign-evidence/W04-input-flow.md) for the captured lead rejection, portable correction and remaining automatic timing gate.
+
 ## Snapshot-paired input mapping
 
 The separate [gameplay-event contract](./events-v3.md) defines binary event batches, retention, contiguous acknowledgment and explicit full-baseline repair.

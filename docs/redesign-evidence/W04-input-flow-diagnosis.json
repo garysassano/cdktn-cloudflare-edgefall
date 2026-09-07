@@ -1,0 +1,293 @@
+{
+  "scope": "Computed from retained old/new room and client reports. Old admission remains unchanged; synthetic boundary proof is separate from actual keyboard runs. Host-clock cause remains unresolved.",
+  "originalFailure": {
+    "sources": [
+      {
+        "file": "docs/redesign-evidence/W05-hmg-first-browser-failure.json.gz",
+        "sha256": "d199f1ed7be36bd7017ad78d9e323aff9c807aa0190f847c51ffb471d828f76a"
+      },
+      {
+        "file": "docs/redesign-evidence/W05-hmg-first-browser-clients.json.gz",
+        "sha256": "94b368fb3ad9459535711f1f31764e893581abffd84c065402c223159af7f82d"
+      }
+    ],
+    "serverBoundary": [
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "apply",
+        "runtimeMs": 1788787847402,
+        "serverTick": 120,
+        "baselineTick": 0,
+        "firstSequence": 120,
+        "lastSequence": 120,
+        "queued": 1,
+        "outcome": "applied"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "admit",
+        "runtimeMs": 1788787847442,
+        "serverTick": 120,
+        "baselineTick": 0,
+        "firstSequence": 122,
+        "lastSequence": 124,
+        "queued": 4,
+        "outcome": "admitted"
+      },
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "reject",
+        "runtimeMs": 1788787847446,
+        "serverTick": 120,
+        "baselineTick": 0,
+        "firstSequence": 125,
+        "lastSequence": 127,
+        "queued": 4,
+        "outcome": "Client exceeds server-owned input lead"
+      }
+    ],
+    "clientSends": [
+      {
+        "kind": "send",
+        "atMs": 3129.5999999940395,
+        "sequence": 122,
+        "lastSequence": 124,
+        "snapshotTick": 117,
+        "mappedTick": 0
+      },
+      {
+        "kind": "send",
+        "atMs": 3163.5,
+        "sequence": 125,
+        "lastSequence": 127,
+        "snapshotTick": 117,
+        "mappedTick": 0
+      }
+    ]
+  },
+  "runs": [
+    {
+      "name": "first",
+      "result": "failure",
+      "error": "AssertionError [ERR_ASSERTION]: HMG room failed",
+      "tick": 4,
+      "roomClock": {
+        "mode": "recovery",
+        "tick": 4,
+        "timerPending": false,
+        "fault": {
+          "reason": "time_regression",
+          "lastCompletedTick": 4,
+          "observedAtMs": 1788790678914,
+          "debtMs": null
+        }
+      },
+      "hostSamples": 94,
+      "backwardSteps": [
+        {
+          "before": {
+            "monotonicMs": 1870.414058,
+            "wallMs": 1788790679180
+          },
+          "after": {
+            "monotonicMs": 1890.195142,
+            "wallMs": 1788790678911
+          },
+          "wallDeltaMs": -269,
+          "monotonicDeltaMs": 19.781083999999964
+        },
+        {
+          "before": {
+            "monotonicMs": 1911.30394,
+            "wallMs": 1788790678932
+          },
+          "after": {
+            "monotonicMs": 1932.883854,
+            "wallMs": 1788790676513
+          },
+          "wallDeltaMs": -2419,
+          "monotonicDeltaMs": 21.579913999999917
+        }
+      ],
+      "clients": [
+        {
+          "slot": 0,
+          "sends": 4,
+          "maximumSentLead": 6,
+          "sequence": 10,
+          "unsent": 1,
+          "snapshotTick": 3,
+          "sendThroughSequence": 9
+        },
+        {
+          "slot": 1,
+          "sends": 4,
+          "maximumSentLead": 6,
+          "sequence": 10,
+          "unsent": 1,
+          "snapshotTick": 3,
+          "sendThroughSequence": 9
+        },
+        {
+          "slot": 2,
+          "sends": 4,
+          "maximumSentLead": 6,
+          "sequence": 10,
+          "unsent": 1,
+          "snapshotTick": 3,
+          "sendThroughSequence": 9
+        },
+        {
+          "slot": 3,
+          "sends": 4,
+          "maximumSentLead": 6,
+          "sequence": 10,
+          "unsent": 1,
+          "snapshotTick": 3,
+          "sendThroughSequence": 9
+        }
+      ]
+    },
+    {
+      "name": "second",
+      "result": "failure",
+      "error": "AssertionError [ERR_ASSERTION]: Missing captured send evidence",
+      "tick": 173,
+      "roomClock": {
+        "mode": "running",
+        "tick": 173,
+        "timerPending": true,
+        "fault": null
+      },
+      "hostSamples": 228,
+      "backwardSteps": [],
+      "clients": [
+        {
+          "slot": 0,
+          "sends": 61,
+          "maximumSentLead": 6,
+          "sequence": 178,
+          "unsent": 1,
+          "snapshotTick": 171,
+          "sendThroughSequence": 177
+        },
+        {
+          "slot": 1,
+          "sends": 61,
+          "maximumSentLead": 6,
+          "sequence": 178,
+          "unsent": 1,
+          "snapshotTick": 171,
+          "sendThroughSequence": 177
+        },
+        {
+          "slot": 2,
+          "sends": 61,
+          "maximumSentLead": 6,
+          "sequence": 178,
+          "unsent": 1,
+          "snapshotTick": 171,
+          "sendThroughSequence": 177
+        },
+        {
+          "slot": 3,
+          "sends": 61,
+          "maximumSentLead": 6,
+          "sequence": 179,
+          "unsent": 2,
+          "snapshotTick": 171,
+          "sendThroughSequence": 177
+        }
+      ]
+    },
+    {
+      "name": "hmg-pass",
+      "result": "pass",
+      "error": null,
+      "tick": 160,
+      "roomClock": {
+        "mode": "running",
+        "tick": 160,
+        "timerPending": true,
+        "fault": null
+      },
+      "hostSamples": 214,
+      "backwardSteps": [
+        {
+          "before": {
+            "monotonicMs": 4505.715899,
+            "wallMs": 1788791388367
+          },
+          "after": {
+            "monotonicMs": 4565.966527,
+            "wallMs": 1788791388154
+          },
+          "wallDeltaMs": -213,
+          "monotonicDeltaMs": 60.25062799999978
+        },
+        {
+          "before": {
+            "monotonicMs": 4565.966527,
+            "wallMs": 1788791388154
+          },
+          "after": {
+            "monotonicMs": 4609.204455,
+            "wallMs": 1788791385740
+          },
+          "wallDeltaMs": -2414,
+          "monotonicDeltaMs": 43.237928000000466
+        }
+      ],
+      "inputWindows": [
+        {
+          "sends": 59,
+          "maxSentLead": 6,
+          "capturesBeyondWindow": 123
+        },
+        {
+          "sends": 58,
+          "maxSentLead": 6,
+          "capturesBeyondWindow": 123
+        },
+        {
+          "sends": 56,
+          "maxSentLead": 6,
+          "capturesBeyondWindow": 124
+        },
+        {
+          "sends": 59,
+          "maxSentLead": 6,
+          "capturesBeyondWindow": 128
+        }
+      ],
+      "sharedSnapshots": 15,
+      "commonEvents": 294,
+      "lastRoomCallback": [1788791388196, 1, 160, 5.333251953125]
+    },
+    {
+      "name": "controller-pass",
+      "result": "pass",
+      "error": null,
+      "tick": 424,
+      "roomClock": {
+        "mode": "running",
+        "tick": 424,
+        "timerPending": true,
+        "fault": null
+      },
+      "hostSamples": 402,
+      "backwardSteps": [],
+      "sharedSnapshots": 60,
+      "stoppedPeer": {
+        "lastProcessedSequence": 188,
+        "neutralizedAtTick": 199,
+        "expiredAtTick": 364,
+        "acknowledgmentOnlyFrames": 61,
+        "closeReason": "lease-expired"
+      }
+    }
+  ]
+}

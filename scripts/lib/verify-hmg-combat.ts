@@ -11,6 +11,8 @@ interface HmgClient {
   requiresResync: boolean;
   snapshotTick: number;
   authoritative: ControlledActor;
+  initialServerTick: number;
+  timeline: Array<{ kind: string; sequence: number; lastSequence: number; snapshotTick: number }>;
   receipts: Array<{ tick: number; hash: number; continuationHash: string | null }>;
   events: {
     duplicates: number;
@@ -150,8 +152,10 @@ export async function verifyHmgCombat(pages: Page[], base: string, output: strin
     pages.map((page) =>
       page.evaluate(() =>
         (
-          globalThis as unknown as { controllerNetworkLab: { status(): HmgClient } }
-        ).controllerNetworkLab.status(),
+          globalThis as unknown as {
+            controllerNetworkLab: { status(includeTimeline: boolean): HmgClient };
+          }
+        ).controllerNetworkLab.status(true),
       ),
     ),
   );
@@ -193,6 +197,28 @@ export async function verifyHmgCombat(pages: Page[], base: string, output: strin
     ) ?? [];
   assert(commonEvents.length >= 12);
   assert((clients[1]?.events.duplicates ?? 0) > 0);
+  const inputWindows = clients.map((client) => {
+    const sends = client.timeline.filter(
+      (entry) => entry.kind === "send" && entry.lastSequence > 0,
+    );
+    assert(sends.length > 0, "Missing captured send evidence");
+    const leads = sends.map(
+      (entry) => client.initialServerTick + entry.lastSequence - entry.snapshotTick,
+    );
+    assert(
+      leads.every((lead) => lead <= 6),
+      "Client sent beyond the last validated snapshot's six-tick window",
+    );
+    return {
+      sends: sends.length,
+      maxSentLead: Math.max(...leads),
+      capturesBeyondWindow: client.timeline.filter(
+        (entry) =>
+          entry.kind === "capture" &&
+          client.initialServerTick + entry.sequence > entry.snapshotTick + 6,
+      ).length,
+    };
+  });
   return {
     up,
     mirrored,
@@ -205,5 +231,6 @@ export async function verifyHmgCombat(pages: Page[], base: string, output: strin
     clients,
     common,
     commonEvents,
+    inputWindows,
   };
 }

@@ -155,6 +155,7 @@ try {
     prediction: expected.prediction,
     mappedPrediction: expected.mappedPrediction,
     inputCapture: expected.inputCapture,
+    inputFlow: expected.inputFlow,
     routedEnemy: expected.routedEnemy,
     controllerBoundaries: {
       cases: expected.controllerBoundaries.cases.map((entry) => entry.name),
