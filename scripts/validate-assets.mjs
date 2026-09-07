@@ -196,7 +196,8 @@ function validateNativeAtlas(atlas, atlasPath) {
     known = new Set();
   if (!Object.keys(drawings).length) fail("empty native drawings");
   for (const [id, drawing] of Object.entries(drawings)) {
-    if (!["legs", "upper"].includes(drawing.channel)) fail(`invalid native channel ${id}`);
+    if (!["legs", "upper", "full-body"].includes(drawing.channel))
+      fail(`invalid native channel ${id}`);
     if (
       drawing.contact &&
       (drawing.channel !== "legs" ||
@@ -228,19 +229,19 @@ function validateNativeAtlas(atlas, atlasPath) {
       }
       sizes.add(`${f.w}:${f.h}`);
       if (data.root?.[0] > f.w || data.root?.[1] > f.h) fail(`root outside ${name}`);
-      const muzzle = drawing.sockets?.muzzle;
-      if (
-        drawing.sockets &&
-        (drawing.channel !== "upper" ||
-          !Array.isArray(muzzle) ||
-          muzzle.length !== 2 ||
-          !muzzle.every(Number.isSafeInteger) ||
-          muzzle[0] + data.root[0] < 0 ||
-          muzzle[0] + data.root[0] > f.w ||
-          muzzle[1] + data.root[1] < 0 ||
-          muzzle[1] + data.root[1] > f.h)
-      )
-        fail(`invalid native socket ${name}`);
+      for (const [socket, point] of Object.entries(drawing.sockets ?? {}))
+        if (
+          drawing.channel === "legs" ||
+          !["muzzle", "hand", "grip"].includes(socket) ||
+          !Array.isArray(point) ||
+          point.length !== 2 ||
+          !point.every(Number.isSafeInteger) ||
+          point[0] + data.root[0] < 0 ||
+          point[0] + data.root[0] > f.w ||
+          point[1] + data.root[1] < 0 ||
+          point[1] + data.root[1] > f.h
+        )
+          fail(`invalid native socket ${name}/${socket}`);
     }
   }
   if (sizes.size !== 1 || Object.keys(frames).some((name) => !known.has(name)))

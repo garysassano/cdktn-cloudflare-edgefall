@@ -1,0 +1,3146 @@
+{
+  "status": "pass",
+  "baseCommit": "651986eff803a61d79da5ec7b211ac50b6b5e9d7",
+  "browser": "151.0.7922.34",
+  "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc",
+  "bundleSha256": "f0e946c41256891ee6441943663017e1f7b4813cd829ac1c45f9024ace361f51",
+  "captures": [
+    {
+      "label": "standing-right",
+      "pixels": 487,
+      "tick": 0,
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "fullBodyFrame": null,
+      "timelineId": 10,
+      "x": 45,
+      "y": 200,
+      "flipX": false,
+      "originX": 0.375,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 60,
+        "y": 177
+      },
+      "hand": null,
+      "grip": {
+        "x": 54,
+        "y": 176
+      },
+      "contact": null,
+      "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "label": "standing-left",
+      "pixels": 487,
+      "tick": 4,
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 2
+      },
+      "variant": "p1",
+      "upperFrame": "p1/upper-horizontal",
+      "legsFrame": "p1/legs-idle",
+      "fullBodyFrame": null,
+      "timelineId": 10,
+      "x": 42,
+      "y": 200,
+      "flipX": true,
+      "originX": 0.625,
+      "originY": 0.75,
+      "muzzle": {
+        "x": 27,
+        "y": 177
+      },
+      "hand": null,
+      "grip": {
+        "x": 33,
+        "y": 176
+      },
+      "contact": null,
+      "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "label": "death-still",
+      "pixels": 194,
+      "tick": 101,
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "variant": "p1",
+      "upperFrame": null,
+      "legsFrame": null,
+      "fullBodyFrame": "p1/body-death-still",
+      "timelineId": null,
+      "x": 45,
+      "y": 200,
+      "flipX": false,
+      "originX": 0.375,
+      "originY": 0.75,
+      "muzzle": null,
+      "hand": null,
+      "grip": null,
+      "contact": null,
+      "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "label": "reentry-ready",
+      "pixels": 487,
+      "tick": 116,
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "variant": "p1",
+      "upperFrame": null,
+      "legsFrame": null,
+      "fullBodyFrame": "p1/body-reentry-ready",
+      "timelineId": null,
+      "x": 45,
+      "y": 200,
+      "flipX": false,
+      "originX": 0.375,
+      "originY": 0.75,
+      "muzzle": null,
+      "hand": null,
+      "grip": null,
+      "contact": null,
+      "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    }
+  ],
+  "run": [
+    {
+      "tick": 1,
+      "legs": "p1/legs-start-brace",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": "start",
+        "transitionStartTick": 1
+      },
+      "contact": null,
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 2,
+      "legs": "p1/legs-start-drive",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": "start",
+        "transitionStartTick": 1
+      },
+      "contact": null,
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 3,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 4,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 5,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 6,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 7,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 8,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 1,
+      "shots": 1
+    },
+    {
+      "tick": 9,
+      "legs": "p1/legs-run-3",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 63,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 10,
+      "legs": "p1/legs-run-3",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 66,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 11,
+      "legs": "p1/legs-run-4",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 12,
+      "legs": "p1/legs-run-4",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 13,
+      "legs": "p1/legs-run-5",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 14,
+      "legs": "p1/legs-run-5",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 15,
+      "legs": "p1/legs-run-6",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 16,
+      "legs": "p1/legs-run-6",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 9,
+      "shots": 2
+    },
+    {
+      "tick": 17,
+      "legs": "p1/legs-run-7",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 87,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 18,
+      "legs": "p1/legs-run-7",
+      "upper": "p1/upper-horizontal-kick",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "far",
+        "x": 90,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 19,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 20,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "fire",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 21,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 22,
+      "legs": "p1/legs-run-1",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 23,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 111,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    },
+    {
+      "tick": 24,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "contact": {
+        "foot": "near",
+        "x": 114,
+        "y": 200
+      },
+      "action": "ready",
+      "actionStart": 17,
+      "shots": 3
+    }
+  ],
+  "poses": [
+    {
+      "name": "crouch",
+      "frame": {
+        "tick": 1,
+        "motion": {
+          "runStartTick": 0,
+          "transition": "crouch-enter",
+          "transitionStartTick": 1
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-crouch",
+        "legsFrame": "p1/legs-crouch-mid",
+        "fullBodyFrame": null,
+        "timelineId": 13,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 60,
+          "y": 188
+        },
+        "hand": null,
+        "grip": {
+          "x": 55,
+          "y": 186
+        },
+        "contact": null,
+        "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+      },
+      "shot": {
+        "x": 15360,
+        "y": 48128
+      }
+    },
+    {
+      "name": "up",
+      "frame": {
+        "tick": 1,
+        "motion": {
+          "runStartTick": 0,
+          "transition": null,
+          "transitionStartTick": 0
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-up",
+        "legsFrame": "p1/legs-idle",
+        "fullBodyFrame": null,
+        "timelineId": 11,
+        "x": 45,
+        "y": 200,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 164
+        },
+        "hand": null,
+        "grip": {
+          "x": 46,
+          "y": 170
+        },
+        "contact": null,
+        "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 41984
+      }
+    },
+    {
+      "name": "air-down",
+      "frame": {
+        "tick": 2,
+        "motion": {
+          "runStartTick": 0,
+          "transition": null,
+          "transitionStartTick": 0
+        },
+        "variant": "p1",
+        "upperFrame": "p1/upper-down",
+        "legsFrame": "p1/legs-rise",
+        "fullBodyFrame": null,
+        "timelineId": 12,
+        "x": 45,
+        "y": 189,
+        "flipX": false,
+        "originX": 0.375,
+        "originY": 0.75,
+        "muzzle": {
+          "x": 47,
+          "y": 189
+        },
+        "hand": null,
+        "grip": {
+          "x": 48,
+          "y": 181
+        },
+        "contact": null,
+        "sourceSha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+      },
+      "shot": {
+        "x": 12032,
+        "y": 48505
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "tick": 1,
+      "legs": "p1/legs-start-brace",
+      "upper": "p1/upper-horizontal",
+      "transition": "start"
+    },
+    {
+      "tick": 2,
+      "legs": "p1/legs-start-drive",
+      "upper": "p1/upper-horizontal-kick",
+      "transition": "start"
+    },
+    {
+      "tick": 3,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-horizontal-settle",
+      "transition": null
+    },
+    {
+      "tick": 4,
+      "legs": "p1/legs-reverse-pivot",
+      "upper": "p1/upper-horizontal",
+      "transition": "reverse"
+    },
+    {
+      "tick": 5,
+      "legs": "p1/legs-reverse-drive",
+      "upper": "p1/upper-horizontal",
+      "transition": "reverse"
+    },
+    {
+      "tick": 6,
+      "legs": "p1/legs-stop-brake",
+      "upper": "p1/upper-horizontal",
+      "transition": "stop"
+    },
+    {
+      "tick": 7,
+      "legs": "p1/legs-stop-settle",
+      "upper": "p1/upper-horizontal",
+      "transition": "stop"
+    },
+    {
+      "tick": 8,
+      "legs": "p1/legs-crouch-mid",
+      "upper": "p1/upper-crouch",
+      "transition": "crouch-enter"
+    },
+    {
+      "tick": 9,
+      "legs": "p1/legs-crouch",
+      "upper": "p1/upper-crouch",
+      "transition": "crouch-enter"
+    },
+    {
+      "tick": 10,
+      "legs": "p1/legs-crouch-mid",
+      "upper": "p1/upper-horizontal",
+      "transition": "crouch-exit"
+    },
+    {
+      "tick": 11,
+      "legs": "p1/legs-idle",
+      "upper": "p1/upper-horizontal",
+      "transition": "crouch-exit"
+    },
+    {
+      "tick": 12,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 13,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 14,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 15,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 16,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 17,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 18,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 19,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 20,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 21,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 22,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 23,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 24,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 25,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 26,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 27,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 28,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 29,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 30,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 31,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 32,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 33,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 34,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 35,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 36,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 37,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 38,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 39,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 40,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 41,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 42,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 43,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 44,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 45,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 46,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 47,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 48,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 49,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 50,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 51,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 52,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 53,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 54,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 55,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 56,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 57,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 58,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 59,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 60,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 61,
+      "legs": "p1/legs-fall",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    },
+    {
+      "tick": 62,
+      "legs": "p1/legs-land-compress",
+      "upper": "p1/upper-land-compress",
+      "transition": "land"
+    },
+    {
+      "tick": 63,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "transition": null
+    }
+  ],
+  "actions": [
+    {
+      "kind": "grenade-run",
+      "samples": [
+        {
+          "age": 0,
+          "tick": 1,
+          "upper": "p1/upper-grenade-draw",
+          "legs": "p1/legs-start-brace",
+          "hand": {
+            "x": 42,
+            "y": 172
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 1,
+          "tick": 2,
+          "upper": "p1/upper-grenade-draw",
+          "legs": "p1/legs-start-drive",
+          "hand": {
+            "x": 45,
+            "y": 172
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 2,
+          "tick": 3,
+          "upper": "p1/upper-grenade-cock",
+          "legs": "p1/legs-run-0",
+          "hand": {
+            "x": 48,
+            "y": 173
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 3,
+          "tick": 4,
+          "upper": "p1/upper-grenade-cock",
+          "legs": "p1/legs-run-0",
+          "hand": {
+            "x": 51,
+            "y": 173
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 4,
+          "tick": 5,
+          "upper": "p1/upper-grenade-release",
+          "legs": "p1/legs-run-1",
+          "hand": {
+            "x": 70,
+            "y": 176
+          },
+          "release": {
+            "x": 17920,
+            "y": 45056
+          },
+          "locomotion": "grounded"
+        },
+        {
+          "age": 5,
+          "tick": 6,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-run-1",
+          "hand": {
+            "x": 71,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 6,
+          "tick": 7,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-run-2",
+          "hand": {
+            "x": 74,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 7,
+          "tick": 8,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-run-2",
+          "hand": {
+            "x": 77,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 8,
+          "tick": 9,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-run-3",
+          "hand": {
+            "x": 79,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 9,
+          "tick": 10,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-run-3",
+          "hand": {
+            "x": 82,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 10,
+          "tick": 11,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-run-4",
+          "hand": {
+            "x": 85,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 11,
+          "tick": 12,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-run-4",
+          "hand": {
+            "x": 88,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 12,
+          "tick": 13,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-run-5",
+          "hand": {
+            "x": 91,
+            "y": 178
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 13,
+          "tick": 14,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-5",
+          "hand": {
+            "x": 95,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 14,
+          "tick": 15,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-6",
+          "hand": {
+            "x": 98,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 15,
+          "tick": 16,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-6",
+          "hand": {
+            "x": 101,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 16,
+          "tick": 17,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-7",
+          "hand": {
+            "x": 104,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 17,
+          "tick": 18,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-7",
+          "hand": {
+            "x": 107,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 18,
+          "tick": 19,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-0",
+          "hand": {
+            "x": 110,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        },
+        {
+          "age": 19,
+          "tick": 20,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-run-0",
+          "hand": {
+            "x": 113,
+            "y": 176
+          },
+          "release": null,
+          "locomotion": "grounded"
+        }
+      ]
+    },
+    {
+      "kind": "grenade-air",
+      "samples": [
+        {
+          "age": 0,
+          "tick": 1,
+          "upper": "p1/upper-grenade-draw",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 42,
+            "y": 167
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 1,
+          "tick": 2,
+          "upper": "p1/upper-grenade-draw",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 45,
+            "y": 161
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 2,
+          "tick": 3,
+          "upper": "p1/upper-grenade-cock",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 48,
+            "y": 158
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 3,
+          "tick": 4,
+          "upper": "p1/upper-grenade-cock",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 51,
+            "y": 153
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 4,
+          "tick": 5,
+          "upper": "p1/upper-grenade-release",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 70,
+            "y": 151
+          },
+          "release": {
+            "x": 17920,
+            "y": 38731
+          },
+          "locomotion": "airborne"
+        },
+        {
+          "age": 5,
+          "tick": 6,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 71,
+            "y": 149
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 6,
+          "tick": 7,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 74,
+            "y": 145
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 7,
+          "tick": 8,
+          "upper": "p1/upper-grenade-follow",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 77,
+            "y": 141
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 8,
+          "tick": 9,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 79,
+            "y": 137
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 9,
+          "tick": 10,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 82,
+            "y": 134
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 10,
+          "tick": 11,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 85,
+            "y": 131
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 11,
+          "tick": 12,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 88,
+            "y": 128
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 12,
+          "tick": 13,
+          "upper": "p1/upper-grenade-recover",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 91,
+            "y": 125
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 13,
+          "tick": 14,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 95,
+            "y": 120
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 14,
+          "tick": 15,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 98,
+            "y": 118
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 15,
+          "tick": 16,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 101,
+            "y": 116
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 16,
+          "tick": 17,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 104,
+            "y": 114
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 17,
+          "tick": 18,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 107,
+            "y": 112
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 18,
+          "tick": 19,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 110,
+            "y": 111
+          },
+          "release": null,
+          "locomotion": "airborne"
+        },
+        {
+          "age": 19,
+          "tick": 20,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-rise",
+          "hand": {
+            "x": 113,
+            "y": 109
+          },
+          "release": null,
+          "locomotion": "airborne"
+        }
+      ]
+    },
+    {
+      "kind": "grenade-crouch",
+      "samples": [
+        {
+          "age": 0,
+          "tick": 1,
+          "upper": "p1/upper-grenade-draw-crouch",
+          "legs": "p1/legs-crouch-mid",
+          "hand": {
+            "x": 39,
+            "y": 184
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 1,
+          "tick": 2,
+          "upper": "p1/upper-grenade-draw-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 39,
+            "y": 184
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 2,
+          "tick": 3,
+          "upper": "p1/upper-grenade-cock-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 39,
+            "y": 185
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 3,
+          "tick": 4,
+          "upper": "p1/upper-grenade-cock-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 39,
+            "y": 185
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 4,
+          "tick": 5,
+          "upper": "p1/upper-grenade-release-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 55,
+            "y": 188
+          },
+          "release": {
+            "x": 14080,
+            "y": 48128
+          },
+          "locomotion": "crouched"
+        },
+        {
+          "age": 5,
+          "tick": 6,
+          "upper": "p1/upper-grenade-follow-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 6,
+          "tick": 7,
+          "upper": "p1/upper-grenade-follow-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 7,
+          "tick": 8,
+          "upper": "p1/upper-grenade-follow-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 8,
+          "tick": 9,
+          "upper": "p1/upper-grenade-recover-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 52,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 9,
+          "tick": 10,
+          "upper": "p1/upper-grenade-recover-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 52,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 10,
+          "tick": 11,
+          "upper": "p1/upper-grenade-recover-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 52,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 11,
+          "tick": 12,
+          "upper": "p1/upper-grenade-recover-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 52,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 12,
+          "tick": 13,
+          "upper": "p1/upper-grenade-recover-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 52,
+            "y": 190
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 13,
+          "tick": 14,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 14,
+          "tick": 15,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 15,
+          "tick": 16,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 16,
+          "tick": 17,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 17,
+          "tick": 18,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 18,
+          "tick": 19,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        },
+        {
+          "age": 19,
+          "tick": 20,
+          "upper": "p1/upper-grenade-ready-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 53,
+            "y": 188
+          },
+          "release": null,
+          "locomotion": "crouched"
+        }
+      ]
+    },
+    {
+      "kind": "knife-stand",
+      "samples": [
+        {
+          "age": 0,
+          "tick": 49,
+          "upper": "p1/upper-melee-draw",
+          "legs": "p1/legs-stop-brake",
+          "hand": {
+            "x": 196,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 1,
+          "tick": 50,
+          "upper": "p1/upper-melee-draw",
+          "legs": "p1/legs-stop-settle",
+          "hand": {
+            "x": 196,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 2,
+          "tick": 51,
+          "upper": "p1/upper-melee-draw",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 196,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 3,
+          "tick": 52,
+          "upper": "p1/upper-melee-wind",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 196,
+            "y": 177
+          },
+          "active": false
+        },
+        {
+          "age": 4,
+          "tick": 53,
+          "upper": "p1/upper-melee-wind",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 196,
+            "y": 177
+          },
+          "active": false
+        },
+        {
+          "age": 5,
+          "tick": 54,
+          "upper": "p1/upper-melee-strike",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 199,
+            "y": 180
+          },
+          "active": true
+        },
+        {
+          "age": 6,
+          "tick": 55,
+          "upper": "p1/upper-melee-strike",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 199,
+            "y": 180
+          },
+          "active": true
+        },
+        {
+          "age": 7,
+          "tick": 56,
+          "upper": "p1/upper-melee-strike",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 199,
+            "y": 180
+          },
+          "active": true
+        },
+        {
+          "age": 8,
+          "tick": 57,
+          "upper": "p1/upper-melee-strike",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 199,
+            "y": 180
+          },
+          "active": true
+        },
+        {
+          "age": 9,
+          "tick": 58,
+          "upper": "p1/upper-melee-follow",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 179
+          },
+          "active": false
+        },
+        {
+          "age": 10,
+          "tick": 59,
+          "upper": "p1/upper-melee-follow",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 179
+          },
+          "active": false
+        },
+        {
+          "age": 11,
+          "tick": 60,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 12,
+          "tick": 61,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 13,
+          "tick": 62,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 14,
+          "tick": 63,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 15,
+          "tick": 64,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 16,
+          "tick": 65,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 17,
+          "tick": 66,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        }
+      ]
+    },
+    {
+      "kind": "knife-crouch",
+      "samples": [
+        {
+          "age": 0,
+          "tick": 49,
+          "upper": "p1/upper-melee-draw-crouch",
+          "legs": "p1/legs-crouch-mid",
+          "hand": {
+            "x": 195,
+            "y": 186
+          },
+          "active": false
+        },
+        {
+          "age": 1,
+          "tick": 50,
+          "upper": "p1/upper-melee-draw-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 195,
+            "y": 186
+          },
+          "active": false
+        },
+        {
+          "age": 2,
+          "tick": 51,
+          "upper": "p1/upper-melee-draw-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 195,
+            "y": 186
+          },
+          "active": false
+        },
+        {
+          "age": 3,
+          "tick": 52,
+          "upper": "p1/upper-melee-wind-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 193,
+            "y": 187
+          },
+          "active": false
+        },
+        {
+          "age": 4,
+          "tick": 53,
+          "upper": "p1/upper-melee-wind-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 193,
+            "y": 187
+          },
+          "active": false
+        },
+        {
+          "age": 5,
+          "tick": 54,
+          "upper": "p1/upper-melee-strike-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 199,
+            "y": 188
+          },
+          "active": true
+        },
+        {
+          "age": 6,
+          "tick": 55,
+          "upper": "p1/upper-melee-strike-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 199,
+            "y": 188
+          },
+          "active": true
+        },
+        {
+          "age": 7,
+          "tick": 56,
+          "upper": "p1/upper-melee-strike-crouch",
+          "legs": "p1/legs-crouch",
+          "hand": {
+            "x": 199,
+            "y": 188
+          },
+          "active": true
+        },
+        {
+          "age": 8,
+          "tick": 57,
+          "upper": "p1/upper-melee-strike",
+          "legs": "p1/legs-crouch-mid",
+          "hand": {
+            "x": 199,
+            "y": 180
+          },
+          "active": true
+        },
+        {
+          "age": 9,
+          "tick": 58,
+          "upper": "p1/upper-melee-follow",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 179
+          },
+          "active": false
+        },
+        {
+          "age": 10,
+          "tick": 59,
+          "upper": "p1/upper-melee-follow",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 179
+          },
+          "active": false
+        },
+        {
+          "age": 11,
+          "tick": 60,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 12,
+          "tick": 61,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 13,
+          "tick": 62,
+          "upper": "p1/upper-melee-recover",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 195,
+            "y": 178
+          },
+          "active": false
+        },
+        {
+          "age": 14,
+          "tick": 63,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 15,
+          "tick": 64,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 16,
+          "tick": 65,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        },
+        {
+          "age": 17,
+          "tick": 66,
+          "upper": "p1/upper-action-ready",
+          "legs": "p1/legs-idle",
+          "hand": {
+            "x": 197,
+            "y": 176
+          },
+          "active": false
+        }
+      ]
+    },
+    {
+      "kind": "death-reentry",
+      "samples": [
+        {
+          "tick": 77,
+          "life": "death",
+          "age": 0,
+          "body": "p1/body-death-hit"
+        },
+        {
+          "tick": 78,
+          "life": "death",
+          "age": 1,
+          "body": "p1/body-death-hit"
+        },
+        {
+          "tick": 79,
+          "life": "death",
+          "age": 2,
+          "body": "p1/body-death-reel"
+        },
+        {
+          "tick": 80,
+          "life": "death",
+          "age": 3,
+          "body": "p1/body-death-reel"
+        },
+        {
+          "tick": 81,
+          "life": "death",
+          "age": 4,
+          "body": "p1/body-death-buckle"
+        },
+        {
+          "tick": 82,
+          "life": "death",
+          "age": 5,
+          "body": "p1/body-death-buckle"
+        },
+        {
+          "tick": 83,
+          "life": "death",
+          "age": 6,
+          "body": "p1/body-death-buckle"
+        },
+        {
+          "tick": 84,
+          "life": "death",
+          "age": 7,
+          "body": "p1/body-death-knee"
+        },
+        {
+          "tick": 85,
+          "life": "death",
+          "age": 8,
+          "body": "p1/body-death-knee"
+        },
+        {
+          "tick": 86,
+          "life": "death",
+          "age": 9,
+          "body": "p1/body-death-knee"
+        },
+        {
+          "tick": 87,
+          "life": "death",
+          "age": 10,
+          "body": "p1/body-death-knee"
+        },
+        {
+          "tick": 88,
+          "life": "death",
+          "age": 11,
+          "body": "p1/body-death-fall"
+        },
+        {
+          "tick": 89,
+          "life": "death",
+          "age": 12,
+          "body": "p1/body-death-fall"
+        },
+        {
+          "tick": 90,
+          "life": "death",
+          "age": 13,
+          "body": "p1/body-death-fall"
+        },
+        {
+          "tick": 91,
+          "life": "death",
+          "age": 14,
+          "body": "p1/body-death-fall"
+        },
+        {
+          "tick": 92,
+          "life": "death",
+          "age": 15,
+          "body": "p1/body-death-side"
+        },
+        {
+          "tick": 93,
+          "life": "death",
+          "age": 16,
+          "body": "p1/body-death-side"
+        },
+        {
+          "tick": 94,
+          "life": "death",
+          "age": 17,
+          "body": "p1/body-death-side"
+        },
+        {
+          "tick": 95,
+          "life": "death",
+          "age": 18,
+          "body": "p1/body-death-side"
+        },
+        {
+          "tick": 96,
+          "life": "death",
+          "age": 19,
+          "body": "p1/body-death-settle"
+        },
+        {
+          "tick": 97,
+          "life": "death",
+          "age": 20,
+          "body": "p1/body-death-settle"
+        },
+        {
+          "tick": 98,
+          "life": "death",
+          "age": 21,
+          "body": "p1/body-death-settle"
+        },
+        {
+          "tick": 99,
+          "life": "death",
+          "age": 22,
+          "body": "p1/body-death-settle"
+        },
+        {
+          "tick": 100,
+          "life": "death",
+          "age": 23,
+          "body": "p1/body-death-settle"
+        },
+        {
+          "tick": 101,
+          "life": "death",
+          "age": 24,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 102,
+          "life": "death",
+          "age": 25,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 103,
+          "life": "death",
+          "age": 26,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 104,
+          "life": "death",
+          "age": 27,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 105,
+          "life": "death",
+          "age": 28,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 106,
+          "life": "death",
+          "age": 29,
+          "body": "p1/body-death-still"
+        },
+        {
+          "tick": 107,
+          "life": "respawning",
+          "age": 0,
+          "body": "p1/body-reentry-crouch"
+        },
+        {
+          "tick": 108,
+          "life": "respawning",
+          "age": 1,
+          "body": "p1/body-reentry-crouch"
+        },
+        {
+          "tick": 109,
+          "life": "respawning",
+          "age": 2,
+          "body": "p1/body-reentry-crouch"
+        },
+        {
+          "tick": 110,
+          "life": "respawning",
+          "age": 3,
+          "body": "p1/body-reentry-rise"
+        },
+        {
+          "tick": 111,
+          "life": "respawning",
+          "age": 4,
+          "body": "p1/body-reentry-rise"
+        },
+        {
+          "tick": 112,
+          "life": "respawning",
+          "age": 5,
+          "body": "p1/body-reentry-rise"
+        },
+        {
+          "tick": 113,
+          "life": "respawning",
+          "age": 6,
+          "body": "p1/body-reentry-brace"
+        },
+        {
+          "tick": 114,
+          "life": "respawning",
+          "age": 7,
+          "body": "p1/body-reentry-brace"
+        },
+        {
+          "tick": 115,
+          "life": "respawning",
+          "age": 8,
+          "body": "p1/body-reentry-brace"
+        },
+        {
+          "tick": 116,
+          "life": "respawning",
+          "age": 9,
+          "body": "p1/body-reentry-ready"
+        },
+        {
+          "tick": 117,
+          "life": "respawning",
+          "age": 10,
+          "body": "p1/body-reentry-ready"
+        },
+        {
+          "tick": 118,
+          "life": "respawning",
+          "age": 11,
+          "body": "p1/body-reentry-ready"
+        }
+      ],
+      "resumedTick": 119
+    }
+  ],
+  "recordings": [
+    {
+      "file": "run-recording.json",
+      "tick": 24,
+      "legs": "p1/legs-run-2",
+      "upper": "p1/upper-run-dip",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "body": null
+    },
+    {
+      "file": "motion-recording.json",
+      "tick": 63,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 62
+      },
+      "body": null
+    },
+    {
+      "file": "recording.json",
+      "tick": 2,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-down",
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "body": null
+    },
+    {
+      "file": "grenade-run-recording.json",
+      "tick": 20,
+      "legs": "p1/legs-run-0",
+      "upper": "p1/upper-action-ready",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "body": null
+    },
+    {
+      "file": "grenade-air-recording.json",
+      "tick": 20,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-action-ready",
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "body": null
+    },
+    {
+      "file": "grenade-crouch-recording.json",
+      "tick": 20,
+      "legs": "p1/legs-crouch",
+      "upper": "p1/upper-grenade-ready-crouch",
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 1
+      },
+      "body": null
+    },
+    {
+      "file": "knife-stand-recording.json",
+      "tick": 56,
+      "legs": "p1/legs-idle",
+      "upper": "p1/upper-melee-strike",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 49
+      },
+      "body": null
+    },
+    {
+      "file": "knife-crouch-recording.json",
+      "tick": 56,
+      "legs": "p1/legs-crouch",
+      "upper": "p1/upper-melee-strike-crouch",
+      "motion": {
+        "runStartTick": 3,
+        "transition": null,
+        "transitionStartTick": 49
+      },
+      "body": null
+    },
+    {
+      "file": "death-recording.json",
+      "tick": 101,
+      "legs": null,
+      "upper": null,
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "body": "p1/body-death-still"
+    },
+    {
+      "file": "reentry-recording.json",
+      "tick": 119,
+      "legs": "p1/legs-rise",
+      "upper": "p1/upper-horizontal",
+      "motion": {
+        "runStartTick": 0,
+        "transition": null,
+        "transitionStartTick": 0
+      },
+      "body": null
+    }
+  ],
+  "reviewedClips": [
+    {
+      "id": "upper.fire.horizontal",
+      "frames": [
+        "upper-horizontal",
+        "upper-horizontal-kick",
+        "upper-horizontal-settle",
+        "upper-horizontal"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.fire.up",
+      "frames": [
+        "upper-up",
+        "upper-up-kick",
+        "upper-up-settle",
+        "upper-up"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.fire.down",
+      "frames": [
+        "upper-down",
+        "upper-down-kick",
+        "upper-down-settle",
+        "upper-down"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.fire.crouch",
+      "frames": [
+        "upper-crouch",
+        "upper-crouch-kick",
+        "upper-crouch-settle",
+        "upper-crouch"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.start",
+      "frames": [
+        "legs-start-brace",
+        "legs-start-drive"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.stop",
+      "frames": [
+        "legs-stop-brake",
+        "legs-stop-settle"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.reverse",
+      "frames": [
+        "legs-reverse-pivot",
+        "legs-reverse-drive"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.crouch-enter",
+      "frames": [
+        "legs-crouch-mid",
+        "legs-crouch"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.crouch-exit",
+      "frames": [
+        "legs-crouch-mid",
+        "legs-idle"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "legs.land",
+      "frames": [
+        "legs-land-compress",
+        "legs-land-compress",
+        "legs-land-rise",
+        "legs-land-rise"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.run.horizontal",
+      "frames": [
+        "upper-run-lift",
+        "upper-run-lift",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-run-dip",
+        "upper-run-dip",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-run-lift",
+        "upper-run-lift",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-run-dip",
+        "upper-run-dip",
+        "upper-horizontal",
+        "upper-horizontal"
+      ],
+      "secondCycle": [
+        "upper-run-lift",
+        "upper-run-lift",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-run-dip"
+      ]
+    },
+    {
+      "id": "upper.idle.horizontal",
+      "frames": [
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-inhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-exhale",
+        "upper-idle-blink",
+        "upper-idle-blink",
+        "upper-idle-blink",
+        "upper-idle-blink"
+      ],
+      "secondCycle": [
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-horizontal",
+        "upper-idle-inhale"
+      ]
+    },
+    {
+      "id": "upper.land.horizontal",
+      "frames": [
+        "upper-land-compress",
+        "upper-land-compress",
+        "upper-land-rise",
+        "upper-land-rise"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.grenade",
+      "frames": [
+        "upper-grenade-draw",
+        "upper-grenade-draw",
+        "upper-grenade-cock",
+        "upper-grenade-cock",
+        "upper-grenade-release",
+        "upper-grenade-follow",
+        "upper-grenade-follow",
+        "upper-grenade-follow",
+        "upper-grenade-recover",
+        "upper-grenade-recover",
+        "upper-grenade-recover",
+        "upper-grenade-recover",
+        "upper-grenade-recover",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.grenade.crouch",
+      "frames": [
+        "upper-grenade-draw-crouch",
+        "upper-grenade-draw-crouch",
+        "upper-grenade-cock-crouch",
+        "upper-grenade-cock-crouch",
+        "upper-grenade-release-crouch",
+        "upper-grenade-follow-crouch",
+        "upper-grenade-follow-crouch",
+        "upper-grenade-follow-crouch",
+        "upper-grenade-recover-crouch",
+        "upper-grenade-recover-crouch",
+        "upper-grenade-recover-crouch",
+        "upper-grenade-recover-crouch",
+        "upper-grenade-recover-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch",
+        "upper-grenade-ready-crouch"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.melee",
+      "frames": [
+        "upper-melee-draw",
+        "upper-melee-draw",
+        "upper-melee-draw",
+        "upper-melee-wind",
+        "upper-melee-wind",
+        "upper-melee-strike",
+        "upper-melee-strike",
+        "upper-melee-strike",
+        "upper-melee-strike",
+        "upper-melee-follow",
+        "upper-melee-follow",
+        "upper-melee-recover",
+        "upper-melee-recover",
+        "upper-melee-recover",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready",
+        "upper-action-ready"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "upper.melee.crouch",
+      "frames": [
+        "upper-melee-draw-crouch",
+        "upper-melee-draw-crouch",
+        "upper-melee-draw-crouch",
+        "upper-melee-wind-crouch",
+        "upper-melee-wind-crouch",
+        "upper-melee-strike-crouch",
+        "upper-melee-strike-crouch",
+        "upper-melee-strike-crouch",
+        "upper-melee-strike-crouch",
+        "upper-melee-follow-crouch",
+        "upper-melee-follow-crouch",
+        "upper-melee-recover-crouch",
+        "upper-melee-recover-crouch",
+        "upper-melee-recover-crouch",
+        "upper-melee-ready-crouch",
+        "upper-melee-ready-crouch",
+        "upper-melee-ready-crouch",
+        "upper-melee-ready-crouch"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "body.death",
+      "frames": [
+        "body-death-hit",
+        "body-death-hit",
+        "body-death-reel",
+        "body-death-reel",
+        "body-death-buckle",
+        "body-death-buckle",
+        "body-death-buckle",
+        "body-death-knee",
+        "body-death-knee",
+        "body-death-knee",
+        "body-death-knee",
+        "body-death-fall",
+        "body-death-fall",
+        "body-death-fall",
+        "body-death-fall",
+        "body-death-side",
+        "body-death-side",
+        "body-death-side",
+        "body-death-side",
+        "body-death-settle",
+        "body-death-settle",
+        "body-death-settle",
+        "body-death-settle",
+        "body-death-settle",
+        "body-death-still",
+        "body-death-still",
+        "body-death-still",
+        "body-death-still",
+        "body-death-still",
+        "body-death-still"
+      ],
+      "secondCycle": []
+    },
+    {
+      "id": "body.reentry",
+      "frames": [
+        "body-reentry-crouch",
+        "body-reentry-crouch",
+        "body-reentry-crouch",
+        "body-reentry-rise",
+        "body-reentry-rise",
+        "body-reentry-rise",
+        "body-reentry-brace",
+        "body-reentry-brace",
+        "body-reentry-brace",
+        "body-reentry-ready",
+        "body-reentry-ready",
+        "body-reentry-ready"
+      ],
+      "secondCycle": []
+    }
+  ],
+  "replayMatches": true,
+  "paletteVariants": 4,
+  "reviewedRunFrames": 8,
+  "reviewBackgrounds": 5,
+  "footage": [
+    {
+      "file": "run-fire-normal.webm",
+      "speed": 1,
+      "endTick": 240,
+      "shots": 30,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    },
+    {
+      "file": "run-fire-quarter.webm",
+      "speed": 0.25,
+      "endTick": 64,
+      "shots": 8,
+      "scope": "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation."
+    },
+    {
+      "file": "actions-normal.webm",
+      "speed": 1,
+      "segments": [
+        {
+          "scenario": "range",
+          "action": "moving grenade",
+          "endTick": 25
+        },
+        {
+          "scenario": "range",
+          "action": "contextual knife",
+          "endTick": 67
+        },
+        {
+          "scenario": "rifle",
+          "action": "death and reentry",
+          "deathStartTick": 77,
+          "endTick": 119
+        }
+      ],
+      "scope": "Real-time local combat captures with explicit scenario resets between moving throw, contextual knife and enemy-caused death/reentry. No audio or network. Playwright captures 25 fps."
+    },
+    {
+      "file": "actions-quarter.webm",
+      "speed": 0.25,
+      "segments": [
+        {
+          "scenario": "range",
+          "action": "moving grenade",
+          "endTick": 25
+        },
+        {
+          "scenario": "range",
+          "action": "contextual knife",
+          "endTick": 67
+        },
+        {
+          "scenario": "rifle",
+          "action": "death and reentry",
+          "deathStartTick": 77,
+          "endTick": 119
+        }
+      ],
+      "scope": "Real-time local combat captures with explicit scenario resets between moving throw, contextual knife and enemy-caused death/reentry. No audio or network. Playwright captures 25 fps."
+    }
+  ],
+  "errors": [],
+  "humanReview": "pending",
+  "scope": "Native source and local rendering candidate. Pixel-exact facing/root checks, independent run/fire and cardinal muzzle release, local replay and palette review; real grenade/knife hand timing and full-body death/reentry priority; final animation quality, vehicle acting, other weapons/audio and multiplayer footage remain open."
+}

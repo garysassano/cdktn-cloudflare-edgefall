@@ -26,27 +26,33 @@ describe("native operative source and playback", () => {
     const { data, info } = await sharp(built.png).raw().toBuffer({ resolveWithObject: true });
     expect(Object.keys(built.atlas.frames)).toHaveLength(built.source.frames.length * 4);
     const alphas = new Set<number>();
+    let hiddenRgb = 0;
     for (let i = 3; i < data.length; i += 4) {
       alphas.add(data[i] ?? -1);
-      if (data[i] === 0) expect(data.subarray(i - 3, i).equals(Buffer.alloc(3))).toBe(true);
+      if (data[i] === 0 && (data[i - 3] || data[i - 2] || data[i - 1])) hiddenRgb++;
     }
     expect([...alphas].sort()).toEqual([0, 255]);
+    expect(hiddenRgb).toBe(0);
     for (const drawing of built.source.frames)
       for (const variant of built.atlas.meta.edgefall.variants) {
         const frame = built.atlas.frames[`${variant}/${drawing.id}`];
         expect(frame).toMatchObject({ trimmed: false, sourceSize: { w: 64, h: 64 } });
         if (!frame) throw new Error("Missing frame");
-        const palette = { ...built.source.palette, ...built.source.variants[variant] };
+        const palette = Object.fromEntries(
+          Object.entries({ ...built.source.palette, ...built.source.variants[variant] }).map(
+            ([symbol, color]) => [symbol, Buffer.from(color, "hex")],
+          ),
+        );
+        const expected = Buffer.alloc(64 * 64 * 4),
+          actual = Buffer.alloc(64 * 64 * 4);
         for (const [y, row] of drawing.rows.entries())
-          for (const [x, symbol] of [...row].entries()) {
-            const offset =
-              ((frame.frame.y + drawing.at[1] + y) * info.width +
-                frame.frame.x +
-                drawing.at[0] +
-                x) *
-              4;
-            expect(data.subarray(offset, offset + 4).toString("hex")).toBe(palette[symbol]);
-          }
+          for (const [x, symbol] of [...row].entries())
+            palette[symbol]?.copy(expected, ((drawing.at[1] + y) * 64 + drawing.at[0] + x) * 4);
+        for (let y = 0; y < 64; y++) {
+          const start = ((frame.frame.y + y) * info.width + frame.frame.x) * 4;
+          data.copy(actual, y * 64 * 4, start, start + 64 * 4);
+        }
+        expect(actual.equals(expected), `${variant}/${drawing.id} decoded canvas`).toBe(true);
       }
     const run = built.source.clips[0];
     expect(new Set(run?.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size).toBe(8);
@@ -82,6 +88,19 @@ describe("native operative source and playback", () => {
       "detached muzzle",
       (s: NativeDrawing) => {
         if (s.frames[0]?.sockets) s.frames[0].sockets.muzzle = [-24, -48];
+      },
+    ],
+    [
+      "detached grip",
+      (s: NativeDrawing) => {
+        if (s.frames[0]?.sockets) s.frames[0].sockets.grip = [15, -23];
+      },
+    ],
+    [
+      "detached action hand",
+      (s: NativeDrawing) => {
+        const drawing = s.frames.find((f) => f.id === "upper-grenade-release");
+        if (drawing?.sockets) drawing.sockets.hand = [-24, -48];
       },
     ],
     [
@@ -174,7 +193,7 @@ describe("native operative source and playback", () => {
           structuredClone(motion),
         ),
       ).toEqual(draw);
-      if (draw?.legsFrame.includes("legs-run-")) sampled.add(draw.legsFrame);
+      if (draw?.legsFrame?.includes("legs-run-")) sampled.add(draw.legsFrame);
       if (actor.action.kind === "fire") firing.add(draw?.legsFrame ?? "missing");
     }
     expect(sampled.size).toBe(8);
@@ -187,7 +206,7 @@ describe("native operative source and playback", () => {
     if (!actor || !other) throw new Error("Missing operative");
     const motion = initialOperativeMotion(actor, 0);
     expect(operativePresentation(other, 0, built.atlas, motion)).toBeNull();
-    for (const kind of ["melee", "grenade", "enter", "exit", "hurt"] as const)
+    for (const kind of ["enter", "exit", "hurt"] as const)
       expect(
         operativePresentation(
           { ...actor, action: { ...actor.action, kind } },
@@ -196,7 +215,9 @@ describe("native operative source and playback", () => {
           motion,
         ),
       ).toBeNull();
-    expect(operativePresentation({ ...actor, life: "death" }, 0, built.atlas, motion)).toBeNull();
+    expect(
+      operativePresentation({ ...actor, life: "spectating" }, 0, built.atlas, motion),
+    ).toBeNull();
     expect(operativePresentation({ ...actor, vehicleId: 5 }, 0, built.atlas, motion)).toBeNull();
   });
   it("matches planted contact positions at successive authored exposure boundaries", () => {
@@ -303,5 +324,135 @@ describe("native operative source and playback", () => {
       }),
     ).toEqual(state);
     expect(observed).toBe(commands.length + 1);
+  });
+  it.each(["run", "air", "crouch"] as const)(
+    "keeps %s movement and the real grenade release aligned with the drawn hand",
+    (mode) => {
+      let state = createCombatLab("range");
+      const initial = state.players[0];
+      if (!initial) throw new Error("Missing operative");
+      let motion = initialOperativeMotion(initial, 0);
+      const legs = new Set<string>();
+      let releases = 0;
+      for (let age = 0; age < 20; age++) {
+        const before = state.players[0];
+        state = stepCombatLab(state, [
+          {
+            held: mode === "crouch" ? Held.Down : Held.Right,
+            jumpPressed: mode === "air" && age === 0,
+            firePressed: false,
+            grenadePressed: age === 0,
+            interactPressed: false,
+          },
+        ]);
+        const actor = state.players[0];
+        if (!actor || !before) throw new Error("Missing operative");
+        motion = advanceOperativeMotion(before, actor, motion, state.tick, built.atlas);
+        const identity = canonical(state);
+        const draw = operativePresentation(actor, state.tick, built.atlas, motion);
+        expect(canonical(state)).toBe(identity);
+        expect(draw?.fullBodyFrame).toBeNull();
+        expect(draw?.upperFrame).toMatch(/upper-(grenade-|action-ready)/);
+        if (draw?.legsFrame) legs.add(draw.legsFrame);
+        for (const event of state.events.filter((event) => event.kind === "throw")) {
+          expect(age).toBe(4);
+          expect(draw?.hand?.x).toBeCloseTo(event.position.x / 256, 0);
+          expect(draw?.hand?.y).toBeCloseTo(event.position.y / 256, 0);
+          releases++;
+        }
+        if (mode === "air") expect(actor.locomotion).toBe("airborne");
+      }
+      expect(releases).toBe(1);
+      if (mode === "run") expect(legs.size).toBeGreaterThan(6);
+    },
+  );
+  it.each([false, true])("draws the complete authoritative knife window (crouch=%s)", (crouch) => {
+    let state = createCombatLab("range");
+    const initial = state.players[0],
+      target = state.targets[0];
+    if (!initial || !target) throw new Error("Missing fixture");
+    target.enemy.body.x = 70 * 256;
+    let motion = initialOperativeMotion(initial, 0);
+    let active = 0;
+    for (let age = 0; age < 18; age++) {
+      const before = state.players[0];
+      state = stepCombatLab(state, [
+        {
+          held: crouch ? Held.Down : 0,
+          jumpPressed: false,
+          firePressed: age === 0,
+          grenadePressed: false,
+          interactPressed: false,
+        },
+      ]);
+      const actor = state.players[0];
+      if (!before || !actor) throw new Error("Missing operative");
+      motion = advanceOperativeMotion(before, actor, motion, state.tick, built.atlas);
+      const draw = operativePresentation(actor, state.tick, built.atlas, motion);
+      expect(draw?.upperFrame).toMatch(/upper-(melee-|action-ready)/);
+      expect(draw?.fullBodyFrame).toBeNull();
+      if (state.strikes.length) {
+        expect(draw?.upperFrame).toContain("melee-strike");
+        expect(draw?.hand).toEqual({
+          x: actor.body.x / 256 + 10,
+          y: actor.body.y / 256 + (crouch ? -12 : -20),
+        });
+        active++;
+      }
+    }
+    expect(active).toBe(4);
+    expect(state.players[0]?.weapon.shotOrdinal).toBe(0);
+  });
+  it("replaces all layers through real death/reentry and releases control on the authoritative entry tick", () => {
+    let state = createCombatLab("rifle");
+    const initial = state.players[0];
+    if (!initial) throw new Error("Missing operative");
+    let motion = initialOperativeMotion(initial, 0),
+      death = false,
+      entry = false;
+    const deadFrames = new Set<string>(),
+      entryFrames = new Set<string>();
+    for (let count = 0; count < 250; count++) {
+      const before = state.players[0];
+      if (!before) throw new Error("Missing operative");
+      const resume = before.life === "respawning" && state.tick - before.lifeStartTick === 11;
+      state = stepCombatLab(state, [
+        {
+          held: 0,
+          jumpPressed: resume,
+          firePressed: resume,
+          grenadePressed: false,
+          interactPressed: false,
+        },
+      ]);
+      const actor = state.players[0];
+      if (!actor) throw new Error("Missing operative");
+      motion = advanceOperativeMotion(before, actor, motion, state.tick, built.atlas);
+      const draw = operativePresentation(actor, state.tick, built.atlas, motion);
+      if (actor.life === "death" || actor.life === "respawning") {
+        expect(draw?.upperFrame).toBeNull();
+        expect(draw?.legsFrame).toBeNull();
+        expect(draw?.muzzle).toBeNull();
+        expect(draw?.hand).toBeNull();
+        if (actor.life === "death") {
+          death = true;
+          if (draw?.fullBodyFrame) deadFrames.add(draw.fullBodyFrame);
+        } else {
+          entry = true;
+          if (draw?.fullBodyFrame) entryFrames.add(draw.fullBodyFrame);
+        }
+      }
+      if (resume) {
+        expect(actor.life).toBe("alive");
+        expect(actor.locomotion).toBe("airborne");
+        expect(actor.weapon.shotOrdinal).toBe(before.weapon.shotOrdinal + 1);
+        expect(draw?.fullBodyFrame).toBeNull();
+        expect(draw?.legsFrame).toBe("p1/legs-rise");
+        break;
+      }
+    }
+    expect(death && entry).toBe(true);
+    expect(deadFrames.size).toBe(8);
+    expect(entryFrames.size).toBe(4);
   });
 });

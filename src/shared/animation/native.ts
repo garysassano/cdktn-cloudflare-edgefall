@@ -1,3 +1,5 @@
+export type NativeChannel = "legs" | "upper" | "full-body";
+export type NativeSockets = Partial<Record<"muzzle" | "hand" | "grip", [number, number]>>;
 export interface NativeContact {
   foot: "near" | "far";
   /** Contact at the start of this exposure, relative to the fixed feet root. */
@@ -5,7 +7,7 @@ export interface NativeContact {
 }
 export interface NativeClip {
   id: string;
-  channel: "legs" | "upper";
+  channel: NativeChannel;
   mode: "loop" | "hold-last";
   exposures: Array<{ frame: string; ticks: number }>;
 }
@@ -32,8 +34,8 @@ export interface NativeAtlas {
       drawings: Record<
         string,
         {
-          channel: "legs" | "upper";
-          sockets?: { muzzle: [number, number] };
+          channel: NativeChannel;
+          sockets?: NativeSockets;
           contact?: NativeContact;
         }
       >;

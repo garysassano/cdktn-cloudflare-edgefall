@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { actionPose } from "../../src/game/combat/timeline.js";
 import { CONTRACT_FIXTURE } from "../../src/game/content/contract-fixture.js";
 import { COMBAT_CATALOG } from "../../src/game/labs/combat-content.js";
+import { ARCADE } from "../../src/game/rules.js";
 import { nativeExposure } from "../../src/shared/animation/native.js";
-import { OPERATIVE_POSES } from "../../src/shared/animation/operative.js";
+import { OPERATIVE_ACTIONS, OPERATIVE_POSES } from "../../src/shared/animation/operative.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -56,6 +58,59 @@ for (const [frame, id] of bindings) {
   );
 }
 const run = built.source.clips.find((clip) => clip.id === "legs.run");
+for (const drawing of Object.values(built.atlas.meta.edgefall.drawings))
+  if (drawing.sockets?.muzzle) assert(drawing.sockets.grip, "Native firearm lacks a grip");
+const actionBindings = Object.entries(OPERATIVE_ACTIONS);
+for (const [id, binding] of actionBindings) {
+  const timeline = COMBAT_CATALOG.timelines.get(Number(id));
+  const clip = built.source.clips.find((clip) => clip.id === binding.clip);
+  assert(clip && timeline, "Missing native action binding");
+  for (const exposure of clip.exposures)
+    assert(
+      built.atlas.meta.edgefall.drawings[exposure.frame]?.sockets?.hand,
+      "Native action drawing lacks its authored hand",
+    );
+  assert.equal(
+    clip.exposures.reduce((n, e) => n + e.ticks, 0),
+    timeline.durationTicks,
+    "Native action duration mismatch",
+  );
+  assert(
+    new Set(clip.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size >= 5,
+    "Native action requires distinct acting drawings",
+  );
+  for (const marker of timeline.markers) {
+    const pose = actionPose(COMBAT_CATALOG, Number(id), marker.tickOffset);
+    const point = pose?.sockets.find((s) => s.name === marker.socket)?.point;
+    assert(point && marker.socket === "hand", "Missing authoritative action hand");
+    const end =
+      binding.kind === "melee" && marker.kind === "activate-hitbox"
+        ? marker.tickOffset + pose.durationTicks
+        : marker.tickOffset + 1;
+    for (let age = marker.tickOffset; age < end; age++)
+      assert.deepEqual(
+        built.atlas.meta.edgefall.drawings[nativeExposure(clip, age)]?.sockets?.hand,
+        [point.x / 256, point.y / 256],
+        "Native release/active hand differs from simulation",
+      );
+  }
+}
+for (const [id, duration, minDrawings] of [
+  ["body.death", ARCADE.deathTicks, 8],
+  ["body.reentry", ARCADE.respawnEntryTicks, 4],
+] as const) {
+  const clip = built.source.clips.find((clip) => clip.id === id);
+  assert(clip && clip.channel === "full-body", "Missing native life clip");
+  assert.equal(
+    clip.exposures.reduce((n, e) => n + e.ticks, 0),
+    duration,
+    "Native life duration mismatch",
+  );
+  assert(
+    new Set(clip.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size >= minDrawings,
+    "Native life acting drawings are duplicates",
+  );
+}
 assert(run && run.exposures.length === 8);
 assert.equal(
   new Set(run.exposures.map((exposure) => built.frameHashes[`p1/${exposure.frame}`])).size,
@@ -94,12 +149,14 @@ const report = {
   contactTravelPixelsPerTick: runSpeed,
   contacts,
   sidearmRecoilClips: bindings.length,
+  actionBindings,
+  fullBodyClips: ["body.death", "body.reentry"],
   bindings: bindings.map(([frame, poseId]) => ({ frame, poseId })),
   image: audit,
   frameHashes: built.frameHashes,
   humanReview: "pending",
   scope:
-    "Native operative benchmark candidate. Pixel, root, clip and sidearm muzzle contracts only; full-body actions, other weapons, final motion/feel and W06 acceptance remain open.",
+    "Native operative benchmark candidate. Indexed pixels, action/life exposure durations, active/release hand sockets, firearm grips and sidearm muzzles are checked. Vehicle acting, remaining weapons, final motion/feel and W06 acceptance remain open.",
 };
 const manifestPath = "public/assets/manifest.json",
   manifest = JSON.parse(await readFile(manifestPath, "utf8"));
@@ -114,7 +171,7 @@ const entries = files.map(({ path, bytes }) => ({
   sha256: sha(bytes),
   source: "edgefall-native-operative",
   licence: built.source.licence,
-  maxBytes: path.endsWith(".png") ? 500000 : 100000,
+  maxBytes: path.endsWith(".png") ? 500000 : 256000,
   ...(path.endsWith(".png")
     ? {
         png: { width: built.atlas.meta.size.w, height: built.atlas.meta.size.h, colorType: 6 },

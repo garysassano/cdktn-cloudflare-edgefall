@@ -78,7 +78,9 @@ try {
       legs: before.frames[0].legsFrame,
       upper: before.frames[0].upperFrame,
       motion: before.frames[0].motion,
+      body: before.frames[0].fullBodyFrame,
     });
+    await surface.focus();
   };
   // Compare every opaque native pixel to the actual browser canvas in both
   // directions. Metadata-only assertions would miss an incorrect Phaser origin.
@@ -90,7 +92,9 @@ try {
     const scale = actual.info.width / 384;
     assert(Number.isInteger(scale));
     const composed = Buffer.alloc(64 * 64 * 4);
-    for (const id of [drawing.legsFrame, drawing.upperFrame]) {
+    for (const id of [drawing.legsFrame, drawing.upperFrame, drawing.fullBodyFrame].filter(
+      Boolean,
+    )) {
       const f = atlas.frames[id].frame;
       for (let y = 0; y < 64; y++)
         for (let x = 0; x < 64; x++) {
@@ -167,7 +171,7 @@ try {
     "Shots restarted run phase",
   );
   assert.equal(
-    new Set(run.map((sample) => sample.upper)).size,
+    new Set(run.filter((sample) => sample.action === "fire").map((sample) => sample.upper)).size,
     3,
     "Recoil drawings did not advance",
   );
@@ -263,6 +267,131 @@ try {
   await checkRecording("recording.json");
   await page.locator("#player-overlays").check();
   await canvas.screenshot({ path: `${output}/air-down-debug.png` });
+  await page.locator("#player-overlays").uncheck();
+  const actions = [];
+  for (const mode of ["run", "air", "crouch"]) {
+    await page.locator("#reset").click();
+    await surface.focus();
+    await page.keyboard.down(mode === "crouch" ? "ArrowDown" : "ArrowRight");
+    if (mode === "air") await page.keyboard.press("Space");
+    await page.keyboard.press("KeyC");
+    const samples = [];
+    for (let age = 0; age < 20; age++) {
+      await page.keyboard.press("Enter");
+      const value = await read(),
+        frame = value.frames[0],
+        player = value.state.players[0];
+      assert(/upper-(grenade-|action-ready)/.test(frame.upperFrame));
+      assert.equal(frame.fullBodyFrame, null);
+      const release = value.state.events.find((event) => event.kind === "throw");
+      if (release) {
+        assert.equal(age, 4);
+        assert(Math.abs(frame.hand.x - release.position.x / 256) <= 0.5);
+        assert(Math.abs(frame.hand.y - release.position.y / 256) <= 0.5);
+        await canvas.screenshot({ path: `${output}/grenade-${mode}-release.png` });
+      }
+      samples.push({
+        age,
+        tick: value.state.tick,
+        upper: frame.upperFrame,
+        legs: frame.legsFrame,
+        hand: frame.hand,
+        release: release?.position ?? null,
+        locomotion: player.locomotion,
+      });
+    }
+    await page.keyboard.up(mode === "crouch" ? "ArrowDown" : "ArrowRight");
+    assert.equal(samples.filter((sample) => sample.release).length, 1);
+    if (mode === "run") assert(new Set(samples.map((sample) => sample.legs)).size > 6);
+    if (mode === "air") assert(samples.every((sample) => sample.locomotion === "airborne"));
+    actions.push({ kind: `grenade-${mode}`, samples });
+    await checkRecording(`grenade-${mode}-recording.json`);
+  }
+  for (const crouch of [false, true]) {
+    await page.locator("#reset").click();
+    await surface.focus();
+    await page.keyboard.down("ArrowRight");
+    let close = await read();
+    while (
+      close.state.targets[0].enemy.body.x - close.state.players[0].body.x > 22 * 256 &&
+      close.state.tick < 100
+    ) {
+      await page.keyboard.press("Enter");
+      close = await read();
+    }
+    await page.keyboard.up("ArrowRight");
+    if (crouch) await page.keyboard.down("ArrowDown");
+    await page.keyboard.press("KeyZ");
+    const samples = [];
+    for (let age = 0; age < 18; age++) {
+      await page.keyboard.press("Enter");
+      const value = await read(),
+        frame = value.frames[0];
+      assert.equal(value.state.players[0].action.kind, "melee");
+      assert(/upper-(melee-|action-ready)/.test(frame.upperFrame));
+      assert.equal(frame.fullBodyFrame, null);
+      if (value.state.strikes.length) assert(frame.upperFrame.includes("melee-strike"));
+      if (age === 5)
+        await canvas.screenshot({
+          path: `${output}/knife-${crouch ? "crouch" : "stand"}-active.png`,
+        });
+      if (age === 7) await checkRecording(`knife-${crouch ? "crouch" : "stand"}-recording.json`);
+      samples.push({
+        age,
+        tick: value.state.tick,
+        upper: frame.upperFrame,
+        legs: frame.legsFrame,
+        hand: frame.hand,
+        active: value.state.strikes.length > 0,
+      });
+    }
+    if (crouch) await page.keyboard.up("ArrowDown");
+    assert.equal(samples.filter((sample) => sample.active).length, 4);
+    actions.push({ kind: crouch ? "knife-crouch" : "knife-stand", samples });
+  }
+  await page.locator("#scenario").selectOption("rifle");
+  await surface.focus();
+  let living = await read();
+  while (living.state.players[0].life === "alive" && living.state.tick < 250) {
+    await page.keyboard.press("Enter");
+    living = await read();
+  }
+  assert.equal(living.state.players[0].life, "death");
+  const lifeSamples = [],
+    deadFrames = new Set(),
+    entryFrames = new Set();
+  while (living.state.players[0].life !== "alive" && living.state.tick < 350) {
+    const actor = living.state.players[0],
+      frame = living.frames[0],
+      age = living.state.tick - actor.lifeStartTick;
+    assert.equal(frame.upperFrame, null);
+    assert.equal(frame.legsFrame, null);
+    assert.equal(frame.muzzle, null);
+    (actor.life === "death" ? deadFrames : entryFrames).add(frame.fullBodyFrame);
+    lifeSamples.push({ tick: living.state.tick, life: actor.life, age, body: frame.fullBodyFrame });
+    if (actor.life === "death" && age === 24) {
+      await checkRenderedPixels("death-still");
+      await checkRecording("death-recording.json");
+    }
+    if (actor.life === "respawning" && age === 9) await checkRenderedPixels("reentry-ready");
+    if (actor.life === "respawning" && age === 11) {
+      await page.keyboard.press("Space");
+      await page.keyboard.press("KeyZ");
+    }
+    await surface.focus();
+    await page.keyboard.press("Enter");
+    living = await read();
+  }
+  assert.equal(deadFrames.size, 8);
+  assert.equal(entryFrames.size, 4);
+  assert.equal(living.state.players[0].life, "alive");
+  assert.equal(living.state.players[0].locomotion, "airborne");
+  assert.equal(living.state.players[0].weapon.shotOrdinal, 1);
+  assert.equal(living.frames[0].fullBodyFrame, null);
+  actions.push({ kind: "death-reentry", samples: lifeSamples, resumedTick: living.state.tick });
+  await checkRecording("reentry-recording.json");
+  await page.locator("#scenario").selectOption("range");
+
   await page.locator("#players").selectOption("4");
   await page.waitForFunction(() => globalThis.combatLab.nativeFrames().length === 4);
   assert.equal((await read()).frames[1], null, "Undrawn HMG must keep engineering fallback");
@@ -278,7 +407,23 @@ try {
   assert.equal(reviewedFrames.size, 8);
   const reviewedClips = [];
   for (const clip of atlas.meta.edgefall.clips.filter((clip) => clip.id !== "legs.run")) {
-    const control = clip.channel === "upper" ? "#native-upper" : "#native-legs";
+    await page.locator("#native-body").selectOption("");
+    const control =
+      clip.channel === "upper"
+        ? "#native-upper"
+        : clip.channel === "full-body"
+          ? "#native-body"
+          : "#native-legs";
+    if (clip.channel === "upper")
+      await page
+        .locator("#native-legs")
+        .selectOption(
+          clip.id.includes("crouch")
+            ? "legs-crouch"
+            : clip.id.includes(".run.")
+              ? "run-loop"
+              : "legs-idle",
+        );
     await page.locator(control).selectOption(`clip:${clip.id}`);
     await page.locator("#native-reset").click();
     const frames = [];
@@ -286,13 +431,43 @@ try {
       for (let i = 0; i < exposure.ticks; i++) {
         const frame = await page
           .locator("#native")
-          .getAttribute(clip.channel === "upper" ? "data-upper" : "data-legs");
+          .getAttribute(
+            clip.channel === "upper"
+              ? "data-upper"
+              : clip.channel === "full-body"
+                ? "data-body"
+                : "data-legs",
+          );
         assert.equal(frame, exposure.frame);
+        if (
+          i === 0 &&
+          (/upper\.(grenade|melee|idle|run|land)/.test(clip.id) || clip.channel === "full-body")
+        ) {
+          await page.locator("#native-roots").uncheck();
+          await page
+            .locator("#native-cards")
+            .screenshot({ path: `${output}/${clip.id}-${frame}.png` });
+        }
         frames.push(frame);
         await page.locator("#native-step").click();
       }
-    reviewedClips.push({ id: clip.id, frames });
+    const secondCycle = [];
+    if (clip.mode === "loop")
+      for (
+        let age = 0;
+        age < Math.min(frames.length, Math.max(5, clip.exposures[0].ticks + 1));
+        age++
+      ) {
+        const frame = await page
+          .locator("#native")
+          .getAttribute(clip.channel === "upper" ? "data-upper" : "data-legs");
+        assert.equal(frame, frames[age], "Continuous clip inherited the one-shot review hold");
+        secondCycle.push(frame);
+        await page.locator("#native-step").click();
+      }
+    reviewedClips.push({ id: clip.id, frames, secondCycle });
   }
+  await page.locator("#native-body").selectOption("");
   await page.locator("#native-upper").selectOption("upper-horizontal");
   await page.locator("#native-legs").selectOption("run-loop");
   await page.locator("#native-reset").click();
@@ -378,6 +553,89 @@ try {
         "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation.",
     });
   }
+  for (const speed of [1, 0.25]) {
+    const context = await browser.newContext({
+      viewport: { width: 768, height: 432 },
+      recordVideo: { dir: `${output}/video`, size: { width: 768, height: 432 } },
+    });
+    const movie = await context.newPage();
+    movie.on("pageerror", (error) => errors.push(String(error)));
+    await movie.goto(`${base}/combat-lab.html`);
+    await movie.locator("#native-operative").check();
+    await movie.locator("#player-overlays").uncheck();
+    await movie.locator("#speed").selectOption(String(speed));
+    await movie.addStyleTag({
+      content:
+        "body{margin:0;padding:0}body>*:not(#game){visibility:hidden}#game{position:fixed;top:0;left:0;width:768px;outline:0}",
+    });
+    const toggle = () => movie.locator("#run").evaluate((button) => button.click());
+    const reset = async (scenario) => {
+      await movie.locator("#scenario").evaluate((select, value) => {
+        select.value = value;
+        select.dispatchEvent(new Event("change"));
+      }, scenario);
+      await movie.locator("#game").focus();
+    };
+    const segments = [];
+    await movie.locator("#game").focus();
+    await movie.keyboard.down("ArrowRight");
+    await movie.keyboard.press("KeyC");
+    await toggle();
+    await movie.waitForFunction(() => globalThis.combatLab.state().tick >= 25);
+    await toggle();
+    await movie.keyboard.up("ArrowRight");
+    let world = await movie.evaluate(() => globalThis.combatLab.state());
+    assert.equal(world.players[0].grenadeStock, 9);
+    segments.push({ scenario: "range", action: "moving grenade", endTick: world.tick });
+    await reset("range");
+    await movie.keyboard.down("ArrowRight");
+    await toggle();
+    await movie.waitForFunction(() => {
+      const world = globalThis.combatLab.state();
+      return world.targets[0].enemy.body.x - world.players[0].body.x <= 22 * 256;
+    });
+    await movie.keyboard.up("ArrowRight");
+    await movie.keyboard.press("KeyZ");
+    await movie.waitForFunction(
+      () => globalThis.combatLab.state().players[0].action.kind === "melee",
+    );
+    await movie.waitForFunction(
+      () => globalThis.combatLab.state().players[0].action.kind === "ready",
+    );
+    await toggle();
+    world = await movie.evaluate(() => globalThis.combatLab.state());
+    assert.equal(world.players[0].weapon.shotOrdinal, 0);
+    segments.push({ scenario: "range", action: "contextual knife", endTick: world.tick });
+    await reset("rifle");
+    await toggle();
+    await movie.waitForFunction(() => globalThis.combatLab.state().players[0].life === "death");
+    const diedAt = await movie.evaluate(
+      () => globalThis.combatLab.state().players[0].lifeStartTick,
+    );
+    await movie.waitForFunction(
+      () => globalThis.combatLab.state().players[0].life === "respawning",
+    );
+    await movie.waitForFunction(() => globalThis.combatLab.state().players[0].life === "alive");
+    await toggle();
+    world = await movie.evaluate(() => globalThis.combatLab.state());
+    segments.push({
+      scenario: "rifle",
+      action: "death and reentry",
+      deathStartTick: diedAt,
+      endTick: world.tick,
+    });
+    const video = movie.video();
+    await context.close();
+    const file = `actions-${speed === 1 ? "normal" : "quarter"}.webm`;
+    await video.saveAs(`${output}/${file}`);
+    footage.push({
+      file,
+      speed,
+      segments,
+      scope:
+        "Real-time local combat captures with explicit scenario resets between moving throw, contextual knife and enemy-caused death/reentry. No audio or network. Playwright captures 25 fps.",
+    });
+  }
   assert.deepEqual(errors, []);
   await writeFile(
     `${output}/report.json`,
@@ -394,6 +652,7 @@ try {
         run,
         poses,
         transitions,
+        actions,
         recordings,
         reviewedClips,
         replayMatches: true,
@@ -404,7 +663,7 @@ try {
         errors,
         humanReview: "pending",
         scope:
-          "Native source and local rendering candidate. Pixel-exact facing/root checks, independent run/fire and cardinal muzzle release, local replay and palette review; final animation quality, other actions/weapons/audio and multiplayer footage remain open.",
+          "Native source and local rendering candidate. Pixel-exact facing/root checks, independent run/fire and cardinal muzzle release, local replay and palette review; real grenade/knife hand timing and full-body death/reentry priority; final animation quality, vehicle acting, other weapons/audio and multiplayer footage remain open.",
       },
       null,
       2,

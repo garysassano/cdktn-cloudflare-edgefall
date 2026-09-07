@@ -254,8 +254,11 @@ element<HTMLInputElement>("import").onchange = async (event) => {
 class CombatScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Graphics;
   private atlas?: NativeAtlas;
-  private operative: Array<{ legs: Phaser.GameObjects.Image; upper: Phaser.GameObjects.Image }> =
-    [];
+  private operative: Array<{
+    legs: Phaser.GameObjects.Image;
+    upper: Phaser.GameObjects.Image;
+    fullBody: Phaser.GameObjects.Image;
+  }> = [];
   constructor() {
     super("combat-lab");
   }
@@ -278,6 +281,10 @@ class CombatScene extends Phaser.Scene {
           .setVisible(false),
         upper: this.add
           .image(0, 0, "operative", `p${slot + 1}/upper-horizontal`)
+          .setDepth(1)
+          .setVisible(false),
+        fullBody: this.add
+          .image(0, 0, "operative", `p${slot + 1}/body-death-hit`)
           .setDepth(1)
           .setVisible(false),
       });
@@ -308,10 +315,17 @@ class CombatScene extends Phaser.Scene {
     for (const [slot, images] of this.operative.entries()) {
       const drawing = nativeFrames[slot];
       for (const [channel, image] of Object.entries(images)) {
-        image.setVisible(Boolean(drawing));
-        if (!drawing) continue;
+        const frame =
+          drawing &&
+          (channel === "legs"
+            ? drawing.legsFrame
+            : channel === "upper"
+              ? drawing.upperFrame
+              : drawing.fullBodyFrame);
+        image.setVisible(Boolean(frame));
+        if (!drawing || !frame) continue;
         image
-          .setFrame(channel === "legs" ? drawing.legsFrame : drawing.upperFrame)
+          .setFrame(frame)
           .setOrigin(drawing.originX, drawing.originY)
           .setFlipX(drawing.flipX)
           .setPosition(drawing.x, drawing.y)

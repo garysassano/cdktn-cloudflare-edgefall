@@ -71,8 +71,8 @@
     {
       "id": "operative-native-01",
       "file": "art/source/hero/operative.pixels.json",
-      "bytes": 31248,
-      "sha256": "9f85991314db69a209ecc9a05847cd45a6e3a3dd1c806a1fca5ffe37b598cea2",
+      "bytes": 77732,
+      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc",
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "role": "native-benchmark-candidate",

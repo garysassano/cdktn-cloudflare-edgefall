@@ -46,7 +46,9 @@
     "T": "a3a28dff",
     "v": "ddd3acff",
     "l": "fff0d3ff",
-    "x": "332c30ff"
+    "x": "332c30ff",
+    "r": "49583bff",
+    "R": "9ba25bff"
   },
   "variants": {
     "p1": {},
@@ -104,6 +106,10 @@
         "muzzle": [
           15,
           -23
+        ],
+        "grip": [
+          9,
+          -24
         ]
       }
     },
@@ -141,6 +147,10 @@
         "muzzle": [
           2,
           -36
+        ],
+        "grip": [
+          1,
+          -30
         ]
       }
     },
@@ -192,6 +202,10 @@
         "muzzle": [
           2,
           0
+        ],
+        "grip": [
+          3,
+          -8
         ]
       }
     },
@@ -226,6 +240,10 @@
         "muzzle": [
           15,
           -12
+        ],
+        "grip": [
+          10,
+          -14
         ]
       }
     },
@@ -622,6 +640,10 @@
         "muzzle": [
           13,
           -24
+        ],
+        "grip": [
+          9,
+          -25
         ]
       }
     },
@@ -662,6 +684,10 @@
         "muzzle": [
           14,
           -23
+        ],
+        "grip": [
+          9,
+          -24
         ]
       }
     },
@@ -699,6 +725,10 @@
         "muzzle": [
           2,
           -34
+        ],
+        "grip": [
+          2,
+          -29
         ]
       }
     },
@@ -736,6 +766,10 @@
         "muzzle": [
           2,
           -35
+        ],
+        "grip": [
+          2,
+          -29
         ]
       }
     },
@@ -785,6 +819,10 @@
         "muzzle": [
           2,
           -2
+        ],
+        "grip": [
+          3,
+          -9
         ]
       }
     },
@@ -835,6 +873,10 @@
         "muzzle": [
           2,
           -1
+        ],
+        "grip": [
+          3,
+          -8
         ]
       }
     },
@@ -869,6 +911,10 @@
         "muzzle": [
           13,
           -13
+        ],
+        "grip": [
+          9,
+          -14
         ]
       }
     },
@@ -903,6 +949,10 @@
         "muzzle": [
           14,
           -12
+        ],
+        "grip": [
+          9,
+          -14
         ]
       }
     },
@@ -1139,6 +1189,1631 @@
         "......oBttuuo..oBtttuuo",
         "......oooooooo.oooooooo"
       ]
+    },
+    {
+      "id": "upper-run-lift",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".......ooooooo",
+        ".....oohhjjhhhoo",
+        "....ohhhjjjhhhho",
+        "....oHhhhSskssso",
+        ".....oHhSkkwekko",
+        ".....oHhSkkkkkso",
+        "......oHSSkkksso",
+        ".......oSSksoo",
+        "...ooooAAovSSoo",
+        "..oCddccoAavlvao",
+        ".oCdddccoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "...ooAAaaaAGggGGo....oo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-run-dip",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "...............",
+        "........oooooo",
+        "......oohhjjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhSkkwekko",
+        "......oHhSkkkkso",
+        "......oHhSSkksoo",
+        ".......ooSSksoo",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        ".....oAaaaAGggGGo....oo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-land-compress",
+      "channel": "upper",
+      "at": [
+        15,
+        12
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "....oAAaaaAGggGGo....oo",
+        "....ooAaaaaAAAao",
+        ".....oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -21
+        ],
+        "grip": [
+          9,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-land-rise",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "....oAAaaaAGggGGo....oo",
+        "....ooAaaaaAAAao",
+        ".....oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -22
+        ],
+        "grip": [
+          9,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-idle-inhale",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "....oAAaaaAGggGGo....oo",
+        ".....oAAaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-idle-exhale",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "....oAAaaaAGggGGo....oo",
+        "......oAaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-idle-blink",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkSeeko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgGMMimM",
+        ".oCccCCcoAaAGggfffggMmmMM",
+        "..oCCCCooAAGgfffggGMMmMMM",
+        "...ooooAAaaAGggGGo....MM",
+        "....oAAaaaAGggGGo....oo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-draw",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "..oGggooAAovSoo",
+        "..GffgCoAavlvao",
+        "..GfgCcoAablvvao",
+        "..GgCCcoAabTvAo",
+        "..oCCCcoAabTvAGgo",
+        "...oCCooAaATvGffg",
+        "....oooAAaaAGgffg",
+        "....oAAaaaAAGggGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          -6,
+          -28
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-draw-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "..oGggooAAovSoo",
+        "..GffgCoAavlvao",
+        "..GfgCcoAablvvao",
+        "..GgCCcoAabTvAo",
+        "..oCCCcoAabTvAGgo",
+        "...oCCooAaATvGffg",
+        "....oooAAaaAGgffg",
+        "....oAAaaaAAGggGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          -6,
+          -16
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-cock",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".......oooooo",
+        ".....oohhjhhhoo",
+        "....ohhhjjjhhhho",
+        "....ohhjjhhhhho",
+        "....oHhhhSskssso",
+        "....oHhhSkkwekko",
+        ".....oHhSkkkkkso",
+        ".....oHhSSkkksso",
+        "......ooSSksoo",
+        "..rrRrooAAovSoo",
+        "..rRRrCoAavlvao",
+        "..GGgCcoAablvvao",
+        "..GfgCcoAabTvAo",
+        "...GgCcoAabTvAGgo",
+        "...oCCooAaATvGffg",
+        "....oooAAaaAGgffg",
+        "....oAAaaaAAGggGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          -6,
+          -27
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-cock-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        ".......oooooo",
+        ".....oohhjhhhoo",
+        "....ohhhjjjhhhho",
+        "....ohhjjhhhhho",
+        "....oHhhhSskssso",
+        "....oHhhSkkwekko",
+        ".....oHhSkkkkkso",
+        ".....oHhSSkkksso",
+        "......ooSSksoo",
+        "..rrRrooAAovSoo",
+        "..rRRrCoAavlvao",
+        "..GGgCcoAablvvao",
+        "..GfgCcoAabTvAo",
+        "...GgCcoAabTvAGgo",
+        "...oCCooAaATvGffg",
+        "....oooAAaaAGgffg",
+        "....oAAaaaAAGggGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          -6,
+          -15
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-release",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvoAooo",
+        "..oCcccCoAabTvAGgggG",
+        "...oCCCoAAaaAGgffffgG",
+        "....ooooAAaAGggggGgg",
+        ".....oAAaaaAAGGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          10,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-release-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvoAooo",
+        "..oCcccCoAabTvAGgggG",
+        "...oCCCoAAaaAGgffffgG",
+        "....ooooAAaAGggggGgg",
+        ".....oAAaaaAAGGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          10,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-follow",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "...",
+        "..........oooooo",
+        "........oohhjhhhoo",
+        ".......ohhhjjjhhhho",
+        ".......ohhjjhhhhho",
+        ".......oHhhhSskssso",
+        ".......oHhhSkkwekko",
+        "........oHhSkkkkkso",
+        "........oHhSSkkksso",
+        "....oooAAAovSoo",
+        "...oCddcoAavlvao",
+        "...oCcdcoAablvvao",
+        "...oCccCoAabTvAo",
+        "...oCCCooAaATvAGgo",
+        "....ooooAAaaAGfffG",
+        ".....oAAaaaAGggfffG",
+        ".....oAaaaaAAGggffgG",
+        "......oAAAAAAAAGggG",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-follow-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        "...",
+        "..........oooooo",
+        "........oohhjhhhoo",
+        ".......ohhhjjjhhhho",
+        ".......ohhjjhhhhho",
+        ".......oHhhhSskssso",
+        ".......oHhhSkkwekko",
+        "........oHhSkkkkkso",
+        "........oHhSSkkksso",
+        "....oooAAAovSoo",
+        "...oCddcoAavlvao",
+        "...oCcdcoAablvvao",
+        "...oCccCoAabTvAo",
+        "...oCCCooAaATvAGgo",
+        "....ooooAAaaAGfffG",
+        ".....oAAaaaAGggfffG",
+        ".....oAaaaaAAGggffgG",
+        "......oAAAAAAAAGggG",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -10
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-recover",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCCCCoAaATvAGgo",
+        "...oCCCooAaaAGffgG",
+        "....oooAAaaaAGggfgG",
+        "....oAAaaaaAAAGgfgG",
+        ".....oAaaaaAAAAGgG",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          7,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-recover-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCCCCoAaATvAGgo",
+        "...oCCCooAaaAGffgG",
+        "....oooAAaaaAGggfgG",
+        "....oAAaaaaAAAGgfgG",
+        ".....oAaaaaAAAAGgG",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          7,
+          -10
+        ]
+      }
+    },
+    {
+      "id": "upper-action-ready",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgG",
+        ".oCccCCcoAaAGggfffggG",
+        "..oCCCCooAAGgfffggG",
+        "...ooooAAaaAGggGGo",
+        "....oAAaaaAGggGGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-grenade-ready-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        22
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgG",
+        ".oCccCCcoAaAGggfffggG",
+        "..oCCCCooAAGgfffggG",
+        "...ooooAAaaAGggGGo",
+        "....oAAaaaAGggGGo",
+        ".....oAaaaaAAAao",
+        "......oxxxyxxxxo",
+        ".......oNNnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-draw",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvGggo",
+        ".oCccCCcoAAaAGgffgo",
+        "..oCCCCooAAAGgffGgo",
+        "...ooooAAaaAGgGmio",
+        "....oAAaaaaAAAomio",
+        ".....oAaaaaAAAomio",
+        "......oAAAAAAxomio",
+        "......oxxxyxxxxoo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          7,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-draw-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvGggo",
+        "....oAAaaaaAAAomio",
+        ".....oAaaaaAAAomio",
+        "......oAAAAAAxomio",
+        "......oxxxyxxxxoo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          6,
+          -14
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-wind",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".......oooooo",
+        ".....oohhjhhhoo",
+        "....ohhhjjjhhhho",
+        "....ohhjjhhhhho",
+        "....oHhhhSskssso",
+        "....oHhhSkkwekko",
+        ".....oHhSkkkkkso",
+        ".....oHhSSkkksso",
+        "......ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvAoo",
+        ".oCccCCcoAAaaAGggo",
+        "..oCCCCooAAaAGffffG",
+        "...ooooAAaaAGgffGmiio",
+        "....oAAaaaAGggGmiio",
+        ".....oAaaaaAAo.miio",
+        "......oAAAAAAxxoo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          7,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-wind-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        ".......oooooo",
+        ".....oohhjhhhoo",
+        "....ohhhjjjhhhho",
+        "....ohhjjhhhhho",
+        "....oHhhhSskssso",
+        "....oHhhSkkwekko",
+        ".....oHhSkkkkkso",
+        ".....oHhSSkkksso",
+        "......ooSSksoo",
+        "...ooooAAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvAoo",
+        "....oAAaaaAGggGmiio",
+        ".....oAaaaaAAo.miio",
+        "......oAAAAAAxxoo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          4,
+          -13
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-strike",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "...",
+        "..........oooooo",
+        "........oohhjhhhoo",
+        ".......ohhhjjjhhhho",
+        ".......ohhjjhhhhho",
+        ".......oHhhhSskssso",
+        ".......oHhhSkkwekko",
+        "........oHhSkkkkkso",
+        "........oHhSSkkksso",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCcccCoAaATvAo",
+        "...oCCCoAAaaAGgo",
+        "....oooAAaaaAGffgo",
+        ".....oAAaaaAGgfffGoo",
+        ".....oAAAAAGggfffGMyiiiiiio",
+        "......oAAAAAGgffffGMyimmmo",
+        "......oxxxyxGggGGo..oooo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......ooooo"
+      ],
+      "sockets": {
+        "hand": [
+          10,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-strike-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        "...",
+        "..........oooooo",
+        "........oohhjhhhoo",
+        ".......ohhhjjjhhhho",
+        ".......ohhjjhhhhho",
+        ".......oHhhhSskssso",
+        ".......oHhhSkkwekko",
+        "........oHhSkkkkkso",
+        "........oHhSSkkksso",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCcccCoAaATvAo",
+        ".....oAAAAAGggfffGMyiiiiiio",
+        "......oAAAAAGgffffGMyimmmo",
+        "......oxxxyxGggGGo..oooo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......ooooo"
+      ],
+      "sockets": {
+        "hand": [
+          10,
+          -12
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-follow",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "..",
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCcccCoAaATvAo",
+        "...oCCCoAAaaAGgo",
+        "....oooAAaaaAGffgo",
+        ".....oAAaaaAGggffgo",
+        ".....oAAAAAAAGgffgGMmiiio",
+        "......oAAAAAAxGggG..omiiio",
+        "......oxxxyxxxxo.....oooo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -21
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-follow-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        "..",
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "....ooooAAovSoo",
+        "...oCddcoAavlvao",
+        "..oCcdccoAablvvao",
+        "..oCcccCoAabTvAo",
+        "..oCcccCoAaATvAo",
+        ".....oAAAAAAAGgffgGMmiiio",
+        "......oAAAAAAxGggG..omiiio",
+        "......oxxxyxxxxo.....oooo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -13
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-recover",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvAoo",
+        ".oCccCCcoAaAAGggo",
+        "..oCCCCooAAAGffggo",
+        "...ooooAAaaAGgffgo",
+        "....oAAaaaAAGggGMio",
+        ".....oAaaaaAAAaoMio",
+        "......oAAAAAAxxoMio",
+        "......oxxxyxxxxoMio",
+        "......oNNNnnnqqooo",
+        "......oNNNnnnnno",
+        ".......oooooooo"
+      ],
+      "sockets": {
+        "hand": [
+          6,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-recover-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        ".........oooooo",
+        ".......oohhjhhhoo",
+        "......ohhhjjjhhhho",
+        "......ohhjjhhhhho",
+        "......oHhhhSskssso",
+        "......oHhhSkkwekko",
+        ".......oHhSkkkkkso",
+        ".......oHhSSkkksso",
+        "........ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAo",
+        ".oCcccCcoAaATvAoo",
+        "....oAAaaaAAGggGMio",
+        ".....oAaaaaAAAaoMio",
+        "......oAAAAAAxxoMio",
+        "......oxxxyxxxxoMio",
+        "......oNNNnnnqqooo",
+        "......oNNNnnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          5,
+          -13
+        ]
+      }
+    },
+    {
+      "id": "upper-melee-ready-crouch",
+      "channel": "upper",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        "........oooooo",
+        "......oohhjhhhoo",
+        ".....ohhhjjjhhhho",
+        ".....ohhjjhhhhho",
+        ".....oHhhhSskssso",
+        ".....oHhhSkkwekko",
+        "......oHhSkkkkkso",
+        "......oHhSSkkksso",
+        ".......ooSSksoo",
+        "...oooooAAovSoo",
+        "..oCdddcoAavlvao",
+        ".oCcdcccoAablvvao",
+        ".oCcccCcoAabTvoAgggo",
+        ".oCcccCcoAabTvoGffgG",
+        "....oAAaaaAGggGGo",
+        ".....oAaaaaAAAao",
+        "......oAAAAAAxxo",
+        "......oxxxyxxxxo",
+        "......oNNNnnnqqo",
+        "......oNNNnnnnno"
+      ],
+      "sockets": {
+        "hand": [
+          8,
+          -14
+        ]
+      }
+    },
+    {
+      "id": "body-death-hit",
+      "channel": "full-body",
+      "at": [
+        14,
+        10
+      ],
+      "rows": [
+        ".......oooooo........",
+        ".....oohhjhhhoo......",
+        "....ohhhjjjhhhho.....",
+        "....ohhjjhhhhho......",
+        "....oHhhhSskssso.....",
+        "....oHhhSSkkeeko.....",
+        ".....oHhSkkkkkso.....",
+        ".....oHhSSkkksso.....",
+        "......ooSSksoo.......",
+        "..ooooAAoSSSoo.......",
+        ".oCdddcoAavlvao......",
+        "oCcdcccoAablvvao.....",
+        "oCcccCcoAabTvoAgggo..",
+        "oCcccCcoAabTvoGffgG..",
+        "oCccCCcoAaAGggfffggG.",
+        ".oCCCCooAAGgfffggG...",
+        "..ooooAAaaAGggGGo....",
+        "...oAAAaaAAGggGGo....",
+        "....oAaaaaAAAao......",
+        ".....oAAAAAAxxo......",
+        ".....oxxxyxxxxo......",
+        ".....oNNNnnnqqo......",
+        ".....oNNNnnnnnoqo....",
+        "......oooooooonqo....",
+        "......oNNNNonnqqo....",
+        "......oNNNo.onqqo....",
+        "......oNNNo.onqqo....",
+        "......oNNNo.onnno....",
+        ".....oNNNNo.onnno....",
+        ".....oNNNNo..onnno...",
+        ".....oNNNNo..onnno...",
+        "....oNNNNNo..onnnno..",
+        "....oNNNNo...onnnno..",
+        "....oxxxxo...oxxxxo..",
+        "....oBBtto...oBBtto..",
+        "....oBBtto...oBtttuo.",
+        "....oBttuuo..oBtttuuo",
+        "....oooooooo.oooooooo"
+      ]
+    },
+    {
+      "id": "body-death-reel",
+      "channel": "full-body",
+      "at": [
+        11,
+        12
+      ],
+      "rows": [
+        ".......oooooo................",
+        ".....oohhjhhhoo..............",
+        "....ohhhjjjhhhho.............",
+        "....ohhjjhhhhho..............",
+        "....oHhhhSskssso.............",
+        "....oHhhSSkkeeko.............",
+        ".....oHhSkkkkkso.............",
+        ".....oHhSSkkksso.............",
+        "......ooSSksoo...............",
+        "..ooooAAoSSSoo...............",
+        ".oCdddcoAavlvao..............",
+        "oCcdcccoAablvvao.............",
+        "oCcccCcoAabTvoAgggo..........",
+        "oCcccCcoAabTvoGffgG..........",
+        "oCccCCcoAaAGggfffggG.........",
+        ".oCCCCooAAGgfffggG...........",
+        "..ooooAAaaAGggGGo............",
+        "...oAAAaaAAGggGGo............",
+        "....oAaaaaAAAao..............",
+        ".....oAAAAAAxxo..............",
+        ".....oxxxyxxxxonnnqo.........",
+        ".....oNNNnnnqqonnqqo.........",
+        ".....oNNNnnnnnonnqqo.........",
+        "......ooooooooonqqqo.........",
+        ".......oNNNNo..onqqqo........",
+        "......oNNNNo....onnqqo.......",
+        "......oNNNNo.....onnno.......",
+        ".......oNNNNo.....onnno......",
+        "........oNNNo......onnno.....",
+        "........oNNNo.......onnno....",
+        "........oNNNo........onnno...",
+        "........oxxxo.........oxxxo..",
+        "........oBBto.........oBBtto.",
+        "........oBBttuo.......oBBtto.",
+        "........oBBtttuo......oBBttuo",
+        "........oooooooo......ooooooo"
+      ]
+    },
+    {
+      "id": "body-death-buckle",
+      "channel": "full-body",
+      "at": [
+        12,
+        16
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....ohhjjhhhhho.......",
+        "....oHhhhSskssso......",
+        "....oHhhSSkkeeko......",
+        ".....oHhSkkkkkso......",
+        ".....oHhSSkkksso......",
+        "......ooSSksoo........",
+        "..ooooAAoSSSoo........",
+        ".oCdddcoAavlvao.......",
+        "oCcdcccoAablvvao......",
+        "oCcccCcoAabTvoAgggo...",
+        "oCcccCcoAabTvoGffgG...",
+        "oCccCCcoAaAGggfffggG..",
+        ".oCCCCooAAGgfffggG....",
+        "..ooooAAaaAGggGGoqo...",
+        "...oAAAaaAAGggGGoqo...",
+        "....oAaaaaAAAaoqqqqo..",
+        ".....oAAAAAAxxonqqqqo.",
+        "....ooxxxyxxxxonnqqqo.",
+        "...oNNNNNo.....onnqqo.",
+        "...oNNNNo......onnnno.",
+        "....oNNNNo....onnnno..",
+        ".....oNNNNo..onnnno...",
+        "......oNNNo..onnnno...",
+        "......oNNNo...onnno...",
+        "......oxxxo...oxxxo...",
+        "......oBBto...oBBto...",
+        "......oBBttuo.oBBtto..",
+        "......oBBtttuooBBtttuo",
+        "......oooooooooooooooo"
+      ]
+    },
+    {
+      "id": "body-death-knee",
+      "channel": "full-body",
+      "at": [
+        13,
+        23
+      ],
+      "rows": [
+        ".......oooooo.........",
+        ".....oohhjhhhoo.......",
+        "....ohhhjjjhhhho......",
+        "....oHhhhhhhho........",
+        ".....oHhSkkssso.......",
+        ".....oHSkwekksso......",
+        "......oSSkkksso.......",
+        "...oooooASksoo........",
+        "..oCddcoAovSoo........",
+        ".oCcdccoAavlvao.......",
+        ".oCcccCoAablvAoo......",
+        ".oCcccCoAabTvoAgggo...",
+        ".oCCCCooAabTvoGffgG...",
+        "..ooo.oAAaAGggfffgg...",
+        "......oAAAAGgfffGoo...",
+        "......oxxyxGggGGo.....",
+        ".......oNNnnnnonqo....",
+        "....oooNooooooqqqo....",
+        "...oNNNNNoooonnqqqo...",
+        "..oNNNNNo....onnqqo...",
+        ".oNNNNNo......onnno...",
+        "oxxxxxo.......oxxxxo..",
+        "oBBttto.......oBBtto..",
+        "oBBtttuo......oBBttuuo",
+        "oooooooo......oooooooo"
+      ]
+    },
+    {
+      "id": "body-death-fall",
+      "channel": "full-body",
+      "at": [
+        5,
+        24
+      ],
+      "rows": [
+        "....ooooooo",
+        "..oohhjjhhoo",
+        "..oHhhSskksoo",
+        "..oHhSkkSkkso",
+        "...oHSSkkksso",
+        "....ooSSksoo",
+        "......oAAAvooo",
+        ".....oCAaavTvooo",
+        "....oCddCAabTvAGggo",
+        "....oCccCAaaATGffgG",
+        ".....oCCCoAAAAAGggG",
+        "......oooAAaAAxxoo",
+        ".........oxxxyNNnnoo",
+        "........oNNNNNNnnqqo",
+        ".......oNNNNNoonnqqqo",
+        "......oNNNNo...onnqqo",
+        "......oNNNo.....onnno",
+        "......oxxxo......oxxxo",
+        ".....oBBttuo....oBBtto",
+        "....oBBttttuo...oBBtuuo",
+        "....ooooooooo...oooooooo"
+      ]
+    },
+    {
+      "id": "body-death-side",
+      "channel": "full-body",
+      "at": [
+        3,
+        32
+      ],
+      "rows": [
+        "....ooooooo",
+        "..oohhjjhhoo",
+        "..oHhhSskksoo",
+        "..oHhSkkSkkso",
+        "...oHSSkkksso...oooo",
+        "....ooSSksooooooNNNno",
+        ".....oCAavTvoooNNNnnqo",
+        "....oCddCAaTvooNNNnnnqo",
+        "....oCccCAaaTvoNNNnnnqo",
+        ".....oCCCAAAAxxNNNnnqqqo",
+        "......ooAAaAxyNNNnnqqqqo",
+        "....oGggGAAAAxNNNoonnqqqqo",
+        "...oGffggGAAooNNo...onnqqqo",
+        "....oGggGoooNNNo.....oxxxxo",
+        "....oooooNNNNNo......oBBttuo",
+        "...oBBtttuuoooo.......oBBtttuo"
+      ]
+    },
+    {
+      "id": "body-death-settle",
+      "channel": "full-body",
+      "at": [
+        3,
+        37
+      ],
+      "rows": [
+        ".....ooooooo",
+        "...oohhjjhhoo",
+        "...oHhhSskksoo",
+        "...oHhSkkSkkso.....ooooooo",
+        "....oHSSkkksoo....oNNNNnnnqoo",
+        ".....ooSSksooAoooxNNNNnnnqqqo",
+        "....oCddCAavTvooxNNNNNnnqqqqo",
+        "....oCccCAaaTvooxNNNoooonnqqqo",
+        "...oGggGCAAAAxxxyNNNo...oxxxxo",
+        "..oGffggGAAAAxNNNNNo....oBBttuo",
+        "...oGggGoooooNNNNNNo....oBBttuuoo"
+      ]
+    },
+    {
+      "id": "body-death-still",
+      "channel": "full-body",
+      "at": [
+        3,
+        38
+      ],
+      "rows": [
+        ".....ooooooo",
+        "...oohhjjhhoo",
+        "...oHhhSskksoo",
+        "...oHhSkkSkkso.....ooooooo",
+        "....oHSSkkksoo....oNNNNnnnqoo",
+        ".....ooSSksooAoooxNNNNnnnqqqo",
+        "....oCddCAavTvooxNNNNNnnqqqqo",
+        "...oGggGCAaaTvooxNNNoooonnqqqo",
+        "..oGffggGAAAAxxxyNNNo...oxxxxo",
+        "...oGggGoooooNNNNNNo...oBBtttuuo"
+      ]
+    },
+    {
+      "id": "body-reentry-crouch",
+      "channel": "full-body",
+      "at": [
+        13,
+        21
+      ],
+      "rows": [
+        "..........oooooo......",
+        "........oohhjhhhoo....",
+        ".......ohhhjjjhhhho...",
+        ".......oHhhhhhhho.....",
+        "........oHhSkkssso....",
+        "........oHSkwekksso...",
+        ".........oSSkkksso....",
+        "......oooooASksoo.....",
+        ".....oCddcoAovSoo.....",
+        "....oCcdccoAavlvao....",
+        "....oCcccCoAablvAoo...",
+        "....oCcccCoAabTvoAgggo",
+        "....oCCCCooAabTvoGffgG",
+        ".....ooo.oAAaAGggfffgg",
+        ".........oAAAAGgfffGoo",
+        ".........oxxyxGggGGo..",
+        "..........oNNnnnno....",
+        "...........oooooo.....",
+        ".......oNNNNnnnnqo....",
+        "....oooNNNNnnnqqqo....",
+        "...oNNNNNoooonnqqqo...",
+        "..oNNNNNo....onnqqo...",
+        ".oNNNNNo......onnno...",
+        "oxxxxxo.......oxxxxo..",
+        "oBBttto.......oBBtto..",
+        "oBBtttuo......oBBttuuo",
+        "oooooooo......oooooooo"
+      ]
+    },
+    {
+      "id": "body-reentry-rise",
+      "channel": "full-body",
+      "at": [
+        15,
+        13
+      ],
+      "rows": [
+        "........oooooo.......",
+        "......oohhjhhhoo.....",
+        ".....ohhhjjjhhhho....",
+        ".....ohhjjhhhhho.....",
+        ".....oHhhhSskssso....",
+        ".....oHhhSkkwekko....",
+        "......oHhSkkkkkso....",
+        "......oHhSSkkksso....",
+        ".......ooSSksoo......",
+        "...oooooAAovSoo......",
+        "..oCdddcoAavlvao.....",
+        ".oCcdcccoAablvvao....",
+        ".oCcccCcoAabTvoAgggo.",
+        ".oCcccCcoAabTvoGffgG.",
+        ".oCccCCcoAaAGggfffggG",
+        "..oCCCCooAAGgfffggG..",
+        "...ooooAAaaAGggGGo...",
+        "....oAAaaaAGggGGo....",
+        ".....oAaaaaAAAao.....",
+        ".....ooAAAAAAxxo.....",
+        "....oNoxxxyxxxxo.....",
+        "...oNNoNNNnnnqqoo....",
+        "..oNNNoNNNnnnnnoqo...",
+        ".oNNNNNooooooooqqo...",
+        "oNNNNNo.....onnqqo...",
+        "oNNNNo......onnnno...",
+        ".oNNNNo....onnnno....",
+        "..oNNNNo..onnnno.....",
+        "...oNNNo..onnnno.....",
+        "...oNNNo...onnno.....",
+        "...oxxxo...oxxxo.....",
+        "...oBBto...oBBto.....",
+        "...oBBttuo.oBBtto....",
+        "...oBBtttuooBBtttuo..",
+        "...oooooooooooooooo.."
+      ]
+    },
+    {
+      "id": "body-reentry-brace",
+      "channel": "full-body",
+      "at": [
+        16,
+        11
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAablvvao........",
+        "oCcccCcoAabTvoAgggo.....",
+        "oCcccCcoAabTvoGffgGMMimM",
+        "oCccCCcoAaAGggfffggMmmMM",
+        ".oCCCCooAAGgfffggGMMmMMM",
+        "..ooooAAaaAGggGGo....MM.",
+        "...oAAaaaAGggGGo....oo..",
+        "...ooAaaaaAAAao.........",
+        "....oAAAAAAxxo..........",
+        ".....oxxxyxxxxo.........",
+        "....ooNNNnnnqqo.........",
+        "....ooNNNnnnnno.........",
+        "...oNNooooooooo.........",
+        "..oNNNNo..onqqo.........",
+        ".oNNNNo...onqqo.........",
+        ".oNNNNo...onnno.........",
+        "..oNNNNo..onnno.........",
+        "...oNNNNo.onnno.........",
+        "....oNNNo.onnno.........",
+        "....oNNNo.onnno.........",
+        "...oNNNNo.onnno.........",
+        "...oxxxxo.oxxxo.........",
+        "...oBBtto.oBBto.........",
+        "...oBBtto.oBBttuo.......",
+        "..oBBttuo.oBBtttuo......",
+        "..ooooooo.oooooooo......"
+      ]
+    },
+    {
+      "id": "body-reentry-ready",
+      "channel": "full-body",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAablvvao........",
+        "oCcccCcoAabTvoAgggo.....",
+        "oCcccCcoAabTvoGffgGMMimM",
+        "oCccCCcoAaAGggfffggMmmMM",
+        ".oCCCCooAAGgfffggGMMmMMM",
+        "..ooooAAaaAGggGGo....MM.",
+        "...oAAaaaAGggGGo....oo..",
+        "....oAaaaaAAAao.........",
+        ".....oAAAAAAxxo.........",
+        ".....oxxxyxxxxo.........",
+        ".....oNNNnnnqqo.........",
+        "....ooNNNnnnnno.........",
+        "....oNooooooooo.........",
+        "....oNNNNonnqqo.........",
+        "....oNNNo.onqqo.........",
+        "....oNNNo.onqqo.........",
+        "....oNNNo.onnno.........",
+        "...oNNNNo.onnno.........",
+        "...oNNNNo..onnno........",
+        "...oNNNNo..onnno........",
+        "..oNNNNNo..onnnno.......",
+        "..oNNNNo...onnnno.......",
+        "..oxxxxo...oxxxxo.......",
+        "..oBBtto...oBBtto.......",
+        "..oBBtto...oBtttuo......",
+        "..oBttuuo..oBtttuuo.....",
+        "..oooooooo.oooooooo....."
+      ]
     }
   ],
   "clips": [
@@ -1362,6 +3037,269 @@
           "ticks": 2
         }
       ]
+    },
+    {
+      "id": "upper.run.horizontal",
+      "channel": "upper",
+      "mode": "loop",
+      "exposures": [
+        {
+          "frame": "upper-run-lift",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-run-dip",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-run-lift",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-horizontal",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-run-dip",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-horizontal",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.idle.horizontal",
+      "channel": "upper",
+      "mode": "loop",
+      "exposures": [
+        {
+          "frame": "upper-horizontal",
+          "ticks": 70
+        },
+        {
+          "frame": "upper-idle-inhale",
+          "ticks": 12
+        },
+        {
+          "frame": "upper-idle-exhale",
+          "ticks": 60
+        },
+        {
+          "frame": "upper-idle-blink",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "upper.land.horizontal",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-land-compress",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-land-rise",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "upper.grenade",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-grenade-draw",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-grenade-cock",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-grenade-release",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-grenade-follow",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-grenade-recover",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-action-ready",
+          "ticks": 7
+        }
+      ]
+    },
+    {
+      "id": "upper.grenade.crouch",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-grenade-draw-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-grenade-cock-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-grenade-release-crouch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-grenade-follow-crouch",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-grenade-recover-crouch",
+          "ticks": 5
+        },
+        {
+          "frame": "upper-grenade-ready-crouch",
+          "ticks": 7
+        }
+      ]
+    },
+    {
+      "id": "upper.melee",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-melee-draw",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-melee-wind",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-melee-strike",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-melee-follow",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-melee-recover",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-action-ready",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "upper.melee.crouch",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-melee-draw-crouch",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-melee-wind-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-melee-strike-crouch",
+          "ticks": 4
+        },
+        {
+          "frame": "upper-melee-follow-crouch",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-melee-recover-crouch",
+          "ticks": 3
+        },
+        {
+          "frame": "upper-melee-ready-crouch",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "body.death",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "body-death-hit",
+          "ticks": 2
+        },
+        {
+          "frame": "body-death-reel",
+          "ticks": 2
+        },
+        {
+          "frame": "body-death-buckle",
+          "ticks": 3
+        },
+        {
+          "frame": "body-death-knee",
+          "ticks": 4
+        },
+        {
+          "frame": "body-death-fall",
+          "ticks": 4
+        },
+        {
+          "frame": "body-death-side",
+          "ticks": 4
+        },
+        {
+          "frame": "body-death-settle",
+          "ticks": 5
+        },
+        {
+          "frame": "body-death-still",
+          "ticks": 6
+        }
+      ]
+    },
+    {
+      "id": "body.reentry",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "body-reentry-crouch",
+          "ticks": 3
+        },
+        {
+          "frame": "body-reentry-rise",
+          "ticks": 3
+        },
+        {
+          "frame": "body-reentry-brace",
+          "ticks": 3
+        },
+        {
+          "frame": "body-reentry-ready",
+          "ticks": 3
+        }
+      ]
     }
   ],
   "notes": [
@@ -1371,6 +3309,8 @@
     "Full-body melee/throw/hurt/death/boarding and other weapon families remain to be drawn.",
     "Revised trouser and boot contours; run contact points retreat six logical pixels per two-tick exposure at the current three-pixel-per-tick speed. Contacts describe exposure boundaries, not subframe foot locking.",
     "Sidearm recoil exposures retain the exact authoritative muzzle on release, then show separately drawn kick/settle poses before returning. Cosmetic muzzle movement after release cannot produce another shot.",
-    "Authored lower-body start, stop, reverse, crouch bridge and landing exposures. These cosmetic transitions must yield immediately to accepted movement, jump, life and seat state; they cannot delay gameplay."
+    "Authored lower-body start, stop, reverse, crouch bridge and landing exposures. These cosmetic transitions must yield immediately to accepted movement, jump, life and seat state; they cannot delay gameplay.",
+    "Action revision: explicit upper knife/throw drawings preserve accepted locomotion; release hand markers bind to current authoritative timelines. Static full-body death/reentry poses follow independent lifeStartTick. Original pixel parts are composed only when writing editable literal source rows, never at runtime.",
+    "Horizontal run/idle/landing use authored head, jacket and pack changes. Gun grips meet adjacent hand/weapon pixels. Upper vertical anatomy, vehicle transfers, hurt response under accessible rules and the complete benchmark still require work and human review."
   ]
 }

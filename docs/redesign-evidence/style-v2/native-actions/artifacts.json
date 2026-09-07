@@ -1,0 +1,583 @@
+{
+  "baseCommit": "651986eff803a61d79da5ec7b211ac50b6b5e9d7",
+  "scope": "W06 native operative action candidate: 75 distinct drawings, horizontal secondary motion, grip/hand contracts, layered knife/throw and grounded full-body death/reentry. Vehicle acting, airborne death motion and the complete benchmark/human acceptance remain open.",
+  "sources": [
+    {
+      "file": "README.md",
+      "bytes": 16614,
+      "sha256": "0bd1ca869eaaf033d432bdc76abc28b4d717772fdf9113bcf8b2da66dc2de763"
+    },
+    {
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 77732,
+      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "file": "art/source/provenance.json",
+      "bytes": 3279,
+      "sha256": "4fbdff3a11e275bf4373538ed27e2759fc0099a4f2d3730784275b027ccdea36"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/README.md",
+      "bytes": 16087,
+      "sha256": "89599ba00978bb02ade5c507b8d746605730e3f4250852a4d05a925b854ba1aa"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-frames.json",
+      "bytes": 31301,
+      "sha256": "ee6d2bac31cec4dc6c89e87d384fe16b07c4f6e55e33ef6f65d226b93a99b8b5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/source-review.json",
+      "bytes": 4620,
+      "sha256": "98c66e733a058f35e9cd2ab4b0404c050e3b45c286f37b7edc22195f26c4bb33"
+    },
+    {
+      "file": "public/assets/art/hero/operative.atlas.json",
+      "bytes": 127780,
+      "sha256": "70036c78ff97982501fd4b48b1be386c67ec4aae831ca7b369919f63b5da69d0"
+    },
+    {
+      "file": "public/assets/art/hero/operative.png",
+      "bytes": 42397,
+      "sha256": "97ebd81da7529d03c817247804d994134b5a13c1038b2cc0fbb41501b7db6dea"
+    },
+    {
+      "file": "public/assets/manifest.json",
+      "bytes": 7859,
+      "sha256": "a290acc11f3f2fe1addcb182b3ea0ef7d31f6c5e56a5b479a71991ddfd47ab5d"
+    },
+    {
+      "file": "scripts/assets/export-native.ts",
+      "bytes": 9997,
+      "sha256": "d8c54ab6cf8bffc031e4fa2292b45f2b0f07c2fd9b390087a7bdaffabe4c11f7"
+    },
+    {
+      "file": "scripts/lib/native-art.ts",
+      "bytes": 8540,
+      "sha256": "fa91206f4345c7a379e5d367c664a62f7f0e5376cbc1a892966ec9b4346f1411"
+    },
+    {
+      "file": "scripts/validate-assets.mjs",
+      "bytes": 10016,
+      "sha256": "79ddc0415274d9cdd3f1166bc2e92f75e27dea48cc98726ba2ccc1953a8f997d"
+    },
+    {
+      "file": "scripts/verify-native-operative.mjs",
+      "bytes": 28154,
+      "sha256": "675647d9c25263cdac612c69250b0988b15794d0ba428a6a956fba8c690542aa"
+    },
+    {
+      "file": "src/client/art-review.html",
+      "bytes": 7378,
+      "sha256": "b58edeee161967d74f0a63a207dc9fdd6aedfa6f6f228ba2df7f2c58ee494096"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "bytes": 3914,
+      "sha256": "9ea1ca05efbc21d0928e0edd8eb19e8152b799a48a918ba1e68b4f1a743a4a97"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "bytes": 18398,
+      "sha256": "e9839ddd1b86e532134b6cba88a2105c9123642b31606444df4e78dfc1886b05"
+    },
+    {
+      "file": "src/client/native-review.ts",
+      "bytes": 7495,
+      "sha256": "36e04c27e93797f53788e216e22e633ead8df86b081cb072c05783ff119f6ce2"
+    },
+    {
+      "file": "src/shared/animation/native.ts",
+      "bytes": 2102,
+      "sha256": "79a3585b9250890779fac844aa05e3cd32d4d6992307144e1f2cc75a725698dc"
+    },
+    {
+      "file": "src/shared/animation/operative.ts",
+      "bytes": 5739,
+      "sha256": "568827494284c9d1016dc8bece58e853be894f10e227921f2f7fca4e6c14276a"
+    },
+    {
+      "file": "test/native-art.test.ts",
+      "bytes": 19291,
+      "sha256": "f20047cf86c82382007bc63eb17165b4a56733ec8a633da5db5f13e17d9a5cdc"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/actions-normal.webm",
+      "bytes": 233887,
+      "sha256": "9f7fb02c2e2af3599ac29523cc56d76f43f38c8be795c3abeb2635446bdffabb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/actions-quarter.webm",
+      "bytes": 391077,
+      "sha256": "a09f59423e79541332111bcab7356458534c18c3f109975b93144295b2b585c8"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/air-down-debug.png",
+      "bytes": 3115,
+      "sha256": "4fe5b2ac1abb9dee9ccb02786ff6a074191340c47163b1700b56767378916ab8"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/air-down.png",
+      "bytes": 3021,
+      "sha256": "5bd9e1ebcad4d10ad99460e6f86578916605b0df2c81e104b0426c544229fc7a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-buckle.png",
+      "bytes": 4451,
+      "sha256": "9071b84738413ca39e710f47a3d6a269e0467e2c2455c4d5968770359067cfef"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-fall.png",
+      "bytes": 4095,
+      "sha256": "29606f179963be61b4b992e850c5b14ded8868fe97aaca8a0c844321e564380f"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-hit.png",
+      "bytes": 4515,
+      "sha256": "43beeb3f313ffbd053d71165cf28fb824de794dc769229702942fd38781f14ff"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-knee.png",
+      "bytes": 4079,
+      "sha256": "8e1d858fa7051910dec9dac1797c786ff71d0e1ba661585a1720cb54db87fdd7"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-reel.png",
+      "bytes": 4559,
+      "sha256": "8fb85defdd55e240e8eb3ed3e2fe1a78f2b6657af41a752a7c5a8edf07f29e8e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-settle.png",
+      "bytes": 3598,
+      "sha256": "8f530d00d4d484064f443c5ef66a9724bc61d02de664d95d1f55e431095c1f59"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-side.png",
+      "bytes": 3994,
+      "sha256": "330438cd2149ec27bb378e096c7853298eaf9f5f01e1554ea0aacfbf3a252646"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.death-body-death-still.png",
+      "bytes": 3549,
+      "sha256": "705be6edcaa1dbfb6c027cf000a3525b03b1f6d5e88d60f1350aedacb1c3264d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.reentry-body-reentry-brace.png",
+      "bytes": 4618,
+      "sha256": "96cb5954ef714e6375f536b9fe900933b5113ff26bf378760f1b242f6c400714"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.reentry-body-reentry-crouch.png",
+      "bytes": 4110,
+      "sha256": "07fcb4416929e8e15cb6809ea07a0268051791887aad9f3cca2dd796d4454a55"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.reentry-body-reentry-ready.png",
+      "bytes": 4595,
+      "sha256": "d725aed245dbd707fc7f18bd2154457b46f852a01163fee913d76226586784aa"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/body.reentry-body-reentry-rise.png",
+      "bytes": 4542,
+      "sha256": "4d98f82d15107655c1d913ff448dd650659e1b45d228bd2d152df694b25aa835"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/browser.json",
+      "bytes": 72532,
+      "sha256": "fa128a01c13de09fd444127499a9319100ac2622675493f876839d8140078e2e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/browser.log.gz",
+      "bytes": 314,
+      "sha256": "1ef61890cb09290d6770ff96a55f9581fcfd6e7b469419a7974c5de4f0492bc6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/check.log.gz",
+      "bytes": 1446,
+      "sha256": "3488dcfb44fe50990ea494d3aa6f82b6e97179b50aecaf73a1d18f2b81fcde1f"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/combat-browser.json.gz",
+      "bytes": 16931,
+      "sha256": "48f19d90ccd2d0ee395c0e9704b3b33105a5927b4fca1bc900c828da910e8029"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/combat-browser.log.gz",
+      "bytes": 128,
+      "sha256": "97668857d84d2b8db5bf292d082607c90e139e6cf57b71c22ae0340113d2efd5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/concept-browser.json",
+      "bytes": 1119,
+      "sha256": "a6cdfac5db941b08b1dfc403bb348777fcc5449f080be702ceec7939c668c097"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/concept-browser.log.gz",
+      "bytes": 84,
+      "sha256": "5e1895792c2d197d2fd3f2aeb27437ff7dd171e33f25adaa36be12e208564075"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/crouch.png",
+      "bytes": 2953,
+      "sha256": "3527f806214b97283120513d6af3217d26c142acf8e9ac001728ad7e6d46a52d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/death-recording.json",
+      "bytes": 22565,
+      "sha256": "fb0a6bbaa02e1c68008201c12ac15f7a8c5a1cfeda3d5a9c8c2a95035af09096"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/death-still.png",
+      "bytes": 2717,
+      "sha256": "c43ca712422564cb5c0eba098f265788dabb90b0e87fe9fa24ae70822e4880fd"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/four-slots.png",
+      "bytes": 3585,
+      "sha256": "76fdf55b4ffe357aee6e3128d55d94f6ad28f0e25e1a71614400664daf1cc16d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-air-recording.json",
+      "bytes": 7153,
+      "sha256": "b8819dd8aacbdeb069f50b004fcb15579bcde7e4b7c8b441551899296e6ae494"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-air-release.png",
+      "bytes": 2989,
+      "sha256": "d0adc52c98ecf79131b99e2d8ae2860802cca9cdb29d19c76fe532c404c57bf5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-crouch-recording.json",
+      "bytes": 7250,
+      "sha256": "f52ae6329cdb13795c8fc61d52f34191acccadcf9ee5fd0a960387bc3177dc1f"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-crouch-release.png",
+      "bytes": 2913,
+      "sha256": "4b4fd2d30c047761d686fb598439e96f6383bf43bf3cac95e770a001c912efc5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-run-recording.json",
+      "bytes": 7253,
+      "sha256": "118dbe691b3c411e7df6ade907f62668f74077bc484c0195867465e59d902204"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/grenade-run-release.png",
+      "bytes": 3012,
+      "sha256": "4d1f27ac732c497b65659c5c0b6d6d3c28c99bbaf1864e4489694d1c9069cc77"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/knife-crouch-active.png",
+      "bytes": 3007,
+      "sha256": "1fe1013a19573db41c68828798ef774efd5c5a59f36231bfb2aa3aa6ad95bfc0"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/knife-crouch-recording.json",
+      "bytes": 13499,
+      "sha256": "78a20eb9bc1fd3fdb51d4d0e3a0394463fb864859720c08b6186f3e6309001dc"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/knife-stand-active.png",
+      "bytes": 3069,
+      "sha256": "10df7b00311594816cbda9827bbe4aa22b0f06d0848d30a95ea1255ff6b91f80"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/knife-stand-recording.json",
+      "bytes": 13499,
+      "sha256": "7d86f63c99255707f3e6af5191496a94f28b1716d3e641c9ec514d8d93a278e5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/landing.png",
+      "bytes": 3075,
+      "sha256": "95d39e3f8f9204c85df4515e0a4c4d22ff08484e16e68e8de850fd28671ec1df"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/motion-recording.json",
+      "bytes": 15088,
+      "sha256": "f6baad6b6787a2787008770939f95646e7a2dc0eeebbfd6b5ad46ff111f47ca2"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/palettes-1x.png",
+      "bytes": 3065,
+      "sha256": "51a84a11ff265f84a18a880bf5e4c60ffa7c9188a2c57840e8e5938b2d1f28ee"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/palettes-4x.png",
+      "bytes": 4709,
+      "sha256": "84667f71cbc3233721dd570330f1479955065ba8c93970a7398f162ebd8ce6c5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/production-isolation.json",
+      "bytes": 499,
+      "sha256": "54e4b43e1d26131d574f5130df31d259d4331b8e50cd13037d90d78b1e0bf5a2"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/recoil-kick.png",
+      "bytes": 3065,
+      "sha256": "e59eb53707bc30f272f288cb11fa45fe21d827bc77582c65befd5f20d3da6f13"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/recoil-settle.png",
+      "bytes": 3162,
+      "sha256": "322e6a556ad116d778f02cc5c35e86eaf23e5af0b2c40de005a352e22176d27a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/recording.json",
+      "bytes": 4333,
+      "sha256": "6e2b1d18dc003ff4732e896d23b20d014892c036e4d1cf8e47429a25fecd60fe"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/reentry-ready.png",
+      "bytes": 3155,
+      "sha256": "21ab542d3aefe6caabe9622115ddf98c0ad90862ebc4f574454b153f2996ef9e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/reentry-recording.json",
+      "bytes": 26899,
+      "sha256": "781dd512f4466053e4b78a6eb23e19d2ef821dbfb2b82c0122b78581fb9d5a72"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-0.png",
+      "bytes": 3162,
+      "sha256": "322e6a556ad116d778f02cc5c35e86eaf23e5af0b2c40de005a352e22176d27a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-1.png",
+      "bytes": 3122,
+      "sha256": "1667ed0c09e2ae144b1ad2c9d6dc8be8febb48c293a7145e026d9d1ff8b0de3a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-2.png",
+      "bytes": 3095,
+      "sha256": "e7e89c6d4dd60683c671e2130f25a10a5668bd786f2ee0313607047352996423"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-3.png",
+      "bytes": 3142,
+      "sha256": "633ce908fb9a3b0bfb149ee7ef394fc3e9d2bab307f6b73289163fdfe06bca62"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-4.png",
+      "bytes": 3138,
+      "sha256": "cc7c5ad4edee015dc0f3d427187530c5815709ee2913d7bbffc99cb4cc2e0ed1"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-5.png",
+      "bytes": 3127,
+      "sha256": "7e0ef6cd7718cd1adef55fef2562e40d3283fd0b0f9d593139678beb5e4f4e56"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-6.png",
+      "bytes": 3075,
+      "sha256": "7ae3a1b127db0a4ef84401f8d29c0294253cd9d56f1c16a63de0f30d7b9b925e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-7.png",
+      "bytes": 3124,
+      "sha256": "83877470354c0ffa458b3bfb3cde72d73db47cd5b8f1dacf97f9863f643d53f3"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-fire-normal.webm",
+      "bytes": 282909,
+      "sha256": "af56ce6ff7379949a0b9448e79076e185aa721edfcf8ff1fe9e650b9d3f89333"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-fire-quarter.webm",
+      "bytes": 242137,
+      "sha256": "91864e981b5da8d5ce6fa1496900f431f4fb14f7abc5db3970b2a2b54b7aff5a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/run-recording.json",
+      "bytes": 8168,
+      "sha256": "76bc0705e9fd8f777dc62de7004a682a0e44c44f6eaf0e2eeea8f6c022d788d7"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/standing-left.png",
+      "bytes": 3040,
+      "sha256": "331357b6499f21c70336e4ff3b1eaf401ac1c594d0909a17ead1c0d1d608296a"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/standing-right.png",
+      "bytes": 3030,
+      "sha256": "5cb973bb7e66624b371544dbcd90e882cc1f583e2055856f50482efab17011fb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/up.png",
+      "bytes": 2878,
+      "sha256": "70d3ff4dcd68ed85ff36fe4b10cdb202186df51034320e39407bb8656ebff565"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-action-ready.png",
+      "bytes": 4521,
+      "sha256": "7cf42f209823b7e87fd94f4aaeb97df105ba3cda0b18639676a957687c852bcb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-grenade-cock.png",
+      "bytes": 4484,
+      "sha256": "c204cd9e68ba6c087f3410067d92bde74b5483a7c3578fb47cc6856e07e0bf7d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-grenade-draw.png",
+      "bytes": 4492,
+      "sha256": "62f51c3f604dea5d8b6aca9ed8344645614eacf90ff947fcae98c0a4c9d6e995"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-grenade-follow.png",
+      "bytes": 4482,
+      "sha256": "30548ce0b6769edbdd864aa2164b7e604fa831a5021a9831b579d564deceb2b6"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-grenade-recover.png",
+      "bytes": 4538,
+      "sha256": "3197b3b2e8749cc1b59fa4d09161095f8ffb90309b65878a735e98cedd1c566b"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade-upper-grenade-release.png",
+      "bytes": 4448,
+      "sha256": "cc8ef0be78beeb15c8e73fd07151f7f106f58b44b34c604688cff070bfd44887"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-cock-crouch.png",
+      "bytes": 4346,
+      "sha256": "eab225e5fed41866dba69fa1528e9c0b7d6262d073f98477c8d983d6b7e5a76c"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-draw-crouch.png",
+      "bytes": 4352,
+      "sha256": "1bb5c24ace71409be231731cdf824a0e2fe2f634aebc03c788eb2e6010f8e7a2"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-follow-crouch.png",
+      "bytes": 4340,
+      "sha256": "e2e41eba5ca117464f4f46021cb08c957081152a362494585467ca0cb315f453"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-ready-crouch.png",
+      "bytes": 4382,
+      "sha256": "991a182f7766bdbc8c6639e68dd5889b33e9ad93e8ec1096201105cd96214e1d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-recover-crouch.png",
+      "bytes": 4397,
+      "sha256": "f9743850e6ec8fa3ef4d1c3dbcf812c33df164d0201a50dfe0b5e5395198d4b0"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.grenade.crouch-upper-grenade-release-crouch.png",
+      "bytes": 4297,
+      "sha256": "6459d7544f520ef7c581028e3e304d316747177044a461b2c648dd858479b8cd"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.idle.horizontal-upper-horizontal.png",
+      "bytes": 4595,
+      "sha256": "d725aed245dbd707fc7f18bd2154457b46f852a01163fee913d76226586784aa"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.idle.horizontal-upper-idle-blink.png",
+      "bytes": 4595,
+      "sha256": "761f2753a2481335db639c59ef47ce8f4a848f9ec283750ff09a221623b2ce68"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.idle.horizontal-upper-idle-exhale.png",
+      "bytes": 4605,
+      "sha256": "eb5a118e0a0178899924203552c69961e6645f8d766fde454bcd3335235ca949"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.idle.horizontal-upper-idle-inhale.png",
+      "bytes": 4561,
+      "sha256": "21e004b97f6a3f13f7d0dfef8bc83a3edd894837885497393a196f2cb009105e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.land.horizontal-upper-land-compress.png",
+      "bytes": 4587,
+      "sha256": "d8bd0d866551f6b7d653c44a0767475357ffbfe2db3418ebed7105ae3dc9321e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.land.horizontal-upper-land-rise.png",
+      "bytes": 4606,
+      "sha256": "24dfdec26d3c1d1afe657be20233d63d04795e28f0a3a7fa50808e511dbd89d9"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-action-ready.png",
+      "bytes": 4521,
+      "sha256": "7cf42f209823b7e87fd94f4aaeb97df105ba3cda0b18639676a957687c852bcb"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-melee-draw.png",
+      "bytes": 4511,
+      "sha256": "2450800e4fd52df3e18b14a84114a2e40ea76fdc8b4c4a0c0b6202ef41426f89"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-melee-follow.png",
+      "bytes": 4499,
+      "sha256": "20da6a810dbcee9e011cde1515fd284592e126ce1dfa4f8bdd77e45053f0f030"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-melee-recover.png",
+      "bytes": 4561,
+      "sha256": "b731cdf7d89d2be4d3dfef2b4a62220dafac52d014246adac76a0ced4373d391"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-melee-strike.png",
+      "bytes": 4538,
+      "sha256": "cee98f91f43b204d4e363b3956cc5fedf62017033ec3fe0a610f5b7a9d018ca3"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee-upper-melee-wind.png",
+      "bytes": 4556,
+      "sha256": "95008f46d592fadf171fb2ae3dc756a8754d1e51c3d02d95d9eceb14386fa465"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-draw-crouch.png",
+      "bytes": 4189,
+      "sha256": "6ab03945a20d3b6318c2adce9eb994b9aac572a2b3979e16ad869bea0fc57143"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-follow-crouch.png",
+      "bytes": 4083,
+      "sha256": "5e18815186615e53f02445a515ce3dfcd971112854576a13ebb3344e246ca6b9"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-ready-crouch.png",
+      "bytes": 4273,
+      "sha256": "8ac6c8e72ceab1b64c3be732c5e316cc957447077bc6934b5f85eb101aca8dca"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-recover-crouch.png",
+      "bytes": 4298,
+      "sha256": "beb72f159893384a3899821b82265532c2d863b02ceda35e726be219c53e7b27"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-strike-crouch.png",
+      "bytes": 4273,
+      "sha256": "c903a45e3f02464b088405fe5dedb502741f2b2fe7d20e008c4a269fdbe38077"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.melee.crouch-upper-melee-wind-crouch.png",
+      "bytes": 4293,
+      "sha256": "941852e3e9a3709941d3d70016430b91a5b0fe77fd3d04f3964d167879b3736b"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.run.horizontal-upper-horizontal.png",
+      "bytes": 4630,
+      "sha256": "5a5eeacf4dc827b02f7712f732d31bda9436f3eec528bcdadcc5db0e99d129b5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.run.horizontal-upper-run-dip.png",
+      "bytes": 4594,
+      "sha256": "5b53e7b60b7f19fb4647a8a1b8ced79d0b822e9699a21154aefb3dbee1755641"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/upper.run.horizontal-upper-run-lift.png",
+      "bytes": 4716,
+      "sha256": "4f625a1c6d4cc553f12c7edede51aa595d8c9e3b8449600c8813355774d9b5b2"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/native-actions/video-metadata.json",
+      "bytes": 1525,
+      "sha256": "06389be4a95b8f2bc5e52adb16df48e2b1d32a49b199a72768c60974adec42d3"
+    }
+  ]
+}

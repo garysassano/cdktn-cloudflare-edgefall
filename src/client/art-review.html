@@ -37,6 +37,7 @@
       #native-cards figure { margin: 0; } #native-cards figcaption { padding: 6px; font-size: 13px; }
       .native-canvas { position: relative; outline: 1px solid #53616e; }
       .native-layer { position: absolute; inset: 0; image-rendering: pixelated; background-repeat: no-repeat; }
+      .native-socket { filter: hue-rotate(150deg); }
       .native-root { position: absolute; width: 10px; height: 10px; margin: -5px; background: linear-gradient(transparent 4px, #ff547e 4px, #ff547e 6px, transparent 6px), linear-gradient(to right, transparent 4px, #ff547e 4px, #ff547e 6px, transparent 6px); }
       .native-contact { filter: hue-rotate(100deg); }
       button { font: inherit; padding: 8px 12px; border: 1px solid #4c5f70; border-radius: 5px; background: #1b2834; color: #fff; }
@@ -64,8 +65,9 @@
       <details><summary>Source, prompt and provenance</summary><p id="source"></p><pre id="provenance"></pre></details>
       <section id="native">
         <h2>Native operative · motion candidate</h2>
-        <p>Explicit pixel drawings in four jacket palettes. Review individual drawings, sidearm recoil and leg transition clips, or play the eight-frame run at normal and quarter speed. Pink marks the root and green the authored run contact. Release muzzle placement and contact spacing are checked against the simulation; human style and motion review remain pending.</p>
+        <p>Explicit pixel drawings in four jacket palettes. Review movement, sidearm recoil, knife and grenade acting, and complete death/reentry poses at normal and quarter speed. Pink marks the root, green the run contact and cyan the hand or grip. Release/active sockets and action/life timing are checked against the simulation; human style and motion review remain pending.</p>
         <div class="toolbar">
+          <label>Full body<select id="native-body"><option value="">Layered movement/actions</option></select></label>
           <label>Upper body<select id="native-upper"></select></label>
           <label>Legs<select id="native-legs"><option value="run-loop">Run loop</option></select></label>
           <label>Scale<select id="native-zoom"><option value="4">4×</option><option value="1">1×</option><option value="2">2×</option></select></label>

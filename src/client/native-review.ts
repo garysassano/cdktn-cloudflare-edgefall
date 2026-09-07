@@ -15,6 +15,7 @@ export async function startNativeReview() {
   png.src = "/assets/art/hero/operative.png";
   await png.decode();
   const upper = element<HTMLSelectElement>("native-upper"),
+    full = element<HTMLSelectElement>("native-body"),
     legs = element<HTMLSelectElement>("native-legs"),
     zoom = element<HTMLSelectElement>("native-zoom"),
     background = element<HTMLSelectElement>("native-background"),
@@ -22,10 +23,12 @@ export async function startNativeReview() {
     roots = element<HTMLInputElement>("native-roots"),
     speed = element<HTMLSelectElement>("native-speed");
   for (const [id, drawing] of Object.entries(data.drawings))
-    (drawing.channel === "upper" ? upper : legs).add(new Option(id, id));
+    (drawing.channel === "upper" ? upper : drawing.channel === "full-body" ? full : legs).add(
+      new Option(id, id),
+    );
   for (const clip of data.clips)
     if (clip.id !== "legs.run")
-      (clip.channel === "upper" ? upper : legs).add(
+      (clip.channel === "upper" ? upper : clip.channel === "full-body" ? full : legs).add(
         new Option(`Clip: ${clip.id}`, `clip:${clip.id}`),
       );
   const run = data.clips.find((clip) => clip.id === "legs.run");
@@ -39,17 +42,21 @@ export async function startNativeReview() {
       canvas = document.createElement("div"),
       lower = document.createElement("span"),
       higher = document.createElement("span"),
+      body = document.createElement("span"),
       root = document.createElement("i"),
-      contact = document.createElement("i");
+      contact = document.createElement("i"),
+      hand = document.createElement("i"),
+      grip = document.createElement("i");
     caption.textContent = variant.toUpperCase();
     canvas.className = "native-canvas";
-    lower.className = higher.className = "native-layer";
+    lower.className = higher.className = body.className = "native-layer";
     root.className = "native-root";
     contact.className = "native-root native-contact";
-    canvas.append(lower, higher, root, contact);
+    hand.className = grip.className = "native-root native-socket";
+    canvas.append(lower, higher, body, root, contact, hand, grip);
     card.append(canvas, caption);
     element("native-cards").append(card);
-    return { variant, canvas, lower, higher, root, contact };
+    return { variant, canvas, lower, higher, body, root, contact, hand, grip };
   });
   const selectedDrawing = (value: string) => {
     if (value === "run-loop") return nativeExposure(run, Math.floor(tick));
@@ -58,17 +65,25 @@ export async function startNativeReview() {
     if (!clip) throw new Error("Missing selected native clip");
     const duration = clip.exposures.reduce((sum, exposure) => sum + exposure.ticks, 0);
     // The workbench repeats one-shot clips with a visible hold between cycles.
-    return nativeExposure(clip, Math.floor(tick) % (duration + 4));
+    return nativeExposure(
+      clip,
+      clip.mode === "loop" ? Math.floor(tick) : Math.floor(tick) % (duration + 4),
+    );
   };
   const render = () => {
-    const lowerId = selectedDrawing(legs.value),
-      upperId = selectedDrawing(upper.value);
+    const bodyId = full.value ? selectedDrawing(full.value) : null,
+      lowerId = bodyId ? null : selectedDrawing(legs.value),
+      upperId = bodyId ? null : selectedDrawing(upper.value);
+    upper.disabled = legs.disabled = Boolean(bodyId);
     const scale = Number(zoom.value);
     for (const card of cards) {
       for (const [layer, id] of [
         [card.lower, lowerId],
         [card.higher, upperId],
+        [card.body, bodyId],
       ] as const) {
+        layer.hidden = !id;
+        if (!id) continue;
         const frame = atlas.frames[`${card.variant}/${id}`]?.frame;
         if (!frame) throw new Error("Missing native review frame");
         Object.assign(layer.style, {
@@ -87,27 +102,38 @@ export async function startNativeReview() {
         card.root.style.left = `${(flip.checked ? frame.w - data.root[0] : data.root[0]) * scale}px`;
         card.root.style.top = `${data.root[1] * scale}px`;
         card.root.hidden = !roots.checked;
-        const contact = data.drawings[lowerId]?.contact;
+        const contact = lowerId ? data.drawings[lowerId]?.contact : null;
         card.contact.hidden = !roots.checked || !contact;
         if (contact) {
           const x = data.root[0] + contact.point[0];
           card.contact.style.left = `${(flip.checked ? frame.w - x : x) * scale}px`;
           card.contact.style.top = `${data.root[1] * scale}px`;
         }
+        const sockets = data.drawings[bodyId ?? upperId ?? ""]?.sockets;
+        for (const name of ["hand", "grip"] as const) {
+          const point = sockets?.[name];
+          card[name].hidden = !roots.checked || !point;
+          if (!point) continue;
+          const x = data.root[0] + point[0];
+          card[name].style.left = `${(flip.checked ? frame.w - x : x) * scale}px`;
+          card[name].style.top = `${(data.root[1] + point[1]) * scale}px`;
+        }
       }
     }
     element("native-status").textContent =
-      `Tick ${Math.floor(tick)} · ${lowerId} + ${upperId} · ${scale}× native pixels · Human style review pending`;
+      `Tick ${Math.floor(tick)} · ${bodyId ?? `${lowerId} + ${upperId}`} · ${scale}× native pixels · Human style review pending`;
     element("native").dataset.tick = String(Math.floor(tick));
-    element("native").dataset.legs = lowerId;
-    element("native").dataset.upper = upperId;
+    element("native").dataset.legs = lowerId ?? "";
+    element("native").dataset.upper = upperId ?? "";
+    element("native").dataset.body = bodyId ?? "";
     element("native").dataset.ready = "true";
   };
   const pause = () => {
     playing = false;
     element("native-play").textContent = "Play selection";
   };
-  for (const control of [upper, legs, zoom, background, flip, roots]) control.onchange = render;
+  for (const control of [upper, legs, full, zoom, background, flip, roots])
+    control.onchange = render;
   legs.addEventListener("change", pause);
   element("native-play").onclick = () => {
     if (playing) pause();

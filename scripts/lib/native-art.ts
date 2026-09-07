@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import sharp from "sharp";
-import type { NativeAtlas, NativeClip, NativeContact } from "../../src/shared/animation/native.js";
+import type {
+  NativeAtlas,
+  NativeChannel,
+  NativeClip,
+  NativeContact,
+  NativeSockets,
+} from "../../src/shared/animation/native.js";
 
 export interface NativeDrawing {
   format: 1;
@@ -15,10 +21,10 @@ export interface NativeDrawing {
   variants: Record<string, Record<string, string>>;
   frames: Array<{
     id: string;
-    channel: "legs" | "upper";
+    channel: NativeChannel;
     at: [number, number];
     rows: string[];
-    sockets?: { muzzle: [number, number] } | null;
+    sockets?: NativeSockets | null;
     contact?: NativeContact;
   }>;
   clips: NativeClip[];
@@ -65,11 +71,11 @@ export async function compileNativeArt(raw: Buffer) {
         "Invalid native palette override",
       );
   }
-  number(source.frames.length, 1, 64);
+  number(source.frames.length, 1, 128);
   const known = new Map<string, NativeDrawing["frames"][number]>();
   for (const frame of source.frames) {
     assert(/^[a-z][a-z0-9-]+$/.test(frame.id) && !known.has(frame.id), "Native frame ID collision");
-    assert(frame.channel === "legs" || frame.channel === "upper", "Native frame channel");
+    assert(["legs", "upper", "full-body"].includes(frame.channel), "Native frame channel");
     number(frame.at[0], 0, width - 1);
     number(frame.at[1], 0, height - 1);
     number(frame.rows.length, 1, height - frame.at[1]);
@@ -85,15 +91,30 @@ export async function compileNativeArt(raw: Buffer) {
       }
     }
     assert(visible > 0, "Empty native drawing");
-    if (frame.sockets) {
+    for (const [name, point] of Object.entries(frame.sockets ?? {})) {
       assert(
-        frame.channel === "upper" &&
-          Array.isArray(frame.sockets.muzzle) &&
-          frame.sockets.muzzle.length === 2,
+        frame.channel !== "legs" &&
+          ["muzzle", "hand", "grip"].includes(name) &&
+          Array.isArray(point) &&
+          point.length === 2,
+        "Invalid native socket",
       );
-      number(frame.sockets.muzzle[0], -root[0], width - root[0]);
-      number(frame.sockets.muzzle[1], -root[1], height - root[1]);
-      const [x, y] = frame.sockets.muzzle;
+      number(point[0], -root[0], width - root[0]);
+      number(point[1], -root[1], height - root[1]);
+      const [x, y] = point;
+      const adjacent = (symbols: string) =>
+        [-1, 0, 1].some((dy) =>
+          [-1, 0, 1].some((dx) => {
+            const symbol =
+              frame.rows[root[1] + y + dy - frame.at[1]]?.[root[0] + x + dx - frame.at[0]];
+            return symbol !== undefined && symbols.includes(symbol);
+          }),
+        );
+      if (name !== "muzzle") {
+        assert(adjacent("GgfSsk"), "Native hand/grip has no adjacent hand drawing");
+        if (name === "grip") assert(adjacent("Mmi"), "Native grip does not meet its weapon");
+        continue;
+      }
       assert(
         [
           [0, 0],
