@@ -12,7 +12,9 @@ import type { EventReceiver } from "../src/shared/protocol/event-stream.js";
 import type { CombatSnapshot, FullSnapshot } from "../src/shared/protocol/snapshot-schema.js";
 import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
+import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
+import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 
 interface ClientStatus {
   documentId: string;
@@ -79,7 +81,8 @@ interface ClientStatus {
 }
 const recoveryMode = process.argv.includes("--recovery");
 const combatRecoveryMode = process.argv.includes("--combat-recovery");
-const loadingMode = process.argv.includes("--combat-loading");
+const phaseMode = process.argv.includes("--combat-phases");
+const loadingMode = process.argv.includes("--combat-loading") || phaseMode;
 const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const faultMode = process.argv.includes("--combat-fault");
@@ -114,7 +117,9 @@ const output = automaticMode
   ? "dist/network-combat-auto-evidence"
   : combatReconnectMode
     ? loadingMode
-      ? "dist/network-combat-loading-evidence"
+      ? phaseMode
+        ? "dist/network-combat-phase-evidence"
+        : "dist/network-combat-loading-evidence"
       : "dist/network-combat-reconnect-evidence"
     : combatRecoveryMode
       ? "dist/network-combat-recovery-evidence"
@@ -134,6 +139,8 @@ await mkdir(output, { recursive: true });
 for (const name of [
   "report.json",
   "movement-report.json",
+  "phase-report.json",
+  "loading-report.json",
   "failure.json",
   "failed-clients.json",
   "failure.png",
@@ -228,6 +235,7 @@ try {
         ),
       );
     const prepareAndStart = async () => {
+      if (combatMode) await loadRoomIfNeeded(base, pages);
       const clients = await read();
       await Promise.all(
         pages.map((page, slot) =>
@@ -247,8 +255,10 @@ try {
         room?.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS),
         "Input preload incomplete",
       );
-      const start = await fetch(`${base}/${workload}/start`, { method: "POST" });
-      assert(start.ok, `Start: ${start.status}`);
+      const start = combatMode
+        ? await roomHostCommand(base, pages, "start")
+        : await fetch(`${base}/${workload}/start`, { method: "POST" });
+      assert.equal(start.status, 200, `Start: ${start.status}`);
     };
     try {
       const configureEvents = async (
@@ -282,7 +292,43 @@ try {
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
       }
+      const phases = phaseMode ? await verifyRoomPhases(pages, base, restart) : null;
+      if (phases)
+        await writeFile(
+          `${output}/phase-report.json`,
+          `${JSON.stringify(
+            {
+              status: "pass",
+              recordedAt: new Date().toISOString(),
+              workerBundleSha256,
+              browser: browser.version(),
+              phases,
+              scope:
+                "Lobby admission, signed host command fences, host succession, waiting takeover, persisted empty lobby and same-document cold return. The subsequent playing regression is reported separately.",
+            },
+            null,
+            2,
+          )}\n`,
+        );
+      if (combatMode) await loadRoomIfNeeded(base, pages);
       const loading = loadingMode ? await verifyLoadingConnections(pages, base) : null;
+      if (loading)
+        await writeFile(
+          `${output}/loading-report.json`,
+          `${JSON.stringify(
+            {
+              status: "pass",
+              recordedAt: new Date().toISOString(),
+              workerBundleSha256,
+              browser: browser.version(),
+              loading,
+              scope:
+                "Loading takeover, same-document reentry and the fresh-input start barrier; subsequent combat is reported separately.",
+            },
+            null,
+            2,
+          )}\n`,
+        );
       await prepareAndStart();
       if (automaticMode) {
         const status = async () => {
@@ -533,7 +579,7 @@ try {
         assert.equal(soloBaseline.initialServerTick, beforeSolo.tick);
         assert.equal(soloBaseline.documentId, before[1]?.documentId);
         await soloPage.locator("#prepare").click();
-        assert.equal((await fetch(`${base}/combat/start`, { method: "POST" })).status, 200);
+        assert.equal((await roomHostCommand(base, pages, "start")).status, 200);
         await soloPage.waitForFunction(
           (tick) =>
             (
@@ -712,15 +758,15 @@ try {
         assert.equal(tampered.status, 401);
         const replacement = await owner.context().newPage();
         await replacement.goto(`${owner.url()}&scripted=1`);
-        await replacement.waitForFunction(
-          () =>
-            (
-              globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
-            ).controllerNetworkLab?.status().ready,
-        );
         pages[0] = replacement;
+        await replacement.waitForFunction(() => {
+          const state = (
+            globalThis as unknown as { controllerNetworkLab?: { status: () => ClientStatus } }
+          ).controllerNetworkLab?.status();
+          return state?.ready || state?.error;
+        });
         const installed = (await read())[0];
-        assert(installed);
+        assert(installed?.ready && !installed.error, JSON.stringify(installed));
         const afterTakeover = await waitTick(installed.initialServerTick + 30);
         const retired = await owner.evaluate(() =>
           (
@@ -896,6 +942,7 @@ try {
             tamperedProfile: tampered.status,
           },
           loading,
+          phases,
           rejected,
           rejectedRoom,
           afterReentry,
@@ -909,7 +956,7 @@ try {
           clients,
           recovered,
           scope:
-            "Four real Chromium clients and local workerd: signed slot ownership, connected takeover, disconnected reentry, healthy peer continuity, fresh baseline acknowledgment, obsolete effect suppression, host succession metadata and SQLite restart after journaled replacements. The optional loading proof verifies durable generation replacement without a combat tick, discarded old preload, same-document reentry and a fresh-input start barrier. Manual client reentry; no deployed traces, automatic retry, hostile reentry protection or completed production membership protocol.",
+            "Four real Chromium clients and local workerd: signed slot ownership, connected takeover, disconnected reentry, healthy peer continuity, fresh baseline acknowledgment, obsolete effect suppression, host succession and SQLite restart after journaled replacements. Optional lobby phase proof checks signed host commands and three epoch fences, waiting takeover, persisted empty lobby and same-document cold return. Optional loading proof checks saved connection replacement, discarded old preload and a fresh-input start barrier. No campaign continue/rematch, deployed traces, automatic retry, hostile reentry protection or completed production membership protocol.",
         };
       }
       if (combatRecoveryMode) {
@@ -981,7 +1028,7 @@ try {
               2,
             );
           }
-          const premature = await fetch(`${base}/combat/start`, { method: "POST" });
+          const premature = await roomHostCommand(base, pages, "start");
           assert.equal(premature.status, 409, "Combat resumed without fresh preloaded input");
           await prepareAndStart();
           return baselines;

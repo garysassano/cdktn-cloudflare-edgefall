@@ -3,7 +3,7 @@ import { CONTROLLER_IDENTITY } from "../src/shared/diagnostics/controller-worklo
 import { requireRoomAdmission } from "../src/shared/session/admission.js";
 
 describe("bounded room admission preflight", () => {
-  it("accepts the matching build only for an admitted loading/playing room", async () => {
+  it("accepts all admitted phases with a matching build, including reserved results", async () => {
     const ready = {
       code: "ready",
       roomMode: "playing",
@@ -11,9 +11,17 @@ describe("bounded room admission preflight", () => {
       protocolMinor: 1,
       identity: CONTROLLER_IDENTITY,
     };
-    await expect(
-      requireRoomAdmission(Response.json(ready), CONTROLLER_IDENTITY),
-    ).resolves.toBeUndefined();
+    for (const roomMode of [
+      "lobby",
+      "loading",
+      "playing",
+      "intermission",
+      "paused-empty",
+      "completed",
+    ])
+      await expect(
+        requireRoomAdmission(Response.json({ ...ready, roomMode }), CONTROLLER_IDENTITY),
+      ).resolves.toBeUndefined();
     await expect(
       requireRoomAdmission(Response.json({ ...ready, protocolMajor: 2 }), CONTROLLER_IDENTITY),
     ).rejects.toMatchObject({ reason: "incompatible-build" });
@@ -26,9 +34,10 @@ describe("bounded room admission preflight", () => {
         CONTROLLER_IDENTITY,
       ),
     ).rejects.toMatchObject({ reason: "incompatible-build" });
-    await expect(
-      requireRoomAdmission(Response.json({ ...ready, roomMode: "expired" }), CONTROLLER_IDENTITY),
-    ).rejects.toMatchObject({ reason: "protocol-error" });
+    for (const roomMode of ["expired", "recovering", "unknown"])
+      await expect(
+        requireRoomAdmission(Response.json({ ...ready, roomMode }), CONTROLLER_IDENTITY),
+      ).rejects.toMatchObject({ reason: "protocol-error" });
   });
   it("preserves actionable denial states and treats service errors as retryable outages", async () => {
     for (const code of [

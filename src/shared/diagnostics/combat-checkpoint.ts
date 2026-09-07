@@ -20,6 +20,7 @@ import {
 import { PROTOCOL_MAJOR, PROTOCOL_MINOR } from "../protocol/limits.js";
 import { decodeSnapshot, encodeSnapshot } from "../protocol/snapshot.js";
 import { BODY_BYTES } from "../protocol/snapshot-schema.js";
+import { isPausableRoom } from "../session/room-phase.js";
 import { combatEventContext } from "./combat-events.js";
 import {
   type CombatJournalTick,
@@ -65,8 +66,14 @@ function identity(value: CombatArchiveIdentity) {
 
 /** Validates the laboratory's full server continuation, including fields absent from the wire. */
 export function validateCombatCheckpoint(state: CombatRuntime): void {
-  fields(state, "combat snapshot history connectedPlayerIds");
+  fields(state, "combat snapshot history connectedPlayerIds pausedFrom");
   const { combat, snapshot, history } = state;
+  check(
+    snapshot.roomMode === "paused-empty"
+      ? state.pausedFrom !== null && isPausableRoom(state.pausedFrom)
+      : state.pausedFrom === null,
+    "paused room origin",
+  );
   fields(
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles encounter events",
@@ -313,7 +320,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 1,
+    format: 2,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -337,7 +344,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 1 &&
+    envelope.format === 2 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

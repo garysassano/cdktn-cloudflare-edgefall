@@ -11,6 +11,7 @@ import type { CombatLab } from "../../game/labs/combat.js";
 import { type EventHistory, createEventHistory, stageEventTick } from "../protocol/event-stream.js";
 import type { PreparedPlayerTick } from "../protocol/input-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
+import type { PausableRoomMode } from "../session/room-phase.js";
 import { combatEventContext, combatGameplayEvents } from "./combat-events.js";
 import { createCombatWorkload, evaluateCombatTick } from "./combat-workload.js";
 import { roomWorkloadHash } from "./room-workload.js";
@@ -20,6 +21,7 @@ export interface CombatRuntime {
   snapshot: FullSnapshot;
   history: EventHistory;
   connectedPlayerIds: number[];
+  pausedFrom: PausableRoomMode | null;
 }
 export interface CombatJournalTick extends JournalTick {
   acknowledgments: PlayerAcknowledgment[];
@@ -37,6 +39,7 @@ export function createCombatRuntime(): CombatRuntime {
     ...state,
     history: createEventHistory(state.snapshot.runEpoch),
     connectedPlayerIds: state.combat.players.map((p) => p.playerId),
+    pausedFrom: null,
   };
 }
 /** Per-reader send headers do not affect gameplay and are not journaled as external causes. */
@@ -52,6 +55,7 @@ export function combatRuntimeHash(state: CombatRuntime): string {
     snapshot,
     history: state.history,
     connectedPlayerIds: state.connectedPlayerIds,
+    pausedFrom: state.pausedFrom,
   });
 }
 function check(ok: unknown, message: string): asserts ok {
@@ -134,6 +138,10 @@ export function stageCombatRuntime(
   prepared: readonly PreparedPlayerTick[],
   connections: readonly CombatConnectionChange[] = [],
 ) {
+  check(
+    current.snapshot.roomMode === "playing" && current.pausedFrom === null,
+    "combat requires playing phase",
+  );
   integer(connections.length, 0, 4, "combat connection changes");
   const baseline = connections.length ? structuredClone(current) : current;
   let previousConnectionPlayer = 0;
@@ -191,7 +199,7 @@ export function stageCombatRuntime(
   result.state.snapshot.baselineEventCursor = history.cursor;
   result.state.snapshot.stateHash = roomWorkloadHash(result.state.snapshot);
   const connectedPlayerIds = prepared.map((p) => p.input.playerId);
-  const state: CombatRuntime = { ...result.state, history, connectedPlayerIds };
+  const state: CombatRuntime = { ...result.state, history, connectedPlayerIds, pausedFrom: null };
   const boundary: BoundaryEvent[] = [];
   for (const player of current.combat.players) {
     const was = current.connectedPlayerIds.includes(player.playerId),

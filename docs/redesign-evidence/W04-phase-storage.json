@@ -1,0 +1,2763 @@
+{
+  "recordedAt": "2026-09-07T04:17:02.122Z",
+  "commit": "f176e614ee6cb5c6a77a5b62d9702bd8ec10db98",
+  "sourceSha256": "9b41416dd5ac3fa704796b9ab80ecb1d338cad4676c8a69a23537832436d4915",
+  "workerBundleSha256": "8be43a489603eecf7ac5beca812056d9b8bd94175888419f2a1b5200c97c7b62",
+  "wrangler": "4.128.0",
+  "seeded": {
+    "instance": "9428cd7b-c763-4345-b743-8fe6ca3c1a8a",
+    "tick": 105,
+    "observedTick": 119,
+    "rollbackTick": 90,
+    "rollbackTicks": [
+      45,
+      90
+    ],
+    "hash": "a784f774"
+  },
+  "restored": {
+    "instance": "71aba6a1-a5c9-477f-975d-25a82c481cc1",
+    "tick": 105,
+    "roomMode": "playing",
+    "pausedFrom": null,
+    "runEpoch": 1,
+    "connections": [
+      {
+        "playerId": 1,
+        "connectionEpoch": 1,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 105
+      },
+      {
+        "playerId": 2,
+        "connectionEpoch": 2,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 105
+      },
+      {
+        "playerId": 3,
+        "connectionEpoch": 3,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 61
+      },
+      {
+        "playerId": 4,
+        "connectionEpoch": 4,
+        "controlEpoch": 1,
+        "lastProcessedSequence": 66
+      }
+    ],
+    "loadingChecks": null,
+    "phaseChecks": null,
+    "hash": "a784f774",
+    "nextActionId": 55,
+    "nextEntityId": 1054,
+    "eventCursor": 167,
+    "kills": [
+      {
+        "count": 0,
+        "playerId": 1
+      },
+      {
+        "count": 2,
+        "playerId": 2
+      },
+      {
+        "count": 0,
+        "playerId": 3
+      },
+      {
+        "count": 0,
+        "playerId": 4
+      }
+    ],
+    "rows": [
+      {
+        "key": "checkpoint",
+        "run_epoch": 1,
+        "tick": 60,
+        "bytes": 51659
+      },
+      {
+        "key": "segment:61",
+        "run_epoch": 1,
+        "tick": 75,
+        "bytes": 26373
+      },
+      {
+        "key": "segment:76",
+        "run_epoch": 1,
+        "tick": 90,
+        "bytes": 23182
+      },
+      {
+        "key": "head",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 8
+      },
+      {
+        "key": "segment:91",
+        "run_epoch": 1,
+        "tick": 105,
+        "bytes": 23183
+      }
+    ]
+  },
+  "gap": {
+    "instance": "71aba6a1-a5c9-477f-975d-25a82c481cc1",
+    "rejected": true,
+    "reason": "Error: Missing/changed combat durable segment"
+  },
+  "tail": {
+    "seededTail": {
+      "instance": "ff1804c4-651e-4e52-8911-3da6d62c1160",
+      "tick": 59,
+      "roomMode": "playing",
+      "pausedFrom": null,
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "ad600bbc",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 0,
+          "bytes": 11692
+        },
+        {
+          "key": "segment:1",
+          "run_epoch": 1,
+          "tick": 15,
+          "bytes": 31628
+        },
+        {
+          "key": "segment:16",
+          "run_epoch": 1,
+          "tick": 30,
+          "bytes": 31550
+        },
+        {
+          "key": "segment:31",
+          "run_epoch": 1,
+          "tick": 45,
+          "bytes": 31550
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        },
+        {
+          "key": "segment:46",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 29478
+        }
+      ]
+    },
+    "restoredTail": {
+      "instance": "b448ffa9-2924-4434-acaa-7e13faaa8c5a",
+      "tick": 59,
+      "roomMode": "playing",
+      "pausedFrom": null,
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "ad600bbc",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 0,
+          "bytes": 11692
+        },
+        {
+          "key": "segment:1",
+          "run_epoch": 1,
+          "tick": 15,
+          "bytes": 31628
+        },
+        {
+          "key": "segment:16",
+          "run_epoch": 1,
+          "tick": 30,
+          "bytes": 31550
+        },
+        {
+          "key": "segment:31",
+          "run_epoch": 1,
+          "tick": 45,
+          "bytes": 31550
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        },
+        {
+          "key": "segment:46",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 29478
+        }
+      ]
+    },
+    "pausedTail": {
+      "instance": "b448ffa9-2924-4434-acaa-7e13faaa8c5a",
+      "tick": 59,
+      "roomMode": "paused-empty",
+      "pausedFrom": "playing",
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "e0db1275",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52105
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "coldPause": {
+      "instance": "ec0b4abb-8d5c-4852-ab02-e307014db9e3",
+      "tick": 59,
+      "roomMode": "paused-empty",
+      "pausedFrom": "playing",
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "e0db1275",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52105
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "expiredTail": {
+      "instance": "ec0b4abb-8d5c-4852-ab02-e307014db9e3",
+      "tick": 59,
+      "roomMode": "expired",
+      "pausedFrom": null,
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "49f98035",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52092
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    },
+    "coldExpired": {
+      "instance": "7fb54d57-89d2-458e-8ab0-6322dad0642f",
+      "tick": 59,
+      "roomMode": "expired",
+      "pausedFrom": null,
+      "runEpoch": 1,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 1,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 2,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 3,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 4,
+          "controlEpoch": 1,
+          "lastProcessedSequence": 59
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "49f98035",
+      "nextActionId": 37,
+      "nextEntityId": 1036,
+      "eventCursor": 114,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 52092
+        },
+        {
+          "key": "head",
+          "run_epoch": 1,
+          "tick": 59,
+          "bytes": 8
+        }
+      ]
+    }
+  },
+  "loading": {
+    "seededLoading": {
+      "instance": "93e99a29-18f6-4d4e-8f07-85706b0924f7",
+      "tick": 45,
+      "roomMode": "loading",
+      "pausedFrom": null,
+      "runEpoch": 2,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 2,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 3,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 4,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 5,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "d3bf8ee0",
+      "nextActionId": 28,
+      "nextEntityId": 1027,
+      "eventCursor": 0,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 19760
+        },
+        {
+          "key": "head",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 8
+        }
+      ]
+    },
+    "replacedLoading": {
+      "instance": "93e99a29-18f6-4d4e-8f07-85706b0924f7",
+      "tick": 45,
+      "roomMode": "loading",
+      "pausedFrom": null,
+      "runEpoch": 2,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 2,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 4,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 4,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 5,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        }
+      ],
+      "loadingChecks": [
+        "sql-rollback",
+        "changed-prefix-rejected"
+      ],
+      "phaseChecks": null,
+      "hash": "25d2fa73",
+      "nextActionId": 28,
+      "nextEntityId": 1027,
+      "eventCursor": 0,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 19760
+        },
+        {
+          "key": "head",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 8
+        }
+      ]
+    },
+    "coldLoading": {
+      "instance": "a5966c72-ea77-4a3a-b54d-43f2b873558a",
+      "tick": 45,
+      "roomMode": "loading",
+      "pausedFrom": null,
+      "runEpoch": 2,
+      "connections": [
+        {
+          "playerId": 1,
+          "connectionEpoch": 2,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 2,
+          "connectionEpoch": 4,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 3,
+          "connectionEpoch": 4,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        },
+        {
+          "playerId": 4,
+          "connectionEpoch": 5,
+          "controlEpoch": 2,
+          "lastProcessedSequence": 0
+        }
+      ],
+      "loadingChecks": null,
+      "phaseChecks": null,
+      "hash": "25d2fa73",
+      "nextActionId": 28,
+      "nextEntityId": 1027,
+      "eventCursor": 0,
+      "kills": [
+        {
+          "count": 0,
+          "playerId": 1
+        },
+        {
+          "count": 2,
+          "playerId": 2
+        },
+        {
+          "count": 0,
+          "playerId": 3
+        },
+        {
+          "count": 0,
+          "playerId": 4
+        }
+      ],
+      "rows": [
+        {
+          "key": "checkpoint",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 19760
+        },
+        {
+          "key": "head",
+          "run_epoch": 2,
+          "tick": 45,
+          "bytes": 8
+        }
+      ]
+    }
+  },
+  "phases": {
+    "waiting": [
+      {
+        "phase": "lobby",
+        "seeded": {
+          "instance": "12ca3bad-7552-45dc-bfb9-ea815d985065",
+          "tick": 0,
+          "roomMode": "lobby",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "d25c600a",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 11683
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "denied": {
+          "instance": "12ca3bad-7552-45dc-bfb9-ea815d985065",
+          "tick": 0,
+          "roomMode": "lobby",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "host-changed-during-checkpoint-encoding",
+            "archive-unchanged"
+          ],
+          "hash": "d25c600a",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 11683
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "deniedCold": {
+          "instance": "bce285db-1f7c-4148-95a3-5fd6d683dd81",
+          "tick": 0,
+          "roomMode": "lobby",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "d25c600a",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 11683
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "paused": {
+          "instance": "bce285db-1f7c-4148-95a3-5fd6d683dd81",
+          "tick": 0,
+          "roomMode": "paused-empty",
+          "pausedFrom": "lobby",
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "12828d5b",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 11696
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "pausedCold": {
+          "instance": "a61bb91d-75df-4b9b-9d12-014fe3b924a1",
+          "tick": 0,
+          "roomMode": "paused-empty",
+          "pausedFrom": "lobby",
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "12828d5b",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 11696
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "recovered": {
+          "instance": "a61bb91d-75df-4b9b-9d12-014fe3b924a1",
+          "tick": 0,
+          "roomMode": "lobby",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "e9bb765c",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 11684
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "recoveredCold": {
+          "instance": "84cbd3d8-d73d-4b01-aeb1-d784c637c1df",
+          "tick": 0,
+          "roomMode": "lobby",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "e9bb765c",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 11684
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "loading": {
+          "instance": "84cbd3d8-d73d-4b01-aeb1-d784c637c1df",
+          "tick": 0,
+          "roomMode": "loading",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "80ec9920",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 11686
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "started": {
+          "instance": "84cbd3d8-d73d-4b01-aeb1-d784c637c1df",
+          "tick": 0,
+          "roomMode": "playing",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "e938ed5e",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 11685
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        },
+        "startedCold": {
+          "instance": "dca6dd52-e6aa-49fc-850e-48402aae360a",
+          "tick": 0,
+          "roomMode": "playing",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "e938ed5e",
+          "nextActionId": 1,
+          "nextEntityId": 1000,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 0,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 11685
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 0,
+              "bytes": 8
+            }
+          ]
+        }
+      },
+      {
+        "phase": "intermission",
+        "seeded": {
+          "instance": "c2f2c74e-ce47-41b9-958c-8143a16f75cf",
+          "tick": 45,
+          "roomMode": "intermission",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "1cca4b31",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 87,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 44004
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "denied": {
+          "instance": "c2f2c74e-ce47-41b9-958c-8143a16f75cf",
+          "tick": 45,
+          "roomMode": "intermission",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "host-changed-during-checkpoint-encoding",
+            "archive-unchanged"
+          ],
+          "hash": "1cca4b31",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 87,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 44004
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "deniedCold": {
+          "instance": "adb7a7c1-7aec-4c8b-9d6c-323cb4b0e8c1",
+          "tick": 45,
+          "roomMode": "intermission",
+          "pausedFrom": null,
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "1cca4b31",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 87,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 44004
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "paused": {
+          "instance": "adb7a7c1-7aec-4c8b-9d6c-323cb4b0e8c1",
+          "tick": 45,
+          "roomMode": "paused-empty",
+          "pausedFrom": "intermission",
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "2fceec1a",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 87,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 44017
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "pausedCold": {
+          "instance": "586b024f-40dc-42ab-9878-badbd83c8d2f",
+          "tick": 45,
+          "roomMode": "paused-empty",
+          "pausedFrom": "intermission",
+          "runEpoch": 1,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 1,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 2,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 3,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 4,
+              "controlEpoch": 1,
+              "lastProcessedSequence": 45
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "2fceec1a",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 87,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 44017
+            },
+            {
+              "key": "head",
+              "run_epoch": 1,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "recovered": {
+          "instance": "586b024f-40dc-42ab-9878-badbd83c8d2f",
+          "tick": 45,
+          "roomMode": "intermission",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "abd7fa30",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 19765
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "recoveredCold": {
+          "instance": "2e1b7477-8b90-4371-b744-a4e8a14ef1bd",
+          "tick": 45,
+          "roomMode": "intermission",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "abd7fa30",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 19765
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "loading": {
+          "instance": "2e1b7477-8b90-4371-b744-a4e8a14ef1bd",
+          "tick": 45,
+          "roomMode": "loading",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "d3bf8ee0",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 19760
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "started": {
+          "instance": "2e1b7477-8b90-4371-b744-a4e8a14ef1bd",
+          "tick": 45,
+          "roomMode": "playing",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": [
+            "guarded-checkpoint-confirmed"
+          ],
+          "hash": "8941ef46",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 19760
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        },
+        "startedCold": {
+          "instance": "fbec0ba6-a623-4ff8-8dba-1c70c3c5dcc4",
+          "tick": 45,
+          "roomMode": "playing",
+          "pausedFrom": null,
+          "runEpoch": 2,
+          "connections": [
+            {
+              "playerId": 1,
+              "connectionEpoch": 2,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 2,
+              "connectionEpoch": 3,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 3,
+              "connectionEpoch": 4,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            },
+            {
+              "playerId": 4,
+              "connectionEpoch": 5,
+              "controlEpoch": 2,
+              "lastProcessedSequence": 0
+            }
+          ],
+          "loadingChecks": null,
+          "phaseChecks": null,
+          "hash": "8941ef46",
+          "nextActionId": 28,
+          "nextEntityId": 1027,
+          "eventCursor": 0,
+          "kills": [
+            {
+              "count": 0,
+              "playerId": 1
+            },
+            {
+              "count": 2,
+              "playerId": 2
+            },
+            {
+              "count": 0,
+              "playerId": 3
+            },
+            {
+              "count": 0,
+              "playerId": 4
+            }
+          ],
+          "rows": [
+            {
+              "key": "checkpoint",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 19760
+            },
+            {
+              "key": "head",
+              "run_epoch": 2,
+              "tick": 45,
+              "bytes": 8
+            }
+          ]
+        }
+      }
+    ],
+    "completed": {
+      "seeded": {
+        "instance": "4a0ef205-6a21-4e6e-ae73-1618fef84707",
+        "tick": 45,
+        "roomMode": "completed",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 2,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": null,
+        "hash": "591d539a",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 44001
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "denied": {
+        "instance": "4a0ef205-6a21-4e6e-ae73-1618fef84707",
+        "tick": 45,
+        "roomMode": "completed",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 2,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": [
+          "load-rejected",
+          "start-rejected",
+          "recover-rejected",
+          "pause-rejected"
+        ],
+        "hash": "591d539a",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 44001
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "cold": {
+        "instance": "25b06547-802e-4f81-976d-a39bd6bb8ee2",
+        "tick": 45,
+        "roomMode": "completed",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 2,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": null,
+        "hash": "591d539a",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 44001
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "replaced": {
+        "instance": "25b06547-802e-4f81-976d-a39bd6bb8ee2",
+        "tick": 45,
+        "roomMode": "completed",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 0
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": [
+          "sql-rollback",
+          "changed-prefix-rejected"
+        ],
+        "phaseChecks": null,
+        "hash": "f0cd6e8a",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 44000
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "replacedCold": {
+        "instance": "335b0881-bd53-46df-ad21-45790e3fa53c",
+        "tick": 45,
+        "roomMode": "completed",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 0
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": null,
+        "hash": "f0cd6e8a",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 44000
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "expired": {
+        "instance": "335b0881-bd53-46df-ad21-45790e3fa53c",
+        "tick": 45,
+        "roomMode": "expired",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 0
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": null,
+        "hash": "b45fce72",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 43998
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      },
+      "expiredCold": {
+        "instance": "97df5647-0bd6-4c91-83c0-7f1820b9c98a",
+        "tick": 45,
+        "roomMode": "expired",
+        "pausedFrom": null,
+        "runEpoch": 1,
+        "connections": [
+          {
+            "playerId": 1,
+            "connectionEpoch": 1,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 2,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 0
+          },
+          {
+            "playerId": 3,
+            "connectionEpoch": 3,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          },
+          {
+            "playerId": 4,
+            "connectionEpoch": 4,
+            "controlEpoch": 1,
+            "lastProcessedSequence": 45
+          }
+        ],
+        "loadingChecks": null,
+        "phaseChecks": null,
+        "hash": "b45fce72",
+        "nextActionId": 28,
+        "nextEntityId": 1027,
+        "eventCursor": 87,
+        "kills": [
+          {
+            "count": 0,
+            "playerId": 1
+          },
+          {
+            "count": 2,
+            "playerId": 2
+          },
+          {
+            "count": 0,
+            "playerId": 3
+          },
+          {
+            "count": 0,
+            "playerId": 4
+          }
+        ],
+        "rows": [
+          {
+            "key": "checkpoint",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 43998
+          },
+          {
+            "key": "head",
+            "run_epoch": 1,
+            "tick": 45,
+            "bytes": 8
+          }
+        ]
+      }
+    }
+  },
+  "status": "pass",
+  "scope": "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry/replacement rollback, guarded host boundaries, lobby/intermission pause origins, completed generation replacement and terminal non-resurrection; no campaign progression, deployed durability or production outbox claim."
+}

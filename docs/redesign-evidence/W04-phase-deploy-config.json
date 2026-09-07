@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "action": "Regenerated the previously stale ignored .wrangler.deploy.json from current wrangler.jsonc and existing CDKTN resource outputs, then built production assets and validated that generated config with a Wrangler dry run.",
+  "bindingsUnchanged": true,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "upload_source_maps": true,
+  "scope": "Local generated configuration and dry-run proof only; resource identifiers omitted. No Cloudflare account query, deployment or trace retrieval."
+}

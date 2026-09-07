@@ -8,7 +8,7 @@ import {
   restoreCombatJournalSegment,
 } from "../../shared/diagnostics/combat-checkpoint.js";
 import {
-  replaceLoadingCombatConnection,
+  replaceWaitingCombatConnection,
   transitionCombatRuntime,
 } from "../../shared/diagnostics/combat-recovery.js";
 import {
@@ -146,24 +146,31 @@ export class CombatStorage {
   }
   transition(
     current: CombatRuntime,
-    kind: "start" | "recover" | "pause" | "expire",
+    kind: "load" | "start" | "recover" | "pause" | "expire",
+    guard?: () => void,
   ): Promise<CombatRuntime> {
-    return this.replaceCheckpoint(current, (previous) => transitionCombatRuntime(previous, kind));
+    return this.replaceCheckpoint(
+      current,
+      (previous) => transitionCombatRuntime(previous, kind),
+      guard,
+    );
   }
-  replaceLoadingConnection(current: CombatRuntime, playerId: number): Promise<CombatRuntime> {
+  replaceWaitingConnection(current: CombatRuntime, playerId: number): Promise<CombatRuntime> {
     return this.replaceCheckpoint(current, (previous) =>
-      replaceLoadingCombatConnection(previous, playerId),
+      replaceWaitingCombatConnection(previous, playerId),
     );
   }
   private replaceCheckpoint(
     current: CombatRuntime,
     change: (previous: CombatRuntime) => CombatRuntime,
+    guard?: () => void,
   ): Promise<CombatRuntime> {
     const previous = structuredClone(current);
     return this.exclusive(async () => {
       const state = change(previous);
       const raw = await encodeCombatCheckpoint(state, this.identity);
       this.storage.transactionSync(() => {
+        guard?.();
         const head = this.head();
         if (
           !head ||

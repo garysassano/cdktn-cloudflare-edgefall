@@ -2,6 +2,7 @@ import { DurableObject } from "cloudflare:workers";
 import { canonical } from "../../src/game/core/canonical.js";
 import { transitionCombatRuntime } from "../../src/shared/diagnostics/combat-recovery.js";
 import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.js";
+import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
 
@@ -23,29 +24,91 @@ export class CombatStorageProof extends DurableObject<Env> {
   );
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
-    const action = new URL(request.url).pathname.split("/")[2];
+    const [, name, action] = new URL(request.url).pathname.split("/");
     let loadingChecks: string[] | null = null;
+    let phaseChecks: string[] | null = null;
+    if (action === "seed-phase") {
+      const phase = name?.replace("phase-", "");
+      if (phase !== "lobby" && phase !== "intermission" && phase !== "completed")
+        throw new Error("Invalid phase fixture");
+      const state = recordCombatRecovery().states[phase === "lobby" ? 0 : 45];
+      if (!state) throw new Error("Missing phase fixture");
+      state.snapshot.roomMode = phase;
+      state.snapshot.stateHash = roomWorkloadHash(state.snapshot);
+      state.connectedPlayerIds = [];
+      await store.initialize(state);
+    }
+    if (action === "denied-load") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing phase checkpoint");
+      let currentHost = true;
+      let guardCalls = 0;
+      const pending = store.transition(previous, "load", () => {
+        guardCalls++;
+        if (!currentHost) throw new Error("stale-host-command");
+      });
+      // Change the fence after submission while the checkpoint digest is pending.
+      currentHost = false;
+      let rejected = false;
+      try {
+        await pending;
+      } catch (error) {
+        rejected = error instanceof Error && error.message === "stale-host-command";
+      }
+      if (!rejected || guardCalls !== 1 || canonical(await store.load()) !== canonical(previous))
+        throw new Error("Changed host fence reached the saved boundary");
+      phaseChecks = ["host-changed-during-checkpoint-encoding", "archive-unchanged"];
+    }
+    if (action === "phase-recover" || action === "phase-load" || action === "phase-start") {
+      const previous = await store.load();
+      if (!previous) throw new Error("Missing phase checkpoint");
+      const kind =
+        action === "phase-recover" ? "recover" : action === "phase-load" ? "load" : "start";
+      let guardCalls = 0;
+      await store.transition(previous, kind, () => {
+        guardCalls++;
+      });
+      if (guardCalls !== 1) throw new Error("Missing phase transition fence");
+      phaseChecks = ["guarded-checkpoint-confirmed"];
+    }
+    if (action === "denied-terminal") {
+      const previous = await store.load();
+      if (previous?.snapshot.roomMode !== "completed")
+        throw new Error("Missing completed checkpoint");
+      phaseChecks = [];
+      for (const kind of ["load", "start", "recover", "pause"] as const) {
+        let rejected = false;
+        try {
+          await store.transition(previous, kind);
+        } catch {
+          rejected = true;
+        }
+        if (!rejected || canonical(await store.load()) !== canonical(previous))
+          throw new Error("Terminal room was resumed");
+        phaseChecks.push(`${kind}-rejected`);
+      }
+    }
     if (action === "seed-loading") {
       const state = recordCombatRecovery().states[45];
       if (!state) throw new Error("Missing loading fixture");
       await store.initialize(transitionCombatRuntime(state, "recover"));
     }
-    if (action === "replace-loading") {
+    if (action === "replace-loading" || action === "replace-waiting") {
       const previous = await store.load();
       if (!previous) throw new Error("Missing loading checkpoint");
       this.inject = true;
       let failed = false;
       try {
-        await store.replaceLoadingConnection(previous, 2);
+        await store.replaceWaitingConnection(previous, 2);
       } catch {
         failed = true;
       }
       if (!failed || canonical(await store.load()) !== canonical(previous))
         throw new Error("Loading replacement did not roll back");
-      const replaced = await store.replaceLoadingConnection(previous, 2);
+      const replaced = await store.replaceWaitingConnection(previous, 2);
       let staleRejected = false;
       try {
-        await store.replaceLoadingConnection(previous, 3);
+        await store.replaceWaitingConnection(previous, 3);
       } catch {
         staleRejected = true;
       }
@@ -142,6 +205,7 @@ export class CombatStorageProof extends DurableObject<Env> {
         instance: this.instance,
         tick: state?.combat.tick,
         roomMode: state?.snapshot.roomMode,
+        pausedFrom: state?.pausedFrom,
         runEpoch: state?.snapshot.runEpoch,
         connections: state?.snapshot.acknowledgments.map((ack) => ({
           playerId: ack.playerId,
@@ -150,6 +214,7 @@ export class CombatStorageProof extends DurableObject<Env> {
           lastProcessedSequence: ack.lastProcessedSequence,
         })),
         loadingChecks,
+        phaseChecks,
         hash: state && combatRuntimeHash(state),
         nextActionId: state?.combat.nextActionId,
         nextEntityId: state?.combat.nextEntityId,
@@ -172,7 +237,17 @@ export class CombatStorageProof extends DurableObject<Env> {
 export default {
   fetch(request: Request, env: Env) {
     const name = new URL(request.url).pathname.split("/")[1];
-    if (name !== "proof" && name !== "tail" && name !== "loading")
+    if (
+      !name ||
+      ![
+        "proof",
+        "tail",
+        "loading",
+        "phase-lobby",
+        "phase-intermission",
+        "phase-completed",
+      ].includes(name)
+    )
       return new Response("Not found", { status: 404 });
     return env.STORES.get(env.STORES.idFromName(name)).fetch(request);
   },

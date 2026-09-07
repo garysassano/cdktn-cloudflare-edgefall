@@ -1,5 +1,6 @@
 import { COUNTER_LIMIT, integer } from "../../game/core/numeric.js";
 import { isProfileId } from "./profile.js";
+import { type RoomMode, requireAdmissionPhase } from "./room-phase.js";
 
 export const RECONNECT_WINDOW_MS = 90_000;
 export interface RoomMember {
@@ -37,7 +38,7 @@ export function admitMember(
   current: RoomMembership,
   profileId: string,
   slot: number,
-  lobby: boolean,
+  roomMode: RoomMode,
   now: number,
 ): RoomMembership {
   time(now);
@@ -46,9 +47,9 @@ export function admitMember(
   const state = structuredClone(current);
   const owned = state.members.find((m) => m.profileId === profileId);
   const occupant = state.members.find((m) => m.slot === slot);
+  requireAdmissionPhase(roomMode, Boolean(owned));
   if (owned && owned.slot !== slot) throw new Error("profile-slot-mismatch");
   if (!owned) {
-    if (!lobby) throw new Error("in-progress");
     if (occupant && (occupant.connected || now < occupant.reservedUntilMs))
       throw new Error("slot-reserved");
     state.members = state.members.filter((m) => m.slot !== slot);
@@ -56,7 +57,9 @@ export function admitMember(
       slot,
       profileId,
       joinedOrdinal: state.nextOrdinal,
-      generation: 1,
+      generation: occupant
+        ? integer(occupant.generation + 1, 1, COUNTER_LIMIT - 1, "membership generation")
+        : 1,
       connected: true,
       lastSeenAtMs: now,
       reservedUntilMs: now + RECONNECT_WINDOW_MS,

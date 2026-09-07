@@ -2,18 +2,19 @@ import { stateHash } from "../../game/core/canonical.js";
 import { nextCounter } from "../../game/core/numeric.js";
 import { createEventHistory } from "../protocol/event-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
+import { isPausableRoom, isWaitingRoom } from "../session/room-phase.js";
 import type { CombatRuntime } from "./combat-runtime.js";
 import { combatSnapshot } from "./combat-workload.js";
 import { recoverControllerWorld } from "./controller-recovery.js";
 import { roomWorkloadHash } from "./room-workload.js";
 
 /** Replace one waiting connection without advancing combat or restarting its firearm action. */
-export function replaceLoadingCombatConnection(
+export function replaceWaitingCombatConnection(
   current: CombatRuntime,
   playerId: number,
 ): CombatRuntime {
-  if (current.snapshot.roomMode !== "loading")
-    throw new Error("Connection replacement requires loading barrier");
+  if (!isWaitingRoom(current.snapshot.roomMode))
+    throw new Error("Connection replacement requires waiting phase");
   const state = structuredClone(current);
   const actor = state.combat.players.find((player) => player.playerId === playerId);
   const ack = state.snapshot.acknowledgments.find((value) => value.playerId === playerId);
@@ -63,26 +64,48 @@ export function combatContinuationHash(current: FullSnapshot): string {
 /** A persisted boundary replaces old input/effect generations before any replacement welcome. */
 export function transitionCombatRuntime(
   current: CombatRuntime,
-  kind: "start" | "recover" | "pause" | "expire",
+  kind: "load" | "start" | "recover" | "pause" | "expire",
 ): CombatRuntime {
   const state = structuredClone(current);
-  if (["completed", "expired"].includes(current.snapshot.roomMode))
+  if (
+    current.snapshot.roomMode === "expired" ||
+    (current.snapshot.roomMode === "completed" && kind !== "expire")
+  )
     throw new Error("Terminal combat room cannot resume");
   if (kind === "pause" || kind === "expire") {
     if (
       kind === "pause"
-        ? !["loading", "playing"].includes(current.snapshot.roomMode)
-        : !["loading", "playing", "paused-empty", "recovering"].includes(current.snapshot.roomMode)
+        ? !isPausableRoom(current.snapshot.roomMode)
+        : ![
+            "lobby",
+            "loading",
+            "playing",
+            "intermission",
+            "paused-empty",
+            "recovering",
+            "completed",
+          ].includes(current.snapshot.roomMode)
     )
       throw new Error("Invalid empty combat boundary");
     state.snapshot.roomMode = kind === "pause" ? "paused-empty" : "expired";
+    state.pausedFrom =
+      kind === "pause" && isPausableRoom(current.snapshot.roomMode)
+        ? current.snapshot.roomMode
+        : null;
     state.connectedPlayerIds = [];
+  } else if (kind === "load") {
+    if (!["lobby", "intermission"].includes(current.snapshot.roomMode))
+      throw new Error("Load requires lobby or intermission");
+    state.snapshot.roomMode = "loading";
   } else if (kind === "start") {
     if (current.snapshot.roomMode !== "loading")
       throw new Error("Combat start requires loading barrier");
     state.snapshot.roomMode = "playing";
   } else {
+    const origin = current.pausedFrom ?? current.snapshot.roomMode;
     state.snapshot = recoverControllerWorld(current.snapshot);
+    if (origin === "lobby" || origin === "intermission") state.snapshot.roomMode = origin;
+    state.pausedFrom = null;
     state.combat.players = structuredClone(state.snapshot.players);
     state.combat.events = [];
     state.connectedPlayerIds = [];

@@ -1,0 +1,67 @@
+{
+  "clock": {
+    "status": "fail",
+    "reason": "Browser takeover wait timed out after all four clients closed with clock-fault; the later room inspection had already cold-restored loading at tick 60 in epoch 3.",
+    "regressions": [
+      {
+        "before": {
+          "monotonicMs": 4963.626511,
+          "wallMs": 1788754367763
+        },
+        "after": {
+          "monotonicMs": 4984.199621,
+          "wallMs": 1788754366953
+        },
+        "deltaMs": -810
+      },
+      {
+        "before": {
+          "monotonicMs": 5004.392539,
+          "wallMs": 1788754366973
+        },
+        "after": {
+          "monotonicMs": 5025.432186,
+          "wallMs": 1788754365281
+        },
+        "deltaMs": -1692
+      }
+    ],
+    "scope": "The retained sample proves host wall-clock regressions while monotonic samples advance; it does not identify the clock-fault subtype or the host time service cause. Phase prelude completed before this assertion but no separate passing prelude artifact was emitted by this verifier version."
+  },
+  "inputLead": {
+    "status": "fail",
+    "stage": "automatic browser stall recovery",
+    "clock": {
+      "mode": "running",
+      "tick": 131,
+      "timerPending": true,
+      "fault": null
+    },
+    "peers": [
+      {
+        "slot": 0,
+        "lastInputError": "Client exceeds server-owned input lead",
+        "closeReason": "invalid-input",
+        "lastProcessedSequence": 122
+      }
+    ],
+    "rejects": [
+      {
+        "runEpoch": 1,
+        "slot": 0,
+        "kind": "reject",
+        "runtimeMs": 1788754792522,
+        "serverTick": 122,
+        "baselineTick": 0,
+        "firstSequence": 127,
+        "lastSequence": 129,
+        "queued": 4,
+        "outcome": "Client exceeds server-owned input lead"
+      }
+    ],
+    "regressions": [],
+    "scope": "Client 0 exceeded the unchanged six-tick authority lead limit during the separate client 2 stall experiment. This is a retained runtime/input scheduling failure, not an assertion-only failure. It does not establish a phase-policy defect or sustained timing acceptance."
+  },
+  "storageVerifierCorrection": "The first added cold-phase assertion used strict reference equality for the per-player kill array. The arrays contained identical values. The verifier now uses deep equality and the correct array type; no storage behavior or runtime guard was changed for this assertion.",
+  "scope": "Retained failures accompany passing reruns. The first phase attempt predates separate phase/loading reports and the ready-or-error takeover wait. Final-source hashes in the manifest describe the delivered implementation, not a claim that every verifier version was byte-identical."
+}

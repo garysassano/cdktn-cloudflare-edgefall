@@ -4,6 +4,7 @@ import { CONTROLLER_INPUT_PREFILL_TICKS } from "../../src/shared/diagnostics/con
 import type { RoomProbeStatus } from "../../src/shared/diagnostics/room-probe-types.js";
 import type { FullSnapshot } from "../../src/shared/protocol/snapshot-schema.js";
 import type { ConnectionStatus } from "../../src/shared/session/connection.js";
+import { roomHostCommand } from "./room-host-control.js";
 
 interface WaitingClient {
   documentId: string;
@@ -108,7 +109,7 @@ export async function verifyLoadingConnections(pages: Page[], base: string) {
   await until((state) =>
     otherStreams(state).every((s) => s.queued === CONTROLLER_INPUT_PREFILL_TICKS),
   );
-  const unreadyStart = await fetch(`${base}/combat/start`, { method: "POST" });
+  const unreadyStart = await roomHostCommand(base, pages, "start");
   assert.equal(unreadyStart.status, 409);
   await replacement.locator("#prepare").click();
   await until((state) =>
@@ -153,7 +154,7 @@ export async function verifyLoadingConnections(pages: Page[], base: string) {
   );
   assert.equal(
     afterReturn.membership?.members.find((member) => member.slot === slot)?.generation,
-    3,
+    (before.membership?.members.find((member) => member.slot === slot)?.generation ?? 0) + 2,
   );
   assert(afterReturn.staleSocketEvents > 0, "Delayed old socket close was not observed");
   for (let other = 0; other < 4; other++) {

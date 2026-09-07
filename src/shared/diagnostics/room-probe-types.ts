@@ -2,6 +2,7 @@ import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { CombatLab } from "../../game/labs/combat.js";
 import type { EventBaseline, EventEnvelope } from "../protocol/events.js";
 import type { RoomMember } from "../session/membership.js";
+import type { PausableRoomMode } from "../session/room-phase.js";
 import type { CombatJournalWriter } from "./combat-writer.js";
 
 export interface PeerMetrics {
@@ -28,6 +29,7 @@ export interface PeerMetrics {
   lastHeld: number;
 }
 export interface RoomProbeStatus {
+  pausedFrom: PausableRoomMode | null;
   emptyPause: { tick: number; runEpoch: number; hash: string } | null;
   alarmAtMs: number | null;
   alarmDeliveries: number;

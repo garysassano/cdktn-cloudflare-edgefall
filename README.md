@@ -84,6 +84,8 @@ Open `http://localhost:8787/combat-lab.html` for the shared firearm timeline, au
 
 `pnpm test:network:controller --combat-loading` verifies connected-tab replacement and reserved-player reentry while loading. It persists a fresh connection generation without advancing combat, discards the replaced player's queued input, preserves the other players' preload and requires a fresh baseline before start. The scenario then exercises playing reconnect and durable process recovery. See the [loading connection evidence](./docs/redesign-evidence/W04-loading-connections.md).
 
+`pnpm test:network:controller --combat-phases` adds the real lobby, signed host load/start commands, stale-epoch rejection, host succession and same-document recovery of an empty lobby before the loading/playing regressions. The [format 2 combat archive](./docs/combat-checkpoint-v2.md) preserves the phase where an empty room paused. Intermission and completed-result storage are tested with seeded fixtures; campaign continue/rematch and production v3 remain in progress. See the [room phase evidence](./docs/redesign-evidence/W04-room-phases.md).
+
 ## Production deployment
 
 Deploy the backing resources and Worker:

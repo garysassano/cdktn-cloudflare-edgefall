@@ -1,0 +1,283 @@
+{
+  "baseCommit": "f176e614ee6cb5c6a77a5b62d9702bd8ec10db98",
+  "sources": [
+    {
+      "file": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "4efee710476dc9756d49bd0920fa1aa4d9b7a3d7dac896b9d7d9ba15d46c4fc3"
+    },
+    {
+      "file": "scripts/lib/room-host-control.ts",
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "file": "scripts/lib/verify-loading-connections.ts",
+      "sha256": "2f73ca0de700a76091e32d88fe0a1e0d874f42bb397b2eee79e56968a8a2d403"
+    },
+    {
+      "file": "scripts/lib/verify-room-phases.ts",
+      "sha256": "cbc8e649d6ded1cbb527c9da07c387159a4d7edf320adbaad51a5e490414c613"
+    },
+    {
+      "file": "scripts/lib/verify-stored-phases.ts",
+      "sha256": "00fb7cec9dcae0a3300c8718de7b104c9206bce3db534f51fe0271807796d5bb"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "ce1c663635860620a08904e24f1d79399106fe0b4090fe790dd981c0b3af1f1b"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "91317bdbb499418f1fe1ce60cb73596923cac2449bdb39afe3de0b8bd97a2bb3"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "6c6469165d0b6a39e7a3146ba4ef3e129d2f39d61ddb4fa76c622e10e5d62d30"
+    },
+    {
+      "file": "src/client/network-lab.html",
+      "sha256": "e9b37b78b462e4e77cebfb1e8dcc637bc00ac93d9b094919489533600075310e"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "2645f70f0cdbc5dc7c574140423eaf8c601d85c94085ad8f5df14c4893dc8058"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "f3318cedf7b1a9000d3fcc393018f6a9f2d0126464c10ae54e7058c169ed6bfc"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-recovery.ts",
+      "sha256": "38a101de8593b1841c0ea82b02ae35646e6e469a978cd7d107999fb543a5759b"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-runtime.ts",
+      "sha256": "3d3794e44dce70bd58863f26edd3059d79380f01a64c58777fd1ca94ac121e13"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-writer.ts",
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "file": "src/shared/diagnostics/room-probe-types.ts",
+      "sha256": "51520f505d844a566f91723b45145b8c04277be2f80e43e80f7e1b617af1705c"
+    },
+    {
+      "file": "src/shared/runtime/room-clock.ts",
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "file": "src/shared/session/admission.ts",
+      "sha256": "f7c2ab6ff021bbbb5d2e34f4ee236b0f02875312bd95a7264a1a02c83b3909d0"
+    },
+    {
+      "file": "src/shared/session/membership.ts",
+      "sha256": "582c3c6fb12ef996543f659e4adf0e0ce599309311805e6a303cdedc2814039c"
+    },
+    {
+      "file": "src/shared/session/room-control.ts",
+      "sha256": "39bd3121db8bcdde8db4aca7f7ee8486c7b0b612d5bde0da5e0d6d6f68ae068d"
+    },
+    {
+      "file": "src/shared/session/room-phase.ts",
+      "sha256": "63a7812db4326c8310b1c830838bfde3063fa543beaa2c25bc5236c26a5fe3ec"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "8ace3283c5763091976d8213b785e6e82bb929d3cada632f86e8be6b4ffee7cc"
+    },
+    {
+      "file": "src/worker/diagnostics/membership-storage.ts",
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "537e6ae74c603c8c92bb4a11a05c17932f0f83d7101ad97c10770926d8be5771"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "8b5369e3d44e4bb26a32f7f7c32254bd4ab5fd35d090e973ef10cd0d5d270da1"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "77050db5918006fe656ffee5b9451d9e62a6cd4e0565956871702156333396af"
+    },
+    {
+      "file": "test/combat-reconnect.test.ts",
+      "sha256": "ab8fa1cd51f21b9549bae2c3faf210d2f02485d4b2b2926c4773649df87a7866"
+    },
+    {
+      "file": "test/combat-writer.test.ts",
+      "sha256": "837b7df5a23746db8e06dbbd2a5ece961481d9eaaf7ac2337a3fe6c7568ee7f3"
+    },
+    {
+      "file": "test/fixtures/combat-recovery-proof.ts",
+      "sha256": "ebe9977c3d10a246098e2591a075e91819bdc4699900270c9f30640fe0f91d98"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "f55f580a857a63fdec81fbb41f8d131d3ffa980d5da82749cd2b6aa2a22d7d91"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "3ab54188c1a03fffb650367afd6afbf267ac65436542c748695ef2af6e605a47"
+    },
+    {
+      "file": "test/room-control.test.ts",
+      "sha256": "8698f389f80d9ecfe0d3df6e7aff3ff7d113e203d9075eb546e35c8bfcbf8397"
+    },
+    {
+      "file": "test/runtime/room-clock.test.ts",
+      "sha256": "5251a6deac569136e5544dc1f5274737c1b193b91ff4fb5fa92f203189226e34"
+    },
+    {
+      "file": "test/session.test.ts",
+      "sha256": "655d4d6c15e5587b537091fdf795239abdf9535b70bd64def6c849539efde7c1"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "W04-phase-browser.json.gz",
+      "rawBytes": 3472483,
+      "bytes": 194105,
+      "rawSha256": "31ab75a289d5a1a3ddeb0ff34e26406ec26afa81e2bd92047dd650d351f8753b",
+      "sha256": "e8b99d3615e5b81f39384306a20796a1f987b7841cb45a8782698fe6bf1f0558",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-lobby.json.gz",
+      "rawBytes": 180312,
+      "bytes": 8377,
+      "rawSha256": "175c95c5fa39fddce3aa8ae5d125848f1a1c5d53b431e33bf44230f078b30281",
+      "sha256": "8075334ae083c31b999ff5a1a9a7bfef4c51da60e6932f86b85f4a5572241ac5",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-loading.json.gz",
+      "rawBytes": 176596,
+      "bytes": 8975,
+      "rawSha256": "c8500d867eba76657f1d20ee70a438fe13924f4ac7ce26c6fdc302c08c72c623",
+      "sha256": "fa8fd8b47279ea164b4376e7fe3a62046029f6d6f3917abebb0546ec48f88eb6",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-diagnostics.json.gz",
+      "rawBytes": 35951,
+      "bytes": 5034,
+      "rawSha256": "d0972bdba49f376c1981ead123ace59ab47e979b1148459aaa59a173080aacdd",
+      "sha256": "79301d7224609108542391785a120f9c0021664daaf7cd03ac9a76db0c5a036a",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-storage.json",
+      "rawBytes": 65561,
+      "bytes": 65561,
+      "rawSha256": "233d3c3630fc6f1ed0f1c7e12ace730c39aa6cec7cf15fdfa3f04c7e3ace1ad2",
+      "sha256": "233d3c3630fc6f1ed0f1c7e12ace730c39aa6cec7cf15fdfa3f04c7e3ace1ad2",
+      "gzip": false
+    },
+    {
+      "file": "W04-phase-contracts.json.gz",
+      "rawBytes": 132179,
+      "bytes": 9523,
+      "rawSha256": "b26818cf6212283e16be475f52a05457e11e2f3f7549bed96b74db5e1d46fa44",
+      "sha256": "c0f1e578ded4d113de4791e46402a696708c3a4d67f1a87be36bfa6a8c9dd6e5",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-check.txt.gz",
+      "rawBytes": 2800,
+      "bytes": 1460,
+      "rawSha256": "1aa0d0c16fa699de70974196a76b3dcce23ac5522da96732ea78dc5b4a7716b2",
+      "sha256": "d31e5369956e7d92e3cc68d9cbb0da14023d724075f8e6dc714df9355667dd5d",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-auto.json.gz",
+      "rawBytes": 2933897,
+      "bytes": 173699,
+      "rawSha256": "df2c092ee2fe03e88606ed2c6dc49c9620b0ff739f5c98ef75ffdada109ff2ba",
+      "sha256": "63e5ca31b3b908ce324ebdcb8f8c7dc3fa8553bc740da96ef57e891a1bcae1b9",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-auto-diagnostics.json.gz",
+      "rawBytes": 119434,
+      "bytes": 16410,
+      "rawSha256": "cd5d722d430a98af887315bff93034b81b2e18d0f4ac9d499ede9e1f1c3f9ff7",
+      "sha256": "beb0ac49c1f38df0e6d3660d44f18999c688b6b5fe727d5eff38bd3a93c8724c",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-clock-failure.json.gz",
+      "rawBytes": 20305,
+      "bytes": 2412,
+      "rawSha256": "f9b6b7ae2c5517ba1be3fd57e9a4779903d447842f34d76c3c8576c1009f79e6",
+      "sha256": "bd49c2d8a68711bbb94c3acd4a982f3c62c5e3f88f38d6702026c12e8cec2c44",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-clock-clients.json.gz",
+      "rawBytes": 273853,
+      "bytes": 25254,
+      "rawSha256": "bd77b098d06633512dd8b483eefd60820b5759389ab91c1471fc99d43aeb42b9",
+      "sha256": "38ab4ae86fa155bdc5b9b14c7785ac50f6f2118460936f74394aadea14820e3a",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-clock-diagnostics.json.gz",
+      "rawBytes": 121605,
+      "bytes": 16496,
+      "rawSha256": "89677ab7334563bff233c0f226dfa011d7f02dc32b1ed9b44e786a0502dad442",
+      "sha256": "cc5094fe97aff2a3587aab22dfe070168ba905ab3724fc56a53a346fcc7256cb",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-lead-failure.json.gz",
+      "rawBytes": 338441,
+      "bytes": 14530,
+      "rawSha256": "4f08ba1212ad0c53793963939e1d375240185921098388e672e2af8ce7f1b056",
+      "sha256": "8204c93c208b91aac9cc216dad69bb16bda216f67cb317e0cc5c605b67e18804",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-lead-clients.json.gz",
+      "rawBytes": 381426,
+      "bytes": 33379,
+      "rawSha256": "61f55395e179b8dec1893084e29ef04ca9b9a7a6be0cded3060d3ce71b4870b2",
+      "sha256": "7d1c7088b0b63d159919ca48df1aebdb6ed81918381ce374a29d2b61e0f8de00",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-lead-diagnostics.json.gz",
+      "rawBytes": 16589,
+      "bytes": 2506,
+      "rawSha256": "000bd47282279f9adc3b9526e458ebda806207bbc2c0848e36be2122959d930b",
+      "sha256": "6f131b03d203d6f9d3029036a96aaee661cbb0f8c04f0c8f676d13d27a7adb26",
+      "gzip": true
+    },
+    {
+      "file": "W04-phase-failure-notes.json",
+      "rawBytes": 2702,
+      "bytes": 2702,
+      "rawSha256": "b3606572531487384932e4f18f46b0f6d41e310532dba44c0f539959672086e1",
+      "sha256": "b3606572531487384932e4f18f46b0f6d41e310532dba44c0f539959672086e1",
+      "gzip": false
+    },
+    {
+      "file": "W04-phase-deploy-config.json",
+      "rawBytes": 700,
+      "bytes": 700,
+      "rawSha256": "34a5408e5088d19052e7278c135e839839fb3cdcb8726d9772aed8412a5b5e9a",
+      "sha256": "34a5408e5088d19052e7278c135e839839fb3cdcb8726d9772aed8412a5b5e9a",
+      "gzip": false
+    }
+  ]
+}

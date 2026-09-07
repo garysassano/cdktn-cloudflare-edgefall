@@ -46,6 +46,11 @@ import {
   RoomSocketConnection,
   connectionText,
 } from "../shared/session/connection.js";
+import {
+  type HostAction,
+  type HostCommand,
+  readRoomControlState,
+} from "../shared/session/room-control.js";
 import { browserConnectionPort } from "./connection-port.js";
 
 async function startLab() {
@@ -247,6 +252,7 @@ async function startLab() {
       initialServerTick: welcome?.initialServerTick ?? 0,
       inputStopped,
       ready: welcome !== null && snapshot !== null && connection?.status.phase === "connected",
+      roomMode: snapshot?.roomMode ?? null,
       prepared,
       error,
       requiresResync: Boolean(
@@ -362,6 +368,8 @@ async function startLab() {
     inputClock.start();
   }
   function prepareInput() {
+    if (snapshot?.roomMode !== "loading" && snapshot?.roomMode !== "playing")
+      throw new Error("Load the room before preparing gameplay input");
     if (prepared) throw new Error("Already prepared");
     prepared = true;
     for (let i = 0; i < CONTROLLER_INPUT_PREFILL_TICKS; i++) {
@@ -554,6 +562,8 @@ async function startLab() {
       if (prepared && incoming.roomMode === "playing") {
         if (inputStopped) sendCommands([]);
         else startCaptureClock();
+      } else if (["lobby", "intermission", "completed"].includes(incoming.roomMode)) {
+        if (initial) sendCommands([]);
       } else if (incoming.roomMode !== "loading") {
         fail("Room lifecycle requires a fresh input baseline");
       }
@@ -712,9 +722,42 @@ async function startLab() {
     else connection.start();
   };
   connection.start();
+  const hostCommand = async (command: HostAction, observed?: HostCommand) => {
+    if (!welcome || mode !== "combat") throw new Error("Combat session required");
+    const session = await readRoomControlState(
+      await fetch(`${base.origin}/combat/session`, { credentials: "include" }),
+    );
+    const body: HostCommand = observed ?? {
+      command,
+      runEpoch: welcome.runEpoch,
+      connectionEpoch: welcome.connectionEpoch,
+      membershipEpoch: session.membershipEpoch,
+    };
+    const response = await fetch(`${base.origin}/combat/control`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(body),
+    });
+    return { status: response.status };
+  };
+  for (const command of ["load", "start"] as const) {
+    const button = element(`host-${command}`);
+    button.hidden = mode !== "combat";
+    button.onclick = () => {
+      void hostCommand(command)
+        .then((response) => {
+          if (response.status !== 200) throw new Error(`${command}: ${response.status}`);
+          inspect();
+        })
+        .catch((failure) => {
+          element("status").textContent = String(failure);
+        });
+    };
+  }
   Object.assign(window, {
     controllerNetworkLab: {
       status,
+      hostCommand,
       pauseConnection: () => connection.leave(),
       resumeConnection: () => connection.start(),
       configureEvents: (faults: Partial<typeof eventFaults>) => {

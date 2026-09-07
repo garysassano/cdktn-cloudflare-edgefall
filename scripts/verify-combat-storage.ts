@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { build } from "esbuild";
+import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 
 const require = createRequire(import.meta.url);
 const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -161,6 +162,10 @@ try {
   assert.equal(coldLoading.runEpoch, replacedLoading.runEpoch);
   assert.equal(coldLoading.roomMode, "loading");
   assert.deepEqual(coldLoading.connections, replacedLoading.connections);
+  const phases = await verifyStoredPhases(origin, async () => {
+    await runtime.dispose();
+    runtime = create();
+  });
   const report = {
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
@@ -172,9 +177,10 @@ try {
     gap,
     tail: { seededTail, restoredTail, pausedTail, coldPause, expiredTail, coldExpired },
     loading: { seededLoading, replacedLoading, coldLoading },
+    phases,
     status: "pass",
     scope:
-      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry/replacement rollback, persisted loading generation, pause and terminal non-resurrection; no deployed durability or production outbox claim.",
+      "Owned local SQLite Durable Object and fresh workerd processes. Full/partial journal reconstruction, atomic segment/pause/expiry/replacement rollback, guarded host boundaries, lobby/intermission pause origins, completed generation replacement and terminal non-resurrection; no campaign progression, deployed durability or production outbox claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(report)}\n`);

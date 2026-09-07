@@ -4,7 +4,11 @@ import {
   combatContinuationHash,
   transitionCombatRuntime,
 } from "../src/shared/diagnostics/combat-recovery.js";
-import { type CombatRuntime, combatRuntimeHash } from "../src/shared/diagnostics/combat-runtime.js";
+import {
+  type CombatRuntime,
+  combatRuntimeHash,
+  stageCombatRuntime,
+} from "../src/shared/diagnostics/combat-runtime.js";
 import {
   COMBAT_BACKLOG_LIMIT,
   CombatJournalWriter,
@@ -228,6 +232,49 @@ describe("bounded combat persistence writer", () => {
   });
 });
 describe("persisted combat recovery boundary", () => {
+  it.each(["lobby", "loading", "playing", "intermission"] as const)(
+    "retains a paused %s decision across recovery without advancing gameplay",
+    (phase) => {
+      const before = state(phase === "lobby" ? 0 : 89);
+      before.snapshot.roomMode = phase;
+      const paused = transitionCombatRuntime(before, "pause");
+      expect(paused.pausedFrom).toBe(phase);
+      validateCombatCheckpoint(paused);
+      expect(() => stageCombatRuntime(paused, [])).toThrow(/playing phase/);
+      const recovered = transitionCombatRuntime(paused, "recover");
+      validateCombatCheckpoint(recovered);
+      expect(recovered.snapshot.roomMode).toBe(
+        phase === "lobby" || phase === "intermission" ? phase : "loading",
+      );
+      expect(recovered.pausedFrom).toBeNull();
+      expect(recovered.combat.tick).toBe(before.combat.tick);
+      expect(combatContinuationHash(recovered.snapshot)).toBe(
+        combatContinuationHash(before.snapshot),
+      );
+    },
+  );
+  it("requires lobby/intermission before load and a loading barrier before start", () => {
+    const before = state(0);
+    before.snapshot.roomMode = "lobby";
+    expect(() => transitionCombatRuntime(before, "start")).toThrow(/loading barrier/);
+    const loaded = transitionCombatRuntime(before, "load");
+    expect(loaded.snapshot.roomMode).toBe("loading");
+    expect(loaded.combat).toEqual(before.combat);
+    const started = transitionCombatRuntime(loaded, "start");
+    expect(started.snapshot.roomMode).toBe("playing");
+    expect(() => transitionCombatRuntime(started, "load")).toThrow(/lobby or intermission/);
+  });
+  it("never plays or recovers completed results, but allows their terminal expiry", () => {
+    const completed = state(89);
+    completed.snapshot.roomMode = "completed";
+    expect(() => stageCombatRuntime(completed, [])).toThrow(/playing phase/);
+    for (const command of ["load", "start", "recover", "pause"] as const)
+      expect(() => transitionCombatRuntime(completed, command)).toThrow(/Terminal/);
+    const expired = transitionCombatRuntime(completed, "expire");
+    validateCombatCheckpoint(expired);
+    expect(expired.snapshot.roomMode).toBe("expired");
+    expect(expired.combat).toEqual(completed.combat);
+  });
   it("pauses and expires at an exact accepted tick without advancing combat or resurrecting a terminal room", () => {
     const previous = state(89),
       paused = transitionCombatRuntime(previous, "pause");

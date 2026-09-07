@@ -64,6 +64,18 @@ import {
   signProfileIdentity,
   verifyProfileIdentity,
 } from "../../shared/session/profile.js";
+import {
+  type HostCommand,
+  readHostCommand,
+  requireCurrentHost,
+  roomControlState,
+} from "../../shared/session/room-control.js";
+import {
+  type PausableRoomMode,
+  type RoomMode,
+  isPausableRoom,
+  isWaitingRoom,
+} from "../../shared/session/room-phase.js";
 import { ControlLease } from "../runtime/control-lease.js";
 import { CombatStorage } from "./combat-storage.js";
 import { MembershipStorage } from "./membership-storage.js";
@@ -76,6 +88,7 @@ interface Peer {
   generation: number;
   initialBaseline: { snapshotId: number; cursor: number } | null;
   baselineTick: number;
+  lastRoomMode: RoomMode;
   socket: WebSocket;
   input: InputStream;
   lease: ControlLease | null;
@@ -93,6 +106,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   private combat: CombatLab | null = null;
   private eventHistory: EventHistory | null = null;
   private connectedPlayerIds: number[] = [];
+  private pausedFrom: PausableRoomMode | null = null;
   private combatStore: CombatStorage | null = null;
   private combatWriter: CombatJournalWriter | null = null;
   private recoveryBoundary: RoomProbeStatus["recoveryBoundary"] = null;
@@ -227,6 +241,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       peer.metrics.lastOutputError ??= String(error).slice(0, 256);
     }
     this.pauseEmpty();
+    if (this.workload === "combat" && this.world.roomMode === "completed" && !this.hasPeers())
+      this.ctx.waitUntil(this.scheduleExpiry());
   }
   private disconnectAll(reason: string): void {
     for (const peer of this.peers.values()) this.disconnect(peer, reason, 4003);
@@ -256,7 +272,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       this.workload !== "combat" ||
       this.pausing ||
       this.starting ||
-      !["playing", "loading"].includes(this.world.roomMode) ||
+      !isPausableRoom(this.world.roomMode) ||
       this.hasPeers()
     )
       return;
@@ -334,6 +350,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.clock.close();
     this.clearWatchdog();
     this.world.roomMode = "expired";
+    this.pausedFrom = null;
     this.disconnectAll(reason);
     this.heldPersistence?.reject();
   }
@@ -433,6 +450,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       peer.initialBaseline = { snapshotId: this.world.snapshotId, cursor };
     peer.metrics.snapshots++;
     peer.metrics.snapshotBytes += bytes.byteLength;
+    peer.lastRoomMode = this.world.roomMode;
   }
 
   private publishSnapshot(peer: Peer, repair?: EventBaseline["reason"]): void {
@@ -468,6 +486,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       combat: CombatLab | null;
       history: EventHistory | null;
       connectedPlayerIds: number[];
+      pausedFrom: PausableRoomMode | null;
       journal: CombatJournalTick | null;
     }>(
       active.map(([, peer]) => peer.input),
@@ -558,6 +577,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             combat: this.combat,
             history: this.eventHistory,
             connectedPlayerIds: this.connectedPlayerIds,
+            pausedFrom: this.pausedFrom,
             journal: null,
           },
           outcomes,
@@ -568,6 +588,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.combat = transaction.state.combat;
     this.eventHistory = transaction.state.history;
     this.connectedPlayerIds = transaction.state.connectedPlayerIds;
+    this.pausedFrom = transaction.state.pausedFrom;
     for (const [slot, peer] of replacements) {
       const old = this.peers.get(slot);
       if (old) this.disconnect(old, "connection-replaced", 4003);
@@ -653,6 +674,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       snapshot: this.world,
       history: this.eventHistory,
       connectedPlayerIds: this.connectedPlayerIds,
+      pausedFrom: this.pausedFrom,
     };
   }
   private installCombat(state: CombatRuntime) {
@@ -660,12 +682,14 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     this.combat = state.combat;
     this.eventHistory = state.history;
     this.connectedPlayerIds = state.connectedPlayerIds;
+    this.pausedFrom = state.pausedFrom;
   }
   private pausePersistence(reason: string) {
     this.persistenceFailure ??= reason.slice(0, 256);
     this.clock.stop();
     this.clearWatchdog();
     if (this.world.roomMode !== "expired") this.world.roomMode = "recovering";
+    this.pausedFrom = null;
     this.disconnectAll("persistence-recovery");
   }
   private async persistCombat(
@@ -732,7 +756,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (this.workload === "combat") {
       this.members = new MembershipStorage(this.ctx.storage);
       const initial = createCombatRuntime();
-      initial.snapshot.roomMode = "loading";
+      initial.snapshot.roomMode = "lobby";
       initial.snapshot.stateHash = roomWorkloadHash(initial.snapshot);
       initial.connectedPlayerIds = [];
       this.installCombat(initial);
@@ -757,11 +781,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         },
       );
       const loaded = await this.combatStore.load();
-      if (loaded && ["paused-empty", "expired"].includes(loaded.snapshot.roomMode)) {
+      if (loaded && ["paused-empty", "completed", "expired"].includes(loaded.snapshot.roomMode)) {
         this.installCombat(loaded);
         this.clock = this.createClock(loaded.combat.tick);
         this.recoveries = loaded.snapshot.runEpoch - 1;
-        if (loaded.snapshot.roomMode === "expired") this.clock.close();
+        if (["completed", "expired"].includes(loaded.snapshot.roomMode)) this.clock.close();
         else
           this.emptyPause = {
             tick: loaded.combat.tick,
@@ -786,10 +810,57 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const parts = url.pathname.split("/");
-    const action = parts[2];
+    let action = parts[2];
     this.initialization ??= this.ctx.blockConcurrencyWhile(() => this.initialize(parts[1]));
     await this.initialization;
     this.resolvedIdentity = await this.identity;
+    const profileId = request.headers.get("X-Edgefall-Profile") ?? "";
+    let hostCommand: HostCommand | null = null;
+    const requireHost = () => {
+      if (!this.members || !hostCommand) throw new Error("host-required");
+      const member = this.members.state.members.find((m) => m.profileId === profileId);
+      const peer = member && this.peers.get(member.slot);
+      if (!member || !peer?.metrics.active || peer.generation !== member.generation)
+        throw new Error("stale-host-command");
+      requireCurrentHost(
+        this.members.state,
+        profileId,
+        this.world.runEpoch,
+        this.context(member.slot).connectionEpoch,
+        hostCommand,
+      );
+    };
+    if (action === "session") {
+      if (
+        request.method !== "GET" ||
+        !this.members?.state.members.some((m) => m.profileId === profileId)
+      )
+        return Response.json({ code: "member-required" }, { status: 403 });
+      return Response.json(
+        roomControlState(this.members.state, this.world.roomMode, this.world.runEpoch),
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+    if (action === "control") {
+      try {
+        hostCommand = await readHostCommand(request);
+      } catch (error) {
+        return Response.json(
+          { code: "invalid-command", detail: String(error).slice(0, 128) },
+          { status: 400 },
+        );
+      }
+      try {
+        requireHost();
+      } catch (error) {
+        const code = error instanceof Error ? error.message : "host-required";
+        return Response.json({ code }, { status: code === "host-required" ? 403 : 409 });
+      }
+      action = hostCommand.command;
+      if (action !== "load" && action !== "start")
+        return Response.json({ code: "command-unavailable" }, { status: 409 });
+    } else if (this.workload === "combat" && (action === "start" || action === "load"))
+      return Response.json({ code: "host-command-required" }, { status: 401 });
     if (action === "disconnect-peer") {
       const slot = Number(url.searchParams.get("slot"));
       const peer = this.peers.get(slot);
@@ -826,10 +897,9 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         !this.members
       )
         return reply("protocol-error", 400);
-      if (this.world.roomMode === "expired" || this.world.roomMode === "completed")
-        return reply("room-ended", 410);
+      if (this.world.roomMode === "expired") return reply("room-ended", 410);
       if (
-        !["loading", "playing", "paused-empty"].includes(this.world.roomMode) ||
+        this.world.roomMode === "recovering" ||
         this.starting ||
         this.admissions.has(slot) ||
         this.pendingPeers.has(slot)
@@ -840,7 +910,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           this.members.state,
           request.headers.get("X-Edgefall-Profile") ?? "",
           slot,
-          this.world.tick === 0 && this.world.roomMode === "loading",
+          this.world.roomMode,
           Date.now(),
         );
       } catch (error) {
@@ -973,7 +1043,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.members.state,
             request.headers.get("X-Edgefall-Profile") ?? "",
             slot,
-            false,
+            this.world.roomMode,
             Date.now(),
           );
         } catch (error) {
@@ -990,18 +1060,25 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         }
       }
       const replacing = this.workload === "combat" && this.world.roomMode === "playing";
-      const loadingReplacement =
-        this.workload === "combat" && this.world.roomMode === "loading" && this.peers.has(slot);
+      const waitingReplacement =
+        this.workload === "combat" &&
+        isWaitingRoom(this.world.roomMode) &&
+        (this.peers.has(slot) ||
+          (this.world.roomMode === "completed" &&
+            this.members?.state.members.some((member) => member.slot === slot)));
       if (
-        (replacing || loadingReplacement) &&
+        (replacing || waitingReplacement) &&
         (this.world.players[slot]?.vehicleId !== null ||
           this.context(slot).connectionEpoch >= COUNTER_LIMIT - 2)
       )
         return new Response("Connection transition unavailable", { status: 409 });
       if (
         (!replacing &&
-          (this.world.roomMode !== "loading" || (!loadingReplacement && this.peers.has(slot)))) ||
-        (loadingReplacement && this.admissions.size > 0) ||
+          (!(this.workload === "combat"
+            ? isWaitingRoom(this.world.roomMode)
+            : this.world.roomMode === "loading") ||
+            (!waitingReplacement && this.peers.has(slot)))) ||
+        (waitingReplacement && this.admissions.size > 0) ||
         this.admissions.has(slot) ||
         this.pendingPeers.has(slot) ||
         this.starting ||
@@ -1019,12 +1096,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.members.state,
             profileId,
             slot,
-            this.world.tick === 0 && !replacing,
+            this.world.roomMode,
             Date.now(),
           );
           generation = admitted.members.find((m) => m.slot === slot)?.generation ?? 0;
-          // Loading replacements mutate the saved boundary; keep start and other claims outside it.
-          if (loadingReplacement) this.starting = true;
+          // Waiting replacements mutate the saved boundary; keep start and other claims outside it.
+          if (waitingReplacement) this.starting = true;
           let settled = () => {};
           this.admissions.set(
             slot,
@@ -1034,21 +1111,19 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           );
           settleAdmission = settled;
           const epoch = this.world.runEpoch;
+          const phase = this.world.roomMode;
           this.members.save(admitted);
           await this.ctx.storage.sync();
-          if (
-            this.world.runEpoch !== epoch ||
-            (replacing ? this.world.roomMode !== "playing" : this.world.roomMode !== "loading")
-          )
+          if (this.world.runEpoch !== epoch || this.world.roomMode !== phase)
             throw new Error("room-boundary-changed");
-          if (loadingReplacement) {
+          if (waitingReplacement) {
             if (!this.combatStore) throw new Error("Missing combat store");
             persistingReplacement = true;
-            const replacement = await this.combatStore.replaceLoadingConnection(
+            const replacement = await this.combatStore.replaceWaitingConnection(
               this.combatRuntime(),
               slot + 1,
             );
-            if (this.world.runEpoch !== epoch || this.world.roomMode !== "loading")
+            if (this.world.runEpoch !== epoch || this.world.roomMode !== phase)
               throw new Error("room-boundary-changed");
             this.installCombat(replacement);
           }
@@ -1066,7 +1141,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         } finally {
           this.admissions.delete(slot);
           settleAdmission();
-          if (loadingReplacement) {
+          if (waitingReplacement) {
             this.starting = false;
             if (!admissionSucceeded) this.pauseEmpty();
           }
@@ -1077,6 +1152,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         generation,
         initialBaseline: null,
         baselineTick: this.world.tick,
+        lastRoomMode: this.world.roomMode,
         socket: pair[1],
         input: new InputStream({
           ...this.context(slot),
@@ -1119,7 +1195,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         const old = this.peers.get(slot);
         this.peers.set(slot, peer);
         if (old) this.disconnect(old, "connection-replaced", 4003);
-        if (loadingReplacement)
+        if (waitingReplacement)
           this.connections.push({
             tick: this.world.tick,
             slot,
@@ -1134,6 +1210,30 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     }
     if (action !== "status" && request.method !== "POST")
       return new Response("Use POST", { status: 405 });
+    if (action === "load") {
+      if (
+        this.starting ||
+        this.admissions.size ||
+        !["lobby", "intermission"].includes(this.world.roomMode) ||
+        !this.combatStore
+      )
+        return Response.json({ code: "load-unavailable" }, { status: 409 });
+      this.starting = true;
+      try {
+        const phase = this.world.roomMode;
+        const loaded = await this.combatStore.transition(this.combatRuntime(), "load", requireHost);
+        requireHost();
+        if (this.world.roomMode !== phase) throw new Error("room-boundary-changed");
+        this.installCombat(loaded);
+        for (const peer of this.peers.values()) if (peer.metrics.active) this.publishSnapshot(peer);
+      } catch (error) {
+        this.pausePersistence(String(error));
+        return Response.json({ code: "load-recovery" }, { status: 503 });
+      } finally {
+        this.starting = false;
+      }
+      return Response.json({ roomMode: this.world.roomMode });
+    }
     if (action === "start") {
       if (
         this.starting ||
@@ -1154,7 +1254,13 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       try {
         if (this.workload === "combat") {
           if (!this.combatStore) throw new Error("Missing combat store");
-          const started = await this.combatStore.transition(this.combatRuntime(), "start");
+          const started = await this.combatStore.transition(
+            this.combatRuntime(),
+            "start",
+            requireHost,
+          );
+          requireHost();
+          if (this.world.roomMode !== "loading") throw new Error("room-boundary-changed");
           this.installCombat(started);
           this.combatWriter = new CombatJournalWriter(
             { commit: (start, entries, accepted) => this.persistCombat(start, entries, accepted) },
@@ -1193,6 +1299,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       emptyPause: this.emptyPause,
       alarmAtMs: this.alarmAtMs,
       alarmDeliveries: this.alarmDeliveries,
+      pausedFrom: this.pausedFrom,
       connections: this.connections,
       staleSocketEvents: this.staleSocketEvents,
       membership: this.members
@@ -1246,7 +1353,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     const peer = [...this.peers.values()].find((value) => value.socket === socket);
     if (
       !peer?.metrics.active ||
-      (this.world.roomMode === "loading" && this.admissions.has(peer.metrics.slot))
+      (isWaitingRoom(this.world.roomMode) && this.admissions.has(peer.metrics.slot))
     ) {
       this.staleSocketEvents = Math.min(1000, this.staleSocketEvents + 1);
       return;
@@ -1254,7 +1361,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (
       (typeof message === "string" ? message.length > 512 : message.byteLength > 284) ||
       (this.world.roomMode !== "playing" &&
-        !(this.controllerInputs && this.world.roomMode === "loading"))
+        !(this.controllerInputs && isWaitingRoom(this.world.roomMode)))
     ) {
       this.disconnect(peer, "invalid-input", 4004);
       return;
@@ -1282,6 +1389,12 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       const previousAck = peer.input.deliveryAcknowledgments.snapshot;
       const batch = decodeInputBatch(new Uint8Array(message), this.context(peer.metrics.slot));
       if (
+        this.world.roomMode !== "loading" &&
+        this.world.roomMode !== "playing" &&
+        batch.commands.length
+      )
+        throw new Error("Room phase accepts acknowledgments only");
+      if (
         peer.initialBaseline &&
         (batch.snapshotAck !== peer.initialBaseline.snapshotId ||
           batch.eventAck !== peer.initialBaseline.cursor)
@@ -1299,6 +1412,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       );
       const result = peer.input.receive(new Uint8Array(message), now, this.clock.state.tick);
       if (!result.duplicate) peer.initialBaseline = null;
+      if (peer.lastRoomMode !== this.world.roomMode) this.publishSnapshot(peer);
       if (eventBaselineAccepted && !result.duplicate) peer.pendingEventBaseline = null;
       this.traceInput(
         peer,
@@ -1395,22 +1509,26 @@ export default {
       return Response.json({ authenticated: true }, { headers });
     }
     const match =
-      /^\/(standard|double|controller|combat)\/(admission|connect|start|status|close|recover|disconnect-peer|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
+      /^\/(standard|double|controller|combat)\/(session|control|admission|connect|start|status|close|recover|disconnect-peer|fail-next-tick|fail-next-write|hold-next-write|release-write)$/u.exec(
         url.pathname,
       );
     if (!match?.[1]) return new Response("Not found", { status: 404 });
     const forwarded = new Request(request);
     forwarded.headers.delete("X-Edgefall-Profile");
     const cors = (response: Response) => {
-      if (origin && match[2] === "admission") {
+      if (origin && ["admission", "session", "control"].includes(match[2] ?? "")) {
         response.headers.set("Access-Control-Allow-Origin", origin);
         response.headers.set("Access-Control-Allow-Credentials", "true");
         response.headers.set("Vary", "Origin");
       }
       return response;
     };
-    if (match[1] === "combat" && (match[2] === "connect" || match[2] === "admission")) {
-      if (request.method !== "GET") return new Response("Use GET", { status: 405 });
+    if (
+      match[1] === "combat" &&
+      ["connect", "admission", "session", "control"].includes(match[2] ?? "")
+    ) {
+      if (request.method !== (match[2] === "control" ? "POST" : "GET"))
+        return new Response("Method not allowed", { status: 405 });
       const profile = await verifyProfileIdentity(
         profileCookie(request.headers.get("Cookie")),
         env.PROFILE_COOKIE_SECRET,
@@ -1420,6 +1538,8 @@ export default {
       forwarded.headers.set("X-Edgefall-Profile", profile);
     }
     const response = await env.ROOM_PROBES.getByName(match[1]).fetch(forwarded);
-    return match[2] === "admission" ? cors(new Response(response.body, response)) : response;
+    return ["admission", "session", "control"].includes(match[2] ?? "")
+      ? cors(new Response(response.body, response))
+      : response;
   },
 };

@@ -50,7 +50,9 @@ export async function requireRoomAdmission(
       );
     if (
       admission.code !== "ready" ||
-      !["loading", "playing", "paused-empty"].includes(admission.roomMode ?? "")
+      !["lobby", "loading", "playing", "intermission", "paused-empty", "completed"].includes(
+        admission.roomMode ?? "",
+      )
     )
       throw new RoomConnectError("protocol-error");
     if (
