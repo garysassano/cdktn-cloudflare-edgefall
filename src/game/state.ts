@@ -35,12 +35,14 @@ export interface Body {
   grounded: boolean;
   contacts: Contact[];
 }
-export interface ActionState {
-  kind: "ready" | "fire" | "melee" | "grenade" | "enter" | "exit" | "hurt";
+export interface ActionClock {
   actionInstanceId: number;
   stateStartTick: Tick;
   definitionId: number;
   nextMarkerIndex: number;
+}
+export interface ActionState extends ActionClock {
+  kind: "ready" | "fire" | "melee" | "grenade" | "enter" | "exit" | "hurt";
 }
 export type WeaponId =
   | "sidearm"

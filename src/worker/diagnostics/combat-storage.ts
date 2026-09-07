@@ -23,6 +23,7 @@ type ArchiveRow = {
   tick: number;
   payload: string;
 };
+const MAX_JOURNAL_SEGMENTS = Math.ceil(COMBAT_CHECKPOINT_TICKS / COMBAT_SEGMENT_TICKS);
 /** SQLite laboratory store. Caller pauses gameplay on failure/backlog; no external side effects. */
 export class CombatStorage {
   private busy = false;
@@ -106,7 +107,16 @@ export class CombatStorage {
         )
         .toArray()[0];
       if (!checkpoint) throw new Error("Missing combat checkpoint");
-      const replace = state.combat.tick - checkpoint.tick >= COMBAT_CHECKPOINT_TICKS;
+      const segments = this.storage.sql
+        .exec<{ count: number }>(
+          "SELECT COUNT(*) AS count FROM combat_archive WHERE key LIKE 'segment:%'",
+        )
+        .one().count;
+      // Partial segments are legal. Compact before a fifth segment would exceed the bounded
+      // recovery view, even when fewer than sixty world ticks have elapsed.
+      const replace =
+        state.combat.tick - checkpoint.tick >= COMBAT_CHECKPOINT_TICKS ||
+        segments >= MAX_JOURNAL_SEGMENTS;
       const nextCheckpoint = replace ? await encodeCombatCheckpoint(state, this.identity) : null;
       const preparedAt = performance.now();
       this.storage.transactionSync(() => {
@@ -193,13 +203,19 @@ export class CombatStorage {
       // Consume every cursor before awaiting validation/digests; this is one bounded DB view.
       const rows = this.storage.sql
         .exec<ArchiveRow>(
-          "SELECT key, run_epoch, tick, payload FROM combat_archive ORDER BY tick, key LIMIT 7",
+          "SELECT key, run_epoch, tick, payload FROM combat_archive ORDER BY tick, key LIMIT ?",
+          MAX_JOURNAL_SEGMENTS + 3,
         )
         .toArray();
       if (rows.length === 0) return null;
       const checkpoint = rows.find((row) => row.key === "checkpoint"),
         head = rows.find((row) => row.key === "head");
-      if (!checkpoint || !head || rows.length > 6 || !/^[a-f0-9]{8}$/u.test(head.payload))
+      if (
+        !checkpoint ||
+        !head ||
+        rows.length > MAX_JOURNAL_SEGMENTS + 2 ||
+        !/^[a-f0-9]{8}$/u.test(head.payload)
+      )
         throw new Error("Invalid combat durable metadata");
       let state = await decodeCombatCheckpoint(checkpoint.payload, this.identity);
       if (checkpoint.run_epoch !== state.snapshot.runEpoch || checkpoint.tick !== state.combat.tick)

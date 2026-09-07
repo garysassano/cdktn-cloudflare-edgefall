@@ -9,6 +9,7 @@ import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-p
 import { recordFootCombat } from "./foot-combat-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 import { recordRifleRecovery } from "./rifle-proof.js";
+import { SHIELD_BOUNDARIES, recordShieldCombat } from "./shield-proof.js";
 
 interface Env {
   STORES: DurableObjectNamespace<CombatStorageProof>;
@@ -29,6 +30,59 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const [, name, action] = new URL(request.url).pathname.split("/");
+    if (name === "shield-bash" || name === "shield-break") {
+      const mode = name === "shield-bash" ? "bash" : "break";
+      if (action !== "restore") {
+        const fixture = recordShieldCombat(mode);
+        const through = Number(action);
+        if (![...SHIELD_BOUNDARIES[mode], 180].includes(through))
+          throw new Error("Unknown shield storage boundary");
+        let saved = await store.load();
+        if (!saved) {
+          if (through !== SHIELD_BOUNDARIES[mode][0]) throw new Error("Missing shield seed");
+          const seed = fixture.states[through];
+          if (!seed) throw new Error("Missing shield seed boundary");
+          await store.initialize(seed);
+          saved = seed;
+        }
+        if (canonical(saved) !== canonical(fixture.states[saved.combat.tick]))
+          throw new Error("Shield storage prefix mismatch");
+        while (saved.combat.tick < through) {
+          const end = Math.min(through, saved.combat.tick + 15),
+            accepted = fixture.states[end];
+          if (!accepted) throw new Error("Missing shield committed boundary");
+          const entries = fixture.entries.slice(saved.combat.tick, end);
+          this.inject = true;
+          let rolledBack = false;
+          try {
+            await store.commit(saved, entries, accepted);
+          } catch (error) {
+            rolledBack = String(error).includes("injected-storage-transaction-failure");
+          }
+          if (!rolledBack || canonical(await store.load()) !== canonical(saved))
+            throw new Error("Shield rollback changed action or integrity");
+          saved = await store.commit(saved, entries, accepted);
+        }
+      }
+      const saved = await store.load();
+      if (!saved) throw new Error("Missing shield archive");
+      return Response.json({
+        instance: this.instance,
+        tick: saved.combat.tick,
+        hash: combatRuntimeHash(saved),
+        guard: saved.combat.targets[0]?.guard,
+        archiveRows: this.ctx.storage.sql
+          .exec<{ count: number }>("SELECT COUNT(*) AS count FROM combat_archive")
+          .one().count,
+        checkpointTick: this.ctx.storage.sql
+          .exec<{ tick: number }>("SELECT tick FROM combat_archive WHERE key = 'checkpoint'")
+          .one().tick,
+        health: saved.combat.targets[0]?.health,
+        players: saved.combat.players.map(({ lives, grenadeStock }) => ({ lives, grenadeStock })),
+        events: saved.history.entries,
+        encounter: saved.combat.encounter.phase,
+      });
+    }
     if (name === "foot-melee" || name === "foot-grenade") {
       const melee = name === "foot-melee";
       if (action === "seed") {
@@ -430,6 +484,8 @@ export default {
         "rifle",
         "foot-melee",
         "foot-grenade",
+        "shield-bash",
+        "shield-break",
         "campaign",
         "campaign-loss",
         "phase-lobby",

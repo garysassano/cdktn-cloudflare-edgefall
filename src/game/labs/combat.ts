@@ -5,6 +5,14 @@ import {
   createRifleState,
   stepRifleAttack,
 } from "../actors/rifle.js";
+import {
+  type ShieldState,
+  cancelShield,
+  createShieldState,
+  damageShield,
+  shieldProtected,
+  stepShield,
+} from "../actors/shield.js";
 import { type LifeNotice, damagePlayer, stepPlayerLife } from "../campaign/life.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
 import { type Grenade, stepGrenade } from "../combat/grenade.js";
@@ -38,10 +46,11 @@ import {
   FOOT_ACTION_PROFILES,
   GRENADE_PROFILE,
   RIFLE_PROFILE,
+  SHIELD_PROFILE,
 } from "./combat-content.js";
 import { FOOT_DEFINITION, footActor, footTerrain } from "./foot-fixture.js";
 
-export const COMBAT_SCENARIOS = ["range", "wall", "shield", "rifle"] as const;
+export const COMBAT_SCENARIOS = ["range", "wall", "shield", "rifle", "guard"] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
   held: number;
@@ -54,6 +63,7 @@ export interface CombatTarget {
   health: number;
   shield: boolean;
   rifle: RifleState | null;
+  guard: ShieldState | null;
 }
 export interface CombatNotice {
   kind:
@@ -65,7 +75,8 @@ export interface CombatNotice {
     | "melee"
     | "throw"
     | "action-sound"
-    | "explosion";
+    | "explosion"
+    | "shield-break";
   ownerId: number;
   actionInstanceId: number;
   markerIndex: number;
@@ -80,7 +91,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 2;
+  format: 3;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -155,7 +166,10 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
   });
   const targets: CombatTarget[] = Array.from({ length: 2 }, (_, index) => ({
     enemy: {
-      body: { ...footActor(220 + index * 60, 200).body, id: 20 + index },
+      body: {
+        ...footActor(scenario === "guard" && index === 0 ? 140 : 220 + index * 60, 200).body,
+        id: 20 + index,
+      },
       facing: -1,
       geometryRevision: 1,
       life: "alive",
@@ -164,10 +178,12 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     },
     health: 1,
     shield: scenario === "shield" && index === 0,
-    rifle: scenario === "rifle" ? createRifleState() : null,
+    rifle:
+      scenario === "rifle" || (scenario === "guard" && index === 1) ? createRifleState() : null,
+    guard: scenario === "guard" && index === 0 ? createShieldState(SHIELD_PROFILE) : null,
   }));
   return {
-    format: 2,
+    format: 3,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -193,10 +209,40 @@ function actionHand(actor: ControlledActor, tick: number) {
   if (!socket) throw new Error("Missing combat hand socket");
   return socket.point;
 }
+function appendShieldMarkers(
+  world: CombatLab,
+  target: CombatTarget,
+  markers: ReturnType<typeof stepShield>["markers"],
+) {
+  const guard = target.guard;
+  if (!guard || target.health === 0) return;
+  for (const item of markers) {
+    if (item.marker.kind === "face") continue;
+    if (item.marker.kind !== "sound" && item.marker.kind !== "activate-hitbox")
+      throw new Error("Unsupported shield marker");
+    const socket = item.pose.sockets.find((socket) => socket.name === item.marker.socket);
+    if (!socket) throw new Error("Missing shield marker socket");
+    world.events.push({
+      kind: item.marker.kind === "sound" ? "action-sound" : "melee",
+      ownerId: target.enemy.body.id,
+      actionInstanceId: item.actionInstanceId,
+      markerIndex: item.markerIndex,
+      source: {
+        definitionId: item.marker.payloadId,
+        timelineId: guard.action.definitionId,
+        stateStartTick: guard.action.stateStartTick,
+      },
+      position: worldSocket(target.enemy.body, socket.point, target.enemy.facing),
+      impact: null,
+      targetId: null,
+    });
+  }
+}
 function meleeEligible(
   actor: ControlledActor,
   targets: CombatTarget[],
   terrain: SweepTarget[],
+  tick: number,
 ): boolean {
   const definition = COMBAT_ATTACKS.get(4),
     shape = COMBAT_SHAPES.get(9);
@@ -218,17 +264,24 @@ function meleeEligible(
       actor.facing,
       { x: actor.body.x, y: hand.y },
       terrain,
-      combatHurtboxes(targets),
+      combatHurtboxes(targets, tick),
     ).some((hit) => hit.damage > 0)
   );
 }
-export function combatHurtboxes(targets: CombatTarget[], previous = targets): HurtTarget[] {
+export function combatHurtboxes(
+  targets: CombatTarget[],
+  tick: number,
+  previous = targets,
+): HurtTarget[] {
   return targets.flatMap((target, index) => {
     if (target.health === 0 || target.enemy.life !== "alive") return [];
     const body = target.enemy.body,
       before = previous[index]?.enemy.body;
     if (!before || before.id !== body.id) throw new Error("Target motion identity mismatch");
-    const kinds = target.shield ? (["body", "shield"] as const) : (["body"] as const);
+    const protectedBody =
+      target.shield ||
+      (target.guard !== null && shieldProtected(target.guard, tick, SHIELD_PROFILE));
+    const kinds = protectedBody ? (["body", "shield"] as const) : (["body"] as const);
     return kinds.map((kind) => {
       const shape = COMBAT_SHAPES.get(kind === "body" ? 3 : 8);
       if (!shape) throw new Error("Missing target hurt shape");
@@ -332,12 +385,29 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         tick,
       });
     if (target.health === 0) continue;
+    const shieldStep =
+      target.guard &&
+      stepShield(
+        target.guard,
+        target.enemy,
+        world.players,
+        tick,
+        world.nextActionId,
+        COMBAT_CATALOG,
+        SHIELD_PROFILE,
+      );
+    if (shieldStep) {
+      target.guard = shieldStep.state;
+      target.enemy.facing = shieldStep.state.facing;
+      world.nextActionId = shieldStep.nextActionId;
+    }
     const shape = COMBAT_SHAPES.get(target.enemy.body.shapeId);
     if (!shape) throw new Error("Missing enemy body");
     const result = stepGroundedEnemy(
       target.enemy,
       {
-        speed: target.rifle?.action.kind === "fire" ? 0 : 64,
+        speed: shieldStep ? shieldStep.speed : target.rifle?.action.kind === "fire" ? 0 : 64,
+        turnAtBoundary: !target.guard && target.rifle?.action.kind !== "fire",
         gravity: 55,
         terminalVelocity: 2048,
         bounds: { x: 0, y: 0, w: pixels(384), h: pixels(220) },
@@ -351,6 +421,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     if (target.enemy.removalReason) {
       target.health = 0;
       if (target.rifle) cancelRifle(target.rifle);
+      if (target.guard) cancelShield(target.guard);
       encounterEvents.push({
         kind: "resolve",
         id: target.enemy.body.id,
@@ -360,6 +431,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
         tick,
       });
     }
+    if (shieldStep) appendShieldMarkers(world, target, shieldStep.markers);
   }
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
@@ -371,7 +443,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       world.nextActionId,
       COMBAT_CATALOG,
       FOOT_ACTION_PROFILES,
-      meleeEligible(actor, world.targets, terrain),
+      meleeEligible(actor, world.targets, terrain, tick),
     );
     world.players[slot] = result.actor;
     world.nextActionId = result.nextActionId;
@@ -568,10 +640,62 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
     }
   }
   const hurtboxes = [
-    ...combatHurtboxes(world.targets, current.targets),
+    ...combatHurtboxes(world.targets, tick, current.targets),
     ...playerCombatHurtboxes(world.players, current.players),
   ];
   const impacts: Impact[] = [];
+  for (const target of world.targets) {
+    const guard = target.guard;
+    if (!guard || target.health === 0 || guard.phase !== "bash") continue;
+    const age = tick - guard.action.stateStartTick;
+    if (
+      age < SHIELD_PROFILE.bashActiveTick ||
+      age >= SHIELD_PROFILE.bashActiveTick + SHIELD_PROFILE.bashActiveTicks
+    )
+      continue;
+    const pose = actionPose(COMBAT_CATALOG, guard.action.definitionId, age);
+    const socket = pose?.sockets.find((socket) => socket.name === "hand");
+    const definition = COMBAT_ATTACKS.get(6),
+      shape = COMBAT_SHAPES.get(12);
+    const previous = current.targets.find(
+      (candidate) => candidate.enemy.body.id === target.enemy.body.id,
+    );
+    if (!socket || !definition || !shape || !previous) throw new Error("Missing bash volume");
+    const moving = age > SHIELD_PROFILE.bashActiveTick;
+    const body = moving ? previous.enemy.body : target.enemy.body;
+    const hand = worldSocket(body, socket.point, guard.facing);
+    const delta = moving
+      ? { x: target.enemy.body.x - body.x, y: target.enemy.body.y - body.y }
+      : { x: 0, y: 0 };
+    const candidates = moving
+      ? hurtboxes
+      : hurtboxes.map((hurt) => ({
+          ...hurt,
+          rect: { ...hurt.rect, x: hurt.rect.x + hurt.delta.x, y: hurt.rect.y + hurt.delta.y },
+          delta: { x: 0, y: 0 },
+        }));
+    const hits = meleeHits(
+      {
+        id: target.enemy.body.id,
+        ownerId: target.enemy.body.id,
+        team: 2,
+        actionInstanceId: guard.action.actionInstanceId,
+        definitionId: 6,
+      },
+      definition,
+      shape,
+      hand,
+      delta,
+      guard.facing,
+      { x: body.x, y: hand.y },
+      terrain,
+      candidates,
+      guard.hitIds,
+    );
+    for (const hit of hits) if (hit.entityId !== null) guard.hitIds.push(hit.entityId);
+    guard.hitIds.sort((a, b) => a - b);
+    impacts.push(...hits);
+  }
   world.strikes = world.strikes.filter((strike) => {
     const owner = world.players.find((player) => player.playerId === strike.ownerId);
     const before = current.players.find((player) => player.playerId === strike.ownerId);
@@ -703,11 +827,28 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
       continue;
     }
     const target = world.targets.find((candidate) => candidate.enemy.body.id === impact.entityId);
+    if (target?.guard && target.health > 0 && impact.kind === "shield") {
+      const definition = COMBAT_ATTACKS.get(impact.definitionId);
+      if (!definition) throw new Error("Unknown shield damage definition");
+      const damage = damageShield(
+        target.guard,
+        definition,
+        tick,
+        world.nextActionId,
+        COMBAT_CATALOG,
+        SHIELD_PROFILE,
+      );
+      target.guard = damage.state;
+      world.nextActionId = damage.nextActionId;
+      if (damage.broken) world.events.push({ ...notice, kind: "shield-break" });
+      appendShieldMarkers(world, target, damage.markers);
+    }
     if (!target || target.health === 0 || impact.damage === 0) continue;
     target.health = Math.max(0, target.health - impact.damage);
     if (target.health === 0) {
       target.enemy.life = "removed";
       if (target.rifle) cancelRifle(target.rifle);
+      if (target.guard) cancelShield(target.guard);
       world.events.push({ ...notice, kind: "killed" });
       encounterEvents.push({
         kind: "resolve",
@@ -750,7 +891,7 @@ export function advanceCombatLab(current: CombatLab, commands: readonly CombatCo
   return { state: world, outcomes, lifeNotices };
 }
 export interface CombatRecording {
-  format: 2;
+  format: 3;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -758,7 +899,7 @@ export interface CombatRecording {
 }
 export function replayCombatLab(recording: CombatRecording) {
   if (
-    recording.format !== 2 ||
+    recording.format !== 3 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

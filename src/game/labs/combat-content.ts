@@ -1,4 +1,5 @@
 import type { RifleProfile } from "../actors/rifle.js";
+import type { ShieldProfile } from "../actors/shield.js";
 import type { FirearmCatalog, FirearmProfile } from "../combat/firearm.js";
 import type { FootActionProfiles } from "../combat/foot-actions.js";
 import type { GrenadeProfile } from "../combat/grenade.js";
@@ -15,6 +16,7 @@ COMBAT_CONTENT.shapes.push(
   { id: 9, rect: { x: pixels(-10), y: pixels(-8), w: pixels(34), h: pixels(16) } },
   { id: 10, rect: { x: pixels(-3), y: pixels(-3), w: pixels(6), h: pixels(6) } },
   { id: 11, rect: { x: pixels(-48), y: pixels(-48), w: pixels(96), h: pixels(96) } },
+  { id: 12, rect: { x: 0, y: pixels(-10), w: pixels(30), h: pixels(24) } },
 );
 const sidearm = COMBAT_CONTENT.weapons[0];
 const attack = COMBAT_CONTENT.attacks[0];
@@ -144,6 +146,64 @@ for (const [aim, id] of RIFLE_PROFILE.timelineIds.entries()) {
     ]),
   });
 }
+export const SHIELD_PROFILE: ShieldProfile = {
+  timelineIds: { brace: 100, advance: 101, turn: 102, bash: 103, stunned: 104 },
+  integrity: 2,
+  speed: pixels(1),
+  sightRange: pixels(384),
+  bashRange: pixels(29),
+  bashHeight: pixels(24),
+  bashActiveTick: 12,
+  bashActiveTicks: 4,
+  damageByMaterial: { bullet: 0, explosive: 2, heat: 1, blade: 0, blunt: 1 },
+};
+COMBAT_CONTENT.attacks.push({
+  id: 6,
+  kind: "melee",
+  shapeId: 12,
+  damage: 1,
+  lifetimeTicks: 4,
+  speed: 0,
+  maxTargets: 4,
+  repeatDamageTicks: 0,
+  material: "blunt",
+});
+for (const [index, durationTicks] of [24, 36, 9, 9, 12, 4, 14, 36].entries())
+  COMBAT_CONTENT.poses.push({
+    id: 100 + index,
+    frame: `engineering-shield-${index}`,
+    durationTicks,
+    sockets: [{ name: "hand", point: { x: 0, y: pixels(-18) } }],
+    hurtShapeIds: [3],
+  });
+COMBAT_CONTENT.timelines.push(
+  { id: 100, durationTicks: 24, poses: [100], markers: [] },
+  { id: 101, durationTicks: 36, poses: [101], markers: [] },
+  {
+    id: 102,
+    durationTicks: 18,
+    poses: [102, 103],
+    markers: [
+      { tickOffset: 9, kind: "face", payloadId: 1, socket: "hand" },
+      { tickOffset: 9, kind: "sound", payloadId: 8, socket: "hand" },
+    ],
+  },
+  {
+    id: 103,
+    durationTicks: 30,
+    poses: [104, 105, 106],
+    markers: [
+      { tickOffset: 12, kind: "activate-hitbox", payloadId: 6, socket: "hand" },
+      { tickOffset: 12, kind: "sound", payloadId: 6, socket: "hand" },
+    ],
+  },
+  {
+    id: 104,
+    durationTicks: 36,
+    poses: [107],
+    markers: [{ tickOffset: 0, kind: "sound", payloadId: 7, socket: "hand" }],
+  },
+);
 const profiles: FirearmProfile[] = [];
 for (const [index, weapon] of [sidearm, hmg].entries()) {
   const base = 10 + index * 4;

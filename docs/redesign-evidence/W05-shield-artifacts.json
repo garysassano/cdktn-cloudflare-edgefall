@@ -1,0 +1,305 @@
+{
+  "baseCommit": "c3275fc8c2c1b5754a3cee76b31e6877c8dad700",
+  "archiveFormat": 6,
+  "protocol": "3.5",
+  "combatRecordingFormat": 3,
+  "sourceScope": "Changed and new source/docs relative to baseCommit, plus toolchain/deployment inputs. Contracts cover the simulation; the later storage check covers short-segment compaction; the final browser and inspector runs cover the final presentation. Earlier failure artifacts precede the documented corrections.",
+  "sources": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "README.md",
+      "sha256": "8bf1dfafee60b7ea81c58fea1bcaa29abab32f523ec7c242dc6e1bf751169915"
+    },
+    {
+      "file": "docs/combat-checkpoint-v5.md",
+      "sha256": "2ae21d2d858aa0e93cdb0862cf7403eccea5b2558d568764966a527ef4e48254"
+    },
+    {
+      "file": "docs/combat-checkpoint-v6.md",
+      "sha256": "0e36417f34d0e0a59a0fb986f9674c64b98d0ed1fe33ccb0975472521ffc7f65"
+    },
+    {
+      "file": "docs/events-v3.md",
+      "sha256": "d1cd86c8698f6b31d00985408136741bd312f19569dfdb1ae72886e4aff2992a"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "656e1d5a2165bbad6939d01ea795f1a656925257f62f3dc322e5c3485c5b63cb"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-infantry.md",
+      "sha256": "a09c930385158f610b3824c2deb203ab76c85ea1eb77e7aa31b99058aa7f06c7"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "sha256": "0481b53e4a62aff5bd21ca4f82eecb43462a255ad8edb814f20d77094f7a331d"
+    },
+    {
+      "file": "mise.toml",
+      "sha256": "aced6b92b1da65509aa7289e8ad83161edee794339f1d1f2582bdd42f22bf494"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "file": "scripts/lib/local-worker.ts",
+      "sha256": "179496ce1e6ecac25fc7b18061f040be973dc465c361b0047f00082d89164e0a"
+    },
+    {
+      "file": "scripts/lib/verify-shield-combat.ts",
+      "sha256": "b5ed492e12ebc722693905331fa1ff6e8b35169e75584823163325fce14e1525"
+    },
+    {
+      "file": "scripts/lib/verify-shield-lab.mjs",
+      "sha256": "97ae1a7f3f7e388026c5952ce8a6d01d423a264ce6e656e98d1a75fbb7a231ed"
+    },
+    {
+      "file": "scripts/lib/verify-stored-shield.ts",
+      "sha256": "6496b1b13bd461dffe111b91c7c8f15d33f8fc564abfc35d2f2b3b3db0a0bb07"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "5d873fec75165e05d554f300e2978309da4b3f8823b8e7a39abe4dfe85aafd6b"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "7dbe400e1e8187d7e671cf00ba1db2e0953f2f82c53bb8feba42606836004068"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "89c6f0fede7fbde38b9d3661f2c18872bf8751316e51a278bb3d28d08eafe672"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "f980d74a0fa77c37d1eb5db337557fdf82cbf0e51e0043513037cdf9ad43540e"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "sha256": "95a527adda5a332d7aacacfd2d11c8955a653a0bf6e520e6359802ca49afce1c"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "77ff5868522c62166fbc599d4ea0f51091f8c34d509f5c30f4b4ee20998dda71"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "2dc032d2550de402c6aa940b89ffbe36776008fae5780ccd99eaa1e3e6872985"
+    },
+    {
+      "file": "src/game/actors/grounded.ts",
+      "sha256": "2e0f8b1f58b643aaa4a99b35bc77fcddfdd658eaa780d0e5ee77f8ec973d8d26"
+    },
+    {
+      "file": "src/game/actors/shield.ts",
+      "sha256": "b2b6aa50db411ae88f6272e2f149e5b79f2a85806e290967d8a140ffb1bfe2ac"
+    },
+    {
+      "file": "src/game/combat/timeline.ts",
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "file": "src/game/combat/volume.ts",
+      "sha256": "38c62966b50d1db03e3b2a91799cdcd727b43c31cf90e004ab8975198334e581"
+    },
+    {
+      "file": "src/game/content/schema.ts",
+      "sha256": "96ba58e1114e68babe3cb2d50326f05a79ea487219b5534249d27d31cbe7f09c"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "7c1599795f7783f16047176e366981a386bd34be914ebdda10157cb535cc93b1"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "a5966b0036295582e5cf0da8e556beeb904cbc129a86c13abd00088c7d8c41c8"
+    },
+    {
+      "file": "src/game/state.ts",
+      "sha256": "328a11ccf9a607f77c0bf01c9d9bde20986881a38f82c5adfbb9205c68efa59a"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "9e006ea2acc5ddb2ddf163d9eb180f6afcf65146c12a48cb1a20c3d8f883caf8"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "6a506f6b93c9ca4bb39462c81b562da516798cda3d067aad75822b829a2c2132"
+    },
+    {
+      "file": "src/shared/protocol/events.ts",
+      "sha256": "e1476d3d449e72845c64cba86b50d5d1edf331539c746894b01fb91b6ea67539"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "b5f0fe4ccd79f32fb0ef4c05b69f8d095a3ea6d8c877078770eca2dec8c8a63f"
+    },
+    {
+      "file": "src/worker/diagnostics/combat-storage.ts",
+      "sha256": "636689ad4203be65ebfff00a30333359013b385279c1446db19b466ed68c8b42"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "f777afc55eb4f76797fe93499860515097c17e51462539bfb1c67c3f7187ebbc"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "4ba940f136079487d0447ae66a4c7162f7f3f44e9911308e825e549719912f8c"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "57709b53d3ac5b214a5be8db98007202355e2c44e57715ced8de8c4b85bbe061"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "095c8df872b65b8de869210d649889546e79e9d2ca90d3c77d3e9ba219a5f355"
+    },
+    {
+      "file": "test/combat.test.ts",
+      "sha256": "2d910d336dd5541458b166223f09093a993c7ba921d4f326d0cbc4435fda9cf7"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "2494fee2e01f5b6487e335ab03911268f283e55ac86446b1fec5ef14a8473cef"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "71ef08bac798377813e5c17d21a14ff605f81eb78c6a63c5d60812e2efa7ae5f"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "5b0a45479dcd7d476ecf816c5eda5d1297856c1ef8b91f0f97ae9084db64e657"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "a085dc88edf1ccb0b2f01355cd5581a5d5a2b775c7b6d1fd3ca85e7ae72646ef"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "fb15ad72a8796779105c1aaba3ccd590acfafa3cb1bdaebd6a9653cd61f4707e"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "ff9b4069f672c300c43982ffd7ad6b90e51bff60df17950596515947cecd006f"
+    },
+    {
+      "file": "test/fixtures/shield-proof.ts",
+      "sha256": "9f4190bb5838c14da2606cbc8da5032d3067b07bb672c5edd7d38e8c514cfa66"
+    },
+    {
+      "file": "test/shield.test.ts",
+      "sha256": "354aa26c1fcfb26041592f33ab67b87489506622bfa443d7e731c1db1ac44917"
+    },
+    {
+      "file": "worker-configuration.d.ts",
+      "sha256": "f5823dc43e7ce5f73dd17cb1277fb86b021de37c42f6fbb89901f81f6810a582"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/W05-shield-check.log.gz",
+      "sha256": "814b1aa0182ce836546bb28aee3e953288aff424e2ffcc67c845eac51d693b77",
+      "bytes": 1244
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-contracts.json.gz",
+      "sha256": "8fbce31556584f324304622952cb9fb6128fe190cab48725cb03312acfacff56",
+      "bytes": 14978
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-storage.json.gz",
+      "sha256": "b4e4b981d697ac08926ac638da408ffbfa5f5417e710f21170aa161bcf0c38d9",
+      "bytes": 20467
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-browser.json.gz",
+      "sha256": "2201a58ff1a6ed44b95f0b7755d1de7c0f58dc33f219bda32a6bdc81f2b6806a",
+      "bytes": 141414
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-diagnostics.json.gz",
+      "sha256": "e6a7baf08382776427b687d833aaf0a1ee3303a1a0183671e75faee9cb0bbaed",
+      "bytes": 3212
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-lab.json.gz",
+      "sha256": "6df2ae07ef0db4a6d57d962aa74930f62f6e2a8754d439a5018634cd6cec998d",
+      "bytes": 6072
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-lab-recording.json.gz",
+      "sha256": "9f73a7f99a1f19a368a0f4462dd95c56e84f6dc3722c33d941342009747e1501",
+      "bytes": 1673
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-windup.png",
+      "sha256": "9328f176b0b6dd0f9a0bd3c37e095b02c5fcaf67455b66f6ae79ae26bbaada45",
+      "bytes": 117030
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-broken.png",
+      "sha256": "378b3c3643b144241ad5f8f307cbbd3529d5764037f9c3a1b7d71bd92c8fd8cf",
+      "bytes": 116495
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-cleared.png",
+      "sha256": "69b28d2eeec6ad632b822dca716d90257f7742be81415c9d253f4c9d530c52b8",
+      "bytes": 116656
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-local-34.png",
+      "sha256": "e688d8973e271fbd9467f57aa8b91114b8137bfd5aecb502869ebacf5c07fcbd",
+      "bytes": 136743
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-local-66.png",
+      "sha256": "f664d763e569f9ab6a9b4178b478b8f051a8e38f5c22fe26042cb4b245efad7c",
+      "bytes": 136452
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-local-95.png",
+      "sha256": "59a50ab2c5c38a0a4a20b5e3276dede178a3b5d7f0cdd66493d6c7e3175e08cc",
+      "bytes": 137218
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-storage-first.log.gz",
+      "sha256": "80bc1bb6194ca348c9ee0a136cb6e16c206ce705df7c44342cb90d2f51958a4e",
+      "bytes": 541
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-browser-first-failure.json.gz",
+      "sha256": "326c41ea6d7d8435651840816120cecfdf4846463e467e680a407de7c249d0f6",
+      "bytes": 17393
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-browser-first-clients.json.gz",
+      "sha256": "7a2abbfa6229cb61051acef802d41e4e8fc82f1b55a3d155b2a68b787fefd257",
+      "bytes": 44276
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-browser-first-diagnostics.json.gz",
+      "sha256": "9c2bed62db89ea4a3ff0cda881bf49be15658b05aec5c05947b7e8428fb57527",
+      "bytes": 3269
+    },
+    {
+      "file": "docs/redesign-evidence/W05-shield-browser-first.log.gz",
+      "sha256": "ef28a85cd62c3cc2613d4f321db218fd51d9fc299d86ac126edab860931ab1ed",
+      "bytes": 518
+    }
+  ]
+}

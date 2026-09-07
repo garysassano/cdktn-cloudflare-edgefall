@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.4
+# Arcade full snapshots v3.5
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -7,7 +7,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | Byte offset | Field                          | Encoding                 |
 | ----------- | ------------------------------ | ------------------------ |
 | 0           | Magic EF (`0x4645`)            | u16                      |
-| 2           | Major 3, minor 3               | u8, u8                   |
+| 2           | Major 3, minor 5               | u8, u8                   |
 | 4           | Message type 2, flags 0 or 1   | u8, u8                   |
 | 6           | Exact frame length             | u16                      |
 | 8           | Run epoch                      | u32, nonzero             |
@@ -79,7 +79,7 @@ Contextual knife actions project their authored hand position, facing and shape 
 
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.4; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.5; there is no compatibility decoder for earlier minors.
 
 | Section offset | Field                                                                          | Encoding |
 | -------------- | ------------------------------------------------------------------------------ | -------- |
@@ -102,3 +102,9 @@ The section is `48 + 32 × members + 8 × objectives + 8 × participants` bytes,
 Each entity section is strictly ordered by ascending entity ID, with no ID reused across live sections. Threats are ordered by action instance ID and removals by ID. Live entities cannot also be removed. Player IDs and slots are unique; vehicle component IDs are ordered/unique. A full baseline must include the local player. The decoder rejects unknown loaded shape IDs, mismatched run/socket/geometry, inconsistent acknowledgment/controller state, malformed enums, nonzero padding, excess counts, truncated records and trailing data before returning any entity state.
 
 The room/client adapter must separately enforce monotonic applied snapshot IDs, accepted baselines, event-ring gaps, table/geometry installation and current-socket ownership. Receiving bytes does not authorize applying them to the current game. Full-state baselines reset the event delivery cursor after explicit acceptance; they must not replay obsolete gun sounds. Future gameplay sections such as pickups must extend this declared schema and fixtures before becoming active; arbitrary JSON additions are not a fallback.
+
+## Active shield projection
+
+Enemy definition 4 identifies active shield infantry. Modes 0–5 encode brace, advance, turn, bash, stunned and dead; modes 6–11 retain those phases after the shield has broken permanently. The action ID, timeline ID, start tick and mode age identify the exact continuation. An unstarted pending guard has age zero. The shield is raised in brace/advance and the first 12 bash ticks, lowered during turns and the remaining bash, and absent after break. Integrity amounts, committed target/turn facing and the per-bash hit ledger remain private in archive 6.
+
+The 30-tick bash projects an attached threat with attack 6 and shape 12 from windup through its four active ticks (offsets 12–15). It uses the enemy body as source, a global action identity, committed target and facing, and an authored hand socket. This projection and the shield-break event extend protocol 3.5 without increasing snapshot or event record sizes. See the [private continuation contract](combat-checkpoint-v6.md).

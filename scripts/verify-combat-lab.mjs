@@ -5,6 +5,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
+import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
 
 const root = resolve("dist/client"),
   output = "dist/combat-lab-evidence";
@@ -21,6 +22,10 @@ for (const file of [
   "grenade-active.json",
   "melee.png",
   "grenade.png",
+  "shield-34.png",
+  "shield-66.png",
+  "shield-95.png",
+  "shield-broken.json",
 ])
   await rm(`${output}/${file}`, { force: true });
 const server = createServer(async (request, response) => {
@@ -158,7 +163,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 2);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 3);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -179,6 +184,7 @@ try {
     await page.screenshot({ path: `${output}/${mode}.png` });
     foot.push({ mode, active, final: await read() });
   }
+  const shield = await verifyShieldLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -277,9 +283,10 @@ try {
     poseChange: { crouched, up },
     scenarios,
     foot,
+    shield,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
-      "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions and active-action recording reconstruction, three fall deaths, protected entry and spectating; no network room, enemy attack, final media or full W05 acceptance",
+      "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

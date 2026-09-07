@@ -16,6 +16,8 @@ export interface GroundedEnemy {
 }
 export interface PatrolDefinition {
   speed: number;
+  /** False keeps facing under an authored combat transition when a wall or ledge stops travel. */
+  turnAtBoundary?: boolean;
   gravity: number;
   terminalVelocity: number;
   /** Inclusive root bounds, authored by the world. */
@@ -135,9 +137,9 @@ export function stepGroundedEnemy(
       !hasLeadingSupport(body, shape, facing, definition.speed, supportId, index, frame)
     ) {
       decision = "turn";
-      const nextFacing = facing === 1 ? -1 : 1;
+      const nextFacing = definition.turnAtBoundary === false ? facing : facing === 1 ? -1 : 1;
       const turn = tryBodyShape(body, shape, shape, facing, nextFacing, index, frame);
-      if (turn.accepted) {
+      if (turn.accepted && nextFacing !== facing) {
         facing = nextFacing;
         body.contacts = [];
         turns++;

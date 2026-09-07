@@ -10,6 +10,7 @@ import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
+import { verifyStoredShield } from "./lib/verify-stored-shield.js";
 
 const require = createRequire(import.meta.url);
 const workerRequire = createRequire(require.resolve("wrangler/package.json"));
@@ -210,6 +211,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    shield: await verifyStoredShield(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     footCombat: await verifyStoredFootCombat(origin, async () => {
       await runtime.dispose();
       runtime = create();

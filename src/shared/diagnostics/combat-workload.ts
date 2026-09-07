@@ -1,4 +1,5 @@
 import { rifleMode } from "../../game/actors/rifle.js";
+import { shieldMode } from "../../game/actors/shield.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { stepFootController } from "../../game/controller/foot.js";
@@ -22,6 +23,7 @@ import {
   FOOT_ACTION_PROFILES,
   GRENADE_PROFILE,
   RIFLE_PROFILE,
+  SHIELD_PROFILE,
 } from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
 import { worldSocket } from "../../game/physics/body.js";
@@ -46,6 +48,7 @@ export async function combatIdentity() {
       content: COMBAT_CONTENT,
       campaignFormat: 1,
       rifle: RIFLE_PROFILE,
+      shield: SHIELD_PROFILE,
       footActions: FOOT_ACTION_PROFILES,
       grenade: GRENADE_PROFILE,
       life: {
@@ -168,12 +171,51 @@ export function combatSnapshot(
       shapeId: 9,
     });
   }
+  for (const target of combat.targets) {
+    const guard = target.guard;
+    if (
+      !guard ||
+      target.health === 0 ||
+      guard.phase !== "bash" ||
+      combat.tick - guard.action.stateStartTick >=
+        SHIELD_PROFILE.bashActiveTick + SHIELD_PROFILE.bashActiveTicks
+    )
+      continue;
+    const pose = actionPose(
+      COMBAT_CATALOG,
+      guard.action.definitionId,
+      combat.tick - guard.action.stateStartTick,
+    );
+    const socket = pose?.sockets.find((socket) => socket.name === "hand");
+    if (!socket) throw new Error("Missing bash telegraph socket");
+    const point = worldSocket(target.enemy.body, socket.point, guard.facing);
+    snapshot.threats.push({
+      actionInstanceId: guard.action.actionInstanceId,
+      sourceId: target.enemy.body.id,
+      definitionId: 6,
+      telegraphTick: guard.action.stateStartTick,
+      activeTick: guard.action.stateStartTick + SHIELD_PROFILE.bashActiveTick,
+      endTick:
+        guard.action.stateStartTick +
+        SHIELD_PROFILE.bashActiveTick +
+        SHIELD_PROFILE.bashActiveTicks,
+      ...point,
+      vx: 0,
+      vy: 0,
+      heading: guard.facing === 1 ? 0 : 3,
+      targetId: guard.targetId,
+      motion: "authored",
+      cancelled: false,
+      stateVersion: 1,
+      shapeId: 12,
+    });
+  }
   snapshot.threats.sort((a, b) => a.actionInstanceId - b.actionInstanceId);
   snapshot.enemies = combat.targets
     .filter((target) => target.health > 0)
-    .map(({ enemy, health, shield, rifle }) => ({
+    .map(({ enemy, health, shield, rifle, guard }) => ({
       id: enemy.body.id,
-      definitionId: rifle ? 3 : shield ? 2 : 1,
+      definitionId: guard ? 4 : rifle ? 3 : shield ? 2 : 1,
       x: enemy.body.x,
       y: enemy.body.y,
       vx: enemy.body.vx,
@@ -181,11 +223,19 @@ export function combatSnapshot(
       shapeId: enemy.body.shapeId,
       facing: enemy.facing,
       health,
-      mode: rifle ? rifleMode(rifle, combat.tick, RIFLE_PROFILE) : 0,
-      stateStartTick: rifle?.action.stateStartTick ?? 0,
-      actionInstanceId: rifle?.action.kind === "fire" ? rifle.action.actionInstanceId : 0,
-      actionDefinitionId: rifle?.action.kind === "fire" ? rifle.action.definitionId : 0,
-      modeTicks: rifle?.action.kind === "fire" ? combat.tick - rifle.action.stateStartTick : 0,
+      mode: guard ? shieldMode(guard) : rifle ? rifleMode(rifle, combat.tick, RIFLE_PROFILE) : 0,
+      stateStartTick: guard?.action.stateStartTick ?? rifle?.action.stateStartTick ?? 0,
+      actionInstanceId:
+        guard?.action.actionInstanceId ??
+        (rifle?.action.kind === "fire" ? rifle.action.actionInstanceId : 0),
+      actionDefinitionId:
+        guard?.action.definitionId ??
+        (rifle?.action.kind === "fire" ? rifle.action.definitionId : 0),
+      modeTicks: guard?.action.actionInstanceId
+        ? combat.tick - guard.action.stateStartTick
+        : rifle?.action.kind === "fire"
+          ? combat.tick - rifle.action.stateStartTick
+          : 0,
       supportId: enemy.body.supportId,
       geometryRevision: 1,
     }));

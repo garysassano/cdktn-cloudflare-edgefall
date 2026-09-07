@@ -1,6 +1,6 @@
 import type { PoseDefinition, TimelineDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, integer } from "../core/numeric.js";
-import type { ActionState } from "../state.js";
+import type { ActionClock } from "../state.js";
 
 export interface ActionCatalog {
   timelines: ReadonlyMap<number, TimelineDefinition>;
@@ -22,7 +22,11 @@ export function actionPose(catalog: ActionCatalog, definitionId: number, age: nu
 }
 
 /** A checkpoint owns the marker cursor. Skipping an unevaluated tick is a replay error. */
-export function stepAction(current: ActionState, tick: number, catalog: ActionCatalog) {
+export function stepAction<T extends ActionClock>(
+  current: T,
+  tick: number,
+  catalog: ActionCatalog,
+) {
   integer(tick, current.stateStartTick, COUNTER_LIMIT - 1, "action tick");
   const definition = catalog.timelines.get(current.definitionId);
   if (!definition) throw new Error("Missing action definition");

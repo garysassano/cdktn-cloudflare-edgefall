@@ -161,7 +161,7 @@ export function meleeHits(
 ): Impact[] {
   if (
     definition.kind !== "melee" ||
-    definition.material !== "blade" ||
+    (definition.material !== "blade" && definition.material !== "blunt") ||
     definition.id !== source.definitionId ||
     definition.shapeId !== shape.id
   )

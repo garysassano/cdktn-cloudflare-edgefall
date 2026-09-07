@@ -18,7 +18,7 @@ export interface TimelineDefinition {
   poses: number[];
   markers: Array<{
     tickOffset: number;
-    kind: "spawn-attack" | "activate-hitbox" | "seat-transfer" | "sound";
+    kind: "spawn-attack" | "activate-hitbox" | "seat-transfer" | "sound" | "face";
     payloadId: number;
     socket: "muzzle" | "hand" | "seat" | "ejection";
   }>;
@@ -32,7 +32,7 @@ export interface AttackDefinition {
   speed: number;
   maxTargets: number;
   repeatDamageTicks: number;
-  material: "bullet" | "explosive" | "heat" | "blade";
+  material: "bullet" | "explosive" | "heat" | "blade" | "blunt";
 }
 export interface WeaponDefinition {
   id: WeaponId;

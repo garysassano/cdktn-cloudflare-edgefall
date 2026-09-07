@@ -18,6 +18,7 @@ import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
+import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
 
 interface ClientStatus {
   documentId: string;
@@ -89,6 +90,7 @@ const loadingMode = process.argv.includes("--combat-loading") || phaseMode;
 const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadingMode;
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const campaignMode = process.argv.includes("--combat-campaign");
+const shieldMode = process.argv.includes("--combat-guard");
 const hostileMode = process.argv.includes("--combat-hostile");
 const footMode = process.argv.includes("--combat-melee")
   ? "melee"
@@ -107,9 +109,10 @@ const combatMode =
   automaticMode ||
   campaignMode ||
   hostileMode ||
-  !!footMode;
+  !!footMode ||
+  shieldMode;
 assert(
-  !footMode ||
+  !(footMode || shieldMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -123,7 +126,11 @@ assert(
   "Run foot combat separately",
 );
 assert(
-  !(process.argv.includes("--combat-melee") && process.argv.includes("--combat-grenade")),
+  [
+    process.argv.includes("--combat-melee"),
+    process.argv.includes("--combat-grenade"),
+    shieldMode,
+  ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
 assert(
@@ -157,33 +164,35 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = footMode
-  ? `dist/network-combat-${footMode}-evidence`
-  : hostileMode
-    ? "dist/network-combat-hostile-evidence"
-    : campaignMode
-      ? "dist/network-combat-campaign-evidence"
-      : automaticMode
-        ? "dist/network-combat-auto-evidence"
-        : combatReconnectMode
-          ? loadingMode
-            ? phaseMode
-              ? "dist/network-combat-phase-evidence"
-              : "dist/network-combat-loading-evidence"
-            : "dist/network-combat-reconnect-evidence"
-          : combatRecoveryMode
-            ? "dist/network-combat-recovery-evidence"
-            : baselineMode
-              ? "dist/network-combat-baseline-evidence"
-              : combatMode
-                ? eventMode
-                  ? "dist/network-event-evidence"
-                  : faultMode
-                    ? "dist/network-combat-fault-evidence"
-                    : "dist/network-combat-evidence"
-                : recoveryMode
-                  ? "dist/network-controller-recovery-evidence"
-                  : "dist/network-controller-evidence";
+const output = shieldMode
+  ? "dist/network-combat-guard-evidence"
+  : footMode
+    ? `dist/network-combat-${footMode}-evidence`
+    : hostileMode
+      ? "dist/network-combat-hostile-evidence"
+      : campaignMode
+        ? "dist/network-combat-campaign-evidence"
+        : automaticMode
+          ? "dist/network-combat-auto-evidence"
+          : combatReconnectMode
+            ? loadingMode
+              ? phaseMode
+                ? "dist/network-combat-phase-evidence"
+                : "dist/network-combat-loading-evidence"
+              : "dist/network-combat-reconnect-evidence"
+            : combatRecoveryMode
+              ? "dist/network-combat-recovery-evidence"
+              : baselineMode
+                ? "dist/network-combat-baseline-evidence"
+                : combatMode
+                  ? eventMode
+                    ? "dist/network-event-evidence"
+                    : faultMode
+                      ? "dist/network-combat-fault-evidence"
+                      : "dist/network-combat-evidence"
+                  : recoveryMode
+                    ? "dist/network-controller-recovery-evidence"
+                    : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -274,7 +283,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -358,6 +367,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (shieldMode) {
+        const shield = await verifyShieldCombat(pages, base, output);
+        room = shield.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          shield,
+          clients: shield.clients,
+          sharedSnapshots: shield.common.length,
+          room,
+          scope:
+            "Four Chromium contexts over local workerd WebSockets; real jump/crouch evasion, shield break and stun, return-fire kills against mixed shield/rifle infantry, and deduplicated events. Engineering geometry; no authored mission or deployed timing acceptance.",
+        };
       }
       if (footMode) {
         const foot = await verifyFootCombat(pages, base, output, footMode);
@@ -1880,7 +1909,7 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: hostileMode ? "rifle" : "range",
+    combatScenario: shieldMode ? "guard" : hostileMode ? "rifle" : "range",
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

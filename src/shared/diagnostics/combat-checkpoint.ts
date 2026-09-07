@@ -1,4 +1,5 @@
 import { validateRifleState } from "../../game/actors/rifle.js";
+import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
@@ -16,6 +17,7 @@ import {
   FOOT_ACTION_PROFILES,
   GRENADE_PROFILE,
   RIFLE_PROFILE,
+  SHIELD_PROFILE,
 } from "../../game/labs/combat-content.js";
 import type { GameIdentity } from "../content-id.js";
 import { Reader, Writer } from "../protocol/binary.js";
@@ -101,7 +103,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles strikes grenades encounter events",
   );
-  check(combat.format === 2, "simulation format");
+  check(combat.format === 3, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -164,7 +166,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     }
   }
   for (const [index, target] of combat.targets.entries()) {
-    fields(target, "enemy health shield rifle");
+    fields(target, "enemy health shield rifle guard");
     fields(target.enemy, "body facing geometryRevision life removalReason turns");
     const original = initial.targets[index],
       member = combat.encounter.members[index],
@@ -174,7 +176,30 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "target identity",
     );
     integer(target.health, 0, 1, "target health");
-    check((target.rifle !== null) === (combat.scenario === "rifle"), "enemy attack policy");
+    check(
+      (target.rifle !== null) === (original.rifle !== null) &&
+        (target.guard !== null) === (original.guard !== null),
+      "enemy attack policy",
+    );
+    if (target.guard) {
+      const guard = target.guard;
+      fields(guard, "phase integrity facing turnFacing targetId action hitIds");
+      fields(guard.action, "actionInstanceId stateStartTick definitionId nextMarkerIndex");
+      check(
+        guard.action.actionInstanceId !== 0 || member.status === "pending",
+        "unstarted shield action",
+      );
+      ownAction(guard.action.actionInstanceId, body.id);
+      validateShield(
+        guard,
+        target.enemy,
+        combat.tick,
+        combat.nextActionId,
+        combat.players,
+        COMBAT_CATALOG,
+        SHIELD_PROFILE,
+      );
+    }
     if (target.rifle) {
       ownAction(target.rifle.action.actionInstanceId, target.enemy.body.id);
       fields(target.rifle, "action targetId aim facing");
@@ -357,12 +382,13 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         "throw",
         "action-sound",
         "explosion",
+        "shield-break",
       ].includes(notice.kind),
       "notice kind",
     );
     check(
       combat.players.some((p) => p.playerId === notice.ownerId) ||
-        combat.targets.some((t) => t.rifle && t.enemy.body.id === notice.ownerId),
+        combat.targets.some((t) => (t.rifle || t.guard) && t.enemy.body.id === notice.ownerId),
       "notice owner",
     );
     integer(notice.actionInstanceId, 1, combat.nextActionId - 1, "notice action");
@@ -376,7 +402,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "notice target",
     );
     check(
-      (notice.kind === "impact" || notice.kind === "killed") === (notice.impact !== null),
+      ["impact", "killed", "shield-break"].includes(notice.kind) === (notice.impact !== null),
       "notice impact",
     );
     check((notice.impact === null) === (notice.source !== null), "notice source kind");
@@ -401,7 +427,11 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
             ? enemy.rifle.action.actionInstanceId === notice.actionInstanceId &&
                 enemy.rifle.action.definitionId === notice.source.timelineId &&
                 notice.source.definitionId === 3
-            : player &&
+            : enemy?.guard
+              ? enemy.guard.action.actionInstanceId === notice.actionInstanceId &&
+                enemy.guard.action.definitionId === notice.source.timelineId &&
+                enemy.guard.action.stateStartTick === notice.source.stateStartTick
+              : player &&
                 [4, 5].includes(notice.source.definitionId) &&
                 (player.life === "death" ||
                   player.action.actionInstanceId === notice.actionInstanceId),
@@ -476,6 +506,17 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         "impact material",
       );
       check(notice.kind !== "killed" || impact.kind === "body", "kill material");
+      if (notice.kind === "shield-break") {
+        const broken = combat.targets.find(
+          (target) => target.enemy.body.id === notice.targetId,
+        )?.guard;
+        check(
+          impact.kind === "shield" &&
+            broken?.integrity === 0 &&
+            broken.action.stateStartTick === combat.tick,
+          "shield break attribution",
+        );
+      }
     }
   }
   const local = snapshot.acknowledgments.find(
@@ -544,7 +585,9 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     check(
       event.origin === "player"
         ? combat.players.some((player) => player.playerId === event.ownerId)
-        : combat.targets.some((target) => target.rifle && target.enemy.body.id === event.ownerId),
+        : combat.targets.some(
+            (target) => (target.rifle || target.guard) && target.enemy.body.id === event.ownerId,
+          ),
       "retained event owner/origin",
     );
     ownAction(event.actionInstanceId, event.ownerId);
@@ -568,7 +611,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 5,
+    format: 6,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -592,7 +635,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 5 &&
+    envelope.format === 6 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

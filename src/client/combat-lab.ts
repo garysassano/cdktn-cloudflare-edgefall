@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { rifleMode } from "../game/actors/rifle.js";
+import { shieldMode, shieldPresentation } from "../game/actors/shield.js";
 import { actionPose } from "../game/combat/timeline.js";
 import { canonical } from "../game/core/canonical.js";
 import { Held } from "../game/input/types.js";
@@ -19,6 +20,7 @@ import {
   COMBAT_SHAPES,
   GRENADE_PROFILE,
   RIFLE_PROFILE,
+  SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 
@@ -105,7 +107,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 2,
+    format: 3,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -266,11 +268,41 @@ class CombatScene extends Phaser.Scene {
         g.fillCircle(point.x / 256, point.y / 256, 2);
       }
     }
-    for (const hurt of combatHurtboxes(state.targets)) {
+    for (const hurt of combatHurtboxes(state.targets, state.tick)) {
       g.lineStyle(1, hurt.kind === "shield" ? 0xffae43 : 0xff677d);
       g.strokeRect(hurt.rect.x / 256, hurt.rect.y / 256, hurt.rect.w / 256, hurt.rect.h / 256);
     }
     for (const target of state.targets) {
+      const guard = target.guard;
+      if (guard && target.health > 0) {
+        const age = state.tick - guard.action.stateStartTick;
+        const presentation = shieldPresentation(shieldMode(guard), age, SHIELD_PROFILE);
+        if (!presentation.raised) {
+          const x = target.enemy.body.x / 256,
+            y = target.enemy.body.y / 256 - 36;
+          g.lineStyle(2, presentation.phase === "stunned" ? 0xbba4ff : 0xffce60);
+          g.lineBetween(x - 7, y, x + 7, y);
+          if (presentation.broken) g.lineBetween(x - 4, y - 3, x + 4, y + 3);
+        }
+        if (
+          guard.phase === "bash" &&
+          age < SHIELD_PROFILE.bashActiveTick + SHIELD_PROFILE.bashActiveTicks
+        ) {
+          const socket = actionPose(COMBAT_CATALOG, guard.action.definitionId, age)?.sockets.find(
+            (socket) => socket.name === "hand",
+          );
+          const shape = COMBAT_SHAPES.get(12);
+          if (socket && shape) {
+            const r = worldRect(
+              worldSocket(target.enemy.body, socket.point, guard.facing),
+              shape.rect,
+              guard.facing,
+            );
+            g.lineStyle(1, age < SHIELD_PROFILE.bashActiveTick ? 0xffce60 : 0xff677d);
+            g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+          }
+        }
+      }
       const rifle = target.rifle;
       if (rifle?.action.kind !== "fire") continue;
       const mode = rifleMode(rifle, state.tick, RIFLE_PROFILE);

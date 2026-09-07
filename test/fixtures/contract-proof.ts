@@ -26,6 +26,7 @@ import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { rifleRecoveryProof } from "./rifle-proof.js";
 import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
+import { shieldCombatProof } from "./shield-proof.js";
 import { spatialProof } from "./spatial-proof.js";
 import { traversalProof } from "./traversal-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
@@ -97,6 +98,7 @@ export async function contractProof() {
     combatRecovery: await combatRecoveryProof(),
     rifleRecovery: await rifleRecoveryProof(),
     footCombat: await footCombatProof(),
+    shieldCombat: await shieldCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

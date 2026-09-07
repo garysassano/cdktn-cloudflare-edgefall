@@ -1,7 +1,8 @@
 import Phaser from "phaser";
+import { shieldPresentation } from "../game/actors/shield.js";
 import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
-import { COMBAT_SHAPES, GRENADE_PROFILE } from "../game/labs/combat-content.js";
+import { COMBAT_SHAPES, GRENADE_PROFILE, SHIELD_PROFILE } from "../game/labs/combat-content.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
@@ -75,7 +76,7 @@ async function startLab() {
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Yellow rectangles show knife reach; green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
+        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Yellow rectangles show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -644,10 +645,38 @@ async function startLab() {
           const r = worldRect(enemy, shape.rect, enemy.facing);
           g.lineStyle(1, enemy.mode === 1 ? 0xffce60 : enemy.mode === 3 ? 0x9d91a9 : 0xff677d);
           g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+          if (enemy.definitionId === 4) {
+            const pose = shieldPresentation(enemy.mode, enemy.modeTicks, SHIELD_PROFILE);
+            g.lineStyle(
+              2,
+              pose.phase === "stunned" ? 0xbba4ff : pose.phase === "turn" ? 0xffce60 : 0xffae43,
+            );
+            if (pose.raised) {
+              const shield = COMBAT_SHAPES.get(8);
+              if (shield) {
+                const guard = worldRect(enemy, shield.rect, enemy.facing);
+                g.strokeRect(guard.x / 256, guard.y / 256, guard.w / 256, guard.h / 256);
+              }
+            } else {
+              g.lineBetween(
+                enemy.x / 256 - 7,
+                enemy.y / 256 - 36,
+                enemy.x / 256 + 7,
+                enemy.y / 256 - 36,
+              );
+              if (pose.broken)
+                g.lineBetween(
+                  enemy.x / 256 - 4,
+                  enemy.y / 256 - 39,
+                  enemy.x / 256 + 4,
+                  enemy.y / 256 - 33,
+                );
+            }
+          }
         }
         for (const threat of snapshot?.threats ?? []) {
           g.lineStyle(1, (snapshot?.tick ?? 0) < threat.activeTick ? 0xffce60 : 0xff677d);
-          const blade = threat.shapeId === 9 && COMBAT_SHAPES.get(threat.shapeId);
+          const blade = [9, 12].includes(threat.shapeId) && COMBAT_SHAPES.get(threat.shapeId);
           if (blade) {
             const r = worldRect(threat, blade.rect, threat.heading === 3 ? -1 : 1);
             g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
