@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "tests": 601,
+  "testFiles": 61,
+  "nativeTests": 24,
+  "physicsHash": "9da6c214",
+  "airborneRecoveryHash": "865ad41d",
+  "runtimeDurationsMs": {
+    "node": 15910,
+    "workerdRequest": 13773,
+    "chromium": 13008
+  },
+  "runtimes": {
+    "node": "v24.20.0",
+    "chromium": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "airborneCases": [
+    {
+      "kind": "rising",
+      "slot": 3,
+      "deathTick": 37,
+      "landedTick": null,
+      "checkpoints": 6,
+      "duplicates": 580
+    },
+    {
+      "kind": "falling",
+      "slot": 0,
+      "deathTick": 77,
+      "landedTick": 81,
+      "checkpoints": 6,
+      "duplicates": 580
+    }
+  ],
+  "sqliteColdAirborneBoundaries": 4,
+  "voidBodyOnColdDeath": "removed",
+  "nativeRecordingImports": 13,
+  "networkSharedSnapshots": 15,
+  "protocol": {
+    "major": 3,
+    "minor": 10,
+    "archive": 11,
+    "recording": 8,
+    "playerBytes": 304
+  },
+  "liveIngestionVerified": false,
+  "humanStyleReview": "pending"
+}

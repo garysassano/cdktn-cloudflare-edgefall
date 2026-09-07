@@ -1,0 +1,435 @@
+{
+  "baseCommit": "331d53536c866af110f98d13689c327ea2e9e178",
+  "scope": "Current source and local validation; selected screenshots and all 13 format-8 native recordings. Historical action media remains in native-actions at its pinned source revision. No live Cloudflare trace proof.",
+  "sources": [
+    {
+      "file": "art/source/hero/operative.pixels.json",
+      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc",
+      "bytes": 77732
+    },
+    {
+      "file": "package.json",
+      "sha256": "76b99cf49e8d0d923922476e6f439ca73b291a11e77ad2efb149f51034c25971",
+      "bytes": 3460
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43",
+      "bytes": 148537
+    },
+    {
+      "file": "public/assets/art/hero/operative.atlas.json",
+      "sha256": "70036c78ff97982501fd4b48b1be386c67ec4aae831ca7b369919f63b5da69d0",
+      "bytes": 127780
+    },
+    {
+      "file": "public/assets/art/hero/operative.png",
+      "sha256": "97ebd81da7529d03c817247804d994134b5a13c1038b2cc0fbb41501b7db6dea",
+      "bytes": 42397
+    },
+    {
+      "file": "scripts/lib/verify-death-body-lab.mjs",
+      "sha256": "df98995d9dde633917ff576bb6ad62d1b4c6bef61f6bf4f4b75ec664a0506dd9",
+      "bytes": 4120
+    },
+    {
+      "file": "scripts/lib/verify-stored-death-body.ts",
+      "sha256": "342fb3a49875008b19d104f26a0f85cc37459ee9759b3039f315b5d2874636ca",
+      "bytes": 2440
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "06bcb203df162f716c4b698e492827000558da009f3858a07282c007451202cd",
+      "bytes": 12970
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "f7476544bb55165d5705d4eb75169af2e4b990e83035ffea62ef10093e9c89e0",
+      "bytes": 11436
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "88c5d0116c84054089dd84b19f093c6b59e740574106463697dc988cd43160b2",
+      "bytes": 9044
+    },
+    {
+      "file": "scripts/verify-native-operative.mjs",
+      "sha256": "de79d9ea19048da0e22924b6004b14db44a7bdbf9362b2d908927c24ca3592a2",
+      "bytes": 28594
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "fc902ee163bad825eacdb49a10edbacdad5c7d5bc603bb42095ae10dde8e11db",
+      "bytes": 18482
+    },
+    {
+      "file": "src/game/campaign/life.ts",
+      "sha256": "2fa744de42829d2dea9b4f71f078906bccee9d2d91b8b9656807a8c80e18932d",
+      "bytes": 10252
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "ec0115fc9871fe8c836a537dce4856a0a03e81ad9788326d7b14f0a4138355d4",
+      "bytes": 43653
+    },
+    {
+      "file": "src/game/labs/foot-fixture.ts",
+      "sha256": "b91d42ef6c0f685d6495f08996697740f6c0752e487c55877aaa4233c4355ff5",
+      "bytes": 2122
+    },
+    {
+      "file": "src/game/physics/body.ts",
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c",
+      "bytes": 8234
+    },
+    {
+      "file": "src/game/physics/move.ts",
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c",
+      "bytes": 17278
+    },
+    {
+      "file": "src/game/state.ts",
+      "sha256": "e623517b818253ce245b4a53c1245b56cdcc0ba17116d0004d58fa133ae4dce3",
+      "bytes": 3616
+    },
+    {
+      "file": "src/shared/animation/operative.ts",
+      "sha256": "5aaee28b9f4b0ebccc3aba00b8037e1f3060bbe74607503bed8ba078fc2cb0ea",
+      "bytes": 5883
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "542a6eddfceaddbee3a8c8713fd6d68051257eada5eebf5e6b2784f83200ee8a",
+      "bytes": 35514
+    },
+    {
+      "file": "src/shared/diagnostics/controller-workload.ts",
+      "sha256": "f418d8d2331fc9f769b706c480b05ced474f5eb2abb9820e6b7e50e0d3451f20",
+      "bytes": 3697
+    },
+    {
+      "file": "src/shared/diagnostics/room-workload.ts",
+      "sha256": "92c89a17fe3ebbbfc780e4b462df0d56062b758191be301fdd068fc489d9ad2a",
+      "bytes": 6594
+    },
+    {
+      "file": "src/shared/protocol/controller-record.ts",
+      "sha256": "f81b9f7599d9bd1164dae4d04dba04de719219da6a961ecab310817940f55b83",
+      "bytes": 8376
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "a1cd5dfc49d563de0a2c3ed35f55af8c6283bb070211603ff08fdc4d54eedb74",
+      "bytes": 635
+    },
+    {
+      "file": "src/shared/protocol/snapshot-schema.ts",
+      "sha256": "ae6639933847c7b6c7873637fb2be5e97b3fb285c109b0f61f1c2b183e2e0255",
+      "bytes": 4437
+    },
+    {
+      "file": "src/shared/protocol/snapshot.ts",
+      "sha256": "c8bfb53e3b848dee8685810e1b3f353eee90c96ea429904679b9843dffd9aa03",
+      "bytes": 20138
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "921a42d7fc07dd93b36722846f26440eb8898654b95239bc0e6bf20e9704fd85",
+      "bytes": 2871
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "f45f038903e204d2ed4e087986ee4a21c30638273d7a61420b3685777554a8c1",
+      "bytes": 9004
+    },
+    {
+      "file": "test/campaign-lifecycle.test.ts",
+      "sha256": "c8bf920138b4cfdab896935b7d2e04772f4d827f0e1a5a12304cd8fa8196dd65",
+      "bytes": 7288
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "a385e8deeecefd62d8793905cc4ac8087c314cbd5111e12a1ceda7f69d32f3b0",
+      "bytes": 8781
+    },
+    {
+      "file": "test/combat.test.ts",
+      "sha256": "46d10acb3dcd9967f326b9b2a928afcc791db1d4f73c94df96d3deac7c03333a",
+      "bytes": 11077
+    },
+    {
+      "file": "test/controller-prediction.test.ts",
+      "sha256": "87cbfd2a167a11292302f05ce9bd80109f348c3927b0f6a4f925067524e716e0",
+      "bytes": 7523
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "99860b8fcfd3045813fbf198db069f2e98c6f886a6fc22f947712c936cb41e4f",
+      "bytes": 7454
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "fffd0172cf90253ada8b32411e9ca0cd5d8c615a3fab493b064b3fa8eae49859",
+      "bytes": 9579
+    },
+    {
+      "file": "test/fixtures/airborne-death-recovery-proof.ts",
+      "sha256": "1a8f912e99773eb6c9ab051fbb8a15debbdcd2599565620f637d886377b1b174",
+      "bytes": 4920
+    },
+    {
+      "file": "test/fixtures/campaign-proof.ts",
+      "sha256": "e66ffd32acc2d01a54081b1054b320007f924e0edbb1577032d31f9e46870054",
+      "bytes": 4961
+    },
+    {
+      "file": "test/fixtures/combat-input-driver.ts",
+      "sha256": "ca457fd49b19049f72e77fef316b25d7d4c87d41073e01bf49d0009111d107be",
+      "bytes": 6323
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "288aa66ae195d2e508dcc6f7cfd28d12671e5919c7a4334fb37720a0966ee931",
+      "bytes": 25120
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "9cd92b821a16051ef3bf2218f90848b20fd2cef3e456b8fd7dc08e13ac571324",
+      "bytes": 5987
+    },
+    {
+      "file": "test/fixtures/death-body-proof.ts",
+      "sha256": "d59fdc8a7d3403e571542d57914395ebc236e83e219cd9edb95da18280bfc162",
+      "bytes": 5957
+    },
+    {
+      "file": "test/fixtures/player-life-recovery-proof.ts",
+      "sha256": "4b2b21bccb1ffebbb010dbf0683728c0e18abc35ede151e321267d7bfe426547",
+      "bytes": 5276
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "2e7287441e694653bde537527fad056401c17104a1b52191f4083a77681dd13c",
+      "bytes": 4919
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "ff62ffae1845ade77a2f504a91700747ad4c24a0bac7f3e0b7086f3d25c89bf6",
+      "bytes": 11678
+    },
+    {
+      "file": "test/native-art.test.ts",
+      "sha256": "e259f69adeddde9bb164a9d29e83603c6a5cc9b09af8d900cff09182e6bfde54",
+      "bytes": 20374
+    },
+    {
+      "file": "test/player-death-body.test.ts",
+      "sha256": "1a42ee5a5e4a8e3d3627fd872ccda2e7efe472c15ba408e9e2ebe9d10c202f20",
+      "bytes": 3642
+    },
+    {
+      "file": "test/player-life.test.ts",
+      "sha256": "8f07fc38dd9b3a428fb828d8697cac8d1be762aca0096d19c0bc26d7c965d435",
+      "bytes": 5728
+    },
+    {
+      "file": "test/room-workload.test.ts",
+      "sha256": "99d98a4d1061a64a62f2fd6b7d3b248d55167e5a0640a6d97ceec655f56799c7",
+      "bytes": 2291
+    },
+    {
+      "file": "test/snapshot.test.ts",
+      "sha256": "3e4a721681bf9f5db52d8643e8093081b09132d43d3abbde83fa21f8f419214d",
+      "bytes": 14148
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1",
+      "bytes": 1272
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/death-body/contracts.json.gz",
+      "bytes": 40405,
+      "sha256": "e76d17fa7b7aa2e416cbfcb29dde49f2c5716c0a9b7d92100aa2f638ca3ab276",
+      "rawBytes": 996463,
+      "rawSha256": "4f1a7ca2a906b8375dbac38f825b0db2d77940307fd104348749b79804cc1e62"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/storage.json.gz",
+      "bytes": 120393,
+      "sha256": "1d369db82e6259dca9bcbf9016415960b6dcbf060800657f2d49ff4b651ac829",
+      "rawBytes": 4198945,
+      "rawSha256": "659e0a1a4f9f30b348f5a7d366a035a6df8da5d5603f9c59820250bc4e55f3fd"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/native.json.gz",
+      "bytes": 6676,
+      "sha256": "8b8bf583aa6ab184f64e277ee300a7ffd8788effeba3b948d6da91f5391ab3c9",
+      "rawBytes": 128789,
+      "rawSha256": "d9b1e64b606b20bb98f34b3611974c0ebf992e5632478ce16d078a42d992d9e0"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/network.json.gz",
+      "bytes": 118165,
+      "sha256": "d0af361ba96d88a7280f193021bef63328b276f120a8ac38de38106312cf889a",
+      "rawBytes": 2565598,
+      "rawSha256": "bfd7e4b9b55ad5100301346eb2e46f2ceff973d324602603d97cbcac665d2f88"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/network-diagnostics.json.gz",
+      "bytes": 3260,
+      "sha256": "7f9415dff0815e90985d41a90d94fc54d2fc4081e70273faef2253eec481d09f",
+      "rawBytes": 22041,
+      "rawSha256": "fc13c806c59d50865c388745e4ab8ceec9ac6be6de02e51bde9df04e3d32dab8"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/check.log.gz",
+      "bytes": 1435,
+      "sha256": "15c9638c43416f4ab2b47df99e8d4b8c506a1d624b4ae565bf587982f6d8794f",
+      "rawBytes": 2905,
+      "rawSha256": "b76a06ec82bd4027f808576dc9d2ced628577b4ccadb7cd25b063f5247f37d71"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/native.log.gz",
+      "bytes": 316,
+      "sha256": "c190230a23b60eb79ded6742d13751c7ab3aa54bafbc051fc8658271a56f30fb",
+      "rawBytes": 476,
+      "rawSha256": "e8dc4ffda0a5455b178726b40f5be4071b4d1bf29fa3f63e3bd9e4201e627474"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/contracts.log.gz",
+      "bytes": 31051,
+      "sha256": "1335f1607208a089182037af24a60d53b134742afc381921caad60a85b758480",
+      "rawBytes": 451135,
+      "rawSha256": "643d09c83e3ad3f518dc50e9a0b95b5eb494a0e4b149ec8adb865c08569c08a0"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/storage.log.gz",
+      "bytes": 77586,
+      "sha256": "2128b2967af51a153bd62c503d673fa3773ff3f15b1c9f364e95ff3202458dc8",
+      "rawBytes": 1685633,
+      "rawSha256": "1f0c77a96b20860324c7c7973dfb034029195683bfeaa9ee79ec71dab1e15412"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/network.log.gz",
+      "bytes": 151,
+      "sha256": "5c807d3422ed60f76eeadaa045e2dde9802097c710cfa5fc61141c582b43c566",
+      "rawBytes": 176,
+      "rawSha256": "3f92714acd29913748f553c14f68082c1d46ba353a69ac4b9817917abb33bd78"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/combat-lab.log.gz",
+      "bytes": 341,
+      "sha256": "3ebdff181000044bef457b32fc52ab4630b0bc1f5fc27bc535a5345995de02dd",
+      "rawBytes": 546,
+      "rawSha256": "52d231acd44e2a0424db310f6a8329f56797e45bf049ec4616a33d4320a47f20"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/observability.json",
+      "bytes": 853,
+      "sha256": "1777110136f0db1c94d1bc0bbc608d315c167f43b4010cebae0e7d3eb87aee28"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/run-recording.json",
+      "bytes": 8187,
+      "sha256": "caecaeac989cf4642cbf71096b6c026025ab783720ea18868d15b6860455feb6"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/motion-recording.json",
+      "bytes": 15107,
+      "sha256": "d45cc0295c8493701321f669e1beb2451d1a9de327bd06e5576e7b8c57d787fb"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/recording.json",
+      "bytes": 4352,
+      "sha256": "cbc915f5649624b2c1056d416c0a216cca547f36b8e7e5e0cdd429b5ac05bb7a"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/grenade-run-recording.json",
+      "bytes": 7272,
+      "sha256": "a05bfabcb7de77b8724625c51aab9438d3750f774b4a924da5cd03d1920a06c7"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/grenade-air-recording.json",
+      "bytes": 7172,
+      "sha256": "f62cb8e634500358ad8d95f0ec43671bb91ccdfaecc049449565b1b4241c3766"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/grenade-crouch-recording.json",
+      "bytes": 7269,
+      "sha256": "6947471dfb770801f3ee32b62eefc51eda2ad9d20c660c29827fa4680902af36"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/knife-stand-recording.json",
+      "bytes": 13518,
+      "sha256": "35c0f17276ab9cb36851357ac8e141aa20852bd9b6cda21984aac67665246b58"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/knife-crouch-recording.json",
+      "bytes": 13518,
+      "sha256": "7b938a5c51c70528037fc6f343faa4b43021d1211fd7f0da8a61de75e451fde5"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-recording.json",
+      "bytes": 22591,
+      "sha256": "e4ee7a70a2b1b83c4741c7ed5cb5eb41c1cf1e1d8a123b2b7b348e04b8c380ac"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/reentry-recording.json",
+      "bytes": 26918,
+      "sha256": "4750bc9dcd67b315098ab82b4a23a52a517c9ad4cd84cb912142107aeab7276e"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-rising-recording.json",
+      "bytes": 12400,
+      "sha256": "6285347de0dfb417b3539f61be00903ea2264ac06aebf18bcb4a5363c330057b"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-falling-recording.json",
+      "bytes": 19121,
+      "sha256": "dd21f4dfda4e8eaa254b0545ec2fdda7b75f5aa28402f349bbc940130c178ace"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-removed-recording.json",
+      "bytes": 27256,
+      "sha256": "5a37e8d2c9257122ac9de9a53ae05d68abbed4f20078e393ea42b6df1dc10571"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-falling-continued.png",
+      "bytes": 3093,
+      "sha256": "ddbe68d061de4c88e48ff51825776c09ae096e1dc86332db1b8b350b356dba1a"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-falling-landed.png",
+      "bytes": 3096,
+      "sha256": "311cce121084cc489a68278a1cd2414a537ec4f259cdad3f20db6d42a2395b97"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-falling-moving.png",
+      "bytes": 3084,
+      "sha256": "61e71260f4b1f5dd20313fac3a6e8f3bc2ddd62e378031f64014c47863a22d29"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-rising-continued.png",
+      "bytes": 3112,
+      "sha256": "52c84e22c073a82603d4c782d25d1b3093fd90c440368f3cd43823f91f845655"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-rising-moving.png",
+      "bytes": 3127,
+      "sha256": "c7e9bfda686aa0929a29673535c8c0940df53c16ceaa9c15d21f2e1464d9fc13"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/death-still.png",
+      "bytes": 2717,
+      "sha256": "c43ca712422564cb5c0eba098f265788dabb90b0e87fe9fa24ae70822e4880fd"
+    },
+    {
+      "file": "docs/redesign-evidence/death-body/summary.json",
+      "bytes": 1049,
+      "sha256": "29360fb079d8afbd6640edf5834d96c0b1c094f2d22d835bd663ba60ad507cbd"
+    }
+  ]
+}

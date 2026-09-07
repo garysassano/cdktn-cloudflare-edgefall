@@ -28,6 +28,41 @@ function first<T>(array: T[]): T {
 }
 
 describe("full v3 snapshot records", () => {
+  it("preserves present and removed corpses and refuses inconsistent life/body state", () => {
+    const snapshot = fixture();
+    const player = first(snapshot.players);
+    player.life = "death";
+    player.health = 0;
+    player.deathBody = "present";
+    player.action = {
+      kind: "ready",
+      actionInstanceId: 0,
+      stateStartTick: snapshot.tick,
+      definitionId: 0,
+      nextMarkerIndex: 0,
+    };
+    expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
+    player.deathBody = "removed";
+    player.locomotion = "airborne";
+    Object.assign(player.body, {
+      vx: 0,
+      vy: 0,
+      remainderX: 0,
+      remainderY: 0,
+      grounded: false,
+      supportId: null,
+      contacts: [],
+    });
+    expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
+    player.body.vx = 1;
+    expect(() => encodeSnapshot(snapshot, context)).toThrow(/death body/);
+    player.body.vx = 0;
+    player.life = "respawning";
+    expect(() => encodeSnapshot(snapshot, context)).toThrow(/death body/);
+    const bytes = encodeSnapshot(fixture(), context);
+    new DataView(bytes.buffer).setUint32(304, 1, true); // Present corpse on an alive player.
+    expect(() => decodeSnapshot(bytes, context)).toThrow(/death body/);
+  });
   it.each(goldens)("matches independently packed $name ($byteLength bytes)", (golden) => {
     const bytes = Buffer.from(golden.hex, "hex");
     expect(encodeSnapshot(golden.snapshot as FullSnapshot, context)).toHaveLength(
@@ -175,7 +210,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
-    expect(bytes.length).toBe(52044);
+    expect(bytes.length).toBe(52060);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);
@@ -197,7 +232,7 @@ describe("full v3 snapshot records", () => {
 
   it("rejects unknown flags/modes/counts and nonzero unused contact/component storage", () => {
     // Header reserved tail; unused player contact slot; unused vehicle component slot.
-    for (const offset of [5, 48, ...Array.from({ length: 15 }, (_, i) => 49 + i), 212, 676]) {
+    for (const offset of [5, 48, ...Array.from({ length: 15 }, (_, i) => 49 + i), 212, 680]) {
       const bytes = encodeSnapshot(fixture(), context);
       bytes[offset] = 0xff;
       expect(() => decodeSnapshot(bytes, context)).toThrow(ProtocolError);
@@ -306,11 +341,12 @@ describe("full v3 snapshot records", () => {
       [184, 5],
       [296, 4],
       [300, COUNTER_LIMIT],
-      [328, 0],
-      [336, 5],
-      [340, 181],
-      [408, 8],
-      [424, 99],
+      [304, 3],
+      [332, 0],
+      [340, 5],
+      [344, 181],
+      [412, 8],
+      [428, 99],
     ]) {
       const bytes = encodeSnapshot(fixture(), context);
       if (offset === undefined || value === undefined) throw new Error("Missing mutation fixture");

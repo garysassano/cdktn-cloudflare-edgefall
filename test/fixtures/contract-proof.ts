@@ -4,6 +4,7 @@ import { encodeInputBatch } from "../../src/shared/protocol/codec.js";
 import { InputStream } from "../../src/shared/protocol/input-stream.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
 import type { FullSnapshot, SnapshotContext } from "../../src/shared/protocol/snapshot-schema.js";
+import { airborneDeathRecoveryProof } from "./airborne-death-recovery-proof.js";
 import { areaCombatProof } from "./area-proof.js";
 import { campaignProof } from "./campaign-proof.js";
 import { collisionProof } from "./collision-proof.js";
@@ -12,6 +13,7 @@ import { combatReconnectProof } from "./combat-reconnect-proof.js";
 import { combatRecoveryProof } from "./combat-recovery-proof.js";
 import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
+import { deathBodyProof } from "./death-body-proof.js";
 import { encounterProof } from "./encounter-proof.js";
 import { eventDeliveryProof } from "./event-delivery-proof.js";
 import { footCombatProof } from "./foot-combat-proof.js";
@@ -98,6 +100,8 @@ export async function contractProof() {
     collision: collisionProof(),
     combat: combatProof(),
     playerLife: playerLifeProof(),
+    deathBody: deathBodyProof(),
+    airborneDeathRecovery: await airborneDeathRecoveryProof(),
     playerLifeRecovery: await playerLifeRecoveryProof(),
     campaign: campaignProof(),
     worldCombat: worldCombatProof(),

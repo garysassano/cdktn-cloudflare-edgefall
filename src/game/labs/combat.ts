@@ -143,7 +143,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 7;
+  format: 8;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -179,11 +179,15 @@ export function combatEntryContext(
   frame: CollisionFrame,
   scenario: CombatScenario = "range",
 ) {
-  const shape = FOOT_DEFINITION && COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
+  if (!FOOT_DEFINITION) throw new Error("Missing life physics definition");
+  const shape = COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing life entry shape");
   const lift = scenario === "ordnance" ? ordnancePlatforms(frame.tick)[0] : undefined;
   return {
     shape,
+    definition: FOOT_DEFINITION,
+    shapes: COMBAT_SHAPES,
+    fallBoundary: COMBAT_ENTRY.fallBoundary,
     anchors: [
       {
         x:
@@ -281,7 +285,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 7,
+    format: 8,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -1214,7 +1218,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents };
 }
 export interface CombatRecording {
-  format: 7;
+  format: 8;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1223,7 +1227,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 7 ||
+    recording.format !== 8 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

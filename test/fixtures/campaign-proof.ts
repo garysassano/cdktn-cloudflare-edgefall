@@ -11,7 +11,12 @@ import {
   type EncounterDefinition,
   EncounterLifecycle,
 } from "../../src/game/encounters/lifecycle.js";
-import { FOOT_FLOOR, FOOT_SHAPES, footActor } from "../../src/game/labs/foot-fixture.js";
+import {
+  FOOT_DEFINITION,
+  FOOT_FLOOR,
+  FOOT_SHAPES,
+  footActor,
+} from "../../src/game/labs/foot-fixture.js";
 import { CollisionGrid, CollisionIndex } from "../../src/game/physics/grid.js";
 import type { ControlledActor } from "../../src/game/state.js";
 
@@ -109,12 +114,12 @@ export function campaignProof() {
       tick++;
       players = players.map(
         (player) =>
-          stepPlayerLife(
-            player,
-            tick,
-            "classic",
-            required(campaignCheckpoint(tick, mission + 1).entries.get(player.playerId)),
-          ).actor,
+          stepPlayerLife(player, tick, "classic", {
+            ...required(campaignCheckpoint(tick, mission + 1).entries.get(player.playerId)),
+            definition: required(FOOT_DEFINITION),
+            shapes: FOOT_SHAPES,
+            fallBoundary: pixels(300),
+          }).actor,
       );
     }
     if (mission === 1) {
@@ -123,12 +128,12 @@ export function campaignProof() {
         tick++;
         players = players.map(
           (player) =>
-            stepPlayerLife(
-              player,
-              tick,
-              "classic",
-              required(campaignCheckpoint(tick, mission + 1).entries.get(player.playerId)),
-            ).actor,
+            stepPlayerLife(player, tick, "classic", {
+              ...required(campaignCheckpoint(tick, mission + 1).entries.get(player.playerId)),
+              definition: required(FOOT_DEFINITION),
+              shapes: FOOT_SHAPES,
+              fallBoundary: pixels(300),
+            }).actor,
         );
       }
     }

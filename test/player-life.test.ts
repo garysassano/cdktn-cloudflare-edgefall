@@ -1,18 +1,27 @@
 import { describe, expect, it } from "vitest";
 import { damagePlayer, enterPlayer, entryBody, stepPlayerLife } from "../src/game/campaign/life.js";
 import { pixels } from "../src/game/core/numeric.js";
-import { FOOT_FLOOR, FOOT_SHAPES, footActor, footTerrain } from "../src/game/labs/foot-fixture.js";
+import {
+  FOOT_DEFINITION,
+  FOOT_FLOOR,
+  FOOT_SHAPES,
+  footActor,
+  footTerrain,
+} from "../src/game/labs/foot-fixture.js";
 import { CollisionGrid, CollisionIndex } from "../src/game/physics/grid.js";
 import { ARCADE } from "../src/game/rules.js";
 import { playerLifeProof } from "./fixtures/player-life-proof.js";
 
 function context(tick: number, anchors = [{ x: 0, y: 0 }], terrain = [FOOT_FLOOR]) {
   const shape = FOOT_SHAPES.get(1);
-  if (!shape) throw new Error("Missing life shape");
+  if (!shape || !FOOT_DEFINITION) throw new Error("Missing life shape");
   const frame = { tick, geometryRevision: 1 };
   return {
     anchors,
     shape,
+    definition: FOOT_DEFINITION,
+    shapes: FOOT_SHAPES,
+    fallBoundary: pixels(300),
     index: new CollisionIndex(new CollisionGrid(terrain), [], frame),
     frame,
   };
@@ -61,7 +70,13 @@ describe("authoritative player lives", () => {
   it("checks footprint and support, waits at blocked anchors, and tries later authored candidates", () => {
     const actor = damagePlayer(footActor(), 1, 1, "classic").actor;
     const blocked = context(31, [{ x: pixels(500), y: 0 }]);
-    expect(stepPlayerLife(actor, 31, "classic", blocked).actor).toEqual(actor);
+    expect(stepPlayerLife(actor, 31, "classic", blocked).actor).toMatchObject({
+      life: "death",
+      lifeStartTick: 1,
+      lives: 2,
+      deathBody: "present",
+      body: { x: 0, y: 0, grounded: true },
+    });
     expect(enterPlayer(actor, 31, "classic", blocked)).toBeNull();
     const collision = context(
       31,

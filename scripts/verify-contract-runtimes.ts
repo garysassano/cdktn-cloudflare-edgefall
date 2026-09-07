@@ -189,6 +189,8 @@ try {
     })),
     combat: expected.combat,
     playerLife: expected.playerLife,
+    deathBody: expected.deathBody,
+    airborneDeathRecovery: expected.airborneDeathRecovery,
     playerLifeRecovery: expected.playerLifeRecovery,
     campaign: expected.campaign,
     worldCombat: expected.worldCombat,

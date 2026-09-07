@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
 import { type NativeDrawing, compileNativeArt } from "../scripts/lib/native-art.js";
+import { damagePlayer, stepPlayerLife } from "../src/game/campaign/life.js";
 import { canonical } from "../src/game/core/canonical.js";
 import { Held } from "../src/game/input/types.js";
 import {
@@ -17,11 +18,30 @@ import {
   advanceOperativeMotion,
   initialOperativeMotion,
 } from "../src/shared/animation/operative-motion.js";
+import { airbornePlayer, deathContext } from "./fixtures/death-body-proof.js";
 
 const raw = await readFile("art/source/hero/operative.pixels.json"),
   built = await compileNativeArt(raw);
 const source = () => JSON.parse(raw.toString()) as NativeDrawing;
 describe("native operative source and playback", () => {
+  it("keeps an airborne corpse off grounded settle poses and hides a removed corpse", () => {
+    const killed = damagePlayer(airbornePlayer(), 0, 1, "classic").actor;
+    const motion = initialOperativeMotion(killed, 20);
+    const drawing = operativePresentation(killed, 20, built.atlas, motion);
+    expect(drawing?.fullBodyFrame).toBe("p1/body-death-buckle");
+    expect(drawing?.y).toBe(-8);
+    const removed = damagePlayer(airbornePlayer(), 0, 1, "classic", "fall").actor;
+    expect(
+      operativePresentation(removed, 20, built.atlas, initialOperativeMotion(removed, 20)),
+    ).toBeNull();
+    const context = deathContext(31);
+    context.anchors = [{ x: 0, y: 0 }];
+    const entered = stepPlayerLife(removed, 31, "classic", context).actor;
+    expect(
+      operativePresentation(entered, 31, built.atlas, initialOperativeMotion(entered, 31))
+        ?.fullBodyFrame,
+    ).toBe("p1/body-reentry-crouch");
+  });
   it("exports the exact indexed drawing pixels into padded untrimmed palette frames", async () => {
     const { data, info } = await sharp(built.png).raw().toBuffer({ resolveWithObject: true });
     expect(Object.keys(built.atlas.frames)).toHaveLength(built.source.frames.length * 4);
@@ -310,7 +330,7 @@ describe("native operative source and playback", () => {
     expect(state.players[0]?.body.y).toBeLessThan(y);
     expect(state.players[0]?.weapon.shotOrdinal).toBe(shots + 1);
     const recording = {
-      format: 7 as const,
+      format: 8 as const,
       scenario: state.scenario,
       players: 1,
       commands,

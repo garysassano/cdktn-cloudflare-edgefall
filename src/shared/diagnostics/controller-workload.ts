@@ -1,3 +1,4 @@
+import { damagePlayer } from "../../game/campaign/life.js";
 import artifact from "../../game/content/compiled/navigation.json" with { type: "json" };
 import type { ActorDefinition, ShapeDefinition } from "../../game/content/schema.js";
 import { stepFootController } from "../../game/controller/foot.js";
@@ -65,10 +66,11 @@ export function stepNetworkController(actor: ControlledActor, command: InputComm
     frame,
   );
   if (result.status === "failed") throw new Error(`Controller physics: ${result.physics.reason}`);
-  const next = result.actor;
+  let next = result.actor;
   next.processedEdgeIds = [...actor.processedEdgeIds];
   for (const edge of command.edges) next.processedEdgeIds[edge.kind - 1] = edge.id;
-  if (next.body.y > 390 * 256) next.life = "death";
+  if (next.life === "alive" && next.body.y > 390 * 256)
+    next = damagePlayer(next, tick, 1, "classic", "fall").actor;
   let jumpHandled = false;
   const edges: EdgeResult[] = command.edges.map((edge) => {
     const applied =

@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
+import { verifyDeathBodyLab } from "./lib/verify-death-body-lab.mjs";
 
 const root = resolve("dist/client"),
   output = "dist/native-operative-evidence";
@@ -49,9 +50,17 @@ try {
     await page.evaluate(
       () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))),
     );
-    await page.waitForFunction(
-      () => globalThis.combatLab?.nativeFrames()[0]?.tick === globalThis.combatLab.state().tick,
-    );
+    await page.waitForFunction(() => {
+      const lab = globalThis.combatLab,
+        actor = lab?.state().players[0],
+        frame = lab?.nativeFrames()[0];
+      return (
+        actor &&
+        (actor.deathBody === "removed" || actor.life === "spectating"
+          ? frame === null
+          : frame?.tick === lab.state().tick)
+      );
+    });
     return page.evaluate(() => ({
       state: globalThis.combatLab.state(),
       frames: globalThis.combatLab.nativeFrames(),
@@ -75,10 +84,10 @@ try {
     recordings.push({
       file,
       tick: before.state.tick,
-      legs: before.frames[0].legsFrame,
-      upper: before.frames[0].upperFrame,
-      motion: before.frames[0].motion,
-      body: before.frames[0].fullBodyFrame,
+      legs: before.frames[0]?.legsFrame ?? null,
+      upper: before.frames[0]?.upperFrame ?? null,
+      motion: before.frames[0]?.motion ?? null,
+      body: before.frames[0]?.fullBodyFrame ?? null,
     });
     await surface.focus();
   };
@@ -390,6 +399,7 @@ try {
   assert.equal(living.frames[0].fullBodyFrame, null);
   actions.push({ kind: "death-reentry", samples: lifeSamples, resumedTick: living.state.tick });
   await checkRecording("reentry-recording.json");
+  const deathBodies = await verifyDeathBodyLab(page, read, checkRenderedPixels, checkRecording);
   await page.locator("#scenario").selectOption("range");
 
   await page.locator("#players").selectOption("4");
@@ -653,6 +663,7 @@ try {
         poses,
         transitions,
         actions,
+        deathBodies,
         recordings,
         reviewedClips,
         replayMatches: true,

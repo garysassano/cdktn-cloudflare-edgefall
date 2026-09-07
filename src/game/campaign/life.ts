@@ -1,6 +1,6 @@
-import type { ShapeDefinition } from "../content/schema.js";
-import { COUNTER_LIMIT, integer } from "../core/numeric.js";
-import { blockingShapes, startSupport } from "../physics/body.js";
+import type { ActorDefinition, ShapeDefinition } from "../content/schema.js";
+import { COUNTER_LIMIT, integer, motion, position } from "../core/numeric.js";
+import { blockingShapes, startSupport, stepBody } from "../physics/body.js";
 import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
 import { ARCADE, RULE_PRESETS, type RulesetId } from "../rules.js";
 import type { Body, ControlledActor, Point } from "../state.js";
@@ -17,8 +17,31 @@ export interface EntryContext {
   index: CollisionIndex;
   frame: CollisionFrame;
 }
+export interface PlayerLifeContext extends EntryContext {
+  definition: ActorDefinition;
+  shapes: ReadonlyMap<number, ShapeDefinition>;
+  fallBoundary: number;
+}
 function check(ok: unknown, reason: string): asserts ok {
   if (!ok) throw new Error(`Player life: ${reason}`);
+}
+/** Shared by lifecycle and wire validation; removed bodies retain a bounded last position. */
+export function validDeathBody(actor: ControlledActor): boolean {
+  if (actor.life !== "death") return actor.deathBody === null;
+  if (actor.vehicleId !== null || actor.action.kind !== "ready") return false;
+  if (actor.deathBody === "present") return true;
+  const body = actor.body;
+  return (
+    actor.deathBody === "removed" &&
+    actor.locomotion === "airborne" &&
+    body.vx === 0 &&
+    body.vy === 0 &&
+    body.remainderX === 0 &&
+    body.remainderY === 0 &&
+    !body.grounded &&
+    body.supportId === null &&
+    body.contacts.length === 0
+  );
 }
 export function validatePlayerLife(actor: ControlledActor, tick: number, ruleset: RulesetId): void {
   integer(tick, 0, COUNTER_LIMIT - 1, "life tick");
@@ -28,6 +51,7 @@ export function validatePlayerLife(actor: ControlledActor, tick: number, ruleset
   check(rule, "unknown ruleset");
   integer(actor.health, 0, rule.footHealth, "foot health");
   integer(actor.invulnerableTicks, 0, ARCADE.respawnProtectionTicks, "entry protection");
+  check(validDeathBody(actor), "inconsistent death body");
   check(
     actor.life === "alive" || actor.life === "respawning"
       ? actor.health > 0 && actor.lives > 0
@@ -54,6 +78,60 @@ function clearAction(actor: ControlledActor, tick: number) {
   actor.ignoredSupportId = null;
   actor.ignoredSupportTicks = 0;
 }
+function removeDeathBody(actor: ControlledActor): void {
+  actor.deathBody = "removed";
+  actor.body.vx = actor.body.vy = actor.body.remainderX = actor.body.remainderY = 0;
+  actor.body.grounded = false;
+  actor.body.supportId = null;
+  actor.body.contacts = [];
+  actor.locomotion = "airborne";
+}
+/** Passive motion uses the same swept solver and support carry, with no input or action admission. */
+function stepDeathBody(actor: ControlledActor, context: PlayerLifeContext): void {
+  if (actor.deathBody !== "present") return;
+  const { definition, shapes, index, frame, fallBoundary } = context;
+  position(fallBoundary);
+  check(
+    definition.locomotion === "grounded" &&
+      definition.gravity > 0 &&
+      definition.terminalVelocity > 0,
+    "invalid death body physics",
+  );
+  motion(definition.gravity);
+  motion(definition.terminalVelocity);
+  check(
+    actor.body.remainderX === 0 && actor.body.remainderY === 0,
+    "unsupported death body remainder",
+  );
+  const shape = shapes.get(actor.body.shapeId);
+  check(
+    shape && (shape.id === definition.standingShapeId || shape.id === definition.crouchedShapeId),
+    "unknown death body shape",
+  );
+  if (actor.body.y > fallBoundary) {
+    removeDeathBody(actor);
+    return;
+  }
+  const support =
+    actor.body.vy < 0 ? null : startSupport(actor.body, shape, actor.facing, index, frame, null);
+  actor.body.supportId = support;
+  actor.body.grounded = support !== null;
+  if (support !== null) actor.body.vx = 0;
+  actor.body.vy = Math.min(definition.terminalVelocity, actor.body.vy + definition.gravity);
+  const result = stepBody(actor.body, shape, actor.facing, index, { frame });
+  // A corpse cannot hold the room in a failed collision tick. Retire it at its last
+  // valid position when crush or bounded overlap/contact recovery cannot resolve.
+  if (result.status === "failed") {
+    removeDeathBody(actor);
+    return;
+  }
+  actor.body = result.body;
+  if (actor.body.y > fallBoundary) removeDeathBody(actor);
+  else {
+    actor.locomotion = actor.body.grounded ? "grounded" : "airborne";
+    if (actor.body.grounded) actor.body.vx = 0;
+  }
+}
 /** Damage is an authoritative collision outcome. Repeated hits cannot decrement a dead life again. */
 export function damagePlayer(
   current: ControlledActor,
@@ -73,10 +151,12 @@ export function damagePlayer(
   if (actor.health > 0) return { actor, notice: null };
   actor.lives--;
   actor.life = "death";
+  actor.deathBody = "present";
   actor.lifeStartTick = tick;
   actor.invulnerableTicks = 0;
-  actor.body.vx = actor.body.vy = actor.body.remainderX = actor.body.remainderY = 0;
   clearAction(actor, tick);
+  if (cause === "fall") removeDeathBody(actor);
+  else if (actor.body.grounded) actor.body.vx = 0;
   return { actor, notice: notice(actor, tick, "death") };
 }
 
@@ -135,6 +215,7 @@ export function enterPlayer(
   actor.body = body;
   actor.geometryRevision = context.frame.geometryRevision;
   actor.life = "respawning";
+  actor.deathBody = null;
   actor.lifeStartTick = tick;
   actor.locomotion = "grounded";
   actor.health = RULE_PRESETS[ruleset].footHealth;
@@ -160,28 +241,34 @@ export function stepPlayerLife(
   current: ControlledActor,
   tick: number,
   ruleset: RulesetId,
-  context: EntryContext,
+  context: PlayerLifeContext,
 ) {
   validatePlayerLife(current, tick, ruleset);
   check(context.frame.tick === tick, "entry collision tick mismatch");
-  let actor = structuredClone(current);
+  context.index.assertFrame(context.frame);
+  check(
+    current.geometryRevision === context.frame.geometryRevision,
+    "life geometry revision mismatch",
+  );
+  const actor = structuredClone(current);
   actor.invulnerableTicks = Math.max(0, actor.invulnerableTicks - 1);
   actor.reboardCooldownTicks = Math.max(0, actor.reboardCooldownTicks - 1);
   if (actor.life === "death" && tick - actor.lifeStartTick >= ARCADE.deathTicks) {
     if (actor.lives === 0) {
+      removeDeathBody(actor);
       actor.life = "spectating";
+      actor.deathBody = null;
       actor.lifeStartTick = tick;
       return { actor, notice: notice(actor, tick, "spectate") };
     }
     const entered = enterPlayer(actor, tick, ruleset, context);
-    if (!entered) return { actor, notice: null };
-    actor = entered;
-    return { actor, notice: notice(actor, tick, "respawn") };
+    if (entered) return { actor: entered, notice: notice(entered, tick, "respawn") };
   }
   if (actor.life === "respawning" && tick - actor.lifeStartTick >= ARCADE.respawnEntryTicks) {
     actor.life = "alive";
     actor.lifeStartTick = tick;
     return { actor, notice: notice(actor, tick, "ready") };
   }
+  if (actor.life === "death") stepDeathBody(actor, context);
   return { actor, notice: null };
 }

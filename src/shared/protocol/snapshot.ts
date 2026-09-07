@@ -1,3 +1,4 @@
+import { validDeathBody } from "../../game/campaign/life.js";
 import { MAX_MOTION, MAX_POSITION } from "../../game/core/numeric.js";
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { ActionState, Body } from "../../game/state.js";
@@ -151,6 +152,7 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
     body(player.body);
     action(player.action);
     check(player.lifeStartTick <= snapshot.tick, "Future life phase");
+    check(validDeathBody(player), "Inconsistent death body");
     check(
       player.firearmAim.nextStepTick <= snapshot.tick + 60,
       "Future firearm turn exceeds content bound",

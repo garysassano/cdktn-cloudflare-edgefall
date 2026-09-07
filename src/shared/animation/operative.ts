@@ -23,7 +23,8 @@ export function operativePresentation(
   motion: OperativeMotion,
 ) {
   const action = actor.action.kind;
-  if (actor.life === "spectating" || actor.vehicleId !== null) return null;
+  if (actor.life === "spectating" || actor.deathBody === "removed" || actor.vehicleId !== null)
+    return null;
   if (actor.life === "alive" && (action === "enter" || action === "exit" || action === "hurt"))
     return null;
   if (
@@ -66,7 +67,9 @@ export function operativePresentation(
   if (actor.life === "death" || actor.life === "respawning") {
     fullBody = sample(
       actor.life === "death" ? "body.death" : "body.reentry",
-      tick - actor.lifeStartTick,
+      actor.life === "death" && !actor.body.grounded
+        ? Math.min(5, tick - actor.lifeStartTick)
+        : tick - actor.lifeStartTick,
     );
   } else {
     const runAge = Math.max(0, tick - motion.runStartTick);

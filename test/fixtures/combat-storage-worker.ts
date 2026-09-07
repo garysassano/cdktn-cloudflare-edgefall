@@ -4,6 +4,7 @@ import { transitionCombatRuntime } from "../../src/shared/diagnostics/combat-rec
 import { combatRuntimeHash } from "../../src/shared/diagnostics/combat-runtime.js";
 import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js";
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
+import { recordAirborneDeath } from "./airborne-death-recovery-proof.js";
 import { AREA_BOUNDARIES, recordAreaCombat } from "./area-proof.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
@@ -223,14 +224,25 @@ export class CombatStorageProof extends DurableObject<Env> {
         events: saved.history.entries,
       });
     }
-    if (name === "rifle") {
+    if (name === "rifle" || name === "death-rising" || name === "death-falling") {
       if (action === "seed" || action === "resume") {
-        const fixture = recordRifleRecovery();
-        let saved = action === "seed" ? fixture.states[28] : await store.load();
+        const airborne =
+          name === "rifle"
+            ? null
+            : recordAirborneDeath(name === "death-rising" ? "rising" : "falling");
+        const fixture = airborne ?? recordRifleRecovery();
+        let saved =
+          action === "seed"
+            ? fixture.states[airborne ? airborne.deathTick - 1 : 28]
+            : await store.load();
         if (!saved || canonical(saved) !== canonical(fixture.states[saved.combat.tick]))
           throw new Error("Rifle storage prefix mismatch");
         if (action === "seed") await store.initialize(saved);
-        const through = action === "seed" ? 30 : 150;
+        const through = airborne
+          ? airborne.deathTick + (action === "seed" ? 6 : 45)
+          : action === "seed"
+            ? 30
+            : 150;
         while (saved.combat.tick < through) {
           const end = Math.min(through, saved.combat.tick + 15);
           const accepted = fixture.states[end];
@@ -255,11 +267,16 @@ export class CombatStorageProof extends DurableObject<Env> {
         tick: saved.combat.tick,
         hash: combatRuntimeHash(saved),
         rifles: saved.combat.targets.map((target) => target.rifle),
-        players: saved.combat.players.map(({ life, lives, invulnerableTicks }) => ({
-          life,
-          lives,
-          invulnerableTicks,
-        })),
+        players: saved.combat.players.map(
+          ({ life, lives, invulnerableTicks, lifeStartTick, deathBody, body }) => ({
+            life,
+            lives,
+            invulnerableTicks,
+            lifeStartTick,
+            deathBody,
+            body,
+          }),
+        ),
         events: saved.history.entries,
         projectiles: saved.combat.projectiles,
       });
@@ -541,6 +558,7 @@ export class CombatStorageProof extends DurableObject<Env> {
           playerId: player.playerId,
           life: player.life,
           lifeStartTick: player.lifeStartTick,
+          deathBody: player.deathBody,
           lives: player.lives,
           invulnerableTicks: player.invulnerableTicks,
           weapon: player.weapon,
@@ -570,6 +588,8 @@ export default {
         "loading",
         "life",
         "rifle",
+        "death-rising",
+        "death-falling",
         "foot-melee",
         "foot-grenade",
         "area-shotgun",

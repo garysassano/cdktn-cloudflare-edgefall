@@ -103,6 +103,7 @@ function player(slot: number): ControlledActor {
     lives: 3,
     lastRallyMission: 1,
     lifeStartTick: 0,
+    deathBody: null,
     processedEdgeIds: [0, 0, 0, 0, 0],
   };
 }
