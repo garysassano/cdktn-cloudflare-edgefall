@@ -1,0 +1,5 @@
+Use case: precise-object-edit
+Asset type: Edgefall original hero key-pose study, still concept source.
+Input image: edit target, eight poses of the same operative in four columns and two rows.
+Change ONLY the third pose in the top row. It currently repeats the second pose's run contact. Redraw that third pose as the clearly complementary running contact: the leg nearer the viewer reaches BACK with its boot raised off the ground behind the pelvis, and the far leg reaches FORWARD to plant its boot on the shared foot baseline. Reverse the leg swing unambiguously while maintaining a plausible hip/knee/ankle chain and recognizable costume. Keep the sidearm aimed right at the same height as the second pose; keep head, torso, gear, hands and gun orientation consistent.
+Preserve the other seven poses exactly, the image dimensions, grid placement, scale, character identity, palette, transparent background and pixel-art styling. Do not add labels, shadows or background. Keep the changed sprite fully inside its cell.

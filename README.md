@@ -70,6 +70,8 @@ Downed operatives can crawl and use a sidearm, allies revive with melee, and an 
 
 Run `pnpm dev:lab` and open `http://localhost:8787/controller-lab.html` for the new 60 Hz controller's isolated engineering surface. Select the obstacle course, moving support, crush, grounded enemy ledge authored jump/drop link or chained-route fixture; run or single-step, inspect contacts, and export/import a bounded deterministic input recording. This lab uses temporary geometry visuals and does not connect to a multiplayer room. The ordinary client build excludes development laboratories.
 
+Open `http://localhost:8787/art-review.html` in the same lab build to inspect the W06 concept sources, decoded alpha, pixel grid, background composites and exact prompts. `pnpm art:validate` checks source integrity; `pnpm test:art:review` verifies the page in Chromium. The studies remain outside the gameplay asset set.
+
 `pnpm test:lab:controller` builds the labs and verifies keyboard input, replay and rendering in local Chromium. Set `EDGEFALL_CHROMIUM_PATH` to an installed Chromium executable when it is not in Playwright's default location. See the [controller lab evidence](./docs/redesign-evidence/W03-controller-lab.md) for exact coverage and remaining acceptance work.
 
 Open `http://localhost:8787/combat-lab.html` for the shared firearm timeline, authored muzzle/hurtbox inspector and swept projectile path. The range, thin-wall and frontal-shield scenarios support one to four deterministic input slots, sidearm/HMG cadence and ammo, physical target motion, exact kill credit, single stepping and recording replay. `pnpm test:lab:combat` verifies its browser controls and replay. These are engineering fixtures; production combat and final media remain in progress.
@@ -128,9 +130,9 @@ Remove the Wrangler-owned Worker separately when a complete teardown is intended
 
 The current slice contains Rook and Vale with two outfits, four primary weapons, two ordnance choices, weapon mutations, relics, five standard enemy roles, the Slag Warden elite, destructibles, the freight-lift fight, the Fall, and the Kilnheart Engine.
 
-The [style benchmark](./docs/style-benchmark.md) records the art, animation, VFX, control, and audio approval gate.
+The [legacy style benchmark](./docs/style-benchmark.md) records the existing product's asset prompts. The redesign's [W06 source review](./docs/redesign-evidence/style-v2/README.md) begins the replacement benchmark and retains the required human art/audio gate.
 
-Its Rook, enemy, weapon, VFX, and environment assets are integrated, while palette variants stand in for the remaining final production art until that benchmark is approved.
+The existing Rook, enemy, weapon, VFX and environment assets remain in the v2 product. New hero concept studies are under review and require native-pixel, alpha and animation work before they can become gameplay frames.
 
 Every runtime media file is original or redistribution-compatible licensed and recorded in the checked-in [asset provenance manifest](./public/assets/manifest.json).
 

@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "sourceIndexSha256": "815c49fb8c76b93bd2d9737ec1d24a4408e33daba833cf827a4812231d68034c",
+  "decoder": {
+    "sharp": "0.35.4",
+    "vips": "8.18.6"
+  },
+  "sourceIntegrity": "pass",
+  "humanStyleReview": "pending",
+  "scope": "Concept-source inspection only. No export, pixel repair, animation validation, runtime admission or human approval is performed.",
+  "studies": [
+    {
+      "id": "hero-key-poses-01",
+      "file": "art/source/hero/key-pose-study-01.png",
+      "bytes": 857546,
+      "sha256": "8a64f75ad10e99486e2124558bec7fb6e798ed5453648c03c3610f5a8fccf7d0",
+      "prompt": "art/source/hero/key-pose-study-01.prompt.txt",
+      "promptSha256": "220ec36db3e20a108d508fc90ef8016f6d1ccc88b371fff1914f5d2a8473d301",
+      "creator": "OpenAI built-in image generation, directed for Edgefall",
+      "licence": "Project-original",
+      "role": "concept-study",
+      "references": [],
+      "requested": {
+        "nativeWidth": 256,
+        "nativeHeight": 128,
+        "pixelScale": 4,
+        "columns": 4,
+        "rows": 2
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "artAssessment": {
+        "status": "revision-required",
+        "issues": [
+          "Standing scale and source pixel grid need redrawing at native resolution.",
+          "The two run contacts are too similar to establish a stride.",
+          "Body alpha is predominantly partial; frames require clean binary alpha."
+        ]
+      },
+      "image": {
+        "width": 1774,
+        "height": 887,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "30aa161c69990d7cdf6a1e9301c8737f300e0aba8909bf564aa2326d9445ce91",
+        "alpha": {
+          "transparent": 1164103,
+          "opaque": 937,
+          "partial": 408498,
+          "hiddenRgb": 0
+        },
+        "visibleColors": ">65536",
+        "expected": {
+          "width": 1024,
+          "height": 512
+        },
+        "pixelScale": 4,
+        "nonuniformBlocks": null,
+        "canImportUnchanged": false,
+        "findings": [
+          {
+            "code": "canvas-size",
+            "message": "Requested 1024×512; decoded 1774×887."
+          },
+          {
+            "code": "partial-alpha",
+            "message": "408498 pixels have partial alpha; body art requires binary alpha."
+          },
+          {
+            "code": "fractional-grid",
+            "message": "Image edges do not fit the declared pixel grid."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hero-key-poses-02",
+      "file": "art/source/hero/key-pose-study-02.png",
+      "bytes": 1350210,
+      "sha256": "5ada3987353137b43f7a17b180a1e845ca364b8954711bd1204d13fc89e74b05",
+      "prompt": "art/source/hero/key-pose-study-02.prompt.txt",
+      "promptSha256": "d1ff8e13a9e409e9ccf3383fed19648812cc09a4525795dbe01a99141f71abc2",
+      "creator": "OpenAI built-in image generation, directed for Edgefall",
+      "licence": "Project-original",
+      "role": "concept-study",
+      "references": [
+        "hero-key-poses-01"
+      ],
+      "requested": {
+        "nativeWidth": 256,
+        "nativeHeight": 128,
+        "pixelScale": 4,
+        "columns": 4,
+        "rows": 2
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "artAssessment": {
+        "status": "revision-required",
+        "issues": [
+          "The attempted run edit changed the sheet and baked an opaque checkerboard.",
+          "The sheet is not an exact native pixel grid.",
+          "This rejected edit is retained to make the transparency failure reviewable."
+        ]
+      },
+      "image": {
+        "width": 1774,
+        "height": 887,
+        "hasAlphaChannel": false,
+        "decodedRgbaSha256": "58096d6746bcd13228f41df8bfc398f8d94c375638e8a34fed64f9573cad11a3",
+        "alpha": {
+          "transparent": 0,
+          "opaque": 1573538,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": ">65536",
+        "expected": {
+          "width": 1024,
+          "height": 512
+        },
+        "pixelScale": 4,
+        "nonuniformBlocks": null,
+        "canImportUnchanged": false,
+        "findings": [
+          {
+            "code": "canvas-size",
+            "message": "Requested 1024×512; decoded 1774×887."
+          },
+          {
+            "code": "opaque-background",
+            "message": "No transparent pixel exists."
+          },
+          {
+            "code": "fractional-grid",
+            "message": "Image edges do not fit the declared pixel grid."
+          }
+        ]
+      }
+    }
+  ]
+}

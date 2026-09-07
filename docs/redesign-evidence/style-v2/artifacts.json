@@ -1,0 +1,163 @@
+{
+  "baseCommit": "5d312d8eecc84cf24021156debac59ec9464f75d",
+  "scope": "W06 concept-source and review-tool foundation. Captured original images and exact prompts retain defects. Source integrity, pixel-import assessment and human approval are separate. No native production atlas, final media, gameplay animation or deployment is claimed.",
+  "sources": [
+    {
+      "file": "README.md",
+      "bytes": 15830,
+      "sha256": "218b55a9ee3321a4ac5d52d3373e9c4884aad716999b4e3f49381cb355a61079"
+    },
+    {
+      "file": "art/source/hero/key-pose-study-01.png",
+      "bytes": 857546,
+      "sha256": "8a64f75ad10e99486e2124558bec7fb6e798ed5453648c03c3610f5a8fccf7d0"
+    },
+    {
+      "file": "art/source/hero/key-pose-study-01.prompt.txt",
+      "bytes": 2419,
+      "sha256": "220ec36db3e20a108d508fc90ef8016f6d1ccc88b371fff1914f5d2a8473d301"
+    },
+    {
+      "file": "art/source/hero/key-pose-study-02.png",
+      "bytes": 1350210,
+      "sha256": "5ada3987353137b43f7a17b180a1e845ca364b8954711bd1204d13fc89e74b05"
+    },
+    {
+      "file": "art/source/hero/key-pose-study-02.prompt.txt",
+      "bytes": 1022,
+      "sha256": "d1ff8e13a9e409e9ccf3383fed19648812cc09a4525795dbe01a99141f71abc2"
+    },
+    {
+      "file": "art/source/provenance.json",
+      "bytes": 2589,
+      "sha256": "815c49fb8c76b93bd2d9737ec1d24a4408e33daba833cf827a4812231d68034c"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/README.md",
+      "bytes": 6592,
+      "sha256": "adefd9631c7a0d9d27ac09ce2c78822438b05f7e0e33d18ab98e130fb993979d"
+    },
+    {
+      "file": "docs/style-benchmark.md",
+      "bytes": 8058,
+      "sha256": "3202cf49926c8d9c3f1f0c37af62d92dc08c1ce743281fba292f9e57df5d8bd8"
+    },
+    {
+      "file": "package.json",
+      "bytes": 3231,
+      "sha256": "68992dd1c86cb21e8d5668aa0e645a104af8c4291024538410ebf5c9a43e1f94"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "bytes": 148537,
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43"
+    },
+    {
+      "file": "scripts/assets/review-studies.ts",
+      "bytes": 1034,
+      "sha256": "f007944d8359b9bb3f4e5ae0f0f4089fbe93c809d1facc29d9c5d52f6a55ec15"
+    },
+    {
+      "file": "scripts/build-client.mjs",
+      "bytes": 2014,
+      "sha256": "dadc3be83f0a2e909281f4f7e03279c7f759f3b2a7e4e3d5c1c5b58c7bb0df5b"
+    },
+    {
+      "file": "scripts/lib/art-image.ts",
+      "bytes": 4606,
+      "sha256": "27477695d8d7e1a5f0e4597be09e5dad79986e4d4d9bcc5821de50e6566d01fe"
+    },
+    {
+      "file": "scripts/lib/art-studies.ts",
+      "bytes": 4349,
+      "sha256": "a6ae466aabf973c5858ff96dfe79a3105772c554cec1d04b854d80dbee45eab1"
+    },
+    {
+      "file": "scripts/verify-art-review.mjs",
+      "bytes": 4842,
+      "sha256": "55b08f6f9441e6dfbbe6b6353c6f91913a377fd034f5c779870296a093f436dc"
+    },
+    {
+      "file": "src/client/art-review.html",
+      "bytes": 4334,
+      "sha256": "0a05c6cb51ba696d1bfd13920e49ad65da665e2ee18e370182e0bf96803e439e"
+    },
+    {
+      "file": "src/client/art-review.ts",
+      "bytes": 4681,
+      "sha256": "c3a6e255c8eb26ff992b502483f4cca12e3b93e4b43a958e1e35908a163f635b"
+    },
+    {
+      "file": "test/art-import.test.ts",
+      "bytes": 6151,
+      "sha256": "ade845f74fcc90771625bf99da8989f7ff57cd7d00fba16fabbcbd353e0f700e"
+    },
+    {
+      "file": "tsconfig.json",
+      "bytes": 1144,
+      "sha256": "594028cd723b482a5fc5197fa3a33a378a7b62dcd1f86cbde4dff39e1829daa5"
+    },
+    {
+      "file": "AGENTS.md",
+      "bytes": 1437,
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "mise.toml",
+      "bytes": 156,
+      "sha256": "aced6b92b1da65509aa7289e8ad83161edee794339f1d1f2582bdd42f22bf494"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "bytes": 1272,
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/redesign-evidence/style-v2/browser.json",
+      "bytes": 1119,
+      "sha256": "4ef90702ff0f1abf98bdfef25338662ebf947c67299ea6ee1b6b5b84d1a7cc38"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/browser.log.gz",
+      "bytes": 293,
+      "sha256": "1a1a9aaf8eb78aae37773597d771e79fde1907ba77c8cb4e543a3e146468cd3e"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/bundle-verification.json",
+      "bytes": 276,
+      "sha256": "f5e9f9f652f1ba0d454c087baebb39e6c12f545ff85721de228e5dc9b46d5001"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/check.log.gz",
+      "bytes": 1409,
+      "sha256": "0f51bb5cc233f25457ead7dc711430f9163507ee3b26d039915449fcbc441a4b"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/hero-study-cyan.png",
+      "bytes": 346788,
+      "sha256": "a63155750d36f5b5a9bd74d7f8d5398951f9ca3fb03502aec09167618fdb2c9d"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/production-isolation.json",
+      "bytes": 976,
+      "sha256": "b9441ee4ca6f846a690d8940d6e90562dfce713256e9272d35c54a58f5829741"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/rejected-edit-logical.png",
+      "bytes": 173531,
+      "sha256": "4ee10ce082f3ae7dbcb1c2fb0c1e7b2aca4a3d415b98146dcddf66073aa865b1"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/secret-scan.json",
+      "bytes": 132,
+      "sha256": "94dd78ea71209b6946918ad0e134541cbd7c52d96221b188fc302b7745fa88e5"
+    },
+    {
+      "file": "docs/redesign-evidence/style-v2/source-review.json",
+      "bytes": 4620,
+      "sha256": "996f57841194f7b740cbbbe26f51c7b7ef277f6b4fa1edd7aa1f0b07eb061901"
+    }
+  ]
+}

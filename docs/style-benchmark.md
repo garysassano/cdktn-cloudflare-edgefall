@@ -1,5 +1,7 @@
 # Edgefall style benchmark
 
+This document records the legacy v2 product's asset prompts and original benchmark. The arcade redesign uses the [W06 source review and replacement benchmark](redesign-evidence/style-v2/README.md); its first concept studies require revision and do not constitute final animation or style approval.
+
 Status: **review required before producing the remaining final art and audio**.
 
 This benchmark establishes the Cinder Railworks quality bar with one finished Rook presentation set, four modular weapon layers, one furnace trooper, a combat VFX set, one layered environment plate, distinctive weapon feedback, and adaptive biome and boss audio.
@@ -8,13 +10,13 @@ The playable build uses palette variants for Vale and the additional enemy roles
 
 ## Representative 20-second combat beat
 
-| Time | Beat | Quality check |
-| --- | --- | --- |
-| 0–4 s | Rook runs in, jumps to the catwalk, and fires the carbine. | Crisp silhouette, readable aim layer, carbine flash and light recoil. |
-| 4–8 s | A rusher closes while a rifleman fires from range; Rook dodges through the crossfire. | Hostile fire reads red, dodge reads violet, no whole-body aim rotation. |
-| 8–12 s | Rook crouches, breaks a barrel with melee, and swaps pressure to the scattergun. | Crouch aim remains clear, debris separates from impact VFX, scattergun is unmistakably heavier. |
-| 12–16 s | A shieldbearer blocks the lane; a rivet detonates behind it. | Rivet cadence, projectile, impact, shake, and sound form one recognisable signature. |
-| 16–20 s | Rook revives a downed Vale as the Kilnheart telegraph floods the lower platform. | Revive state remains legible under effects and the boss warning leaves an avoidable route. |
+| Time    | Beat                                                                                  | Quality check                                                                                   |
+| ------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 0–4 s   | Rook runs in, jumps to the catwalk, and fires the carbine.                            | Crisp silhouette, readable aim layer, carbine flash and light recoil.                           |
+| 4–8 s   | A rusher closes while a rifleman fires from range; Rook dodges through the crossfire. | Hostile fire reads red, dodge reads violet, no whole-body aim rotation.                         |
+| 8–12 s  | Rook crouches, breaks a barrel with melee, and swaps pressure to the scattergun.      | Crouch aim remains clear, debris separates from impact VFX, scattergun is unmistakably heavier. |
+| 12–16 s | A shieldbearer blocks the lane; a rivet detonates behind it.                          | Rivet cadence, projectile, impact, shake, and sound form one recognisable signature.            |
+| 16–20 s | Rook revives a downed Vale as the Kilnheart telegraph floods the lower platform.      | Revive state remains legible under effects and the boss warning leaves an avoidable route.      |
 
 ## Approval checklist
 

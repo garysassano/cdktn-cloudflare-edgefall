@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "bundleSha256": "9e4f4a407e9350a757b72573f0bab8b14cc8d114bd408e2ed218605fea90d479",
+  "inputs": [
+    "src/client/art-review.ts"
+  ],
+  "scope": "Independent rebuild matches the browser-exercised review bundle; image decoding tooling stays in Node."
+}

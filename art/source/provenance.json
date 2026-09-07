@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "policy": "Concept studies are editable project source and may be viewed in the explicit local review build. They are not gameplay frames, authored animation, runtime assets or human-approved final art. Production export requires native-pixel and alpha validation plus the separate W06 review.",
+  "sources": [
+    {
+      "id": "hero-key-poses-01",
+      "file": "art/source/hero/key-pose-study-01.png",
+      "bytes": 857546,
+      "sha256": "8a64f75ad10e99486e2124558bec7fb6e798ed5453648c03c3610f5a8fccf7d0",
+      "prompt": "art/source/hero/key-pose-study-01.prompt.txt",
+      "promptSha256": "220ec36db3e20a108d508fc90ef8016f6d1ccc88b371fff1914f5d2a8473d301",
+      "creator": "OpenAI built-in image generation, directed for Edgefall",
+      "licence": "Project-original",
+      "role": "concept-study",
+      "references": [],
+      "requested": {
+        "nativeWidth": 256,
+        "nativeHeight": 128,
+        "pixelScale": 4,
+        "columns": 4,
+        "rows": 2
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "artAssessment": {
+        "status": "revision-required",
+        "issues": [
+          "Standing scale and source pixel grid need redrawing at native resolution.",
+          "The two run contacts are too similar to establish a stride.",
+          "Body alpha is predominantly partial; frames require clean binary alpha."
+        ]
+      }
+    },
+    {
+      "id": "hero-key-poses-02",
+      "file": "art/source/hero/key-pose-study-02.png",
+      "bytes": 1350210,
+      "sha256": "5ada3987353137b43f7a17b180a1e845ca364b8954711bd1204d13fc89e74b05",
+      "prompt": "art/source/hero/key-pose-study-02.prompt.txt",
+      "promptSha256": "d1ff8e13a9e409e9ccf3383fed19648812cc09a4525795dbe01a99141f71abc2",
+      "creator": "OpenAI built-in image generation, directed for Edgefall",
+      "licence": "Project-original",
+      "role": "concept-study",
+      "references": [
+        "hero-key-poses-01"
+      ],
+      "requested": {
+        "nativeWidth": 256,
+        "nativeHeight": 128,
+        "pixelScale": 4,
+        "columns": 4,
+        "rows": 2
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "artAssessment": {
+        "status": "revision-required",
+        "issues": [
+          "The attempted run edit changed the sheet and baked an opaque checkerboard.",
+          "The sheet is not an exact native pixel grid.",
+          "This rejected edit is retained to make the transparency failure reviewable."
+        ]
+      }
+    }
+  ]
+}

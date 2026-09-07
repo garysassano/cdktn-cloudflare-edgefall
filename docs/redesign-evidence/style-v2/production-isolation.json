@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "scope": "An ordinary client build clears the opt-in review page and concept source copies. Runtime asset manifest, Worker entry and Wrangler config remain unchanged. No runtime import or deployment occurs.",
+  "files": [
+    "assets/art/cinder-railworks.png",
+    "assets/art/rook-benchmark.json",
+    "assets/art/rook-benchmark.png",
+    "assets/audio/beam-loop.ogg",
+    "assets/audio/biome-loop.ogg",
+    "assets/audio/boss-loop.ogg",
+    "assets/audio/carbine-shot.ogg",
+    "assets/audio/dodge.ogg",
+    "assets/audio/explosion.ogg",
+    "assets/audio/footstep-a.ogg",
+    "assets/audio/footstep-b.ogg",
+    "assets/audio/impact-light.ogg",
+    "assets/audio/melee.ogg",
+    "assets/audio/player-hit.ogg",
+    "assets/audio/reward.ogg",
+    "assets/audio/rivet-shot.ogg",
+    "assets/audio/scatter-shot.ogg",
+    "assets/audio/victory.ogg",
+    "assets/manifest.json",
+    "client.js",
+    "favicon.svg",
+    "index.html",
+    "styles.css"
+  ]
+}

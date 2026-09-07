@@ -9,7 +9,7 @@
     "assets:validate": "node scripts/validate-assets.mjs",
     "bundle": "pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler",
     "cdktn": "cdktn",
-    "check": "pnpm lint && pnpm assets:validate && pnpm content:validate && pnpm typecheck && pnpm test && pnpm synth",
+    "check": "pnpm lint && pnpm assets:validate && pnpm art:validate && pnpm content:validate && pnpm typecheck && pnpm test && pnpm synth",
     "client:build": "node scripts/build-client.mjs",
     "content:validate": "tsx scripts/validate-content.ts && tsx scripts/compile-content.ts --check",
     "deploy": "pnpm assets:validate && pnpm client:build && cdktn deploy --auto-approve && cdktn output --skip-synth --outputs-file dist/cdktn-outputs.json && node scripts/build-deploy-config.mjs && wrangler d1 migrations apply RUNS --remote --config .wrangler.deploy.json && wrangler deploy --config .wrangler.deploy.json",
@@ -39,7 +39,10 @@
     "test:lab:controller": "node scripts/build-client.mjs --lab && node scripts/verify-controller-lab.mjs",
     "content:compile": "tsx scripts/compile-content.ts",
     "test:network:controller": "tsx scripts/verify-network-controller.ts",
-    "test:lab:combat": "node scripts/build-client.mjs --lab && node scripts/verify-combat-lab.mjs"
+    "test:lab:combat": "node scripts/build-client.mjs --lab && node scripts/verify-combat-lab.mjs",
+    "art:review": "tsx scripts/assets/review-studies.ts --write",
+    "art:validate": "tsx scripts/assets/review-studies.ts",
+    "test:art:review": "node scripts/build-client.mjs --lab && node scripts/verify-art-review.mjs"
   },
   "dependencies": {
     "cdktn": "^0.24.0",
@@ -50,12 +53,13 @@
     "@biomejs/biome": "^2.5.10",
     "@playwright/test": "1.63.0",
     "@types/node": "^24.13.3",
+    "ajv": "8.20.0",
     "cdktn-cli": "^0.24.0",
     "esbuild": "^0.28.2",
+    "sharp": "0.35.4",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2",
     "vitest": "^5.0.0",
-    "wrangler": "^4.128.0",
-    "ajv": "8.20.0"
+    "wrangler": "^4.128.0"
   }
 }

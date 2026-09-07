@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { cp, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -31,11 +32,15 @@ console.log("Built Phaser client and static assets: dist/client");
 
 // Explicit opt-in; every ordinary build removes the lab with the output directory.
 if (process.argv.includes("--lab")) {
+  execFileSync("pnpm", ["exec", "tsx", "scripts/assets/review-studies.ts", "--preview"], {
+    cwd: root,
+    stdio: "inherit",
+  });
   await cp(
     join(root, "content", "engineering", "terrain.png"),
     join(outputDirectory, "engineering-terrain.png"),
   );
-  for (const name of ["lab", "controller-lab", "network-lab", "combat-lab"]) {
+  for (const name of ["lab", "controller-lab", "network-lab", "combat-lab", "art-review"]) {
     await build({
       bundle: true,
       entryPoints: [join(root, "src", "client", `${name}.ts`)],
