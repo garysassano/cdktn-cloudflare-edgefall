@@ -269,7 +269,7 @@ describe("ordered controller/combat/encounter integration", () => {
     }
     expect(
       replayCombatLab({
-        format: 5,
+        format: 6,
         scenario: "range",
         players: 2,
         commands,

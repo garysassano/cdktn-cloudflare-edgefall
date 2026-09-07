@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
+import { verifyHmgLab } from "./lib/verify-hmg-lab.mjs";
 import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
 import { verifyTankLab } from "./lib/verify-tank-lab.mjs";
@@ -170,7 +171,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 5);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 6);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -195,6 +196,7 @@ try {
   const area = await verifyAreaLab(page, output);
   const tank = await verifyTankLab(page, output);
   const ordnance = await verifyOrdnanceLab(page, output);
+  const hmg = await verifyHmgLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -297,6 +299,7 @@ try {
     area,
     tank,
     ordnance,
+    hmg,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

@@ -8,6 +8,7 @@ import { AREA_BOUNDARIES, recordAreaCombat } from "./area-proof.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
 import { recordFootCombat } from "./foot-combat-proof.js";
+import { HMG_BOUNDARIES, recordHmg } from "./hmg-proof.js";
 import {
   DELAYED_ORDNANCE_BOUNDARIES,
   ORDNANCE_BOUNDARIES,
@@ -50,7 +51,8 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "tank-drive" ||
       name === "tank-damage" ||
       name === "ordnance-press" ||
-      name === "ordnance-delayed"
+      name === "ordnance-delayed" ||
+      name === "hmg-sweep"
     ) {
       const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
@@ -58,32 +60,37 @@ export class CombatStorageProof extends DurableObject<Env> {
       const damage = name === "tank-damage";
       const ordnance = name === "ordnance-press" || name === "ordnance-delayed";
       const ordnanceStart = name === "ordnance-delayed" ? 6 : 1;
+      const hmg = name === "hmg-sweep";
       if (action !== "restore") {
-        const fixture = ordnance
-          ? recordOrdnance(ordnanceStart)
-          : tank
-            ? damage
-              ? recordTankCombat(210, tankDamageInput)
-              : recordTankCombat()
-            : area
-              ? recordAreaCombat(area)
-              : recordShieldCombat(mode);
-        const boundaries = ordnance
-          ? ordnanceStart === 1
-            ? ORDNANCE_BOUNDARIES
-            : DELAYED_ORDNANCE_BOUNDARIES
-          : tank
-            ? damage
-              ? TANK_DAMAGE_BOUNDARIES
-              : TANK_BOUNDARIES
-            : area
-              ? AREA_BOUNDARIES[area]
-              : SHIELD_BOUNDARIES[mode];
+        const fixture = hmg
+          ? recordHmg()
+          : ordnance
+            ? recordOrdnance(ordnanceStart)
+            : tank
+              ? damage
+                ? recordTankCombat(210, tankDamageInput)
+                : recordTankCombat()
+              : area
+                ? recordAreaCombat(area)
+                : recordShieldCombat(mode);
+        const boundaries = hmg
+          ? HMG_BOUNDARIES
+          : ordnance
+            ? ordnanceStart === 1
+              ? ORDNANCE_BOUNDARIES
+              : DELAYED_ORDNANCE_BOUNDARIES
+            : tank
+              ? damage
+                ? TANK_DAMAGE_BOUNDARIES
+                : TANK_BOUNDARIES
+              : area
+                ? AREA_BOUNDARIES[area]
+                : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
         if (
           ![
             ...boundaries,
-            ordnance ? 120 : tank ? (damage ? 210 : 120) : area ? 120 : 180,
+            hmg || ordnance ? 120 : tank ? (damage ? 210 : 120) : area ? 120 : 180,
           ].includes(through)
         )
           throw new Error("Unknown shield storage boundary");
@@ -124,6 +131,9 @@ export class CombatStorageProof extends DurableObject<Env> {
         areas: saved.combat.areas,
         tanks: saved.combat.tanks,
         vehicles: saved.snapshot.vehicles,
+        hmg: hmg
+          ? { players: saved.combat.players, projectiles: saved.combat.projectiles }
+          : undefined,
         ordnance: ordnance
           ? {
               grenades: saved.combat.grenades,
@@ -552,6 +562,7 @@ export default {
         "tank-damage",
         "ordnance-press",
         "ordnance-delayed",
+        "hmg-sweep",
         "shield-bash",
         "shield-break",
         "campaign",

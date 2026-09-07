@@ -2,6 +2,7 @@ import { rifleMode } from "../../game/actors/rifle.js";
 import { shieldMode } from "../../game/actors/shield.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
 import { areaExposures } from "../../game/combat/area-attack.js";
+import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
@@ -73,6 +74,7 @@ export async function combatIdentity() {
       profiles: [...COMBAT_CATALOG.firearms].map(([id, profile]) => ({
         id,
         timelineIds: profile.timelineIds,
+        sweep: profile.sweep ?? null,
       })),
     }),
   );
@@ -445,6 +447,7 @@ export function predictCombatMovement(
     frame,
   );
   if (result.status === "failed") throw new Error(`Combat prediction: ${result.physics.reason}`);
+  result.actor.firearmAim = advanceFirearmAim(result.actor, tick, COMBAT_CATALOG);
   return result.actor.life === "alive" && result.actor.body.y > COMBAT_ENTRY.fallBoundary
     ? damagePlayer(result.actor, tick, 1, "classic", "fall").actor
     : result.actor;

@@ -9,6 +9,7 @@ import { build } from "esbuild";
 import { verifyStoredArea } from "./lib/verify-stored-area.js";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
+import { verifyStoredHmg } from "./lib/verify-stored-hmg.js";
 import { verifyStoredOrdnance } from "./lib/verify-stored-ordnance.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
@@ -214,6 +215,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    hmg: await verifyStoredHmg(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     ordnance: await verifyStoredOrdnance(origin, async () => {
       await runtime.dispose();
       runtime = create();

@@ -21,6 +21,7 @@ import {
   emitArea,
   stepArea,
 } from "../combat/area-attack.js";
+import { firearmVelocity } from "../combat/firearm-aim.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
 import { type Grenade, grenadeLaunchVelocity, stepGrenade } from "../combat/grenade.js";
 import {
@@ -87,6 +88,7 @@ export const COMBAT_SCENARIOS = [
   "flame",
   "tank",
   "ordnance",
+  "hmg",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -130,7 +132,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 5;
+  format: 6;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -219,6 +221,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     actor.slot = slot;
     if (scenario === "ordnance") actor.body.supportId = 102;
     if (slot === 1) actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
+    if (scenario === "hmg") actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
     if (scenario === "shotgun") actor.weapon = { ...actor.weapon, id: "shotgun", ammo: 24 };
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
     return actor;
@@ -262,7 +265,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 5,
+    format: 6,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -756,10 +759,7 @@ export function advanceCombatLab(
             actionInstanceId: item.actionInstanceId,
             definitionId: definition.id,
             position,
-            velocity: {
-              x: actor.aim === 0 ? definition.speed * actor.facing : 0,
-              y: actor.aim === 1 ? -definition.speed : actor.aim === 2 ? definition.speed : 0,
-            },
+            velocity: firearmVelocity(result.actor, definition.speed, COMBAT_CATALOG),
             spawnTick: tick,
           });
           world.nextEntityId = nextCounter(world.nextEntityId);
@@ -1165,7 +1165,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents };
 }
 export interface CombatRecording {
-  format: 5;
+  format: 6;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1173,7 +1173,7 @@ export interface CombatRecording {
 }
 export function replayCombatLab(recording: CombatRecording) {
   if (
-    recording.format !== 5 ||
+    recording.format !== 6 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

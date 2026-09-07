@@ -1,0 +1,41 @@
+{
+  "status": "pass",
+  "scope": "Portable and SQLite source/bundle hashes and the final inspector client match their passed reports. Network entries inventory current source only; all three automatic browser attempts failed and lack captured bundle hashes. This check does not rerun behavioral gates.",
+  "verified": [
+    {
+      "name": "contracts",
+      "report": "docs/redesign-evidence/W05-hmg-contracts.json.gz",
+      "sourceSha256": "dfae3e78cb084297d4a1afd3ea381a44ba747ec554a537d1f5aa5c43f4ca81e0",
+      "bundleSha256": "170f99ca4037692d3b34905fe0506801641933774413b24d1e8763455d42f5e0",
+      "matched": true
+    },
+    {
+      "name": "storage",
+      "report": "docs/redesign-evidence/W05-hmg-storage.json.gz",
+      "sourceSha256": "d50ba93695463e260637089e734d416ec22d1ab647a14052042e07020fcbad17",
+      "bundleSha256": "7708b2cd00047b32762270699e8e7234b6e0f28b5779345a4a8066c34639e756",
+      "matched": true
+    },
+    {
+      "name": "networkWorkerInventory",
+      "sourceSha256": "2698aad8a5490ef1a475703d6928fca81f57005a851afc2791a924ca153d8d08",
+      "bundleSha256": "98fb4d5e447af0410875f683e9bbb1b74e64bc5b02b1b1eb67959068edb5ad59",
+      "matched": null,
+      "scope": "Current source inventory only. Failed browser reports did not retain source or bundle hashes; no report alignment or network pass asserted."
+    },
+    {
+      "name": "inspectorClient",
+      "report": "docs/redesign-evidence/W05-hmg-lab.json.gz",
+      "file": "dist/client/combat-lab.js",
+      "bundleSha256": "bd45615635d98eac9251ee0266a8d9146ef053c2ae7cf3314be4c199e97ec0d0",
+      "matched": true
+    },
+    {
+      "name": "networkClientInventory",
+      "file": "dist/client/network-lab.js",
+      "bundleSha256": "df260697f03b2494809901bf0707710de1cbc19039c6c9d09c1d97973a18ce52",
+      "matched": null,
+      "scope": "Current bundle only; failed browser reports did not retain a client bundle hash."
+    }
+  ]
+}

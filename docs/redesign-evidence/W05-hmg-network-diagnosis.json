@@ -1,0 +1,201 @@
+{
+  "status": "open",
+  "scope": "Three failed automatic four-keyboard local workerd attempts. Computed from retained room/client failure reports and independent Node wall/monotonic samples. No CPU profile, complete network acceptance or underlying host-clock cause asserted. Guards remain unchanged.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "result": "failed",
+      "roomTick": 173,
+      "clock": {
+        "mode": "running",
+        "tick": 173,
+        "timerPending": true,
+        "fault": null
+      },
+      "worldFailure": null,
+      "persistenceFailure": null,
+      "peers": [
+        {
+          "slot": 2,
+          "active": true,
+          "lastProcessedSequence": 173,
+          "lastInputError": null,
+          "closeReason": null
+        },
+        {
+          "slot": 0,
+          "active": false,
+          "lastProcessedSequence": 120,
+          "lastInputError": "Client exceeds server-owned input lead",
+          "closeReason": "invalid-input"
+        },
+        {
+          "slot": 1,
+          "active": true,
+          "lastProcessedSequence": 173,
+          "lastInputError": null,
+          "closeReason": null
+        },
+        {
+          "slot": 3,
+          "active": true,
+          "lastProcessedSequence": 171,
+          "lastInputError": null,
+          "closeReason": null
+        }
+      ],
+      "hostSampleCount": 224,
+      "backwardSteps": []
+    },
+    {
+      "attempt": 2,
+      "result": "failed",
+      "roomTick": 26,
+      "clock": {
+        "mode": "recovery",
+        "tick": 26,
+        "timerPending": false,
+        "fault": {
+          "reason": "time_regression",
+          "lastCompletedTick": 26,
+          "observedAtMs": 1788788005896,
+          "debtMs": null
+        }
+      },
+      "worldFailure": null,
+      "persistenceFailure": null,
+      "peers": [
+        {
+          "slot": 3,
+          "active": false,
+          "lastProcessedSequence": 26,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 0,
+          "active": false,
+          "lastProcessedSequence": 26,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 2,
+          "active": false,
+          "lastProcessedSequence": 26,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 1,
+          "active": false,
+          "lastProcessedSequence": 26,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        }
+      ],
+      "hostSampleCount": 109,
+      "backwardSteps": [
+        {
+          "before": {
+            "monotonicMs": 2138.657935,
+            "wallMs": 1788788006218
+          },
+          "after": {
+            "monotonicMs": 2160.360225,
+            "wallMs": 1788788005897
+          },
+          "wallDeltaMs": -321,
+          "monotonicDeltaMs": 21.70228999999972
+        },
+        {
+          "before": {
+            "monotonicMs": 2180.46705,
+            "wallMs": 1788788005917
+          },
+          "after": {
+            "monotonicMs": 2207.699814,
+            "wallMs": 1788788003556
+          },
+          "wallDeltaMs": -2361,
+          "monotonicDeltaMs": 27.23276399999986
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "result": "failed",
+      "roomTick": 114,
+      "clock": {
+        "mode": "recovery",
+        "tick": 114,
+        "timerPending": false,
+        "fault": {
+          "reason": "time_regression",
+          "lastCompletedTick": 114,
+          "observedAtMs": 1788788687788,
+          "debtMs": null
+        }
+      },
+      "worldFailure": null,
+      "persistenceFailure": null,
+      "peers": [
+        {
+          "slot": 2,
+          "active": false,
+          "lastProcessedSequence": 112,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 3,
+          "active": false,
+          "lastProcessedSequence": 114,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 1,
+          "active": false,
+          "lastProcessedSequence": 112,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        },
+        {
+          "slot": 0,
+          "active": false,
+          "lastProcessedSequence": 114,
+          "lastInputError": null,
+          "closeReason": "clock-fault"
+        }
+      ],
+      "hostSampleCount": 198,
+      "backwardSteps": [
+        {
+          "before": {
+            "monotonicMs": 3951.484839,
+            "wallMs": 1788788688086
+          },
+          "after": {
+            "monotonicMs": 3971.962215,
+            "wallMs": 1788788687776
+          },
+          "wallDeltaMs": -310,
+          "monotonicDeltaMs": 20.477375999999822
+        },
+        {
+          "before": {
+            "monotonicMs": 3992.807916,
+            "wallMs": 1788788687797
+          },
+          "after": {
+            "monotonicMs": 4012.967862,
+            "wallMs": 1788788685418
+          },
+          "wallDeltaMs": -2379,
+          "monotonicDeltaMs": 20.159945999999763
+        }
+      ]
+    }
+  ]
+}

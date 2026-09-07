@@ -94,6 +94,7 @@ function player(slot: number): ControlledActor {
     vehicleSpecialTicks: 0,
     vehicleId: null,
     weapon: weapon(),
+    firearmAim: { pitch: 0, nextStepTick: 0 },
     grenadeStock: 5,
     grenadeCooldownTicks: 0,
     meleeCooldownTicks: 0,

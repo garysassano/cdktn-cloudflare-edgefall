@@ -16,6 +16,7 @@ import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
 import { verifyAreaCombat } from "./lib/verify-area-combat.js";
 import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
 import { verifyFootCombat } from "./lib/verify-foot-combat.js";
+import { verifyHmgCombat } from "./lib/verify-hmg-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
@@ -100,6 +101,7 @@ const areaMode = process.argv.includes("--combat-shotgun")
     : null;
 const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
+const hmgMode = process.argv.includes("--combat-hmg");
 const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
 const footMode = process.argv.includes("--combat-melee")
@@ -123,9 +125,10 @@ const combatMode =
   shieldMode ||
   !!areaMode ||
   tankMode ||
-  ordnanceMode;
+  ordnanceMode ||
+  hmgMode;
 assert(
-  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode) ||
+  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -147,6 +150,7 @@ assert(
     process.argv.includes("--combat-flame"),
     tankMode,
     ordnanceMode,
+    hmgMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -181,41 +185,43 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = ordnanceMode
-  ? "dist/network-combat-ordnance-evidence"
-  : tankMode
-    ? "dist/network-combat-tank-evidence"
-    : areaMode
-      ? `dist/network-combat-${areaMode}-evidence`
-      : shieldMode
-        ? "dist/network-combat-guard-evidence"
-        : footMode
-          ? `dist/network-combat-${footMode}-evidence`
-          : hostileMode
-            ? "dist/network-combat-hostile-evidence"
-            : campaignMode
-              ? "dist/network-combat-campaign-evidence"
-              : automaticMode
-                ? "dist/network-combat-auto-evidence"
-                : combatReconnectMode
-                  ? loadingMode
-                    ? phaseMode
-                      ? "dist/network-combat-phase-evidence"
-                      : "dist/network-combat-loading-evidence"
-                    : "dist/network-combat-reconnect-evidence"
-                  : combatRecoveryMode
-                    ? "dist/network-combat-recovery-evidence"
-                    : baselineMode
-                      ? "dist/network-combat-baseline-evidence"
-                      : combatMode
-                        ? eventMode
-                          ? "dist/network-event-evidence"
-                          : faultMode
-                            ? "dist/network-combat-fault-evidence"
-                            : "dist/network-combat-evidence"
-                        : recoveryMode
-                          ? "dist/network-controller-recovery-evidence"
-                          : "dist/network-controller-evidence";
+const output = hmgMode
+  ? "dist/network-combat-hmg-evidence"
+  : ordnanceMode
+    ? "dist/network-combat-ordnance-evidence"
+    : tankMode
+      ? "dist/network-combat-tank-evidence"
+      : areaMode
+        ? `dist/network-combat-${areaMode}-evidence`
+        : shieldMode
+          ? "dist/network-combat-guard-evidence"
+          : footMode
+            ? `dist/network-combat-${footMode}-evidence`
+            : hostileMode
+              ? "dist/network-combat-hostile-evidence"
+              : campaignMode
+                ? "dist/network-combat-campaign-evidence"
+                : automaticMode
+                  ? "dist/network-combat-auto-evidence"
+                  : combatReconnectMode
+                    ? loadingMode
+                      ? phaseMode
+                        ? "dist/network-combat-phase-evidence"
+                        : "dist/network-combat-loading-evidence"
+                      : "dist/network-combat-reconnect-evidence"
+                    : combatRecoveryMode
+                      ? "dist/network-combat-recovery-evidence"
+                      : baselineMode
+                        ? "dist/network-combat-baseline-evidence"
+                        : combatMode
+                          ? eventMode
+                            ? "dist/network-event-evidence"
+                            : faultMode
+                              ? "dist/network-combat-fault-evidence"
+                              : "dist/network-combat-evidence"
+                          : recoveryMode
+                            ? "dist/network-controller-recovery-evidence"
+                            : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -308,7 +314,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -392,6 +398,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (hmgMode) {
+        const hmg = await verifyHmgCombat(pages, base, output);
+        room = hmg.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          hmg,
+          clients: hmg.clients,
+          sharedSnapshots: hmg.common.length,
+          room,
+          scope:
+            "Four real keyboard clients over local workerd WebSockets slew HMGs through authored directions while firing, mirror, jump/down-fire, crouch and resume idle aim. Exact shared snapshots and deduplicated events; engineering graphics and no deployed timing acceptance.",
+        };
       }
       if (ordnanceMode) {
         const ordnance = await verifyOrdnanceCombat(pages, base, output);
@@ -1994,11 +2020,13 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: ordnanceMode
-      ? "ordnance"
-      : tankMode
-        ? "tank"
-        : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario: hmgMode
+      ? "hmg"
+      : ordnanceMode
+        ? "ordnance"
+        : tankMode
+          ? "tank"
+          : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

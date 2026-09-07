@@ -117,6 +117,8 @@ export function writePlayer(writer: Writer, player: ControlledActor): void {
   writeAction(writer, player.action);
   writer.i32(player.facing, 1);
   writer.u32(player.aim, 0, 2);
+  writer.i32(player.firearmAim.pitch, 4);
+  writer.u32(player.firearmAim.nextStepTick);
   writer.u32(player.jumpBufferTicks, 0, 65535);
   writer.u32(player.coyoteTicks, 0, 65535);
   writer.optionalId(player.ignoredSupportId);
@@ -149,6 +151,7 @@ export function readPlayer(reader: Reader): ControlledActor {
     action: readAction(reader),
     facing: reader.i32(1) as -1 | 1,
     aim: reader.u32(0, 2) as 0 | 1 | 2,
+    firearmAim: { pitch: reader.i32(4), nextStepTick: reader.u32() },
     jumpBufferTicks: reader.u32(0, 65535),
     coyoteTicks: reader.u32(0, 65535),
     ignoredSupportId: reader.u32() || null,

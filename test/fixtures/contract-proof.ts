@@ -16,6 +16,7 @@ import { encounterProof } from "./encounter-proof.js";
 import { eventDeliveryProof } from "./event-delivery-proof.js";
 import { footCombatProof } from "./foot-combat-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
+import { hmgProof } from "./hmg-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
@@ -105,6 +106,7 @@ export async function contractProof() {
     areaCombat: await areaCombatProof(),
     tankCombat: await tankCombatProof(),
     ordnance: await ordnanceProof(),
+    hmg: await hmgProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

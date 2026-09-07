@@ -53,6 +53,7 @@ export function footActor(x = 0, y = 0): ControlledActor {
     reboardCooldownTicks: 0,
     vehicleSpecialTicks: 0,
     weapon: { id: "sidearm", ammo: 0, cooldownTicks: 0, shotOrdinal: 0, lastActionInstanceId: 0 },
+    firearmAim: { pitch: 0, nextStepTick: 0 },
     grenadeStock: 10,
     grenadeCooldownTicks: 0,
     meleeCooldownTicks: 0,

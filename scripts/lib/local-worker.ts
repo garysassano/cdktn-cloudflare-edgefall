@@ -18,7 +18,15 @@ export async function withDirectRoomWorker<T>(
     restart: () => Promise<string>,
   ) => Promise<T>,
   options: {
-    combatScenario?: "range" | "rifle" | "guard" | "shotgun" | "flame" | "tank" | "ordnance";
+    combatScenario?:
+      | "range"
+      | "rifle"
+      | "guard"
+      | "shotgun"
+      | "flame"
+      | "tank"
+      | "ordnance"
+      | "hmg";
   } = {},
 ): Promise<T> {
   const require = createRequire(import.meta.url);

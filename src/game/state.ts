@@ -58,6 +58,11 @@ export interface WeaponState {
   shotOrdinal: number;
   lastActionInstanceId: number;
 }
+export interface FirearmAimState {
+  /** Authored elevation index: -4 is down, 0 horizontal, 4 up; facing mirrors it. */
+  pitch: number;
+  nextStepTick: Tick;
+}
 /** Shared reversible locomotion; no player identity, inventory or transport cursors. */
 export interface FootActor {
   body: Body;
@@ -73,7 +78,7 @@ export interface FootActor {
   vehicleId: EntityId | null;
   geometryRevision: number;
 }
-/** Player-owned state extends shared locomotion; snapshot field layout is unchanged. */
+/** Player-owned state extends shared locomotion with inventory and action continuation. */
 export interface ControlledActor extends FootActor {
   playerId: number;
   slot: number;
@@ -84,6 +89,7 @@ export interface ControlledActor extends FootActor {
   reboardCooldownTicks: number;
   vehicleSpecialTicks: number;
   weapon: WeaponState;
+  firearmAim: FirearmAimState;
   grenadeStock: number;
   grenadeCooldownTicks: number;
   meleeCooldownTicks: number;

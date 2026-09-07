@@ -2,6 +2,7 @@ import { validateRifleState } from "../../game/actors/rifle.js";
 import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
 import { validateArea } from "../../game/combat/area-attack.js";
+import { validateFirearmAim } from "../../game/combat/firearm-aim.js";
 import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
@@ -109,7 +110,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players tanks targets projectiles strikes grenades areas encounter events",
   );
-  check(combat.format === 5, "simulation format");
+  check(combat.format === 6, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -155,6 +156,8 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "player roster",
     );
     check(COMBAT_CATALOG.firearms.has(actor.weapon.id), "unsupported weapon");
+    fields(actor.firearmAim, "pitch nextStepTick");
+    validateFirearmAim(actor, combat.tick, COMBAT_CATALOG);
     validatePlayerLife(actor, combat.tick, snapshot.campaign.ruleset);
     if (actor.action.kind !== "ready") {
       const timeline = COMBAT_CATALOG.timelines.get(actor.action.definitionId);
@@ -309,7 +312,15 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
             ({ velocity }) =>
               velocity.x === projectile.velocity.x && velocity.y === projectile.velocity.y,
           )
-        : Math.abs(projectile.velocity.x) + Math.abs(projectile.velocity.y) === attack.speed,
+        : attack.id === 2
+          ? COMBAT_CATALOG.firearms
+              .get("heavy-machine-gun")
+              ?.sweep?.headings.some(
+                ({ velocity }) =>
+                  Math.abs(projectile.velocity.x) === velocity.x &&
+                  projectile.velocity.y === velocity.y,
+              )
+          : Math.abs(projectile.velocity.x) + Math.abs(projectile.velocity.y) === attack.speed,
       "projectile motion",
     );
   }
@@ -705,7 +716,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 8,
+    format: 9,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -729,7 +740,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 8 &&
+    envelope.format === 9 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

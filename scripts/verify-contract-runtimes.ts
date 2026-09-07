@@ -198,6 +198,7 @@ try {
     areaCombat: expected.areaCombat,
     tankCombat: expected.tankCombat,
     ordnance: expected.ordnance,
+    hmg: expected.hmg,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

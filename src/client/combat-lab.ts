@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { rifleMode } from "../game/actors/rifle.js";
 import { shieldMode, shieldPresentation } from "../game/actors/shield.js";
 import { areaExposures } from "../game/combat/area-attack.js";
+import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
 import { canonical } from "../game/core/canonical.js";
 import { Held } from "../game/input/types.js";
@@ -114,7 +115,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 5,
+    format: 6,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -258,7 +259,11 @@ class CombatScene extends Phaser.Scene {
             player.action.definitionId,
             state.tick - player.action.stateStartTick,
           )
-        : null;
+        : player.life === "alive" &&
+            player.vehicleId === null &&
+            player.weapon.id === "heavy-machine-gun"
+          ? actionPose(COMBAT_CATALOG, firearmPoseTimeline(player, COMBAT_CATALOG), 0)
+          : null;
       const handSocket = pose?.sockets.find((socket) => socket.name === "hand"),
         blade = COMBAT_SHAPES.get(9);
       if (player.action.kind === "melee" && handSocket && blade) {
@@ -278,6 +283,11 @@ class CombatScene extends Phaser.Scene {
       const muzzle = pose?.sockets.find((socket) => socket.name === "muzzle");
       if (muzzle) {
         const point = worldSocket(player.body, muzzle.point, player.facing);
+        if (handSocket) {
+          const hand = worldSocket(player.body, handSocket.point, player.facing);
+          g.lineStyle(2, 0xff80db);
+          g.lineBetween(hand.x / 256, hand.y / 256, point.x / 256, point.y / 256);
+        }
         g.fillStyle(0xff80db);
         g.fillCircle(point.x / 256, point.y / 256, 2);
       }

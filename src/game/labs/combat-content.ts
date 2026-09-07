@@ -2,6 +2,7 @@ import type { RifleProfile } from "../actors/rifle.js";
 import type { ShieldProfile } from "../actors/shield.js";
 import { type AreaProfile, validateAreaProfile } from "../combat/area-attack.js";
 import type { FirearmCatalog, FirearmProfile } from "../combat/firearm.js";
+import { type FirearmSweepProfile, validateFirearmSweep } from "../combat/firearm-aim.js";
 import type { FootActionProfiles } from "../combat/foot-actions.js";
 import type { GrenadeProfile } from "../combat/grenade.js";
 import { CONTRACT_FIXTURE } from "../content/contract-fixture.js";
@@ -11,7 +12,7 @@ import { pixels } from "../core/numeric.js";
 import { type TankProfile, validateTankProfile } from "../vehicles/tank.js";
 import { COMBAT_ORDNANCE } from "./combat-terrain.js";
 
-/** Authored engineering exposures and sockets. No final art or HMG turn-sweep acceptance. */
+/** Authored engineering exposures and sockets; final art remains a separate acceptance gate. */
 export const COMBAT_CONTENT: ContentDefinition = structuredClone(CONTRACT_FIXTURE);
 COMBAT_CONTENT.shapes.push(
   { id: 7, rect: { x: pixels(-5), y: pixels(-18), w: pixels(10), h: pixels(16) } },
@@ -40,6 +41,26 @@ const hmg = {
 };
 COMBAT_CONTENT.weapons.push(hmg);
 COMBAT_CONTENT.attacks.push({ ...attack, id: 2, speed: pixels(18) });
+/** Q256 heading vectors are authored integers; no runtime trigonometry or free-aim rotation. */
+export const HMG_SWEEP: FirearmSweepProfile = {
+  stepTicks: 2,
+  headings: [
+    [-4, 16, 2, 0, 0, 4608],
+    [-3, 200, 6, -7, 1763, 4257],
+    [-2, 201, 11, -12, 3258, 3258],
+    [-1, 202, 14, -17, 4257, 1763],
+    [0, 14, 15, -23, 4608, 0],
+    [1, 203, 14, -29, 4257, -1763],
+    [2, 204, 11, -34, 3258, -3258],
+    [3, 205, 6, -37, 1763, -4257],
+    [4, 15, 2, -38, 0, -4608],
+  ].map(([pitch = 0, timelineId = 0, x = 0, y = 0, vx = 0, vy = 0]) => ({
+    pitch,
+    timelineId,
+    muzzle: { x: pixels(x), y: pixels(y) },
+    velocity: { x: vx, y: vy },
+  })),
+};
 const shotgun = {
   ...sidearm,
   id: "shotgun" as const,
@@ -299,12 +320,16 @@ for (const [index, weapon] of [sidearm, hmg, shotgun, flame].entries()) {
   const duration = weapon.id === "flamethrower" ? 30 : weapon.id === "shotgun" ? 12 : 4;
   const emissions = AREA_PROFILES.get(weapon.attackId)?.emissionOffsets ?? [0];
   for (const [poseIndex, id] of timelineIds.entries()) {
-    const muzzle = [
-      { x: pixels(15), y: pixels(-23) },
-      { x: pixels(2), y: pixels(-36) },
-      { x: pixels(2), y: 0 },
-      { x: pixels(15), y: pixels(-12) },
-    ][poseIndex];
+    const muzzle =
+      (weapon.id === "heavy-machine-gun" && poseIndex !== 3
+        ? HMG_SWEEP.headings.find((heading) => heading.timelineId === id)?.muzzle
+        : undefined) ??
+      [
+        { x: pixels(15), y: pixels(-23) },
+        { x: pixels(2), y: pixels(-36) },
+        { x: pixels(2), y: 0 },
+        { x: pixels(15), y: pixels(-12) },
+      ][poseIndex];
     if (!muzzle) throw new Error("Missing firearm socket");
     COMBAT_CONTENT.poses.push({
       id,
@@ -348,7 +373,30 @@ for (const [index, weapon] of [sidearm, hmg, shotgun, flame].entries()) {
       ],
     });
   }
-  profiles.push({ weapon, timelineIds });
+  profiles.push({
+    weapon,
+    timelineIds,
+    ...(weapon.id === "heavy-machine-gun" ? { sweep: HMG_SWEEP } : {}),
+  });
+}
+for (const heading of HMG_SWEEP.headings.filter((heading) => heading.timelineId >= 200)) {
+  const reference = COMBAT_CONTENT.timelines.find((timeline) => timeline.id === 14);
+  if (!reference) throw new Error("Missing HMG timing");
+  COMBAT_CONTENT.poses.push({
+    id: heading.timelineId,
+    frame: `engineering-heavy-machine-gun-pitch-${heading.pitch}`,
+    durationTicks: reference.durationTicks,
+    sockets: [
+      { name: "muzzle", point: heading.muzzle },
+      { name: "hand", point: { x: 0, y: pixels(-23) } },
+    ],
+    hurtShapeIds: [3],
+  });
+  COMBAT_CONTENT.timelines.push({
+    ...structuredClone(reference),
+    id: heading.timelineId,
+    poses: [heading.timelineId],
+  });
 }
 const tankActor = {
   id: 2,
@@ -488,6 +536,7 @@ export const COMBAT_CATALOG: FirearmCatalog = {
   poses: new Map(COMBAT_CONTENT.poses.map((pose) => [pose.id, pose])),
 };
 export const COMBAT_SHAPES = new Map(COMBAT_CONTENT.shapes.map((shape) => [shape.id, shape]));
+for (const profile of profiles) validateFirearmSweep(profile, COMBAT_CATALOG);
 validateTankProfile(TANK_PROFILE, COMBAT_SHAPES, COMBAT_CATALOG);
 export const COMBAT_ATTACKS = new Map(
   COMBAT_CONTENT.attacks.map((definition) => [definition.id, definition]),

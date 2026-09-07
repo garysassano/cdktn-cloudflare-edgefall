@@ -167,7 +167,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
-    expect(bytes.length).toBe(51240);
+    expect(bytes.length).toBe(51272);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);
@@ -189,7 +189,7 @@ describe("full v3 snapshot records", () => {
 
   it("rejects unknown flags/modes/counts and nonzero unused contact/component storage", () => {
     // Header reserved tail; unused player contact slot; unused vehicle component slot.
-    for (const offset of [5, 48, ...Array.from({ length: 15 }, (_, i) => 49 + i), 212, 668]) {
+    for (const offset of [5, 48, ...Array.from({ length: 15 }, (_, i) => 49 + i), 212, 676]) {
       const bytes = encodeSnapshot(fixture(), context);
       bytes[offset] = 0xff;
       expect(() => decodeSnapshot(bytes, context)).toThrow(ProtocolError);
@@ -299,8 +299,10 @@ describe("full v3 snapshot records", () => {
       [296, 4],
       [300, COUNTER_LIMIT],
       [328, 0],
-      [400, 8],
-      [416, 99],
+      [336, 5],
+      [340, 181],
+      [408, 8],
+      [424, 99],
     ]) {
       const bytes = encodeSnapshot(fixture(), context);
       if (offset === undefined || value === undefined) throw new Error("Missing mutation fixture");

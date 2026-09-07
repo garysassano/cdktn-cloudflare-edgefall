@@ -41,6 +41,7 @@ function notice(actor: ControlledActor, tick: number, kind: LifeNotice["kind"]):
   return { kind, tick, playerId: actor.playerId, lives: actor.lives };
 }
 function clearAction(actor: ControlledActor, tick: number) {
+  actor.firearmAim = { pitch: 0, nextStepTick: 0 };
   actor.action = {
     kind: "ready",
     actionInstanceId: 0,

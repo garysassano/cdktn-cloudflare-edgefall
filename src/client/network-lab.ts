@@ -1,10 +1,17 @@
 import Phaser from "phaser";
 import { shieldPresentation } from "../game/actors/shield.js";
+import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
+import { actionPose } from "../game/combat/timeline.js";
 import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
-import { COMBAT_SHAPES, GRENADE_PROFILE, SHIELD_PROFILE } from "../game/labs/combat-content.js";
+import {
+  COMBAT_CATALOG,
+  COMBAT_SHAPES,
+  GRENADE_PROFILE,
+  SHIELD_PROFILE,
+} from "../game/labs/combat-content.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
-import { worldRect } from "../game/physics/body.js";
+import { worldRect, worldSocket } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
 import { combatContinuationHash } from "../shared/diagnostics/combat-recovery.js";
 import {
@@ -657,6 +664,23 @@ async function startLab() {
         const r = worldRect(actor.body, shape.rect, actor.facing);
         g.lineStyle(1, actor.slot === slot ? 0xff986c : 0xa5b38d);
         g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+        if (
+          mode === "combat" &&
+          actor.life === "alive" &&
+          actor.vehicleId === null &&
+          actor.weapon.id === "heavy-machine-gun" &&
+          (actor.action.kind === "ready" || actor.action.kind === "fire")
+        ) {
+          const pose = actionPose(COMBAT_CATALOG, firearmPoseTimeline(actor, COMBAT_CATALOG), 0);
+          const muzzle = pose?.sockets.find((socket) => socket.name === "muzzle");
+          const hand = pose?.sockets.find((socket) => socket.name === "hand");
+          if (muzzle && hand) {
+            const a = worldSocket(actor.body, hand.point, actor.facing),
+              b = worldSocket(actor.body, muzzle.point, actor.facing);
+            g.lineStyle(2, 0xff80db);
+            g.lineBetween(a.x / 256, a.y / 256, b.x / 256, b.y / 256);
+          }
+        }
       }
       if (mode === "combat") {
         for (const tank of snapshot?.vehicles ?? []) drawTankOverlay(g, tank, snapshot?.tick ?? 0);

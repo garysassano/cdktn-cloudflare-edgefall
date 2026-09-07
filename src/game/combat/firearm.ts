@@ -3,12 +3,14 @@ import { canonical } from "../core/canonical.js";
 import { COUNTER_LIMIT, integer, nextCounter } from "../core/numeric.js";
 import { HELD_MASK, Held } from "../input/types.js";
 import type { ControlledActor, WeaponId } from "../state.js";
+import { type FirearmSweepProfile, advanceFirearmAim, firearmPoseTimeline } from "./firearm-aim.js";
 import { type ActionCatalog, stepAction } from "./timeline.js";
 
 /** Explicit authored poses: horizontal standing, up, down-air, horizontal crouched. */
 export interface FirearmProfile {
   weapon: WeaponDefinition;
   timelineIds: readonly [number, number, number, number];
+  sweep?: FirearmSweepProfile;
 }
 export interface FirearmCatalog extends ActionCatalog {
   firearms: ReadonlyMap<WeaponId, FirearmProfile>;
@@ -16,13 +18,6 @@ export interface FirearmCatalog extends ActionCatalog {
 export interface FireIntent {
   held: number;
   firePressed: boolean;
-}
-
-function poseTimeline(actor: ControlledActor, catalog: FirearmCatalog): number {
-  const profile = catalog.firearms.get(actor.weapon.id);
-  if (!profile) throw new Error("Missing firearm profile");
-  const poseIndex = actor.aim === 0 && actor.locomotion === "crouched" ? 3 : actor.aim;
-  return profile.timelineIds[poseIndex];
 }
 
 /** Begin one already-arbitrated fire action without advancing time or cooldown twice. */
@@ -54,12 +49,13 @@ export function beginFirearm(
     if (profile?.weapon.ammoPerAction !== 0) throw new Error("Missing unlimited sidearm fallback");
     actor.weapon.id = "sidearm";
     actor.weapon.ammo = 0;
+    actor.firearmAim = { pitch: actor.aim === 1 ? 4 : actor.aim === 2 ? -4 : 0, nextStepTick: 0 };
   }
   actor.action = {
     kind: "fire",
     actionInstanceId: nextActionId,
     stateStartTick: tick,
-    definitionId: poseTimeline(actor, catalog),
+    definitionId: firearmPoseTimeline(actor, catalog),
     nextMarkerIndex: 0,
   };
   actor.weapon.ammo -= profile.weapon.ammoPerAction;
@@ -88,6 +84,7 @@ export function stepFirearm(
   integer(current.weapon.cooldownTicks, 0, 3600, "weapon cooldown");
   integer(current.weapon.ammo, 0, 65535, "weapon ammunition");
   let actor = structuredClone(current);
+  actor.firearmAim = advanceFirearmAim(actor, tick, catalog);
   actor.weapon.cooldownTicks = Math.max(0, actor.weapon.cooldownTicks - 1);
   let outcome: "none" | "applied" | "cooldown" | "unavailable" = "none";
   const markers: ReturnType<typeof stepAction>["markers"] = [];
@@ -97,7 +94,7 @@ export function stepFirearm(
   if (!eligible && actor.action.kind === "fire") actor.action.kind = "ready";
   if (eligible && actor.action.kind === "fire") {
     // Pose variants share marker timing; locomotion/aim changes never restart a shot.
-    const nextTimeline = poseTimeline(actor, catalog);
+    const nextTimeline = firearmPoseTimeline(actor, catalog);
     if (nextTimeline !== actor.action.definitionId) {
       const prior = catalog.timelines.get(actor.action.definitionId);
       const next = catalog.timelines.get(nextTimeline);

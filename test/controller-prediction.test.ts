@@ -139,7 +139,7 @@ describe("full controller prediction", () => {
   it("round-trips four real controller streams and reconciles every full snapshot", () => {
     const proof = predictionProof();
     expect(proof.reconciliations).toBe(240);
-    expect(proof.bytes).toBe(1432);
+    expect(proof.bytes).toBe(1464);
     expect(proof.coverage.every((p) => p.crouched && p.pending === 6)).toBe(true);
   });
   it("acknowledges extra same-tick jump edges without granting extra physical jumps", () => {
