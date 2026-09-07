@@ -1,0 +1,674 @@
+{
+  "status": "pass",
+  "cast": [
+    {
+      "id": "quay-watch",
+      "source": "art/source/enemies/quay-watch.pixels.json",
+      "sourceSha256": "3aab5ed3ab202bc72fa4af52421dca139a1dabf8cb9d73eeef03179f02c6edd9",
+      "drawings": 19,
+      "variants": 1,
+      "clips": [
+        {
+          "id": "watch.walk",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "watch-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "watch.fire",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-idle",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-recover",
+              "ticks": 6
+            },
+            {
+              "frame": "watch-idle",
+              "ticks": 26
+            }
+          ]
+        },
+        {
+          "id": "watch.fire.up",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-up-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-recover",
+              "ticks": 6
+            },
+            {
+              "frame": "watch-idle",
+              "ticks": 26
+            }
+          ]
+        },
+        {
+          "id": "watch.death",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-death-0",
+              "ticks": 4
+            },
+            {
+              "frame": "watch-death-1",
+              "ticks": 5
+            },
+            {
+              "frame": "watch-death-2",
+              "ticks": 7
+            },
+            {
+              "frame": "watch-death-3",
+              "ticks": 14
+            }
+          ]
+        }
+      ],
+      "frameHashes": {
+        "base/watch-idle": "22ad3a5667bb0e01db46c15074e4fb3329213571e4871a5e923f8b3ebc4c006f",
+        "base/watch-walk-0": "8dfb8265e5c2ecb383b8853a8bc0d986ea322232d2b08fb026903a5ce2eeabbb",
+        "base/watch-walk-1": "3421db2a0b6e112496a8567d0624c1d62e4690bc07d1ff0688fb93f488d99d68",
+        "base/watch-walk-2": "b668ef90c67638c58c5731c5df597e9c9a3afaa1a2042e2a881b77ba957c25b8",
+        "base/watch-walk-3": "2486c997eac86ebcb42187fcf021d066c036ee8ec9d5ff199a2c202b1ba46c50",
+        "base/watch-walk-4": "eb2d2f5a852c66f0dcd2aac5e47d2e8c029bd39ee73e7e3bfe6ad6b9dd02986f",
+        "base/watch-walk-5": "5ff1c3f47dad706558fe6a0fba993b91bea648e51f998b4d7f4cc453df05293e",
+        "base/watch-raise": "2a2732d05ec65ec2f8898b7078510905e1ef9860ba15f05fd6ff6f00235372b7",
+        "base/watch-ready": "b0bebf5810a5e4aa4b672e7d15544177da931d356f2dc0ddb7ae15d217f011fb",
+        "base/watch-recoil": "4f3f534173174943febe1b6bf6bd922fa7c8dc3ce1b92e84dc7851fe735913cc",
+        "base/watch-recover": "f1d480d08c43ca8d93be5b92d97e4913edd5a8a4ab5edd8a2d56bbccf84daed2",
+        "base/watch-up-raise": "2895faa833c55870818192150bab48e6ab02d36660d449cb2c65dcd8ae590ce2",
+        "base/watch-up-ready": "7b29674b5765d065467eaa9a7f6026d001993ea2873be77468ddcf24fc29ca4e",
+        "base/watch-up-recoil": "faa4094476a12ed2852f73fef2b85531305d7fb5b41c42ca6dff69c4686cf006",
+        "base/watch-fall": "7e23b4ad59eff83ff9ef0fb364b9219d86c299ee8c2ce204eb600bb5b4d2fc93",
+        "base/watch-death-0": "602cef4a0ca8fff5415ec0971bbe4e57c551916a8c121f053cb874a9844394e4",
+        "base/watch-death-1": "bd6b8322faa916fe69e39bd92600e2d8f06a86b41a896d9a237bae4b8171f237",
+        "base/watch-death-2": "9ee64734e476c54dbdf9d4d97d2748457c8e0fa280a23a8b05db14b8785d0799",
+        "base/watch-death-3": "85b784054b8c96ae36caa8aa103d22681b3ce9db4284c7942b4c365193e18e8d"
+      },
+      "image": {
+        "width": 544,
+        "height": 204,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "338ce8eb8edca9c7e086185a2fd6d817a55361e8cbb1a591d57d43de9fd45c8c",
+        "alpha": {
+          "transparent": 102751,
+          "opaque": 8225,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": 21,
+        "expected": {
+          "width": 544,
+          "height": 204
+        },
+        "pixelScale": 1,
+        "nonuniformBlocks": 0,
+        "canImportUnchanged": true,
+        "findings": []
+      }
+    },
+    {
+      "id": "breakwater",
+      "source": "art/source/enemies/breakwater.pixels.json",
+      "sourceSha256": "85e6c20ab31a7d10e5b889b05c8d8d9806e1eeb19076bcf75ef6210b16c70ca8",
+      "drawings": 27,
+      "variants": 1,
+      "clips": [
+        {
+          "id": "breakwater.walk",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "breakwater-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "breakwater.walk.broken",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "breakwater-broken-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "breakwater.brace",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-brace",
+              "ticks": 24
+            }
+          ]
+        },
+        {
+          "id": "breakwater.turn",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-turn",
+              "ticks": 9
+            },
+            {
+              "frame": "breakwater-recover",
+              "ticks": 9
+            }
+          ]
+        },
+        {
+          "id": "breakwater.bash",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-windup",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-windup",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-bash",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-recover",
+              "ticks": 14
+            }
+          ]
+        },
+        {
+          "id": "breakwater.bash.broken",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-broken-windup",
+              "ticks": 12
+            },
+            {
+              "frame": "breakwater-broken-bash",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-broken-recover",
+              "ticks": 14
+            }
+          ]
+        },
+        {
+          "id": "breakwater.stunned",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-stunned",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-broken",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-stunned",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-broken",
+              "ticks": 18
+            }
+          ]
+        },
+        {
+          "id": "breakwater.death",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-death-0",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-death-1",
+              "ticks": 5
+            },
+            {
+              "frame": "breakwater-death-2",
+              "ticks": 7
+            },
+            {
+              "frame": "breakwater-death-3",
+              "ticks": 14
+            }
+          ]
+        }
+      ],
+      "frameHashes": {
+        "base/breakwater-brace": "611e8920537f0c8221e56b3f7b5f4fd55d97a9d295c00facdc1cb03618a87589",
+        "base/breakwater-walk-0": "83f17a5be2724e37574e882ddd0a5e4abfa6800518f15d9a79d21c649a06d510",
+        "base/breakwater-walk-1": "3e4be19f0cee0154c97bf3d753191a143ff245c5e768e6a1e932382ac9a943a6",
+        "base/breakwater-walk-2": "4a47c623a6ad6c79f55610e37eaf576292777e82e5e404920e69cedf4197cc02",
+        "base/breakwater-walk-3": "2f155c5b025b7607e0c8124dcc99b2df60e2f828ff8caa4cc3d70f8f2705d828",
+        "base/breakwater-walk-4": "9b8e0fe4e79486a4cc62d484f34136f84d7c0587022a2a3660efe2887e1e5df8",
+        "base/breakwater-walk-5": "e7f54033d7fb11b5571846e6e62e3ae34887c0e779947e2eac5f659c7715a4d9",
+        "base/breakwater-turn": "62f917f4a8a65d71d40257625ac7059cf171b98bd286903140384a79611dadae",
+        "base/breakwater-windup": "4a1ddeae0ef8a99a0a0681ac04f158082d4bbbe1c055035081187c32c76e59a6",
+        "base/breakwater-bash": "c5ffb50662abba11ed8884a5a3295b2501cf6cc5c873246e9441afdd2dfda643",
+        "base/breakwater-recover": "4e976a146758f67d9af10e2be49ac1d108b17f5d48f02e97f843c573e82f60cb",
+        "base/breakwater-broken": "994c757c34281a592595628fb88fd56f06566f546d54aae84bdc57934222712e",
+        "base/breakwater-stunned": "85c73672a5a2a6553cd38af17363d5438ea268b2d6d16c5dd624ceb3647562dd",
+        "base/breakwater-broken-walk-0": "92ef3ad18e95ad6ea7e57bd72a64144e65ad7afe417dcd7094768516c4471e4d",
+        "base/breakwater-broken-walk-1": "7e30a46edc3e67e4ac45307d579255d2e0aa436818e0855b2305efd757c8d1ff",
+        "base/breakwater-broken-walk-2": "aec668644d43c7ac55e8d086d5a8b87571c43b640d507d728f5b43ffd073f8e5",
+        "base/breakwater-broken-walk-3": "661cb2a409c3a6c86bb1faa4b3bffff575cc7ac6d6f4beaf3a3e79474130a922",
+        "base/breakwater-broken-walk-4": "d0fe0314c987b52e8cec5b2e48cb0675e67afdc9a97fac2f048074c884a6ed6f",
+        "base/breakwater-broken-walk-5": "94c8aad23c3144117dc93816a13048e02f926df460f3ffc01d2c928ae90e68b1",
+        "base/breakwater-broken-windup": "5ae9f373721206880a14c4cf584732d809f3992fd5b84b4ec8af9558cd0d5ba1",
+        "base/breakwater-broken-bash": "80a9e7fd6cd74a22fd044cb9ab21e4592a6b8210a134b2a67fd48ff59b827073",
+        "base/breakwater-broken-recover": "a4f7e2c17a3096222a7a153aeedf94e0a45daed10e082dd120321c2dec4fd199",
+        "base/breakwater-fall": "b0c0a906a1349848ec7a984318dd406c75e7d3f3e91d99c38ae589a1adaffa3f",
+        "base/breakwater-death-0": "48551f16059ec2bbcb293b3887c9540a3fbb1a357ed4c9ada67a6c430874431c",
+        "base/breakwater-death-1": "0d13b7c095ae5b7c79fade78491fed137f22b469ce260e42ca8d19c353704974",
+        "base/breakwater-death-2": "fecb69ec207741829042b2a7b61317b8adffbe45503db69efcc9f6bbc921c1b0",
+        "base/breakwater-death-3": "6071e9e726e23ffea793dfccf34560a6249b78616ccd5240b10873b5e945ff3e"
+      },
+      "image": {
+        "width": 544,
+        "height": 272,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "d7557b7d8c877c7588fcd824d59a4f7354e2cafe1705fd17464c30f2b9a954a8",
+        "alpha": {
+          "transparent": 134546,
+          "opaque": 13422,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": 21,
+        "expected": {
+          "width": 544,
+          "height": 272
+        },
+        "pixelScale": 1,
+        "nonuniformBlocks": 0,
+        "canImportUnchanged": true,
+        "findings": []
+      }
+    },
+    {
+      "id": "kestrel",
+      "source": "art/source/vehicles/kestrel.pixels.json",
+      "sourceSha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84",
+      "drawings": 27,
+      "variants": 4,
+      "clips": [
+        {
+          "id": "kestrel.drive",
+          "channel": "legs",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "kestrel-treads-0",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-treads-1",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-treads-2",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-treads-3",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.board",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hatch-open",
+              "ticks": 3
+            },
+            {
+              "frame": "kestrel-crew-up",
+              "ticks": 3
+            },
+            {
+              "frame": "kestrel-crew-down",
+              "ticks": 3
+            },
+            {
+              "frame": "kestrel-hatch-closed",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "kestrel.exit",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hatch-open",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-crew-down",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-crew-up",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hatch-open",
+              "ticks": 2
+            }
+          ]
+        }
+      ],
+      "frameHashes": {
+        "p1/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
+        "p2/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
+        "p3/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
+        "p4/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
+        "p1/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
+        "p2/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
+        "p3/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
+        "p4/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
+        "p1/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
+        "p2/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
+        "p3/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
+        "p4/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
+        "p1/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
+        "p2/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
+        "p3/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
+        "p4/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
+        "p1/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
+        "p2/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
+        "p3/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
+        "p4/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
+        "p1/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
+        "p2/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
+        "p3/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
+        "p4/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
+        "p1/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
+        "p2/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
+        "p3/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
+        "p4/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
+        "p1/kestrel-turret-0-recoil": "ce500eb83e85bda8a143a45cfe19aec9bed7301895d86aaabf4fcb8a5e7c5700",
+        "p2/kestrel-turret-0-recoil": "ce500eb83e85bda8a143a45cfe19aec9bed7301895d86aaabf4fcb8a5e7c5700",
+        "p3/kestrel-turret-0-recoil": "ce500eb83e85bda8a143a45cfe19aec9bed7301895d86aaabf4fcb8a5e7c5700",
+        "p4/kestrel-turret-0-recoil": "ce500eb83e85bda8a143a45cfe19aec9bed7301895d86aaabf4fcb8a5e7c5700",
+        "p1/kestrel-turret-1": "14e8275a2786412cc375dbc057ca4fd84a52c293a4602063d331055bebbf04da",
+        "p2/kestrel-turret-1": "14e8275a2786412cc375dbc057ca4fd84a52c293a4602063d331055bebbf04da",
+        "p3/kestrel-turret-1": "14e8275a2786412cc375dbc057ca4fd84a52c293a4602063d331055bebbf04da",
+        "p4/kestrel-turret-1": "14e8275a2786412cc375dbc057ca4fd84a52c293a4602063d331055bebbf04da",
+        "p1/kestrel-turret-1-recoil": "be0c2d09a63ae3f8ea3405af0a9b67eabe4922000929a7cbc973e901dd333564",
+        "p2/kestrel-turret-1-recoil": "be0c2d09a63ae3f8ea3405af0a9b67eabe4922000929a7cbc973e901dd333564",
+        "p3/kestrel-turret-1-recoil": "be0c2d09a63ae3f8ea3405af0a9b67eabe4922000929a7cbc973e901dd333564",
+        "p4/kestrel-turret-1-recoil": "be0c2d09a63ae3f8ea3405af0a9b67eabe4922000929a7cbc973e901dd333564",
+        "p1/kestrel-turret-2": "5e83e91d1c250494fa16d205c49edb7bf45bbb1da3c1ce4239610d5270940072",
+        "p2/kestrel-turret-2": "5e83e91d1c250494fa16d205c49edb7bf45bbb1da3c1ce4239610d5270940072",
+        "p3/kestrel-turret-2": "5e83e91d1c250494fa16d205c49edb7bf45bbb1da3c1ce4239610d5270940072",
+        "p4/kestrel-turret-2": "5e83e91d1c250494fa16d205c49edb7bf45bbb1da3c1ce4239610d5270940072",
+        "p1/kestrel-turret-2-recoil": "6f4bfca506d08167097073623750fff44c5918825867bd7375c9a486d2b68e3e",
+        "p2/kestrel-turret-2-recoil": "6f4bfca506d08167097073623750fff44c5918825867bd7375c9a486d2b68e3e",
+        "p3/kestrel-turret-2-recoil": "6f4bfca506d08167097073623750fff44c5918825867bd7375c9a486d2b68e3e",
+        "p4/kestrel-turret-2-recoil": "6f4bfca506d08167097073623750fff44c5918825867bd7375c9a486d2b68e3e",
+        "p1/kestrel-turret-6": "a546bec6b02541ec43e4c0eff0e246414cefdefb0e595b5675f1216d8e5941e4",
+        "p2/kestrel-turret-6": "a546bec6b02541ec43e4c0eff0e246414cefdefb0e595b5675f1216d8e5941e4",
+        "p3/kestrel-turret-6": "a546bec6b02541ec43e4c0eff0e246414cefdefb0e595b5675f1216d8e5941e4",
+        "p4/kestrel-turret-6": "a546bec6b02541ec43e4c0eff0e246414cefdefb0e595b5675f1216d8e5941e4",
+        "p1/kestrel-turret-6-recoil": "c81b938f706984610d547aa3f431494052b5767bdfa85b3456853510c25f451c",
+        "p2/kestrel-turret-6-recoil": "c81b938f706984610d547aa3f431494052b5767bdfa85b3456853510c25f451c",
+        "p3/kestrel-turret-6-recoil": "c81b938f706984610d547aa3f431494052b5767bdfa85b3456853510c25f451c",
+        "p4/kestrel-turret-6-recoil": "c81b938f706984610d547aa3f431494052b5767bdfa85b3456853510c25f451c",
+        "p1/kestrel-turret-7": "85ded2adad0f6d2caa2d2f5b93183de5b44173f95ba6d002cc84188e4f53f830",
+        "p2/kestrel-turret-7": "85ded2adad0f6d2caa2d2f5b93183de5b44173f95ba6d002cc84188e4f53f830",
+        "p3/kestrel-turret-7": "85ded2adad0f6d2caa2d2f5b93183de5b44173f95ba6d002cc84188e4f53f830",
+        "p4/kestrel-turret-7": "85ded2adad0f6d2caa2d2f5b93183de5b44173f95ba6d002cc84188e4f53f830",
+        "p1/kestrel-turret-7-recoil": "6790764f10a3b656c641cd02aa311becad58cfa6b34e4f82001cedccfac99900",
+        "p2/kestrel-turret-7-recoil": "6790764f10a3b656c641cd02aa311becad58cfa6b34e4f82001cedccfac99900",
+        "p3/kestrel-turret-7-recoil": "6790764f10a3b656c641cd02aa311becad58cfa6b34e4f82001cedccfac99900",
+        "p4/kestrel-turret-7-recoil": "6790764f10a3b656c641cd02aa311becad58cfa6b34e4f82001cedccfac99900",
+        "p1/kestrel-turret-3": "5f7d7d4e5de110a183c33489611ea1f15c670ea0028348108142011664c7bb07",
+        "p2/kestrel-turret-3": "5f7d7d4e5de110a183c33489611ea1f15c670ea0028348108142011664c7bb07",
+        "p3/kestrel-turret-3": "5f7d7d4e5de110a183c33489611ea1f15c670ea0028348108142011664c7bb07",
+        "p4/kestrel-turret-3": "5f7d7d4e5de110a183c33489611ea1f15c670ea0028348108142011664c7bb07",
+        "p1/kestrel-turret-3-recoil": "3cb5a9d18eddd9d56e17b90a799bc1d6881c003180784ca40d6b97706fd0baaf",
+        "p2/kestrel-turret-3-recoil": "3cb5a9d18eddd9d56e17b90a799bc1d6881c003180784ca40d6b97706fd0baaf",
+        "p3/kestrel-turret-3-recoil": "3cb5a9d18eddd9d56e17b90a799bc1d6881c003180784ca40d6b97706fd0baaf",
+        "p4/kestrel-turret-3-recoil": "3cb5a9d18eddd9d56e17b90a799bc1d6881c003180784ca40d6b97706fd0baaf",
+        "p1/kestrel-turret-4": "1f98bd549e46f1e8c14c51fb2e11c38f8a3e02b4229b1e79f43e9fd301ab1f10",
+        "p2/kestrel-turret-4": "1f98bd549e46f1e8c14c51fb2e11c38f8a3e02b4229b1e79f43e9fd301ab1f10",
+        "p3/kestrel-turret-4": "1f98bd549e46f1e8c14c51fb2e11c38f8a3e02b4229b1e79f43e9fd301ab1f10",
+        "p4/kestrel-turret-4": "1f98bd549e46f1e8c14c51fb2e11c38f8a3e02b4229b1e79f43e9fd301ab1f10",
+        "p1/kestrel-turret-4-recoil": "8a18e7d208bfe4cd200a0dbf4e4344f20971c9d5282427f39204d77c776fd31e",
+        "p2/kestrel-turret-4-recoil": "8a18e7d208bfe4cd200a0dbf4e4344f20971c9d5282427f39204d77c776fd31e",
+        "p3/kestrel-turret-4-recoil": "8a18e7d208bfe4cd200a0dbf4e4344f20971c9d5282427f39204d77c776fd31e",
+        "p4/kestrel-turret-4-recoil": "8a18e7d208bfe4cd200a0dbf4e4344f20971c9d5282427f39204d77c776fd31e",
+        "p1/kestrel-turret-5": "057bb636b2cb8d438da03e21dcd19fce4513e669200424e1c8b0de290b4e172b",
+        "p2/kestrel-turret-5": "057bb636b2cb8d438da03e21dcd19fce4513e669200424e1c8b0de290b4e172b",
+        "p3/kestrel-turret-5": "057bb636b2cb8d438da03e21dcd19fce4513e669200424e1c8b0de290b4e172b",
+        "p4/kestrel-turret-5": "057bb636b2cb8d438da03e21dcd19fce4513e669200424e1c8b0de290b4e172b",
+        "p1/kestrel-turret-5-recoil": "435d79079c0a111235a2bc1f4e801586a53c245c330f768f69e22d1d314410bf",
+        "p2/kestrel-turret-5-recoil": "435d79079c0a111235a2bc1f4e801586a53c245c330f768f69e22d1d314410bf",
+        "p3/kestrel-turret-5-recoil": "435d79079c0a111235a2bc1f4e801586a53c245c330f768f69e22d1d314410bf",
+        "p4/kestrel-turret-5-recoil": "435d79079c0a111235a2bc1f4e801586a53c245c330f768f69e22d1d314410bf",
+        "p1/kestrel-hatch-closed": "6ca49b3373c1308be8cf69111a01721468faae3c36e8b82474a6fba827eb206e",
+        "p2/kestrel-hatch-closed": "6ca49b3373c1308be8cf69111a01721468faae3c36e8b82474a6fba827eb206e",
+        "p3/kestrel-hatch-closed": "6ca49b3373c1308be8cf69111a01721468faae3c36e8b82474a6fba827eb206e",
+        "p4/kestrel-hatch-closed": "6ca49b3373c1308be8cf69111a01721468faae3c36e8b82474a6fba827eb206e",
+        "p1/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
+        "p2/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
+        "p3/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
+        "p4/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
+        "p1/kestrel-crew-up": "903ddbdfcd3045abc13d9f79d60bfb0debf64439c75269a9cef731bc534d5c87",
+        "p2/kestrel-crew-up": "237a4355f7851441f6358afedbfff48be45126dbcf3603486763c2114ac66a0a",
+        "p3/kestrel-crew-up": "125202ca373adbfe513e10b88f87ed188aac52235536a91dfeebea548b7a8893",
+        "p4/kestrel-crew-up": "616e343e04ed29c2b82cdf4fa09fbec6c1b2ecb072ff6c6527ef12ebb35fab8e",
+        "p1/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
+        "p2/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
+        "p3/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
+        "p4/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
+        "p1/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
+        "p2/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
+        "p3/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
+        "p4/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d"
+      },
+      "image": {
+        "width": 800,
+        "height": 1400,
+        "hasAlphaChannel": true,
+        "decodedRgbaSha256": "bf4fbef90202ca3f968d9846dbcdf7aa7b3fa5776c83d9462707be6b6e3bdbc0",
+        "alpha": {
+          "transparent": 1081752,
+          "opaque": 38248,
+          "partial": 0,
+          "hiddenRgb": 0
+        },
+        "visibleColors": 33,
+        "expected": {
+          "width": 800,
+          "height": 1400
+        },
+        "pixelScale": 1,
+        "nonuniformBlocks": 0,
+        "canImportUnchanged": true,
+        "findings": []
+      }
+    }
+  ],
+  "humanReview": "pending",
+  "scope": "Native enemy/vehicle candidates with accepted release, bash and seat timing, eight independent turret headings, exact PNG/provenance and bounded pixel/texture output. Full W06 environment/effects/audio specimen and human style approval remain open."
+}

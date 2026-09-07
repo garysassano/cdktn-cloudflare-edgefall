@@ -85,6 +85,54 @@
         "status": "pending",
         "reviewer": null
       }
+    },
+    {
+      "id": "quay-watch-native-01",
+      "file": "art/source/enemies/quay-watch.pixels.json",
+      "bytes": 34483,
+      "sha256": "3aab5ed3ab202bc72fa4af52421dca139a1dabf8cb9d73eeef03179f02c6edd9",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed pixel rows; no sampled reference pixels, runtime figure generation or whole-character rotation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "breakwater-native-01",
+      "file": "art/source/enemies/breakwater.pixels.json",
+      "bytes": 49399,
+      "sha256": "85e6c20ab31a7d10e5b889b05c8d8d9806e1eeb19076bcf75ef6210b16c70ca8",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed pixel rows; no sampled reference pixels, runtime figure generation or whole-character rotation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "kestrel-native-01",
+      "file": "art/source/vehicles/kestrel.pixels.json",
+      "bytes": 52006,
+      "sha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed pixel rows; no sampled reference pixels, runtime figure generation or whole-character rotation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
     }
   ]
 }

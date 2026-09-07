@@ -1,0 +1,1062 @@
+{
+  "format": 1,
+  "id": "quay-watch-native-01",
+  "status": "benchmark-candidate",
+  "creator": "Codex-authored indexed pixel drawings for Edgefall",
+  "licence": "Project-original",
+  "reference": "Original Quay Watch / Breakwater / Kestrel designs; shared Edgefall native-pixel scale and palette discipline, no sampled third-party pixels.",
+  "canvas": {
+    "width": 64,
+    "height": 64,
+    "root": [
+      24,
+      48
+    ]
+  },
+  "palette": {
+    ".": "00000000",
+    "o": "201e2aff",
+    "H": "302c35ff",
+    "h": "555160ff",
+    "j": "918477ff",
+    "S": "8f5145ff",
+    "s": "c88b65ff",
+    "k": "edbf88ff",
+    "w": "f4deafff",
+    "e": "191e2aff",
+    "A": "5f5138ff",
+    "a": "9b7c44ff",
+    "b": "ddae5cff",
+    "C": "373e50ff",
+    "c": "61657aff",
+    "d": "92949dff",
+    "N": "273e51ff",
+    "n": "486b82ff",
+    "q": "83a5afff",
+    "B": "29272eff",
+    "t": "544341ff",
+    "u": "9c7853ff",
+    "G": "63523eff",
+    "g": "ad905fff",
+    "f": "dec28bff",
+    "M": "243641ff",
+    "m": "678a98ff",
+    "i": "cbe0d5ff",
+    "v": "bd572fff",
+    "V": "f5a64aff",
+    "y": "ecd181ff",
+    "r": "493c43ff",
+    "R": "8a4740ff",
+    "x": "332c30ff"
+  },
+  "variants": {
+    "base": {}
+  },
+  "frames": [
+    {
+      "id": "watch-idle",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-walk-0",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        ".................oNNnnNoNnnNo",
+        "................oNNnnNo.oNnnNo",
+        "...............oNNnnNo...oNnnNo",
+        "..............oNNnnNo.....oNnnNo",
+        ".............oNNnnNo.......oNnnNo",
+        "............oNNnnNo.........oNNNo",
+        "............oBBttBo..........oBBBo",
+        ".............oBtuuBo..........oBBBo",
+        "..............oBBBBBo...........oBBo",
+        "...............oooooo...........oBuBo",
+        "...............................oBBBBo"
+      ]
+    },
+    {
+      "id": "watch-walk-1",
+      "channel": "full-body",
+      "at": [
+        0,
+        11
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        "..................oooooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        "................oNNnnNoNnnNo",
+        "...............oNNnnNo..oNnnNo",
+        "...............oNnnNo....oNnnNo",
+        "...............oNNNo......oNNNo",
+        "................oNNo.....oNNNo",
+        "................oBBo....oNNNo",
+        "................oBtBo..oBBBo",
+        "................oBtBo.oBttBo",
+        "................oBtBo..oBBBBo",
+        "................oBtuBo..ooooo",
+        "................oBBBBBo"
+      ]
+    },
+    {
+      "id": "watch-walk-2",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        ".................oNnnNoNnnNo",
+        ".................oNNnNoNNnnNo",
+        ".................oNNnNoNNnnNo",
+        "................oNNnNo.oNNnNo",
+        "................oNNNo...oNNnNo",
+        "................oBBBo...oNNnNo",
+        "................oBtBo....oNNNo",
+        "................oBBBo....oBBBo",
+        ".................oooo....oBttBo",
+        "........................oBttuBo",
+        "........................oBBBBBo"
+      ]
+    },
+    {
+      "id": "watch-walk-3",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        ".................oNNnnNoNnnNo",
+        "................oNNnnNo.oNnnNo",
+        "...............oNNnnNo...oNnnNo",
+        "..............oNNnnNo.....oNnnNo",
+        ".............oNNnnNo.......oNnnNo",
+        "............oNNnnNo.........oNNNo",
+        "............oBBttBo..........oBBBo",
+        "............oBtuuBo..........oBBBo",
+        "............oBBBBBo...........oBBo",
+        ".............oooooo...........oBuBo",
+        ".............................oBBBBo"
+      ]
+    },
+    {
+      "id": "watch-walk-4",
+      "channel": "full-body",
+      "at": [
+        0,
+        11
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        "..................oooooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        "................oNNnnNoNnnNo",
+        "...............oNNnnNo..oNnnNo",
+        "...............oNnnNo....oNnnNo",
+        "...............oNNNo......oNNNo",
+        "...............oNNNo.....oNNNo",
+        "...............oNNNo....oBBBo",
+        "...............oNNNo...oBttBo",
+        "...............oBBBo....oBBBo",
+        "...............oBttBo....oooo",
+        "..............oBttuBo",
+        "..............oBBBBBo"
+      ]
+    },
+    {
+      "id": "watch-walk-5",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaMimAAo",
+        "..............oAAAaAaaoGggoAo",
+        "...............oAAaAaoGgffMMo",
+        "...............oAAAAbboGGgMmmMoo",
+        "................oAAabaaoooMMmmmMoo",
+        "................oAAaaaaaaaaMMmmmmMiM",
+        "................oAAAaAAaAAAAoMMMMmiMM",
+        ".................oxxxyyxxxxo...MMmM",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        ".................oNnnNoNnnNo",
+        ".................oNNnNoNNnnNo",
+        ".................oNNnNoNNnnNo",
+        ".................oNNNo.oNNnNo",
+        "..................oNNo..oNNnNo",
+        "..................oBBo...oNNNo",
+        "..................oBtBo...oNNNo",
+        "..................oBtBo...oBBBo",
+        "..................oBBBBo..oBttBo",
+        "...................oooo..oBttuBo",
+        ".........................oBBBBBo"
+      ]
+    },
+    {
+      "id": "watch-raise",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAoGggoo",
+        "..............oAaAAAbboGgffMMMMMoo",
+        "..............oAAAaAaaaoGGgMmmmmmmmMoo",
+        "...............oAAaAaaAAoooMMMmmmmmmmmiiM",
+        "...............oAAAAbbaaAAAMMoooMMMMMMM",
+        "................oAAabaaaAAAoM",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-ready",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        ".......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbboGggoMMMMMmmmmMMiiM",
+        "...............oAabbaaoGgffMmmmmmmmMMimMM",
+        "..............oAAabAaaAoGGgMMmmmmMMMMMMM",
+        "..............oAaAAAbbaMoooMMoooMMMo",
+        "..............oAAAaAaaaMMMAMo..oMMo",
+        "...............oAAaAaaAAAAAAo",
+        "...............oAAAAbbaaAAAo",
+        "................oAAabaaaAAAo",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "hand": [
+          0,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "watch-recoil",
+      "channel": "full-body",
+      "at": [
+        0,
+        10
+      ],
+      "rows": [
+        ".....................ooooooo",
+        "...................ooHhhhhHHoo",
+        "..................oHhhjjjjhhhHo",
+        ".................oHhjjjjjjjhhhHo",
+        "................oHHhhhhhhhhhhhHHo",
+        "................oHHHHHhhhHHHHHHHo",
+        ".................oHHoiiiMMiiiiMo",
+        "..................oHoVyVMMVyVMo",
+        "..................oHoVVVMMVVVMo",
+        "...................oHHMmmmmMMo",
+        "....................oHMMiMMMo",
+        ".....................oHhMMHo",
+        "......................ooooo",
+        "..................ooooooo",
+        "................ooAbbboGggoMMMMMmmmmMMiiM",
+        "...............oAabbaoGgffMmmmmmmmMMimMM",
+        "..............oAAabAaaoGGgMMmmmmMMMMMMM",
+        "..............oAaAAAbbaoooMMoooMMMo",
+        "..............oAAAaAaaaMMMMoo.oMMo",
+        "...............oAAaAaaAAAAAAo",
+        "...............oAAAAbbaaAAAo",
+        "................oAAabaaaAAAo",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-recover",
+      "channel": "full-body",
+      "at": [
+        0,
+        11
+      ],
+      "rows": [
+        "......................ooooooo",
+        "....................ooHhhhhHHoo",
+        "...................oHhhjjjjhhhHo",
+        "..................oHhjjjjjjjhhhHo",
+        ".................oHHhhhhhhhhhhhHHo",
+        ".................oHHHHHhhhHHHHHHHo",
+        "..................oHHoiiiMMiiiiMo",
+        "...................oHoVyVMMVyVMo",
+        "...................oHoVVVMMVVVMo",
+        "....................oHHMmmmmMMo",
+        ".....................oHMMiMMMo",
+        "......................oHhMMHo",
+        "..................oooooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAMMMAAo",
+        "..............oAaAAAbbaoGggoo",
+        "..............oAAAaAaaoGgffMMMMMoo",
+        "...............oAAaAaaAoGGgMmmmmmmmMoo",
+        "...............oAAAAbbaaoooMMMmmmmmmmmiiM",
+        "................oAAabaaaAAAMMoooMMMMMMM",
+        "................oAAaaaaaaaaAM",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-up-raise",
+      "channel": "full-body",
+      "at": [
+        0,
+        12
+      ],
+      "rows": [
+        "..................ooooooo",
+        "................ooHhhhhHHoo",
+        "...............oHhhjjjjhhhMiM",
+        "..............oHhjjjjjjjhhMmM",
+        ".............oHHhhhhhhhhhhMmMo",
+        ".............oHHHHHhhhHHHHMiMo",
+        "..............oHHoiiiMMiiiMmM",
+        "...............oHoVyVMMVyVMmM",
+        "...............oHoVVVMMVVVMmM",
+        "................oHHMmmmmMMMmM",
+        ".................oHMMiMMMoMiMo",
+        "..................oHhMoGgoMmmMo",
+        "................ooAoooGgfoMmmMo",
+        "...............oAabboAAGgoMmmMo",
+        "..............oAAaboAaAoooMmmMo",
+        "..............oAaAoAaAAoioMmmMo",
+        "..............oAAAoAAAaoMoGgfMo",
+        "...............oAAaoAAAAooGffMo",
+        "...............oAAAAoooooAoGgMo",
+        "................oAAabaaaAAAoMMo",
+        "................oAAaaaaaaaaoMMo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-up-ready",
+      "channel": "full-body",
+      "at": [
+        0,
+        11
+      ],
+      "rows": [
+        ".................ooooooo..MiM",
+        "...............ooHhhhhHHooMmM",
+        "..............oHhhjjjjhhhHMmM",
+        ".............oHhjjjjjjjhhhMiM",
+        "............oHHhhhhhhhhhhhMmM",
+        "............oHHHHHhhhHHHHHMmM",
+        ".............oHHoiiiMMiiiiMmM",
+        "..............oHoVyVMMVyVMMmM",
+        "..............oHoVVVMMVVVoMiMo",
+        "...............oHHMmmmmMMoMmmMo",
+        "................oHMMiMMMooMmmMo",
+        ".................oHhMMHo.oMmmMo",
+        "..................oooooGgoMmmMo",
+        "................ooAbboGgfoMmmMo",
+        "...............oAabboAAGgoGgfMo",
+        "..............oAAaboAaAoooGffMo",
+        "..............oAaAoAaAAoimoGgMo",
+        "..............oAAAoAAAaoMMAoMMo",
+        "...............oAAaoAAAAoAAoMMo",
+        "...............oAAAAoooooAAo",
+        "................oAAabaaaAAAo",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ],
+      "sockets": {
+        "muzzle": [
+          2,
+          -36
+        ],
+        "hand": [
+          0,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "watch-up-recoil",
+      "channel": "full-body",
+      "at": [
+        0,
+        12
+      ],
+      "rows": [
+        "................ooooooo...MiM",
+        "..............ooHhhhhHHoo.MmM",
+        ".............oHhhjjjjhhhHoMmM",
+        "............oHhjjjjjjjhhhHMiM",
+        "...........oHHhhhhhhhhhhhHMmM",
+        "...........oHHHHHhhhHHHHHHMmM",
+        "............oHHoiiiMMiiiiMMmM",
+        ".............oHoVyVMMVyVMoMmM",
+        ".............oHoVVVMMVVVMoMiMo",
+        "..............oHHMmmmmMMooMmmMo",
+        "...............oHMMiMMMo.oMmmMo",
+        "................oHhMMHoGgoMmmMo",
+        "................ooooooGgfoMmmMo",
+        "...............oAabboAAGgoMmmMo",
+        "..............oAAaboAaAoooGgfMo",
+        "..............oAaAoAaAAoioGffMo",
+        "..............oAAAoAAAaoMMoGgMo",
+        "...............oAAaoAAAAoAAoMMo",
+        "...............oAAAAoooooAAoMMo",
+        "................oAAabaaaAAAo",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNonNo",
+        ".................ooooooooooonnNo",
+        "...................oNnnnNoNnnnNo",
+        "...................oNnnnNoNNnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNnnNo.NnnNo",
+        "...................oNNNNo..oNNNo",
+        "...................oNNNNo..oNNNo",
+        "...................oBBttBo.oBtBo",
+        "...................oBttuBo.oBtBoo",
+        "..................oBttuBBo.oBttuBo",
+        "..................oBBBBBBo.oBBBBBo",
+        "...................oooooo...ooooo"
+      ]
+    },
+    {
+      "id": "watch-fall",
+      "channel": "full-body",
+      "at": [
+        0,
+        11
+      ],
+      "rows": [
+        ".....................ooooooo",
+        "...................ooHhhhhHHoo",
+        "..................oHhhjjjjhhhHo",
+        ".................oHhjjjjjjjhhhHo",
+        "................oHHhhhhhhhhhhhHHo",
+        "................oHHHHHhhhHHHHHHHo",
+        ".................oHHoiiiMMiiiiMo",
+        "..................oHoVyVMMVyVMo",
+        "..................oHoVVVMMVVVMo",
+        "...................oHHMmmmmMMo",
+        "....................oHMMiMMMo",
+        ".....................oHhMMHo",
+        "......................ooooo",
+        "..................ooooooo",
+        "................ooAbbbbaAoo",
+        "...............oAabbaaAAAAAo",
+        "..............oAAabAaaAoGggoo",
+        "..............oAaAAAbboGgffMMMMMoo",
+        "..............oAAAaAaaaoGGgMmmmmmmmMoo",
+        "...............oAAaAaaAAoooMMMmmmmmmmmiiM",
+        "...............oAAAAbbaaAAAMMoooMMMMMMM",
+        "................oAAabaaaAAAoM",
+        "................oAAaaaaaaaaAo",
+        "................oAAAaAAaAAAAo",
+        ".................oxxxyyxxxxo",
+        ".................oNNnnNNnnNo",
+        ".................ooooooooooo",
+        ".................oNNnNoNNnnNo",
+        ".................oNNnNoNNnnNo",
+        "................oNNnNo.oNNnNo",
+        "................oNNNo...oNNnNo",
+        "................oBBBo...oNNnNo",
+        "................oBtBo....oNNNo",
+        "................oBBBo....oBBBo",
+        ".................oooo....oBttBo",
+        "........................oBttuBo",
+        "........................oBBBBBo"
+      ]
+    },
+    {
+      "id": "watch-death-0",
+      "channel": "full-body",
+      "at": [
+        0,
+        30
+      ],
+      "rows": [
+        "....................ooooo",
+        ".................ooHhhhHoo",
+        "...............ooHhjjhhhHHo",
+        "..............oHHHmmiiMMHHo",
+        "..............oHHMVVVMMVMo",
+        "...............oHHMMMmmMo",
+        "................oHHHHMMo",
+        ".............oooooAAoooo",
+        "...........ooAbbaaAAAoo",
+        "..........oAabAAaAGgfo",
+        ".........oAaAaaaaAGgffMo",
+        ".........oAAAaAAAAAGgMMmM",
+        "..........oNNnnnNNooMMMmmM",
+        "...........oNNnnNNnNo..MMMM",
+        "............oNNNNnnnNo",
+        "............oBBttBBttBoo",
+        "...........oBBBtuBBBttuBo",
+        "............oooooooooooo"
+      ]
+    },
+    {
+      "id": "watch-death-1",
+      "channel": "full-body",
+      "at": [
+        0,
+        33
+      ],
+      "rows": [
+        "....................ooooooo",
+        "..................ooHhhhhhHoo",
+        ".................oHhjjhhhhHHHo",
+        ".................oHHHMMiiMMHHo",
+        "................oAHHoVVMMVMo",
+        ".............oooAbAAooMMMoo",
+        "...........ooAabAAAaAAAAo",
+        "..........oAaaaAAAaaAAAGgfo",
+        ".........oNNnaAAAAAAAAGgffMo",
+        ".........oNNnnNNNooooGGMMMMMo",
+        "..........oNNNnnnNNo....MMmmmMo",
+        "...........oNNNnnnnNo.....MMMMo",
+        "...........oBBttBBttBooo....ooo",
+        "...........oBBBuuBBBttuBo",
+        "............oooooooooooo"
+      ]
+    },
+    {
+      "id": "watch-death-2",
+      "channel": "full-body",
+      "at": [
+        0,
+        37
+      ],
+      "rows": [
+        "..........................oooooo",
+        "...............oooo.....ooHhhHHHoo",
+        ".............ooAbAAoooooHhjjhhHHHo",
+        "............oAbAAAAAAaAHHHMMiiMMo",
+        "...........oAAAAaAaaaAAGgfoVVMMVo",
+        "..........oNNNnAAAAAAAAGgffMMMo",
+        ".........oNnnNNNNnoooooGGMMMMMMo",
+        ".........oNNNnnnnNNNo.....MMmmMoo",
+        "..........oBBttBBttBBooo...MMmmmMo",
+        "..........oBBBtuBBBttuBo....MMMMMo",
+        "...........oooooooooooo......oooo"
+      ]
+    },
+    {
+      "id": "watch-death-3",
+      "channel": "full-body",
+      "at": [
+        0,
+        38
+      ],
+      "rows": [
+        "............................ooooo",
+        ".................oooo....oooHhhHHo",
+        "...............ooAbAAooooHHhjjHHHo",
+        ".............ooAAAAAAaAAHHHMMiiMo",
+        "...........ooNNnAAAaaaaAGgfoVVMo",
+        "..........oNNnnNNNAAAAAGgffMMMo",
+        ".........oBBttNNnnNNNoooGGMMMMMMo",
+        ".........oBBttuBBttBBooo....MMmmMoo",
+        "..........oBBBBBBtuBBBttuBo..MMMMMo",
+        "...........oooooooooooooooo....ooo"
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "watch.walk",
+      "channel": "full-body",
+      "mode": "loop",
+      "exposures": [
+        {
+          "frame": "watch-walk-0",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-walk-1",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-walk-2",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-walk-3",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-walk-4",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-walk-5",
+          "ticks": 3
+        }
+      ]
+    },
+    {
+      "id": "watch.fire",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "watch-idle",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-raise",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-recoil",
+          "ticks": 2
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-recoil",
+          "ticks": 2
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-recoil",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-recover",
+          "ticks": 6
+        },
+        {
+          "frame": "watch-idle",
+          "ticks": 26
+        }
+      ]
+    },
+    {
+      "id": "watch.fire.up",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "watch-up-raise",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-up-raise",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 8
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-up-recoil",
+          "ticks": 2
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-up-recoil",
+          "ticks": 2
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-up-ready",
+          "ticks": 1
+        },
+        {
+          "frame": "watch-up-recoil",
+          "ticks": 3
+        },
+        {
+          "frame": "watch-recover",
+          "ticks": 6
+        },
+        {
+          "frame": "watch-idle",
+          "ticks": 26
+        }
+      ]
+    },
+    {
+      "id": "watch.death",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "watch-death-0",
+          "ticks": 4
+        },
+        {
+          "frame": "watch-death-1",
+          "ticks": 5
+        },
+        {
+          "frame": "watch-death-2",
+          "ticks": 7
+        },
+        {
+          "frame": "watch-death-3",
+          "ticks": 14
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Ochre weather coat, wraparound amber optic and broad steel helmet distinguish the Quay Watch from the unhelmeted red operative.",
+    "Six drawn stride phases; finite 24-tick raise, three releases at 24/30/36 and 35-tick recovery match the authored rifle action. All shots remain simulation-owned.",
+    "Grounded death uses the accepted encounter resolution tick. Removed airborne enemies retire presentation immediately rather than floating a grounded corpse.",
+    "Original literal pixel clusters; no AI concept samples, procedural runtime figures, rotations or rescaled pixels. Human style review pending."
+  ]
+}

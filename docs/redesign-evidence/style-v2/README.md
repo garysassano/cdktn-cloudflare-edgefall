@@ -1,8 +1,10 @@
-# W06 native operative and original source review
+# W06 native operative, cast and original source review
 
-Current lifecycle update: [protected entry evidence](../W03-player-entry.md) extends shared body physics to the twelve-tick entry phase, including moving support, safe retry and first-control timing. The original 75 drawings, 300 palette frames and twenty clips remain unchanged. Current recordings use format 9; historical [death-body evidence](../W03-death-body.md) uses format 8 at `6255fe8`, and the native-action evidence below uses format 7 at `331d535`. Dedicated airborne/landing acting, vertical-aim/recovery and vehicle acting, representative enemy/tank/scenery/audio and the complete human-reviewed four-player benchmark remain open.
+Current cast update: [native enemies, tank and sound evidence](../W06-native-cast.md) adds 73 original drawings for Quay Watch, Breakwater and Kestrel, with accepted combat/seat timing, separate hull/turret/crew layers and a licensed sound mix. The inspector plays recordings at normal/quarter speed for matching clean/debug review. These are separate diagnostic scenes; the complete continuous mission benchmark and human acceptance are still required.
 
-The native operative now includes authored horizontal head/jacket movement, knife and grenade acting, hand/grip metadata and complete body drawings for grounded death and reentry. Human style review remains pending. Vertical-aim craft, airborne death motion, vehicle acting, the representative enemy/tank/effects/scenery/audio set and the playable 45–60-second four-player benchmark are still required.
+Current lifecycle update: [protected entry evidence](../W03-player-entry.md) extends shared body physics to the twelve-tick entry phase, including moving support, safe retry and first-control timing. The original operative's 75 drawings, 300 palette frames and twenty clips remain unchanged. Current recordings use format 9; historical [death-body evidence](../W03-death-body.md) uses format 8 at `6255fe8`, and the native-action evidence below uses format 7 at `331d535`. Dedicated airborne/landing acting, vertical-aim/recovery and vehicle acting, complete scenery/effects/audio and the human-reviewed four-player benchmark remain open.
+
+The native operative now includes authored horizontal head/jacket movement, knife and grenade acting, hand/grip metadata and complete body drawings for grounded death and reentry. Human style review remains pending. Vertical-aim craft, airborne death motion, complete vehicle acting, environment/effects/audio and the playable 45–60-second four-player benchmark are still required.
 
 ## Native source and playback
 

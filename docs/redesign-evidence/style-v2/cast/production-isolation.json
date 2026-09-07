@@ -1,0 +1,27 @@
+{
+  "ordinaryBuildExcludes": [
+    "combat-lab.html",
+    "combat-lab.js",
+    "art-review.html",
+    "art-review.js",
+    "controller-lab.html",
+    "art-review"
+  ],
+  "registeredCastAssetsPresent": true,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "sourceMaps": true,
+  "generatedSettingsMatch": true,
+  "deploymentPerformed": false,
+  "liveTraceIngestion": "unverified"
+}

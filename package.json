@@ -41,8 +41,9 @@
     "test:network:controller": "tsx scripts/verify-network-controller.ts",
     "test:lab:combat": "node scripts/build-client.mjs --lab && node scripts/verify-combat-lab.mjs",
     "art:review": "tsx scripts/assets/review-studies.ts --write",
-    "art:export": "tsx scripts/assets/export-native.ts && pnpm art:review",
-    "art:validate": "tsx scripts/assets/review-studies.ts && tsx scripts/assets/export-native.ts --check",
+    "art:export": "tsx scripts/assets/export-native.ts && tsx scripts/assets/export-cast.ts && pnpm art:review",
+    "art:validate": "tsx scripts/assets/review-studies.ts && tsx scripts/assets/export-native.ts --check && tsx scripts/assets/export-cast.ts --check",
+    "test:art:cast": "node scripts/build-client.mjs --lab && tsx scripts/verify-native-cast.mjs",
     "test:art:native": "node scripts/build-client.mjs --lab && node scripts/verify-native-operative.mjs",
     "test:art:review": "node scripts/build-client.mjs --lab && node scripts/verify-art-review.mjs"
   },

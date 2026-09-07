@@ -13,7 +13,7 @@ import { compileNativeArt } from "../lib/native-art.js";
 const check = process.argv.includes("--check"),
   sourcePath = "art/source/hero/operative.pixels.json";
 const raw = await readFile(sourcePath),
-  built = await compileNativeArt(raw);
+  built = await compileNativeArt(raw, "operative.png");
 assert.deepEqual(built.source.canvas, { width: 64, height: 64, root: [24, 48] });
 const output = "public/assets/art/hero",
   reportPath = "docs/redesign-evidence/style-v2/native-frames.json";

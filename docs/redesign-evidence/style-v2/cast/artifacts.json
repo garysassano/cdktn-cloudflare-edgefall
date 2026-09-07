@@ -1,0 +1,674 @@
+{
+  "format": 1,
+  "baseCommit": "92c30c084d4085a7b813cde7ac5d5ae04dbda128",
+  "validation": {
+    "check": {
+      "tests": 610,
+      "files": 63
+    },
+    "cast": {
+      "runs": 4,
+      "acceptedBoundaries": 455,
+      "pixelChecks": 10,
+      "videos": 6,
+      "restorations": 4
+    },
+    "operativeRecordingImports": 17,
+    "testedInspectorBundleSha256": "57b69558259d73345ad3c9adf777804230cf445867eee9a8132e4c4c10b69408"
+  },
+  "artifacts": [
+    {
+      "path": "breakwater-dark-1x.png",
+      "bytes": 15112,
+      "sha256": "0e90204b507ca88a99534e6a708460d28941c30c4081741b1924e0c5c78c84c2",
+      "originalSha256": "0e90204b507ca88a99534e6a708460d28941c30c4081741b1924e0c5c78c84c2"
+    },
+    {
+      "path": "breakwater-dark-4x.png",
+      "bytes": 96629,
+      "sha256": "0bf14d0fe809353cc602136dceb3792b149b09d2fe065c6c1ab9dd6dab7b7f1e",
+      "originalSha256": "0bf14d0fe809353cc602136dceb3792b149b09d2fe065c6c1ab9dd6dab7b7f1e"
+    },
+    {
+      "path": "breakwater-light-1x.png",
+      "bytes": 15140,
+      "sha256": "f5a2a959660d029c9a2167fe619bacd774a4320dd9ce846ca243a9f3fd87f974",
+      "originalSha256": "f5a2a959660d029c9a2167fe619bacd774a4320dd9ce846ca243a9f3fd87f974"
+    },
+    {
+      "path": "breakwater-light-4x.png",
+      "bytes": 96642,
+      "sha256": "b9a47e67d5d350879f9b71bc2255e63eb9f0032a361da64d7aa49a5757f5bbcc",
+      "originalSha256": "b9a47e67d5d350879f9b71bc2255e63eb9f0032a361da64d7aa49a5757f5bbcc"
+    },
+    {
+      "path": "four-players-recording.json.gz",
+      "bytes": 2196,
+      "sha256": "118f0827723c081dc87fdafd58ad2d40e3e72e1619098811f520d42d63377e2d",
+      "originalSha256": "71322e9daa5b0c70fde152e1b4d4bccc542642d83cccacfc6e6eb763b9d4d151"
+    },
+    {
+      "path": "four-players-trace.json.gz",
+      "bytes": 3661,
+      "sha256": "a083645369390ee10c397ceafa5408ee1e1f5a368a12a0af747bc1efb824ad05",
+      "originalSha256": "f8619d7a0e5c38e945eae0c5b0d1202b6723ee788384d68f39c9a3b76aaa0f6a"
+    },
+    {
+      "path": "guard-0.png",
+      "bytes": 4574,
+      "sha256": "6c261dfac17ea5521e2b3f15fcf2e18a6f0da6e0cc00156deafcf9b0520a7ad7",
+      "originalSha256": "6c261dfac17ea5521e2b3f15fcf2e18a6f0da6e0cc00156deafcf9b0520a7ad7"
+    },
+    {
+      "path": "guard-34.png",
+      "bytes": 4592,
+      "sha256": "0b8f59fdb8f02c8eab921713aa2b61f6e3981a77fe49995ddcf994d3c2304041",
+      "originalSha256": "0b8f59fdb8f02c8eab921713aa2b61f6e3981a77fe49995ddcf994d3c2304041"
+    },
+    {
+      "path": "guard-95.png",
+      "bytes": 4816,
+      "sha256": "4db93354c64ee8bf59a67b1fd945d2b3bdbb51e52249333504891626d73313a0",
+      "originalSha256": "4db93354c64ee8bf59a67b1fd945d2b3bdbb51e52249333504891626d73313a0"
+    },
+    {
+      "path": "guard-clean-normal.mp4",
+      "bytes": 151448,
+      "sha256": "e9027767321ea321f32163e82956eaf1224363e0057a3d73dd74c4b15ec0a064",
+      "originalSha256": "e9027767321ea321f32163e82956eaf1224363e0057a3d73dd74c4b15ec0a064"
+    },
+    {
+      "path": "guard-clean-normal.webm",
+      "bytes": 102731,
+      "sha256": "8fdd44d78e441251cd534f45b7f65df3348a205656779c484664561685ad407f",
+      "originalSha256": "8fdd44d78e441251cd534f45b7f65df3348a205656779c484664561685ad407f"
+    },
+    {
+      "path": "guard-clean-quarter.mp4",
+      "bytes": 304419,
+      "sha256": "057c639a3c188acf3e715db192f0e6e3f427b01d8cd937a3813fc1379cc5bccc",
+      "originalSha256": "057c639a3c188acf3e715db192f0e6e3f427b01d8cd937a3813fc1379cc5bccc"
+    },
+    {
+      "path": "guard-clean-quarter.webm",
+      "bytes": 193239,
+      "sha256": "1951c19499f9d6691854feeb90e8e77711228e5ccdc7cefd7c71ec55c263bb52",
+      "originalSha256": "1951c19499f9d6691854feeb90e8e77711228e5ccdc7cefd7c71ec55c263bb52"
+    },
+    {
+      "path": "guard-debug-normal.mp4",
+      "bytes": 154900,
+      "sha256": "354ec6a56c4c33e068989b5176959169e9855595cbd6a829564d76d2d942766d",
+      "originalSha256": "354ec6a56c4c33e068989b5176959169e9855595cbd6a829564d76d2d942766d"
+    },
+    {
+      "path": "guard-debug-normal.webm",
+      "bytes": 126876,
+      "sha256": "05d35255a535a622a6e5fd4681dc3a6cf395dbbfd4f29c43ba088a262f00bbdf",
+      "originalSha256": "05d35255a535a622a6e5fd4681dc3a6cf395dbbfd4f29c43ba088a262f00bbdf"
+    },
+    {
+      "path": "guard-recording.json.gz",
+      "bytes": 1574,
+      "sha256": "90220865eac18ef042492aaf5629165a1e84b24495ff7aeaca0d134fb826142a",
+      "originalSha256": "eb0ffb55f0324d67060bc502489a39e1165356df557beadad44b6eb282295e70"
+    },
+    {
+      "path": "guard-trace.json.gz",
+      "bytes": 1973,
+      "sha256": "bf3955bc66a3191ae68f09bc35d46eefa33860ae4979d2c7220ad2e08f9f4b59",
+      "originalSha256": "8a7a5108bf6910e804b7408a70764e5e8f7628dbaed2e5a8b31b840341077fd0"
+    },
+    {
+      "path": "kestrel-dark-1x.png",
+      "bytes": 17612,
+      "sha256": "f0c6c5744de3bcd887c23e8ed27dcd632e496d4dfb6592f084c313e8bbcf8873",
+      "originalSha256": "f0c6c5744de3bcd887c23e8ed27dcd632e496d4dfb6592f084c313e8bbcf8873"
+    },
+    {
+      "path": "kestrel-dark-4x.png",
+      "bytes": 151545,
+      "sha256": "40543b5e94937e5f6e1f1463e19b9fb763daa26dc66c8ca5948d3412025b150d",
+      "originalSha256": "40543b5e94937e5f6e1f1463e19b9fb763daa26dc66c8ca5948d3412025b150d"
+    },
+    {
+      "path": "kestrel-light-1x.png",
+      "bytes": 17630,
+      "sha256": "bde6730c6596518a5411c0b00109f312a3c2ab68b05223d73c9969b33484fef0",
+      "originalSha256": "bde6730c6596518a5411c0b00109f312a3c2ab68b05223d73c9969b33484fef0"
+    },
+    {
+      "path": "kestrel-light-4x.png",
+      "bytes": 151538,
+      "sha256": "d205102866011c4a3b6ad8f8d0b86b5f66976df1e8c13a49041216ee63f6b7dc",
+      "originalSha256": "d205102866011c4a3b6ad8f8d0b86b5f66976df1e8c13a49041216ee63f6b7dc"
+    },
+    {
+      "path": "quay-watch-dark-1x.png",
+      "bytes": 10433,
+      "sha256": "7640696d9ee36db3053ecfd2286a4366587319880dcbdcbab0c155827e22f3cb",
+      "originalSha256": "7640696d9ee36db3053ecfd2286a4366587319880dcbdcbab0c155827e22f3cb"
+    },
+    {
+      "path": "quay-watch-dark-4x.png",
+      "bytes": 68573,
+      "sha256": "24465f647f0f01ed3d68947959731d45df5b479065fc42d87e1dcac5f7abf613",
+      "originalSha256": "24465f647f0f01ed3d68947959731d45df5b479065fc42d87e1dcac5f7abf613"
+    },
+    {
+      "path": "quay-watch-light-1x.png",
+      "bytes": 10441,
+      "sha256": "3e9e6c6c8008ca3508e35b4c4331d9e363986aac21122bb85863cc963f14031e",
+      "originalSha256": "3e9e6c6c8008ca3508e35b4c4331d9e363986aac21122bb85863cc963f14031e"
+    },
+    {
+      "path": "quay-watch-light-4x.png",
+      "bytes": 68590,
+      "sha256": "71d410ece457488802c42ec290be6a3a8fb58314adc0eb6f8d68f01023f08eba",
+      "originalSha256": "71d410ece457488802c42ec290be6a3a8fb58314adc0eb6f8d68f01023f08eba"
+    },
+    {
+      "path": "report.json.gz",
+      "bytes": 3690,
+      "sha256": "b7a1f8224a56f002c7e95e104e840af713fc6f3b91686d5fa833757284262585",
+      "originalSha256": "fe55b0c630021f60fc79f83e663c151abea53ddbdd081ac7ea89244dd8ff9913"
+    },
+    {
+      "path": "rifle-0.png",
+      "bytes": 3941,
+      "sha256": "1ab94d7d037657738cff9fc8bde18a9d3f386ea61d29e50be5d9517a0bcca690",
+      "originalSha256": "1ab94d7d037657738cff9fc8bde18a9d3f386ea61d29e50be5d9517a0bcca690"
+    },
+    {
+      "path": "rifle-24.png",
+      "bytes": 3795,
+      "sha256": "03d9fa9ab6be3b328929ef1368e71c8155ff8cfbe3f97c8cd4acbd8825b2c225",
+      "originalSha256": "03d9fa9ab6be3b328929ef1368e71c8155ff8cfbe3f97c8cd4acbd8825b2c225"
+    },
+    {
+      "path": "rifle-31.png",
+      "bytes": 3819,
+      "sha256": "4f075792ddb274dc28a12a95043128b4e2b8bf35e2ade9f8ef6b9ff6bd765fc9",
+      "originalSha256": "4f075792ddb274dc28a12a95043128b4e2b8bf35e2ade9f8ef6b9ff6bd765fc9"
+    },
+    {
+      "path": "rifle-recording.json.gz",
+      "bytes": 1416,
+      "sha256": "88d368fa1ee38639aa8c2d1828351c16b47ed39ed037adcb7a2c706c7b0d638e",
+      "originalSha256": "4de5fd8b671ca547321d0df79c4cf559c3c0e60e982a714601ffc04aaf2bad32"
+    },
+    {
+      "path": "rifle-trace.json.gz",
+      "bytes": 968,
+      "sha256": "8e66fb25044f1afa47d2e93fd6a1b40171757860c3e7f8c4c4b2850ef7cca55f",
+      "originalSha256": "3c2b325b7a9f2c6041a653ba9526291bd698b912d5a6dff621b5e3a64ff69b32"
+    },
+    {
+      "path": "tank-0.png",
+      "bytes": 4552,
+      "sha256": "ebbf2aa569a0f005a0b6a745da600c21b350348ab2d72668d276e145abacc52e",
+      "originalSha256": "ebbf2aa569a0f005a0b6a745da600c21b350348ab2d72668d276e145abacc52e"
+    },
+    {
+      "path": "tank-21.png",
+      "bytes": 4083,
+      "sha256": "ffca89bb610bc6fd595d2b6250a2e3fb1fe5d7f3aafda984c2299bead18b5af5",
+      "originalSha256": "ffca89bb610bc6fd595d2b6250a2e3fb1fe5d7f3aafda984c2299bead18b5af5"
+    },
+    {
+      "path": "tank-6.png",
+      "bytes": 3983,
+      "sha256": "aacb17db1ff71593286629ad24dcae5877587ede072651af4f482d325f825ad1",
+      "originalSha256": "aacb17db1ff71593286629ad24dcae5877587ede072651af4f482d325f825ad1"
+    },
+    {
+      "path": "tank-90.png",
+      "bytes": 3490,
+      "sha256": "b2b0cb4b3ec6d093e1ba834cc23d4cad1062c88678540c37c0a936cf3e81bb72",
+      "originalSha256": "b2b0cb4b3ec6d093e1ba834cc23d4cad1062c88678540c37c0a936cf3e81bb72"
+    },
+    {
+      "path": "tank-clean-normal.mp4",
+      "bytes": 123706,
+      "sha256": "45b057353a5ba11ae043ffe01655660e97052b47faa2b369007fbb09be6ce920",
+      "originalSha256": "45b057353a5ba11ae043ffe01655660e97052b47faa2b369007fbb09be6ce920"
+    },
+    {
+      "path": "tank-clean-normal.webm",
+      "bytes": 81152,
+      "sha256": "8f9f6e239e4b8538ac05d43c9bc5fb99aff42dda7aa6e8b7922f006b27d45be6",
+      "originalSha256": "8f9f6e239e4b8538ac05d43c9bc5fb99aff42dda7aa6e8b7922f006b27d45be6"
+    },
+    {
+      "path": "tank-clean-quarter.mp4",
+      "bytes": 258216,
+      "sha256": "66a37e463617b959a935014dc5c7580f92c51a013ef470987db89a000341c492",
+      "originalSha256": "66a37e463617b959a935014dc5c7580f92c51a013ef470987db89a000341c492"
+    },
+    {
+      "path": "tank-clean-quarter.webm",
+      "bytes": 170944,
+      "sha256": "8182e6308f6345b4ecdcc211ff122cefaad01593410c01413f2cdcea9d3ce975",
+      "originalSha256": "8182e6308f6345b4ecdcc211ff122cefaad01593410c01413f2cdcea9d3ce975"
+    },
+    {
+      "path": "tank-debug-normal.mp4",
+      "bytes": 150083,
+      "sha256": "5290c9393c8ad5c1f03cf7878602a52a10312508eba6180ae2b0762d52bd9c49",
+      "originalSha256": "5290c9393c8ad5c1f03cf7878602a52a10312508eba6180ae2b0762d52bd9c49"
+    },
+    {
+      "path": "tank-debug-normal.webm",
+      "bytes": 119703,
+      "sha256": "8acdf0c9a0f296a1d4a89e13b6214a9286095f21796c37690633c47df7466ce5",
+      "originalSha256": "8acdf0c9a0f296a1d4a89e13b6214a9286095f21796c37690633c47df7466ce5"
+    },
+    {
+      "path": "tank-recording.json.gz",
+      "bytes": 1559,
+      "sha256": "63ef10fe7fec62015bd09545ec5699e8a258a3d30bafb429b6845cf40e575dfd",
+      "originalSha256": "e8f8663f07b7e39b70b26cc6210bfbef750f2a8361ad4d44a0238467273b8e4b"
+    },
+    {
+      "path": "tank-trace.json.gz",
+      "bytes": 2805,
+      "sha256": "738d0bda38294c287aba3cced7e2ee9895a36c990e86a611e40b80036dec0602",
+      "originalSha256": "3430d08b87900a5ac22583f84f90814460c93e3b7e360efcf4a4a4a12fc26108"
+    },
+    {
+      "path": "check.log.gz",
+      "bytes": 1441,
+      "sha256": "76e74dc4841a70dfd7138d1ca516803463f8f599af43f6113c4308ccff9861d9",
+      "originalSha256": "1558de542836f2ad8a817cf381cb69bc04e9ca73e7ae50ce7a4c3eeae9d30476"
+    },
+    {
+      "path": "cast-browser.log.gz",
+      "bytes": 374,
+      "sha256": "8019ef594de56e198a9f0e84d2b8a9c48bce6a2a22c387ed5ce64d9c5be1dcde",
+      "originalSha256": "c866cb10bd7c2a81d2ed10d33f32e2cf86e8f7c5f126f99a3f38c06b8863f5cd"
+    },
+    {
+      "path": "operative-browser.log.gz",
+      "bytes": 316,
+      "sha256": "c190230a23b60eb79ded6742d13751c7ab3aa54bafbc051fc8658271a56f30fb",
+      "originalSha256": "e8dc4ffda0a5455b178726b40f5be4071b4d1bf29fa3f63e3bd9e4201e627474"
+    },
+    {
+      "path": "production-isolation.json",
+      "bytes": 561,
+      "sha256": "48468aae9320f26907c36c72981277b42933fea58f4c244364b00e1679b56b02",
+      "originalSha256": "48468aae9320f26907c36c72981277b42933fea58f4c244364b00e1679b56b02"
+    },
+    {
+      "path": "operative-report.json.gz",
+      "bytes": 7722,
+      "sha256": "fa15a8782c164f6b499eb54e920fd5c5dd1e2df4b6fc5909d28db944b47786b4",
+      "originalSha256": "1352f599d27e9c42c25730e0d6e74b68c3d603ce075f00ba254cb8e7a5702049"
+    }
+  ],
+  "sourceFingerprints": [
+    {
+      "path": "art/source/enemies/breakwater.pixels.json",
+      "sha256": "85e6c20ab31a7d10e5b889b05c8d8d9806e1eeb19076bcf75ef6210b16c70ca8"
+    },
+    {
+      "path": "art/source/enemies/quay-watch.pixels.json",
+      "sha256": "3aab5ed3ab202bc72fa4af52421dca139a1dabf8cb9d73eeef03179f02c6edd9"
+    },
+    {
+      "path": "art/source/hero/operative.pixels.json",
+      "sha256": "95b40d370c9941515f5331e0e25ba1782cd4da777019cd5fb1f9323ce6ab4dfc"
+    },
+    {
+      "path": "art/source/provenance.json",
+      "sha256": "202325ac1e07c88922c16ff8f42c377a48b009aed43a8f703a8cced1bb1755ac"
+    },
+    {
+      "path": "art/source/vehicles/kestrel.pixels.json",
+      "sha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84"
+    },
+    {
+      "path": "package.json",
+      "sha256": "39335edc538747a0c4d4a7ced8ca949464a6224aa67c2c1cc570f989ad8c4f82"
+    },
+    {
+      "path": "public/assets/art/enemies/breakwater.atlas.json",
+      "sha256": "d02bf9246f12f66999a5025e23e72edb978e38c848a8b55ba382dfec2163810e"
+    },
+    {
+      "path": "public/assets/art/enemies/breakwater.png",
+      "sha256": "b170c695f475552d6b5a978e7bc1a6f9ac7a19baaff71d69060aa0d4a7ca0cd6"
+    },
+    {
+      "path": "public/assets/art/enemies/quay-watch.atlas.json",
+      "sha256": "78e0008fd37f2e39df1ea2afefb4f37f27668145c5548c7d8f525efbe735cbc7"
+    },
+    {
+      "path": "public/assets/art/enemies/quay-watch.png",
+      "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70"
+    },
+    {
+      "path": "public/assets/art/hero/operative.atlas.json",
+      "sha256": "70036c78ff97982501fd4b48b1be386c67ec4aae831ca7b369919f63b5da69d0"
+    },
+    {
+      "path": "public/assets/art/hero/operative.png",
+      "sha256": "97ebd81da7529d03c817247804d994134b5a13c1038b2cc0fbb41501b7db6dea"
+    },
+    {
+      "path": "public/assets/art/vehicles/kestrel.atlas.json",
+      "sha256": "df22b0263c4b2ac632d75fa491b15dc62fba2022a2be134b0ce4f9769e99ea8a"
+    },
+    {
+      "path": "public/assets/art/vehicles/kestrel.png",
+      "sha256": "0e49a7e6e5e042b9fbc946519b2a94d8ddd755639970c548475aa8af2359b0b5"
+    },
+    {
+      "path": "public/assets/manifest.json",
+      "sha256": "b317a447baaaa443323b6c09485463366926f174f6be56d4986b6925efdb0f8f"
+    },
+    {
+      "path": "scripts/assets/export-cast.ts",
+      "sha256": "b00f96b900e705db2569a04194f04fc9cecf172d46b128f4c4f6ea70e2169c8f"
+    },
+    {
+      "path": "scripts/assets/export-native.ts",
+      "sha256": "58673ec5f4c315b1f6c758f862c7af04b7c0f06bbcadfe4bafe0464477e5ea9f"
+    },
+    {
+      "path": "scripts/assets/review-studies.ts",
+      "sha256": "f007944d8359b9bb3f4e5ae0f0f4089fbe93c809d1facc29d9c5d52f6a55ec15"
+    },
+    {
+      "path": "scripts/build-client.mjs",
+      "sha256": "de56a337497b664d1d0165f6d8febdc9be3020cee41aefa5e886e94aef438c68"
+    },
+    {
+      "path": "scripts/build-deploy-config.mjs",
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "path": "scripts/lib/art-image.ts",
+      "sha256": "27477695d8d7e1a5f0e4597be09e5dad79986e4d4d9bcc5821de50e6566d01fe"
+    },
+    {
+      "path": "scripts/lib/native-art.ts",
+      "sha256": "9af6981942c9754a9b0473b5213ce188d6d0b249b9480ea12ae45a1609e0ec95"
+    },
+    {
+      "path": "scripts/validate-assets.mjs",
+      "sha256": "aa81f03c5c9212ab58b925a487169bca3233235c46911740c9a9e14f1f82bf65"
+    },
+    {
+      "path": "scripts/verify-native-cast.mjs",
+      "sha256": "8081c1b44f5f3126c4a4c4718ac0bdb8e4f79254fbadad40b0562aeadb317a9f"
+    },
+    {
+      "path": "scripts/verify-native-operative.mjs",
+      "sha256": "82dfe4a7982fec13fb2001b1b501a8018d45883420544b1db2ae488194eeed5c"
+    },
+    {
+      "path": "src/client/cast-audio.ts",
+      "sha256": "6186e3faa3285cb26e3c01e917ee98432a0982f1a3faa3f3ca7db370c8a8c3d1"
+    },
+    {
+      "path": "src/client/combat-lab.html",
+      "sha256": "2e3fcd2f6b6c983db5e74fae6bd94dca91f056a32536b52a79e07c782abf3a97"
+    },
+    {
+      "path": "src/client/combat-lab.ts",
+      "sha256": "68b8b6b07eb35b9c42f35f52067a9b687cdc951fdab6e4df71e2e0014fd3361d"
+    },
+    {
+      "path": "src/client/native-cast.ts",
+      "sha256": "70ce790bffb4fac2f4e2acc63fdde3f81933566aac295026149d3223bc7968cc"
+    },
+    {
+      "path": "src/game/actors/grounded.ts",
+      "sha256": "34453a81e8a70927d65fad1c3eee28153eba1f0919ae678dd9967204fa201e51"
+    },
+    {
+      "path": "src/game/actors/rifle.ts",
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "path": "src/game/actors/routed.ts",
+      "sha256": "6b7f245a326636844f1bf4c8ae70333ebf69f469af3c96ea4afc119a30c742e3"
+    },
+    {
+      "path": "src/game/actors/shield.ts",
+      "sha256": "21b43b9f58197d513a9f1416347585431101fe9d41e3484aa7ba6ef804630d94"
+    },
+    {
+      "path": "src/game/campaign/life.ts",
+      "sha256": "51d4e743a1a9050322187b0df834506d3631a6cc2644ce7f606e47700e788ebf"
+    },
+    {
+      "path": "src/game/campaign/lifecycle.ts",
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "path": "src/game/combat/area-attack.ts",
+      "sha256": "2b7826fb8db923257a0d6bcd905db994206f69d25a688e496d01e00855f2eebc"
+    },
+    {
+      "path": "src/game/combat/destructible.ts",
+      "sha256": "20d263861a87fb9cb08fb9581b29e82bf09ad7efecb1e68dcb43bc7b02309716"
+    },
+    {
+      "path": "src/game/combat/firearm-aim.ts",
+      "sha256": "bb03a22db77438c3a90459aff13fbcf183fafa18bb2df8740eb2f11371b59177"
+    },
+    {
+      "path": "src/game/combat/firearm.ts",
+      "sha256": "fba5d427a50fbf0f54968155cdae3ee42849ac18df2cf7ec98b7c63bfed24bc0"
+    },
+    {
+      "path": "src/game/combat/foot-actions.ts",
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "path": "src/game/combat/grenade.ts",
+      "sha256": "6a7a2dae0167846667defd575e7b9e72ce653ffc972a122b9f9150cfb1521502"
+    },
+    {
+      "path": "src/game/combat/projectile.ts",
+      "sha256": "3fc7adc53f43299d3ec3a42b6362ad0365decca449ceb75f4558d0d63233fd99"
+    },
+    {
+      "path": "src/game/combat/timeline.ts",
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "path": "src/game/combat/volume.ts",
+      "sha256": "9c03c1eb56ca9cf160d8aba57d5dc47db2f7e371b571579a103de06774007e3b"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "b023926056f255084be8d854da036d500b342a38b3a4d941c807123de7adf15b"
+    },
+    {
+      "path": "src/game/content/compiled/navigation.json",
+      "sha256": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb"
+    },
+    {
+      "path": "src/game/content/contract-fixture.ts",
+      "sha256": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733"
+    },
+    {
+      "path": "src/game/content/schema.ts",
+      "sha256": "96ba58e1114e68babe3cb2d50326f05a79ea487219b5534249d27d31cbe7f09c"
+    },
+    {
+      "path": "src/game/content/validate.ts",
+      "sha256": "9d537c19476cd462ca088b08d9bedfada83f0a614fef5518c5b33750bc1c9fc7"
+    },
+    {
+      "path": "src/game/controller/foot.ts",
+      "sha256": "f0c78961f3ed22b589d734362f0ddb7ae58dfe80bed25f9d03df7490bfd9e254"
+    },
+    {
+      "path": "src/game/core/canonical.ts",
+      "sha256": "4b255b5104b2ddba1e4155cfc40b23e81b0d58b75c45f5f2b9c7ae2c284b315e"
+    },
+    {
+      "path": "src/game/core/numeric.ts",
+      "sha256": "55d339dbef7fd2e42956f399780e060a0bfe1fc3a70ad4354e918f2342e0b5a1"
+    },
+    {
+      "path": "src/game/daily.ts",
+      "sha256": "52fc74cd0280c02d76c1cb55affc1f60a3178dc72d6afc26607cbdf0c42d7fe7"
+    },
+    {
+      "path": "src/game/encounters/lifecycle.ts",
+      "sha256": "0d634d4973657351af7bf4f2de48707e6e7df1beb04ffa0a53b9150526965c28"
+    },
+    {
+      "path": "src/game/input/journal.ts",
+      "sha256": "f47e52eca4f44a64a32d3e9ab3c7f7b7cf663fecc63c5b8c26289df5be170c44"
+    },
+    {
+      "path": "src/game/input/types.ts",
+      "sha256": "262d7214882ebff5185233d55c40ebf7fe4640fc1077d8c1650fe23b6ceb6c5b"
+    },
+    {
+      "path": "src/game/labs/baseline.ts",
+      "sha256": "225a4135c87c8a2c9db25ab13f67b22f8fb13f5ba74976ff41493f42aa687b83"
+    },
+    {
+      "path": "src/game/labs/combat-campaign.ts",
+      "sha256": "0194e0eb386e395fcf975373d8e2a84c3db65e4e6886db7656d04aad58dc6cf5"
+    },
+    {
+      "path": "src/game/labs/combat-content.ts",
+      "sha256": "23eb376a1f7653ae208af5d868f114b6f0ddd27a1f001a9b420e4bdbda6d5a35"
+    },
+    {
+      "path": "src/game/labs/combat-tanks.ts",
+      "sha256": "e4f5291013d507dde529030cca21ea8d4ed3b2785656ba3c6966ad82e8cbce81"
+    },
+    {
+      "path": "src/game/labs/combat-terrain.ts",
+      "sha256": "ccbe305bbf5425b8ce17a6108545beb757662484a39925cf7201f4127adba281"
+    },
+    {
+      "path": "src/game/labs/combat.ts",
+      "sha256": "9aa203d407b3c9c9cf01d5948f4130a6457bdbe8015ad35b00e7825e48ac05fe"
+    },
+    {
+      "path": "src/game/labs/compiled.ts",
+      "sha256": "39e3f19c508b31cbf2d698c0941e9a06a8f82cd49db259f1f2040191470c10fa"
+    },
+    {
+      "path": "src/game/labs/controller.ts",
+      "sha256": "d2c9fe612f40a76a43db41dd59babaae6721f6e0a225ec3e8bf6b511085c4223"
+    },
+    {
+      "path": "src/game/labs/encounter.ts",
+      "sha256": "9c265e4e022b7ec0755038142442025a4ce434b59b62f29e78122500fe02f6a2"
+    },
+    {
+      "path": "src/game/labs/foot-fixture.ts",
+      "sha256": "9533abecc95bfa402f04eb537324f0d14e58aa31183ca9a83fc200988284a7b4"
+    },
+    {
+      "path": "src/game/labs/route.ts",
+      "sha256": "cd09b11d08c5278386c58b0a7081cb593876509609c4a89b28f24bfafca5db77"
+    },
+    {
+      "path": "src/game/labs/routed.ts",
+      "sha256": "83455f74588b7b94c34e34727f06da52896db11dfe9f31e2481db7b3c7151d80"
+    },
+    {
+      "path": "src/game/labs/traversal.ts",
+      "sha256": "cd9176887d43a3716877b7ec0af95d40daf17b317aa7411156a37df86f7337ef"
+    },
+    {
+      "path": "src/game/navigation/follower.ts",
+      "sha256": "fb3a3372e712569ada9457dd8663901cccbfc50b6bd10355797350aa66a4e74f"
+    },
+    {
+      "path": "src/game/navigation/graph.ts",
+      "sha256": "f6e70130fede0f86edf122fd5464adb9430bf18f5e5c77cb84e948745e7f3d45"
+    },
+    {
+      "path": "src/game/navigation/links.ts",
+      "sha256": "f59de65fac0d050a0128de698514638818b75c764ef19a55541e515c4542b0fd"
+    },
+    {
+      "path": "src/game/navigation/spans.ts",
+      "sha256": "821d56156ecdb63d34af99d5ef7a214ff6a0e62d084bfc71fd8a377dcd1994dd"
+    },
+    {
+      "path": "src/game/physics/body.ts",
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "path": "src/game/physics/grid.ts",
+      "sha256": "63fd7c6356b2304ab011fa8ba4d097d21540ffac468e3026d3a61dcd98b2c8c0"
+    },
+    {
+      "path": "src/game/physics/move.ts",
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c"
+    },
+    {
+      "path": "src/game/physics/sweep.ts",
+      "sha256": "98f5d4b8b156fc896f03303e40f3cfa599eef9d3b2279a1f40414feb1240cf22"
+    },
+    {
+      "path": "src/game/protocol.ts",
+      "sha256": "a02fc1b6869bc5c337e7463e3e527c7613b80ef678ca13ea620bc39f0e71cad3"
+    },
+    {
+      "path": "src/game/rules.ts",
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "path": "src/game/simulation.ts",
+      "sha256": "ebbbba47487cb98ddf5cf480cb2a52a8c4b8d11cc95d04c832ed8831c9421b27"
+    },
+    {
+      "path": "src/game/state.ts",
+      "sha256": "4618312151de37a230d246a722508e84639a19dc2528736aaad56449f943b1fb"
+    },
+    {
+      "path": "src/game/vehicles/tank.ts",
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "path": "src/shared/animation/cast.ts",
+      "sha256": "c37818f9b15f35060b8d7e02322e8d5090dd1b998b248c71bece41743461d762"
+    },
+    {
+      "path": "src/shared/animation/combat-audio.ts",
+      "sha256": "033e93b7626faeb397b4b81fb90d6cb1485d3195eea8a21e117a8e17e1a2cf21"
+    },
+    {
+      "path": "src/shared/animation/native.ts",
+      "sha256": "79a3585b9250890779fac844aa05e3cd32d4d6992307144e1f2cc75a725698dc"
+    },
+    {
+      "path": "src/shared/animation/operative-motion.ts",
+      "sha256": "7039e45d6af8e9a3e6fe5cad470cc79e2cf7e97a08fc7710bac474f825376a7a"
+    },
+    {
+      "path": "src/shared/animation/operative.ts",
+      "sha256": "99b8fa9e33261354583a38b8e0a56f90cb311cb7aa0b1abe68c3d10103ad1577"
+    },
+    {
+      "path": "test/native-art.test.ts",
+      "sha256": "7d2d477a3dabc4ed3ba579ec057acc32f07c4c5fba03fc2131089a156dc23941"
+    },
+    {
+      "path": "test/native-cast.test.ts",
+      "sha256": "7cc733f112e60befb5bcecce6a253b422cf02ecc8d406c56f7c61c3096647d03"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "humanStyleReview": "pending",
+  "liveTraceIngestion": "unverified",
+  "scope": "Original cast candidate and sample mix in separate local diagnostic scenes; full W06 mission benchmark and production integration remain open."
+}

@@ -21,7 +21,7 @@ import {
 import { airbornePlayer, deathContext } from "./fixtures/death-body-proof.js";
 
 const raw = await readFile("art/source/hero/operative.pixels.json"),
-  built = await compileNativeArt(raw);
+  built = await compileNativeArt(raw, "operative.png");
 const source = () => JSON.parse(raw.toString()) as NativeDrawing;
 describe("native operative source and playback", () => {
   it("keeps an airborne corpse off grounded settle poses and hides a removed corpse", () => {
@@ -77,7 +77,7 @@ describe("native operative source and playback", () => {
     const run = built.source.clips[0];
     expect(new Set(run?.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size).toBe(8);
     expect(built.atlas.meta.edgefall.approval).toBe("pending");
-    expect((await compileNativeArt(raw)).png.equals(built.png)).toBe(true);
+    expect((await compileNativeArt(raw, "operative.png")).png.equals(built.png)).toBe(true);
   });
   it.each([
     [
@@ -132,7 +132,9 @@ describe("native operative source and playback", () => {
   ] as const)("rejects %s in editable source", async (_name, mutate) => {
     const next = source();
     mutate(next);
-    await expect(compileNativeArt(Buffer.from(JSON.stringify(next)))).rejects.toThrow();
+    await expect(
+      compileNativeArt(Buffer.from(JSON.stringify(next)), "operative.png"),
+    ).rejects.toThrow();
   });
   it("uses authored exposures for loop/hold playback without gameplay callbacks", () => {
     const clip = {
@@ -261,7 +263,9 @@ describe("native operative source and playback", () => {
       frame = data.frames.find((frame) => frame.contact);
     if (!frame?.contact) throw new Error("Missing authored contact");
     frame.contact.point = [-24, 0];
-    await expect(compileNativeArt(Buffer.from(JSON.stringify(data)))).rejects.toThrow(/boot/);
+    await expect(
+      compileNativeArt(Buffer.from(JSON.stringify(data)), "operative.png"),
+    ).rejects.toThrow(/boot/);
     const actor = createCombatLab("range").players[0];
     if (!actor) throw new Error("Missing operative");
     const clock = initialOperativeMotion(actor, 0);

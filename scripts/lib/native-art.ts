@@ -38,7 +38,8 @@ function number(value: number, min: number, max: number) {
   );
 }
 /** Static indexed drawings compile directly to PNG; this exporter does not invent geometry or animation. */
-export async function compileNativeArt(raw: Buffer) {
+export async function compileNativeArt(raw: Buffer, image: string) {
+  assert(/^[a-z][a-z0-9-]+\.png$/.test(image), "Invalid native atlas image filename");
   assert(raw.length > 0 && raw.length <= 1_000_000, "Native source byte budget");
   const source = JSON.parse(raw.toString()) as NativeDrawing;
   assert(
@@ -64,7 +65,7 @@ export async function compileNativeArt(raw: Buffer) {
   const variants = Object.keys(source.variants);
   number(variants.length, 1, 4);
   for (const [name, changes] of Object.entries(source.variants)) {
-    assert(/^p[1-4]$/.test(name), "Native player palette ID");
+    assert(/^(base|p[1-4])$/.test(name), "Native palette ID");
     for (const [symbol, color] of Object.entries(changes))
       assert(
         symbol !== "." && source.palette[symbol] && /^[0-9a-f]{6}ff$/.test(color),
@@ -175,7 +176,7 @@ export async function compileNativeArt(raw: Buffer) {
   const atlas: NativeAtlas = {
     frames: {},
     meta: {
-      image: "operative.png",
+      image,
       size: { w: imageWidth, h: imageHeight },
       edgefall: {
         format: 2,

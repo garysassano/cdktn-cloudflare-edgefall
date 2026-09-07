@@ -187,7 +187,7 @@ function validateNativeAtlas(atlas, atlasPath) {
     variants.length < 1 ||
     variants.length > 4 ||
     new Set(variants).size !== variants.length ||
-    !variants.every((id) => /^p[1-4]$/.test(id))
+    !variants.every((id) => /^(base|p[1-4])$/.test(id))
   ) {
     fail("invalid native palettes");
     return;

@@ -1,0 +1,657 @@
+{
+  "frames": {
+    "base/watch-idle": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-0": {
+      "frame": {
+        "x": 70,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-1": {
+      "frame": {
+        "x": 138,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-2": {
+      "frame": {
+        "x": 206,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-3": {
+      "frame": {
+        "x": 274,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-4": {
+      "frame": {
+        "x": 342,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-walk-5": {
+      "frame": {
+        "x": 410,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-raise": {
+      "frame": {
+        "x": 478,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-ready": {
+      "frame": {
+        "x": 2,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-recoil": {
+      "frame": {
+        "x": 70,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-recover": {
+      "frame": {
+        "x": 138,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-up-raise": {
+      "frame": {
+        "x": 206,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-up-ready": {
+      "frame": {
+        "x": 274,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-up-recoil": {
+      "frame": {
+        "x": 342,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-fall": {
+      "frame": {
+        "x": 410,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-death-0": {
+      "frame": {
+        "x": 478,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-death-1": {
+      "frame": {
+        "x": 2,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-death-2": {
+      "frame": {
+        "x": 70,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/watch-death-3": {
+      "frame": {
+        "x": 138,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    }
+  },
+  "meta": {
+    "image": "quay-watch.png",
+    "size": {
+      "w": 544,
+      "h": 204
+    },
+    "edgefall": {
+      "format": 2,
+      "sourceId": "quay-watch-native-01",
+      "sourceSha256": "3aab5ed3ab202bc72fa4af52421dca139a1dabf8cb9d73eeef03179f02c6edd9",
+      "root": [
+        24,
+        48
+      ],
+      "variants": [
+        "base"
+      ],
+      "drawings": {
+        "watch-idle": {
+          "channel": "full-body"
+        },
+        "watch-walk-0": {
+          "channel": "full-body"
+        },
+        "watch-walk-1": {
+          "channel": "full-body"
+        },
+        "watch-walk-2": {
+          "channel": "full-body"
+        },
+        "watch-walk-3": {
+          "channel": "full-body"
+        },
+        "watch-walk-4": {
+          "channel": "full-body"
+        },
+        "watch-walk-5": {
+          "channel": "full-body"
+        },
+        "watch-raise": {
+          "channel": "full-body"
+        },
+        "watch-ready": {
+          "channel": "full-body",
+          "sockets": {
+            "muzzle": [
+              15,
+              -23
+            ],
+            "hand": [
+              0,
+              -23
+            ]
+          }
+        },
+        "watch-recoil": {
+          "channel": "full-body"
+        },
+        "watch-recover": {
+          "channel": "full-body"
+        },
+        "watch-up-raise": {
+          "channel": "full-body"
+        },
+        "watch-up-ready": {
+          "channel": "full-body",
+          "sockets": {
+            "muzzle": [
+              2,
+              -36
+            ],
+            "hand": [
+              0,
+              -23
+            ]
+          }
+        },
+        "watch-up-recoil": {
+          "channel": "full-body"
+        },
+        "watch-fall": {
+          "channel": "full-body"
+        },
+        "watch-death-0": {
+          "channel": "full-body"
+        },
+        "watch-death-1": {
+          "channel": "full-body"
+        },
+        "watch-death-2": {
+          "channel": "full-body"
+        },
+        "watch-death-3": {
+          "channel": "full-body"
+        }
+      },
+      "clips": [
+        {
+          "id": "watch.walk",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "watch-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "watch.fire",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-idle",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-recoil",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-recover",
+              "ticks": 6
+            },
+            {
+              "frame": "watch-idle",
+              "ticks": 26
+            }
+          ]
+        },
+        {
+          "id": "watch.fire.up",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-up-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-raise",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 8
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 2
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-up-ready",
+              "ticks": 1
+            },
+            {
+              "frame": "watch-up-recoil",
+              "ticks": 3
+            },
+            {
+              "frame": "watch-recover",
+              "ticks": 6
+            },
+            {
+              "frame": "watch-idle",
+              "ticks": 26
+            }
+          ]
+        },
+        {
+          "id": "watch.death",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "watch-death-0",
+              "ticks": 4
+            },
+            {
+              "frame": "watch-death-1",
+              "ticks": 5
+            },
+            {
+              "frame": "watch-death-2",
+              "ticks": 7
+            },
+            {
+              "frame": "watch-death-3",
+              "ticks": 14
+            }
+          ]
+        }
+      ],
+      "approval": "pending"
+    }
+  }
+}

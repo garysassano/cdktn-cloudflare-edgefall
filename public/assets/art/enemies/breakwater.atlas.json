@@ -1,0 +1,837 @@
+{
+  "frames": {
+    "base/breakwater-brace": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-0": {
+      "frame": {
+        "x": 70,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-1": {
+      "frame": {
+        "x": 138,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-2": {
+      "frame": {
+        "x": 206,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-3": {
+      "frame": {
+        "x": 274,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-4": {
+      "frame": {
+        "x": 342,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-walk-5": {
+      "frame": {
+        "x": 410,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-turn": {
+      "frame": {
+        "x": 478,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-windup": {
+      "frame": {
+        "x": 2,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-bash": {
+      "frame": {
+        "x": 70,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-recover": {
+      "frame": {
+        "x": 138,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken": {
+      "frame": {
+        "x": 206,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-stunned": {
+      "frame": {
+        "x": 274,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-0": {
+      "frame": {
+        "x": 342,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-1": {
+      "frame": {
+        "x": 410,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-2": {
+      "frame": {
+        "x": 478,
+        "y": 70,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-3": {
+      "frame": {
+        "x": 2,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-4": {
+      "frame": {
+        "x": 70,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-walk-5": {
+      "frame": {
+        "x": 138,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-windup": {
+      "frame": {
+        "x": 206,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-bash": {
+      "frame": {
+        "x": 274,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-broken-recover": {
+      "frame": {
+        "x": 342,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-fall": {
+      "frame": {
+        "x": 410,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-death-0": {
+      "frame": {
+        "x": 478,
+        "y": 138,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-death-1": {
+      "frame": {
+        "x": 2,
+        "y": 206,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-death-2": {
+      "frame": {
+        "x": 70,
+        "y": 206,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    },
+    "base/breakwater-death-3": {
+      "frame": {
+        "x": 138,
+        "y": 206,
+        "w": 64,
+        "h": 64
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      }
+    }
+  },
+  "meta": {
+    "image": "breakwater.png",
+    "size": {
+      "w": 544,
+      "h": 272
+    },
+    "edgefall": {
+      "format": 2,
+      "sourceId": "breakwater-native-01",
+      "sourceSha256": "85e6c20ab31a7d10e5b889b05c8d8d9806e1eeb19076bcf75ef6210b16c70ca8",
+      "root": [
+        24,
+        48
+      ],
+      "variants": [
+        "base"
+      ],
+      "drawings": {
+        "breakwater-brace": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-0": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-1": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-2": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-3": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-4": {
+          "channel": "full-body"
+        },
+        "breakwater-walk-5": {
+          "channel": "full-body"
+        },
+        "breakwater-turn": {
+          "channel": "full-body"
+        },
+        "breakwater-windup": {
+          "channel": "full-body"
+        },
+        "breakwater-bash": {
+          "channel": "full-body",
+          "sockets": {
+            "hand": [
+              0,
+              -18
+            ]
+          }
+        },
+        "breakwater-recover": {
+          "channel": "full-body"
+        },
+        "breakwater-broken": {
+          "channel": "full-body"
+        },
+        "breakwater-stunned": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-0": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-1": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-2": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-3": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-4": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-walk-5": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-windup": {
+          "channel": "full-body"
+        },
+        "breakwater-broken-bash": {
+          "channel": "full-body",
+          "sockets": {
+            "hand": [
+              0,
+              -18
+            ]
+          }
+        },
+        "breakwater-broken-recover": {
+          "channel": "full-body"
+        },
+        "breakwater-fall": {
+          "channel": "full-body"
+        },
+        "breakwater-death-0": {
+          "channel": "full-body"
+        },
+        "breakwater-death-1": {
+          "channel": "full-body"
+        },
+        "breakwater-death-2": {
+          "channel": "full-body"
+        },
+        "breakwater-death-3": {
+          "channel": "full-body"
+        }
+      },
+      "clips": [
+        {
+          "id": "breakwater.walk",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "breakwater-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "breakwater.walk.broken",
+          "channel": "full-body",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "breakwater-broken-walk-0",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-1",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-2",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-3",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-4",
+              "ticks": 3
+            },
+            {
+              "frame": "breakwater-broken-walk-5",
+              "ticks": 3
+            }
+          ]
+        },
+        {
+          "id": "breakwater.brace",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-brace",
+              "ticks": 24
+            }
+          ]
+        },
+        {
+          "id": "breakwater.turn",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-turn",
+              "ticks": 9
+            },
+            {
+              "frame": "breakwater-recover",
+              "ticks": 9
+            }
+          ]
+        },
+        {
+          "id": "breakwater.bash",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-windup",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-windup",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-bash",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-recover",
+              "ticks": 14
+            }
+          ]
+        },
+        {
+          "id": "breakwater.bash.broken",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-broken-windup",
+              "ticks": 12
+            },
+            {
+              "frame": "breakwater-broken-bash",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-broken-recover",
+              "ticks": 14
+            }
+          ]
+        },
+        {
+          "id": "breakwater.stunned",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-stunned",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-broken",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-stunned",
+              "ticks": 6
+            },
+            {
+              "frame": "breakwater-broken",
+              "ticks": 18
+            }
+          ]
+        },
+        {
+          "id": "breakwater.death",
+          "channel": "full-body",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "breakwater-death-0",
+              "ticks": 4
+            },
+            {
+              "frame": "breakwater-death-1",
+              "ticks": 5
+            },
+            {
+              "frame": "breakwater-death-2",
+              "ticks": 7
+            },
+            {
+              "frame": "breakwater-death-3",
+              "ticks": 14
+            }
+          ]
+        }
+      ],
+      "approval": "pending"
+    }
+  }
+}

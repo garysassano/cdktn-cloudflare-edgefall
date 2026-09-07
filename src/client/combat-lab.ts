@@ -28,6 +28,12 @@ import {
 } from "../game/labs/combat-content.js";
 import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
+import {
+  type CastDrawing,
+  advanceCastMotion,
+  initialCastMotion,
+} from "../shared/animation/cast.js";
+import { operativeFootfalls } from "../shared/animation/combat-audio.js";
 import type { NativeAtlas } from "../shared/animation/native.js";
 import { operativePresentation } from "../shared/animation/operative.js";
 import {
@@ -35,6 +41,8 @@ import {
   advanceOperativeMotion,
   initialOperativeMotion,
 } from "../shared/animation/operative-motion.js";
+import { CastAudio } from "./cast-audio.js";
+import { NativeCast } from "./native-cast.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -48,6 +56,7 @@ const surface = element("game"),
 for (const scenario of COMBAT_SCENARIOS) scenarios.add(new Option(scenario, scenario));
 let state = createCombatLab("range"),
   commands: CombatCommand[][] = [],
+  playback: CombatCommand[][] | null = null,
   running = false,
   accumulator = 0,
   jump = false,
@@ -55,6 +64,9 @@ let state = createCombatLab("range"),
   interact = false,
   fire = false;
 const keys = new Set<string>();
+const audio = new CastAudio();
+let castFrames: CastDrawing[] = [];
+let castMotion = initialCastMotion(state);
 let nativeFrames: Array<ReturnType<typeof operativePresentation>> = [];
 let nativeAtlas: NativeAtlas | undefined;
 let motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
@@ -69,14 +81,18 @@ function nextMotion(before: CombatLab, next: CombatLab, current: OperativeMotion
 }
 function replayWithMotion(recording: CombatRecording) {
   let previous: CombatLab | undefined,
+    castClocks = initialCastMotion(createCombatLab(recording.scenario, recording.players)),
     clocks: OperativeMotion[] = [];
   const restored = replayCombatLab(recording, (boundary) => {
+    castClocks = previous
+      ? advanceCastMotion(previous, boundary, castClocks)
+      : initialCastMotion(boundary);
     clocks = previous
       ? nextMotion(previous, boundary, clocks)
       : boundary.players.map((player) => initialOperativeMotion(player, boundary.tick));
     previous = boundary;
   });
-  return { state: restored, motion: clocks };
+  return { state: restored, motion: clocks, castMotion: castClocks };
 }
 const bindings: Record<string, number> = {
   ArrowLeft: Held.Left,
@@ -95,6 +111,7 @@ function inspect(message = "") {
     `Tick ${state.tick} · ${state.encounter.phase} · ${running ? "running" : "paused"} · ${state.players.map((player) => `P${player.slot + 1}: ${player.lives} lives, ${player.grenadeStock} grenades, ${player.life}`).join(" · ")}${message ? ` · ${message}` : ""}`;
 }
 function pause() {
+  audio.hush();
   running = false;
   accumulator = 0;
   keys.clear();
@@ -102,6 +119,12 @@ function pause() {
   element("run").textContent = "Run";
 }
 function step() {
+  if (playback && state.tick === playback.length) {
+    playback = null;
+    pause();
+    inspect("playback complete");
+    return;
+  }
   if (state.tick >= COMBAT_LAB_LIMIT) {
     pause();
     inspect("recording limit");
@@ -115,20 +138,24 @@ function step() {
     interactPressed: interact,
   };
   jump = fire = grenade = interact = false;
-  const inputs = state.players.map((_, slot) =>
-    slot === 0
-      ? command
-      : {
-          held: element<HTMLInputElement>("assist").checked ? Held.Fire : 0,
-          jumpPressed: false,
-          firePressed: false,
-          grenadePressed: false,
-          interactPressed: false,
-        },
-  );
+  const inputs =
+    playback?.[state.tick] ??
+    state.players.map((_, slot) =>
+      slot === 0
+        ? command
+        : {
+            held: element<HTMLInputElement>("assist").checked ? Held.Fire : 0,
+            jumpPressed: false,
+            firePressed: false,
+            grenadePressed: false,
+            interactPressed: false,
+          },
+    );
   try {
     const next = stepCombatLab(state, inputs),
       clocks = nextMotion(state, next, motion);
+    audio.consume(state, next, nativeAtlas ? operativeFootfalls(clocks, nativeAtlas) : []);
+    castMotion = advanceCastMotion(state, next, castMotion);
     state = next;
     motion = clocks;
     commands.push(inputs);
@@ -140,12 +167,15 @@ function step() {
 }
 function reset() {
   pause();
+  audio.reset();
+  playback = null;
   commands = [];
   state = createCombatLab(
     COMBAT_SCENARIOS.find((scenario) => scenario === scenarios.value) ?? "range",
     Number(players.value),
   );
   motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
+  castMotion = initialCastMotion(state);
   inspect();
 }
 function recording(): CombatRecording {
@@ -215,14 +245,34 @@ element("run").onclick = () => {
 };
 element("replay").onclick = () => {
   pause();
+  playback = null;
   try {
     const replayed = replayWithMotion(recording());
     state = replayed.state;
     motion = replayed.motion;
+    castMotion = replayed.castMotion;
+    audio.reset();
     inspect("replay matches");
   } catch (error) {
     inspect(`replay failed: ${error}`);
   }
+};
+element("play-recording").onclick = () => {
+  pause();
+  if (commands.length === 0) {
+    inspect("record some input first");
+    return;
+  }
+  playback = structuredClone(commands);
+  state = createCombatLab(state.scenario, state.players.length);
+  castMotion = initialCastMotion(state);
+  motion = state.players.map((player) => initialOperativeMotion(player, state.tick));
+  commands = [];
+  audio.reset();
+  running = true;
+  element("run").textContent = "Pause";
+  surface.focus();
+  inspect("playing recorded input");
 };
 element("export").onclick = () => {
   const url = URL.createObjectURL(
@@ -243,7 +293,10 @@ element<HTMLInputElement>("import").onchange = async (event) => {
     const restored = replayWithMotion(imported);
     state = restored.state;
     motion = restored.motion;
+    castMotion = restored.castMotion;
     commands = imported.commands;
+    playback = null;
+    audio.reset();
     scenarios.value = state.scenario;
     players.value = String(state.players.length);
     inspect("imported replay matches");
@@ -251,9 +304,30 @@ element<HTMLInputElement>("import").onchange = async (event) => {
     inspect(`import rejected: ${error}`);
   }
 };
+element<HTMLInputElement>("cast-audio").onchange = async (event) => {
+  const control = event.target as HTMLInputElement;
+  try {
+    element("audio-status").textContent = control.checked ? "Loading samples…" : "Muted";
+    await audio.setEnabled(control.checked);
+    element("audio-status").textContent = control.checked ? "Sound ready" : "Muted";
+  } catch (error) {
+    control.checked = false;
+    await audio.setEnabled(false);
+    element("audio-status").textContent = `Sound unavailable: ${error}`;
+  }
+};
+element<HTMLInputElement>("audio-volume").oninput = (event) =>
+  audio.setVolume(Number((event.target as HTMLInputElement).value));
+if (new URLSearchParams(location.search).get("cast") === "1") {
+  for (const id of ["native-operative", "native-cast"])
+    element<HTMLInputElement>(id).checked = true;
+  for (const id of ["player-overlays", "cast-overlays"])
+    element<HTMLInputElement>(id).checked = false;
+}
 class CombatScene extends Phaser.Scene {
   private overlay?: Phaser.GameObjects.Graphics;
   private atlas?: NativeAtlas;
+  private cast?: NativeCast;
   private operative: Array<{
     legs: Phaser.GameObjects.Image;
     upper: Phaser.GameObjects.Image;
@@ -263,6 +337,7 @@ class CombatScene extends Phaser.Scene {
     super("combat-lab");
   }
   preload() {
+    NativeCast.preload(this);
     this.load.atlas(
       "operative",
       "/assets/art/hero/operative.png",
@@ -271,6 +346,7 @@ class CombatScene extends Phaser.Scene {
     this.load.json("operative-metadata", "/assets/art/hero/operative.atlas.json");
   }
   create() {
+    this.cast = new NativeCast(this);
     this.atlas = this.cache.json.get("operative-metadata") as NativeAtlas;
     nativeAtlas = this.atlas;
     for (let slot = 0; slot < 4; slot++)
@@ -307,6 +383,9 @@ class CombatScene extends Phaser.Scene {
     const g = this.overlay;
     if (!g) return;
     g.clear();
+    const showCast = element<HTMLInputElement>("native-cast").checked,
+      castOverlays = !showCast || element<HTMLInputElement>("cast-overlays").checked;
+    castFrames = this.cast?.draw(state, castMotion, showCast) ?? [];
     nativeFrames = state.players.map((player, slot) =>
       this.atlas && motion[slot] && element<HTMLInputElement>("native-operative").checked
         ? operativePresentation(player, state.tick, this.atlas, motion[slot])
@@ -343,7 +422,12 @@ class CombatScene extends Phaser.Scene {
     }
     for (const player of state.players) {
       if (player.bodyPresence === "removed" || player.life === "spectating") continue;
-      if (nativeFrames[player.slot] && !element<HTMLInputElement>("player-overlays").checked)
+      if (
+        (nativeFrames[player.slot] ||
+          (showCast &&
+            (player.vehicleId !== null || ["enter", "exit"].includes(player.action.kind)))) &&
+        !element<HTMLInputElement>("player-overlays").checked
+      )
         continue;
       const contact = nativeFrames[player.slot]?.contact;
       if (contact) {
@@ -395,12 +479,14 @@ class CombatScene extends Phaser.Scene {
         g.fillCircle(point.x / 256, point.y / 256, 2);
       }
     }
-    for (const tank of state.tanks) drawTankOverlay(g, tank, state.tick);
+    if (castOverlays) for (const tank of state.tanks) drawTankOverlay(g, tank, state.tick);
     for (const hurt of combatHurtboxes(state.targets, state.tick)) {
+      if (!castOverlays) break;
       g.lineStyle(1, hurt.kind === "shield" ? 0xffae43 : 0xff677d);
       g.strokeRect(hurt.rect.x / 256, hurt.rect.y / 256, hurt.rect.w / 256, hurt.rect.h / 256);
     }
     for (const target of state.targets) {
+      if (!castOverlays) break;
       const guard = target.guard;
       if (guard && target.health > 0) {
         const age = state.tick - guard.action.stateStartTick;
@@ -527,5 +613,14 @@ Object.assign(globalThis, {
     recording,
     running: () => running,
     nativeFrames: () => structuredClone(nativeFrames),
+    castFrames: () => structuredClone(castFrames),
+    audio: () => audio.inspect(),
+    startAudioCapture: () => audio.startCapture(),
+    startVideoCapture: () => {
+      const canvas = surface.querySelector("canvas");
+      if (!canvas) throw new Error("Missing game canvas");
+      audio.startCapture(canvas.captureStream(60));
+    },
+    stopAudioCapture: () => audio.stopCapture(),
   },
 });
