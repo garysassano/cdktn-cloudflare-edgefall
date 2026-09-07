@@ -1,0 +1,335 @@
+{
+  "baseCommit": "882eb831c558ba1b8d977e28c198c1ca6e1d6e83",
+  "archiveFormat": 5,
+  "protocol": "3.4",
+  "combatRecordingFormat": 2,
+  "sourceScope": "Changed and new source/docs files relative to baseCommit, plus toolchain/deployment inputs. Earlier failure artifacts precede the corrections described in W05-foot-combat.md.",
+  "sources": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "7f645d2ce5067516e1abb335e56fdb5fe7b5978317c187bcafce90cc69b70246"
+    },
+    {
+      "file": "README.md",
+      "sha256": "e79db18c179173098540594c56e4d216e628f953d228dffc2788e48fa91e3791"
+    },
+    {
+      "file": "docs/combat-checkpoint-v3.md",
+      "sha256": "c74414bcff42c6dafc3b3a12aea2af97721d011166290ff89980d1a5776789fd"
+    },
+    {
+      "file": "docs/combat-checkpoint-v4.md",
+      "sha256": "7ee23de2ccc3a04ec1e4876815677a393f66039673ffb0f02dc93372e4d58699"
+    },
+    {
+      "file": "docs/combat-checkpoint-v5.md",
+      "sha256": "cb902b3e6f3a414386b313d29914b273a3e213dd047fcc39ad5e328038b7fb15"
+    },
+    {
+      "file": "docs/events-v3.md",
+      "sha256": "f5ac7e72a34b3eaacab6944e0b915959e4170a79766ca2f590c46414ba0b65bb"
+    },
+    {
+      "file": "docs/protocol-v3.md",
+      "sha256": "998b0400c2d559ae5f236864093744a0aac5d3a7f0e6c3a96d84ade2f58fd6bb"
+    },
+    {
+      "file": "docs/redesign-evidence/W05-foot-combat.md",
+      "sha256": "143b45ecce780da77be942a2d4b307bfb02fef840ee9b7f3ba8d5ba1a54af9ff"
+    },
+    {
+      "file": "docs/redesign-evidence/observability.md",
+      "sha256": "2cf3422a7b2eb39dc833dc040bd6c2e916d15f46bdff658050e33307898be85c"
+    },
+    {
+      "file": "docs/snapshot-v3.md",
+      "sha256": "81d6adc607e7e472552b1147f2618777cecbc6bb5c476efa7250406228377c50"
+    },
+    {
+      "file": "package.json",
+      "sha256": "e2ae392f9abe28a15c818cf796391b26acbedc868727deba05c674ff94f7b784"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "5db1a9d12b5058e89dae2b6161b39e69da4b8ca565fc3b5374b3365b584ad231"
+    },
+    {
+      "file": "scripts/lib/verify-foot-combat.ts",
+      "sha256": "42f61b1587bdce8679a90a53536b26df1a5bcc5a9ea61c37ceb2a71803f9e81a"
+    },
+    {
+      "file": "scripts/lib/verify-stored-foot-combat.ts",
+      "sha256": "43f743c33c2e97e10dfda7fd23e1294deee1876979d5ca96e0a5d4379a9c7eeb"
+    },
+    {
+      "file": "scripts/verify-combat-lab.mjs",
+      "sha256": "22c9e24129fd29b014799a0651cdf01c318d4178772ea327ee8bc13a49915eb8"
+    },
+    {
+      "file": "scripts/verify-combat-storage.ts",
+      "sha256": "95999efb300446cb5f609e6d5ae86113182fb90cded9246216008e6faef8cdb1"
+    },
+    {
+      "file": "scripts/verify-contract-runtimes.ts",
+      "sha256": "903bc35d371522a6a8adbbfc8390f97715ae6d8f0514cd5e651c381b8a9334da"
+    },
+    {
+      "file": "scripts/verify-network-controller.ts",
+      "sha256": "26e4a1b85794543a6ec86c5b6d5e60988497d1206918a2087846a08bc8237d32"
+    },
+    {
+      "file": "src/client/combat-lab.html",
+      "sha256": "7feffbda1bb44de957c0794de61110df983357237df25c77d0fb2d687e047049"
+    },
+    {
+      "file": "src/client/combat-lab.ts",
+      "sha256": "3ea7fc48b5415769dcefcc4cb3ef65654ebc1e576e0b21c445ba86b760cb03be"
+    },
+    {
+      "file": "src/client/network-lab.ts",
+      "sha256": "5448aec8dd0db0b74c147a39f901ab663cee629c5ba9934301a94743a49830ec"
+    },
+    {
+      "file": "src/game/combat/firearm.ts",
+      "sha256": "43be74a325bfa07b1db45986756e41b68187c5715024fed4985af7e7b7a06baf"
+    },
+    {
+      "file": "src/game/combat/foot-actions.ts",
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "file": "src/game/combat/grenade.ts",
+      "sha256": "b85a892c0c3ab933704d6cf3c3d283db5ab19e2b607b4342f6df2c0a29fde8a6"
+    },
+    {
+      "file": "src/game/combat/projectile.ts",
+      "sha256": "1b49b9e44c9487e368e2a1de82bce6bfc2272809c1180ab1d3175d3c573e5f7a"
+    },
+    {
+      "file": "src/game/combat/volume.ts",
+      "sha256": "db3dd341a15e8c2da66f01daebe1a12dcae97f5388910e5af41676a0f8d2e2f9"
+    },
+    {
+      "file": "src/game/labs/combat-campaign.ts",
+      "sha256": "1d4f74fc5e46d3f8dd21e7d773f62d61232885b38859faa1d048a00ae66fd344"
+    },
+    {
+      "file": "src/game/labs/combat-content.ts",
+      "sha256": "87ea6f80d1d6c3db8c7ef4820d7b04097c9638ebd897b58d82dfc884d9411f81"
+    },
+    {
+      "file": "src/game/labs/combat.ts",
+      "sha256": "9cc71035806bb08d2b4b416b9cb1a1a6713bf3aaf99c7fd5d3d2c613fdddec57"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-checkpoint.ts",
+      "sha256": "d1059700d7a8a304cab159d99e8996828533754dbb0e9a5ade2103f4319bbbf2"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-events.ts",
+      "sha256": "ec4dcab37ecd899d85f2bba5f3d084db8e3f180be72e1840279678cd77d05322"
+    },
+    {
+      "file": "src/shared/diagnostics/combat-workload.ts",
+      "sha256": "825b4cf584ca0f95fbacf09ef4382c8b0248767f8c607d9fb39d38348c2f037b"
+    },
+    {
+      "file": "src/shared/protocol/events.ts",
+      "sha256": "913f61ed039152c0e03d065d5fb85b30b4a4823c856f9c61005642b613a7de56"
+    },
+    {
+      "file": "src/shared/protocol/limits.ts",
+      "sha256": "ba44f603424b1f19d305e74c97323bfd7bddda7e7b1fdc1f3a049e536d1ae4c1"
+    },
+    {
+      "file": "src/worker/diagnostics/room-probe.ts",
+      "sha256": "f79420255da9a7f24afae9584d38f124f928199a263596e4698cb5d3caddcb43"
+    },
+    {
+      "file": "test/admission.test.ts",
+      "sha256": "f17057f1968d56a90a7ec7ac4e825f97d0a8cea4fb7ff378e7bfee4709e9493f"
+    },
+    {
+      "file": "test/arcade-protocol.test.ts",
+      "sha256": "c2ae9a9bab6036920c4952cb54ab98025cf4d25f40dfb4d7882c00d83e0da1bf"
+    },
+    {
+      "file": "test/combat-baseline.test.ts",
+      "sha256": "d4066d042084aa9d787588214adf4ace838980450df243ddf9c11732ffba52a3"
+    },
+    {
+      "file": "test/combat-checkpoint.test.ts",
+      "sha256": "780e1d3bd243bf944502adcf295b01cdc1eac1637c346163a9d2b6c043cbf89f"
+    },
+    {
+      "file": "test/combat.test.ts",
+      "sha256": "fab23f989976b8625588a2ab8bb3b19f6da0a95944776c9cdbf01458dc985220"
+    },
+    {
+      "file": "test/controller-recovery.test.ts",
+      "sha256": "2a0b1870914afa0c2928c3ef850ccf5dfb32b0e69ee09b179fe17e43edebc421"
+    },
+    {
+      "file": "test/event-stream.test.ts",
+      "sha256": "240598a9afd5f27f40029188fe26c79e998be8cbd69e34a947b97a12dbf9f2c5"
+    },
+    {
+      "file": "test/fixtures/combat-input-driver.ts",
+      "sha256": "b472d6c85b6c36086d934fd346059e5a65d8ac2b24acc1e8609121917412da6f"
+    },
+    {
+      "file": "test/fixtures/combat-proof.ts",
+      "sha256": "f7b120531d305896a34828a14666ece724838d29a43ed73648d6a91347787a58"
+    },
+    {
+      "file": "test/fixtures/combat-storage-worker.ts",
+      "sha256": "38fdeba3642bae4355461ec430aabf019df37a0d59c90c812f8330c843e89ad2"
+    },
+    {
+      "file": "test/fixtures/contract-proof.ts",
+      "sha256": "0c1dc2a7a125319b3539934bdd7529bafdd1f7a14be9b645df9628564fb92ffa"
+    },
+    {
+      "file": "test/fixtures/event-delivery-proof.ts",
+      "sha256": "baf77f8d338956f8b38bbdb8b86b434162633522d93e3904f6cf37cbecb1d24f"
+    },
+    {
+      "file": "test/fixtures/foot-combat-proof.ts",
+      "sha256": "76da357696bfd5649d0cb4bc9cea142be5eefb6ca93c99915e517b1a7610678a"
+    },
+    {
+      "file": "test/fixtures/player-life-proof.ts",
+      "sha256": "bcb7359d5540450186d06ea4a462144e02abb85928e0746f0209494e52ada9a0"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/input-golden.json",
+      "sha256": "8bba0d3f9bfe3f60d90ec696c8996d5ee6706a226134e3dab2c4c2c0d59a38d5"
+    },
+    {
+      "file": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "sha256": "d5edb6508f7c35af8dd3041d3e1fe0279b7481458d7bced56422ad6ad7f47cf0"
+    },
+    {
+      "file": "test/fixtures/rifle-proof.ts",
+      "sha256": "fbde9e2ca3acfd90e65d51c611b0ddbabe9bb9c84000484ec1fceb8c34aa93da"
+    },
+    {
+      "file": "test/foot-combat.test.ts",
+      "sha256": "6dbb42f133c92c4a51ed8c9094f1ed8ba71928f80be62a48f8706d0ec0ea6263"
+    },
+    {
+      "file": "test/rifle.test.ts",
+      "sha256": "cbb1d7147ccc44d8136893f45d546a452957006daace39d4526ebd141550a4f2"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "W05-foot-check.log.gz",
+      "bytes": 1256,
+      "sha256": "1daf21913a9351f916aaf1f9d571d414cf12a192047209cca4e77e54cbd6553e",
+      "uncompressedBytes": 2529,
+      "uncompressedSha256": "a1a050a8370b7e4eafb70c0092df639b855a9a9a53a98b155ca0129c49fdd8d7"
+    },
+    {
+      "file": "W05-foot-contracts.json.gz",
+      "bytes": 13549,
+      "sha256": "7a16bc00f791cd5547ba4d38b541341c4077c9236580c1d9a5c2d120d42073f1",
+      "uncompressedBytes": 181383,
+      "uncompressedSha256": "7c4568898ed2094eec09ce1dd87be0b1af86b15de7091cbb4e872913ece97f9a"
+    },
+    {
+      "file": "W05-foot-storage.json.gz",
+      "bytes": 14713,
+      "sha256": "75829f9726726b7d474d8ab0257907ffe3ca3ba5ac021b3ee2dd94af09156d1c",
+      "uncompressedBytes": 472899,
+      "uncompressedSha256": "044589ff26c0446d8da05e5660b9bdd65eae76e171b22285b4e2c2550f67c634"
+    },
+    {
+      "file": "W05-foot-melee-browser.json.gz",
+      "bytes": 82208,
+      "sha256": "565bec2bb475388ce7575f72b8b10c95b4e54232f13a7eb3174b7f77a10849c1",
+      "uncompressedBytes": 1614839,
+      "uncompressedSha256": "deb9c89e64feadf55d8ac61109c5332a3842e7ddb50b33b12cc328acb0a46be5"
+    },
+    {
+      "file": "W05-foot-grenade-browser.json.gz",
+      "bytes": 59292,
+      "sha256": "1f23f3ae58df0292c929c8c1ee659f12d84b4fe5327567da80521a1200b79c29",
+      "uncompressedBytes": 1215241,
+      "uncompressedSha256": "3643709b6f5fa018bded90297c6c0a069d68fd349e57220ba94c48a01c78ece2"
+    },
+    {
+      "file": "W05-foot-melee-diagnostics.json.gz",
+      "bytes": 2450,
+      "sha256": "50ce85c571363a0e1b83ae8f204664eb4b1d16798ee71a8f49d1ab26f910c86e",
+      "uncompressedBytes": 16015,
+      "uncompressedSha256": "b9703132eed671a6c1255f4c62942dbd5b80b782e5591995d85ca97cdc7d7092"
+    },
+    {
+      "file": "W05-foot-grenade-diagnostics.json.gz",
+      "bytes": 2655,
+      "sha256": "ccb985d913b5178aa69e96d55cad065733dce3bf895ff7bb95d27e277620ea76",
+      "uncompressedBytes": 17645,
+      "uncompressedSha256": "061be83cc395ba09dc50c54a2ff81e88822a4946ce2d2300cb06826d8f8e942d"
+    },
+    {
+      "file": "W05-foot-lab.json.gz",
+      "bytes": 5625,
+      "sha256": "cc09ce4dc70a2ed0d228be21615098b3f9b1508ea86e922ea3c582c2ffb6c67a",
+      "uncompressedBytes": 112810,
+      "uncompressedSha256": "2e506243d976c63c9303cf934da19563c03d0bbe3a13b8d70f50fc602c3b52bd"
+    },
+    {
+      "file": "W05-foot-melee-action.png",
+      "bytes": 110945,
+      "sha256": "9d93d324521c0358155f516364f15f151b4b0b42d307f519fe1e9c5fadbcacf7"
+    },
+    {
+      "file": "W05-foot-grenade-action.png",
+      "bytes": 110037,
+      "sha256": "4a27b47bb3256b0a61cb01c38987d4c50808656880dbe29ce5850d2b85cf4f8c"
+    },
+    {
+      "file": "W05-foot-melee-local.png",
+      "bytes": 128886,
+      "sha256": "e95f017c2d66d8362a2c029c3d777cf6914d7c30370c9990f116ac6ce1abc3cb"
+    },
+    {
+      "file": "W05-foot-grenade-local.png",
+      "bytes": 127288,
+      "sha256": "178d5e7168921563a4045a7eec030b8d93193f3544ed119cf0b010f2fa13d924"
+    },
+    {
+      "file": "W05-foot-melee-first-failure.json.gz",
+      "bytes": 5865,
+      "sha256": "7ab3c625320ff3e94829063e80a49776661dd1bdc498ff4bc6d3141759657067",
+      "uncompressedBytes": 113121,
+      "uncompressedSha256": "5e0222dc8b6c47206aba6567662ee51f77a5fc85d59358341ef41ce28654f745"
+    },
+    {
+      "file": "W05-foot-melee-first-clients.json.gz",
+      "bytes": 12750,
+      "sha256": "f2dcbabe1b30d35391acb45583aad9c17cf6c2895f9613678f991a6ac7605b01",
+      "uncompressedBytes": 148737,
+      "uncompressedSha256": "e36b4759ab954f748c3a1e22d3cfe0c332e60a93890ec31eba214a0b147a6baa"
+    },
+    {
+      "file": "W05-foot-melee-first-diagnostics.json.gz",
+      "bytes": 1958,
+      "sha256": "060d6a50083129876a622ac080ce3ec843471fee184b7dad30d7979c7df89597",
+      "uncompressedBytes": 12678,
+      "uncompressedSha256": "efaa5f22c4b549f97edd7fe2518860cee0e629df732a4311e9a6d615b0c47bfd"
+    },
+    {
+      "file": "W05-foot-runtime-timeout.log.gz",
+      "bytes": 219,
+      "sha256": "78f940d932ae01adb8d795658293ed70b98e5cd8246f72e061c9b5f0da70a11f",
+      "uncompressedBytes": 250,
+      "uncompressedSha256": "e13b388a67e04684b4fe1d6eb3cf4f215d5e37c6e4eec8181bb35bfe58dacb89"
+    }
+  ]
+}

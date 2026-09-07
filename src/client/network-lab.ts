@@ -1,11 +1,13 @@
 import Phaser from "phaser";
 import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
+import { COMBAT_SHAPES, GRENADE_PROFILE } from "../game/labs/combat-content.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
 import { combatContinuationHash } from "../shared/diagnostics/combat-recovery.js";
 import {
+  COMBAT_SHAPE_IDS,
   COMBAT_TERRAIN,
   combatIdentity,
   predictCombatMovement,
@@ -73,7 +75,7 @@ async function startLab() {
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires. The deterministic fixture holds fire in all four clients. Fire, projectiles and kill credit come from the same accepted world tick. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
+        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade. Uncheck scripted input to use the keyboard. Yellow rectangles show knife reach; green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -160,6 +162,7 @@ async function startLab() {
     KeyS: { held: Held.Down },
     Space: { edge: Edge.Jump },
     KeyZ: { held: Held.Fire, edge: Edge.FireOnset },
+    KeyC: { edge: Edge.Grenade },
     KeyX: { edge: Edge.Grenade },
     KeyE: { edge: Edge.Interact },
     KeyV: { held: Held.VehicleSpecial, edge: Edge.VehicleSpecial },
@@ -425,6 +428,7 @@ async function startLab() {
         throw new Error("Missing welcome/binary data");
       const context = {
         ...probeContext(slot),
+        ...(mode === "combat" ? { shapeIds: COMBAT_SHAPE_IDS } : {}),
         runEpoch: welcome.runEpoch,
         connectionEpoch: welcome.connectionEpoch,
         playerId: welcome.playerId,
@@ -643,6 +647,12 @@ async function startLab() {
         }
         for (const threat of snapshot?.threats ?? []) {
           g.lineStyle(1, (snapshot?.tick ?? 0) < threat.activeTick ? 0xffce60 : 0xff677d);
+          const blade = threat.shapeId === 9 && COMBAT_SHAPES.get(threat.shapeId);
+          if (blade) {
+            const r = worldRect(threat, blade.rect, threat.heading === 3 ? -1 : 1);
+            g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+            continue;
+          }
           g.strokeCircle(threat.x / 256, threat.y / 256, 3);
           g.lineBetween(
             threat.x / 256,
@@ -652,17 +662,43 @@ async function startLab() {
           );
         }
         for (const projectile of snapshot?.projectiles ?? []) {
+          if (projectile.definitionId === 5) {
+            g.fillStyle(0xa4e488);
+            g.fillCircle(projectile.x / 256, projectile.y / 256, 3);
+            if ((snapshot?.tick ?? 0) - projectile.spawnTick >= projectile.lifetimeTicks - 15) {
+              g.lineStyle(1, 0xff677d);
+              g.strokeCircle(projectile.x / 256, projectile.y / 256, 5);
+            }
+            continue;
+          }
           g.fillStyle(projectile.definitionId === 3 ? 0xff677d : 0xffe475);
           g.fillRect(projectile.x / 256 - 1, projectile.y / 256 - 1, 3, 2);
         }
         for (const item of confirmedEffects) {
           const age = (snapshot?.tick ?? 0) - item.tick;
-          if (age < 0 || age > 8 || item.event.kind === "sound") continue;
-          g.lineStyle(1, item.event.kind === "killed" ? 0xff677d : 0xffe475);
+          if (
+            age < 0 ||
+            age > 8 ||
+            item.event.kind === "sound" ||
+            item.event.kind === "action-sound"
+          )
+            continue;
+          g.lineStyle(
+            1,
+            item.event.kind === "explosion"
+              ? 0xa4e488
+              : item.event.kind === "killed"
+                ? 0xff677d
+                : 0xffe475,
+          );
           g.strokeCircle(
             item.event.x / 256,
             item.event.y / 256,
-            item.event.kind === "killed" ? 7 : 3,
+            item.event.kind === "explosion"
+              ? GRENADE_PROFILE.radius / 256
+              : item.event.kind === "killed"
+                ? 7
+                : 3,
           );
         }
       }

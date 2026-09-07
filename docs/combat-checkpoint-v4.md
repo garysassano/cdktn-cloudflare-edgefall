@@ -1,5 +1,7 @@
 # Combat checkpoint and applied-input journal v4
 
+Historical format 4 contract. Current knife/grenade continuation uses [format 5](combat-checkpoint-v5.md); format 4 archives are rejected.
+
 The diagnostic combat room uses archive format `4` and client protocol `3.3`. The archive preserves private world state, input acknowledgments, allocation/action cursors, encounter receipts, output event history, pause origin and campaign decisions. It supports the range, wall, shield and attacking rifle fixtures. Authored mission progression and the production v3 room remain unfinished.
 
 ## Identity and reconstruction

@@ -10,7 +10,7 @@ import { createCombatRuntime } from "../src/shared/diagnostics/combat-runtime.js
 import { recordCombatInputs } from "./fixtures/combat-input-driver.js";
 import { rifleRecoveryProof } from "./fixtures/rifle-proof.js";
 
-const idle = { held: 0, jumpPressed: false, firePressed: false };
+const idle = { held: 0, jumpPressed: false, grenadePressed: false, firePressed: false };
 const crouch = { ...idle, held: Held.Down };
 const fire = { ...idle, held: Held.Fire, firePressed: true };
 function advance(world: CombatLab, through: number, command = idle) {

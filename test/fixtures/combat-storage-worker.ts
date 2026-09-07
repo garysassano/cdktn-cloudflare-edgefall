@@ -6,6 +6,7 @@ import { roomWorkloadHash } from "../../src/shared/diagnostics/room-workload.js"
 import { CombatStorage } from "../../src/worker/diagnostics/combat-storage.js";
 import { recordCombatInputs } from "./combat-input-driver.js";
 import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-proof.js";
+import { recordFootCombat } from "./foot-combat-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 import { recordRifleRecovery } from "./rifle-proof.js";
 
@@ -28,6 +29,58 @@ export class CombatStorageProof extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const store = await this.archive;
     const [, name, action] = new URL(request.url).pathname.split("/");
+    if (name === "foot-melee" || name === "foot-grenade") {
+      const melee = name === "foot-melee";
+      if (action === "seed") {
+        const saved = recordFootCombat(melee ? "melee" : "grenade").states[melee ? 50 : 4];
+        if (!saved) throw new Error("Missing pre-release foot boundary");
+        await store.initialize(saved);
+      } else if (action && ["release", "active", "finish"].includes(action)) {
+        const fixture = recordFootCombat(melee ? "melee" : "grenade");
+        let saved = await store.load();
+        if (!saved || canonical(saved) !== canonical(fixture.states[saved.combat.tick]))
+          throw new Error("Foot storage prefix mismatch");
+        const through =
+          action === "release"
+            ? melee
+              ? 51
+              : 52
+            : action === "active"
+              ? melee
+                ? 54
+                : 94
+              : melee
+                ? 70
+                : 110;
+        while (saved.combat.tick < through) {
+          const end = Math.min(through, saved.combat.tick + 15);
+          const accepted = fixture.states[end];
+          if (!accepted) throw new Error("Missing foot committed boundary");
+          const entries = fixture.entries.slice(saved.combat.tick, end);
+          this.inject = true;
+          let rolledBack = false;
+          try {
+            await store.commit(saved, entries, accepted);
+          } catch (error) {
+            rolledBack = String(error).includes("injected-storage-transaction-failure");
+          }
+          if (!rolledBack || canonical(await store.load()) !== canonical(saved))
+            throw new Error("Foot rollback changed private action continuation");
+          saved = await store.commit(saved, entries, accepted);
+        }
+      }
+      const saved = await store.load();
+      if (!saved) throw new Error("Missing foot archive");
+      return Response.json({
+        instance: this.instance,
+        tick: saved.combat.tick,
+        hash: combatRuntimeHash(saved),
+        players: saved.combat.players.map(({ grenadeStock, action }) => ({ grenadeStock, action })),
+        strikes: saved.combat.strikes,
+        grenades: saved.combat.grenades,
+        events: saved.history.entries,
+      });
+    }
     if (name === "rifle") {
       if (action === "seed" || action === "resume") {
         const fixture = recordRifleRecovery();
@@ -375,6 +428,8 @@ export default {
         "loading",
         "life",
         "rifle",
+        "foot-melee",
+        "foot-grenade",
         "campaign",
         "campaign-loss",
         "phase-lobby",

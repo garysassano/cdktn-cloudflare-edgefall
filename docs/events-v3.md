@@ -1,4 +1,4 @@
-# Gameplay events v3.3
+# Gameplay events v3.4
 
 The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. These are engineering combat payloads; final audio, predicted effects and complete combat recovery remain separate work.
 
@@ -9,7 +9,7 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 | Header offset | Field                                           | Type    |
 | ------------- | ----------------------------------------------- | ------- |
 | 0             | Magic `0x4645`                                  | u16     |
-| 2             | Major `3`, minor `3`                            | 2 × u8  |
+| 2             | Major `3`, minor `4`                            | 2 × u8  |
 | 4             | Type `3`, flags `0`                             | 2 × u8  |
 | 6             | Exact total byte length                         | u16     |
 | 8 / 12        | Run epoch / connection epoch                    | 2 × u32 |
@@ -18,20 +18,20 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 | 24 / 26       | Record count / record byte size `64`            | 2 × u16 |
 | 28            | Reserved zero                                   | u32     |
 
-| Record offset     | Field                                                                 | Type    |
-| ----------------- | --------------------------------------------------------------------- | ------- |
-| 0 / 4 / 8         | Delivery cursor / tick / within-tick counter                          | 3 × u32 |
-| 12                | Kind: shot `0`, sound `1`, muzzle-blocked `2`, impact `3`, killed `4` | u32     |
-| 16                | Origin: player `0`, enemy `1`                                         | u32     |
-| 20 / 24 / 28 / 32 | Owner / action instance / marker index / content definition           | 4 × u32 |
-| 36 / 40           | Q256 x / y, each bounded to ±2²⁴                                      | 2 × i32 |
-| 44                | Target entity, zero for none                                          | u32     |
-| 48                | Material: none `0`, terrain `1`, shield `2`, body `3`                 | u32     |
-| 52 / 56 / 60      | Confirmation player / control epoch / automatic-fire shot ordinal     | 3 × u32 |
+| Record offset     | Field                                                                                                                        | Type    |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------- |
+| 0 / 4 / 8         | Delivery cursor / tick / within-tick counter                                                                                 | 3 × u32 |
+| 12                | Kind: shot `0`, sound `1`, muzzle-blocked `2`, impact `3`, killed `4`, melee `5`, throw `6`, action-sound `7`, explosion `8` | u32     |
+| 16                | Origin: player `0`, enemy `1`                                                                                                | u32     |
+| 20 / 24 / 28 / 32 | Owner / action instance / marker index / content definition                                                                  | 4 × u32 |
+| 36 / 40           | Q256 x / y, each bounded to ±2²⁴                                                                                             | 2 × i32 |
+| 44                | Target entity, zero for none                                                                                                 | u32     |
+| 48                | Material: none `0`, terrain `1`, shield `2`, body `3`                                                                        | u32     |
+| 52 / 56 / 60      | Confirmation player / control epoch / automatic-fire shot ordinal                                                            | 3 × u32 |
 
 Counters never wrap and remain below `0xfffff000`. The event identity is `(runEpoch, tick, counter)`; the counter starts at zero each tick and is bounded to 511. The separate delivery cursor starts at one and increments for every event. All active clients receive the same ordered records. A frame can start partway through a tick when a previous frame or acknowledgment ended there. Events cannot describe a tick beyond the committed header boundary. The current adapter does not filter events.
 
-Player firearm markers require a complete confirmation key with the same player as the event owner. Enemy markers carry origin `enemy` and zero confirmation fields; assigning them a player confirmation is rejected. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. The kernel captures marker payload, control epoch and shot ordinal when the marker fires; a later death in the same tick can cancel the action without erasing its shot confirmation. The explicit origin occupies one u32 in the 64-byte event record. Enemy release notices retain their authored timeline and marker identity privately for checkpoint validation. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
+Player firearm markers require a complete confirmation key with the same player as the event owner. Enemy markers carry origin `enemy` and zero confirmation fields; assigning them a player confirmation is rejected. Held-fire shots have their own monotonic shot ordinals, and every marker for one action keeps that key. Global action IDs remain authority-owned. The kernel captures marker payload, control epoch and shot ordinal when the marker fires; a later death in the same tick can cancel the action without erasing its shot confirmation. The explicit origin occupies one u32 in the 64-byte event record. Enemy release notices retain their authored timeline and marker identity privately for checkpoint validation. Knife activation, grenade release, action-sound and explosion records have no confirmation key, target or impact material. Their stable action identity remains the authority-owned action allocator; they do not consume firearm shot ordinals. Sound IDs are checked against the negotiated sound-marker table, and attack/impact IDs against attack definitions. Impact/kill records have zero confirmation fields; terrain impacts have no entity target, while shield/body impacts identify one. A kill record must describe a body impact. Unknown content references and partial confirmation keys fail closed.
 
 ## Retention and acknowledgment
 
@@ -60,7 +60,7 @@ When an acknowledged cursor is older than the ring, the room sends this bounded 
 
 The room then stops that peer's snapshots/event replay until the exact `snapshotId` and `baselineEventCursor` are acknowledged together. Earlier in-flight acknowledgments for previously sent data remain valid. A forged cursor jump paired with an older snapshot cannot accept the new baseline. The ordinary stalled-reader timeout still applies; the diagnostic connection allows at most eight event baseline offers. Other players continue normally.
 
-The client fully decodes the promised snapshot, validates its tick/cursor/identity pairing, applies its authoritative state and input mapping, then installs the event boundary and explicitly acknowledges it. The omitted prefix is counted and never replayed as old gun sounds or kills. The supported snapshot restores current enemies, projectiles, weapon/controller state and explicit enemy removals. The engineering combat fixture has no hostile threat descriptors, and its snapshot still needs the complete encounter ledger and allocation/journal state before full combat/restart recovery acceptance. This proof does not establish hostile-threat recovery or a complete campaign baseline.
+The client fully decodes the promised snapshot, validates its tick/cursor/identity pairing, applies its authoritative state and input mapping, then installs the event boundary and explicitly acknowledges it. The omitted prefix is counted and never replayed as old gun sounds or kills. The supported snapshot restores current enemies, projectiles, weapon/controller state and explicit enemy removals. Snapshots include rifle/knife threat descriptors, grenade body/fuse projections, the encounter ledger and allocation state. Private timeline cursors, melee hit ledgers and grenade bounce state are restored through the [format 5 checkpoint and input journal](combat-checkpoint-v5.md). Authored mission progression and production v3 recovery remain unfinished.
 
 If the client detects an application-level gap, it stops consuming events and sends a bounded request. This cursor is diagnostic context, not an acknowledgment:
 

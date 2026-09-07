@@ -14,6 +14,7 @@ import type { ConnectionStatus } from "../src/shared/session/connection.js";
 import { withDirectRoomWorker } from "./lib/local-worker.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
 import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
+import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
@@ -89,6 +90,11 @@ const combatReconnectMode = process.argv.includes("--combat-reconnect") || loadi
 const automaticMode = process.argv.includes("--combat-auto-reconnect");
 const campaignMode = process.argv.includes("--combat-campaign");
 const hostileMode = process.argv.includes("--combat-hostile");
+const footMode = process.argv.includes("--combat-melee")
+  ? "melee"
+  : process.argv.includes("--combat-grenade")
+    ? "grenade"
+    : null;
 const faultMode = process.argv.includes("--combat-fault");
 const baselineMode = process.argv.includes("--combat-baseline");
 const eventMode = process.argv.includes("--events") || baselineMode;
@@ -100,7 +106,26 @@ const combatMode =
   combatReconnectMode ||
   automaticMode ||
   campaignMode ||
-  hostileMode;
+  hostileMode ||
+  !!footMode;
+assert(
+  !footMode ||
+    !(
+      hostileMode ||
+      campaignMode ||
+      automaticMode ||
+      combatReconnectMode ||
+      combatRecoveryMode ||
+      faultMode ||
+      eventMode ||
+      recoveryMode
+    ),
+  "Run foot combat separately",
+);
+assert(
+  !(process.argv.includes("--combat-melee") && process.argv.includes("--combat-grenade")),
+  "Run each foot action in its own fresh room",
+);
 assert(
   !hostileMode ||
     !(
@@ -132,31 +157,33 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = hostileMode
-  ? "dist/network-combat-hostile-evidence"
-  : campaignMode
-    ? "dist/network-combat-campaign-evidence"
-    : automaticMode
-      ? "dist/network-combat-auto-evidence"
-      : combatReconnectMode
-        ? loadingMode
-          ? phaseMode
-            ? "dist/network-combat-phase-evidence"
-            : "dist/network-combat-loading-evidence"
-          : "dist/network-combat-reconnect-evidence"
-        : combatRecoveryMode
-          ? "dist/network-combat-recovery-evidence"
-          : baselineMode
-            ? "dist/network-combat-baseline-evidence"
-            : combatMode
-              ? eventMode
-                ? "dist/network-event-evidence"
-                : faultMode
-                  ? "dist/network-combat-fault-evidence"
-                  : "dist/network-combat-evidence"
-              : recoveryMode
-                ? "dist/network-controller-recovery-evidence"
-                : "dist/network-controller-evidence";
+const output = footMode
+  ? `dist/network-combat-${footMode}-evidence`
+  : hostileMode
+    ? "dist/network-combat-hostile-evidence"
+    : campaignMode
+      ? "dist/network-combat-campaign-evidence"
+      : automaticMode
+        ? "dist/network-combat-auto-evidence"
+        : combatReconnectMode
+          ? loadingMode
+            ? phaseMode
+              ? "dist/network-combat-phase-evidence"
+              : "dist/network-combat-loading-evidence"
+            : "dist/network-combat-reconnect-evidence"
+          : combatRecoveryMode
+            ? "dist/network-combat-recovery-evidence"
+            : baselineMode
+              ? "dist/network-combat-baseline-evidence"
+              : combatMode
+                ? eventMode
+                  ? "dist/network-event-evidence"
+                  : faultMode
+                    ? "dist/network-combat-fault-evidence"
+                    : "dist/network-combat-evidence"
+                : recoveryMode
+                  ? "dist/network-controller-recovery-evidence"
+                  : "dist/network-controller-evidence";
 await mkdir(output, { recursive: true });
 // Each invocation owns its results; a failed run must never leave an older pass report.
 for (const name of [
@@ -247,7 +274,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -331,6 +358,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (footMode) {
+        const foot = await verifyFootCombat(pages, base, output, footMode);
+        room = foot.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          foot,
+          clients: foot.clients,
+          sharedSnapshots: foot.common.length,
+          room,
+          scope:
+            "Four Chromium contexts over local workerd WebSockets; actual contextual knife or discrete grenade keyboard input, snapshot agreement and duplicate event delivery. Engineering range, no authored missions or deployed timing acceptance.",
+        };
       }
       if (hostileMode) {
         const hostile = await verifyHostileCombat(pages, base, output);

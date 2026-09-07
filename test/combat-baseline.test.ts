@@ -19,7 +19,12 @@ function baseline(ticks = 24) {
   for (let tick = 1; tick <= ticks; tick++)
     world = stepCombatLab(
       world,
-      world.players.map(() => ({ held: Held.Fire, jumpPressed: false, firePressed: tick === 1 })),
+      world.players.map(() => ({
+        held: Held.Fire,
+        jumpPressed: false,
+        grenadePressed: false,
+        firePressed: tick === 1,
+      })),
     );
   return combatSnapshot(world);
 }

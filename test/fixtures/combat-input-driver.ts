@@ -1,22 +1,33 @@
 import { damagePlayer } from "../../src/game/campaign/life.js";
 import { canonical } from "../../src/game/core/canonical.js";
-import { Edge, Held } from "../../src/game/input/types.js";
+import { Edge, type EdgeKind, Held } from "../../src/game/input/types.js";
 import {
   type CombatJournalTick,
   type CombatRuntime,
   stageCombatRuntime,
 } from "../../src/shared/diagnostics/combat-runtime.js";
-import { predictCombatMovement } from "../../src/shared/diagnostics/combat-workload.js";
-import { controllerPeerContext } from "../../src/shared/diagnostics/controller-recovery.js";
+import {
+  combatPeerContext,
+  predictCombatMovement,
+} from "../../src/shared/diagnostics/combat-workload.js";
 import { ControllerPrediction } from "../../src/shared/prediction/controller.js";
 import { encodeInputBatch } from "../../src/shared/protocol/codec.js";
 import { InputStream } from "../../src/shared/protocol/input-stream.js";
+
+export type CombatInputScript = (
+  tick: number,
+  slot: number,
+) => {
+  held: number;
+  edges?: EdgeKind[];
+};
 
 /** Actual input admission and per-tick prediction from a confirmed generation boundary. */
 export function recordCombatInputs(
   initial: CombatRuntime,
   ticks: number,
-  held = Held.Right | Held.Fire,
+  input: number | CombatInputScript = Held.Right | Held.Fire,
+  options: { duplicatePackets?: boolean } = {},
 ) {
   let state = structuredClone(initial);
   const initialTick = initial.combat.tick;
@@ -25,7 +36,7 @@ export function recordCombatInputs(
   const streams = state.combat.players.map(
     (actor) =>
       new InputStream({
-        ...controllerPeerContext(initial.snapshot, actor.slot),
+        ...combatPeerContext(initial.snapshot, actor.slot),
         controlEpoch: actor.controlEpoch,
         baselineServerTick: initialTick,
       }),
@@ -45,30 +56,48 @@ export function recordCombatInputs(
   const reconcilers = state.combat.players.map(
     (actor) => new ControllerPrediction(baseline(state, actor.slot), predictCombatMovement),
   );
-  let reconciliations = 0;
+  const edgeIds = streams.map(() => new Map<EdgeKind, number>());
+  let reconciliations = 0,
+    duplicates = 0;
   for (let tick = initialTick + 1; tick <= initialTick + ticks; tick++) {
     const sequence = tick - initialTick;
     const predictions = [];
     for (const [slot, stream] of streams.entries()) {
+      const intent =
+        typeof input === "function"
+          ? input(tick, slot)
+          : {
+              held: input,
+              edges: sequence === 1 && input & Held.Fire ? [Edge.FireOnset] : [],
+            };
+      const cursors = edgeIds[slot];
+      if (!cursors) throw new Error("Missing edge cursors");
       const command = {
         sequence,
         clientTick: sequence - 1,
         controlEpoch: initial.combat.players[slot]?.controlEpoch ?? 0,
-        held,
+        held: intent.held,
         aim: 0 as const,
-        edges: sequence === 1 && held & Held.Fire ? [{ kind: Edge.FireOnset, id: 1 }] : [],
-      };
-      stream.receive(
-        encodeInputBatch({
-          ...controllerPeerContext(initial.snapshot, slot),
-          packetSequence: sequence,
-          snapshotAck: 0,
-          eventAck: 0,
-          commands: [command],
+        edges: (intent.edges ?? []).map((kind) => {
+          const id = (cursors.get(kind) ?? 0) + 1;
+          cursors.set(kind, id);
+          return { kind, id };
         }),
-        tick * 16,
-        tick - 1,
-      );
+      };
+      const packet = encodeInputBatch({
+        ...combatPeerContext(initial.snapshot, slot),
+        packetSequence: sequence,
+        snapshotAck: 0,
+        eventAck: 0,
+        commands: [command],
+      });
+      stream.receive(packet, tick * 16, tick - 1);
+      if (options.duplicatePackets) {
+        const duplicate = stream.receive(packet, tick * 16, tick - 1);
+        if (!duplicate.duplicate || duplicate.admitted !== 0 || duplicate.renewed)
+          throw new Error("Combat duplicate packet changed admission");
+        duplicates++;
+      }
       const player = state.combat.players[slot];
       if (!player) throw new Error("Missing life recovery player");
       predictions.push(predictCombatMovement(player, command, tick));
@@ -124,5 +153,5 @@ export function recordCombatInputs(
     states.push(structuredClone(state));
     if (state.snapshot.roomMode !== "playing") break;
   }
-  return { states, entries, state, reconciliations };
+  return { states, entries, state, reconciliations, duplicates };
 }

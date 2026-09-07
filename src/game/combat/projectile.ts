@@ -24,7 +24,8 @@ export interface HurtTarget {
   delta: Point;
 }
 export interface Impact {
-  projectileId: number;
+  sourceId: number;
+  definitionId: number;
   actionInstanceId: number;
   ownerId: number;
   colliderId: number;
@@ -93,7 +94,8 @@ export function sweepProjectile(
   if (!first) return null;
   const { target, time } = first;
   return {
-    projectileId: projectile.id,
+    sourceId: projectile.id,
+    definitionId: definition.id,
     actionInstanceId: projectile.actionInstanceId,
     ownerId: projectile.ownerId,
     colliderId: target.id,

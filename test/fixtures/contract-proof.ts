@@ -13,6 +13,7 @@ import { compiledLevelProof } from "./compiled-level-proof.js";
 import { controllerBoundaryProof, controllerProof } from "./controller-proof.js";
 import { encounterProof } from "./encounter-proof.js";
 import { eventDeliveryProof } from "./event-delivery-proof.js";
+import { footCombatProof } from "./foot-combat-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
@@ -95,6 +96,7 @@ export async function contractProof() {
     worldCombat: worldCombatProof(),
     combatRecovery: await combatRecoveryProof(),
     rifleRecovery: await rifleRecoveryProof(),
+    footCombat: await footCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

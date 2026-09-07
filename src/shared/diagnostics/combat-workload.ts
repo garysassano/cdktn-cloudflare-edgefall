@@ -19,6 +19,8 @@ import {
   COMBAT_CATALOG,
   COMBAT_CONTENT,
   COMBAT_SHAPES,
+  FOOT_ACTION_PROFILES,
+  GRENADE_PROFILE,
   RIFLE_PROFILE,
 } from "../../game/labs/combat-content.js";
 import { FOOT_DEFINITION } from "../../game/labs/foot-fixture.js";
@@ -28,10 +30,15 @@ import { ARCADE, RULE_PRESETS } from "../../game/rules.js";
 import type { ControlledActor } from "../../game/state.js";
 import type { PreparedPlayerTick, WorldInputOutcome } from "../protocol/input-stream.js";
 import type { FullSnapshot } from "../protocol/snapshot-schema.js";
+import { controllerPeerContext } from "./controller-recovery.js";
 import { PROBE_IDENTITY, createRoomWorkload, roomWorkloadHash } from "./room-workload.js";
 
 export const COMBAT_TERRAIN = combatTerrain("range");
 const grid = new CollisionGrid(COMBAT_TERRAIN);
+export const COMBAT_SHAPE_IDS = new Set(COMBAT_SHAPES.keys());
+export function combatPeerContext(world: FullSnapshot, slot: number) {
+  return { ...controllerPeerContext(world, slot), shapeIds: COMBAT_SHAPE_IDS };
+}
 /** Real content digest; simulation/presentation identities remain explicitly diagnostic. */
 export async function combatIdentity() {
   const bytes = new TextEncoder().encode(
@@ -39,6 +46,8 @@ export async function combatIdentity() {
       content: COMBAT_CONTENT,
       campaignFormat: 1,
       rifle: RIFLE_PROFILE,
+      footActions: FOOT_ACTION_PROFILES,
+      grenade: GRENADE_PROFILE,
       life: {
         rules: RULE_PRESETS,
         deathTicks: ARCADE.deathTicks,
@@ -121,6 +130,45 @@ export function combatSnapshot(
       },
     ];
   });
+  for (const player of combat.players) {
+    if (player.life !== "alive" || player.action.kind !== "melee") continue;
+    const marker = COMBAT_CATALOG.timelines
+      .get(player.action.definitionId)
+      ?.markers.find((marker) => marker.kind === "activate-hitbox");
+    const definition =
+      marker && COMBAT_CONTENT.attacks.find((attack) => attack.id === marker.payloadId);
+    if (!marker || !definition) throw new Error("Missing melee threat window");
+    const activeTick = player.action.stateStartTick + marker.tickOffset;
+    const endTick = activeTick + definition.lifetimeTicks;
+    if (combat.tick >= endTick) continue;
+    const pose = actionPose(
+      COMBAT_CATALOG,
+      player.action.definitionId,
+      combat.tick - player.action.stateStartTick,
+    );
+    const socket = pose?.sockets.find((socket) => socket.name === "hand");
+    if (!socket) throw new Error("Missing melee threat socket");
+    const hand = worldSocket(player.body, socket.point, player.facing);
+    snapshot.threats.push({
+      actionInstanceId: player.action.actionInstanceId,
+      sourceId: player.playerId,
+      definitionId: 4,
+      telegraphTick: player.action.stateStartTick,
+      activeTick,
+      endTick,
+      x: hand.x,
+      y: hand.y,
+      vx: 0,
+      vy: 0,
+      heading: player.facing === 1 ? 0 : 3,
+      targetId: null,
+      motion: "authored",
+      cancelled: false,
+      stateVersion: 1,
+      shapeId: 9,
+    });
+  }
+  snapshot.threats.sort((a, b) => a.actionInstanceId - b.actionInstanceId);
   snapshot.enemies = combat.targets
     .filter((target) => target.health > 0)
     .map(({ enemy, health, shield, rifle }) => ({
@@ -164,6 +212,22 @@ export function combatSnapshot(
             : 0,
     shapeId: 4,
   }));
+  for (const grenade of combat.grenades)
+    snapshot.projectiles.push({
+      id: grenade.id,
+      ownerId: grenade.ownerId,
+      actionInstanceId: grenade.actionInstanceId,
+      definitionId: grenade.definitionId,
+      x: grenade.body.x,
+      y: grenade.body.y,
+      vx: grenade.body.vx,
+      vy: grenade.body.vy,
+      spawnTick: grenade.spawnTick,
+      lifetimeTicks: GRENADE_PROFILE.fuseTicks,
+      heading: grenade.body.vy < 0 ? 1 : grenade.body.vy > 0 ? 2 : grenade.body.vx < 0 ? 3 : 0,
+      shapeId: grenade.body.shapeId,
+    });
+  snapshot.projectiles.sort((a, b) => a.id - b.id);
   snapshot.removedIds = combat.targets
     .filter((target) => target.health === 0)
     .map((target) => target.enemy.body.id);
@@ -217,6 +281,7 @@ export function evaluateCombatTick(
       held: item?.input.command.held ?? 0,
       jumpPressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Jump) ?? false,
       firePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.FireOnset) ?? false,
+      grenadePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Grenade) ?? false,
     };
   });
   const result = advanceCombatLab(current, commands);
@@ -226,6 +291,7 @@ export function evaluateCombatTick(
     if (!actor || !outcome) throw new Error("Unknown combat input owner");
     actor.processedEdgeIds = [...item.acknowledgment.processedEdgeIds];
     let jump = false,
+      grenade = false,
       fire = false;
     return {
       playerId: actor.playerId,
@@ -235,6 +301,10 @@ export function evaluateCombatTick(
           accepted = outcome.jumpAccepted ? "applied" : "unavailable";
           jump = true;
         }
+        if (edge.kind === Edge.Grenade && !grenade) {
+          accepted = outcome.grenade === "none" ? "unavailable" : outcome.grenade;
+          grenade = true;
+        } else if (edge.kind === Edge.Grenade) accepted = "cooldown";
         if (edge.kind === Edge.FireOnset && !fire) {
           accepted = outcome.fire === "none" ? "unavailable" : outcome.fire;
           fire = true;

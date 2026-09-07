@@ -10,7 +10,17 @@ export const EVENT_RECORD_BYTES = 64;
 export const MAX_EVENT_BATCH = 64;
 export const MAX_EVENT_HISTORY = 512;
 export const EVENT_HISTORY_TICKS = 120;
-export const EVENT_KINDS = ["shot", "sound", "muzzle-blocked", "impact", "killed"] as const;
+export const EVENT_KINDS = [
+  "shot",
+  "sound",
+  "muzzle-blocked",
+  "impact",
+  "killed",
+  "melee",
+  "throw",
+  "action-sound",
+  "explosion",
+] as const;
 export const EVENT_MATERIALS = ["none", "terrain", "shield", "body"] as const;
 export const EVENT_ORIGINS = ["player", "enemy"] as const;
 
@@ -68,7 +78,9 @@ export function validateGameplayEvent(event: GameplayEvent, context: EventContex
   integer(event.markerIndex, 0, MAX_EVENT_HISTORY - 1, "event marker");
   eventCounter(event.definitionId);
   eventRequire(
-    (event.kind === "sound" ? context.soundIds : context.attackIds).has(event.definitionId),
+    (["sound", "action-sound"].includes(event.kind) ? context.soundIds : context.attackIds).has(
+      event.definitionId,
+    ),
     "Unknown event content definition",
   );
   integer(event.x, -MAX_POSITION, MAX_POSITION, "event x");
@@ -87,6 +99,11 @@ export function validateGameplayEvent(event: GameplayEvent, context: EventContex
     eventRequire(
       event.material === (event.kind === "muzzle-blocked" ? "terrain" : "none"),
       "Invalid firearm material",
+    );
+  } else if (["melee", "throw", "action-sound", "explosion"].includes(event.kind)) {
+    eventRequire(
+      event.confirmation === null && event.targetId === null && event.material === "none",
+      "Invalid foot action event",
     );
   } else {
     eventRequire(

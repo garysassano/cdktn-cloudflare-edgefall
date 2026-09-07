@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { execFileSync, spawn } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "@playwright/test";
@@ -11,6 +11,7 @@ import { contractProof } from "../test/fixtures/contract-proof.js";
 const require = createRequire(import.meta.url);
 const output = "dist/contract-runtime-proof";
 await mkdir(output, { recursive: true });
+for (const name of ["report.json", "failure.json"]) await rm(`${output}/${name}`, { force: true });
 const bundle = await build({
   entryPoints: ["test/fixtures/contract-proof.ts"],
   bundle: true,
@@ -38,7 +39,10 @@ for (const path of Object.keys(bundle.metafile.inputs).sort()) {
     .update(await readFile(path))
     .update("\0");
 }
+const durationsMs = { node: 0, workerdRequest: 0, chromium: 0 };
+const nodeStarted = performance.now();
 const expected = await contractProof();
+durationsMs.node = Math.round(performance.now() - nodeStarted);
 const port = 8790;
 let occupied = false;
 try {
@@ -74,6 +78,7 @@ const exited = new Promise<void>((resolve) => {
   server.once("error", () => resolve());
 });
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
+let phase = "worker startup";
 try {
   let ready = false;
   for (let attempt = 0; attempt < 100; attempt++) {
@@ -88,11 +93,16 @@ try {
     await delay(200);
   }
   assert(ready, `Local conformance worker did not start: ${serverLog}`);
+  phase = "workerd contract workload";
+  const workerdStarted = performance.now();
   const response = await fetch(`http://127.0.0.1:${port}/contract-proof`, {
-    signal: AbortSignal.timeout(5000),
+    // This deadline covers the entire growing conformance suite, not one game tick.
+    signal: AbortSignal.timeout(20_000),
   });
   assert(response.ok, "workerd contract proof failed");
   assert.deepEqual(await response.json(), expected, "workerd differs from Node");
+  durationsMs.workerdRequest = Math.round(performance.now() - workerdStarted);
+  phase = "Chromium contract workload";
   browser = await chromium.launch({
     executablePath: process.env.EDGEFALL_CHROMIUM_PATH,
     headless: true,
@@ -102,11 +112,13 @@ try {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.addScriptTag({ content: javascript });
+  const chromiumStarted = performance.now();
   assert.deepEqual(
     await page.evaluate("EdgefallContractProof.contractProof()"),
     expected,
     "Chromium differs from Node",
   );
+  durationsMs.chromium = Math.round(performance.now() - chromiumStarted);
   assert.deepEqual(errors, []);
   const report = {
     schemaVersion: 1,
@@ -122,6 +134,8 @@ try {
       wrangler: (require("wrangler/package.json") as { version: string }).version,
       worker: "local workerd; no deployed service",
     },
+    durationsMs,
+    workerdRequestTimeoutMs: 20_000,
     snapshotBytes: expected.snapshots.map((snapshot) => ({
       name: snapshot.name,
       bytes: snapshot.hex.length / 2,
@@ -179,6 +193,7 @@ try {
     worldCombat: expected.worldCombat,
     combatRecovery: expected.combatRecovery,
     rifleRecovery: expected.rifleRecovery,
+    footCombat: expected.footCombat,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {
@@ -194,6 +209,12 @@ try {
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));
+} catch (error) {
+  await writeFile(
+    `${output}/failure.json`,
+    `${JSON.stringify({ phase, error: String(error), durationsMs, serverLog }, null, 2)}\n`,
+  );
+  throw error;
 } finally {
   await browser?.close();
   if (server.pid) {

@@ -14,7 +14,12 @@ import {
   replayCombatLab,
   stepCombatLab,
 } from "../game/labs/combat.js";
-import { COMBAT_CATALOG, COMBAT_SHAPES, RIFLE_PROFILE } from "../game/labs/combat-content.js";
+import {
+  COMBAT_CATALOG,
+  COMBAT_SHAPES,
+  GRENADE_PROFILE,
+  RIFLE_PROFILE,
+} from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -31,6 +36,7 @@ let state = createCombatLab("range"),
   running = false,
   accumulator = 0,
   jump = false,
+  grenade = false,
   fire = false;
 const keys = new Set<string>();
 const bindings: Record<string, number> = {
@@ -47,13 +53,13 @@ const bindings: Record<string, number> = {
 function inspect(message = "") {
   element("state").textContent = JSON.stringify(state, null, 2);
   element("status").textContent =
-    `Tick ${state.tick} · ${state.encounter.phase} · ${running ? "running" : "paused"} · ${state.players.map((player) => `P${player.slot + 1}: ${player.lives} lives, ${player.life}`).join(" · ")}${message ? ` · ${message}` : ""}`;
+    `Tick ${state.tick} · ${state.encounter.phase} · ${running ? "running" : "paused"} · ${state.players.map((player) => `P${player.slot + 1}: ${player.lives} lives, ${player.grenadeStock} grenades, ${player.life}`).join(" · ")}${message ? ` · ${message}` : ""}`;
 }
 function pause() {
   running = false;
   accumulator = 0;
   keys.clear();
-  jump = fire = false;
+  jump = fire = grenade = false;
   element("run").textContent = "Run";
 }
 function step() {
@@ -66,8 +72,9 @@ function step() {
     held: [...keys].reduce((mask, key) => mask | (bindings[key] ?? 0), 0),
     jumpPressed: jump,
     firePressed: fire,
+    grenadePressed: grenade,
   };
-  jump = fire = false;
+  jump = fire = grenade = false;
   const inputs = state.players.map((_, slot) =>
     slot === 0
       ? command
@@ -75,6 +82,7 @@ function step() {
           held: element<HTMLInputElement>("assist").checked ? Held.Fire : 0,
           jumpPressed: false,
           firePressed: false,
+          grenadePressed: false,
         },
   );
   try {
@@ -97,7 +105,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 1,
+    format: 2,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -112,17 +120,19 @@ surface.addEventListener("keydown", (event) => {
     if (!event.repeat && !running) step();
     return;
   }
-  if (!(event.code in bindings) && event.code !== "Space") return;
+  if (!(event.code in bindings) && event.code !== "Space" && event.code !== "KeyC") return;
   event.preventDefault();
   if (event.repeat) return;
   if (!keys.has(event.code)) {
     if (event.code === "Space") jump = true;
     if (event.code === "KeyZ") fire = true;
+    if (event.code === "KeyC") grenade = true;
   }
   keys.add(event.code);
 });
 surface.addEventListener("keyup", (event) => {
-  if (event.code in bindings || event.code === "Space") event.preventDefault();
+  if (event.code in bindings || event.code === "Space" || event.code === "KeyC")
+    event.preventDefault();
   keys.delete(event.code);
 });
 surface.addEventListener("blur", () => {
@@ -226,14 +236,22 @@ class CombatScene extends Phaser.Scene {
       const rect = worldRect(player.body, shape.rect, player.facing);
       g.lineStyle(1, [0x72dfed, 0xbba4ff, 0xa4e488, 0xffcc88][player.slot] ?? 0xffffff);
       g.strokeRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
-      const pose =
-        player.action.kind === "fire"
-          ? actionPose(
-              COMBAT_CATALOG,
-              player.action.definitionId,
-              state.tick - player.action.stateStartTick,
-            )
-          : null;
+      const pose = ["fire", "melee", "grenade"].includes(player.action.kind)
+        ? actionPose(
+            COMBAT_CATALOG,
+            player.action.definitionId,
+            state.tick - player.action.stateStartTick,
+          )
+        : null;
+      const handSocket = pose?.sockets.find((socket) => socket.name === "hand"),
+        blade = COMBAT_SHAPES.get(9);
+      if (player.action.kind === "melee" && handSocket && blade) {
+        const hand = worldSocket(player.body, handSocket.point, player.facing),
+          r = worldRect(hand, blade.rect, player.facing),
+          active = state.strikes.some((strike) => strike.ownerId === player.body.id);
+        g.lineStyle(1, active ? 0xffe475 : 0xffce60);
+        g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
+      }
       for (const id of pose?.hurtShapeIds ?? []) {
         const hurt = COMBAT_SHAPES.get(id);
         if (!hurt) continue;
@@ -274,6 +292,14 @@ class CombatScene extends Phaser.Scene {
           muzzle.y / 256 - (rifle.aim === 1 ? 30 : 0),
         );
     }
+    for (const grenade of state.grenades) {
+      g.fillStyle(0xa4e488);
+      g.fillCircle(grenade.body.x / 256, grenade.body.y / 256, 3);
+      if (state.tick - grenade.spawnTick >= GRENADE_PROFILE.fuseTicks - 15) {
+        g.lineStyle(1, 0xff677d);
+        g.strokeCircle(grenade.body.x / 256, grenade.body.y / 256, 5);
+      }
+    }
     for (const projectile of state.projectiles) {
       if (projectile.spawnTick === state.tick) {
         g.fillStyle(projectile.team === 2 ? 0xff677d : 0xffe475);
@@ -292,7 +318,14 @@ class CombatScene extends Phaser.Scene {
       );
     }
     for (const event of state.events)
-      if (event.kind === "impact" || event.kind === "muzzle-blocked") {
+      if (event.kind === "explosion") {
+        g.lineStyle(1, 0xa4e488);
+        g.strokeCircle(
+          event.position.x / 256,
+          event.position.y / 256,
+          GRENADE_PROFILE.radius / 256,
+        );
+      } else if (event.kind === "impact" || event.kind === "muzzle-blocked") {
         g.lineStyle(1, 0xffffff);
         g.strokeCircle(event.position.x / 256, event.position.y / 256, 3);
       }

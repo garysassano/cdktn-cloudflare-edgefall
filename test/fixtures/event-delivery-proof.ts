@@ -45,7 +45,12 @@ export function eventDeliveryProof() {
   for (let tick = 1; tick <= 300; tick++) {
     const next = stepCombatLab(
       world,
-      world.players.map(() => ({ held: Held.Fire, jumpPressed: false, firePressed: tick === 1 })),
+      world.players.map(() => ({
+        held: Held.Fire,
+        jumpPressed: false,
+        grenadePressed: false,
+        firePressed: tick === 1,
+      })),
     );
     const notices = combatGameplayEvents(world, next);
     for (const event of notices)

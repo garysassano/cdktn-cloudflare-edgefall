@@ -12,7 +12,7 @@ import {
   createCombatRuntime,
   stageCombatRuntime,
 } from "../../shared/diagnostics/combat-runtime.js";
-import { combatIdentity } from "../../shared/diagnostics/combat-workload.js";
+import { combatIdentity, combatPeerContext } from "../../shared/diagnostics/combat-workload.js";
 import { CombatJournalWriter } from "../../shared/diagnostics/combat-writer.js";
 import {
   controllerPeerContext,
@@ -394,7 +394,11 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
   }
 
   private context(slot: number) {
-    return this.controllerInputs ? controllerPeerContext(this.world, slot) : probeContext(slot);
+    return this.combat
+      ? combatPeerContext(this.world, slot)
+      : this.controllerInputs
+        ? controllerPeerContext(this.world, slot)
+        : probeContext(slot);
   }
   private newInput(slot: number, baselineServerTick: number) {
     return new InputStream({
@@ -547,7 +551,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
           const result = stageCombatRuntime(this.combatRuntime(), prepared, changes);
           const history = result.state.history;
           for (const [slot] of active) {
-            const context = controllerPeerContext(result.state.snapshot, slot);
+            const context = combatPeerContext(result.state.snapshot, slot);
             encodeSnapshot(
               { ...result.state.snapshot, connectionEpoch: context.connectionEpoch },
               context,

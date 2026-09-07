@@ -17,6 +17,10 @@ for (const file of [
   "life.png",
   "life-death.json",
   "life-entry.json",
+  "melee-active.json",
+  "grenade-active.json",
+  "melee.png",
+  "grenade.png",
 ])
   await rm(`${output}/${file}`, { force: true });
 const server = createServer(async (request, response) => {
@@ -124,6 +128,57 @@ try {
     assert.deepEqual(await read(), state);
     scenarios.push({ scenario, state });
   }
+  const foot = [];
+  for (const mode of ["melee", "grenade"]) {
+    await page.locator("#scenario").selectOption("range");
+    await page.locator("#players").selectOption("1");
+    await page.locator("#assist").uncheck();
+    await page.locator("#reset").click();
+    await surface.focus();
+    if (mode === "melee") {
+      await page.keyboard.down("ArrowRight");
+      for (let tick = 0; tick < 45; tick++) await page.keyboard.press("Enter");
+      await page.keyboard.up("ArrowRight");
+      await page.keyboard.down("KeyZ");
+      for (let tick = 0; tick < 6; tick++) await page.keyboard.press("Enter");
+      await page.keyboard.up("KeyZ");
+    } else {
+      await page.keyboard.press("KeyC", { delay: 10 });
+      await page.keyboard.press("Enter");
+      assert.equal((await read()).players[0].grenadeStock, 9);
+      for (let tick = 0; tick < 3; tick++) await page.keyboard.press("Enter");
+      assert.equal((await read()).grenades.length, 0);
+      await page.keyboard.press("Enter");
+    }
+    const active = await read();
+    assert.equal(active.players[0].weapon.shotOrdinal, 0);
+    if (mode === "melee") assert.deepEqual(active.strikes[0].hitIds, [20]);
+    else assert.equal(active.grenades[0].spawnTick, 5);
+    const path = `${output}/${mode}-active.json`;
+    const download = page.waitForEvent("download");
+    await page.locator("#export").click();
+    await (await download).saveAs(path);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 2);
+    await page.locator("#reset").click();
+    await page.locator("#import").setInputFiles(path);
+    await page.waitForFunction(() =>
+      document.querySelector("#status").textContent.includes("imported replay matches"),
+    );
+    assert.deepEqual(await read(), active);
+    if (mode === "grenade") {
+      await surface.focus();
+      for (let tick = 5; tick < 95; tick++) await page.keyboard.press("Enter");
+      const detonated = await read();
+      assert.equal(detonated.grenades.length, 0);
+      assert.equal(detonated.players[0].grenadeStock, 9);
+      assert.equal(detonated.events.filter((event) => event.kind === "explosion").length, 1);
+    }
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
+    await page.screenshot({ path: `${output}/${mode}.png` });
+    foot.push({ mode, active, final: await read() });
+  }
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -221,9 +276,10 @@ try {
     tap: first,
     poseChange: { crouched, up },
     scenarios,
+    foot,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
-      "Local Chromium keyboard/renderer, four deterministic input slots, firearm hit/ledger, three real fall deaths, protected entry, spectating and death/entry recording reconstruction; no network room, enemy attack, final media or full W05 acceptance",
+      "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions and active-action recording reconstruction, three fall deaths, protected entry and spectating; no network room, enemy attack, final media or full W05 acceptance",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

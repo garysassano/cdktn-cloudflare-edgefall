@@ -36,12 +36,9 @@ export function combatGameplayEvents(previous: CombatLab, next: CombatLab): Game
       confirmation: null,
     };
     if (notice.impact) {
-      const projectile = previous.projectiles.find(
-        (item) => item.id === notice.impact?.projectileId,
-      );
-      if (!projectile || projectile.actionInstanceId !== notice.actionInstanceId)
+      if (notice.impact.actionInstanceId !== notice.actionInstanceId)
         throw new Error("Missing impact attack identity");
-      event.definitionId = projectile.definitionId;
+      event.definitionId = notice.impact.definitionId;
     } else {
       const source = notice.source;
       if (!source) throw new Error("Missing firearm confirmation source");

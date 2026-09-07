@@ -3,13 +3,13 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Edgefall firearm laboratory</title>
 <style>body{background:#131b27;color:#eef2f7;font:16px system-ui;max-width:1000px;margin:24px auto;padding:0 16px}button,select{font:inherit;margin:4px;padding:6px}canvas{max-width:100%;height:auto}pre{max-height:280px;overflow:auto}#game{width:768px;max-width:100%}#game:focus{outline:3px solid #72dfed}</style></head>
 <body>
-<h1>Firearm and hitbox laboratory</h1>
-<p>Engineering graphics. Shared 60 Hz movement, action timelines, projectiles and encounter accounting. Cyan: body; red: hurtbox; orange: shield; pink: authored muzzle; yellow: swept projectile. Targets patrol on the ground. This local inspector has no multiplayer connection or final media.</p>
+<h1>Combat and hitbox laboratory</h1>
+<p>Engineering graphics. Shared 60 Hz movement, action timelines, projectiles and encounter accounting. Cyan: body; red: hurtbox; orange: shield; pink: authored muzzle; yellow: projectile or knife volume; green: grenade and blast radius. Targets patrol on the ground. This local inspector has no multiplayer connection or final media.</p>
 <label>Scenario <select id="scenario"></select></label><label>Input slots <select id="players"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
 <label><input type="checkbox" id="assist"> Other slots hold fire</label>
 <button type="button" id="reset">Reset</button><button type="button" id="run">Run</button><button type="button" id="step">Step</button><button type="button" id="replay">Replay recording</button><button type="button" id="export">Export recording</button>
 <label>Import recording <input id="import" type="file" accept="application/json,.json"></label>
-<p>Focus the surface: arrows/WASD move, aim and crouch; Space jumps; Z fires; Enter advances one tick while paused. Released taps survive until that tick. Slot 2 starts with 150 HMG rounds; other slots use the unlimited sidearm. Blur pauses and clears intent. The wall and shield scenarios stay unresolved until a real hit reaches an exposed body. Recordings stop at 3,600 ticks.</p>
+<p>Focus the surface: arrows/WASD move, aim and crouch; Space jumps; Z fires or uses the knife near exposed infantry; C throws a grenade; Enter advances one tick while paused. Released taps survive until that tick. Slot 2 starts with 150 HMG rounds; other slots use the unlimited sidearm. Blur pauses and clears intent. The wall and shield scenarios stay unresolved until a real hit reaches an exposed body. Recordings stop at 3,600 ticks.</p>
 <!-- biome-ignore lint/a11y/noNoninteractiveTabindex: This application surface receives controller keyboard input. -->
 <div id="game" tabindex="0" role="application" aria-label="Firearm test surface"></div>
 <p id="status" role="status"></p><details open><summary>Action IDs, marker cursors, ammunition and hit ticks</summary><pre id="state"></pre></details>

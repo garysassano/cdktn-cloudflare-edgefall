@@ -10,7 +10,7 @@ import {
   combatRuntimeHash,
   createCombatRuntime,
 } from "../../src/shared/diagnostics/combat-runtime.js";
-import { controllerPeerContext } from "../../src/shared/diagnostics/controller-recovery.js";
+import { combatPeerContext } from "../../src/shared/diagnostics/combat-workload.js";
 import { eventBatches } from "../../src/shared/protocol/event-stream.js";
 import { decodeEventBatch, encodeEventBatch } from "../../src/shared/protocol/events.js";
 import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapshot.js";
@@ -49,7 +49,7 @@ export async function rifleRecoveryProof() {
     );
     const resumed = await restoreCombatJournalSegment(restored, segment, identity);
     if (canonical(resumed) !== canonical(accepted)) throw new Error("Rifle replay diverged");
-    const context = controllerPeerContext(resumed.snapshot, 0);
+    const context = combatPeerContext(resumed.snapshot, 0);
     if (
       canonical(decodeSnapshot(encodeSnapshot(resumed.snapshot, context), context)) !==
       canonical(resumed.snapshot)

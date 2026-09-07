@@ -1,5 +1,5 @@
 export const PROTOCOL_MAJOR = 3;
-export const PROTOCOL_MINOR = 3;
+export const PROTOCOL_MINOR = 4;
 export const MAGIC = 0x4645;
 export const INPUT_TYPE = 1;
 export const INPUT_HEADER_BYTES = 32;

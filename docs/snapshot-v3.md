@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.3
+# Arcade full snapshots v3.4
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -69,13 +69,17 @@ Enemy words: `id, definitionId, x, y, vx, vy, shapeId, facing, health, mode, sta
 
 Projectile words: `id, ownerId, actionInstanceId, definitionId, x, y, vx, vy, spawnTick, lifetimeTicks, heading, shapeId`. Transforms/motion are signed; heading is 0–255 and lifetime is positive. A surviving projectile may refer to a source removed earlier; source attribution is not restricted to the current living entity table.
 
+The combat fixture projects grenades in this section with shape `10`, attack definition `5`, their current body position/velocity, and a release tick plus 90-tick fuse. Bounce count and terrain support remain private checkpoint state. Snapshot recipients and pre-commit validation use the negotiated combat shape set, including the knife and grenade shapes.
+
 Dynamic platform words: `id, x, y, vx, vy, shapeId, trajectoryId, trajectoryTick`. Transforms/motion are signed. Compiled trajectory identity and phase let the predictor reproduce deterministic supports rather than inventing velocity-only extrapolation indefinitely.
 
 Threat words: `actionInstanceId, sourceId, definitionId, telegraphTick, activeTick, endTick, x, y, vx, vy, heading, targetId, motion, cancelled, stateVersion, shapeId`. Transforms/motion are signed; motion is `linear, locked, authored`. The interval satisfies `telegraphTick ≤ activeTick < endTick`. Keeping pending/active/cancelled descriptors in a full baseline avoids depending on a missed transient event to explain incoming damage. The actual visible-warning budget and threat timeline are W05/W04 acceptance work.
 
+Contextual knife actions project their authored hand position, facing and shape `9` through windup and the four-tick active window. Consumed target IDs stay in the private strike ledger. Rifle threats retain their committed target/aim and raise/burst interval. Broader enemy telegraph coverage remains unfinished.
+
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.3; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.4; there is no compatibility decoder for earlier minors.
 
 | Section offset | Field                                                                          | Encoding |
 | -------------- | ------------------------------------------------------------------------------ | -------- |

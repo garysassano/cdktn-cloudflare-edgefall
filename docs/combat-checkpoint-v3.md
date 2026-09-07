@@ -1,6 +1,6 @@
 # Combat checkpoint and applied-input journal v3
 
-Historical format 3 contract. The current diagnostic implementation uses [archive format 4 and protocol 3.3](./combat-checkpoint-v4.md).
+Historical format 3 contract. The current diagnostic implementation uses [archive format 5 and protocol 3.4](./combat-checkpoint-v5.md).
 
 The diagnostic combat room uses archive format `3` and client protocol `3.2`. The archive preserves private world state, input acknowledgments, allocation/action cursors, encounter receipts, output event history, pause origin and campaign decisions. It supports the range, wall and shield fixtures. Authored mission progression and the production v3 room remain unfinished.
 

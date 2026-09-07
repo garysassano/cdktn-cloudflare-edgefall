@@ -25,6 +25,52 @@ function poseTimeline(actor: ControlledActor, catalog: FirearmCatalog): number {
   return profile.timelineIds[poseIndex];
 }
 
+/** Begin one already-arbitrated fire action without advancing time or cooldown twice. */
+export function beginFirearm(
+  current: ControlledActor,
+  tick: number,
+  nextActionId: number,
+  catalog: FirearmCatalog,
+) {
+  integer(tick, 1, COUNTER_LIMIT - 1, "firearm tick");
+  integer(
+    nextActionId,
+    current.weapon.lastActionInstanceId + 1,
+    COUNTER_LIMIT - 2,
+    "firearm allocation",
+  );
+  if (
+    current.life !== "alive" ||
+    current.vehicleId !== null ||
+    current.action.kind !== "ready" ||
+    current.weapon.cooldownTicks !== 0
+  )
+    throw new Error("Firearm action is not ready");
+  const actor = structuredClone(current);
+  let profile = catalog.firearms.get(actor.weapon.id);
+  if (!profile) throw new Error("Missing firearm profile");
+  if (actor.weapon.ammo < profile.weapon.ammoPerAction) {
+    profile = catalog.firearms.get("sidearm");
+    if (profile?.weapon.ammoPerAction !== 0) throw new Error("Missing unlimited sidearm fallback");
+    actor.weapon.id = "sidearm";
+    actor.weapon.ammo = 0;
+  }
+  actor.action = {
+    kind: "fire",
+    actionInstanceId: nextActionId,
+    stateStartTick: tick,
+    definitionId: poseTimeline(actor, catalog),
+    nextMarkerIndex: 0,
+  };
+  actor.weapon.ammo -= profile.weapon.ammoPerAction;
+  actor.weapon.cooldownTicks = profile.weapon.cadenceTicks;
+  actor.weapon.shotOrdinal = nextCounter(actor.weapon.shotOrdinal);
+  actor.weapon.lastActionInstanceId = actor.action.actionInstanceId;
+  const result = stepAction(actor.action, tick, catalog);
+  actor.action = result.action;
+  return { actor, markers: result.markers, nextActionId: nextCounter(nextActionId) };
+}
+
 /** Called once in the world's action phase after locomotion. It owns no renderer or clock. */
 export function stepFirearm(
   current: ControlledActor,
@@ -41,7 +87,7 @@ export function stepFirearm(
     throw new Error("Action allocator regressed");
   integer(current.weapon.cooldownTicks, 0, 3600, "weapon cooldown");
   integer(current.weapon.ammo, 0, 65535, "weapon ammunition");
-  const actor = structuredClone(current);
+  let actor = structuredClone(current);
   actor.weapon.cooldownTicks = Math.max(0, actor.weapon.cooldownTicks - 1);
   let outcome: "none" | "applied" | "cooldown" | "unavailable" = "none";
   const markers: ReturnType<typeof stepAction>["markers"] = [];
@@ -74,30 +120,9 @@ export function stepFirearm(
       outcome = "unavailable";
     else if (actor.weapon.cooldownTicks > 0 || actor.action.kind !== "ready") outcome = "cooldown";
     else {
-      let profile = catalog.firearms.get(actor.weapon.id);
-      if (!profile) throw new Error("Missing firearm profile");
-      if (actor.weapon.ammo < profile.weapon.ammoPerAction) {
-        profile = catalog.firearms.get("sidearm");
-        if (profile?.weapon.ammoPerAction !== 0)
-          throw new Error("Missing unlimited sidearm fallback");
-        actor.weapon.id = "sidearm";
-        actor.weapon.ammo = 0;
-      }
-      const definitionId = poseTimeline(actor, catalog);
-      actor.action = {
-        kind: "fire",
-        actionInstanceId: nextActionId,
-        stateStartTick: tick,
-        definitionId,
-        nextMarkerIndex: 0,
-      };
-      nextActionId = nextCounter(nextActionId);
-      actor.weapon.ammo -= profile.weapon.ammoPerAction;
-      actor.weapon.cooldownTicks = profile.weapon.cadenceTicks;
-      actor.weapon.shotOrdinal = nextCounter(actor.weapon.shotOrdinal);
-      actor.weapon.lastActionInstanceId = actor.action.actionInstanceId;
-      const result = stepAction(actor.action, tick, catalog);
-      actor.action = result.action;
+      const result = beginFirearm(actor, tick, nextActionId, catalog);
+      actor = result.actor;
+      nextActionId = result.nextActionId;
       markers.push(...result.markers);
       outcome = "applied";
     }

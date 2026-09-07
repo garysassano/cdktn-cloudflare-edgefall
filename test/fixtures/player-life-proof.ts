@@ -11,7 +11,9 @@ export function playerLifeProof() {
     notices: LifeNotice[] = [],
     checkpoints: Array<{ tick: number; life: string; since: number; lives: number }> = [];
   for (let tick = 1; tick <= 900; tick++) {
-    const commands = [{ held: Held.Right, jumpPressed: false, firePressed: false }];
+    const commands = [
+      { held: Held.Right, jumpPressed: false, grenadePressed: false, firePressed: false },
+    ];
     const result = advanceCombatLab(state, commands);
     const replay = advanceCombatLab(restored, commands);
     state = result.state;

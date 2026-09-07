@@ -7,6 +7,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { build } from "esbuild";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
+import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
 
@@ -209,6 +210,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    footCombat: await verifyStoredFootCombat(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     rifle: await verifyStoredRifle(origin, async () => {
       await runtime.dispose();
       runtime = create();

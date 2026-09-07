@@ -13,6 +13,8 @@ import {
   COMBAT_ATTACKS,
   COMBAT_CATALOG,
   COMBAT_SHAPES,
+  FOOT_ACTION_PROFILES,
+  GRENADE_PROFILE,
   RIFLE_PROFILE,
 } from "../../game/labs/combat-content.js";
 import type { GameIdentity } from "../content-id.js";
@@ -97,12 +99,20 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players targets projectiles strikes grenades encounter events",
   );
-  check(combat.format === 1, "simulation format");
+  check(combat.format === 2, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
+  integer(combat.strikes.length, 0, 4, "combat checkpoint strikes");
+  integer(combat.grenades.length, 0, 32, "combat checkpoint grenades");
+  integer(
+    combat.projectiles.length + combat.strikes.length + combat.grenades.length,
+    0,
+    256,
+    "attack entity budget",
+  );
   integer(combat.events.length, 0, MAX_EVENT_HISTORY, "combat checkpoint notices");
   const initial = createCombatLab(combat.scenario, combat.players.length);
   const actionOwners = new Map<number, number>();
@@ -138,7 +148,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       const timeline = COMBAT_CATALOG.timelines.get(actor.action.definitionId);
       const age = combat.tick - actor.action.stateStartTick;
       check(
-        actor.action.kind === "fire" &&
+        ["fire", "melee", "grenade"].includes(actor.action.kind) &&
           timeline &&
           age >= 0 &&
           age < timeline.durationTicks &&
@@ -146,6 +156,11 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
             timeline.markers.filter((marker) => marker.tickOffset <= age).length,
         "action marker cursor",
       );
+      if (actor.action.kind === "melee" || actor.action.kind === "grenade")
+        check(
+          FOOT_ACTION_PROFILES[actor.action.kind].timelineIds.includes(actor.action.definitionId),
+          "foot action timeline",
+        );
     }
   }
   for (const [index, target] of combat.targets.entries()) {
@@ -223,6 +238,8 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     const attack = COMBAT_ATTACKS.get(projectile.definitionId);
     check(
       attack &&
+        attack.kind === "swept-projectile" &&
+        attack.material === "bullet" &&
         ((projectile.team === 1 &&
           combat.players.some((p) => p.playerId === projectile.ownerId) &&
           projectile.definitionId !== 3) ||
@@ -242,12 +259,105 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "projectile motion",
     );
   }
+  const attackIds = new Set(combat.projectiles.map((projectile) => projectile.id));
+  const ownAttack = (source: {
+    id: number;
+    ownerId: number;
+    actionInstanceId: number;
+    team: number;
+  }) => {
+    integer(source.id, 1, combat.nextEntityId - 1, "attack entity allocation");
+    check(
+      !attackIds.has(source.id) &&
+        !combat.targets.some((target) => target.enemy.body.id === source.id) &&
+        !combat.players.some((player) => player.body.id === source.id),
+      "attack entity collision",
+    );
+    attackIds.add(source.id);
+    check(
+      source.team === 1 && combat.players.some((player) => player.playerId === source.ownerId),
+      "foot attack ownership",
+    );
+    ownAction(source.actionInstanceId, source.ownerId);
+  };
+  for (const strike of combat.strikes) {
+    fields(strike, "id ownerId team actionInstanceId definitionId spawnTick endTick hitIds");
+    ownAttack(strike);
+    const owner = combat.players.find((player) => player.playerId === strike.ownerId);
+    check(
+      owner?.life === "alive" &&
+        owner.action.kind === "melee" &&
+        owner.action.actionInstanceId === strike.actionInstanceId &&
+        strike.definitionId === 4 &&
+        strike.spawnTick ===
+          owner.action.stateStartTick +
+            (COMBAT_CATALOG.timelines
+              .get(owner.action.definitionId)
+              ?.markers.find((marker) => marker.kind === "activate-hitbox")?.tickOffset ?? -1) &&
+        strike.spawnTick <= combat.tick &&
+        strike.endTick === strike.spawnTick + (COMBAT_ATTACKS.get(4)?.lifetimeTicks ?? 0) &&
+        combat.tick < strike.endTick,
+      "active melee continuation",
+    );
+    integer(strike.hitIds.length, 0, COMBAT_ATTACKS.get(4)?.maxTargets ?? 0, "melee hit budget");
+    for (const [index, id] of strike.hitIds.entries())
+      check(
+        (index === 0 || id > (strike.hitIds[index - 1] ?? 0)) &&
+          combat.targets.some((target) => target.enemy.body.id === id),
+        "melee hit ledger",
+      );
+  }
+  for (const grenade of combat.grenades) {
+    fields(grenade, "id ownerId team actionInstanceId definitionId body spawnTick bounces");
+    ownAttack(grenade);
+    check(
+      grenade.definitionId === 5 &&
+        grenade.body.id === grenade.id &&
+        grenade.body.shapeId === GRENADE_PROFILE.bodyShapeId,
+      "grenade body/definition",
+    );
+    integer(
+      grenade.spawnTick,
+      Math.max(1, combat.tick - GRENADE_PROFILE.fuseTicks + 1),
+      combat.tick,
+      "grenade fuse continuation",
+    );
+    integer(grenade.bounces, 0, GRENADE_PROFILE.maximumBounces, "grenade bounce count");
+    const writer = new Writer(BODY_BYTES);
+    writeBody(writer, grenade.body);
+    check(
+      canonical(readBody(new Reader(writer.bytes))) === canonical(grenade.body),
+      "grenade body schema",
+    );
+    integer(
+      grenade.body.vx,
+      -GRENADE_PROFILE.crouchedVelocity.x,
+      GRENADE_PROFILE.crouchedVelocity.x,
+      "grenade horizontal motion",
+    );
+    integer(
+      grenade.body.vy,
+      -GRENADE_PROFILE.terminalVelocity,
+      GRENADE_PROFILE.terminalVelocity,
+      "grenade vertical motion",
+    );
+  }
   for (const notice of combat.events) {
     ownAction(notice.actionInstanceId, notice.ownerId);
     fields(notice, "kind ownerId actionInstanceId markerIndex source position impact targetId");
     fields(notice.position, "x y");
     check(
-      ["shot", "sound", "muzzle-blocked", "impact", "killed"].includes(notice.kind),
+      [
+        "shot",
+        "sound",
+        "muzzle-blocked",
+        "impact",
+        "killed",
+        "melee",
+        "throw",
+        "action-sound",
+        "explosion",
+      ].includes(notice.kind),
       "notice kind",
     );
     check(
@@ -282,47 +392,73 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
           "notice confirmation identity",
         );
         integer(notice.source.shotOrdinal, 1, COUNTER_LIMIT - 1, "notice shot ordinal");
-      } else {
-        fields(notice.source, "definitionId timelineId");
-        const owner = combat.targets.find((target) => target.enemy.body.id === notice.ownerId);
+      } else if ("timelineId" in notice.source) {
+        fields(notice.source, "definitionId timelineId stateStartTick");
+        const enemy = combat.targets.find((target) => target.enemy.body.id === notice.ownerId);
+        const player = combat.players.find((player) => player.playerId === notice.ownerId);
         check(
-          owner?.rifle?.action.actionInstanceId === notice.actionInstanceId &&
-            owner?.rifle?.action.definitionId === notice.source.timelineId &&
-            notice.source.definitionId === 3,
-          "enemy notice identity",
+          enemy?.rifle
+            ? enemy.rifle.action.actionInstanceId === notice.actionInstanceId &&
+                enemy.rifle.action.definitionId === notice.source.timelineId &&
+                notice.source.definitionId === 3
+            : player &&
+                [4, 5].includes(notice.source.definitionId) &&
+                (player.life === "death" ||
+                  player.action.actionInstanceId === notice.actionInstanceId),
+          "timeline notice owner",
         );
         const marker = COMBAT_CATALOG.timelines.get(notice.source.timelineId)?.markers[
           notice.markerIndex
         ];
         check(
           marker &&
-            owner?.rifle &&
-            marker.tickOffset === combat.tick - owner.rifle.action.stateStartTick &&
+            marker.tickOffset === combat.tick - notice.source.stateStartTick &&
             marker.payloadId === notice.source.definitionId &&
-            marker.kind === (notice.kind === "sound" ? "sound" : "spawn-attack"),
-          "enemy notice marker",
+            marker.kind ===
+              (["sound", "action-sound"].includes(notice.kind)
+                ? "sound"
+                : notice.kind === "melee"
+                  ? "activate-hitbox"
+                  : "spawn-attack"),
+          "timeline notice marker",
         );
+      } else {
+        fields(notice.source, "definitionId spawnTick sourceId");
+        check(
+          notice.kind === "explosion" &&
+            notice.source.definitionId === 5 &&
+            notice.source.spawnTick === combat.tick - GRENADE_PROFILE.fuseTicks,
+          "detonation fuse boundary",
+        );
+        integer(notice.source.sourceId, 1, combat.nextEntityId - 1, "detonation source");
       }
-      check(
-        [...COMBAT_CATALOG.timelines.values()].some((timeline) => {
-          const marker = timeline.markers[notice.markerIndex];
-          return (
-            marker?.payloadId === notice.source?.definitionId &&
-            marker?.kind === (notice.kind === "sound" ? "sound" : "spawn-attack")
-          );
-        }),
-        "notice marker payload",
-      );
+      if (!("spawnTick" in notice.source))
+        check(
+          [...COMBAT_CATALOG.timelines.values()].some((timeline) => {
+            const marker = timeline.markers[notice.markerIndex];
+            return (
+              marker?.payloadId === notice.source?.definitionId &&
+              marker?.kind ===
+                (["sound", "action-sound"].includes(notice.kind)
+                  ? "sound"
+                  : notice.kind === "melee"
+                    ? "activate-hitbox"
+                    : "spawn-attack")
+            );
+          }),
+          "notice marker payload",
+        );
     }
     if (notice.impact !== null) {
       const impact = notice.impact;
       fields(
         impact,
-        "projectileId actionInstanceId ownerId colliderId entityId kind damage position time",
+        "sourceId definitionId actionInstanceId ownerId colliderId entityId kind damage position time",
       );
       fields(impact.time, "numerator denominator");
       fields(impact.position, "x y");
-      integer(impact.projectileId, 1, combat.nextEntityId - 1, "impact projectile");
+      integer(impact.sourceId, 1, combat.nextEntityId - 1, "impact projectile");
+      check(COMBAT_ATTACKS.has(impact.definitionId), "impact definition");
       integer(impact.colliderId, 1, COUNTER_LIMIT - 1, "impact collider");
       integer(impact.damage, 0, 65535, "impact damage");
       integer(impact.time.denominator, 1, 2 ** 17, "impact denominator");
@@ -432,7 +568,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 4,
+    format: 5,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -456,7 +592,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 4 &&
+    envelope.format === 5 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,
