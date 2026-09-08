@@ -44,7 +44,7 @@ import {
 import digest from "./compiled/breakwater.json" with { type: "json" };
 
 export interface BreakwaterMission {
-  format: 4;
+  format: 5;
   contentHash: string;
   seed: number;
   phase: "playing" | "victory" | "defeat";
@@ -104,7 +104,7 @@ export function createBreakwater(players = 1, seed = 0x42574159): BreakwaterMiss
   combat.nextEntityId = 2000;
   combat.encounter = new EncounterLifecycle(combatEncounterDefinition(combat)).begin();
   return {
-    format: 4,
+    format: 5,
     contentHash: digest.contentHash,
     seed,
     phase: "playing",
@@ -166,7 +166,7 @@ export function stepBreakwater(
   current: BreakwaterMission,
   commands: readonly CombatCommand[],
 ): BreakwaterMission {
-  if (current.contentHash !== digest.contentHash || current.format !== 4)
+  if (current.contentHash !== digest.contentHash || current.format !== 5)
     throw new Error("Mission content mismatch");
   if (current.phase !== "playing") return structuredClone(current);
   integer(current.combat.tick, 0, BREAKWATER.maxTicks - 1, "mission tick");
@@ -239,7 +239,7 @@ export function stepBreakwater(
   return mission;
 }
 export interface BreakwaterRecording {
-  format: 4;
+  format: 5;
   contentHash: string;
   seed: number;
   players: number;
@@ -251,7 +251,7 @@ export function replayBreakwater(
   observe?: (state: BreakwaterMission) => void,
 ): BreakwaterMission {
   if (
-    recording.format !== 4 ||
+    recording.format !== 5 ||
     recording.contentHash !== digest.contentHash ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > BREAKWATER.maxTicks

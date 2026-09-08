@@ -170,6 +170,7 @@ describe("full v3 snapshot records", () => {
     }));
     snapshot.removedIds = Array.from({ length: 512 }, (_, i) => 5000 + i);
     snapshot.combat = {
+      scenarioId: 1,
       pickups: Array.from({ length: 64 }, (_, i) => ({
         id: 9600 + i,
         status: "available" as const,
@@ -219,7 +220,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
-    expect(bytes.length).toBe(53084);
+    expect(bytes.length).toBe(53088);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);

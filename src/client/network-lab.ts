@@ -3,6 +3,7 @@ import { shieldPresentation } from "../game/actors/shield.js";
 import { beamSegments } from "../game/combat/beam.js";
 import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
+import type { MaterialSurface, SurfaceMaterialId } from "../game/content/materials.js";
 import { LASER_ATTACK } from "../game/content/weapons/laser.js";
 import {
   ROCKET_ATTACK,
@@ -159,6 +160,12 @@ async function startLab() {
   }> = [];
   const confirmedEffects: Array<EventEnvelope & { receivedAtTick: number }> = [];
   let supplyMarkers: ReturnType<PickupOverlay["draw"]> = [];
+  const renderedTerrain: Array<{
+    tick: number;
+    scenarioId: number | null;
+    geometryRevision: number;
+    surfaces: MaterialSurface[];
+  }> = [];
   const renderedPickupEvents: Array<{
     cursor: number;
     tick: number;
@@ -291,6 +298,7 @@ async function startLab() {
       pickups: snapshot?.combat?.pickups ?? [],
       supplyMarkers,
       geometryRevision: snapshot?.geometryRevision ?? null,
+      renderedTerrain,
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
@@ -731,15 +739,36 @@ async function startLab() {
             : [],
         ) ?? [];
       g.clear();
-      g.fillStyle(0x526075);
-      for (const t of mode === "combat" && snapshot
-        ? combatEndTerrain(
-            combatSnapshotScenario(snapshot),
-            snapshot.tick,
-            snapshot.combat?.props ?? [],
-          ).filter((target) => !snapshot?.platforms.some((platform) => platform.id === target.id))
-        : terrain)
+      const surfaces =
+        mode === "combat" && snapshot
+          ? combatEndTerrain(
+              combatSnapshotScenario(snapshot),
+              snapshot.tick,
+              snapshot.combat?.props ?? [],
+            ).filter((target) => !snapshot?.platforms.some((platform) => platform.id === target.id))
+          : terrain;
+      const materialColors: Record<SurfaceMaterialId, number> = {
+        concrete: 0x526075,
+        timber: 0xad774e,
+        "armor-steel": 0x84aabe,
+        "open-grating": 0xb3a16c,
+      };
+      for (const t of surfaces) {
+        g.fillStyle(materialColors[(t as MaterialSurface).materialId ?? "concrete"]);
         g.fillRect(t.rect.x / 256, t.rect.y / 256, t.rect.w / 256, t.rect.h / 256);
+      }
+      if (snapshot && renderedTerrain.at(-1)?.tick !== snapshot.tick) {
+        const drawn = {
+          tick: snapshot.tick,
+          scenarioId: snapshot.combat?.scenarioId ?? null,
+          geometryRevision: snapshot.geometryRevision,
+          surfaces: structuredClone(surfaces),
+        };
+        this.game.events.once(Phaser.Core.Events.POST_RENDER, () => {
+          renderedTerrain.push(drawn);
+          if (renderedTerrain.length > 256) renderedTerrain.shift();
+        });
+      }
       for (const platform of snapshot?.platforms ?? []) {
         const shape = COMBAT_SHAPES.get(platform.shapeId);
         if (!shape) throw new Error("Missing platform shape");

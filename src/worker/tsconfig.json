@@ -19,6 +19,7 @@
     "../game/**/*.ts",
     "../shared/**/*.ts",
     "../../worker-configuration.d.ts",
-    "../../test/fixtures/combat-storage-worker.ts"
+    "../../test/fixtures/combat-storage-worker.ts",
+    "../../test/fixtures/material-room-storage-worker.ts"
   ]
 }

@@ -1,6 +1,6 @@
 import { DurableObject } from "cloudflare:workers";
 import { COUNTER_LIMIT } from "../../game/core/numeric.js";
-import type { CombatLab } from "../../game/labs/combat.js";
+import { type CombatLab, isCombatScenario } from "../../game/labs/combat.js";
 import type { CombatCampaign } from "../../game/labs/combat-campaign.js";
 import type { GameIdentity } from "../../shared/content-id.js";
 import { combatEventContext } from "../../shared/diagnostics/combat-events.js";
@@ -86,6 +86,7 @@ interface ProbeEnv {
   ROOM_PROBES: DurableObjectNamespace<RoomLoadProbe>;
   PROFILE_COOKIE_SECRET: string;
   PROBE_COMBAT_SCENARIO?: string;
+  PROBE_COMBAT_PLAYERS?: string;
 }
 interface Peer {
   generation: number;
@@ -812,22 +813,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
     if (this.workload === "combat") {
       this.members = new MembershipStorage(this.ctx.storage);
       const requested = this.env.PROBE_COMBAT_SCENARIO ?? "range";
-      if (
-        requested !== "range" &&
-        requested !== "rifle" &&
-        requested !== "guard" &&
-        requested !== "shotgun" &&
-        requested !== "flame" &&
-        requested !== "tank" &&
-        requested !== "ordnance" &&
-        requested !== "hmg" &&
-        requested !== "support" &&
-        requested !== "rocket" &&
-        requested !== "laser" &&
-        requested !== "pickups"
-      )
-        throw new Error("Unsupported room combat scenario");
-      const initial = createCombatRuntime(requested);
+      if (!isCombatScenario(requested)) throw new Error("Unsupported room combat scenario");
+      const initial = createCombatRuntime(requested, Number(this.env.PROBE_COMBAT_PLAYERS ?? 4));
       initial.snapshot.roomMode = "lobby";
       initial.snapshot.stateHash = roomWorkloadHash(initial.snapshot);
       initial.connectedPlayerIds = [];
@@ -855,6 +842,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
       const loaded = await this.combatStore.load();
       if (loaded && loaded.combat.scenario !== requested)
         throw new Error("Stored combat scenario differs from deployment");
+      if (loaded && loaded.combat.players.length !== initial.combat.players.length)
+        throw new Error("Stored combat party size differs from deployment");
       if (loaded && ["paused-empty", "completed", "expired"].includes(loaded.snapshot.roomMode)) {
         this.installCombat(loaded);
         this.clock = this.createClock(loaded.combat.tick);
@@ -971,6 +960,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         !this.members
       )
         return reply("protocol-error", 400);
+      if (!this.world.players.some((player) => player.slot === slot))
+        return reply("room-full", 409);
       if (this.world.roomMode === "expired") return reply("room-ended", 410);
       if (
         this.world.roomMode === "recovering" ||
@@ -1109,6 +1100,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         return new Response("Upgrade required", { status: 426 });
       if (url.searchParams.get("slot") === null || !Number.isInteger(slot) || slot < 0 || slot > 3)
         return new Response("Invalid slot", { status: 400 });
+      if (!this.world.players.some((player) => player.slot === slot))
+        return new Response("Room full", { status: 409 });
       if (this.workload === "combat" && this.world.roomMode === "paused-empty") {
         if (this.starting) return new Response("Pause persistence pending", { status: 503 });
         try {

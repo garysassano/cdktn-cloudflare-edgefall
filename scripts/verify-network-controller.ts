@@ -5,6 +5,8 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer, request as httpRequest } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
+import { materialCase, materialScenario } from "../src/game/content/scenarios/materials.js";
+import { combatScenarioId } from "../src/game/labs/combat-scenarios.js";
 import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
 import { encodeInputBatch } from "../src/shared/protocol/codec.js";
@@ -20,6 +22,7 @@ import { verifyHmgCombat } from "./lib/verify-hmg-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLaserCombat } from "./lib/verify-laser-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
+import { verifyMaterialRoomNetwork } from "./lib/verify-material-room-network.js";
 import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
 import { verifyPickupCombat } from "./lib/verify-pickup-combat.js";
 import { verifyRocketCombat } from "./lib/verify-rocket-combat.js";
@@ -109,6 +112,19 @@ const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
 const laserMode = process.argv.includes("--combat-laser");
 const pickupMode = process.argv.includes("--combat-pickups");
+const materialArgument = process.argv
+  .find((argument) => argument.startsWith("--combat-material="))
+  ?.slice("--combat-material=".length);
+const material = materialArgument === undefined ? null : materialCase(materialArgument);
+assert(materialArgument === undefined || material, "Unknown registered material scenario");
+const materialPlayers = Number(
+  process.argv
+    .find((argument) => argument.startsWith("--combat-players="))
+    ?.slice("--combat-players=".length) ?? 4,
+);
+assert([1, 4].includes(materialPlayers), "Material network proof uses solo/four-player parties");
+const materialMode = material ? { ...material, players: materialPlayers } : null;
+const partySize = materialMode?.players ?? 4;
 const hmgMode = process.argv.includes("--combat-hmg");
 const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
@@ -138,7 +154,8 @@ const combatMode =
   supportMode ||
   rocketMode ||
   laserMode ||
-  pickupMode;
+  pickupMode ||
+  materialMode !== null;
 assert(
   !(
     footMode ||
@@ -150,7 +167,8 @@ assert(
     supportMode ||
     rocketMode ||
     laserMode ||
-    pickupMode
+    pickupMode ||
+    materialMode
   ) ||
     !(
       hostileMode ||
@@ -178,6 +196,7 @@ assert(
     rocketMode,
     laserMode,
     pickupMode,
+    materialMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -212,51 +231,53 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = pickupMode
-  ? "dist/network-combat-pickup-evidence"
-  : laserMode
-    ? "dist/network-combat-laser-evidence"
-    : rocketMode
-      ? "dist/network-combat-rocket-evidence"
-      : supportMode
-        ? "dist/network-combat-support-evidence"
-        : hmgMode
-          ? "dist/network-combat-hmg-evidence"
-          : ordnanceMode
-            ? "dist/network-combat-ordnance-evidence"
-            : tankMode
-              ? "dist/network-combat-tank-evidence"
-              : areaMode
-                ? `dist/network-combat-${areaMode}-evidence`
-                : shieldMode
-                  ? "dist/network-combat-guard-evidence"
-                  : footMode
-                    ? `dist/network-combat-${footMode}-evidence`
-                    : hostileMode
-                      ? "dist/network-combat-hostile-evidence"
-                      : campaignMode
-                        ? "dist/network-combat-campaign-evidence"
-                        : automaticMode
-                          ? "dist/network-combat-auto-evidence"
-                          : combatReconnectMode
-                            ? loadingMode
-                              ? phaseMode
-                                ? "dist/network-combat-phase-evidence"
-                                : "dist/network-combat-loading-evidence"
-                              : "dist/network-combat-reconnect-evidence"
-                            : combatRecoveryMode
-                              ? "dist/network-combat-recovery-evidence"
-                              : baselineMode
-                                ? "dist/network-combat-baseline-evidence"
-                                : combatMode
-                                  ? eventMode
-                                    ? "dist/network-event-evidence"
-                                    : faultMode
-                                      ? "dist/network-combat-fault-evidence"
-                                      : "dist/network-combat-evidence"
-                                  : recoveryMode
-                                    ? "dist/network-controller-recovery-evidence"
-                                    : "dist/network-controller-evidence";
+const output = materialMode
+  ? `dist/network-material-room-evidence/${partySize}-${combatScenarioId(materialScenario(materialMode))}`
+  : pickupMode
+    ? "dist/network-combat-pickup-evidence"
+    : laserMode
+      ? "dist/network-combat-laser-evidence"
+      : rocketMode
+        ? "dist/network-combat-rocket-evidence"
+        : supportMode
+          ? "dist/network-combat-support-evidence"
+          : hmgMode
+            ? "dist/network-combat-hmg-evidence"
+            : ordnanceMode
+              ? "dist/network-combat-ordnance-evidence"
+              : tankMode
+                ? "dist/network-combat-tank-evidence"
+                : areaMode
+                  ? `dist/network-combat-${areaMode}-evidence`
+                  : shieldMode
+                    ? "dist/network-combat-guard-evidence"
+                    : footMode
+                      ? `dist/network-combat-${footMode}-evidence`
+                      : hostileMode
+                        ? "dist/network-combat-hostile-evidence"
+                        : campaignMode
+                          ? "dist/network-combat-campaign-evidence"
+                          : automaticMode
+                            ? "dist/network-combat-auto-evidence"
+                            : combatReconnectMode
+                              ? loadingMode
+                                ? phaseMode
+                                  ? "dist/network-combat-phase-evidence"
+                                  : "dist/network-combat-loading-evidence"
+                                : "dist/network-combat-reconnect-evidence"
+                              : combatRecoveryMode
+                                ? "dist/network-combat-recovery-evidence"
+                                : baselineMode
+                                  ? "dist/network-combat-baseline-evidence"
+                                  : combatMode
+                                    ? eventMode
+                                      ? "dist/network-event-evidence"
+                                      : faultMode
+                                        ? "dist/network-combat-fault-evidence"
+                                        : "dist/network-combat-evidence"
+                                    : recoveryMode
+                                      ? "dist/network-controller-recovery-evidence"
+                                      : "dist/network-controller-evidence";
 // This generated directory belongs to this invocation, including scenario-specific screenshots.
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -310,6 +331,7 @@ try {
       ...(rocketMode ? ["scripts/lib/verify-rocket-combat.ts"] : []),
       ...(laserMode ? ["scripts/lib/verify-laser-combat.ts"] : []),
       ...(pickupMode ? ["scripts/lib/verify-pickup-combat.ts"] : []),
+      ...(materialMode ? ["scripts/lib/verify-material-room-network.ts"] : []),
     ])
       sources.push({
         file,
@@ -339,7 +361,7 @@ try {
     let base = url;
     const openPages = () =>
       Promise.all(
-        Array.from({ length: 4 }, async (_, slot) => {
+        Array.from({ length: partySize }, async (_, slot) => {
           const context = await browser.newContext({ viewport: { width: 1050, height: 1000 } }),
             page = await context.newPage();
           const record = (kind: string, message: string) => {
@@ -372,7 +394,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode || laserMode || pickupMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode || laserMode || pickupMode || materialMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -410,7 +432,7 @@ try {
       for (let attempt = 0; attempt < 50; attempt++) {
         room = (await (await fetch(`${base}/${workload}/status`)).json()) as RoomProbeStatus;
         if (
-          room.peers.length === 4 &&
+          room.peers.length === partySize &&
           room.peers.every((p) => p.maxQueuedCommands === CONTROLLER_INPUT_PREFILL_TICKS)
         )
           break;
@@ -456,6 +478,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (materialMode) {
+        const materialRoom = await verifyMaterialRoomNetwork(pages, base, output, materialMode);
+        room = materialRoom.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          materialRoom,
+          clients: materialRoom.clients,
+          sharedSnapshots: materialRoom.common.length,
+          room,
+          scope:
+            "Real solo/four-player keyboards and sockets in a registered material room. Accepted ammunition/actions, explicit public scenario identity, drawn cover geometry and acknowledged event replay under four dropped frames and duplicated delivery. Local workerd only; deployed timing, final media and broader network scenarios remain separate.",
+        };
       }
       if (pickupMode) {
         const pickups = await verifyPickupCombat(pages, base, output);
@@ -2158,21 +2200,24 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: pickupMode
-      ? "pickups"
-      : laserMode
-        ? "laser"
-        : rocketMode
-          ? "rocket"
-          : supportMode
-            ? "support"
-            : hmgMode
-              ? "hmg"
-              : ordnanceMode
-                ? "ordnance"
-                : tankMode
-                  ? "tank"
-                  : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatPlayers: partySize,
+    combatScenario: materialMode
+      ? materialScenario(materialMode)
+      : pickupMode
+        ? "pickups"
+        : laserMode
+          ? "laser"
+          : rocketMode
+            ? "rocket"
+            : supportMode
+              ? "support"
+              : hmgMode
+                ? "hmg"
+                : ordnanceMode
+                  ? "ordnance"
+                  : tankMode
+                    ? "tank"
+                    : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

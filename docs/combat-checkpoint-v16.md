@@ -1,5 +1,7 @@
 # Diagnostic combat archive format 16
 
+Historical format 16 contract. Registered material-room continuation now uses [format 17](combat-checkpoint-v17.md); format 16 archives are rejected.
+
 The combat laboratory uses archive **16**, simulation/recording format **13**, protocol **3.13** and combat snapshot section **4**. Breakwater mission/recording format is **4**. These versions reject earlier experimental continuation because material response and clipped solid-face contact change simulation behavior. The public snapshot layout has not changed.
 
 This extends [format 15](combat-checkpoint-v15.md). The diagnostic content digest now includes the complete surface-material registry and each destructible's material binding. Existing scaffold and Breakwater props explicitly use timber. Material definitions are immutable content inputs, while private/public prop state still retains identity, health and destruction attribution. No new material field is inferred from an older checkpoint.

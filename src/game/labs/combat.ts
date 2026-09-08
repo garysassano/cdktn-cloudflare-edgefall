@@ -50,6 +50,11 @@ import { type Rocket, createRocket, stepRocket } from "../combat/rocket.js";
 import { actionPose } from "../combat/timeline.js";
 import { type AttackSource, type MeleeStrike, explosionHits, meleeHits } from "../combat/volume.js";
 import type { MaterialSurface } from "../content/materials.js";
+import {
+  MATERIAL_CALIBRATION,
+  materialCase,
+  materialPlayerX,
+} from "../content/scenarios/materials.js";
 import { LASER_ATTACK, LASER_PROFILE } from "../content/weapons/laser.js";
 import { ROCKET_ATTACK, ROCKET_PROFILE, ROCKET_SHAPE } from "../content/weapons/rocket-launcher.js";
 import { stepFootController } from "../controller/foot.js";
@@ -72,6 +77,7 @@ import {
   AREA_PROFILES,
   COMBAT_ATTACKS,
   COMBAT_CATALOG,
+  COMBAT_CONTENT,
   COMBAT_SHAPES,
   FOOT_ACTION_PROFILES,
   GRENADE_PROFILE,
@@ -80,6 +86,7 @@ import {
   TANK_PROFILE,
 } from "./combat-content.js";
 import { combatPickupDefinitions } from "./combat-pickups.js";
+import { type CombatScenario, isCombatScenario } from "./combat-scenarios.js";
 import {
   type CombatTankConnections,
   type SeatChanges,
@@ -91,32 +98,16 @@ import {
 } from "./combat-tanks.js";
 import {
   COMBAT_ORDNANCE,
-  COMBAT_SUPPORT,
   combatCollisionIndex,
+  combatDestructibles,
   combatGeometryRevision,
   combatTerrain,
+  materialCombatStage,
 } from "./combat-terrain.js";
 import { FOOT_DEFINITION, footActor } from "./foot-fixture.js";
 
+export { COMBAT_SCENARIOS, type CombatScenario, isCombatScenario } from "./combat-scenarios.js";
 export { combatTerrain } from "./combat-terrain.js";
-
-export const COMBAT_SCENARIOS = [
-  "range",
-  "wall",
-  "shield",
-  "rifle",
-  "guard",
-  "shotgun",
-  "flame",
-  "tank",
-  "ordnance",
-  "hmg",
-  "support",
-  "rocket",
-  "laser",
-  "pickups",
-] as const;
-export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
   held: number;
   jumpPressed: boolean;
@@ -172,7 +163,7 @@ export interface CombatNotice {
   beam: BeamGeometry | null;
 }
 export interface CombatLab {
-  format: 13;
+  format: 14;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -216,6 +207,7 @@ export function combatEntryContext(
   const shape = COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing life entry shape");
   const lift = scenario === "ordnance" ? index.get(COMBAT_ORDNANCE[0].id)?.rect : undefined;
+  const material = materialCase(scenario);
   return {
     shape,
     definition: FOOT_DEFINITION,
@@ -223,8 +215,9 @@ export function combatEntryContext(
     fallBoundary: COMBAT_ENTRY.fallBoundary,
     anchors: [
       {
-        x:
-          scenario === "tank"
+        x: material
+          ? materialPlayerX(material.weapon) + actor.slot * COMBAT_ENTRY.slotSpacing
+          : scenario === "tank"
             ? COMBAT_TANK_DEPOT.firstPlayerX + actor.slot * COMBAT_TANK_DEPOT.slotSpacing
             : COMBAT_ENTRY.firstX +
               actor.slot * COMBAT_ENTRY.slotSpacing +
@@ -257,13 +250,16 @@ function lifecycle(world: Pick<CombatLab, "players" | "targets">) {
   return new EncounterLifecycle(combatEncounterDefinition(world));
 }
 export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab {
-  if (!COMBAT_SCENARIOS.includes(scenario)) throw new Error("Unknown combat scenario");
+  if (!isCombatScenario(scenario)) throw new Error("Unknown combat scenario");
+  const material = materialCase(scenario);
   integer(count, 1, 4, "combat players");
   const players = Array.from({ length: count }, (_, slot) => {
     const actor = footActor(
-      scenario === "tank"
-        ? (COMBAT_TANK_DEPOT.firstPlayerX + slot * COMBAT_TANK_DEPOT.slotSpacing) / 256
-        : 45 + slot * 4,
+      material
+        ? materialPlayerX(material.weapon) / 256
+        : scenario === "tank"
+          ? (COMBAT_TANK_DEPOT.firstPlayerX + slot * COMBAT_TANK_DEPOT.slotSpacing) / 256
+          : 45 + slot * 4,
       scenario === "ordnance" ? 160 : 200,
     );
     actor.playerId = actor.body.id = slot + 1;
@@ -276,26 +272,43 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
     if (scenario === "rocket") actor.weapon = { ...actor.weapon, id: "rocket-launcher", ammo: 20 };
     if (scenario === "laser") actor.weapon = { ...actor.weapon, id: "laser", ammo: 120 };
+    if (material) {
+      const weapon = COMBAT_CONTENT.weapons.find(
+        (weapon) =>
+          weapon.id ===
+          (material.weapon === "knife" || material.weapon === "grenade"
+            ? "sidearm"
+            : material.weapon),
+      );
+      if (!weapon) throw new Error("Missing material weapon content");
+      actor.weapon = {
+        ...actor.weapon,
+        id: weapon.id,
+        ammo: weapon.pickupAmmo === "unlimited" ? 0 : weapon.pickupAmmo,
+      };
+    }
     return actor;
   });
-  const props = scenario === "support" ? COMBAT_SUPPORT.map(createDestructible) : [];
+  const props = combatDestructibles(scenario).map(createDestructible);
   const targets: CombatTarget[] = Array.from({ length: 2 }, (_, index) => ({
     enemy: {
       body: {
         ...footActor(
-          scenario === "support"
-            ? 220 + index * 60
-            : scenario === "ordnance"
-              ? 340 + index * 26
-              : scenario === "tank"
-                ? 300 + index * 40
-                : scenario === "shotgun"
-                  ? 140 + index * 30
-                  : (scenario === "guard" || scenario === "flame") && index === 0
-                    ? 140
-                    : scenario === "flame"
-                      ? 220
-                      : 220 + index * 60,
+          material
+            ? (MATERIAL_CALIBRATION.firstTargetX + index * MATERIAL_CALIBRATION.targetSpacing) / 256
+            : scenario === "support"
+              ? 220 + index * 60
+              : scenario === "ordnance"
+                ? 340 + index * 26
+                : scenario === "tank"
+                  ? 300 + index * 40
+                  : scenario === "shotgun"
+                    ? 140 + index * 30
+                    : (scenario === "guard" || scenario === "flame") && index === 0
+                      ? 140
+                      : scenario === "flame"
+                        ? 220
+                        : 220 + index * 60,
           scenario === "support" ? 160 : 200,
         ).body,
         ...(scenario === "support" ? { supportId: 104 } : {}),
@@ -307,7 +320,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
       removalReason: null,
       turns: 0,
     },
-    health: 1,
+    health: material ? MATERIAL_CALIBRATION.targetHealth : 1,
     shield: scenario === "shield" && index === 0,
     rifle:
       scenario === "tank" ||
@@ -321,7 +334,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 13,
+    format: 14,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -535,8 +548,9 @@ export function advanceCombatLab(
   stage?: CombatStage,
 ) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
-  if (current.format !== 13 || current.pickups.tick !== current.tick)
+  if (current.format !== 14 || current.pickups.tick !== current.tick)
     throw new Error("Combat supply format/boundary mismatch");
+  stage ??= materialCombatStage(current);
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
     integer(command.held, 0, HELD_MASK, "combat held mask");
@@ -553,7 +567,7 @@ export function advanceCombatLab(
   world.events = [];
   const physicalTerrain = stage?.terrain ?? combatTerrain(world.scenario, tick, world.props);
   const active = (target: CombatTarget) => !stage || stage.activeEnemyIds.has(target.enemy.body.id);
-  const destructibles = stage?.destructibles ?? COMBAT_SUPPORT;
+  const destructibles = stage?.destructibles ?? combatDestructibles(world.scenario);
   const terrain = physicalTerrain.filter(
     (target) => !world.props.some((prop) => prop.id === target.id),
   );
@@ -1473,7 +1487,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }
 export interface CombatRecording {
-  format: 13;
+  format: 14;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1482,7 +1496,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 13 ||
+    recording.format !== 14 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

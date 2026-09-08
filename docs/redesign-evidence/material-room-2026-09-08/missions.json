@@ -1,0 +1,337 @@
+[
+  {
+    "players": 1,
+    "ticks": 3054,
+    "claims": 5,
+    "indicatorBoundaries": 28,
+    "finalStateSha256": "8fa8c383e9080f33160cee3d476f30147caf64fafb42d2c22bc2a6f0af9624d3",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 82,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 278,
+          "shotOrdinal": 166
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1402,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1573,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2086,
+          "status": "claimed"
+        }
+      ],
+      "tick": 3054
+    }
+  },
+  {
+    "players": 2,
+    "ticks": 3080,
+    "claims": 10,
+    "indicatorBoundaries": 28,
+    "finalStateSha256": "51cd0f7b601774bcec982985ba01b5d490b1632dfa861ef501d978b46e59a929",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 86,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 395,
+          "shotOrdinal": 162
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "ammo": 115,
+          "cooldownTicks": 4,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 396,
+          "shotOrdinal": 112
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1201,
+          "resolvedTick": 663,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1205,
+          "resolvedTick": 808,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1402,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1209,
+          "resolvedTick": 1408,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1573,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1213,
+          "resolvedTick": 1579,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2132,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1217,
+          "resolvedTick": 2169,
+          "status": "claimed"
+        }
+      ],
+      "tick": 3080
+    }
+  },
+  {
+    "players": 4,
+    "ticks": 2989,
+    "claims": 20,
+    "indicatorBoundaries": 28,
+    "finalStateSha256": "9cc3fe89e024c53923e9dfc88aeb6b23ff64210017478b823ee29513f1f7179f",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 81,
+          "cooldownTicks": 4,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 592,
+          "shotOrdinal": 163
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "ammo": 111,
+          "cooldownTicks": 2,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 591,
+          "shotOrdinal": 124
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "ammo": 119,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 589,
+          "shotOrdinal": 112
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "ammo": 127,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 590,
+          "shotOrdinal": 89
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1201,
+          "resolvedTick": 663,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1202,
+          "resolvedTick": 668,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1203,
+          "resolvedTick": 672,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1205,
+          "resolvedTick": 808,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1206,
+          "resolvedTick": 813,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1207,
+          "resolvedTick": 817,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1332,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1209,
+          "resolvedTick": 1343,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1210,
+          "resolvedTick": 1343,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1211,
+          "resolvedTick": 1347,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1468,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1213,
+          "resolvedTick": 1474,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1214,
+          "resolvedTick": 1479,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1215,
+          "resolvedTick": 1483,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2019,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1217,
+          "resolvedTick": 2019,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1218,
+          "resolvedTick": 2048,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1219,
+          "resolvedTick": 2056,
+          "status": "claimed"
+        }
+      ],
+      "tick": 2989
+    }
+  }
+]

@@ -85,6 +85,8 @@ export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolve
 };
 /** Public encounter accounting. Private AI/watchdog/receipt state belongs in checkpoints. */
 export interface CombatSnapshot {
+  /** Registered authored scene; retained even after every destructible is removed. */
+  scenarioId: number;
   props: DestructibleState[];
   pickups: WeaponPickupState["items"];
   volumes: AreaExposure[];

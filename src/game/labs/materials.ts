@@ -1,14 +1,12 @@
-import { type DestructibleDefinition, createDestructible } from "../combat/destructible.js";
+import { SURFACE_MATERIALS } from "../content/materials.js";
 import {
-  SURFACE_MATERIALS,
-  SURFACE_MATERIAL_IDS,
-  type SurfaceMaterialId,
-  surfaceMaterial,
-} from "../content/materials.js";
+  type MaterialLabDefinition,
+  materialScenario,
+  validateMaterialDefinition,
+} from "../content/scenarios/materials.js";
 import { LASER_PROFILE } from "../content/weapons/laser.js";
 import { ROCKET_PROFILE } from "../content/weapons/rocket-launcher.js";
 import { canonical, stateHash } from "../core/canonical.js";
-import { integer, pixels } from "../core/numeric.js";
 import { Held } from "../input/types.js";
 import {
   type CombatCommand,
@@ -24,111 +22,48 @@ import {
   GRENADE_PROFILE,
   HMG_SWEEP,
 } from "./combat-content.js";
-import { footTerrain } from "./foot-fixture.js";
+import { materialCombatStage } from "./combat-terrain.js";
 
-export const MATERIAL_LAB_WEAPONS = [
-  "sidearm",
-  "heavy-machine-gun",
-  "shotgun",
-  "rocket-launcher",
-  "flamethrower",
-  "laser",
-  "knife",
-  "grenade",
-] as const;
-export interface MaterialLabDefinition {
-  weapon: (typeof MATERIAL_LAB_WEAPONS)[number];
-  materialId: SurfaceMaterialId;
-  players: number;
-  targetMotion: "stationary" | "patrol";
-}
+export {
+  MATERIAL_LAB_WEAPONS,
+  type MaterialLabDefinition,
+  materialLabProp,
+} from "../content/scenarios/materials.js";
 export interface MaterialLab {
-  format: 1;
+  format: 2;
   definition: MaterialLabDefinition;
   world: CombatLab;
 }
-export function materialLabProp(definition: MaterialLabDefinition): DestructibleDefinition {
-  surfaceMaterial(definition.materialId);
-  return {
-    id: 200,
-    definitionId: 10 + SURFACE_MATERIAL_IDS.indexOf(definition.materialId),
-    materialId: definition.materialId,
-    rect: { x: pixels(92), y: pixels(80), w: pixels(2), h: pixels(120) },
-    health: 8,
-  };
-}
-function validateDefinition(definition: MaterialLabDefinition) {
-  if (
-    !definition ||
-    typeof definition !== "object" ||
-    Array.isArray(definition) ||
-    Object.keys(definition).sort().join() !== "materialId,players,targetMotion,weapon" ||
-    !MATERIAL_LAB_WEAPONS.includes(definition.weapon) ||
-    !["stationary", "patrol"].includes(definition.targetMotion)
-  )
-    throw new Error("Invalid material laboratory definition");
-  integer(definition.players, 1, 4, "material laboratory players");
-  surfaceMaterial(definition.materialId);
-}
-/** Calibration dummies have 32 HP; ordinary campaign infantry remains unchanged. */
+/** Inspector creation and stepping use the same registered scenario as the authoritative room. */
 export function createMaterialLab(definition: MaterialLabDefinition): MaterialLab {
-  validateDefinition(definition);
-  const world = createCombatLab("range", definition.players);
-  const weaponId =
-    definition.weapon === "knife" || definition.weapon === "grenade"
-      ? "sidearm"
-      : definition.weapon;
-  const weapon = COMBAT_CONTENT.weapons.find((weapon) => weapon.id === weaponId);
-  if (!weapon) throw new Error("Missing material laboratory weapon");
-  for (const actor of world.players) {
-    actor.body.x = pixels(
-      definition.weapon === "knife" ? 70 : definition.weapon === "grenade" ? 10 : 45,
-    );
-    actor.weapon.id = weapon.id;
-    actor.weapon.ammo = weapon.pickupAmmo === "unlimited" ? 0 : weapon.pickupAmmo;
-  }
-  for (const [index, target] of world.targets.entries()) {
-    target.enemy.body.x = pixels(112 + index * 24);
-    target.health = 32;
-  }
-  world.props = [createDestructible(materialLabProp(definition))];
-  return { format: 1, definition: { ...definition }, world };
+  validateMaterialDefinition(definition);
+  return {
+    format: 2,
+    definition: { ...definition },
+    world: createCombatLab(materialScenario(definition), definition.players),
+  };
 }
 export function materialLabStage(lab: MaterialLab): CombatStage {
-  const definition = materialLabProp(lab.definition);
-  return {
-    terrain: [
-      footTerrain(100, 0, 200, 384, 16),
-      ...lab.world.props
-        .filter((prop) => prop.health > 0)
-        .map((prop) => ({
-          id: prop.id,
-          kind: "solid" as const,
-          materialId: definition.materialId,
-          rect: { ...definition.rect },
-          delta: { x: 0, y: 0 },
-        })),
-    ],
-    destructibles: [definition],
-    enemyBounds: { x: 0, y: 0, w: pixels(384), h: pixels(232) },
-    fallBoundary: pixels(248),
-    entry: { x: pixels(45), y: pixels(200) },
-    activeEnemyIds: new Set(lab.world.targets.map((target) => target.enemy.body.id)),
-    patrolSpeed: lab.definition.targetMotion === "stationary" ? 0 : 64,
-    extraHurtboxes: [],
-  };
+  const stage = materialCombatStage(lab.world);
+  if (!stage || lab.world.scenario !== materialScenario(lab.definition))
+    throw new Error("Material inspector scenario mismatch");
+  return stage;
 }
 export function stepMaterialLab(
   current: MaterialLab,
   commands: readonly CombatCommand[],
 ): MaterialLab {
-  validateDefinition(current.definition);
-  if (current.format !== 1 || current.world.players.length !== current.definition.players)
+  validateMaterialDefinition(current.definition);
+  if (
+    current.format !== 2 ||
+    current.world.players.length !== current.definition.players ||
+    current.world.scenario !== materialScenario(current.definition)
+  )
     throw new Error("Material laboratory format/roster mismatch");
   return {
-    format: 1,
+    format: 2,
     definition: { ...current.definition },
-    world: advanceCombatLab(current.world, commands, undefined, materialLabStage(current)).state,
+    world: advanceCombatLab(current.world, commands).state,
   };
 }
 /** One accepted onset, with neutral continuation. Grenades use the real crouched throw action. */
@@ -143,7 +78,7 @@ export function materialLabCommands(lab: MaterialLab): CombatCommand[] {
 }
 
 export interface MaterialRecording {
-  format: 1;
+  format: 2;
   kind: "material-lab";
   contentFingerprint: string;
   definition: MaterialLabDefinition;
@@ -173,7 +108,7 @@ export function createMaterialRecording(
 ): MaterialRecording {
   if (commands.length !== lab.world.tick) throw new Error("Material recording boundary mismatch");
   return {
-    format: 1,
+    format: 2,
     kind: "material-lab",
     contentFingerprint: materialLabFingerprint(lab.definition),
     definition: { ...lab.definition },
@@ -191,7 +126,7 @@ export function replayMaterialLab(
     Array.isArray(recording) ||
     Object.keys(recording).sort().join() !==
       "commands,contentFingerprint,definition,finalState,format,kind" ||
-    recording.format !== 1 ||
+    recording.format !== 2 ||
     recording.kind !== "material-lab" ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > 3600 ||

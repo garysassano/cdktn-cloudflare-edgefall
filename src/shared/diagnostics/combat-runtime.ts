@@ -41,8 +41,11 @@ export interface CombatConnectionChange {
   playerId: number;
   connectionEpoch: number;
 }
-export function createCombatRuntime(scenario: CombatScenario = "range"): CombatRuntime {
-  const state = createCombatWorkload(scenario);
+export function createCombatRuntime(
+  scenario: CombatScenario = "range",
+  players = 4,
+): CombatRuntime {
+  const state = createCombatWorkload(scenario, players);
   const campaign = createCombatCampaign(state.combat);
   projectCombatCampaign(state.snapshot, campaign);
   state.snapshot.roomMode = "playing";

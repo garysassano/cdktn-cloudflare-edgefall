@@ -1,0 +1,1178 @@
+[
+  {
+    "definition": {
+      "weapon": "sidearm",
+      "materialId": "concrete",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-15",
+    "reportSha256": "ef02c804a9f1fac34822b2fa5ce6b9d31d8bc78df1a7a91e9dc0f12ef2749235",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168
+    ],
+    "events": 4,
+    "finalCoverHealth": 8,
+    "scenarioId": 15,
+    "eventHash": "c53aee12",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 10,
+        "health": 8,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 4
+  },
+  {
+    "definition": {
+      "weapon": "heavy-machine-gun",
+      "materialId": "timber",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-25",
+    "reportSha256": "6c7bc29c77d1fadd5fa7b183609b768b187bd57dd9e95f3122c8d86552cde75a",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168
+    ],
+    "events": 4,
+    "finalCoverHealth": 7,
+    "scenarioId": 25,
+    "eventHash": "4a437fa3",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 149,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 7,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 4
+  },
+  {
+    "definition": {
+      "weapon": "shotgun",
+      "materialId": "armor-steel",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-35",
+    "reportSha256": "455c8c7d898e2a4ebb5b69f03cdaf156281cec77a63eea63aec6a8c32d92055e",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171
+    ],
+    "events": 4,
+    "finalCoverHealth": 8,
+    "scenarioId": 35,
+    "eventHash": "7466388b",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "shotgun",
+          "ammo": 23,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 12,
+        "health": 8,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 4
+  },
+  {
+    "definition": {
+      "weapon": "rocket-launcher",
+      "materialId": "open-grating",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-45",
+    "reportSha256": "6626c852da96b9b77d8516fbef4f1fbf2b788b1c74941e99ed1e1de3f4f65f2b",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168
+    ],
+    "events": 7,
+    "finalCoverHealth": 4,
+    "scenarioId": 45,
+    "eventHash": "00ea39c4",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "rocket-launcher",
+          "ammo": 19,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 13,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 28
+      },
+      {
+        "id": 21,
+        "health": 28
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 7
+  },
+  {
+    "definition": {
+      "weapon": "flamethrower",
+      "materialId": "timber",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-49",
+    "reportSha256": "d13bd92f9750638062bc458dcfb8180d3a95b1182390ee0da31936499beb16c0",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171
+    ],
+    "events": 10,
+    "finalCoverHealth": 4,
+    "scenarioId": 49,
+    "eventHash": "182b19b1",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "flamethrower",
+          "ammo": 29,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 10
+  },
+  {
+    "definition": {
+      "weapon": "laser",
+      "materialId": "armor-steel",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-59",
+    "reportSha256": "9d4dbf3fcc2451ce4093d54306af60387784ec9ea02738bb2b23ee276d27a4f1",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171
+    ],
+    "events": 3,
+    "finalCoverHealth": 4,
+    "scenarioId": 59,
+    "eventHash": "dfd86995",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "laser",
+          "ammo": 119,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 12,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 3
+  },
+  {
+    "definition": {
+      "weapon": "knife",
+      "materialId": "timber",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-65",
+    "reportSha256": "14b7ed3746be532918ec57203e4b89e7c4d763013e3a15e9282b1131c91c910f",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171
+    ],
+    "events": 3,
+    "finalCoverHealth": 7,
+    "scenarioId": 65,
+    "eventHash": "9999fb98",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 7,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 3
+  },
+  {
+    "definition": {
+      "weapon": "grenade",
+      "materialId": "open-grating",
+      "targetMotion": "stationary",
+      "players": 1
+    },
+    "directory": "dist/network-material-room-evidence/1-77",
+    "reportSha256": "7fe5e0ce6701127882ab100232fb7082a24a5950302f3061476300dac93905f1",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171
+    ],
+    "events": 5,
+    "finalCoverHealth": 7,
+    "scenarioId": 77,
+    "eventHash": "3e38134e",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 9,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 13,
+        "health": 7,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 31
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 4,
+    "duplicates": 5
+  },
+  {
+    "definition": {
+      "weapon": "sidearm",
+      "materialId": "concrete",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-16",
+    "reportSha256": "e03071605456f4d20572d90518562bb0449c6cdf9575a9975763fc1ba6d138c3",
+    "sharedSnapshots": 16,
+    "ticks": [
+      171,
+      171,
+      168,
+      171
+    ],
+    "events": 16,
+    "finalCoverHealth": 8,
+    "scenarioId": 16,
+    "eventHash": "b71ad188",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 10,
+        "health": 8,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 64
+  },
+  {
+    "definition": {
+      "weapon": "heavy-machine-gun",
+      "materialId": "timber",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-26",
+    "reportSha256": "011433aed3be1a2511d6b6be7bfb1d5f383f8fb1842d51ab8622ea69ee59796e",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171,
+      171,
+      171,
+      171
+    ],
+    "events": 16,
+    "finalCoverHealth": 4,
+    "scenarioId": 26,
+    "eventHash": "4556e389",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 149,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 149,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 149,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "heavy-machine-gun",
+          "ammo": 149,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 64
+  },
+  {
+    "definition": {
+      "weapon": "shotgun",
+      "materialId": "armor-steel",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-36",
+    "reportSha256": "46f5abc120cfe863ca1d89d7a2d5e46a94cd99b15610ccdaa0d59bafdfe64247",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168,
+      168,
+      168,
+      168
+    ],
+    "events": 16,
+    "finalCoverHealth": 8,
+    "scenarioId": 36,
+    "eventHash": "cdfab66b",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "shotgun",
+          "ammo": 23,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "shotgun",
+          "ammo": 23,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "shotgun",
+          "ammo": 23,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "shotgun",
+          "ammo": 23,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 12,
+        "health": 8,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 64
+  },
+  {
+    "definition": {
+      "weapon": "rocket-launcher",
+      "materialId": "open-grating",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-46",
+    "reportSha256": "05794f1aa68da1aa3d27ffff475d93070276f5f9c24a40c60a77b79eafd7ff67",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168,
+      168,
+      168,
+      168
+    ],
+    "events": 29,
+    "finalCoverHealth": 0,
+    "scenarioId": 46,
+    "eventHash": "5306df23",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "rocket-launcher",
+          "ammo": 19,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "rocket-launcher",
+          "ammo": 19,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "rocket-launcher",
+          "ammo": 19,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "rocket-launcher",
+          "ammo": 19,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 13,
+        "health": 0,
+        "destroyedTick": 14,
+        "destroyerId": 2,
+        "destroyActionId": 2
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 16
+      },
+      {
+        "id": 21,
+        "health": 16
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 116
+  },
+  {
+    "definition": {
+      "weapon": "flamethrower",
+      "materialId": "timber",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-50",
+    "reportSha256": "7bf319b003ff359f718e8e901f3edbba17be7891d258489c986dbed2f2039c7f",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171,
+      171,
+      171,
+      171
+    ],
+    "events": 45,
+    "finalCoverHealth": 0,
+    "scenarioId": 50,
+    "eventHash": "30e45d39",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "flamethrower",
+          "ammo": 29,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "flamethrower",
+          "ammo": 29,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "flamethrower",
+          "ammo": 29,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "flamethrower",
+          "ammo": 29,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 0,
+        "destroyedTick": 16,
+        "destroyerId": 4,
+        "destroyActionId": 4
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 24
+      },
+      {
+        "id": 21,
+        "health": 28
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 180
+  },
+  {
+    "definition": {
+      "weapon": "laser",
+      "materialId": "armor-steel",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-60",
+    "reportSha256": "f278c0121e2ab901e720d61d11a3882eab29e05dfd4d4f4d6ebe8bae13752ffc",
+    "sharedSnapshots": 17,
+    "ticks": [
+      171,
+      171,
+      171,
+      171
+    ],
+    "events": 13,
+    "finalCoverHealth": 0,
+    "scenarioId": 60,
+    "eventHash": "b184b15e",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "laser",
+          "ammo": 119,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 1
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "laser",
+          "ammo": 119,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 2
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "laser",
+          "ammo": 119,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 3
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "laser",
+          "ammo": 119,
+          "cooldownTicks": 0,
+          "shotOrdinal": 1,
+          "lastActionInstanceId": 4
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 12,
+        "health": 0,
+        "destroyedTick": 6,
+        "destroyerId": 2,
+        "destroyActionId": 2
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 52
+  },
+  {
+    "definition": {
+      "weapon": "knife",
+      "materialId": "timber",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-66",
+    "reportSha256": "4c6c710d0c6711f92b7f7a17f13897272cde8a385a05df58c18f51545d504eea",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168,
+      168,
+      168,
+      168
+    ],
+    "events": 12,
+    "finalCoverHealth": 4,
+    "scenarioId": 66,
+    "eventHash": "35df7a52",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 10,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 11,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 32
+      },
+      {
+        "id": 21,
+        "health": 32
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 48
+  },
+  {
+    "definition": {
+      "weapon": "grenade",
+      "materialId": "open-grating",
+      "targetMotion": "patrol",
+      "players": 4
+    },
+    "directory": "dist/network-material-room-evidence/4-78",
+    "reportSha256": "36dad9e495abc6453cc44ea4503c12858bec0071d32600b8b7fc43f63fb3a65d",
+    "sharedSnapshots": 16,
+    "ticks": [
+      168,
+      168,
+      168,
+      168
+    ],
+    "events": 24,
+    "finalCoverHealth": 4,
+    "scenarioId": 78,
+    "eventHash": "0b2649a3",
+    "players": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 9,
+        "lives": 3
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 9,
+        "lives": 3
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 9,
+        "lives": 3
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "id": "sidearm",
+          "ammo": 0,
+          "cooldownTicks": 0,
+          "shotOrdinal": 0,
+          "lastActionInstanceId": 0
+        },
+        "grenadeStock": 9,
+        "lives": 3
+      }
+    ],
+    "props": [
+      {
+        "id": 200,
+        "definitionId": 13,
+        "health": 4,
+        "destroyedTick": null,
+        "destroyerId": null,
+        "destroyActionId": null
+      }
+    ],
+    "targets": [
+      {
+        "id": 20,
+        "health": 28
+      },
+      {
+        "id": 21,
+        "health": 28
+      }
+    ],
+    "droppedFrames": 16,
+    "duplicates": 96
+  }
+]

@@ -94,7 +94,7 @@ describe("authored combat materials", () => {
     const cases = [
       null,
       [],
-      { ...recording, format: 2 },
+      { ...recording, format: 1 },
       { ...recording, contentFingerprint: "00000000" },
       { ...recording, finalState: "tampered" },
       { ...recording, extra: true },
@@ -279,7 +279,6 @@ describe("authored combat materials", () => {
     const definition = materialLabProp({
       weapon: "sidearm",
       materialId: "timber",
-      players: 1,
       targetMotion: "stationary",
     });
     const prop = createDestructible(definition),

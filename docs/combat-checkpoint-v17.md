@@ -1,0 +1,11 @@
+# Diagnostic combat archive format 17
+
+The combat laboratory uses archive **17**, simulation/recording format **14**, protocol **3.14** and combat snapshot section **5**. Breakwater mission/recording format is **5**; the material inspector uses recording format **2**. Older experimental formats are rejected. This extends [format 16](combat-checkpoint-v16.md) with registered material calibration scenarios and an explicit public scenario identity.
+
+The 64 material cases cover eight action families, four surfaces and stationary/patrolling targets. They use the same constructor and step function in the local inspector and the authoritative diagnostic room. The registered scenario selects initial weapons, material-bound prop 200, terrain, patrol policy and calibration targets. Target definition 5 has 32 HP; ordinary infantry retains its one-hit health cap. A private archive cannot change its scenario, prop material, public projection or target health contract without rejection.
+
+Every combat snapshot carries a nonzero `scenarioId`. IDs 1–14 retain the original scenario order; IDs 15–78 identify the material cases. The identifier survives destruction of the last prop and removal of visible enemies. The loaded adapter rejects unknown IDs and scenario changes within a run, while checking authored prop state and irreversible destruction attribution. The diagnostic content digest includes the scenario registry, calibration definitions and material-bound destructibles.
+
+Solo through four-player fixtures have matching world, acknowledgment and participant rosters. Admission and WebSocket upgrade reject slots absent from the configured world. A saved scenario or party size that differs from the deployment configuration is rejected before recovery.
+
+Archive checkpoints and journals retain exact accepted inputs, inventories, allocations, contacted flame limits, grenade/rocket flight and fuse state, beam charges, material health and acknowledged event history. The [material-room evidence](redesign-evidence/W07-material-room.md) distinguishes portable archive replay, actual SQLite transactions and process restarts, and real keyboard network delivery. Production v3 integration, deployed cadence and stored trace ingestion remain separate gates.

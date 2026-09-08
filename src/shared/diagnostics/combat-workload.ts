@@ -8,6 +8,11 @@ import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { validateWeaponPickups } from "../../game/combat/pickups.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { SURFACE_MATERIALS } from "../../game/content/materials.js";
+import {
+  MATERIAL_CALIBRATION,
+  MATERIAL_CASES,
+  materialCase,
+} from "../../game/content/scenarios/materials.js";
 import { LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import { ROCKET_PROFILE } from "../../game/content/weapons/rocket-launcher.js";
 import { stepFootController } from "../../game/controller/foot.js";
@@ -38,9 +43,15 @@ import {
 } from "../../game/labs/combat-content.js";
 import { combatPickupDefinitions } from "../../game/labs/combat-pickups.js";
 import {
+  COMBAT_SCENARIOS,
+  combatScenarioFromId,
+  combatScenarioId,
+} from "../../game/labs/combat-scenarios.js";
+import {
   COMBAT_ORDNANCE,
   COMBAT_SUPPORT,
   combatCollisionIndex,
+  combatDestructibles,
   combatGeometryRevision,
   ordnancePlatforms,
 } from "../../game/labs/combat-terrain.js";
@@ -60,17 +71,27 @@ export function combatPeerContext(world: FullSnapshot, slot: number) {
   return {
     ...controllerPeerContext(world, slot),
     shapeIds: COMBAT_SHAPE_IDS,
-    ...combatGeometryContext(),
+    ...combatGeometryContext(world.combat?.scenarioId),
   };
 }
 /** This diagnostic content has two loaded scaffold revisions; arbitrary world revisions stay rejected. */
-export function combatGeometryContext() {
+export function combatGeometryContext(expectedScenarioId?: number) {
   return {
     geometryRevisions: new Set([1, 2]),
     validateGeometry: (snapshot: FullSnapshot) => {
       const combat = snapshot.combat;
       if (!combat) throw new Error("Missing combat geometry baseline");
+      if (expectedScenarioId !== undefined && combat.scenarioId !== expectedScenarioId)
+        throw new Error("Combat scenario changed within loaded content");
       const scenario = combatSnapshotScenario(snapshot);
+      const material = materialCase(scenario);
+      for (const enemy of snapshot.enemies)
+        if (
+          material &&
+          (enemy.definitionId !== MATERIAL_CALIBRATION.definitionId ||
+            enemy.health > MATERIAL_CALIBRATION.targetHealth)
+        )
+          throw new Error("Material calibration target content mismatch");
       validateWeaponPickups(
         { format: 1, tick: snapshot.tick, items: combat.pickups, contacts: [] },
         combatPickupDefinitions(scenario, snapshot.players.length),
@@ -79,7 +100,7 @@ export function combatGeometryContext() {
       );
       validateDestructibles(
         combat.props,
-        combat.props.length ? COMBAT_SUPPORT : [],
+        combatDestructibles(scenario),
         snapshot.tick,
         [...snapshot.players.map((p) => p.playerId), ...combat.members.map((m) => m.id)],
         combat.nextActionId,
@@ -91,6 +112,8 @@ export function combatGeometryContext() {
 }
 /** Within one run, accepted solid removals are permanent and retain their original attribution. */
 export function validateCombatGeometryTransition(previous: FullSnapshot, incoming: FullSnapshot) {
+  if (previous.combat?.scenarioId !== incoming.combat?.scenarioId)
+    throw new Error("Combat scenario changed within a run");
   const previousPickups = previous.combat?.pickups,
     nextPickups = incoming.combat?.pickups;
   if (!previousPickups || !nextPickups || previousPickups.length !== nextPickups.length)
@@ -131,13 +154,8 @@ export function validateCombatGeometryTransition(previous: FullSnapshot, incomin
   }
 }
 export function combatSnapshotScenario(snapshot: FullSnapshot): CombatScenario {
-  return snapshot.combat?.props.length
-    ? "support"
-    : snapshot.platforms.length
-      ? "ordnance"
-      : snapshot.combat?.pickups.length
-        ? "pickups"
-        : "range";
+  if (!snapshot.combat) throw new Error("Missing combat scenario identity");
+  return combatScenarioFromId(snapshot.combat.scenarioId);
 }
 /** Real content digest; simulation/presentation identities remain explicitly diagnostic. */
 export async function combatIdentity() {
@@ -145,8 +163,14 @@ export async function combatIdentity() {
     canonical({
       content: COMBAT_CONTENT,
       surfaceMaterials: SURFACE_MATERIALS,
+      scenarios: COMBAT_SCENARIOS,
+      materials: {
+        cases: MATERIAL_CASES,
+        calibration: MATERIAL_CALIBRATION,
+        destructibles: COMBAT_SCENARIOS.map(combatDestructibles),
+      },
       campaignFormat: 2,
-      combatFormat: 13,
+      combatFormat: 14,
       pickups: [1, 2, 3, 4].map((players) => [
         combatPickupDefinitions("pickups", players),
         combatPickupDefinitions("support", players),
@@ -328,7 +352,15 @@ export function combatSnapshot(
     .filter((target) => target.health > 0)
     .map(({ enemy, health, shield, rifle, guard }) => ({
       id: enemy.body.id,
-      definitionId: guard ? 4 : rifle ? 3 : shield ? 2 : 1,
+      definitionId: materialCase(combat.scenario)
+        ? MATERIAL_CALIBRATION.definitionId
+        : guard
+          ? 4
+          : rifle
+            ? 3
+            : shield
+              ? 2
+              : 1,
       x: enemy.body.x,
       y: enemy.body.y,
       vx: enemy.body.vx,
@@ -425,6 +457,7 @@ export function combatSnapshot(
   snapshot.campaign.encounterId = 1;
   const definition = combatEncounterDefinition(combat);
   snapshot.combat = {
+    scenarioId: combatScenarioId(combat.scenario),
     props: structuredClone(combat.props),
     pickups: structuredClone(combat.pickups.items),
     volumes: combat.areas
@@ -468,9 +501,13 @@ export function combatSnapshot(
   snapshot.stateHash = roomWorkloadHash(snapshot);
   return snapshot;
 }
-export function createCombatWorkload(scenario: CombatScenario = "range") {
-  const combat = createCombatLab(scenario, 4);
-  return { combat, snapshot: combatSnapshot(combat) };
+export function createCombatWorkload(scenario: CombatScenario = "range", players = 4) {
+  const combat = createCombatLab(scenario, players),
+    baseline = createRoomWorkload(1);
+  baseline.acknowledgments = baseline.acknowledgments.filter((ack) =>
+    combat.players.some((player) => player.playerId === ack.playerId),
+  );
+  return { combat, snapshot: combatSnapshot(combat, baseline) };
 }
 export function evaluateCombatTick(
   current: CombatLab,

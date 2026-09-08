@@ -33,6 +33,8 @@
     "scripts/compile-benchmark.ts",
     "scripts/verify-network-controller.ts",
     "scripts/verify-combat-storage.ts",
+    "scripts/verify-material-room-runtimes.ts",
+    "scripts/verify-material-room-network.ts",
     "scripts/assets/**/*.ts"
   ],
   "exclude": [
@@ -42,6 +44,7 @@
     "node_modules",
     "src/client",
     "src/worker",
-    "test/fixtures/combat-storage-worker.ts"
+    "test/fixtures/combat-storage-worker.ts",
+    "test/fixtures/material-room-storage-worker.ts"
   ]
 }

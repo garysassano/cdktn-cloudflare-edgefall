@@ -1,0 +1,3874 @@
+{
+  "format": 1,
+  "baseCommit": "ba6dc421a737e4d8f52ed546049b557d7b43aa61",
+  "scope": "Registered material-room integration: 128 cases in Node/Chromium/workerd, 384 exact archive/journal continuations, 896 cold SQLite boundaries and 1664 rollback checks. Sixteen representative keyboard network cases retain dropped/duplicated event evidence and all observed clock/build/harness failures. Nine rebuilt bundles match tested bytes. Full W07, final media, production v3, deployed cadence and trace ingestion remain open.",
+  "runtimeInputs": {
+    "contracts-browser": {
+      "sourceSha256": "152a9d7337b6f7c3218136e134a7a3e9548773c5eb2278e385de2033f327123a",
+      "bundleSha256": "10d38c62a953aef9b34c8e9efb8a3fe18d30ae23e06b46d2edbe1be2ad01bb0d"
+    },
+    "storage-worker": {
+      "sourceSha256": "0b08939abb4bf8534cf999263a0832e42d4c2a2e77a808949004e8dd23689899",
+      "bundleSha256": "6f252e122410fa500d2afe6d5bd8b033ab1308673b7330eaa7c23da97663cb5d"
+    },
+    "material-room-browser": {
+      "sourceSha256": "aaec85bd4f6e02ca4a3c02a5ffb78d9cabf745db54787feb48d55c59158d4d68",
+      "bundleSha256": "4fa27e8a2b8142773f2e2eb8631ad2b3896cf3f97d12cf737466468bc75c82f3"
+    },
+    "material-room-worker": {
+      "sourceSha256": "46a4a57730863704b776ec7269bd1cf2d08e1e242ad13698c57242c5dd51f032",
+      "bundleSha256": "1ea5c1e10ace4a94e71044fe7e7a4c1330955df12408583163846ea93c5429ab"
+    },
+    "network-worker": {
+      "sourceSha256": "3dd6598e9eb2b82a7b240783771d221dca21aa382b146f276d2bc5665abba51a",
+      "bundleSha256": "7d95cbbd874e7806f9531512caa289bc34edd9797d31446604bd22dab049888c"
+    },
+    "combat-lab": {
+      "sourceSha256": "cc9d0f34f2e69a5f28f755a8771bfd0b52ad7ba7fe6f40ee8379180da153a310",
+      "bundleSha256": "849a32441f595824db9343f25773343608f7482ec4a8310bd58b5581acbed782"
+    },
+    "network-lab": {
+      "sourceSha256": "ee51a3c86cb1c63fd6ba77daca7478efc2810651366040f52fec18fe40a02d3c",
+      "bundleSha256": "185cfd7795cfee9d4dd53dfa0f4ea6b20a9453fe777b583c698386820cbb4477"
+    },
+    "material-lab": {
+      "sourceSha256": "46c6f4f8f90ed225b63fdd900f795221928e23581aa4ecbf3ad318bd969e50a3",
+      "bundleSha256": "ac3a2d3175a2a37033eaf99baa64f0125dd99724effae834b693ec3a1304c978"
+    },
+    "benchmark": {
+      "sourceSha256": "b6059207d86875a52369b9697563d14b66538fef9af37a041bb230c41101f214",
+      "bundleSha256": "9ddb4ec5147c03ee2cb0109c551965101235c3ff63d41a196b7a9791cd200988"
+    }
+  },
+  "sources": [
+    {
+      "path": "e2e/baseline.spec.ts",
+      "bytes": 7760,
+      "sha256": "4360e5d3f595d05aae08f2ba31f23ace55fb819a1297b3873a336ff5d259fe8e"
+    },
+    {
+      "path": "e2e/clock.wrangler.jsonc",
+      "bytes": 482,
+      "sha256": "f670169fde56f3c97d58ef15c9ec0277314b39a1f82a81b6dca0f627c1db7f3c"
+    },
+    {
+      "path": "e2e/contracts.wrangler.jsonc",
+      "bytes": 294,
+      "sha256": "34378d3223bd72a61569c4e226b19d4dfa969f16dd402901a8a351aff85ec931"
+    },
+    {
+      "path": "e2e/room.wrangler.jsonc",
+      "bytes": 665,
+      "sha256": "65bcfe80bd12f3396de3cc391fbfee886b86e56f42786b6448f3420305fcdb1c"
+    },
+    {
+      "path": "mise.toml",
+      "bytes": 174,
+      "sha256": "0c816e631820069201052a4b5548d9e392bb1786bcb0d469a2fc3a52c03d65fa"
+    },
+    {
+      "path": "package.json",
+      "bytes": 4647,
+      "sha256": "755e7e8f12488a264d9be032bc2017b86745aee0943672e77d4eeddde4575b34"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 148537,
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43"
+    },
+    {
+      "path": "public/assets/manifest.json",
+      "bytes": 29986,
+      "sha256": "63cdfd874b4b7f49fb7eccdd2507185d8d74f559f277d6d70aa573595a318202"
+    },
+    {
+      "path": "scripts/assets/export-breakwater.ts",
+      "bytes": 5148,
+      "sha256": "af0ac386744cfd790785679201d3a7db51630896becfa4fcb6f0da393354eeb9"
+    },
+    {
+      "path": "scripts/assets/export-cast.ts",
+      "bytes": 9089,
+      "sha256": "30814cfa721958b479e09c1e5b7296193fc0469c166339ed9d6e6911f66b3269"
+    },
+    {
+      "path": "scripts/assets/export-native.ts",
+      "bytes": 13148,
+      "sha256": "5fc4c813dc831aec38708901ee326f4b98690a5579fb35a7ecb8a39c31593456"
+    },
+    {
+      "path": "scripts/assets/render-breakwater-music.mjs",
+      "bytes": 9322,
+      "sha256": "916c7ad61f76aa2ec4b499b071e2c251068eb32688ab95ce88f95ebd315a91af"
+    },
+    {
+      "path": "scripts/assets/render-breakwater-sfx.mjs",
+      "bytes": 10111,
+      "sha256": "68acb1d217bddd7d535875162513827f368c74221d344b8c1201472a176ee861"
+    },
+    {
+      "path": "scripts/assets/review-breakwater.ts",
+      "bytes": 3220,
+      "sha256": "8e1d193a67b6c21a1fb3c61e6a50126d17805c1cc5c23f61f6e0a0f6288ae207"
+    },
+    {
+      "path": "scripts/assets/review-studies.ts",
+      "bytes": 1034,
+      "sha256": "f007944d8359b9bb3f4e5ae0f0f4089fbe93c809d1facc29d9c5d52f6a55ec15"
+    },
+    {
+      "path": "scripts/audit-breakwater-media.mjs",
+      "bytes": 1877,
+      "sha256": "b9cd05f2ee490b317c57c4a1f1f92c461c5d2ee2baea97d93abb7b40715810ee"
+    },
+    {
+      "path": "scripts/bench-collision-grid.ts",
+      "bytes": 3554,
+      "sha256": "503887de42580fba74f7bbcfd827ffa654c967210f60b864402d8d776be9ba4b"
+    },
+    {
+      "path": "scripts/bench-room-network.ts",
+      "bytes": 16395,
+      "sha256": "22aff8593a7f2130110500a02228745cca5648369fef630700dfffbffd9be1c4"
+    },
+    {
+      "path": "scripts/bench-room.ts",
+      "bytes": 7152,
+      "sha256": "7438c7eb9569cba8db27405a04d852719ab44262518352d27b467c7c2581fc8a"
+    },
+    {
+      "path": "scripts/build-client.mjs",
+      "bytes": 2225,
+      "sha256": "9dd92f65acfe41884898df5fc71120916a38e3185dc4713702357b2d9686cb0d"
+    },
+    {
+      "path": "scripts/build-deploy-config.mjs",
+      "bytes": 1856,
+      "sha256": "d8f3978210dc66ecdc42c696c199062dccd9d26314cee4879755897f318098a9"
+    },
+    {
+      "path": "scripts/build-diagram.py",
+      "bytes": 1753,
+      "sha256": "619f562922c7173244c5915c71db50d47fd81c51771eac53a8ddf399ba8a33bd"
+    },
+    {
+      "path": "scripts/capture-baseline.mjs",
+      "bytes": 4246,
+      "sha256": "dbf535c5754a181ee357e184654b908a1b46f11731d71def09291535c129f029"
+    },
+    {
+      "path": "scripts/compile-benchmark.ts",
+      "bytes": 1309,
+      "sha256": "dac1e99651d32364c7cab47011ea43c33fdc0986a64778caa3efd8f58b080a23"
+    },
+    {
+      "path": "scripts/compile-content.ts",
+      "bytes": 2579,
+      "sha256": "60119179ef625d928e470d516a52f41bd3fcb4e80459601cd23431264f1472e5"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/LICENSE",
+      "bytes": 1093,
+      "sha256": "f409a37a40e823efefddac3140d991141633d4db3cec4f8667bc23b846dcc335"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/README.md",
+      "bytes": 1129,
+      "sha256": "110048b6f37d25a159820455adc1f0ed3b01bcac2689da484d05397ad4da2941"
+    },
+    {
+      "path": "scripts/content/ldtk-1.5.3/schema.json",
+      "bytes": 75952,
+      "sha256": "b96ca8a106d12c5bf8aa42da223a4ceb02e93dcfbb0d1b49fbbaeb9959264bda"
+    },
+    {
+      "path": "scripts/curate-breakwater-evidence.mjs",
+      "bytes": 5547,
+      "sha256": "c1ddf59f9e72047dddc81b5d86c7639af33213ffcdd6da63b5f7c05eaf8fc99e"
+    },
+    {
+      "path": "scripts/curate-combat-audio-evidence.mjs",
+      "bytes": 8697,
+      "sha256": "e884332ed8b368795386ff4338e153ffc092f984b36bd5b33d5a4b602e8b754e"
+    },
+    {
+      "path": "scripts/curate-crew-evidence.mjs",
+      "bytes": 7906,
+      "sha256": "89b38a51aa20238bf75798af738ea80031d956c3cb18bdba42ff5ecea8b1ba72"
+    },
+    {
+      "path": "scripts/curate-kestrel-evidence.mjs",
+      "bytes": 8180,
+      "sha256": "8b26f0da622b1efc7a09de8721eb8d9ce8b50c55b8b03452fac5dedded5389ab"
+    },
+    {
+      "path": "scripts/curate-operative-aim-evidence.mjs",
+      "bytes": 6240,
+      "sha256": "a7392df901b09c21f75daf649084c17cc40430773d763c126904fd9b24907a2c"
+    },
+    {
+      "path": "scripts/curate-operative-air-evidence.mjs",
+      "bytes": 7781,
+      "sha256": "cc3dffc85bda11fa455b97872ccf8a2d893c2b046bfc42aa8c4c62d49d6a7983"
+    },
+    {
+      "path": "scripts/curate-review-matrix.mjs",
+      "bytes": 12098,
+      "sha256": "a5b01e275a08314f6accb5382531afc61ee2c5e6f0a145766b1a967d8721ee1e"
+    },
+    {
+      "path": "scripts/lib/art-image.ts",
+      "bytes": 4606,
+      "sha256": "27477695d8d7e1a5f0e4597be09e5dad79986e4d4d9bcc5821de50e6566d01fe"
+    },
+    {
+      "path": "scripts/lib/art-studies.ts",
+      "bytes": 4349,
+      "sha256": "a6ae466aabf973c5858ff96dfe79a3105772c554cec1d04b854d80dbee45eab1"
+    },
+    {
+      "path": "scripts/lib/export-breakwater-video.mjs",
+      "bytes": 953,
+      "sha256": "5e63c036d32d75e04695e2ca1b32bc0c761296d5aea3740c9d25570f2a7d1807"
+    },
+    {
+      "path": "scripts/lib/ldtk.ts",
+      "bytes": 19789,
+      "sha256": "948ba920e0d74268d5e6bfb2ad9b4848f4d2d3303370b646876b03f8d0cb99e8"
+    },
+    {
+      "path": "scripts/lib/local-worker.ts",
+      "bytes": 4900,
+      "sha256": "30487788b27ee3ccc83d4fb8aa4af41e67dc32ca90d5d5638956f0e098528939"
+    },
+    {
+      "path": "scripts/lib/native-art.ts",
+      "bytes": 9147,
+      "sha256": "807c058d6223e080f41bb37de35c7730e471655669b8d1fdb10d3f150bfd4874"
+    },
+    {
+      "path": "scripts/lib/review-matrix-viewer.mjs",
+      "bytes": 7133,
+      "sha256": "0fe75d0be4468f1dade78edaf9b7944850843b9e6f96808a0320ba05d74813e8"
+    },
+    {
+      "path": "scripts/lib/room-host-control.ts",
+      "bytes": 1835,
+      "sha256": "97ec6bde3bd396ff18846cbe078cf2b5a1633fb6244900e85687f4686555059a"
+    },
+    {
+      "path": "scripts/lib/verify-area-combat.ts",
+      "bytes": 6053,
+      "sha256": "fe814abc37c45c1f8d710cf55c99889b03d5895b959433cf2fb2142e7bada8c6"
+    },
+    {
+      "path": "scripts/lib/verify-area-lab.mjs",
+      "bytes": 2881,
+      "sha256": "e12ae4b7a49eb23e98aa0f0105c402f3e93e484dcc54fb481174c276b838d10d"
+    },
+    {
+      "path": "scripts/lib/verify-combat-campaign.ts",
+      "bytes": 9800,
+      "sha256": "5d2cc951d38c3982bdf8201442ecffff24b7552776020236265aa6a1f6133e44"
+    },
+    {
+      "path": "scripts/lib/verify-death-body-lab.mjs",
+      "bytes": 4148,
+      "sha256": "8aa4bd6615610173cdd04a604057164a08ec6c2d1bb52236a1e36fb4f0ca09de"
+    },
+    {
+      "path": "scripts/lib/verify-entry-lab.mjs",
+      "bytes": 2413,
+      "sha256": "d70253e30ad4470a660502b5183017ad5da156713ab4bb5032d10aeed5b21e64"
+    },
+    {
+      "path": "scripts/lib/verify-foot-combat.ts",
+      "bytes": 6780,
+      "sha256": "42f61b1587bdce8679a90a53536b26df1a5bcc5a9ea61c37ceb2a71803f9e81a"
+    },
+    {
+      "path": "scripts/lib/verify-hmg-combat.ts",
+      "bytes": 8293,
+      "sha256": "92a5b72594f1ac374796c3ca8a9823183369d09d22f97f01168b3d4943f10b45"
+    },
+    {
+      "path": "scripts/lib/verify-hmg-lab.mjs",
+      "bytes": 2534,
+      "sha256": "9cc458e2b1d0bf5fa3d9ce23038ab58d9562d37d6a5013dc1df62b06c9edb695"
+    },
+    {
+      "path": "scripts/lib/verify-hostile-combat.ts",
+      "bytes": 6199,
+      "sha256": "1328316d9b087d51916db500683d99df0b53fc2b7466d31c3f74cb30129747fe"
+    },
+    {
+      "path": "scripts/lib/verify-laser-combat.ts",
+      "bytes": 10382,
+      "sha256": "68ac8bd6964e1a18c012f371a83051ec25c007ee578a16893457ab3a2e02cfc0"
+    },
+    {
+      "path": "scripts/lib/verify-laser-lab.mjs",
+      "bytes": 2874,
+      "sha256": "bcb39c5a4d45aefb0457e94c5bd02de4b7a6664273b69b8e89009381e3304de1"
+    },
+    {
+      "path": "scripts/lib/verify-loading-connections.ts",
+      "bytes": 7642,
+      "sha256": "2f73ca0de700a76091e32d88fe0a1e0d874f42bb397b2eee79e56968a8a2d403"
+    },
+    {
+      "path": "scripts/lib/verify-material-room-network.ts",
+      "bytes": 9741,
+      "sha256": "72dadc75df50ed5ca7c9c0cf63c8647b4639bd9483c45f3a9a22027800457bd2"
+    },
+    {
+      "path": "scripts/lib/verify-mission-audio.mjs",
+      "bytes": 5005,
+      "sha256": "ac927df7955921fa4ca7fc8d3079b672e8b3e6080029c40688bd01b016cb2da7"
+    },
+    {
+      "path": "scripts/lib/verify-ordnance-combat.ts",
+      "bytes": 5403,
+      "sha256": "27a63ea3823d87a3ea2e3838c995a747eaa8cb441f4b8e3331579e7d591ea3b2"
+    },
+    {
+      "path": "scripts/lib/verify-ordnance-lab.mjs",
+      "bytes": 1957,
+      "sha256": "196038ba21e732ab3f0f5ad0dbcae20f72809dda60176fbaf8eddfd2af127951"
+    },
+    {
+      "path": "scripts/lib/verify-pickup-combat.ts",
+      "bytes": 8930,
+      "sha256": "8a97a08efe88d1ccba7f0d62c5265989a6fca59ac51b4ee87663fba97294a6bd"
+    },
+    {
+      "path": "scripts/lib/verify-pickup-lab.mjs",
+      "bytes": 3560,
+      "sha256": "67aaa2bb48ecebcb36ccfa4e354f114d68a89517a9ba926143fbe4b9b748c389"
+    },
+    {
+      "path": "scripts/lib/verify-rocket-combat.ts",
+      "bytes": 7024,
+      "sha256": "b0cd5c426aefda172b036b6dde32956ee9f007b51f410287ad8cbd52914d7bea"
+    },
+    {
+      "path": "scripts/lib/verify-rocket-lab.mjs",
+      "bytes": 2820,
+      "sha256": "6e46d5a2c7ceea52846613d1444e419928359e8c900dcf725f0f2690252c5b4c"
+    },
+    {
+      "path": "scripts/lib/verify-room-phases.ts",
+      "bytes": 7207,
+      "sha256": "cbc8e649d6ded1cbb527c9da07c387159a4d7edf320adbaad51a5e490414c613"
+    },
+    {
+      "path": "scripts/lib/verify-shield-combat.ts",
+      "bytes": 7114,
+      "sha256": "b5ed492e12ebc722693905331fa1ff6e8b35169e75584823163325fce14e1525"
+    },
+    {
+      "path": "scripts/lib/verify-shield-lab.mjs",
+      "bytes": 2716,
+      "sha256": "97ae1a7f3f7e388026c5952ce8a6d01d423a264ce6e656e98d1a75fbb7a231ed"
+    },
+    {
+      "path": "scripts/lib/verify-stored-area.ts",
+      "bytes": 2368,
+      "sha256": "fb32f47fd462fc5979863728d40d6a250b605a2962927b9a45f18afd51dff669"
+    },
+    {
+      "path": "scripts/lib/verify-stored-campaign.ts",
+      "bytes": 5559,
+      "sha256": "392836d5e427aad86ba2d32cd46ebf6e536483288378f801d7c9aab2352cfd6e"
+    },
+    {
+      "path": "scripts/lib/verify-stored-death-body.ts",
+      "bytes": 2454,
+      "sha256": "c5d20615a8fc604ff71cb51fa46046e5c59925bfbb851a5f05ecffa1f8200d3b"
+    },
+    {
+      "path": "scripts/lib/verify-stored-entry.ts",
+      "bytes": 1835,
+      "sha256": "f3d2acf0ff2cd3ff9946bbeed2ea73b6063ea6455e7a50759113363044aff60b"
+    },
+    {
+      "path": "scripts/lib/verify-stored-foot-combat.ts",
+      "bytes": 3147,
+      "sha256": "43f743c33c2e97e10dfda7fd23e1294deee1876979d5ca96e0a5d4379a9c7eeb"
+    },
+    {
+      "path": "scripts/lib/verify-stored-hmg.ts",
+      "bytes": 1644,
+      "sha256": "2ffc5443a93f3d981df1d7e7b693220677e329a3c060f121daf5918d193adf83"
+    },
+    {
+      "path": "scripts/lib/verify-stored-laser.ts",
+      "bytes": 2236,
+      "sha256": "d285c45bd5f5deb7d73a508f96fb2d040e4aea9bdbbbf5d63b8a947c55b4e8d6"
+    },
+    {
+      "path": "scripts/lib/verify-stored-materials.ts",
+      "bytes": 4389,
+      "sha256": "460734bfbb0a5f1b2fecb1a6c827ae1ea6f8ac045b236f8d9c37dd7b0aa45f9d"
+    },
+    {
+      "path": "scripts/lib/verify-stored-ordnance.ts",
+      "bytes": 2555,
+      "sha256": "42407307ac3b9cd569e9deaab0fbf7b6d6dda193d7b16dd41566e9537b36078d"
+    },
+    {
+      "path": "scripts/lib/verify-stored-phases.ts",
+      "bytes": 5061,
+      "sha256": "00fb7cec9dcae0a3300c8718de7b104c9206bce3db534f51fe0271807796d5bb"
+    },
+    {
+      "path": "scripts/lib/verify-stored-pickups.ts",
+      "bytes": 2405,
+      "sha256": "5ba624dcf67252de5d94b8fff6b73915bb45563a25ebd220581b72edbec40300"
+    },
+    {
+      "path": "scripts/lib/verify-stored-rifle.ts",
+      "bytes": 2090,
+      "sha256": "c52d18479ff5530b6d90860547c549da283618e5af9b8bff35936ef524203488"
+    },
+    {
+      "path": "scripts/lib/verify-stored-rocket.ts",
+      "bytes": 2107,
+      "sha256": "21d92c87f22e63da964a7fdd8477c97043c1c0d0ebb5d7e9938ee13b82a8076d"
+    },
+    {
+      "path": "scripts/lib/verify-stored-shield.ts",
+      "bytes": 2837,
+      "sha256": "6496b1b13bd461dffe111b91c7c8f15d33f8fc564abfc35d2f2b3b3db0a0bb07"
+    },
+    {
+      "path": "scripts/lib/verify-stored-support.ts",
+      "bytes": 2525,
+      "sha256": "2c34385b7b262a40ca42482ff3afcbe1495a98fe238444089c1c86ae838d7ffa"
+    },
+    {
+      "path": "scripts/lib/verify-stored-tank.ts",
+      "bytes": 2446,
+      "sha256": "2c1e01c8f7eb26427ee1a1e46e98a7d75122af39b917c5c62c1e65862d7fcae9"
+    },
+    {
+      "path": "scripts/lib/verify-support-combat.ts",
+      "bytes": 8738,
+      "sha256": "c79637c0724e83de381dbe14a2e488649929479e0e7ff96a2b9a57e82b05c962"
+    },
+    {
+      "path": "scripts/lib/verify-support-lab.mjs",
+      "bytes": 1989,
+      "sha256": "078a0fc1026d7b4ce324d2a2cbea1ffef89d0f90790af931890e7d75dcd9efa9"
+    },
+    {
+      "path": "scripts/lib/verify-tank-combat.ts",
+      "bytes": 6758,
+      "sha256": "9d2dbe0d22f91cce4f058c9ceec7e10b2140a9890b6d7b3d9e2b546479812f18"
+    },
+    {
+      "path": "scripts/lib/verify-tank-lab.mjs",
+      "bytes": 2635,
+      "sha256": "13477e4a49473cd6b170fbae6d371f72df47882a8d1f0a5e7d88f83a181f58dc"
+    },
+    {
+      "path": "scripts/pack-combat-goldens.py",
+      "bytes": 6241,
+      "sha256": "b4eaa3325d6d1046340cb056debe661b8852bb92c4f067b957b39c283fcf5924"
+    },
+    {
+      "path": "scripts/probe-browser-audio.mjs",
+      "bytes": 2807,
+      "sha256": "3e23459c72ad53d1b57483c43570fe0461b27d8d2021c53dd3ad13c70459ea2b"
+    },
+    {
+      "path": "scripts/probe-native-timers.mjs",
+      "bytes": 6590,
+      "sha256": "d51c7aa204e358c2fb48eb2703d2bcf05854b078cd0cc61591db98d5ceeb851a"
+    },
+    {
+      "path": "scripts/reexport-breakwater-videos.mjs",
+      "bytes": 1616,
+      "sha256": "e5e399c9580d2d4189c8c8321a0c729caebbf9bea4ee8d3e618b7b560ed2fc1c"
+    },
+    {
+      "path": "scripts/render-kestrel-review.mjs",
+      "bytes": 4401,
+      "sha256": "2354faf650a12c7b83453dfcf888235602188ba97512af5108e9cf3ff68cb71e"
+    },
+    {
+      "path": "scripts/render-operative-aim-review.mjs",
+      "bytes": 5056,
+      "sha256": "6b9543cf00d9ab7747e8affe14399c8178ee7983079f016e87aa8ca45a3236eb"
+    },
+    {
+      "path": "scripts/render-operative-air-review.mjs",
+      "bytes": 4057,
+      "sha256": "f89857a23be4128e70779ee9a98de0f2cf15ed11cb7a3cf1f869ead3cc24fd01"
+    },
+    {
+      "path": "scripts/render-weapon-comparison.mjs",
+      "bytes": 9399,
+      "sha256": "5aed35c2f05d81fc028e9649778bb9e2c033ad0c5d7606668b3d341081cb9863"
+    },
+    {
+      "path": "scripts/validate-assets.mjs",
+      "bytes": 10034,
+      "sha256": "196f468b640cc2b377ac08271caa46930e3724b6d4d2538067ffaccec38c6383"
+    },
+    {
+      "path": "scripts/validate-content.ts",
+      "bytes": 571,
+      "sha256": "8beda063a8bc590304797eaacef1a55af91ef62ef4d87522ceb7197aa4194e5a"
+    },
+    {
+      "path": "scripts/verify-art-review.mjs",
+      "bytes": 4842,
+      "sha256": "55b08f6f9441e6dfbbe6b6353c6f91913a377fd034f5c779870296a093f436dc"
+    },
+    {
+      "path": "scripts/verify-breakwater.mjs",
+      "bytes": 30243,
+      "sha256": "f4be85d1f6b0497f852878a4df2014ea59a5c14f93857d7effcfc1a590d9da32"
+    },
+    {
+      "path": "scripts/verify-combat-audio.mjs",
+      "bytes": 15125,
+      "sha256": "ddcb9435f8f72e7097f08d1d8d9ffad5975af97e3353e20b30fd81755dfea00e"
+    },
+    {
+      "path": "scripts/verify-combat-lab.mjs",
+      "bytes": 13355,
+      "sha256": "d5d823e2f343e7f4d01d796ada8a35ade1e1357ad05bdcfc48107dcd13271fb2"
+    },
+    {
+      "path": "scripts/verify-combat-storage.ts",
+      "bytes": 12216,
+      "sha256": "86ae3c02bfcfb736e33637725edab5ca4b34b4a9c9077e7c7dc91c20b63f7f07"
+    },
+    {
+      "path": "scripts/verify-contract-runtimes.ts",
+      "bytes": 9475,
+      "sha256": "016f1a2a440543ea6b14c43b26dc4cd9621cd1c6f25b27e2f19bafa7f76695f2"
+    },
+    {
+      "path": "scripts/verify-controller-lab.mjs",
+      "bytes": 17426,
+      "sha256": "ad7198af2e1cfed7629e90a3ce8e2347d040093f0f8b4c89cf5b54d54dfefefa"
+    },
+    {
+      "path": "scripts/verify-material-lab.mjs",
+      "bytes": 14734,
+      "sha256": "f50a62e89166512f9a954af5168d58361f972f23892e305ed6ced6659d3e7aa1"
+    },
+    {
+      "path": "scripts/verify-material-room-network.ts",
+      "bytes": 4810,
+      "sha256": "9305355befdd17b7b765313859dedf4ba822ba90b6c9e3a660faab5c68296265"
+    },
+    {
+      "path": "scripts/verify-material-room-runtimes.ts",
+      "bytes": 6646,
+      "sha256": "5400a1e7b6936d2a2c66cdd066c0fb6c8583ef54be91298c88c4c799dab0b3da"
+    },
+    {
+      "path": "scripts/verify-native-cast.mjs",
+      "bytes": 22291,
+      "sha256": "155c1d06287e515e3288c767251182b1fcb5cd0f2e4500d2f20a1aae42cdb094"
+    },
+    {
+      "path": "scripts/verify-native-operative.mjs",
+      "bytes": 29221,
+      "sha256": "1c1409c5951458ad3c3353400d50f18eeb9e14dff6166323e6f710dc82c9658e"
+    },
+    {
+      "path": "scripts/verify-network-controller.ts",
+      "bytes": 98261,
+      "sha256": "63e1e8bd07270a8d8544e12fdc94c79e440276d84dbfd639b15dd19b672f2398"
+    },
+    {
+      "path": "scripts/verify-operative-aim.mjs",
+      "bytes": 15540,
+      "sha256": "7de141e7114d67dbd0bd1c7e69d6986d8ad2657876489c8913199ed81da0efa5"
+    },
+    {
+      "path": "src/assets/arch-diagram-dark.svg",
+      "bytes": 13391,
+      "sha256": "c9ce39f1db521c9fb2e768f15493a94745b06aa0e4380d923728e84aeb8875f3"
+    },
+    {
+      "path": "src/assets/arch-diagram.svg",
+      "bytes": 13391,
+      "sha256": "864235a1ead6b5192a7ca91664c276ff77ec47d315fb1cebec0f683c1a5fc87d"
+    },
+    {
+      "path": "src/client/art-review.html",
+      "bytes": 7378,
+      "sha256": "b58edeee161967d74f0a63a207dc9fdd6aedfa6f6f228ba2df7f2c58ee494096"
+    },
+    {
+      "path": "src/client/art-review.ts",
+      "bytes": 4968,
+      "sha256": "62345a2bdb3f6a3d01301900b7348fe319a2fb3ed6359d02b6885948302fd70f"
+    },
+    {
+      "path": "src/client/benchmark.html",
+      "bytes": 3471,
+      "sha256": "dde7eafd6bfaed885684234e033646fbb5ab9a23cb43fa13a12c3a037d576298"
+    },
+    {
+      "path": "src/client/benchmark.ts",
+      "bytes": 22674,
+      "sha256": "c7f6a37f4b3ce121f4ab09871ff9bc4234f636d1407c246050784b1fca37b583"
+    },
+    {
+      "path": "src/client/breakwater-scenery.ts",
+      "bytes": 5205,
+      "sha256": "5111123c7d75c06fe3de20093091685036a9303e9e9146e1f7d220a9320e90f2"
+    },
+    {
+      "path": "src/client/cast-audio.ts",
+      "bytes": 9218,
+      "sha256": "2b0954acaa22ab25d75482fc2fce19423a7f7d5847027349f3c52e9198b9e6a2"
+    },
+    {
+      "path": "src/client/combat-lab.html",
+      "bytes": 5614,
+      "sha256": "02cf4f26e3f16077a4c2493729c0abd765c9cebd028e215ded42b3e636bd2036"
+    },
+    {
+      "path": "src/client/combat-lab.ts",
+      "bytes": 22107,
+      "sha256": "3932ed66dd69108158be671f8eb7924b5945b82e546693adc8d950db43d1bb1f"
+    },
+    {
+      "path": "src/client/combat-mixer.ts",
+      "bytes": 10573,
+      "sha256": "2cc2cf037bf90b59ba58359a50a67197366814f8bb116c925279f3f5a0175c48"
+    },
+    {
+      "path": "src/client/connection-port.ts",
+      "bytes": 389,
+      "sha256": "a06fa2598befd332ae177e665f0dda2cae81809c503b648265d9d2d198d0ca2e"
+    },
+    {
+      "path": "src/client/controller-lab.html",
+      "bytes": 2393,
+      "sha256": "12a6e0dd85e6a911db8bf4019ba320e9045441a6988fdefab000caecef74dd18"
+    },
+    {
+      "path": "src/client/controller-lab.ts",
+      "bytes": 10473,
+      "sha256": "067648197f0ea0f17ebf74362763f92b221c202685e13df520432df921f02cf9"
+    },
+    {
+      "path": "src/client/favicon.svg",
+      "bytes": 304,
+      "sha256": "7b496d707dc8e2089aca998552761bcdfc6d6218fbede93ba19ce2548fa38c0c"
+    },
+    {
+      "path": "src/client/index.html",
+      "bytes": 8918,
+      "sha256": "1e3ed4e81cf8ee5804c2d2feab391c4057b57d6fac68bc3eda81711e1204a8e9"
+    },
+    {
+      "path": "src/client/index.ts",
+      "bytes": 22910,
+      "sha256": "f85d29c1bfdab788aa07c458aca92250183ffb6cd2ab4a135aca61cfebeaa1b6"
+    },
+    {
+      "path": "src/client/lab.html",
+      "bytes": 817,
+      "sha256": "262338001a4504c4ddf8b1738a2c0174f591942b243c6289770dcd68a94ec613"
+    },
+    {
+      "path": "src/client/lab.ts",
+      "bytes": 3417,
+      "sha256": "b5bae0804df01af54d50cc40bb2212a4bc6ab229ad7e59375dff054c4658defa"
+    },
+    {
+      "path": "src/client/material-lab.html",
+      "bytes": 2942,
+      "sha256": "6418f0afb4f3271de5ad814d75bd5ab5e396715f3aa5e44988ca90df7e65463f"
+    },
+    {
+      "path": "src/client/material-lab.ts",
+      "bytes": 14310,
+      "sha256": "f93b1b349d9ac6728af1f12030b115b1a5d46dc2ca669fb8051d90a7fcbb15d3"
+    },
+    {
+      "path": "src/client/mission-music.ts",
+      "bytes": 7014,
+      "sha256": "126894f460848f833ffd84f08e6343e2223e6437ee6ac9a0170be320b3e0735b"
+    },
+    {
+      "path": "src/client/native-cast.ts",
+      "bytes": 2726,
+      "sha256": "1fcf6c9297c08f60493a9c1688a50722133e91e4d90367ddf2a020ed28a1feb5"
+    },
+    {
+      "path": "src/client/native-effects.ts",
+      "bytes": 1886,
+      "sha256": "c839ddb073897a5629ad14bc6ce20670cd81236e82bade1e12c95d3afb1d5afa"
+    },
+    {
+      "path": "src/client/native-operative.ts",
+      "bytes": 2414,
+      "sha256": "0eb8f8f4d342b8a325931a16712b035c1b2dad86fdc6bd28f77d0fb7e1666a76"
+    },
+    {
+      "path": "src/client/native-review.ts",
+      "bytes": 7495,
+      "sha256": "36e04c27e93797f53788e216e22e633ead8df86b081cb072c05783ff119f6ce2"
+    },
+    {
+      "path": "src/client/network-lab.html",
+      "bytes": 1965,
+      "sha256": "b5359643584f5d21312de2ee5477e0163a3e452dc06c0776a7416df17e1d2e7b"
+    },
+    {
+      "path": "src/client/network-lab.ts",
+      "bytes": 42936,
+      "sha256": "bde263cec10b75492148f5e4d437466f7c5017c2dbca279fbe229192ac40ccf4"
+    },
+    {
+      "path": "src/client/network.ts",
+      "bytes": 5616,
+      "sha256": "b9343af60278d20fd40766a50923fb462f084e501c7664199cc15241285e28f6"
+    },
+    {
+      "path": "src/client/pickup-overlay.ts",
+      "bytes": 2533,
+      "sha256": "cadd07c413c76f3d5d3af6c06a56b10b0bba212a039fd125e24dbd40bbfe83cc"
+    },
+    {
+      "path": "src/client/scene-audio-output.ts",
+      "bytes": 1107,
+      "sha256": "bfafe06a96199dc0d66319f3996a0d6be230894df85ece008d363ff12aa5cf5e"
+    },
+    {
+      "path": "src/client/scene.ts",
+      "bytes": 26338,
+      "sha256": "e02dd66e47460d808a1b9670be6e83253bb54c564dd2349ee28107220f4d3e43"
+    },
+    {
+      "path": "src/client/styles.css",
+      "bytes": 14902,
+      "sha256": "728babf7e7b0cfd2edcf1bf278d4c0649e61e5a8518f31fdaa040ebda7b35d34"
+    },
+    {
+      "path": "src/client/tank-overlay.ts",
+      "bytes": 2110,
+      "sha256": "3c1f8062ecc287c086871d9d0c66e8f2dae799cdfaf8468550dfc9c88dbd0f29"
+    },
+    {
+      "path": "src/client/tsconfig.json",
+      "bytes": 437,
+      "sha256": "e06c323752afdfa81db0375d5d332259850ff832b3880d0c0db2d9deb258d3c2"
+    },
+    {
+      "path": "src/game/actors/grounded.ts",
+      "bytes": 6547,
+      "sha256": "34453a81e8a70927d65fad1c3eee28153eba1f0919ae678dd9967204fa201e51"
+    },
+    {
+      "path": "src/game/actors/rifle.ts",
+      "bytes": 6438,
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "path": "src/game/actors/routed.ts",
+      "bytes": 10189,
+      "sha256": "6b7f245a326636844f1bf4c8ae70333ebf69f469af3c96ea4afc119a30c742e3"
+    },
+    {
+      "path": "src/game/actors/shield.ts",
+      "bytes": 9823,
+      "sha256": "21b43b9f58197d513a9f1416347585431101fe9d41e3484aa7ba6ef804630d94"
+    },
+    {
+      "path": "src/game/campaign/life.ts",
+      "bytes": 11225,
+      "sha256": "51d4e743a1a9050322187b0df834506d3631a6cc2644ce7f606e47700e788ebf"
+    },
+    {
+      "path": "src/game/campaign/lifecycle.ts",
+      "bytes": 9278,
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "path": "src/game/combat/area-attack.ts",
+      "bytes": 14138,
+      "sha256": "a43270f6b1451663c44d9d463bd431466bac8fbf5686fa7a5c7d68149fd9c910"
+    },
+    {
+      "path": "src/game/combat/beam.ts",
+      "bytes": 10585,
+      "sha256": "106374c687c94961dce6735cfe3f830898b90087d6b140c3b220677420e97fb1"
+    },
+    {
+      "path": "src/game/combat/destructible.ts",
+      "bytes": 4437,
+      "sha256": "70983859af336c539e96beb829c5292f9916214752b4a15ca78bea5ebde1eafc"
+    },
+    {
+      "path": "src/game/combat/firearm-aim.ts",
+      "bytes": 5788,
+      "sha256": "bb03a22db77438c3a90459aff13fbcf183fafa18bb2df8740eb2f11371b59177"
+    },
+    {
+      "path": "src/game/combat/firearm.ts",
+      "bytes": 5398,
+      "sha256": "fba5d427a50fbf0f54968155cdae3ee42849ac18df2cf7ec98b7c63bfed24bc0"
+    },
+    {
+      "path": "src/game/combat/foot-actions.ts",
+      "bytes": 4280,
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "path": "src/game/combat/grenade.ts",
+      "bytes": 5968,
+      "sha256": "6a7a2dae0167846667defd575e7b9e72ce653ffc972a122b9f9150cfb1521502"
+    },
+    {
+      "path": "src/game/combat/pickups.ts",
+      "bytes": 13215,
+      "sha256": "3bb526579c9d4249dd7f259453341e4d6080cd28d440f7fd62680132bff79317"
+    },
+    {
+      "path": "src/game/combat/projectile.ts",
+      "bytes": 5508,
+      "sha256": "cc834acd0419722845f25b7ffbf652d20fdde5cda5a1d99b9516f3b17be5abc3"
+    },
+    {
+      "path": "src/game/combat/rocket.ts",
+      "bytes": 12490,
+      "sha256": "d1c295dd12ed3917a40a6bff730eb44633f7a31ba32189ae9d63aa53aa33b41c"
+    },
+    {
+      "path": "src/game/combat/timeline.ts",
+      "bytes": 2526,
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "path": "src/game/combat/volume.ts",
+      "bytes": 12115,
+      "sha256": "27119093031c01a95a79f7f1896f66850d5b2d2e3587824f3c9d0c626c54acfc"
+    },
+    {
+      "path": "src/game/content.ts",
+      "bytes": 7752,
+      "sha256": "b023926056f255084be8d854da036d500b342a38b3a4d941c807123de7adf15b"
+    },
+    {
+      "path": "src/game/content/compiled/navigation.json",
+      "bytes": 33524,
+      "sha256": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb"
+    },
+    {
+      "path": "src/game/content/contract-fixture.ts",
+      "bytes": 3949,
+      "sha256": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733"
+    },
+    {
+      "path": "src/game/content/materials.ts",
+      "bytes": 3868,
+      "sha256": "a6e026f5c92854f83f50c9559f6a204e6141aaa17e8710968cf496b3c339b537"
+    },
+    {
+      "path": "src/game/content/scenarios/materials.ts",
+      "bytes": 3069,
+      "sha256": "548f1b6da92252b31bf8dd424371956055ae38fe10b88e2d091cd073e3bc7134"
+    },
+    {
+      "path": "src/game/content/schema.ts",
+      "bytes": 2723,
+      "sha256": "4deae73c33094e34efab3a0a163d52242cebe6d352fc915c63c2b7a6e15bba8e"
+    },
+    {
+      "path": "src/game/content/validate.ts",
+      "bytes": 7540,
+      "sha256": "1c61b8c253a2484a8471227b7079b87bdd587b19fae298362a0009f395c2597e"
+    },
+    {
+      "path": "src/game/content/weapons/laser.ts",
+      "bytes": 1041,
+      "sha256": "f77df80129311cfb9fa4d3e4a651cf8a5f3dee856d6be189fc1877d70918ea6d"
+    },
+    {
+      "path": "src/game/content/weapons/rocket-launcher.ts",
+      "bytes": 1564,
+      "sha256": "9a977a8be167a77b9b516e11349351a0955b967d64936988e123051de142fe4b"
+    },
+    {
+      "path": "src/game/controller/foot.ts",
+      "bytes": 11248,
+      "sha256": "f0c78961f3ed22b589d734362f0ddb7ae58dfe80bed25f9d03df7490bfd9e254"
+    },
+    {
+      "path": "src/game/core/canonical.ts",
+      "bytes": 2160,
+      "sha256": "4b255b5104b2ddba1e4155cfc40b23e81b0d58b75c45f5f2b9c7ae2c284b315e"
+    },
+    {
+      "path": "src/game/core/numeric.ts",
+      "bytes": 2257,
+      "sha256": "55d339dbef7fd2e42956f399780e060a0bfe1fc3a70ad4354e918f2342e0b5a1"
+    },
+    {
+      "path": "src/game/daily.ts",
+      "bytes": 441,
+      "sha256": "52fc74cd0280c02d76c1cb55affc1f60a3178dc72d6afc26607cbdf0c42d7fe7"
+    },
+    {
+      "path": "src/game/encounters/lifecycle.ts",
+      "bytes": 18960,
+      "sha256": "0d634d4973657351af7bf4f2de48707e6e7df1beb04ffa0a53b9150526965c28"
+    },
+    {
+      "path": "src/game/input/journal.ts",
+      "bytes": 1252,
+      "sha256": "f47e52eca4f44a64a32d3e9ab3c7f7b7cf663fecc63c5b8c26289df5be170c44"
+    },
+    {
+      "path": "src/game/input/types.ts",
+      "bytes": 1954,
+      "sha256": "262d7214882ebff5185233d55c40ebf7fe4640fc1077d8c1650fe23b6ceb6c5b"
+    },
+    {
+      "path": "src/game/labs/baseline.ts",
+      "bytes": 2536,
+      "sha256": "225a4135c87c8a2c9db25ab13f67b22f8fb13f5ba74976ff41493f42aa687b83"
+    },
+    {
+      "path": "src/game/labs/combat-campaign.ts",
+      "bytes": 10687,
+      "sha256": "a20960091a3caf427af524a43d3da85618d6e7109d99a147993907167b835143"
+    },
+    {
+      "path": "src/game/labs/combat-content.ts",
+      "bytes": 17656,
+      "sha256": "49d7e9e19441d3ee35379fc6f950ffedccbdd3dfc23d35d44ecdf3afa14c310f"
+    },
+    {
+      "path": "src/game/labs/combat-pickups.ts",
+      "bytes": 1898,
+      "sha256": "329e44c7240392be035bf3fce73cdc15d8127ff2bbb915ccb5510c631a73904c"
+    },
+    {
+      "path": "src/game/labs/combat-scenarios.ts",
+      "bytes": 1151,
+      "sha256": "d18e3e0429e285717059d4175e715f146eaee4a5e3973aed713a5b1277a40b2f"
+    },
+    {
+      "path": "src/game/labs/combat-tanks.ts",
+      "bytes": 11212,
+      "sha256": "809dcf0a54aa7b974c00674189d631528902cac5bba296a91494bb4b512d3284"
+    },
+    {
+      "path": "src/game/labs/combat-terrain.ts",
+      "bytes": 6427,
+      "sha256": "0af0f41c83bef924e768f55b4c18de4bd4adbf8d2f405fca1fe3fdfd815472b5"
+    },
+    {
+      "path": "src/game/labs/combat.ts",
+      "bytes": 53785,
+      "sha256": "c8e9b579ace2e56459b38d155ab35e1290408e96c11287e890d8aa3abcb315cb"
+    },
+    {
+      "path": "src/game/labs/compiled.ts",
+      "bytes": 2449,
+      "sha256": "39e3f19c508b31cbf2d698c0941e9a06a8f82cd49db259f1f2040191470c10fa"
+    },
+    {
+      "path": "src/game/labs/controller.ts",
+      "bytes": 15135,
+      "sha256": "d2c9fe612f40a76a43db41dd59babaae6721f6e0a225ec3e8bf6b511085c4223"
+    },
+    {
+      "path": "src/game/labs/encounter.ts",
+      "bytes": 427,
+      "sha256": "9c265e4e022b7ec0755038142442025a4ce434b59b62f29e78122500fe02f6a2"
+    },
+    {
+      "path": "src/game/labs/foot-fixture.ts",
+      "bytes": 2130,
+      "sha256": "9533abecc95bfa402f04eb537324f0d14e58aa31183ca9a83fc200988284a7b4"
+    },
+    {
+      "path": "src/game/labs/materials.ts",
+      "bytes": 5387,
+      "sha256": "9b06c2107899a03c265218b4d521a7427bb508bdb8af793c84c7ba1252357d9f"
+    },
+    {
+      "path": "src/game/labs/route.ts",
+      "bytes": 2166,
+      "sha256": "cd09b11d08c5278386c58b0a7081cb593876509609c4a89b28f24bfafca5db77"
+    },
+    {
+      "path": "src/game/labs/routed.ts",
+      "bytes": 2146,
+      "sha256": "83455f74588b7b94c34e34727f06da52896db11dfe9f31e2481db7b3c7151d80"
+    },
+    {
+      "path": "src/game/labs/traversal.ts",
+      "bytes": 1687,
+      "sha256": "cd9176887d43a3716877b7ec0af95d40daf17b317aa7411156a37df86f7337ef"
+    },
+    {
+      "path": "src/game/missions/breakwater-boss.ts",
+      "bytes": 4663,
+      "sha256": "48e99bc4899486c53f87ea5b8adbed625cdfa15804fc38fddefd94673a0fdb5c"
+    },
+    {
+      "path": "src/game/missions/breakwater-content.ts",
+      "bytes": 3299,
+      "sha256": "b452f6190af8c0d160fc8df8828d3f12fd886ae225ca565e0d16c476da12e134"
+    },
+    {
+      "path": "src/game/missions/breakwater.ts",
+      "bytes": 8898,
+      "sha256": "6923625b6a108a2cc101a6a9c52a0388163653851b8f10d74053d004be888aea"
+    },
+    {
+      "path": "src/game/missions/compiled/breakwater.json",
+      "bytes": 103,
+      "sha256": "33e4a40218e0ebc1b47680a9b29a8ddfcdb03ebf458b1850b8525896d862aa43"
+    },
+    {
+      "path": "src/game/navigation/follower.ts",
+      "bytes": 9558,
+      "sha256": "fb3a3372e712569ada9457dd8663901cccbfc50b6bd10355797350aa66a4e74f"
+    },
+    {
+      "path": "src/game/navigation/graph.ts",
+      "bytes": 8295,
+      "sha256": "f6e70130fede0f86edf122fd5464adb9430bf18f5e5c77cb84e948745e7f3d45"
+    },
+    {
+      "path": "src/game/navigation/links.ts",
+      "bytes": 11370,
+      "sha256": "f59de65fac0d050a0128de698514638818b75c764ef19a55541e515c4542b0fd"
+    },
+    {
+      "path": "src/game/navigation/spans.ts",
+      "bytes": 5944,
+      "sha256": "821d56156ecdb63d34af99d5ef7a214ff6a0e62d084bfc71fd8a377dcd1994dd"
+    },
+    {
+      "path": "src/game/physics/body.ts",
+      "bytes": 8234,
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "path": "src/game/physics/grid.ts",
+      "bytes": 6474,
+      "sha256": "63fd7c6356b2304ab011fa8ba4d097d21540ffac468e3026d3a61dcd98b2c8c0"
+    },
+    {
+      "path": "src/game/physics/move.ts",
+      "bytes": 17966,
+      "sha256": "439fbdb52706146666220f3c36aa3423bb8750731f2a713de5192a85cad6e61f"
+    },
+    {
+      "path": "src/game/physics/sweep.ts",
+      "bytes": 7683,
+      "sha256": "98f5d4b8b156fc896f03303e40f3cfa599eef9d3b2279a1f40414feb1240cf22"
+    },
+    {
+      "path": "src/game/protocol.ts",
+      "bytes": 13047,
+      "sha256": "a02fc1b6869bc5c337e7463e3e527c7613b80ef678ca13ea620bc39f0e71cad3"
+    },
+    {
+      "path": "src/game/rules.ts",
+      "bytes": 1308,
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "path": "src/game/simulation.ts",
+      "bytes": 50721,
+      "sha256": "ebbbba47487cb98ddf5cf480cb2a52a8c4b8d11cc95d04c832ed8831c9421b27"
+    },
+    {
+      "path": "src/game/state.ts",
+      "bytes": 3612,
+      "sha256": "4618312151de37a230d246a722508e84639a19dc2528736aaad56449f943b1fb"
+    },
+    {
+      "path": "src/game/vehicles/tank.ts",
+      "bytes": 21024,
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "path": "src/main.ts",
+      "bytes": 185,
+      "sha256": "05f7db4db5bfef4124c6e9928f4c93e7fe06db7f485adf2f957231679e743eed"
+    },
+    {
+      "path": "src/shared/animation/breakwater.ts",
+      "bytes": 2710,
+      "sha256": "ac68f9e44f7388508b11e6fa18a3c7468dc3744048fd9845830efc4a0d391645"
+    },
+    {
+      "path": "src/shared/animation/cast.ts",
+      "bytes": 7114,
+      "sha256": "8c1ab864c2f5c79b9356b05837a0afd220acc862b80b0f238e35270f26f4c4ce"
+    },
+    {
+      "path": "src/shared/animation/combat-audio.ts",
+      "bytes": 8801,
+      "sha256": "7ce6f7a48b095f20d8b161902dc814727f55821bc4467e08c149d2e81a8319b2"
+    },
+    {
+      "path": "src/shared/animation/combat-effects.ts",
+      "bytes": 11105,
+      "sha256": "97a8dee9ede922224057a02c85cad329ec96bbd361fa3c6be8736ec73649b686"
+    },
+    {
+      "path": "src/shared/animation/native.ts",
+      "bytes": 2114,
+      "sha256": "2efdd6c6e632632ce59ac66b6859d0f5541f6a819b5beff5398e1700d0cf3c10"
+    },
+    {
+      "path": "src/shared/animation/operative-motion.ts",
+      "bytes": 5789,
+      "sha256": "b367eaa602bad8fa203ce143b3ebd2fe5d334c35f9fc676cf487bd164a5bbf76"
+    },
+    {
+      "path": "src/shared/animation/operative.ts",
+      "bytes": 7963,
+      "sha256": "8ac0201255fd304f5239fc3abd41f1cdedb8b5cb6462b95fd32c8776740f0fe5"
+    },
+    {
+      "path": "src/shared/animation/sfx-profile.ts",
+      "bytes": 5833,
+      "sha256": "189e0d45603a91a19fcd29b5ae55c2536a8572b528d298739fc4af7380c49671"
+    },
+    {
+      "path": "src/shared/animation/tank-motion.ts",
+      "bytes": 2923,
+      "sha256": "87d1045c7d99433a06184e045964e721c8a05352337ff5eab3b73b94e46204d0"
+    },
+    {
+      "path": "src/shared/content-id.ts",
+      "bytes": 306,
+      "sha256": "77421fd1db43cd4d59a41d4ba8035fd983d7c988713d4573b124a4c989a615e2"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-checkpoint.ts",
+      "bytes": 42292,
+      "sha256": "e3ea8aaaeafbbcc4870021be12fd794a149b66a0dc9e39baa9abba7fb19e31ea"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-events.ts",
+      "bytes": 3438,
+      "sha256": "6e0820fa5a4bb5c13cb36d7477e49f449efc80aca42a695358af8838c6e67d13"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-recovery.ts",
+      "bytes": 8435,
+      "sha256": "cd343efad7e3cdac13fb51049f035bd3ebbc9ff8ac92329d9dea25e675564fd0"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-runtime.ts",
+      "bytes": 13325,
+      "sha256": "422490a1d8045f93bccdde5d84695c2f4b7204dd582d6dba4d3c8d815788ec88"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-workload.ts",
+      "bytes": 24522,
+      "sha256": "ae9b3be082200284eb8170db9d644c3b0a1d38b7c1a1b4c104f98f1ead3ed1b6"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-writer.ts",
+      "bytes": 5614,
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-recovery.ts",
+      "bytes": 2314,
+      "sha256": "1d06c63706181db52deb72cd9d6b3c64076c7bfabd6b57c32d0e72fb3572ae6b"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-workload.ts",
+      "bytes": 3697,
+      "sha256": "f418d8d2331fc9f769b706c480b05ced474f5eb2abb9820e6b7e50e0d3451f20"
+    },
+    {
+      "path": "src/shared/diagnostics/room-probe-types.ts",
+      "bytes": 3583,
+      "sha256": "b0063cfe6ce023feff93e722925f2bd46d20bf30ae2af67721d2156f8eefdcdb"
+    },
+    {
+      "path": "src/shared/diagnostics/room-workload.ts",
+      "bytes": 6602,
+      "sha256": "fd52bd3aa4f3b85a81daadcfc83075d841cf6ff6b8f0ae38a3276cc153b13380"
+    },
+    {
+      "path": "src/shared/input/capture.ts",
+      "bytes": 6205,
+      "sha256": "d198f3dfe7d8222aca7fffba0ea51f27fc9a0da06de6c72c15d1b741dd7440d5"
+    },
+    {
+      "path": "src/shared/prediction/controller.ts",
+      "bytes": 10731,
+      "sha256": "d63255a9ce4fa116afb6b8e1070ea9d5cd601013d9a6ad8b847d1a34d615a56d"
+    },
+    {
+      "path": "src/shared/protocol/baseline.ts",
+      "bytes": 1223,
+      "sha256": "dc197db206ebbc836a6af6a872814f8af131d3c1afdaa41644068b375f00c67c"
+    },
+    {
+      "path": "src/shared/protocol/binary.ts",
+      "bytes": 3438,
+      "sha256": "dd7a67c3128985f0502143ace7e2f52c4d64674d316c993f94c48823872580d3"
+    },
+    {
+      "path": "src/shared/protocol/codec.ts",
+      "bytes": 8386,
+      "sha256": "b3d09cdc4681a20c22387148a6c32f306b4d93bc1feeb5b280becfe6c7967bd8"
+    },
+    {
+      "path": "src/shared/protocol/combat-record.ts",
+      "bytes": 18187,
+      "sha256": "5ad039371828e54bee301771a416fc92c5436ca99e754dc6473a0743462471ff"
+    },
+    {
+      "path": "src/shared/protocol/controller-record.ts",
+      "bytes": 8370,
+      "sha256": "a4dda449d9100cb42b173f5d9e12c8ad8655ac78a838a1d2d90dd04004d4b27f"
+    },
+    {
+      "path": "src/shared/protocol/event-stream.ts",
+      "bytes": 7966,
+      "sha256": "ef226d106fd858368ae6356acc5d603be043d281410acbbc067ec2bf0c0813b6"
+    },
+    {
+      "path": "src/shared/protocol/events.ts",
+      "bytes": 16623,
+      "sha256": "cae0c1d9ef179f73717b09c1a4fc7395f66235d250f7160c91217cd94f46f2e1"
+    },
+    {
+      "path": "src/shared/protocol/handshake.ts",
+      "bytes": 3601,
+      "sha256": "1477b114de510de87e00ef713813ff08ac56af451c1e18aa85eaa6d86edeeac5"
+    },
+    {
+      "path": "src/shared/protocol/input-mapping.ts",
+      "bytes": 2727,
+      "sha256": "25fc28e2d6bd3ff17ae8c81baa4f4ae4c5152bcea1e6e9720edfd5aeb0f15aaf"
+    },
+    {
+      "path": "src/shared/protocol/input-stream.ts",
+      "bytes": 18174,
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "path": "src/shared/protocol/limits.ts",
+      "bytes": 635,
+      "sha256": "d52580d11c104f160a6836eec9d1f41e1bbb98ba9a97a0d90043b11f4adfde72"
+    },
+    {
+      "path": "src/shared/protocol/schema.ts",
+      "bytes": 541,
+      "sha256": "4da61549320633fa16fbc20f2d8a4293deafe766074d87875c47fbb9c5d09fbc"
+    },
+    {
+      "path": "src/shared/protocol/snapshot-schema.ts",
+      "bytes": 4656,
+      "sha256": "345c2f3e2c36b923b66b59623a1a33eaa0b6ec4c69c6bef7f14428cb889d7287"
+    },
+    {
+      "path": "src/shared/protocol/snapshot.ts",
+      "bytes": 20147,
+      "sha256": "18c1e677656ec7221cee0165498799b0507cc31980f5a8e885463b435446d557"
+    },
+    {
+      "path": "src/shared/runtime/room-clock.ts",
+      "bytes": 7384,
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "path": "src/shared/session/admission.ts",
+      "bytes": 2532,
+      "sha256": "f9e7ab9c68bcbe90edaecc38caa3fc79213aad3e77a95dca335436a1264ca139"
+    },
+    {
+      "path": "src/shared/session/connection.ts",
+      "bytes": 9452,
+      "sha256": "8110c7be20135d67ded80906c9a741ef932dd1facb800f158f9d041e83b1213b"
+    },
+    {
+      "path": "src/shared/session/membership.ts",
+      "bytes": 6539,
+      "sha256": "582c3c6fb12ef996543f659e4adf0e0ce599309311805e6a303cdedc2814039c"
+    },
+    {
+      "path": "src/shared/session/profile.ts",
+      "bytes": 2877,
+      "sha256": "d8ed90e094903cef85cc1c7c8a77ea75318f26aa9826caac7020f4ee08101771"
+    },
+    {
+      "path": "src/shared/session/room-control.ts",
+      "bytes": 5585,
+      "sha256": "39bd3121db8bcdde8db4aca7f7ee8486c7b0b612d5bde0da5e0d6d6f68ae068d"
+    },
+    {
+      "path": "src/shared/session/room-phase.ts",
+      "bytes": 974,
+      "sha256": "63a7812db4326c8310b1c830838bfde3063fa543beaa2c25bc5236c26a5fe3ec"
+    },
+    {
+      "path": "src/stacks/edgefall-stack.ts",
+      "bytes": 1281,
+      "sha256": "dc1b44ca11cf6992b1aa0652e1ead380b780950b7784942b9bc1aa3408d08ff1"
+    },
+    {
+      "path": "src/worker/assets.d.ts",
+      "bytes": 231,
+      "sha256": "023261b1bbd6b5a26b8cd58b8310da259d39dadcc6fbe33a7bff5fecaa458bd6"
+    },
+    {
+      "path": "src/worker/diagnostics/clock-probe.ts",
+      "bytes": 3212,
+      "sha256": "feeedabf5651ebc58f2616dc4d79d10c59aa406e6e52e28f251627912aaa16c6"
+    },
+    {
+      "path": "src/worker/diagnostics/combat-storage.ts",
+      "bytes": 9291,
+      "sha256": "636689ad4203be65ebfff00a30333359013b385279c1446db19b466ed68c8b42"
+    },
+    {
+      "path": "src/worker/diagnostics/membership-storage.ts",
+      "bytes": 1011,
+      "sha256": "26036c3d3a2ac6502652c9a2ed3d31d768fe5c332c7f280e76f624d84379af7d"
+    },
+    {
+      "path": "src/worker/diagnostics/room-probe.ts",
+      "bytes": 64083,
+      "sha256": "28da6a176c4986325f9defe73fa390fde10f14ad259ffcc9d6ef0b5ca421a864"
+    },
+    {
+      "path": "src/worker/env.d.ts",
+      "bytes": 51,
+      "sha256": "3d798e579591ac1ae7b96f717f4a9bf9c611dced6f640b78d9b06f531e0a4455"
+    },
+    {
+      "path": "src/worker/index.ts",
+      "bytes": 6925,
+      "sha256": "244b8a151cde3c30f1f8fa0d654df384d490841ac4859509a835b01161915488"
+    },
+    {
+      "path": "src/worker/room.ts",
+      "bytes": 16814,
+      "sha256": "f79c9e5f6520672299a066c1471f5a7845bd5114d804a91a8c1de16ffe4f73fd"
+    },
+    {
+      "path": "src/worker/runtime/control-lease.ts",
+      "bytes": 1080,
+      "sha256": "405a5d11ff1d1d770418f81f489a713d0514bb6a8ff31bcccab0597a547b5ed3"
+    },
+    {
+      "path": "src/worker/tsconfig.json",
+      "bytes": 661,
+      "sha256": "2b0301c4f9d7d612ef4c47b6f84167f16a93ff5e273c18c17ef1a3518d052ed4"
+    },
+    {
+      "path": "test/admission.test.ts",
+      "bytes": 2871,
+      "sha256": "956c15ad52d088a20ee34ee87c20fb0ae8a371b699f0ba90a2a4a1668e1c4f14"
+    },
+    {
+      "path": "test/arcade-core.test.ts",
+      "bytes": 4984,
+      "sha256": "4791bd73aaf2dc00931a45bd7ca6ac621305848a496336e1fb60368ff0ee0595"
+    },
+    {
+      "path": "test/arcade-protocol.test.ts",
+      "bytes": 9004,
+      "sha256": "7ad633843f7f3ff648c975bf083ca4621cd84405e1a024c709691950d4249128"
+    },
+    {
+      "path": "test/area-attack.test.ts",
+      "bytes": 12439,
+      "sha256": "0cf3edb565bf4ab2608cd3eb42d432176072a1c1aea04798a5cfda710c96eead"
+    },
+    {
+      "path": "test/area-recovery.test.ts",
+      "bytes": 5397,
+      "sha256": "8d8a9a8590ab201349769709387b6df7e1e758ba97cbe34a37948fc63e92120a"
+    },
+    {
+      "path": "test/art-import.test.ts",
+      "bytes": 6151,
+      "sha256": "ade845f74fcc90771625bf99da8989f7ff57cd7d00fba16fabbcbd353e0f700e"
+    },
+    {
+      "path": "test/baseline-regressions.test.ts",
+      "bytes": 1347,
+      "sha256": "38b62ff3b345fdec2f083bfe2714c90297d3463ca08e866d0eb2120b2ed8c763"
+    },
+    {
+      "path": "test/beam.test.ts",
+      "bytes": 13181,
+      "sha256": "1889e397cce73ed4fd297498a81532253041bb981a565f15599f26862a0c7df0"
+    },
+    {
+      "path": "test/breakwater.test.ts",
+      "bytes": 10045,
+      "sha256": "a4b757bd10b198a4667880a53405107cb879399111994ad57916c2bfd3a71ab9"
+    },
+    {
+      "path": "test/campaign-lifecycle.test.ts",
+      "bytes": 7268,
+      "sha256": "3fa3726e13791ceb152aa94f01cebcfaad24634983657a0da2c197197aee4a51"
+    },
+    {
+      "path": "test/client-lifecycle.test.ts",
+      "bytes": 576,
+      "sha256": "4d39d5fe40ccfd13b30d018a6eb049a7248ed0df52e37ae7f9c21156f8b1795b"
+    },
+    {
+      "path": "test/client-shell.test.ts",
+      "bytes": 1754,
+      "sha256": "7208a44a3bcb2e433e131ec9b480eedd863dc89f9769615f9b0e6041da3a7983"
+    },
+    {
+      "path": "test/combat-audio.test.ts",
+      "bytes": 9840,
+      "sha256": "c1b4f50490b25ebf67af9a0cefc78aa136f4b774cd8db10d7702a786d3dc1334"
+    },
+    {
+      "path": "test/combat-baseline.test.ts",
+      "bytes": 5141,
+      "sha256": "b9743258f143246b20e8839f650a0418bcf8cfe919df9c6e1f7238a72bb50c7e"
+    },
+    {
+      "path": "test/combat-campaign.test.ts",
+      "bytes": 6482,
+      "sha256": "8b6284272e4a7c669e8fdb569384321b108c55a49d13e777900c41d94a014ac0"
+    },
+    {
+      "path": "test/combat-checkpoint.test.ts",
+      "bytes": 8805,
+      "sha256": "a0d842cfb99339fdc025f4df12f80ededadf86968c6c48e87220f9ce3ad13290"
+    },
+    {
+      "path": "test/combat-effects.test.ts",
+      "bytes": 6051,
+      "sha256": "94db64e227eb2482fd059c08e0720b38f85689d942b096f7b44c0c95cb3c9310"
+    },
+    {
+      "path": "test/combat-reconnect.test.ts",
+      "bytes": 8883,
+      "sha256": "ab8fa1cd51f21b9549bae2c3faf210d2f02485d4b2b2926c4773649df87a7866"
+    },
+    {
+      "path": "test/combat-writer.test.ts",
+      "bytes": 12955,
+      "sha256": "837b7df5a23746db8e06dbbd2a5ece961481d9eaaf7ac2337a3fe6c7568ee7f3"
+    },
+    {
+      "path": "test/combat.test.ts",
+      "bytes": 11078,
+      "sha256": "33fdc5db6b4224cd66f71520870770291d1632637b4d350ca961308e38d23a28"
+    },
+    {
+      "path": "test/connection.test.ts",
+      "bytes": 6208,
+      "sha256": "b5538261c05c05d02dacc62e0975eeb14ced02feb2f227971556fcd9923363b0"
+    },
+    {
+      "path": "test/control-transfer.test.ts",
+      "bytes": 6361,
+      "sha256": "478a934556fb39b3217220696d123a162d42cb0444ef4586bf773516cce656bc"
+    },
+    {
+      "path": "test/controller-lab.test.ts",
+      "bytes": 4979,
+      "sha256": "4576f12f612cba8eaec8f517c9a39c997b725652fd49503718d9f7a8e7b78a4c"
+    },
+    {
+      "path": "test/controller-prediction.test.ts",
+      "bytes": 7523,
+      "sha256": "87cbfd2a167a11292302f05ce9bd80109f348c3927b0f6a4f925067524e716e0"
+    },
+    {
+      "path": "test/controller-recovery.test.ts",
+      "bytes": 7454,
+      "sha256": "77ed38642d26d09f2e183a57e7171d1f263d665de74b71bf8c1be817c052d4cd"
+    },
+    {
+      "path": "test/crew-presentation.test.ts",
+      "bytes": 6530,
+      "sha256": "82eca6310512936db33d178a14f7ef6305955dbf4793cd6e2f3aa24e6861e060"
+    },
+    {
+      "path": "test/destructible.test.ts",
+      "bytes": 11309,
+      "sha256": "2179b409e5fe802bf40c2fd84fbe7363baa1416d97f3d0a79e70c589f708b228"
+    },
+    {
+      "path": "test/encounter-lifecycle.test.ts",
+      "bytes": 11396,
+      "sha256": "3d3f3e311c4af0e3d090cd64224f391bcfc8a650f1aeabae73e9373eaba4c302"
+    },
+    {
+      "path": "test/event-stream.test.ts",
+      "bytes": 9610,
+      "sha256": "849f604b9d9d992e975d733fc2e37ca4990887f14c304210f6d16d186eedc34c"
+    },
+    {
+      "path": "test/fixtures/airborne-death-recovery-proof.ts",
+      "bytes": 4939,
+      "sha256": "564872bd90f3a8aa92181ba51e8c507db017690973ba6236ee0691c34af53df0"
+    },
+    {
+      "path": "test/fixtures/area-proof.ts",
+      "bytes": 4843,
+      "sha256": "6a2ab6eb266ad7a2d5277353372957daee391104e4adea7d5fbb5a57a6ad3f1a"
+    },
+    {
+      "path": "test/fixtures/beam-proof.ts",
+      "bytes": 9243,
+      "sha256": "6554f77d9e8b52cf86e5c81c1fb6c35aa01ad7e02122309f5b8a97544c1d25aa"
+    },
+    {
+      "path": "test/fixtures/breakwater-proof.ts",
+      "bytes": 11135,
+      "sha256": "1c4c15d555f94aae0939ea70c06bc95ae2ff160db4ca29417ce15eafeddb4676"
+    },
+    {
+      "path": "test/fixtures/campaign-proof.ts",
+      "bytes": 5347,
+      "sha256": "92ab65f6e70db925a402999aad25dd6b8257e13a918d211612e012c40e798ac8"
+    },
+    {
+      "path": "test/fixtures/collision-proof.ts",
+      "bytes": 1180,
+      "sha256": "9be692226f73a2d99e478a0790827974868321acb389b34e30582ee9fb04d2b5"
+    },
+    {
+      "path": "test/fixtures/combat-input-driver.ts",
+      "bytes": 6329,
+      "sha256": "513097a7d93211482dab36816157667969db50fb92c25454561089c6b214f907"
+    },
+    {
+      "path": "test/fixtures/combat-proof.ts",
+      "bytes": 1816,
+      "sha256": "0a80ab41d5d34275f4be67088cc7b4a1d0c9d20a269613652c90e800fd8178ed"
+    },
+    {
+      "path": "test/fixtures/combat-reconnect-proof.ts",
+      "bytes": 3678,
+      "sha256": "1de15ab01b7f6359376a9aef6635637d0fa35b6609dc78d9c6abb0df6a36d653"
+    },
+    {
+      "path": "test/fixtures/combat-recovery-proof.ts",
+      "bytes": 5512,
+      "sha256": "ebe9977c3d10a246098e2591a075e91819bdc4699900270c9f30640fe0f91d98"
+    },
+    {
+      "path": "test/fixtures/combat-storage-worker.ts",
+      "bytes": 27572,
+      "sha256": "4de3bc57d062fa72f69be214b8fad0b1d232c356be99c43234d3a90e53b114b9"
+    },
+    {
+      "path": "test/fixtures/compiled-level-proof.ts",
+      "bytes": 1494,
+      "sha256": "ce5cb67300871c1bb188b335761e50ba3f638a3819c2e44de5eba1f73b82ed29"
+    },
+    {
+      "path": "test/fixtures/connection-port.ts",
+      "bytes": 2728,
+      "sha256": "bf83c24bb37804b3408d8d9801dce0e993a60a4966006eed3eb82b7d131e3267"
+    },
+    {
+      "path": "test/fixtures/contract-proof.ts",
+      "bytes": 6842,
+      "sha256": "2eb60c50e90170d529521642cc0923d43e9c961a0f9d3c5fa406f43ab17bd8f6"
+    },
+    {
+      "path": "test/fixtures/contract-worker.ts",
+      "bytes": 384,
+      "sha256": "971fd23d8c2dad6021c4c6f42654471afc1fe940f16298930b30bff596988e34"
+    },
+    {
+      "path": "test/fixtures/controller-proof.ts",
+      "bytes": 7209,
+      "sha256": "e0cd2c9ec5e0c27ee6b3f7d530bc97202d097a42d8f56d9dadb046390da1b269"
+    },
+    {
+      "path": "test/fixtures/death-body-proof.ts",
+      "bytes": 5977,
+      "sha256": "b6ca3b480c0ce51a3410021f93d1cae5dda80039f7f19dbbc2bd27829656988f"
+    },
+    {
+      "path": "test/fixtures/encounter-proof.ts",
+      "bytes": 2302,
+      "sha256": "ced08a65468e2270d0edf9cba1813b16894fd9a68eb8194bee888911a1f32705"
+    },
+    {
+      "path": "test/fixtures/entry-proof.ts",
+      "bytes": 8540,
+      "sha256": "a45d70629a46ff42351e40a66d1d73d3dfff1f4bd258bb0617a96af226cb81f7"
+    },
+    {
+      "path": "test/fixtures/entry-recovery-proof.ts",
+      "bytes": 5332,
+      "sha256": "6f385d95cf58cbff4ff35c42a75064acc1591dd854125632112b5439c9a1c392"
+    },
+    {
+      "path": "test/fixtures/event-delivery-proof.ts",
+      "bytes": 5738,
+      "sha256": "0f2e39a39b0503bc4017d0d72681f35cbc7238b389fb0b45f6a1521084b027fc"
+    },
+    {
+      "path": "test/fixtures/foot-combat-proof.ts",
+      "bytes": 5958,
+      "sha256": "76da357696bfd5649d0cb4bc9cea142be5eefb6ca93c99915e517b1a7610678a"
+    },
+    {
+      "path": "test/fixtures/foot-fixture.ts",
+      "bytes": 131,
+      "sha256": "f881bdff97509e037f9e6e5a7a804ee87d8b63e4e96e60485cf20c258d1564b5"
+    },
+    {
+      "path": "test/fixtures/grounded-proof.ts",
+      "bytes": 2363,
+      "sha256": "e5969a11936dffd2c9f7272453ab01477d130ce6584c40ec3097f89e6c92faba"
+    },
+    {
+      "path": "test/fixtures/hmg-proof.ts",
+      "bytes": 3956,
+      "sha256": "7a9dd1d8c73d13e36ed0ca14862c3646491a5b44c262fc99c5ec02b4ca0bc0eb"
+    },
+    {
+      "path": "test/fixtures/input-capture-proof.ts",
+      "bytes": 1960,
+      "sha256": "b77e19b698069d6cf00be22f4909d2b2868556378a909e7310d4a3341a92eebf"
+    },
+    {
+      "path": "test/fixtures/input-flow-proof.ts",
+      "bytes": 5324,
+      "sha256": "053bccfb1ea80e7bbf0e59b89bc3e952b2a9ea9c5ffd648a7e7e286eb68222be"
+    },
+    {
+      "path": "test/fixtures/kestrel-proof.ts",
+      "bytes": 1236,
+      "sha256": "ebe0cf8e8fbc3e4a377aaa0447cc2cbba3b363e285cfd7cca7cd4c126e743b8b"
+    },
+    {
+      "path": "test/fixtures/laser-combat-proof.ts",
+      "bytes": 4354,
+      "sha256": "b29fb6170018f445cfab95fbb04204f964c87936508aae924dc9a3147a34d979"
+    },
+    {
+      "path": "test/fixtures/mapped-prediction-proof.ts",
+      "bytes": 3958,
+      "sha256": "2d7aed7fee93abbadcf9fc55f528cb25a3a4167dc73c1f30cf16f0aad14197f0"
+    },
+    {
+      "path": "test/fixtures/material-proof.ts",
+      "bytes": 5776,
+      "sha256": "78da3a76be919cd99bbf74c0032ec66addfc5d69cbf41a917fa60eb41cb43372"
+    },
+    {
+      "path": "test/fixtures/material-room-contract.ts",
+      "bytes": 436,
+      "sha256": "d63472ad85f8f9c6336fbbadc78375ee14d1cbe5ab0ba72e87e55ff91c86d77f"
+    },
+    {
+      "path": "test/fixtures/material-room-proof.ts",
+      "bytes": 6822,
+      "sha256": "fc38fb04a1fdf2ef72faf162552dbb6c166780780024fb369f5df5e6f3fd9bd5"
+    },
+    {
+      "path": "test/fixtures/material-room-storage-worker.ts",
+      "bytes": 4486,
+      "sha256": "50cdb0587a6311c3889a5fbe27464018990e0cccdc09e76ef5b7e89b301a6f17"
+    },
+    {
+      "path": "test/fixtures/movement-proof.ts",
+      "bytes": 4480,
+      "sha256": "d8a7f7ca1d4aabbb3291b2c2454199beda3f69590e6fd5d46942d5a290376dcb"
+    },
+    {
+      "path": "test/fixtures/navigation-proof.ts",
+      "bytes": 1048,
+      "sha256": "a769e94b6102882c716dab2a389e61777e6c517100fc7108fc06f096bdbca12a"
+    },
+    {
+      "path": "test/fixtures/ordnance-proof.ts",
+      "bytes": 3670,
+      "sha256": "077ebb35ce5452fa4d490f756c6eccebcdb9359adac3c14cc7cf58451261d945"
+    },
+    {
+      "path": "test/fixtures/pickup-combat-proof.ts",
+      "bytes": 5247,
+      "sha256": "97d52c5e3173b6b91355de231a36bcd91b9f34cf8c0d337728eb3ab2fab75748"
+    },
+    {
+      "path": "test/fixtures/player-life-proof.ts",
+      "bytes": 2187,
+      "sha256": "078e79bee63dcf52f717dbcc431f260625b7c44960072f20cd31f716fc3f4c55"
+    },
+    {
+      "path": "test/fixtures/player-life-recovery-proof.ts",
+      "bytes": 5282,
+      "sha256": "199a22616ebb33fc7694d46ea9873629e39e3c07691de33c2f7d4bf4f80e2487"
+    },
+    {
+      "path": "test/fixtures/prediction-proof.ts",
+      "bytes": 4984,
+      "sha256": "74df55395397cd79bce13db612c4cd5b7b03c3dab486f76ce0fbc99ac0591b8a"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/combat-golden.json",
+      "bytes": 8989,
+      "sha256": "bb803597122d59a7396b43e17ba63f4bdc8eafac22673047fe1f35b2dbd062b0"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/input-golden.json",
+      "bytes": 4919,
+      "sha256": "8dd070aba41ea0fa29a261ad0ba4139761a2a0660e43c3f0aeaba96b61f554bd"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "bytes": 11694,
+      "sha256": "0b3c30d76e660df42fdab22700e29bc580883ca91f892874cb952528c5f55cb3"
+    },
+    {
+      "path": "test/fixtures/rifle-proof.ts",
+      "bytes": 4474,
+      "sha256": "fbde9e2ca3acfd90e65d51c611b0ddbabe9bb9c84000484ec1fceb8c34aa93da"
+    },
+    {
+      "path": "test/fixtures/rocket-combat-proof.ts",
+      "bytes": 4221,
+      "sha256": "294e4ff662196891fe5121436a8126bd4486e09cbd93b7ae65a633ed3f63761e"
+    },
+    {
+      "path": "test/fixtures/rocket-proof.ts",
+      "bytes": 6217,
+      "sha256": "aeb66b353ba74dc55d4604219e0c6f5f508c7b6483eeaca9bafbafba21c0a90a"
+    },
+    {
+      "path": "test/fixtures/route-proof.ts",
+      "bytes": 2354,
+      "sha256": "e2a55b75de2cfc8725f8e1c0eb0022a791becac747cb2969cdedfd63ead482d1"
+    },
+    {
+      "path": "test/fixtures/routed-enemy-proof.ts",
+      "bytes": 1549,
+      "sha256": "6cf36f683fe1f9d964fa66c8105e070614ebbf1fbf3dee36e2d6511cf26a670b"
+    },
+    {
+      "path": "test/fixtures/shield-proof.ts",
+      "bytes": 6262,
+      "sha256": "9f4190bb5838c14da2606cbc8da5032d3067b07bb672c5edd7d38e8c514cfa66"
+    },
+    {
+      "path": "test/fixtures/spatial-proof.ts",
+      "bytes": 3035,
+      "sha256": "04fae7f29ca204c9311cf090d6c0e95d2d49fc0af6f27785b339d2bfd26b4c4b"
+    },
+    {
+      "path": "test/fixtures/support-proof.ts",
+      "bytes": 3671,
+      "sha256": "9bd55f84ef489a040bc3fc05cbc7ca6020eb9ba46f1f752735a061b4b314dac0"
+    },
+    {
+      "path": "test/fixtures/tank-proof.ts",
+      "bytes": 5985,
+      "sha256": "ea2c242879e4b4045d663e55110644674f509260706476ddf58778b400a69cc0"
+    },
+    {
+      "path": "test/fixtures/traversal-proof.ts",
+      "bytes": 2562,
+      "sha256": "5c5683ee4678c9ab5d798ab998a85626760cd074c5e977945d9e101403bd21f8"
+    },
+    {
+      "path": "test/fixtures/weapon-pickup-proof.ts",
+      "bytes": 5333,
+      "sha256": "2e8cc74ec65d7253057a74942bc4fd3e433a93594d5e5606522d53eabbf8d38b"
+    },
+    {
+      "path": "test/fixtures/world-combat-proof.ts",
+      "bytes": 3382,
+      "sha256": "98f2d3c1ce4ebbf291045ffc3da5b2848118f488c6659094a3c6fc633d159972"
+    },
+    {
+      "path": "test/foot-combat.test.ts",
+      "bytes": 11513,
+      "sha256": "18f137dd962a2fca3d1cb21f1825a3118cacb0a9a01b6b3371775a4912ec4611"
+    },
+    {
+      "path": "test/foot-controller.test.ts",
+      "bytes": 18036,
+      "sha256": "ed1dbd57c633180fce48186a54e3665abf49587abd7a3ff19236d063d787e61b"
+    },
+    {
+      "path": "test/grenade-platform.test.ts",
+      "bytes": 11545,
+      "sha256": "d1663e35793c4948317c432f6c7c0c7cad2a01fe16aa2a815e13f14ceb7df5ea"
+    },
+    {
+      "path": "test/grounded-enemy.test.ts",
+      "bytes": 8919,
+      "sha256": "170bf5e9cc2df9cd6bab0dc729487a8e0fec6e954eb89e2a00f08556c051544d"
+    },
+    {
+      "path": "test/hmg-sweep.test.ts",
+      "bytes": 8314,
+      "sha256": "c2bc4a0a4036cd01e70e0b057908c41c556c3c734ae916b0de596909d6a1f4a9"
+    },
+    {
+      "path": "test/input-capture.test.ts",
+      "bytes": 6136,
+      "sha256": "526c5c978e08af7b104c4dd173bdf8edcc5897b03619a384d5d38deffd16a829"
+    },
+    {
+      "path": "test/input-flow.test.ts",
+      "bytes": 2940,
+      "sha256": "09b84f568b0c304da912eaf741b88c00cb6f69dc1e59639806593a8e0d31fe6f"
+    },
+    {
+      "path": "test/input-mapping.test.ts",
+      "bytes": 3703,
+      "sha256": "f925bf8c1e029b90d38983c78824fe51306873dc62e4c63f1ea6b5cc73343b24"
+    },
+    {
+      "path": "test/input-stream.test.ts",
+      "bytes": 11618,
+      "sha256": "1dcf5595767b76011958b7e913ce544f1175618e2be8b96245d9aa512b5abc80"
+    },
+    {
+      "path": "test/laser-combat.test.ts",
+      "bytes": 12347,
+      "sha256": "f4a92af62979a02bb6f88339682f317a3f0f6a0625cc3386db22fe49e89a503c"
+    },
+    {
+      "path": "test/ldtk-compiler.test.ts",
+      "bytes": 6923,
+      "sha256": "14c82a3e3a6c020bf67cd3605d4da5f6530fdb8cc721b1fe45f12458aa70e6c1"
+    },
+    {
+      "path": "test/material-room.test.ts",
+      "bytes": 6682,
+      "sha256": "6985a9ff96d5d558b858f8bbc7f707835b4e48b0ac692088e35cfd79dad1de40"
+    },
+    {
+      "path": "test/materials.test.ts",
+      "bytes": 12780,
+      "sha256": "e4880a205169804d0c6c890d3380518f482000b8483449a264892fc74bb882e2"
+    },
+    {
+      "path": "test/native-art.test.ts",
+      "bytes": 23518,
+      "sha256": "1fc1f5eaa66adefa5c8bd0dcfd7323375e341e4e5e35d2ba57795b8e712e89a2"
+    },
+    {
+      "path": "test/native-cast.test.ts",
+      "bytes": 8101,
+      "sha256": "715a1fd0a2125a2c3e22f4313707f3965969d49933ddf700dab403d0a0e47d4b"
+    },
+    {
+      "path": "test/navigation-graph.test.ts",
+      "bytes": 11164,
+      "sha256": "32c23aae3cf3af20d7f9c79ef36261d0346e046ab757d89533bc221fd2fa526a"
+    },
+    {
+      "path": "test/navigation-links.test.ts",
+      "bytes": 9888,
+      "sha256": "733ff897027f2f72404f74ac442d6db1ffdbfed98dd6edab726aace22a9244f7"
+    },
+    {
+      "path": "test/navigation-spans.test.ts",
+      "bytes": 3901,
+      "sha256": "4a6291d61af2298444556f4b4cfa351b1b0e89d386873ff9a90f26b77ab34d06"
+    },
+    {
+      "path": "test/network-model.test.ts",
+      "bytes": 2498,
+      "sha256": "e9a07c596f8eb7ef202adb7b120596885069d308e1a3595dee4457438b0bf79f"
+    },
+    {
+      "path": "test/operative-air.test.ts",
+      "bytes": 12133,
+      "sha256": "912c20297ec133fc27397270ea1eecbf0de7b2ddc3074e2c1509bacee4cc9699"
+    },
+    {
+      "path": "test/physics-grid.test.ts",
+      "bytes": 8502,
+      "sha256": "e38c00f7932d54c3f183982b5849924ccc48457b773604484baa2bba351fbd3b"
+    },
+    {
+      "path": "test/physics-move.test.ts",
+      "bytes": 12261,
+      "sha256": "ba2d3e1d4b5989a516701014b7c47f3f38fa0334941b57931d53be7a4ec1fa06"
+    },
+    {
+      "path": "test/physics-sweep.test.ts",
+      "bytes": 8939,
+      "sha256": "71dd2eb1cbe21d1a5c8dfd1ca60fba17cbdd94560dcb305b7eb7c6925ba6a364"
+    },
+    {
+      "path": "test/pickup-combat.test.ts",
+      "bytes": 13370,
+      "sha256": "7b8cef536ca0ec215da9957fb897b4c2a651c539838f0dee5667207eab94d0db"
+    },
+    {
+      "path": "test/player-death-body.test.ts",
+      "bytes": 3713,
+      "sha256": "d648ac8115fe87f81ab6a346354641c27b4ebb5eb067ccba6121c93746a2ad0e"
+    },
+    {
+      "path": "test/player-entry.test.ts",
+      "bytes": 2019,
+      "sha256": "667de2b3330c468d536d1e96c3d6193d49e3c94409ccdaca2a98b9d3e260f8ac"
+    },
+    {
+      "path": "test/player-life.test.ts",
+      "bytes": 5731,
+      "sha256": "55490aeb6c639a9d03491425794639e42cceaa9173639f8a542fa682808d4233"
+    },
+    {
+      "path": "test/protocol.test.ts",
+      "bytes": 1424,
+      "sha256": "728e2563d32f38197b9d7f79a49ad1315fc4af2019a215b2973750d78d16c9aa"
+    },
+    {
+      "path": "test/rifle.test.ts",
+      "bytes": 9978,
+      "sha256": "cb448d28a1c25e2dc249f8484038d4db0b2ad6cb72723ffa2a8cca231b84f8c8"
+    },
+    {
+      "path": "test/rocket-combat.test.ts",
+      "bytes": 7425,
+      "sha256": "c1673081be45671cbb544ebb1f5eb49457e741eb06fd704278a21a119ee6f757"
+    },
+    {
+      "path": "test/rocket.test.ts",
+      "bytes": 12865,
+      "sha256": "e33b3bd86dec7ffb9eb6b8a6bb80bc76bca396ad5a1296cd3d84cfc151b6b379"
+    },
+    {
+      "path": "test/room-connection.test.ts",
+      "bytes": 5973,
+      "sha256": "da845f9b60fac931c0bbdb885b74a59984a3efdece94b82493f21758efc580d9"
+    },
+    {
+      "path": "test/room-control.test.ts",
+      "bytes": 7088,
+      "sha256": "8698f389f80d9ecfe0d3df6e7aff3ff7d113e203d9075eb546e35c8bfcbf8397"
+    },
+    {
+      "path": "test/room-workload.test.ts",
+      "bytes": 2291,
+      "sha256": "99d98a4d1061a64a62f2fd6b7d3b248d55167e5a0640a6d97ceec655f56799c7"
+    },
+    {
+      "path": "test/routed-enemy.test.ts",
+      "bytes": 6960,
+      "sha256": "e486d64b4331c853dd46ea2d45deffb7daf1e9ba7543e4b7ab9b4cdc4d976814"
+    },
+    {
+      "path": "test/runtime/control-lease.test.ts",
+      "bytes": 1659,
+      "sha256": "2f9b7b47a74115146a27656cd6e709ded2d934ea7a9ce510df451a95093b302e"
+    },
+    {
+      "path": "test/runtime/room-clock.test.ts",
+      "bytes": 9591,
+      "sha256": "5251a6deac569136e5544dc1f5274737c1b193b91ff4fb5fa92f203189226e34"
+    },
+    {
+      "path": "test/session.test.ts",
+      "bytes": 6729,
+      "sha256": "655d4d6c15e5587b537091fdf795239abdf9535b70bd64def6c849539efde7c1"
+    },
+    {
+      "path": "test/shield.test.ts",
+      "bytes": 10193,
+      "sha256": "6cfa02fa31e6e469cfeb461a800a6595822813b2b1d5fab80fba1856517dfe50"
+    },
+    {
+      "path": "test/simulation.test.ts",
+      "bytes": 16667,
+      "sha256": "11dae7a3675e6c88e204b3bc4e5ca731bbcb884810a475becbf8752de00dd16d"
+    },
+    {
+      "path": "test/snapshot.test.ts",
+      "bytes": 14501,
+      "sha256": "d4dd27e32157d767af2689d88895cdcfa1afee5be7ef83950392ff2d5714b8ce"
+    },
+    {
+      "path": "test/stack.test.ts",
+      "bytes": 1900,
+      "sha256": "44f71393b19117ab0b75736a32b1a7ce31a79db51cc5cea590b11175b2d556be"
+    },
+    {
+      "path": "test/tank-motion.test.ts",
+      "bytes": 10559,
+      "sha256": "c3b1d3030ed7556db5509b56d1918331d2b137c947bcb747a0671356c0b54abf"
+    },
+    {
+      "path": "test/tank-world.test.ts",
+      "bytes": 11950,
+      "sha256": "2a08253db1e92c369c055f79946801ff132c2b24d742072307c25c89979f5344"
+    },
+    {
+      "path": "test/tank.test.ts",
+      "bytes": 7833,
+      "sha256": "e8608dd9379b9ee809da8d7704eebd489d7c883b592753bab0e73643021e6bc9"
+    },
+    {
+      "path": "test/weapon-pickups.test.ts",
+      "bytes": 13231,
+      "sha256": "95d15e5de3040f90a1c608436a32de55a13b29c038dddc11efacbcd31bbd8c9b"
+    },
+    {
+      "path": "test/worker-routing.test.ts",
+      "bytes": 824,
+      "sha256": "1fc7a033545653cd78048a5b79eae3e9d12c9999ef2532a869878cd30f7f5149"
+    },
+    {
+      "path": "test/world-input-transaction.test.ts",
+      "bytes": 5374,
+      "sha256": "600deb62cae3873f07f821cf3f9b50fdce2c814ae9234616b1ae1cb888f6dd87"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 1328,
+      "sha256": "5b59d9a31817c84e22699f5d0bb580f505fc97942d275922a9b7e70450837c1c"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 245,
+      "sha256": "2cf82e35f0e09e5e6f8b8f36e15254cb4c78cebca624b483ce63ae6bf3b69aed"
+    },
+    {
+      "path": "worker-configuration.d.ts",
+      "bytes": 590986,
+      "sha256": "f5823dc43e7ce5f73dd17cb1277fb86b021de37c42f6fbb89901f81f6810a582"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "bytes": 1272,
+      "sha256": "2e43794eddb9250a52bcbf2f80acb3c9c730a5e8d81e12504d14a5a7c1bb22f1"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "node_modules/.pnpm/phaser@4.2.1/node_modules/phaser/dist/phaser.esm.js",
+      "bytes": 8800542,
+      "sha256": "df50bc49e7856363b625fdf4f2c4e2e577cfc1644690c026c3610c594aff372f"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "contracts.json.gz",
+      "bytes": 92035,
+      "sha256": "1da4d84fffc5734cbd84cc1a5cd21bb8dd392fd228dbecf3218ef5ae4023feac"
+    },
+    {
+      "path": "storage.json.gz",
+      "bytes": 234763,
+      "sha256": "0660353136763fc922fa0bd1d6ecb380a606ceff09f76bbcaa1662c387fe3e76"
+    },
+    {
+      "path": "lab.json.gz",
+      "bytes": 32655,
+      "sha256": "f9bce7769af5c82c15b929dd72610d2a1c5c2b2f42502bd59a3280f9b9dd8e18"
+    },
+    {
+      "path": "materials.json.gz",
+      "bytes": 23454,
+      "sha256": "3b65d9ccf2cb2c63440bc8fbc62256065ea231a19dbb52648e496442088156b7"
+    },
+    {
+      "path": "rooms.json.gz",
+      "bytes": 138270,
+      "sha256": "7bc2bd741d8935658142eefea013734b05f89c6841476d3b6f781dc32259fd4b"
+    },
+    {
+      "path": "network.json.gz",
+      "bytes": 1571,
+      "sha256": "170b1d2d05756901be1e3dd42e3176e86aa1367d686b67c1baa8f8022b10d890"
+    },
+    {
+      "path": "contracts-browser.js.gz",
+      "bytes": 162551,
+      "sha256": "cf43d5de95363e796082cc1ee6d5baf1002ed192e1547c10c27a455d21f7c3e1"
+    },
+    {
+      "path": "storage-worker.js.gz",
+      "bytes": 110080,
+      "sha256": "f52eee9b82d91a9af2fae0ed38bcf4bdc132f6e25e98bfbcc21bad87267dfbe6"
+    },
+    {
+      "path": "material-room-browser.js.gz",
+      "bytes": 104837,
+      "sha256": "8537b4f42d45c065ea44199cb6a16af6a8cf9b40b46c92ecc55121bd6a3c2375"
+    },
+    {
+      "path": "material-room-worker.js.gz",
+      "bytes": 107977,
+      "sha256": "616d05fcc15fa9f73700a25e25c066867525be395470a7344428a0722b7edd68"
+    },
+    {
+      "path": "network-1-15-report.json.gz",
+      "bytes": 56924,
+      "sha256": "64d56cb2caaf23a98a5f9cf747cb7f4a61a39505227aeb8db83201a21b3a83e9"
+    },
+    {
+      "path": "network-1-15-execution.json.gz",
+      "bytes": 666,
+      "sha256": "547a5ada4d7de17b19de6d952cdca8c644ca481af93ca1127ca3026a885a6056"
+    },
+    {
+      "path": "network-1-15-diagnostics.json.gz",
+      "bytes": 2510,
+      "sha256": "d79778a82d42ccc4eb209a182403130732886f83f96069579c93ad5f7ebbd981"
+    },
+    {
+      "path": "network-1-15-execution.log.gz",
+      "bytes": 117,
+      "sha256": "d8460a8143514d3dd97917dbac67ea4ba3a2c9318f1267c0b0787d4115328d51"
+    },
+    {
+      "path": "network-1-15-material-before.png",
+      "bytes": 134961,
+      "sha256": "2639171e7842f0d56116f26750e3583133f3854a92d6664a687ea4bbcbd225d4"
+    },
+    {
+      "path": "network-1-15-material-after.png",
+      "bytes": 134880,
+      "sha256": "f19218ac5861a1a2f1fa115ca2f11ec906f05f5ab2bcc8b3ae9a4e182b95420b"
+    },
+    {
+      "path": "network-1-25-report.json.gz",
+      "bytes": 56989,
+      "sha256": "5b80e54b927ea42caf0d386458462b02d2b337122e2d7b88c79bb184919d7f62"
+    },
+    {
+      "path": "network-1-25-execution.json.gz",
+      "bytes": 666,
+      "sha256": "9c2e298ac20c10ac5f37e379473090b59c544cd4d32202f04144f216973456b8"
+    },
+    {
+      "path": "network-1-25-diagnostics.json.gz",
+      "bytes": 2554,
+      "sha256": "9fbdebfb634d0a96e4c77c0bac4257410edbfa7eb27a6da34d9e8825ba3f9280"
+    },
+    {
+      "path": "network-1-25-execution.log.gz",
+      "bytes": 117,
+      "sha256": "84ef0cd34f3dd66d4c808466ca28509d2fa05d02ba485d444ebe474c0a52a173"
+    },
+    {
+      "path": "network-1-25-material-before.png",
+      "bytes": 133679,
+      "sha256": "1b13b682afe03914410f7f5abd5f826f42463b4559d9641e580123dac5c6d1ec"
+    },
+    {
+      "path": "network-1-25-material-after.png",
+      "bytes": 133376,
+      "sha256": "6f2b827950fd1e7940f981df58146360bf0d54a7dffaf427fd8ecc7aa08766aa"
+    },
+    {
+      "path": "network-1-35-report.json.gz",
+      "bytes": 57493,
+      "sha256": "66a17b9dba90cc3caf6c82f1d001eea4eb606f099990deed2dbd1fa54f479a33"
+    },
+    {
+      "path": "network-1-35-execution.json.gz",
+      "bytes": 666,
+      "sha256": "077931c3d4a537fd4304b25d75b43a2b3d8a2b6ace88f814f312667d0d9cb502"
+    },
+    {
+      "path": "network-1-35-diagnostics.json.gz",
+      "bytes": 2571,
+      "sha256": "01a7396d0f3b3735256e4b664968b94a1dfe7767384ffd65611bc9a8dab143b1"
+    },
+    {
+      "path": "network-1-35-execution.log.gz",
+      "bytes": 117,
+      "sha256": "c35528d68cb665a6b5ead43ad2701b3ad4f5849025ab764e22a0a7a8789d96be"
+    },
+    {
+      "path": "network-1-35-material-before.png",
+      "bytes": 134995,
+      "sha256": "becd69d0e7fa6bb23244ea0b55b6e0ffdc6c828d8b0caad0bcc360a35e466e21"
+    },
+    {
+      "path": "network-1-35-material-after.png",
+      "bytes": 134866,
+      "sha256": "faf0e8b2c5a09175fd5900b8369e2054501df429d9267b5b4436ee859d765c01"
+    },
+    {
+      "path": "network-1-45-report.json.gz",
+      "bytes": 59175,
+      "sha256": "cf214216af812ccc5a9dc600fb7eed921c5898e1d800e7af5b89927c524f97eb"
+    },
+    {
+      "path": "network-1-45-execution.json.gz",
+      "bytes": 666,
+      "sha256": "31e76a78c301c33f5410c57a44d1c9f731e2fdf9f4bb0e38e4c4e37dcef497c5"
+    },
+    {
+      "path": "network-1-45-diagnostics.json.gz",
+      "bytes": 2531,
+      "sha256": "bfd30b2d54a0b19151fb227b15c668a38edb0d68d1730039f5b666990be11363"
+    },
+    {
+      "path": "network-1-45-execution.log.gz",
+      "bytes": 117,
+      "sha256": "42b533121f37c991d34a953f12c7c7f5c3b2fbe1d0c515a79919b1e46ee1538a"
+    },
+    {
+      "path": "network-1-45-material-before.png",
+      "bytes": 135279,
+      "sha256": "5f9d33226887414c875d5c40c7efe342993260e01492ed17b681803f926460b9"
+    },
+    {
+      "path": "network-1-45-material-after.png",
+      "bytes": 135201,
+      "sha256": "9786b3b4226ae176416094c770bee56c893a79fdb7ae6f9edfefad8324ef2cbd"
+    },
+    {
+      "path": "network-1-49-report.json.gz",
+      "bytes": 61245,
+      "sha256": "317c1c5dbfdc4eefdeba4c860d63b396c13a90ce6b5e791dbc6a8028908ec45f"
+    },
+    {
+      "path": "network-1-49-execution.json.gz",
+      "bytes": 666,
+      "sha256": "a89c22f7cb006b944187d51d90cfa9cfd3f41f4553fa5175e83f9ac58a736317"
+    },
+    {
+      "path": "network-1-49-diagnostics.json.gz",
+      "bytes": 2543,
+      "sha256": "fe6738d534110ca6dc442a43650802c9b91077c91c0fbaf6fc9c467bb4d61f4e"
+    },
+    {
+      "path": "network-1-49-execution.log.gz",
+      "bytes": 117,
+      "sha256": "6b3818f1d1269c4665cfaa18a8a3fd135fa1b41518cbe901392f76202b43bc1c"
+    },
+    {
+      "path": "network-1-49-material-before.png",
+      "bytes": 135297,
+      "sha256": "9fad89f4d832e6a5375d2af970c989faa4acf8d06655eea8e21488c37c29048f"
+    },
+    {
+      "path": "network-1-49-material-after.png",
+      "bytes": 135169,
+      "sha256": "6ef9284c7488e09372d8ce982f6d127a0b1f96d6a5deb1b7a3d6e9e9b76e5265"
+    },
+    {
+      "path": "network-1-59-report.json.gz",
+      "bytes": 57047,
+      "sha256": "216b59dbb4417acc802c64b44fcaf1076024b41297af0cdc93692ec8311f2cb4"
+    },
+    {
+      "path": "network-1-59-execution.json.gz",
+      "bytes": 666,
+      "sha256": "ae30fad44f94ded92451b35bf09d94496020fb69bc69ce5c226c5250ef3a74a6"
+    },
+    {
+      "path": "network-1-59-diagnostics.json.gz",
+      "bytes": 2549,
+      "sha256": "867c1ea4d9987e299ccde666f947f989b4c7f6b7f73d9aff04fbec60237cd6aa"
+    },
+    {
+      "path": "network-1-59-execution.log.gz",
+      "bytes": 117,
+      "sha256": "b51e268f04d3950abca3d71d569bdbe66c33ce4db52c51f62a38c80a826615a0"
+    },
+    {
+      "path": "network-1-59-material-before.png",
+      "bytes": 134854,
+      "sha256": "61bc89ddcddc9f21cf5f0cd68167b7dbea6f2b6794cb3a37dd6c38837f774b88"
+    },
+    {
+      "path": "network-1-59-material-after.png",
+      "bytes": 134881,
+      "sha256": "df8371d36f34b3061216951ceff0a3d78f92f3981743f312b47cc7014a38e1bd"
+    },
+    {
+      "path": "network-1-65-report.json.gz",
+      "bytes": 56195,
+      "sha256": "3f09d3bdde4ca2040d668bd5da438935dcb3b25ee2fc6a884d6cb10261705b60"
+    },
+    {
+      "path": "network-1-65-execution.json.gz",
+      "bytes": 666,
+      "sha256": "20a5c840139bca11053a6dc8fdee28d8bc6ad4eb877355c226068fba362a491f"
+    },
+    {
+      "path": "network-1-65-diagnostics.json.gz",
+      "bytes": 2719,
+      "sha256": "bdb98691993cd36d785862cd2cb5d519be795944502ee111157ac6156c5f12f3"
+    },
+    {
+      "path": "network-1-65-execution.log.gz",
+      "bytes": 117,
+      "sha256": "266305f11d3d35585a481d6e65876fba7f36608971de795c756b414358e4442b"
+    },
+    {
+      "path": "network-1-65-material-before.png",
+      "bytes": 134574,
+      "sha256": "21bdefe7b74379e8f2f3a37d95b9e8411f971ba9b3a61a84fdd691b887903e13"
+    },
+    {
+      "path": "network-1-65-material-after.png",
+      "bytes": 134412,
+      "sha256": "6d31198c09bdf238d68b2a076f7897bd66d4f86d23147e9fc7e3550020123083"
+    },
+    {
+      "path": "network-1-77-report.json.gz",
+      "bytes": 58476,
+      "sha256": "5969fe67333b648a5cc560482ea535ca8b762fb0c2f07f3c8d2efd57795f6ddc"
+    },
+    {
+      "path": "network-1-77-execution.json.gz",
+      "bytes": 666,
+      "sha256": "27458824e3d64aa1d7714c07a703b4d4877c27280743c38c314c64cd799acc83"
+    },
+    {
+      "path": "network-1-77-diagnostics.json.gz",
+      "bytes": 2696,
+      "sha256": "d68c6907f9e497bbbd91012c91b950e7bb4cfecf37f91444f9edec0612a62297"
+    },
+    {
+      "path": "network-1-77-execution.log.gz",
+      "bytes": 116,
+      "sha256": "bd2e7ef1a390449bc28773c0709f56c6565a524f23336a8acb341d84e1291f94"
+    },
+    {
+      "path": "network-1-77-material-before.png",
+      "bytes": 134717,
+      "sha256": "07dc3b866324d5175d4b2d0ec27e93402a741d3643cd1b12695e0b669b948f05"
+    },
+    {
+      "path": "network-1-77-material-after.png",
+      "bytes": 134638,
+      "sha256": "f9fbbf2234334e46233bd33a9bf28b6e0ab271e20b8f4d8cc9576d908b0a1255"
+    },
+    {
+      "path": "network-4-16-report.json.gz",
+      "bytes": 144667,
+      "sha256": "79c5505b39077695e4b06e36a5a8e643e1b11ff0ceb0aa9b4574c3a9ce25c7d5"
+    },
+    {
+      "path": "network-4-16-execution.json.gz",
+      "bytes": 666,
+      "sha256": "bbc66e4fb237ad9bc0833d91b62ed7c539c10bda9dbd7c75fcc907bd2e8ef750"
+    },
+    {
+      "path": "network-4-16-diagnostics.json.gz",
+      "bytes": 3275,
+      "sha256": "0b3066a13975e0fa1c0098cc687bd509aa76c288c2c6f6a0c46e7b5e2773a4c1"
+    },
+    {
+      "path": "network-4-16-execution.log.gz",
+      "bytes": 123,
+      "sha256": "72637d0d9be6b8f881a861c97f76e1e8d05c5c37471373a94c100b49a45637e3"
+    },
+    {
+      "path": "network-4-16-material-before.png",
+      "bytes": 134437,
+      "sha256": "cdee06a5edacc1110e2a119bd618950eb5d51ac14a8e1e24142c5c5daf944cb5"
+    },
+    {
+      "path": "network-4-16-material-after.png",
+      "bytes": 134706,
+      "sha256": "c02b407323c741007ab8b97c24172279e9c9c69aebc6e30e8eb6cc6ef3432f7c"
+    },
+    {
+      "path": "network-4-26-report.json.gz",
+      "bytes": 143777,
+      "sha256": "b497c0907d12f5325606e8659776d3aa069533f3fb75cc40013e1c26900eaafb"
+    },
+    {
+      "path": "network-4-26-execution.json.gz",
+      "bytes": 666,
+      "sha256": "043c81c553f303f9de4f5e503b6e9f75d9bc1416f0af7fabbf74291a4beda0b2"
+    },
+    {
+      "path": "network-4-26-diagnostics.json.gz",
+      "bytes": 3156,
+      "sha256": "79068763ce34b84907c20ec639cea1e52948c5ddcdb87e8b2528cc5ec22ae9c4"
+    },
+    {
+      "path": "network-4-26-execution.log.gz",
+      "bytes": 121,
+      "sha256": "db3f2ae1dac7663ba959ff9a7cfb52f0aaee06dd521216c966221dc089c31178"
+    },
+    {
+      "path": "network-4-26-material-before.png",
+      "bytes": 134775,
+      "sha256": "cef7e16e4b3f3fd8196f7ca6e0a65476b39a7133f3aa56e841de68e4c701489e"
+    },
+    {
+      "path": "network-4-26-material-after.png",
+      "bytes": 134618,
+      "sha256": "95ce8fd50f78e72d7d8b804321eed62b799ee6ce565d650ed34341cabc99ca9f"
+    },
+    {
+      "path": "network-4-36-report.json.gz",
+      "bytes": 145030,
+      "sha256": "48fccb7918963caa4abc25e3058896f916bbff95663941ae86e6f7baae75f0ef"
+    },
+    {
+      "path": "network-4-36-execution.json.gz",
+      "bytes": 666,
+      "sha256": "78169d339ec157c4156f668f859f580e184bba744588f568657b00aa81d8a029"
+    },
+    {
+      "path": "network-4-36-diagnostics.json.gz",
+      "bytes": 2962,
+      "sha256": "13d9ccd4103eaac7b160ad8220eddfd6e22ae9ebcb625e44e0c02e1641e3fe7b"
+    },
+    {
+      "path": "network-4-36-execution.log.gz",
+      "bytes": 121,
+      "sha256": "ea0dbea779ac333197b2e2cb9e6e3cf2a4eca15ed0b095a5280ff848e08b521e"
+    },
+    {
+      "path": "network-4-36-material-before.png",
+      "bytes": 134596,
+      "sha256": "b98ed3f92a58ac89d65f36c2efa405d3c474e46b452b97299d7465d010adf0b2"
+    },
+    {
+      "path": "network-4-36-material-after.png",
+      "bytes": 134591,
+      "sha256": "910a330323cab4c3ca7c18256c57d32c74cf8b800428d79a18da6404a2492653"
+    },
+    {
+      "path": "network-4-46-report.json.gz",
+      "bytes": 150999,
+      "sha256": "f17a16a75e4cc7af980cc9377b3e8a46480503eb6601161484cab4743e3ab67a"
+    },
+    {
+      "path": "network-4-46-execution.json.gz",
+      "bytes": 666,
+      "sha256": "bddacb9556d44a8838b1f9dbcfe20bf2fd56833c642224653263dd585e100f22"
+    },
+    {
+      "path": "network-4-46-diagnostics.json.gz",
+      "bytes": 2961,
+      "sha256": "439af56e595163d0c94814ac881004085bc1d009e4c47c2a778749ea46d38d09"
+    },
+    {
+      "path": "network-4-46-execution.log.gz",
+      "bytes": 120,
+      "sha256": "f44e28e82395e307b328bce0bff34c3be253eca9ea69e0112b45d0abf6b94b2e"
+    },
+    {
+      "path": "network-4-46-material-before.png",
+      "bytes": 134790,
+      "sha256": "31ac80c104a9a53593e0e0101bc139b0c7fb933d42de8c888a0376f511d0604b"
+    },
+    {
+      "path": "network-4-46-material-after.png",
+      "bytes": 134802,
+      "sha256": "3d947503f49ac9e554871228dc0ecabd2644c2f5a78f1cb7e1cb4480e5743a9d"
+    },
+    {
+      "path": "network-4-50-report.json.gz",
+      "bytes": 245118,
+      "sha256": "4fab3c1a452ad81f5da031f3e8dfa0445e2416d51c4319ae1aa17ee80c68bf6b"
+    },
+    {
+      "path": "network-4-50-execution.json.gz",
+      "bytes": 666,
+      "sha256": "141aba741c7d1be5fa6e0b8ebf4223ff53eef1bcb05726cea072a19f231b1654"
+    },
+    {
+      "path": "network-4-50-diagnostics.json.gz",
+      "bytes": 2977,
+      "sha256": "d77737e15c4046178ba34bf2ff06f26e450b4ed80b94cd0beaa7f8d56e14f32f"
+    },
+    {
+      "path": "network-4-50-execution.log.gz",
+      "bytes": 121,
+      "sha256": "4cc6079ac559e8d3891006771f1c7f4e97fa7ecfa7a55d832f92dc91974d6e77"
+    },
+    {
+      "path": "network-4-50-material-before.png",
+      "bytes": 134466,
+      "sha256": "241c73acecb398b1e50690926b4bb771d8a925b174e96b9ddfb977ca5327e057"
+    },
+    {
+      "path": "network-4-50-material-after.png",
+      "bytes": 134290,
+      "sha256": "c28e753cc34347b1f4b37a3612579af7bd928088b409e09f2cd436f6233453d1"
+    },
+    {
+      "path": "network-4-60-report.json.gz",
+      "bytes": 140461,
+      "sha256": "31c6716c784e460e8142d2c8beb2662da0bdce5b915ea97ea8cd9d3f8ce82530"
+    },
+    {
+      "path": "network-4-60-execution.json.gz",
+      "bytes": 666,
+      "sha256": "881bd6ebd0f101adc3aff90b9d406d00a52a82a7be1eae62238a011109114ec6"
+    },
+    {
+      "path": "network-4-60-diagnostics.json.gz",
+      "bytes": 2921,
+      "sha256": "d3a4e201177ea2dbd6116d552a885cd3b0565ed394f2a3a4e3600d4b2749a27d"
+    },
+    {
+      "path": "network-4-60-execution.log.gz",
+      "bytes": 121,
+      "sha256": "583ac3e78cb026af625dbeb86f6d58d4ca84a6b3b9241348472f5eea0dcbaa24"
+    },
+    {
+      "path": "network-4-60-material-before.png",
+      "bytes": 134951,
+      "sha256": "4866c01cb53123efe2e790948896ce25d505be61bfa2f14500d780e75cf0115f"
+    },
+    {
+      "path": "network-4-60-material-after.png",
+      "bytes": 134931,
+      "sha256": "7c5cc2d49d07a29efe06887b816a52ebcc8b7fe2e6b223638b3ac986a215d37c"
+    },
+    {
+      "path": "network-4-66-report.json.gz",
+      "bytes": 139311,
+      "sha256": "5e118ab49ef9e499dbff49228d5d6cb255a090a19f347288c7db8776a8ac6a9a"
+    },
+    {
+      "path": "network-4-66-execution.json.gz",
+      "bytes": 666,
+      "sha256": "420ce1b5a4eeaaf7840de061ec93042c049df0be3b9a345398debd02a6380eba"
+    },
+    {
+      "path": "network-4-66-diagnostics.json.gz",
+      "bytes": 2927,
+      "sha256": "326e426c62a758d2dc2bf090d86a987d18d6a681abcf0d0776cf46821a2874b2"
+    },
+    {
+      "path": "network-4-66-execution.log.gz",
+      "bytes": 120,
+      "sha256": "e3fc4a6f155a76b8ebadae46993e1ab57bf8e9645525c40485170431d0f6c46d"
+    },
+    {
+      "path": "network-4-66-material-before.png",
+      "bytes": 134934,
+      "sha256": "059649d91a94fd8a908bdc521964bdf9a009c2e6dabe89ddee61989d2a22548d"
+    },
+    {
+      "path": "network-4-66-material-after.png",
+      "bytes": 134978,
+      "sha256": "c01209a41c3bbb746de1bfe1a379297a7c879babb8d4f6cf3a498db89ddca79e"
+    },
+    {
+      "path": "network-4-78-report.json.gz",
+      "bytes": 148771,
+      "sha256": "c5b2db8365128f2a75c487a67d4457da56aee70bf3ff99cf6ac49c3433ef51e1"
+    },
+    {
+      "path": "network-4-78-execution.json.gz",
+      "bytes": 666,
+      "sha256": "78e7dd5cf4d8fe44a99d5d8620bc1c4213e7c4e40795edbba958dc4d7b6c6d8e"
+    },
+    {
+      "path": "network-4-78-diagnostics.json.gz",
+      "bytes": 2933,
+      "sha256": "84353a68fd5b9b7119f99f520fec91ecec39e272973ba4a64fee4107d5ab37a2"
+    },
+    {
+      "path": "network-4-78-execution.log.gz",
+      "bytes": 121,
+      "sha256": "d965b16188de446453d2354781381d6b0c6ef6e9dd7a482d75f8e79021dd1365"
+    },
+    {
+      "path": "network-4-78-material-before.png",
+      "bytes": 135258,
+      "sha256": "d966e61e4a00681ff69f4f9cfcc5f83bcf0700105b5fa2166e993dbe898bf464"
+    },
+    {
+      "path": "network-4-78-material-after.png",
+      "bytes": 135256,
+      "sha256": "aabfa17f006fe4176c7e02e18e8fa83c659d1fd56ba94cd4b8b134a80c58757f"
+    },
+    {
+      "path": "network-worker.js.gz",
+      "bytes": 121966,
+      "sha256": "a68412db8715351d3cf2321aa0fa0b1cffa22db6082ece929e693ca689988429"
+    },
+    {
+      "path": "combat-lab.js.gz",
+      "bytes": 994039,
+      "sha256": "a5650a2926c82e189f973eedabb14311959c1b4b1892e50163c1fc7d705526e2"
+    },
+    {
+      "path": "network-lab.js.gz",
+      "bytes": 980020,
+      "sha256": "16e08ebed4f1e187c1b0ef2228b98fc2b166dc4788c227108425d4f544f3dd46"
+    },
+    {
+      "path": "material-lab.js.gz",
+      "bytes": 977564,
+      "sha256": "48ad2a8298d2beabe4062d4504f38bd0b833c9a496872fcd10242b093da7d5bc"
+    },
+    {
+      "path": "material-1-stationary-concrete-sidearm.recording.json.gz",
+      "bytes": 1380,
+      "sha256": "d7316cb8caf38e4ad46231d25139e05e82cb030d1e2b0901119c2f45fcb402b7"
+    },
+    {
+      "path": "material-1-stationary-concrete-sidearm-1.png",
+      "bytes": 2435,
+      "sha256": "4b247b09e29a73cfe8dcfc9348a355ebb2bff75c1492272b522029db5036a341"
+    },
+    {
+      "path": "material-1-stationary-concrete-sidearm-4.png",
+      "bytes": 2467,
+      "sha256": "8bebb69c8a783b29077872e1fc54d75822249a173500f684a76bc1b5a6334d68"
+    },
+    {
+      "path": "material-1-stationary-concrete-heavy-machine-gun.recording.json.gz",
+      "bytes": 1395,
+      "sha256": "fbfa811af41b71a49560a5aa063a78b141792f0d43c87542a5b993ef38ccf069"
+    },
+    {
+      "path": "material-1-stationary-concrete-heavy-machine-gun-1.png",
+      "bytes": 2435,
+      "sha256": "4b247b09e29a73cfe8dcfc9348a355ebb2bff75c1492272b522029db5036a341"
+    },
+    {
+      "path": "material-1-stationary-concrete-heavy-machine-gun-3.png",
+      "bytes": 2467,
+      "sha256": "8bebb69c8a783b29077872e1fc54d75822249a173500f684a76bc1b5a6334d68"
+    },
+    {
+      "path": "material-1-stationary-concrete-shotgun.recording.json.gz",
+      "bytes": 1386,
+      "sha256": "9292b73a604f76303ac34342aef9814482bfd5ec0f491915fa6b10d56576ef99"
+    },
+    {
+      "path": "material-1-stationary-concrete-shotgun-1.png",
+      "bytes": 2489,
+      "sha256": "de877e5f717b661f689c4d830000769dfad94ddb8ef89f17910dbb5bbcd3cf81"
+    },
+    {
+      "path": "material-1-stationary-concrete-shotgun-2.png",
+      "bytes": 2620,
+      "sha256": "fb8af5d83fc6d36d10593347287904ac34657e840bbb5368601bb139c8815d5c"
+    },
+    {
+      "path": "material-1-stationary-concrete-rocket-launcher.recording.json.gz",
+      "bytes": 1389,
+      "sha256": "b48012ae45fcd91604e73d206249605af5cde4a6ede739f63f698680144c197e"
+    },
+    {
+      "path": "material-1-stationary-concrete-rocket-launcher-1.png",
+      "bytes": 2443,
+      "sha256": "3b9aee94932eb4e81ebb33e3cbb434ef70f189dbcd3e8ed1952770162febb88a"
+    },
+    {
+      "path": "material-1-stationary-concrete-rocket-launcher-9.png",
+      "bytes": 5525,
+      "sha256": "d3d524c12557c8f7d46140004a152d209c4729e5a28c6496b18f6d75a4a7f9d9"
+    },
+    {
+      "path": "material-1-stationary-concrete-flamethrower.recording.json.gz",
+      "bytes": 1388,
+      "sha256": "d1e18bcdc8593b904b77c34041df0494385b30b0f4c8be376d1d7a99aa812ed3"
+    },
+    {
+      "path": "material-1-stationary-concrete-flamethrower-1.png",
+      "bytes": 2493,
+      "sha256": "d54f3cb652e7c51c041bbfa6a5c77385f99de945cd020f698b27c77c685e715f"
+    },
+    {
+      "path": "material-1-stationary-concrete-flamethrower-5.png",
+      "bytes": 2602,
+      "sha256": "d70bbcb4e57060212918c9bd3a7acbf925c7262e6ebdfd0c242b46812752cb3e"
+    },
+    {
+      "path": "material-1-stationary-concrete-laser.recording.json.gz",
+      "bytes": 1384,
+      "sha256": "896b6f391212bae05c9e21a9d198e9d2f094af22c80a7302673da0884e9bc53e"
+    },
+    {
+      "path": "material-1-stationary-concrete-laser-1.png",
+      "bytes": 2565,
+      "sha256": "cf5614a38332cfac493103b76c6bf8dd88f216c4df0dbcd94e174be166f02fd1"
+    },
+    {
+      "path": "material-1-stationary-concrete-knife.recording.json.gz",
+      "bytes": 1385,
+      "sha256": "f267d4c9f3829bbb60262f723744ccbfd7bcf4e86e1b6912e36b738641338652"
+    },
+    {
+      "path": "material-1-stationary-concrete-knife-6.png",
+      "bytes": 2851,
+      "sha256": "d3bb4f27a40c9c1b3da22abd33e63e5761f3d9845589a0d8e950c40b43842ad9"
+    },
+    {
+      "path": "material-1-stationary-concrete-grenade.recording.json.gz",
+      "bytes": 1395,
+      "sha256": "d1967455372e16a20f6e171d928c087dcb6eb982ddc544875bfd7b8b7d81a981"
+    },
+    {
+      "path": "material-1-stationary-concrete-grenade-5.png",
+      "bytes": 2483,
+      "sha256": "e11a718e5b76084f9457b523b6e910238d35becc6e30abd2963821dea6f111b0"
+    },
+    {
+      "path": "material-1-stationary-concrete-grenade-95.png",
+      "bytes": 4896,
+      "sha256": "946c54f450db940a1b37c6079a1f34dc6c62ea2199530aec431e597b0a5a2c49"
+    },
+    {
+      "path": "material-1-stationary-timber-sidearm.recording.json.gz",
+      "bytes": 1378,
+      "sha256": "b43063a36f0ac70e1179e3c63b8e849e45643707f6e90a082474f6c06279ce65"
+    },
+    {
+      "path": "material-1-stationary-timber-sidearm-1.png",
+      "bytes": 2438,
+      "sha256": "ba634ef63ac2f6ef7b8b0afbcfdc7282ad365c714445dabcab3ac8b93cd2cbbd"
+    },
+    {
+      "path": "material-1-stationary-timber-sidearm-4.png",
+      "bytes": 2465,
+      "sha256": "c8af7df863a277eef2eedcccaaa222fe0344249a0fa9aa63e4df6b02f4c44124"
+    },
+    {
+      "path": "material-1-stationary-timber-heavy-machine-gun.recording.json.gz",
+      "bytes": 1391,
+      "sha256": "8519ac4c72da3a064ab9d2fef616c11091063064c4355ff8ec8913a4aef35e19"
+    },
+    {
+      "path": "material-1-stationary-timber-heavy-machine-gun-1.png",
+      "bytes": 2438,
+      "sha256": "ba634ef63ac2f6ef7b8b0afbcfdc7282ad365c714445dabcab3ac8b93cd2cbbd"
+    },
+    {
+      "path": "material-1-stationary-timber-heavy-machine-gun-3.png",
+      "bytes": 2465,
+      "sha256": "c8af7df863a277eef2eedcccaaa222fe0344249a0fa9aa63e4df6b02f4c44124"
+    },
+    {
+      "path": "material-1-stationary-timber-shotgun.recording.json.gz",
+      "bytes": 1382,
+      "sha256": "8ffcc7458b7f73f5885cbfa654cb97c16bba5269393aa324a1e707f7f8d28a7c"
+    },
+    {
+      "path": "material-1-stationary-timber-shotgun-1.png",
+      "bytes": 2491,
+      "sha256": "7fe6bbbdcccab729f2030aaeacf3870c453a2acb6e7400d9d6a83af01242218c"
+    },
+    {
+      "path": "material-1-stationary-timber-shotgun-2.png",
+      "bytes": 2620,
+      "sha256": "5b32a992c4526dd2a79ff62197f9f61809087ba6fac64fa7c3a38f1bfc92fe8b"
+    },
+    {
+      "path": "material-1-stationary-timber-rocket-launcher.recording.json.gz",
+      "bytes": 1384,
+      "sha256": "b3df84cb92e93cc167ef97f66bcabb7b5f6a5a8124543c6360d4147c18da60f7"
+    },
+    {
+      "path": "material-1-stationary-timber-rocket-launcher-1.png",
+      "bytes": 2446,
+      "sha256": "5102ec31f490c9612bac49f865391065f0d4d1abb8c7887084aa256449bd9c0c"
+    },
+    {
+      "path": "material-1-stationary-timber-rocket-launcher-9.png",
+      "bytes": 5522,
+      "sha256": "db03ae54469dda32ee7679b1ce0334b3703626e0c407ef9f4d89327de32cf7d5"
+    },
+    {
+      "path": "material-1-stationary-timber-flamethrower.recording.json.gz",
+      "bytes": 1386,
+      "sha256": "deb4a54552c4366b9c0137ed025a40fdd8650b093afa676c80ab4204d524e55d"
+    },
+    {
+      "path": "material-1-stationary-timber-flamethrower-1.png",
+      "bytes": 2496,
+      "sha256": "87d0066381c5201c76e6b59c653f4989456b667938c7ec8cd4657885a93fbcd1"
+    },
+    {
+      "path": "material-1-stationary-timber-flamethrower-5.png",
+      "bytes": 2607,
+      "sha256": "d55e5f41e98587fd5db74ac5df7e814d1bf9797453cc58da6c1e8b74378bb9aa"
+    },
+    {
+      "path": "material-1-stationary-timber-laser.recording.json.gz",
+      "bytes": 1380,
+      "sha256": "6dfd323eb1a10d87e0a436f21b75cb53e9d01fe6521732032eee32a621dd7889"
+    },
+    {
+      "path": "material-1-stationary-timber-laser-1.png",
+      "bytes": 2566,
+      "sha256": "1c5992a808ca393bb8f7aa95ab2ad2a8917c8eb4ec4ce5db77ba833f1ef6b9e3"
+    },
+    {
+      "path": "material-1-stationary-timber-knife.recording.json.gz",
+      "bytes": 1384,
+      "sha256": "f6f231d719f28161e456316604628a918eed189af51c67210922038592d2c49b"
+    },
+    {
+      "path": "material-1-stationary-timber-knife-6.png",
+      "bytes": 2842,
+      "sha256": "8491634e440c100a2dc623ea1b6fa071efaccb52aecf8a91e4a0f456c731e7a3"
+    },
+    {
+      "path": "material-1-stationary-timber-grenade.recording.json.gz",
+      "bytes": 1393,
+      "sha256": "d8db33916c1a80fd108cb72d1a599a672bc58f4608ae988da6d0d8209272f47c"
+    },
+    {
+      "path": "material-1-stationary-timber-grenade-5.png",
+      "bytes": 2485,
+      "sha256": "2068f0d77d53a736a98b4ccf295002712f7f5a6ab47bc001c206700f169e52a3"
+    },
+    {
+      "path": "material-1-stationary-timber-grenade-95.png",
+      "bytes": 4881,
+      "sha256": "1f506c5e3b5fd562eac0b5d5bc9072341a7a9062fdf8e369de7add9a62932923"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-sidearm.recording.json.gz",
+      "bytes": 1384,
+      "sha256": "92b31d878a85edd033b390bce095420470daaa5bd1fbb07843e89e35d2e4ab58"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-sidearm-1.png",
+      "bytes": 2435,
+      "sha256": "0ecb6320817025f62b77249c233d0336be23aa3a9820604f08e16104a4451f64"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-sidearm-4.png",
+      "bytes": 2464,
+      "sha256": "df748cc27f15555a7726e7c6f20323a343d99496757c2cb1188450d1d9da7174"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-heavy-machine-gun.recording.json.gz",
+      "bytes": 1396,
+      "sha256": "8b6432544b659d5ce066ce7d363925c2658b61656e6aa660fb5af60bcd25e315"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-heavy-machine-gun-1.png",
+      "bytes": 2435,
+      "sha256": "0ecb6320817025f62b77249c233d0336be23aa3a9820604f08e16104a4451f64"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-heavy-machine-gun-3.png",
+      "bytes": 2464,
+      "sha256": "df748cc27f15555a7726e7c6f20323a343d99496757c2cb1188450d1d9da7174"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-shotgun.recording.json.gz",
+      "bytes": 1389,
+      "sha256": "a04d5e72869e8f4c3e07369fe5a9ad4558f40d1d1820d80b4c4df1b8c9bae52d"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-shotgun-1.png",
+      "bytes": 2488,
+      "sha256": "529b97dc3a6a8fe9eedf89e35706f50e032c37c5521c8467a2bb9c4ecb3903f1"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-shotgun-2.png",
+      "bytes": 2616,
+      "sha256": "7e06cb4ca047d7c4c855028716ede7d2464555b5ae5abe932fb7434b8bc10b12"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-rocket-launcher.recording.json.gz",
+      "bytes": 1391,
+      "sha256": "19ca5bd7cefccc87e92fda4e3126ae1b4973ae9506cbd9b195e802ed30b6e683"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-rocket-launcher-1.png",
+      "bytes": 2443,
+      "sha256": "bd1e1494eda16f0176abbb40be9abc3a757a6444250193ed86e434ee70690703"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-rocket-launcher-9.png",
+      "bytes": 5528,
+      "sha256": "f71cbab3b12eb5e1c9603a02196922ece6f995a102be6d2be7eccc4d8b3182f1"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-flamethrower.recording.json.gz",
+      "bytes": 1392,
+      "sha256": "2e59b9150afcc5775c259622f8d666f8cb01d7f5f9305bdd27b37058718da4e5"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-flamethrower-1.png",
+      "bytes": 2490,
+      "sha256": "1d063db0c75ec1cec8a5b4779fd078a58ac46b84ac17d1a76003981586ca036b"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-flamethrower-5.png",
+      "bytes": 2597,
+      "sha256": "95e99ee237682edee11ee471c67d01372dfb339cff8036c249e51c983494f9af"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-laser.recording.json.gz",
+      "bytes": 1387,
+      "sha256": "2e0f43ced2a49f07f84d49ed5d1bed96589a43b61d470f741e69ec0cbcac3ade"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-laser-1.png",
+      "bytes": 2566,
+      "sha256": "5dc38bb5fca26a60956151462649cb3704dba65c971155b54a601187ec09d56e"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-knife.recording.json.gz",
+      "bytes": 1389,
+      "sha256": "15bb212191fd496907496bf502a436cd956c36d374f0ec5072bcd621f855d617"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-knife-6.png",
+      "bytes": 2835,
+      "sha256": "3ac9087817ce7fe5da37e26984acbbafee5cf13d07e92875d71ff64be5c130ed"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-grenade.recording.json.gz",
+      "bytes": 1399,
+      "sha256": "b712eaefb573baf89e897f01cf59361da02294df4dfe0f163d8d390c556ec38f"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-grenade-5.png",
+      "bytes": 2484,
+      "sha256": "6eb4214d25492e829292278660bdcefe9276620189261b639fad67980f216f35"
+    },
+    {
+      "path": "material-1-stationary-armor-steel-grenade-95.png",
+      "bytes": 4893,
+      "sha256": "6403673193a1dbf7db1619c85ef82cbd32927e681f4b327056af2dfe4125411e"
+    },
+    {
+      "path": "material-1-stationary-open-grating-sidearm.recording.json.gz",
+      "bytes": 1387,
+      "sha256": "9885f84e34a7a92575d102b9ea2f2921c16d6ae33bbcc6cc41e78e2ddae8f6eb"
+    },
+    {
+      "path": "material-1-stationary-open-grating-sidearm-1.png",
+      "bytes": 2437,
+      "sha256": "51724e95a450e81ca72e36932f2234405f4b78fbacf57cd19a61cdce1edcbf1b"
+    },
+    {
+      "path": "material-1-stationary-open-grating-sidearm-4.png",
+      "bytes": 2468,
+      "sha256": "2774da2cde7be43d0fc3291b281b687a8c5af8b1952e019ccd1c08a4eb3394fb"
+    },
+    {
+      "path": "material-1-stationary-open-grating-heavy-machine-gun.recording.json.gz",
+      "bytes": 1399,
+      "sha256": "9d65f2bf612821e8c7c743b2c242430f7d6aff5b8c86c18e715fff88e48554fc"
+    },
+    {
+      "path": "material-1-stationary-open-grating-heavy-machine-gun-1.png",
+      "bytes": 2437,
+      "sha256": "51724e95a450e81ca72e36932f2234405f4b78fbacf57cd19a61cdce1edcbf1b"
+    },
+    {
+      "path": "material-1-stationary-open-grating-heavy-machine-gun-3.png",
+      "bytes": 2468,
+      "sha256": "2774da2cde7be43d0fc3291b281b687a8c5af8b1952e019ccd1c08a4eb3394fb"
+    },
+    {
+      "path": "material-1-stationary-open-grating-shotgun.recording.json.gz",
+      "bytes": 1390,
+      "sha256": "dd7b565abcafa5356ca6a890042daf7f96955c26415b9f0f70c6886696732d4d"
+    },
+    {
+      "path": "material-1-stationary-open-grating-shotgun-1.png",
+      "bytes": 2490,
+      "sha256": "c45c3a677f6a1b325e7f315fa3705e7e7b80a865d4058a6e194c76c3821b2c64"
+    },
+    {
+      "path": "material-1-stationary-open-grating-shotgun-2.png",
+      "bytes": 2618,
+      "sha256": "0e93fd495079d1e6391ec9c15ae2f7716a2a1f1bdf89200fdc022516e034ca6b"
+    },
+    {
+      "path": "material-1-stationary-open-grating-rocket-launcher.recording.json.gz",
+      "bytes": 1395,
+      "sha256": "ccada07c7ff4ef212b489d51da1b3806ee8c0eafc2778c0a2c06cbedfbd3d441"
+    },
+    {
+      "path": "material-1-stationary-open-grating-rocket-launcher-1.png",
+      "bytes": 2445,
+      "sha256": "78bfab1de22a8a64ed585f3a071f38590c23b0ea1dc5e81c7faaf49c33ebed8d"
+    },
+    {
+      "path": "material-1-stationary-open-grating-rocket-launcher-9.png",
+      "bytes": 5593,
+      "sha256": "34e6732720764250fa9b1755d6d0a1bb70b8bec3b23a15fcdf37d362279c2364"
+    },
+    {
+      "path": "material-1-stationary-open-grating-flamethrower.recording.json.gz",
+      "bytes": 1399,
+      "sha256": "ab1873442d13416d87507900ed473b2311a2e5db037513b17000458121df95bd"
+    },
+    {
+      "path": "material-1-stationary-open-grating-flamethrower-1.png",
+      "bytes": 2494,
+      "sha256": "6de70896e623741e6c4800dd894d1a54cfbec03a044afff77c5bd2bf025f2447"
+    },
+    {
+      "path": "material-1-stationary-open-grating-flamethrower-5.png",
+      "bytes": 2605,
+      "sha256": "b067b1d892df59720b446ca99e6a7eb76357884b97c354c002d757c51dbbc8ce"
+    },
+    {
+      "path": "material-1-stationary-open-grating-laser.recording.json.gz",
+      "bytes": 1389,
+      "sha256": "c8ec84989b4ee1da73bcd1bf6db0722160ea72e6613a34a0a2905b0f0b3fda49"
+    },
+    {
+      "path": "material-1-stationary-open-grating-laser-1.png",
+      "bytes": 2936,
+      "sha256": "7329bbdc5f4bdbcb7bdad20f414deb39458663af398e792c6d09ccc757bf8b78"
+    },
+    {
+      "path": "material-1-stationary-open-grating-knife.recording.json.gz",
+      "bytes": 1392,
+      "sha256": "61fa16aa88f2e3eab4bb773d5ca284b34e58544a68cd79b3d320b97ad8c04641"
+    },
+    {
+      "path": "material-1-stationary-open-grating-knife-6.png",
+      "bytes": 2854,
+      "sha256": "6727a8193a8db30e142428b973731cb80052276e1699073c75e2f42b291d98c3"
+    },
+    {
+      "path": "material-1-stationary-open-grating-grenade.recording.json.gz",
+      "bytes": 1405,
+      "sha256": "fdc367dff13e3a4b07a32d1c9aa732f2425b788759ab63837bcc2b675b22ea7d"
+    },
+    {
+      "path": "material-1-stationary-open-grating-grenade-5.png",
+      "bytes": 2487,
+      "sha256": "7a03ccc226c134024a3421e235ff707208e81650ec2c306bb2b9d8ee4a0bcc99"
+    },
+    {
+      "path": "material-1-stationary-open-grating-grenade-95.png",
+      "bytes": 4948,
+      "sha256": "010861f467121e028dd2a5fbe0c9992fe240b9d90307e4c6205566cc2e77215f"
+    },
+    {
+      "path": "material-1-patrol-concrete-sidearm.recording.json.gz",
+      "bytes": 1402,
+      "sha256": "2220e1862be1bffaadbad870080dd7334103a71066d3629bfc972b250f880b03"
+    },
+    {
+      "path": "material-1-patrol-concrete-heavy-machine-gun.recording.json.gz",
+      "bytes": 1416,
+      "sha256": "584e80f0aa80cff947e7cbc0e7756c9c3753084bf8634a66d21aea54e2ab96a1"
+    },
+    {
+      "path": "material-1-patrol-concrete-shotgun.recording.json.gz",
+      "bytes": 1407,
+      "sha256": "e157cb7d00938ab84bb3e0c7ec237474c853b89b5aa8329733a07db481544df0"
+    },
+    {
+      "path": "material-1-patrol-concrete-rocket-launcher.recording.json.gz",
+      "bytes": 1411,
+      "sha256": "44b54e44907455e995b54233c24c5b4f615127c73591744d2e77ee1d4dfe5f4c"
+    },
+    {
+      "path": "material-1-patrol-concrete-flamethrower.recording.json.gz",
+      "bytes": 1412,
+      "sha256": "36d667d64e5926647182e9aa2c7aa8c9b315a26c745b8f2e880d2f646b4fb535"
+    },
+    {
+      "path": "material-1-patrol-concrete-laser.recording.json.gz",
+      "bytes": 1407,
+      "sha256": "5f477766b3a7b5e3fc74b82eef5389adceb5eeebc37f744551eaa8cdfdc7a057"
+    },
+    {
+      "path": "material-1-patrol-concrete-knife.recording.json.gz",
+      "bytes": 1408,
+      "sha256": "8f67733606c6ddf4d5a443adec655f99f31f7566c363b5cc13afcc5a1d4fb826"
+    },
+    {
+      "path": "material-1-patrol-concrete-grenade.recording.json.gz",
+      "bytes": 1417,
+      "sha256": "d615c4ba6f1cfbfccaad023222fcabd525e144ceadc5cdf60a9ef35ced336754"
+    },
+    {
+      "path": "material-1-patrol-timber-sidearm.recording.json.gz",
+      "bytes": 1400,
+      "sha256": "4a798ff54467fb3812595d840e5b679df45835b6ed06b08c5d62a56f3d2d7b50"
+    },
+    {
+      "path": "material-1-patrol-timber-heavy-machine-gun.recording.json.gz",
+      "bytes": 1414,
+      "sha256": "f1951a79271268063ede0b70c9dc7bf3eb606564d65b7988da370a452c7c4467"
+    },
+    {
+      "path": "material-1-patrol-timber-shotgun.recording.json.gz",
+      "bytes": 1403,
+      "sha256": "dc8ee7c68819e05f6522809c0e9f4397803bf1d5f94887bb98f6a94cc425b57b"
+    },
+    {
+      "path": "material-1-patrol-timber-rocket-launcher.recording.json.gz",
+      "bytes": 1407,
+      "sha256": "8ab5041a2f79c8fa774f066e1fb20e977d074d94aa10e8c356417b2398aeaaae"
+    },
+    {
+      "path": "material-1-patrol-timber-flamethrower.recording.json.gz",
+      "bytes": 1406,
+      "sha256": "649011c38681f9017c8bc8d4b579fd5654db85ae4a539eca4345406f325f63ec"
+    },
+    {
+      "path": "material-1-patrol-timber-laser.recording.json.gz",
+      "bytes": 1402,
+      "sha256": "9b46dfe3f7b8803ee57d7e054a2b9e853e5a1989b7839b5cdc3e68c1594623c1"
+    },
+    {
+      "path": "material-1-patrol-timber-knife.recording.json.gz",
+      "bytes": 1407,
+      "sha256": "1c1857473f0c5a7e482bfb3489adbec277ef0276b49207d4b50a6478b1e731fb"
+    },
+    {
+      "path": "material-1-patrol-timber-grenade.recording.json.gz",
+      "bytes": 1417,
+      "sha256": "d543e41102d941a3d2f96aa8203732d74566da68b02fabb5b07638dca38a887a"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-sidearm.recording.json.gz",
+      "bytes": 1405,
+      "sha256": "d76b2378f81b74ea89c83981334b5c52221683c8f412de6e8bc197b0706e4af1"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-heavy-machine-gun.recording.json.gz",
+      "bytes": 1419,
+      "sha256": "d21ad4d0481cc270fc9838e3574a14b12bbd3474ff6faffb9d353c9116278723"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-shotgun.recording.json.gz",
+      "bytes": 1409,
+      "sha256": "13d818b6052aed9b400d85c7c6c4cce995f38e680ea22003d1cd860784410dee"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-rocket-launcher.recording.json.gz",
+      "bytes": 1412,
+      "sha256": "aca74832d46fb451d56be89e0c3b7a1817eaf5f26de9584e3ff628082677c2cc"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-flamethrower.recording.json.gz",
+      "bytes": 1414,
+      "sha256": "2de86a92a6ce4dc408c350132cec65a5d030b072717c49284a40c570e8d4e31e"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-laser.recording.json.gz",
+      "bytes": 1408,
+      "sha256": "101d620d82124574440c9a0d945de94206a054a113e9241f9ac32f9471498f0b"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-knife.recording.json.gz",
+      "bytes": 1410,
+      "sha256": "2ee8c2f5819c9b67bf994d0d4e79659309bb046634e4602d290d921020778247"
+    },
+    {
+      "path": "material-1-patrol-armor-steel-grenade.recording.json.gz",
+      "bytes": 1421,
+      "sha256": "8a1554bad2810eecff1bfd748a535b5cc9a35dd81643574e9cdbe0bc1ef335bf"
+    },
+    {
+      "path": "material-1-patrol-open-grating-sidearm.recording.json.gz",
+      "bytes": 1408,
+      "sha256": "21cc507838b942bf433255e073e43d107699279cf68df12be28c64f556ad43d6"
+    },
+    {
+      "path": "material-1-patrol-open-grating-heavy-machine-gun.recording.json.gz",
+      "bytes": 1422,
+      "sha256": "810b6e53d3dde8d312dc2c7f985b9c354d28319aca0a27d8a590b1aa4cba95bf"
+    },
+    {
+      "path": "material-1-patrol-open-grating-shotgun.recording.json.gz",
+      "bytes": 1410,
+      "sha256": "9ed1e3066443d1dface4f6b5ef3e8460b4b04f6e676442c5700ed4013b2693e0"
+    },
+    {
+      "path": "material-1-patrol-open-grating-rocket-launcher.recording.json.gz",
+      "bytes": 1415,
+      "sha256": "c091bf175cad355931cc19c51dcff335370dc9df0bb8758bdc1f8fa804fc044c"
+    },
+    {
+      "path": "material-1-patrol-open-grating-flamethrower.recording.json.gz",
+      "bytes": 1420,
+      "sha256": "555ac804f7d175254868debe0ae38b3d920fc5953afd92c48fa581f4598118e1"
+    },
+    {
+      "path": "material-1-patrol-open-grating-laser.recording.json.gz",
+      "bytes": 1409,
+      "sha256": "3e0dded6a3a9aac4e82a6f2693b0fba5235326847aa8c0a0765bbce6f22f5d18"
+    },
+    {
+      "path": "material-1-patrol-open-grating-knife.recording.json.gz",
+      "bytes": 1413,
+      "sha256": "53fd03f694dd7c6fc9b109cc44f517761fd8495aeaee998df552e1ef25fd691f"
+    },
+    {
+      "path": "material-1-patrol-open-grating-grenade.recording.json.gz",
+      "bytes": 1423,
+      "sha256": "161a098f370d13a2c4c23bb11f4867749ca7d271a766d11ae7553f8eae13ab66"
+    },
+    {
+      "path": "material-4-stationary-concrete-sidearm.recording.json.gz",
+      "bytes": 1902,
+      "sha256": "e12bfa48e4d7f287a5eb06571618d88ef2c0febf13301b709ab8f3f0c430a52e"
+    },
+    {
+      "path": "material-4-stationary-concrete-heavy-machine-gun.recording.json.gz",
+      "bytes": 1929,
+      "sha256": "9c2cb377c2eddb4e7c69bebb7e1526f639c598ae2f42e164f15730dda0625ecf"
+    },
+    {
+      "path": "material-4-stationary-concrete-shotgun.recording.json.gz",
+      "bytes": 1908,
+      "sha256": "ba6853f3141aa6670223c2970b8f7137f8e3d0a036e550a948248d56529a4cf7"
+    },
+    {
+      "path": "material-4-stationary-concrete-rocket-launcher.recording.json.gz",
+      "bytes": 1919,
+      "sha256": "0609bcefb34d8eb7ecb064673d4e2e91b994cd8839886141c6bf6407618b2f12"
+    },
+    {
+      "path": "material-4-stationary-concrete-flamethrower.recording.json.gz",
+      "bytes": 1915,
+      "sha256": "42207bf04a75a642765a91c00f6d51134b677c95c215a2e8bb0aa185e0642b06"
+    },
+    {
+      "path": "material-4-stationary-concrete-laser.recording.json.gz",
+      "bytes": 1906,
+      "sha256": "9bd373f53c3876afd8626cfac9f2f776b8e2959f238ef3cf207ae8595b6b2db3"
+    },
+    {
+      "path": "material-4-stationary-concrete-knife.recording.json.gz",
+      "bytes": 1899,
+      "sha256": "7b21af98067306ccc02306667aa8a76e5319e3626373f946bb9bfbb1941e27eb"
+    },
+    {
+      "path": "material-4-stationary-concrete-grenade.recording.json.gz",
+      "bytes": 1908,
+      "sha256": "f464c2da196982620f3a2686de4a981a580903410ba22a5444a7acbf3b139480"
+    },
+    {
+      "path": "material-4-stationary-timber-sidearm.recording.json.gz",
+      "bytes": 1899,
+      "sha256": "e8e654768055a53331510738ffc125800b804a24e8400f6d7424c8b1af59251c"
+    },
+    {
+      "path": "material-4-stationary-timber-heavy-machine-gun.recording.json.gz",
+      "bytes": 1922,
+      "sha256": "61c1a9b7da78af112d8f4946de0306c03e9aaa260429281ece927c2e0e913847"
+    },
+    {
+      "path": "material-4-stationary-timber-shotgun.recording.json.gz",
+      "bytes": 1904,
+      "sha256": "8adc739a138bbebaa31a7b1292792ddb3eaef32a94e9b84a8853cded60fc5f90"
+    },
+    {
+      "path": "material-4-stationary-timber-shotgun-2.png",
+      "bytes": 2506,
+      "sha256": "e086ccf6bc1254706646f357f11b0ca397c4140dc7772b19a2909583c000a2b7"
+    },
+    {
+      "path": "material-4-stationary-timber-rocket-launcher.recording.json.gz",
+      "bytes": 1914,
+      "sha256": "e9d158e8c30c5e2567a4f6370337fe1897bd016e99e8e2869b093d487dad83f2"
+    },
+    {
+      "path": "material-4-stationary-timber-rocket-launcher-9.png",
+      "bytes": 5283,
+      "sha256": "69324c1e40539a745190cdffc14f054c89f824d96cb2d2bc6bd21a66fb8b3b59"
+    },
+    {
+      "path": "material-4-stationary-timber-flamethrower.recording.json.gz",
+      "bytes": 1915,
+      "sha256": "8a6c33d2863429409a5981fe486d811e856dc5e18327417a6e69ece026134f21"
+    },
+    {
+      "path": "material-4-stationary-timber-flamethrower-11.png",
+      "bytes": 2579,
+      "sha256": "00dadacb8b8b85ae2bb99140030c4a3f0721c15f3474fdf931530284f805d3ec"
+    },
+    {
+      "path": "material-4-stationary-timber-laser.recording.json.gz",
+      "bytes": 1902,
+      "sha256": "f7970a3b9d22f0d53c893f1de3e40d0efaeab4bc477183a63a0a4ff388765ea9"
+    },
+    {
+      "path": "material-4-stationary-timber-laser-1.png",
+      "bytes": 2451,
+      "sha256": "b060f9993b99e2bf6b9da6e9b3bd9b06d8135e40656d6a1e7e4d96326fa74f71"
+    },
+    {
+      "path": "material-4-stationary-timber-knife.recording.json.gz",
+      "bytes": 1895,
+      "sha256": "ad6b6477158fe97e5ec90fc5297b43962684b4f9138181ec6539c653dcd7bd79"
+    },
+    {
+      "path": "material-4-stationary-timber-grenade.recording.json.gz",
+      "bytes": 1905,
+      "sha256": "6d6daa1bd5e451a59b86644295a8c6a01d933cf9cc893e521cd1756cf0b4fe6f"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-sidearm.recording.json.gz",
+      "bytes": 1909,
+      "sha256": "b7d2d927ea405d674e6151b130c65acb7ea7f85a528d34a6bab17f8eecb620a1"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-heavy-machine-gun.recording.json.gz",
+      "bytes": 1932,
+      "sha256": "9c6454b30141e7d7ff38a8fdc4b7ee267567258a9b147573c60ce5efe33fa5b3"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-shotgun.recording.json.gz",
+      "bytes": 1914,
+      "sha256": "29b5eb51445120428f2a984139a2ed02cc632aeb694843707e30e68feb562906"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-rocket-launcher.recording.json.gz",
+      "bytes": 1923,
+      "sha256": "7eb31ee4f57373b36505bc23931d09a5b7a4ec818611b1d167b6e479af27d12d"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-rocket-launcher-9.png",
+      "bytes": 5283,
+      "sha256": "69324c1e40539a745190cdffc14f054c89f824d96cb2d2bc6bd21a66fb8b3b59"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-flamethrower.recording.json.gz",
+      "bytes": 1920,
+      "sha256": "969680799f8161af83db31396e5f68365e85ed27b01277ff423e5e49f6cc12c2"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-laser.recording.json.gz",
+      "bytes": 1913,
+      "sha256": "b26da6fa30dd5b973d260c651e8457f2adfe4955aa9f0974a12794b91acbbe24"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-laser-1.png",
+      "bytes": 2451,
+      "sha256": "b060f9993b99e2bf6b9da6e9b3bd9b06d8135e40656d6a1e7e4d96326fa74f71"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-knife.recording.json.gz",
+      "bytes": 1903,
+      "sha256": "1afc6933e8d6e07f6aa568f927317bed358cf64046f56be3157cae12c62d81fa"
+    },
+    {
+      "path": "material-4-stationary-armor-steel-grenade.recording.json.gz",
+      "bytes": 1913,
+      "sha256": "c5f8871671b3d354024de2dd1048e4999d3be20b04f5a9aabd4f10e4d461b9d9"
+    },
+    {
+      "path": "material-4-stationary-open-grating-sidearm.recording.json.gz",
+      "bytes": 1911,
+      "sha256": "d77f8370161bc344ee769b16e34074a13dd33ee86e7c9f7ab18e9a75c21b6bf6"
+    },
+    {
+      "path": "material-4-stationary-open-grating-heavy-machine-gun.recording.json.gz",
+      "bytes": 1934,
+      "sha256": "f1da5e8aa416b2cc818fad70a8def98e75fbf5833714992c27d39db51b1b81be"
+    },
+    {
+      "path": "material-4-stationary-open-grating-shotgun.recording.json.gz",
+      "bytes": 1914,
+      "sha256": "30c15f57ec1498585477d2c69b83addea65a2023a6e38268b39dad8c8e519f65"
+    },
+    {
+      "path": "material-4-stationary-open-grating-shotgun-2.png",
+      "bytes": 2506,
+      "sha256": "e086ccf6bc1254706646f357f11b0ca397c4140dc7772b19a2909583c000a2b7"
+    },
+    {
+      "path": "material-4-stationary-open-grating-rocket-launcher.recording.json.gz",
+      "bytes": 1927,
+      "sha256": "074c5f4cb0e836e2ea0f8bff4918ab7f8811efffb1adce6865b7c88146174b8b"
+    },
+    {
+      "path": "material-4-stationary-open-grating-rocket-launcher-9.png",
+      "bytes": 5358,
+      "sha256": "fece0aa19869bc1fb0da25ecf5bcefa6e13ce834672cb925c95fe14dcf6132c8"
+    },
+    {
+      "path": "material-4-stationary-open-grating-flamethrower.recording.json.gz",
+      "bytes": 1931,
+      "sha256": "33d681d84510dd8c9f61ce183cf01cdb09a6e53ed3fff7131f66628935330458"
+    },
+    {
+      "path": "material-4-stationary-open-grating-laser.recording.json.gz",
+      "bytes": 1914,
+      "sha256": "8904f8234a37461a0eac95065b2c2c9969467c8ebc928e0235ab4d720719e950"
+    },
+    {
+      "path": "material-4-stationary-open-grating-laser-1.png",
+      "bytes": 2645,
+      "sha256": "6e61c581a4e702d528f0ea921c8b903a89b6c09b13351651a0fc7660edb5e731"
+    },
+    {
+      "path": "material-4-stationary-open-grating-knife.recording.json.gz",
+      "bytes": 1906,
+      "sha256": "42613d95f49c24e294ab4bb06b86468e6bfed3cb3bbb0f1476380e2a21a36c83"
+    },
+    {
+      "path": "material-4-stationary-open-grating-grenade.recording.json.gz",
+      "bytes": 1921,
+      "sha256": "f9612aae2b8b1ffa87859345571ba3ea90ac4637f2b495ecf3f4906fba9e8efe"
+    },
+    {
+      "path": "material-4-patrol-concrete-sidearm.recording.json.gz",
+      "bytes": 1922,
+      "sha256": "0a16d4519b7de45bc3b3c97cc12a1cad4aba4eef12cdef0b570a6bb8171f49e8"
+    },
+    {
+      "path": "material-4-patrol-concrete-heavy-machine-gun.recording.json.gz",
+      "bytes": 1942,
+      "sha256": "4a168e4984d3a4bcef713d463b173d8d0864d0b5d32a1c323784a2240818d6c2"
+    },
+    {
+      "path": "material-4-patrol-concrete-shotgun.recording.json.gz",
+      "bytes": 1930,
+      "sha256": "a821f9856efa06d29e1f588b03c0520cc9ad746ab51a2cf25f439afbc1a73226"
+    },
+    {
+      "path": "material-4-patrol-concrete-rocket-launcher.recording.json.gz",
+      "bytes": 1938,
+      "sha256": "304a978a9adbb5843a23128420165de59603166917a1155f263f4c7aa963bb66"
+    },
+    {
+      "path": "material-4-patrol-concrete-flamethrower.recording.json.gz",
+      "bytes": 1938,
+      "sha256": "fbbb0aa4b56fcc9103d1db11508665b2bc3e72845728d8250bf4b2b472d8fe20"
+    },
+    {
+      "path": "material-4-patrol-concrete-laser.recording.json.gz",
+      "bytes": 1926,
+      "sha256": "5cbd8bf73d7c240169495529fe35faa46fba71932460396b5c9e76c1f97bc77c"
+    },
+    {
+      "path": "material-4-patrol-concrete-knife.recording.json.gz",
+      "bytes": 1916,
+      "sha256": "2b70cc363e07a237660b99bd4ff96450914ea52f062284eeb65d558f2bb5d091"
+    },
+    {
+      "path": "material-4-patrol-concrete-grenade.recording.json.gz",
+      "bytes": 1927,
+      "sha256": "60e2bc8be118baf02b60e3c7d815be9e8a5c61fd6a37b58b4f0b487011c34371"
+    },
+    {
+      "path": "material-4-patrol-timber-sidearm.recording.json.gz",
+      "bytes": 1922,
+      "sha256": "e25d53bc36b8783690142d431366cd822318df3e5c346e9b5a09f28c332dd542"
+    },
+    {
+      "path": "material-4-patrol-timber-heavy-machine-gun.recording.json.gz",
+      "bytes": 1941,
+      "sha256": "e21e0613a1c183eda006df38df6003b08e4da47c24958b2b5f75712835aab33f"
+    },
+    {
+      "path": "material-4-patrol-timber-shotgun.recording.json.gz",
+      "bytes": 1910,
+      "sha256": "4ed0f05065609244db3ffbdf929c5ad42cbf400f54d62bacffd634e8fda83cfc"
+    },
+    {
+      "path": "material-4-patrol-timber-rocket-launcher.recording.json.gz",
+      "bytes": 1922,
+      "sha256": "adb8b553b99a462526166f3313116463b1714e3e51867ede92f1c1609042e4b4"
+    },
+    {
+      "path": "material-4-patrol-timber-flamethrower.recording.json.gz",
+      "bytes": 1920,
+      "sha256": "fc938865cf9ca8f5a038a7bada50b6735719ff15744e1d5b3dc07cf6bd965e92"
+    },
+    {
+      "path": "material-4-patrol-timber-laser.recording.json.gz",
+      "bytes": 1906,
+      "sha256": "ce7ec2ff56bf28eee91f1d81b1b9e02697293835140ba64bafc3b35f0ea0a40a"
+    },
+    {
+      "path": "material-4-patrol-timber-knife.recording.json.gz",
+      "bytes": 1914,
+      "sha256": "2f54cb4149e7a1c9565f2589357bc4819bc5ca34d5b872903c82602b8d5aa043"
+    },
+    {
+      "path": "material-4-patrol-timber-grenade.recording.json.gz",
+      "bytes": 1925,
+      "sha256": "fcddf8bff653d7939221731ba0217a8f83989904e758a0658b8738ba81a5bb1c"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-sidearm.recording.json.gz",
+      "bytes": 1928,
+      "sha256": "a903d9a2f385f46ac4a4c3a83c7ccf1ad3d229238044f4b477af11ef440a7c51"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-heavy-machine-gun.recording.json.gz",
+      "bytes": 1948,
+      "sha256": "af23d24fd0adc94437840426c817150edbcdaae24cf6dcdb99aaf65f92abaebb"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-shotgun.recording.json.gz",
+      "bytes": 1934,
+      "sha256": "63b06bca478aa9a61a5953544c283d0338944a0a08ca857c01fe0e685f6e0b13"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-rocket-launcher.recording.json.gz",
+      "bytes": 1928,
+      "sha256": "66ad1dbd911ff19ccbd43e5ac00884903eef6e7d9448c16b0f82c97f2efaab83"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-flamethrower.recording.json.gz",
+      "bytes": 1943,
+      "sha256": "f978396b2aaab6ade620a3f7fb47d49c63d6be3ae697ce84a07642948e648fdb"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-laser.recording.json.gz",
+      "bytes": 1919,
+      "sha256": "cccba45949d6a11f50bb0fc1889a5b9a1317e816de5d54c4fae7b068f2c3ab07"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-knife.recording.json.gz",
+      "bytes": 1921,
+      "sha256": "c8b1d0f8bd398ad022ebc18655a69a9ce1cab40aaf208460d2dde423b0d7ca30"
+    },
+    {
+      "path": "material-4-patrol-armor-steel-grenade.recording.json.gz",
+      "bytes": 1931,
+      "sha256": "214f917bc8c7bf35b13d116e8b943ad63adf165d80f3cd4378e20ac5fbab28e3"
+    },
+    {
+      "path": "material-4-patrol-open-grating-sidearm.recording.json.gz",
+      "bytes": 1934,
+      "sha256": "be0abe0bc8efc148c4496188ed59851c27ef36bbeab2378fb3a13eeaa1f816f2"
+    },
+    {
+      "path": "material-4-patrol-open-grating-heavy-machine-gun.recording.json.gz",
+      "bytes": 1952,
+      "sha256": "d0df2f20e5e1df5c399ea4714012f20014668af3c2320c9b917956d5ae3f9aff"
+    },
+    {
+      "path": "material-4-patrol-open-grating-shotgun.recording.json.gz",
+      "bytes": 1924,
+      "sha256": "3094153eff52626d853033207ee44ccdc50e1f64e951877e223ca3dec298d6d0"
+    },
+    {
+      "path": "material-4-patrol-open-grating-rocket-launcher.recording.json.gz",
+      "bytes": 1934,
+      "sha256": "e6049c1e1b7c6461d25bc663be96ea79099f4c790c5d7f283924155e1814f2b9"
+    },
+    {
+      "path": "material-4-patrol-open-grating-flamethrower.recording.json.gz",
+      "bytes": 1950,
+      "sha256": "a3cfa32ffe4b608d46168b51b15014c788c592e713f8689496ae7e5ef35b6e91"
+    },
+    {
+      "path": "material-4-patrol-open-grating-laser.recording.json.gz",
+      "bytes": 1921,
+      "sha256": "39669b24d4b4638d9688d81c7e1f6b538fff33139dcc88ae97a3e22f342505fc"
+    },
+    {
+      "path": "material-4-patrol-open-grating-knife.recording.json.gz",
+      "bytes": 1925,
+      "sha256": "636a38bb18d8fbb0bf5b5cf025b2b7ed4b7b2669f41880eac2c9976fddea7dda"
+    },
+    {
+      "path": "material-4-patrol-open-grating-grenade.recording.json.gz",
+      "bytes": 1936,
+      "sha256": "ff2c43c6f2c07d937071d1fed3cbcae1ba05544c054d7b47e093e22c4483ed80"
+    },
+    {
+      "path": "material-inspector.png",
+      "bytes": 147389,
+      "sha256": "edb792a356831c909ce71b4ba8a07eed198f74de25567fd7bd2862621821da28"
+    },
+    {
+      "path": "checks.log.gz",
+      "bytes": 2240,
+      "sha256": "4e9815d19e12933ea62de29cbd00e19bad3cdd6b97c2439888d670192f729934"
+    },
+    {
+      "path": "types.log.gz",
+      "bytes": 500,
+      "sha256": "7f7ee98c6c58f0c3baaa2a7faf2c6f10eba51baf1e6ffe4024c3b5485dfc780b"
+    },
+    {
+      "path": "runtime.log.gz",
+      "bytes": 249,
+      "sha256": "8bd014f17ebc3e995bd95b8b808bfbe99be0779341d79773b3228c28e67f130a"
+    },
+    {
+      "path": "network.log.gz",
+      "bytes": 224,
+      "sha256": "9ead2f8c36cb6753be49fd0e4baca665f8dbfe881bc92bcb37217865dac07f21"
+    },
+    {
+      "path": "wireControl.log.gz",
+      "bytes": 2795,
+      "sha256": "3db8688dc05915d81d06592a20cc379737c510134413df590e10a990067f9201"
+    },
+    {
+      "path": "materialTests.log.gz",
+      "bytes": 165,
+      "sha256": "d2cd1970b1d8ca253b895fb96af0ca2c46e6b26a9764375326ec8506d09ae030"
+    },
+    {
+      "path": "build-control-diagnostics.json.gz",
+      "bytes": 3259,
+      "sha256": "d62d681861410316f21d0975ba835bdf0b3b4cc5b882dd3cb6f2a7b9a48b1785"
+    },
+    {
+      "path": "build-control-execution.log.gz",
+      "bytes": 373,
+      "sha256": "c037b97790c73bb7461ce51c37c255b018f36332ed825bc20f2553668e18d480"
+    },
+    {
+      "path": "build-control-failed-clients.json.gz",
+      "bytes": 42838,
+      "sha256": "fa861fe18e6c989c6277937cb17420bbba0691bff15bb655c8fa49bf2a9f2e74"
+    },
+    {
+      "path": "build-control-failure.json.gz",
+      "bytes": 15921,
+      "sha256": "016cb3fa967318c2ae0116ddaf4d8bf8c6527e4ec82a2f70464903911ca2a983"
+    },
+    {
+      "path": "build-control-failure.png",
+      "bytes": 134948,
+      "sha256": "03a843e1bd67c6f6778a37693c1a63efbf27d50ea5a4b67a8975e41df0894f4c"
+    },
+    {
+      "path": "clock-control-diagnostics.json.gz",
+      "bytes": 1192,
+      "sha256": "3162e46d732f7b195ad1e1aa497c9b365d87ed9dc4848f83ab28c1d04297dab0"
+    },
+    {
+      "path": "clock-control-execution.log.gz",
+      "bytes": 442,
+      "sha256": "34dd86032c84921b39c50bbd4a6f909831f0a30f3b49418ee9e3731eb73e3978"
+    },
+    {
+      "path": "clock-control-failed-clients.json.gz",
+      "bytes": 2719,
+      "sha256": "9ddb5a7c63ae9ffb8a952c543a2da7aaef309344bfcb98c92ecf88a6a154528d"
+    },
+    {
+      "path": "clock-control-failure.json.gz",
+      "bytes": 3155,
+      "sha256": "69462e02b6b58d965789ff8197ef8f93ca8fa36c07dc5b931463382f4b85d52c"
+    },
+    {
+      "path": "clock-control-failure.png",
+      "bytes": 138332,
+      "sha256": "44b966af4857804da109c1df7883f10ce83a6279c043075abd260ac45d8a081d"
+    },
+    {
+      "path": "clock-control-2-diagnostics.json.gz",
+      "bytes": 2422,
+      "sha256": "32bd26bc6923e006ad188c78896da5d75963d694fdd9ef6079d24399139c38b3"
+    },
+    {
+      "path": "clock-control-2-execution.log.gz",
+      "bytes": 442,
+      "sha256": "ef223457482493825af87f0befe9ed4df0b06ca8f47b193b48720c461738dc6e"
+    },
+    {
+      "path": "clock-control-2-failed-clients.json.gz",
+      "bytes": 9434,
+      "sha256": "3d8507767ddf8540446888ca5b3a8a184b55c82f97213af4aebd5890d10ff2f9"
+    },
+    {
+      "path": "clock-control-2-failure.json.gz",
+      "bytes": 8705,
+      "sha256": "da61ca62492b0a8bbd3e0c1b630338ec52e32aa5499cbff3df9769a7190ade14"
+    },
+    {
+      "path": "clock-control-2-failure.png",
+      "bytes": 138589,
+      "sha256": "a0da26f33caba3f0c3700136592a84c6d6a155941864a74a8857adab070cc3b3"
+    },
+    {
+      "path": "clock-control-3-diagnostics.json.gz",
+      "bytes": 1359,
+      "sha256": "775e66a6e2b8057df43b728db67acd17663cc2e05f3c598aadd003a48994a7ed"
+    },
+    {
+      "path": "clock-control-3-execution.log.gz",
+      "bytes": 442,
+      "sha256": "ef223457482493825af87f0befe9ed4df0b06ca8f47b193b48720c461738dc6e"
+    },
+    {
+      "path": "clock-control-3-failed-clients.json.gz",
+      "bytes": 3966,
+      "sha256": "fe5fd6a8ed195a3dc344a1a778aa90e676c98e34e2440ce15d4f681b7abf2571"
+    },
+    {
+      "path": "clock-control-3-failure.json.gz",
+      "bytes": 4128,
+      "sha256": "5f66a44954bc1ae4fb5558b1c54e80dbff78a0e6c03483eeba9b0d5d03e27f1d"
+    },
+    {
+      "path": "clock-control-3-failure.png",
+      "bytes": 139590,
+      "sha256": "ffee49969a4557a3e57aa81a9876ab32610b83bec120aaf59e196a562948efdd"
+    },
+    {
+      "path": "clock-control-4-diagnostics.json.gz",
+      "bytes": 2666,
+      "sha256": "e976c168c1be855c0080f59bae5516c8ba17252bf4a3795f9792b0e86c7a882b"
+    },
+    {
+      "path": "clock-control-4-execution.log.gz",
+      "bytes": 442,
+      "sha256": "ef223457482493825af87f0befe9ed4df0b06ca8f47b193b48720c461738dc6e"
+    },
+    {
+      "path": "clock-control-4-failed-clients.json.gz",
+      "bytes": 27350,
+      "sha256": "fcc1f0c4ca4b2e5397d3fa811c68c724cfa596c9bf224ee45fac9911c3d62618"
+    },
+    {
+      "path": "clock-control-4-failure.json.gz",
+      "bytes": 10055,
+      "sha256": "4f59daf6eaeff54351e1117cc995b873f16dee0d5cb5d1edf01783ad012b61d5"
+    },
+    {
+      "path": "clock-control-4-failure.png",
+      "bytes": 140395,
+      "sha256": "205c3a2dd0df1942964ae5f6576417e92a3b33f91096c82bc913dc8821d5435e"
+    },
+    {
+      "path": "clock-control-5-diagnostics.json.gz",
+      "bytes": 2176,
+      "sha256": "8335e09f75aec09a88fcdd49418dc29fdb0b92aa73bbb8a76e6b898b90538742"
+    },
+    {
+      "path": "clock-control-5-execution.log.gz",
+      "bytes": 442,
+      "sha256": "ef223457482493825af87f0befe9ed4df0b06ca8f47b193b48720c461738dc6e"
+    },
+    {
+      "path": "clock-control-5-failed-clients.json.gz",
+      "bytes": 21415,
+      "sha256": "b7db3f30a0edc01af35b738abf7b2066a32f98bce524c699ecd9674e94245a6c"
+    },
+    {
+      "path": "clock-control-5-failure.json.gz",
+      "bytes": 7748,
+      "sha256": "82888087fc450e85cd4fb8ff0baa193f6c83bb716bed451d4dafd147df7b1485"
+    },
+    {
+      "path": "clock-control-5-failure.png",
+      "bytes": 140755,
+      "sha256": "35a5c6f976bdd048fb7e884aab3a32b043441220b07f5c650dea4ca528408616"
+    },
+    {
+      "path": "upgrade-control-execution.log.gz",
+      "bytes": 342,
+      "sha256": "27f6c6d69fb3b6d57c873820d7288e677508f8e05a170afeb823b57cb31c471b"
+    },
+    {
+      "path": "upgrade-control-failure.json.gz",
+      "bytes": 2027,
+      "sha256": "10323023a144483fbec01d20de25be23cebc3af76126d3aa775b64e1f4b8a45f"
+    },
+    {
+      "path": "mission-1.json.gz",
+      "bytes": 232491,
+      "sha256": "abfb5490df39c0a6c147acc877f5abe832af0e7347658ad6d28fc54c927b2983"
+    },
+    {
+      "path": "mission-1.recording.json.gz",
+      "bytes": 4562,
+      "sha256": "5f95ca8e15502ea60f5dccb9b0f78c784d929cb1a35484d4693470bb96c261f9"
+    },
+    {
+      "path": "mission-1-3054-victory-clean.png",
+      "bytes": 8632,
+      "sha256": "f2a5f0e71d28a4438a05df5ee71c94337f5678029b79d9bbcb93568b616eb440"
+    },
+    {
+      "path": "mission-1-3054-victory-debug.png",
+      "bytes": 8760,
+      "sha256": "fed96fedb910df1187a0b53cdf8b8d14a4742d97aa07de1b6855fe69a6a8e4f3"
+    },
+    {
+      "path": "mission-2.json.gz",
+      "bytes": 235174,
+      "sha256": "3ec77b36599cffd29dd855cc563ef331a4b1b2b8fe0dbfc3505af7f641b65011"
+    },
+    {
+      "path": "mission-2.recording.json.gz",
+      "bytes": 7078,
+      "sha256": "a96d1f6178a283a1dfe23ec429ee39078b459f04124ddf4c616809266c8bbbf2"
+    },
+    {
+      "path": "mission-2-3080-victory-clean.png",
+      "bytes": 9181,
+      "sha256": "839e3dde34de146cd20d842960c74d0dc426efc2dfd6c7ccb775b84731c6bb4c"
+    },
+    {
+      "path": "mission-2-3080-victory-debug.png",
+      "bytes": 9406,
+      "sha256": "6190a05ec527f81131b610b71138a582e41095cfcda5e733048a6f41a097cf07"
+    },
+    {
+      "path": "mission-4.json.gz",
+      "bytes": 230203,
+      "sha256": "1f1d06a6e4764d85bced5fae44327fc872ab3467ec91214c38497773436acb06"
+    },
+    {
+      "path": "mission-4.recording.json.gz",
+      "bytes": 14205,
+      "sha256": "d054886c516aed5f098f317124279011e84af59655d9e839a794223df7a72f20"
+    },
+    {
+      "path": "mission-4-2989-victory-clean.png",
+      "bytes": 9809,
+      "sha256": "204163b1de67aba849279aa387c7f12934baf003746b09e33a9f880021fa628b"
+    },
+    {
+      "path": "mission-4-2989-victory-debug.png",
+      "bytes": 10296,
+      "sha256": "c6a569d5b7d9871aebd3e98840185f1e43423bbf65d04d81934dd7008b41e029"
+    },
+    {
+      "path": "benchmark.js.gz",
+      "bytes": 1000785,
+      "sha256": "a7cd903e47ce923324d3d7446164b330d659991508b3013e5063386f127b05c9"
+    },
+    {
+      "path": "networkCases.json",
+      "bytes": 24475,
+      "sha256": "b5c2fc711c4742af5c1cab320e3acd3c28b56c43c62cf3fbf752c5fd4ef727f5"
+    },
+    {
+      "path": "controls.json",
+      "bytes": 2798,
+      "sha256": "586a073277af5f7be3d10ec2d462e562e63c3ac9fed6ed777db296d7b664689f"
+    },
+    {
+      "path": "missions.json",
+      "bytes": 7277,
+      "sha256": "a321a443a31ff5c6c33944cce4b28693f11e9ccd6463bfc4acd9e015d096d740"
+    },
+    {
+      "path": "runtimeInputs.json",
+      "bytes": 28681,
+      "sha256": "3359be35d3756e6e299d3b9f5abbd1b6b84e77f8fdc209f776996ef10c886600"
+    },
+    {
+      "path": "curate-material-room.mjs",
+      "bytes": 13371,
+      "sha256": "b8e99ab802e565c6a5bf5dd57b63aedbccc835e551b27e422c4604ae240dc0d8"
+    }
+  ]
+}

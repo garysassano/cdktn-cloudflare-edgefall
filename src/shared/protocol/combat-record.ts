@@ -4,7 +4,7 @@ import type { Reader, Writer } from "./binary.js";
 import { ProtocolError } from "./schema.js";
 import type { CombatSnapshot, FullSnapshot } from "./snapshot-schema.js";
 
-export const COMBAT_HEADER_BYTES = 52;
+export const COMBAT_HEADER_BYTES = 56;
 export const COMBAT_MEMBER_BYTES = 32;
 export const AREA_EXPOSURE_BYTES = 48;
 export const MAX_AREA_EXPOSURES = 64;
@@ -13,7 +13,7 @@ export const MAX_DESTRUCTIBLES = 32;
 export const PICKUP_BYTES = 16;
 export const MAX_PICKUPS = 64;
 export const MAX_COMBAT_BYTES =
-  8788 +
+  8792 +
   AREA_EXPOSURE_BYTES * MAX_AREA_EXPOSURES +
   DESTRUCTIBLE_BYTES * MAX_DESTRUCTIBLES +
   PICKUP_BYTES * MAX_PICKUPS;
@@ -96,8 +96,9 @@ function readOptional<T extends string>(r: Reader, values: readonly T[]): T | nu
   return index === 0 ? null : (values[index - 1] ?? null);
 }
 export function writeCombat(w: Writer, combat: CombatSnapshot) {
-  w.u16(4);
+  w.u16(5);
   w.u16(COMBAT_HEADER_BYTES);
+  w.u32(combat.scenarioId, 1);
   w.u32(combat.nextEntityId, 1);
   w.u32(combat.nextActionId, 1);
   w.u32(combat.encounterEventCursor, 0, 1024);
@@ -175,8 +176,9 @@ export function writeCombat(w: Writer, combat: CombatSnapshot) {
 }
 export function readCombat(r: Reader): CombatSnapshot {
   const start = r.offset;
-  check(r.u16() === 4 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
+  check(r.u16() === 5 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
   const cursors = {
+    scenarioId: r.u32(1),
     nextEntityId: r.u32(1),
     nextActionId: r.u32(1),
     encounterEventCursor: r.u32(0, 1024),
@@ -280,6 +282,12 @@ export function readCombat(r: Reader): CombatSnapshot {
 export function validateCombat(snapshot: FullSnapshot) {
   const combat = snapshot.combat;
   if (combat === null) return;
+  check(
+    Number.isSafeInteger(combat.scenarioId) &&
+      combat.scenarioId > 0 &&
+      combat.scenarioId < COUNTER_LIMIT,
+    "scenario identity",
+  );
   combatRecordBytes(combat);
   check(combat.encounterId === snapshot.campaign.encounterId, "encounter identity");
   function ordered(ids: number[]) {

@@ -8,6 +8,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { build } from "esbuild";
+import type { CombatScenario } from "../../src/game/labs/combat-scenarios.js";
 
 /** A/B control that removes Wrangler's local proxy, using the exact same installed workerd. */
 export async function withDirectRoomWorker<T>(
@@ -18,19 +19,8 @@ export async function withDirectRoomWorker<T>(
     restart: () => Promise<string>,
   ) => Promise<T>,
   options: {
-    combatScenario?:
-      | "range"
-      | "rifle"
-      | "guard"
-      | "shotgun"
-      | "flame"
-      | "tank"
-      | "ordnance"
-      | "hmg"
-      | "rocket"
-      | "laser"
-      | "pickups"
-      | "support";
+    combatScenario?: CombatScenario;
+    combatPlayers?: number;
   } = {},
 ): Promise<T> {
   const require = createRequire(import.meta.url);
@@ -57,6 +47,7 @@ export async function withDirectRoomWorker<T>(
         bindings: {
           PROFILE_COOKIE_SECRET: profileSecret,
           PROBE_COMBAT_SCENARIO: options.combatScenario ?? "range",
+          PROBE_COMBAT_PLAYERS: String(options.combatPlayers ?? 4),
         },
         durableObjects: { ROOM_PROBES: { className: "RoomLoadProbe", useSQLite: true } },
         resourcePersistencePath: directory,

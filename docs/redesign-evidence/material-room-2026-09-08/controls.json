@@ -1,0 +1,118 @@
+[
+  {
+    "name": "build-control",
+    "error": "Error: ENOENT: no such file or directory, open '/home/user/git/cdktn-cloudflare-edgefall/dist/client/network-lab.js'",
+    "tick": 196,
+    "clock": {
+      "mode": "running",
+      "tick": 196,
+      "timerPending": true,
+      "fault": null
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "clock-control",
+    "error": "AssertionError [ERR_ASSERTION]: Material room failed",
+    "tick": 10,
+    "clock": {
+      "mode": "recovery",
+      "tick": 10,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 10,
+        "observedAtMs": 1788879337952,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "clock-control-2",
+    "error": "AssertionError [ERR_ASSERTION]: Material room failed",
+    "tick": 161,
+    "clock": {
+      "mode": "recovery",
+      "tick": 161,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 161,
+        "observedAtMs": 1788879455709,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "clock-control-3",
+    "error": "AssertionError [ERR_ASSERTION]: Material room failed",
+    "tick": 33,
+    "clock": {
+      "mode": "recovery",
+      "tick": 33,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 33,
+        "observedAtMs": 1788879574184,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "clock-control-4",
+    "error": "AssertionError [ERR_ASSERTION]: Material room failed",
+    "tick": 98,
+    "clock": {
+      "mode": "recovery",
+      "tick": 98,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 98,
+        "observedAtMs": 1788879663530,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "clock-control-5",
+    "error": "AssertionError [ERR_ASSERTION]: Material room failed",
+    "tick": 62,
+    "clock": {
+      "mode": "recovery",
+      "tick": 62,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 62,
+        "observedAtMs": 1788879812539,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "upgrade-control",
+    "error": "TypeError: fetch failed",
+    "tick": 0,
+    "clock": {
+      "mode": "stopped",
+      "tick": 0,
+      "timerPending": false,
+      "fault": null
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  }
+]

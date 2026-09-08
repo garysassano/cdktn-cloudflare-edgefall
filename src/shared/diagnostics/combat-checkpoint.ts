@@ -36,7 +36,7 @@ import {
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
 import { combatPickupDefinitions } from "../../game/labs/combat-pickups.js";
-import { COMBAT_SUPPORT, combatGeometryRevision } from "../../game/labs/combat-terrain.js";
+import { combatDestructibles, combatGeometryRevision } from "../../game/labs/combat-terrain.js";
 import { worldRect } from "../../game/physics/body.js";
 import { sweepBounds } from "../../game/physics/sweep.js";
 import { tankOwner, validateTankState } from "../../game/vehicles/tank.js";
@@ -124,7 +124,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props pickups pickupClaims projectiles rockets beams strikes grenades areas encounter events",
   );
-  check(combat.format === 13, "simulation format");
+  check(combat.format === 14, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -217,7 +217,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       validateGameplayEvent(event, combatEventContext(snapshot));
   validateDestructibles(
     combat.props,
-    combat.scenario === "support" ? COMBAT_SUPPORT : [],
+    combatDestructibles(combat.scenario),
     combat.tick,
     [...combat.players.map((p) => p.playerId), ...combat.targets.map((t) => t.enemy.body.id)],
     combat.nextActionId,
@@ -305,7 +305,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       original && member && body.id === member.id && target.shield === original.shield,
       "target identity",
     );
-    integer(target.health, 0, 1, "target health");
+    integer(target.health, 0, original.health, "target health");
     check(
       (target.rifle !== null) === (original.rifle !== null) &&
         (target.guard !== null) === (original.guard !== null),
@@ -913,7 +913,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 16,
+    format: 17,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -937,7 +937,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 16 &&
+    envelope.format === 17 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,
