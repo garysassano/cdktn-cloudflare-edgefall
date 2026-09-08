@@ -69,24 +69,6 @@
   ],
   "nativeDrawings": [
     {
-      "id": "operative-native-01",
-      "file": "art/source/hero/operative.pixels.json",
-      "bytes": 147907,
-      "sha256": "4dd8fd06af141c6159a3b196c91533e1afa941c6a118124e802960febecb1e3f",
-      "creator": "Codex-authored indexed pixel drawings for Edgefall",
-      "licence": "Project-original",
-      "role": "native-benchmark-candidate",
-      "references": [
-        "hero-key-poses-01"
-      ],
-      "method": "Explicit palette-indexed pixel rows authored by Codex; design reference only, no sampled concept pixels.",
-      "export": "pnpm art:export",
-      "humanReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
       "id": "quay-watch-native-01",
       "file": "art/source/enemies/quay-watch.pixels.json",
       "bytes": 34483,
@@ -176,6 +158,24 @@
       "role": "native-benchmark-candidate",
       "references": [],
       "method": "Original literal palette-indexed source rows for Breakwater Approach; no sampled reference pixels or runtime figure generation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
+      "id": "operative-native-01",
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 154150,
+      "sha256": "5e2d25d8dd14a4fb9c28115a35db754a319568b2ac540fa3c5ff0f71b6e5fd84",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [
+        "hero-key-poses-01"
+      ],
+      "method": "Explicit palette-indexed pixel rows authored by Codex; design reference only, no sampled concept pixels.",
       "export": "pnpm art:export",
       "humanReview": {
         "status": "pending",

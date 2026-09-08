@@ -121,27 +121,27 @@
         12
       ],
       "rows": [
-        "...........M",
-        "..........MiM",
-        "...oooo...MmM",
-        "..ohjjhoo.MmM",
-        ".ohjjhhhhoMyM",
-        ".ohHhSkso.MmM",
-        ".oHhSkwsoGGMo",
-        "..oSSkksoGfgo",
-        "...oSkkSgGgo",
-        "....oSSkSggo",
-        "...oAvSSkSo",
-        ".oooAavvSSo",
-        "oCddcAablvo",
-        "oCcdcAabTvo",
-        "oCcccAabTvo",
-        "oCccCAaaAvo",
-        ".oCCoAaaAAo",
-        "..oooAAAAxo",
-        ".....oxxyxxo",
-        ".....oNNnnno",
-        "......ooooo"
+        "...........MiM.............",
+        "...........MmM...ooooooo...",
+        "...........MiM.oohhhjjhhoo.",
+        "...........MmMoskhhhjjjhhho",
+        ".........oGMmMskwewkShhhhHo",
+        "........oGoMMMskkwwkkShhhHo",
+        ".......oGoMmmMosskkkkSShHo.",
+        "......oSsoMMoGGGokkkSShHo..",
+        ".....oSkksoMoGffgGoooooo...",
+        "...ooAakssooMoGggGgssso....",
+        "..ooAabAsoAoooooooSkksso...",
+        ".oCoAAAaoAablvvaooSkkso....",
+        "oCccoooooAabTvaAoAasSo.....",
+        "oCcccCCcoAabTvaoAabAo......",
+        "oCcccCCcoAaaAvAAoooo.......",
+        ".oCCCCooAAaaaAAao..........",
+        "..oooooAAaaaaAAo...........",
+        "......oAAAAAAxxo...........",
+        "......oxxxyxxxxo...........",
+        "......oNNNnnnqqo...........",
+        ".......oooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -149,8 +149,8 @@
           -36
         ],
         "grip": [
-          1,
-          -30
+          4,
+          -27
         ]
       }
     },
@@ -159,44 +159,43 @@
       "channel": "upper",
       "at": [
         15,
-        13
+        15
       ],
       "rows": [
-        ".........ooooo",
-        ".......oohhjjhhoo",
-        "......ohhhjjhhho",
-        "......oHhhhhhho",
-        "......oHhhSkksso",
-        ".......oHSkwekso",
-        "........oSSkksso",
-        "....ooooAoSkkso",
-        "...oCddcAAoSSo",
-        "..oCcccoAabvo",
-        "..oCccCoAablAo",
-        "..oCCCooAabTvo",
-        "...ooo.oAAaavAo",
-        ".......oAAaAGgo",
-        ".......oAAGggGgo",
-        ".......oxxGgffggo",
-        ".......oxxyGGfggo",
-        "........oNNnnGgo",
-        ".........ooooGgo",
-        "..........oGGgo",
-        "..........oSkggo",
-        "..........oSkggo",
-        "..........oSkgo",
-        "..........oSggo",
-        "..........oGggo",
-        "..........oGggo",
-        "..........oGfgo",
-        "..........oGggo",
-        "..........oGmMo",
-        "...........MiM",
-        "...........MmM",
-        "...........MyM",
-        "...........MmM",
-        "...........MiM",
-        "...........MmM"
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkwwekso",
+        "...................oHSSkkkkso",
+        "...oooooooooo.......oSSkkkso.",
+        "..oCdddccooAAAo......ooSkso..",
+        ".oCcdccccCoAaAAaoo..oSkooo...",
+        "oCcccccCCCoAabvlAAAoSSSoo....",
+        "oCccccCCCoooabTlvAoAAao......",
+        "oCcccCCCoAbaoTvloooooo.......",
+        ".oCCCCCooAaaoTvoAbao.........",
+        "..oooooAAoSSsovoAaaao........",
+        "......oAAAoSksoxoSksso.......",
+        "......oxxxyoGggoooSkkso......",
+        "......oNNNnoGffgooSkkso......",
+        ".......ooooooooooSkkso.......",
+        "...............oSkkso........",
+        "..............oSkkso.........",
+        ".............oGGgso..........",
+        "............oGffgGo..........",
+        ".........oGGoooGGo...........",
+        ".........GfgMMoo.............",
+        ".........GggMMMo.............",
+        ".........ooGmMMo.............",
+        ".........oMmmMo..............",
+        "..........oMMM...............",
+        "...........MmM...............",
+        "...........MmM...............",
+        "...........MiM...............",
+        "...........MmM...............",
+        "...........MiM..............."
       ],
       "sockets": {
         "muzzle": [
@@ -205,7 +204,7 @@
         ],
         "grip": [
           3,
-          -8
+          -9
         ]
       }
     },
@@ -696,30 +695,28 @@
       "channel": "upper",
       "at": [
         15,
-        12
+        14
       ],
       "rows": [
-        ".",
-        ".",
-        "...oooo....M",
-        "..ohjjhoo.MiM",
-        ".ohjjhhhhoMmM",
-        ".ohHhSkso.MyM",
-        ".oHhSkwsoGMmM",
-        "..oSSkksoGGGMo",
-        "...oSkkSgGGfgGo",
-        "....oSSkSgGfgo",
-        "...oAvSSkSGgo",
-        ".oooAavvSSSgo",
-        "oCddcAablvo",
-        "oCcdcAabTvo",
-        "oCcccAabTvo",
-        "oCccCAaaAvo",
-        ".oCCoAaaAAo",
-        "..oooAAAAxo",
-        ".....oxxyxxo",
-        ".....oNNnnno",
-        "......ooooo"
+        "...........MiM...ooooooo..",
+        "...........MmM.oohhhjjhhoo",
+        "...........MiMskhhhjjjhhho",
+        ".........oGMmMkkeekShhhhHo",
+        "........oGfMmMkkwkkkShhhHo",
+        ".......oGgoMMMsskkkkSShHo.",
+        "......oSsoMmoGGGokkSShHo..",
+        "....ooSkkoMMoGffgGooooo...",
+        "..oooAakssoMMoGggGgssso...",
+        ".oCoAabAsoaoMMooooSkksso..",
+        "oCcoAAAaoAaooooAAoSkkso...",
+        "oCccoooooAabTvaAoAasSo....",
+        ".oCCCCCoAaaAvAAoAabAo.....",
+        "..oCCCooAAaaaAAaoooo......",
+        "...ooooAAaaaaAAo..........",
+        "......oAAAAAAxxo..........",
+        "......oxxxyxxxxo..........",
+        "......oNNNnnnqqo..........",
+        ".......oooooooo..........."
       ],
       "sockets": {
         "muzzle": [
@@ -727,8 +724,8 @@
           -34
         ],
         "grip": [
-          2,
-          -29
+          4,
+          -26
         ]
       }
     },
@@ -737,30 +734,29 @@
       "channel": "upper",
       "at": [
         15,
-        12
+        13
       ],
       "rows": [
-        ".",
-        "...........M",
-        "...oooo...MiM",
-        "..ohjjhoo.MmM",
-        ".ohjjhhhhoMyM",
-        ".ohHhSkso.MmM",
-        ".oHhSkwsoGGGMo",
-        "..oSSkksoGGfgGo",
-        "...oSkkSgGGfgo",
-        "....oSSkSgGgSo",
-        "...oAvSSkSSgo",
-        ".oooAavvSSvAo",
-        "oCddcAablvo",
-        "oCcdcAabTvo",
-        "oCcccAabTvo",
-        "oCccCAaaAvo",
-        ".oCCoAaaAAo",
-        "..oooAAAAxo",
-        ".....oxxyxxo",
-        ".....oNNnnno",
-        "......ooooo"
+        "...........MiM...ooooooo...",
+        "...........MmM.oohhhjjhhoo.",
+        "...........MiMoskhhhjjjhhho",
+        ".........oGMmMskwewkShhhhHo",
+        "........oGfMmMskkwwkkShhhHo",
+        ".......oGgoMMMosskkkkSShHo.",
+        "......oSsoMmoGGGokkkSShHo..",
+        ".....oSkkoMMoGffgGoooooo...",
+        "...ooAakssoMMoGggGgssso....",
+        "..ooAabAsoAoMMooooSkksso...",
+        ".oCoAAAaoAaooooaooSkkso....",
+        "oCccoooooAabTvaAoAasSo.....",
+        "oCcccCCcoAabTvaoAabAo......",
+        "oCcccCCcoAaaAvAAoooo.......",
+        ".oCCCCooAAaaaAAao..........",
+        "..oooooAAaaaaAAo...........",
+        "......oAAAAAAxxo...........",
+        "......oxxxyxxxxo...........",
+        "......oNNNnnnqqo...........",
+        ".......oooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -768,8 +764,8 @@
           -35
         ],
         "grip": [
-          2,
-          -29
+          4,
+          -27
         ]
       }
     },
@@ -778,42 +774,40 @@
       "channel": "upper",
       "at": [
         15,
-        13
+        16
       ],
       "rows": [
-        ".........ooooo",
-        ".......oohhjjhhoo",
-        "......ohhhjjhhho",
-        "......oHhhhhhho",
-        "......oHhhSkksso",
-        ".......oHSkwekso",
-        "........oSSkksso",
-        "....ooooAoSkkso",
-        "...oCddcAAoSSo",
-        "..oCcccoAabvo",
-        "..oCccCoAablAo",
-        "..oCCCooAabTvo",
-        "...ooo.oAAaavAo",
-        ".......oAAaAGgo",
-        ".......oAAGggGgo",
-        ".......oxxGgffggo",
-        ".......oxxyGGfggo",
-        "........oNNnnGgo",
-        ".........ooooGgo",
-        "..........oGGgo",
-        "..........oSkggo",
-        "..........oSkggo",
-        "..........oSkgo",
-        "..........oSggo",
-        "..........oGggo",
-        "..........oGfgo",
-        "..........oGggGo",
-        "...........MiM",
-        "...........MmM",
-        "...........MyM",
-        "...........MmM",
-        "...........MiM",
-        "...........MmM"
+        ".................ooooooo....",
+        "...............oohhjjjhhhoo.",
+        "...............ohhjjjhhhhho.",
+        "...............oHhhhhhhho...",
+        "................oHhhSskksso.",
+        ".................oHSSkeekkso",
+        "....oooooooooo....oHSSkkkkso",
+        "..ooCddccooAAAo....oSSkkkso.",
+        ".oCcdccccCoAaAAaoo.oooSkso..",
+        "oCcccccCCoooabvlAAoSSSooo...",
+        "oCccccCCoAbaobTloooAao......",
+        ".oCCCCCCoAaaoTvoAbaoo.......",
+        "..oCCCCoAoSSsovoAaaao.......",
+        "...ooooAAaoSksoooSksso......",
+        "......oAAAAoGggoooSkkso.....",
+        "......oxxxyoGffgooSkkso.....",
+        "......oNNNnnoooooSkkso......",
+        ".......oooooooooSkkso.......",
+        "..............oSkkso........",
+        ".............oGGgso.........",
+        "...........oooofgGo.........",
+        ".........oGGMMoGGo..........",
+        ".........GfgMMMo............",
+        ".........GggmMMo............",
+        ".........ooGmMo.............",
+        "..........oMMM..............",
+        "...........MmM..............",
+        "...........MmM..............",
+        "...........MiM..............",
+        "...........MmM..............",
+        "...........MiM.............."
       ],
       "sockets": {
         "muzzle": [
@@ -822,7 +816,7 @@
         ],
         "grip": [
           3,
-          -9
+          -10
         ]
       }
     },
@@ -831,43 +825,42 @@
       "channel": "upper",
       "at": [
         15,
-        13
+        15
       ],
       "rows": [
-        ".........ooooo",
-        ".......oohhjjhhoo",
-        "......ohhhjjhhho",
-        "......oHhhhhhho",
-        "......oHhhSkksso",
-        ".......oHSkwekso",
-        "........oSSkksso",
-        "....ooooAoSkkso",
-        "...oCddcAAoSSo",
-        "..oCcccoAabvo",
-        "..oCccCoAablAo",
-        "..oCCCooAabTvo",
-        "...ooo.oAAaavAo",
-        ".......oAAaAGgo",
-        ".......oAAGggGgo",
-        ".......oxxGgffggo",
-        ".......oxxyGGfggo",
-        "........oNNnnGgo",
-        ".........ooooGgo",
-        "..........oGGgo",
-        "..........oSkggo",
-        "..........oSkggo",
-        "..........oSkgo",
-        "..........oSggo",
-        "..........oGggo",
-        "..........oGfgo",
-        "..........oGggo",
-        "..........oGggGo",
-        "...........MiM",
-        "...........MmM",
-        "...........MyM",
-        "...........MmM",
-        "...........MiM",
-        "...........MmM"
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkwwekso",
+        "...................oHSSkkkkso",
+        "...oooooooooo.......oSSkkkso.",
+        "..oCdddccooAAAo......ooSkso..",
+        ".oCcdccccCoAaAAaoo..oSkooo...",
+        "oCcccccCCCoAabvlAAAoSSSoo....",
+        "oCccccCCCoooabTlvAoAAao......",
+        "oCcccCCCoAbaoTvloooooo.......",
+        ".oCCCCCooAaaoTvoAbao.........",
+        "..oooooAAoSSsovoAaaao........",
+        "......oAAAoSksoxoSksso.......",
+        "......oxxxyoGggoooSkkso......",
+        "......oNNNnoGffgooSkkso......",
+        ".......ooooooooooSkkso.......",
+        "...............oSkkso........",
+        "..............oSkkso.........",
+        ".............oGGgso..........",
+        "...........oooofgGo..........",
+        ".........oGGMMoGGo...........",
+        ".........GfgMMMo.............",
+        ".........GggmMMo.............",
+        ".........ooGmMo..............",
+        "..........oMMM...............",
+        "...........MmM...............",
+        "...........MmM...............",
+        "...........MiM...............",
+        "...........MmM...............",
+        "...........MiM..............."
       ],
       "sockets": {
         "muzzle": [
@@ -876,7 +869,7 @@
         ],
         "grip": [
           3,
-          -8
+          -9
         ]
       }
     },
@@ -2819,48 +2812,44 @@
       "id": "upper-hmg-16",
       "channel": "upper",
       "at": [
-        17,
-        13
+        15,
+        15
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "oCccCoAablAo...",
-        "oCCCooAabTvo...",
-        ".ooo.oAAaavAo..",
-        ".....oAGGGGgo..",
-        ".....oAGgGgGgo.",
-        ".....oxGgGffggo",
-        ".....oxGgGGfggo",
-        "......oGgGnGgo.",
-        ".......GgGoogo.",
-        ".......GgGooo..",
-        ".......GgGGogo.",
-        ".......GGgGogo.",
-        ".......oGgGoo..",
-        ".......oGgGoo..",
-        ".......oGgGoo..",
-        ".......oGgGoo..",
-        ".......oGgGMo..",
-        ".......oGGMMo..",
-        ".......oGfgMo..",
-        ".......oGGGM...",
-        ".......oMMMo...",
-        ".......oMMMo...",
-        ".......oMMMo...",
-        ".......ooioo...",
-        ".......ooMoo...",
-        ".......ooMoo...",
-        ".......ooooo...",
-        ".......ooooo..."
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkwwekso",
+        "...................oHSSkkkkso",
+        "...oooooooooo.......oSSkkkso.",
+        "..oCdddccooAAAo......ooSkso..",
+        ".oCcdccccCoAaAAaoo..oSkooo...",
+        "oCcccccCCCoAabvlAoooSSSoo....",
+        "oCccccCCCoooabTloAbaoao......",
+        "oCcccCCCoAbaoTvloAaaao.......",
+        ".oCCCCCooAaaooooAoSksso......",
+        "..oooooAAoSoMmooAAoSkkso.....",
+        "......oAAAooMMoxooSkkkso.....",
+        "......oxxxyoMMoooSkksoo......",
+        "......oNNoGGMMMoggsso........",
+        ".......ooGfgMimogGoo.........",
+        ".........GggMMMoGo...........",
+        ".........ooGMMoo.............",
+        ".........oMMMMMo.............",
+        ".........oMMMmyo.............",
+        ".........oMMiMMo.............",
+        ".........oMmiMMo.............",
+        "..........oMmMMo.............",
+        "..........oMMMo..............",
+        "..........oMmMo..............",
+        "..........oMiMo..............",
+        "..........oMmMo..............",
+        "..........oMmMo..............",
+        "...........oMo...............",
+        "...........oio...............",
+        "...........oMo..............."
       ],
       "sockets": {
         "muzzle": [
@@ -2868,8 +2857,8 @@
           0
         ],
         "grip": [
-          2,
-          -7
+          3,
+          -15
         ]
       }
     },
@@ -2877,47 +2866,42 @@
       "id": "upper-hmg-16-kick",
       "channel": "upper",
       "at": [
-        17,
-        13
+        15,
+        16
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "oCccCoAablAo...",
-        "oCCCooAabTvo...",
-        ".ooo.oAAaavAo..",
-        ".....oAGGGGgo..",
-        ".....oAGgGgGgo.",
-        ".....oxGgGffggo",
-        ".....oxGgGGfggo",
-        "......oGgGoogo.",
-        ".......GgGoogo.",
-        ".......GgGMoo..",
-        ".......GgGGogo.",
-        ".......GGgGogo.",
-        ".......oGgGoo..",
-        ".......oGgGoo..",
-        ".......oGgGoo..",
-        ".......oGgGMo..",
-        ".......oGGMMo..",
-        ".......oGfgMo..",
-        ".......oGGGMo..",
-        ".......oMMMo...",
-        ".......oMMMo...",
-        ".......oMMMo...",
-        ".......ooioo...",
-        ".......ooMoo...",
-        ".......ooMoo...",
-        ".......ooooo...",
-        ".......ooooo..."
+        ".................ooooooo....",
+        "...............oohhjjjhhhoo.",
+        "...............ohhjjjhhhhho.",
+        "...............oHhhhhhhho...",
+        "................oHhhSskksso.",
+        ".................oHSSkeekkso",
+        "....oooooooooo....oHSSkkkkso",
+        "..ooCddccooAAAo....oSSkkkso.",
+        ".oCcdccccCoAaAAaooooooSkso..",
+        "oCcccccCCoooabvloAbaoSooo...",
+        "oCccccCCoAbaobTloAaaao......",
+        ".oCCCCCCoAaaooolAoSksso.....",
+        "..oCCCCoAoSoMmooAAoSkkso....",
+        "...ooooAAaooMMooAoSkkkso....",
+        "......oAAAAoMMoooSkksoo.....",
+        "......oxxoGGMMMoggsso.......",
+        "......oNNGfgMimogGoo........",
+        ".......ooGggMMMoGo..........",
+        ".........ooGMMoo............",
+        ".........oMMMMMo............",
+        ".........oMMMmyo............",
+        ".........oMMiMMo............",
+        ".........oMmiMMo............",
+        "..........oMmMMo............",
+        "..........oMMMo.............",
+        "..........oMmMo.............",
+        "..........oMiMo.............",
+        "..........oMmMo.............",
+        "..........oMmMo.............",
+        "...........oMo..............",
+        "...........oio..............",
+        "...........oMo.............."
       ],
       "sockets": {
         "muzzle": [
@@ -2925,8 +2909,8 @@
           -1
         ],
         "grip": [
-          2,
-          -8
+          3,
+          -16
         ]
       }
     },
@@ -2935,42 +2919,38 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        13
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.......",
-        "....oHhhhSskssso......",
-        "....oHhhSkkwekko......",
-        ".....oHhSkkkkkso......",
-        ".....oHhSSkkksso......",
-        "......ooSSksoo........",
-        "..oooooAAovSoo........",
-        ".oCdddcoAavlvao.......",
-        "oCcdcccoAablvvao......",
-        "oCcccCcoAabTvoAgggo...",
-        "oCcccCcoAabTvoGffgG...",
-        "oCccCCcoAaAGggfffgg...",
-        ".oCCCCooooogfffggG....",
-        "..ooooooGGGoggGGo.....",
-        "...oAAooGgGogGGo....oo",
-        "....oAooGgGGoao.......",
-        ".....oooGGgGoxo.......",
-        ".....oxoMGgGoxo.......",
-        ".....oNoMGgGooo.......",
-        ".....oNNoGgGGoo.......",
-        "......oooGGgGoo.......",
-        "........oMGGMMo.......",
-        ".........MGfgMo.......",
-        ".........MGGGMoo......",
-        "..........oMMMoo......",
-        "..........oMMMooo.....",
-        "..........oooiooo.....",
-        "...........oooMoo.....",
-        "...........oooMoo.....",
-        "............ooooo....."
+        "...............oooooo...",
+        ".............oohhjhhhoo.",
+        "............ohhhjjjhhhho",
+        "............ohhjjhhhhho.",
+        "............oHhhhSskssso",
+        "............oHhhSkkwekko",
+        ".............oHhSkkkkkso",
+        ".............oHhSSkkksso",
+        "..oooooAAovSooooSSksoo..",
+        ".oCdddcoAavlvao.oSksSo..",
+        "oCcdcccoooolvvaoSSSoo...",
+        "oCcccCoMimMovoAoooao....",
+        "oCcccCoMMmMMoooAbao.....",
+        "oCccCCooMiMyoAoAaaao....",
+        ".oCCCCooMmMMoAAoSksso...",
+        "..ooooooMiMMoAaooSkkso..",
+        "...oAAAaoMMMMoooSkkso...",
+        "....oAAAoMMMMooSkkso....",
+        "....oxxxoMmMMoSkkso.....",
+        "....oNNNoMiMMoggso......",
+        ".....oooooGGMofgGo......",
+        ".........GfgMogGo.......",
+        ".........GggMooo........",
+        ".........ooGMo..........",
+        "..........oMMo..........",
+        "...........oio..........",
+        "...........oMMo.........",
+        "............oMo.........",
+        ".............MiM........"
       ],
       "sockets": {
         "muzzle": [
@@ -2979,7 +2959,7 @@
         ],
         "grip": [
           3,
-          -13
+          -14
         ]
       }
     },
@@ -2988,41 +2968,36 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        14
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.......",
-        "....oHhhhSskssso......",
-        "....oHhhSkkwekko......",
-        ".....oHhSkkkkkso......",
-        ".....oHhSSkkksso......",
-        "......ooSSksoo........",
-        "..oooooAAovSoo........",
-        ".oCdddcoAavlvao.......",
-        "oCcdcccoAablvvao......",
-        "oCcccCcoAabTvoAgggo...",
-        "oCcccCcoAabTvoGffgG...",
-        "oCccCCoooooGggfffgg...",
-        ".oCCCCooooogfffggG....",
-        "..oooooMGGGoggGGo.....",
-        "...oAAoMGgGogGGo....oo",
-        "....oAoMGgGGoao.......",
-        ".....oooGGgGoxo.......",
-        ".....oxoMGgGoxo.......",
-        ".....oNooGgGooo.......",
-        ".....oNNMGgGGoo.......",
-        "......ooMGGGMoo.......",
-        "........MMGfgMo.......",
-        "........MMGGGMo.......",
-        ".........ooMMMoo......",
-        "..........oMMMoo......",
-        "..........oooioo......",
-        "..........oooMoo......",
-        "...........oooMo......",
-        "...........ooooo......"
+        "..............oooooo...",
+        "............oohhjhhhoo.",
+        "...........ohhhjjjhhhho",
+        "...........ohhjjhhhhho.",
+        "...........oHhhhSskssso",
+        "...........oHhhSkkeekko",
+        "............oHhSkkkkkso",
+        "..oooooAAovSoHhSSkkksso",
+        ".oCdddcoooolvooSSksooo.",
+        "oCcdccoMimMovvaoooSoo..",
+        "oCcccCoMMmMMoooAbaoo...",
+        "oCcccCcoMiMyoooAaaao...",
+        "oCccCCooMmMMoAAoSksso..",
+        ".oCCCCooMiMMoAAooSkkso.",
+        "..oooooooMMMMoaoSkkso..",
+        "...oAAAaoMMMMooSkkso...",
+        "....oAAAoMmMMoSkkso....",
+        "....oxxxoMiMMoggso.....",
+        "....oNNNnoGGMofgGo.....",
+        ".....ooooGfgMogGo......",
+        ".........GggMooo.......",
+        ".........ooGMo.........",
+        "..........oMMo.........",
+        "...........oio.........",
+        "...........oMMo........",
+        "............oMo........",
+        ".............MiM......."
       ],
       "sockets": {
         "muzzle": [
@@ -3031,7 +3006,7 @@
         ],
         "grip": [
           3,
-          -14
+          -15
         ]
       }
     },
@@ -3040,37 +3015,34 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        12
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.......",
-        "....oHhhhSskssso......",
-        "....oHhhSkkwekko......",
-        ".....oHhSkkkkkso......",
-        ".....oHhSSkkksso......",
-        "......ooSSksoo........",
-        "..oooooAAovSoo........",
-        ".oCdddcoAavlvao.......",
-        "oCcdcccoAablvvao......",
-        "oCcccCcoAabTvoAgggo...",
-        "oCcccCoooooTvoGffgG...",
-        "oCccCCooooooggfffgg...",
-        ".oCCCCooMmMooffggG....",
-        "..ooooooGGGMooGGo.....",
-        "...oAAooGgGGMooo....oo",
-        "....oAaoGGgGGGoo......",
-        ".....oAAoGGggGGoo.....",
-        ".....oxxxoGGGGGMoo....",
-        ".....oNNNnMMGGfgMoo...",
-        ".....oNNNnMMMGGGMMoo..",
-        "......ooooMMMMMMMMooo.",
-        ".............ooMMMooo.",
-        "..............ooooioo.",
-        "...............ooooMo.",
-        "................ooooo."
+        "............oooooo....",
+        "..........oohhjhhhoo..",
+        ".........ohhhjjjhhhho.",
+        ".........ohhjjhhhhho..",
+        ".........oHhhhSskssso.",
+        ".........oHhhSkkwekko.",
+        "..........oHhSkkkkkso.",
+        "..........oHhSSkkksso.",
+        "..oooooAAovooSSksoo...",
+        ".oCdddcoAavlvoSksSo...",
+        "oCcdcccoAabloSSooo....",
+        "oCcccCcooooToAoAbao...",
+        "oCcccCoMimMooooAaaao..",
+        "oCccCCoMMmmMooAoSksso.",
+        ".oCCCCooMimMMMoooSkkso",
+        "..oooooAoMMmmMMookkkso",
+        "...oAAAoSoMMmiMMoosso.",
+        "....oAAAoSoMMoGGMooo..",
+        "....oxxxyoGoMGfgMMoo..",
+        "....oNNNnoGfoGggMMMo..",
+        ".....ooooooooooGMMMMo.",
+        "..............oMMMoo..",
+        "...............oMio...",
+        "................oMMo..",
+        "..................MiM."
       ],
       "sockets": {
         "muzzle": [
@@ -3078,8 +3050,8 @@
           -12
         ],
         "grip": [
-          6,
-          -17
+          7,
+          -18
         ]
       }
     },
@@ -3088,37 +3060,32 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        13
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.......",
-        "....oHhhhSskssso......",
-        "....oHhhSkkwekko......",
-        ".....oHhSkkkkkso......",
-        ".....oHhSSkkksso......",
-        "......ooSSksoo........",
-        "..oooooAAovSoo........",
-        ".oCdddcoAavlvao.......",
-        "oCcdcccoAablvvao......",
-        "oCcccCcoAabTvoAgggo...",
-        "oCcccCoooooTvoGffgG...",
-        "oCccCCoMmMooggfffgg...",
-        ".oCCCCoMMmMooffggG....",
-        "..oooooMGGGMooGGo.....",
-        "...oAAooGgGGMooo....oo",
-        "....oAaoGGgGGGoo......",
-        ".....oAAoGGgGGMoo.....",
-        ".....oxxxoGGGfgMoo....",
-        ".....oNNNnMMGGGMMoo...",
-        ".....oNNNnMMMMMMMooo..",
-        "......ooooMMMMMMMoooo.",
-        ".............ooooiooo.",
-        "..............ooooMoo.",
-        "...............oooooo.",
-        "................ooooo."
+        "...........oooooo....",
+        ".........oohhjhhhoo..",
+        "........ohhhjjjhhhho.",
+        "........ohhjjhhhhho..",
+        "........oHhhhSskssso.",
+        "........oHhhSkkeekko.",
+        ".........oHhSkkkkkso.",
+        "..oooooAAoHhSSkkksso.",
+        ".oCdddcoAaooSSooooo..",
+        "oCcdccooooblooAbao...",
+        "oCcccoMimMoTooAaaao..",
+        "oCcccoMMmmMooooSksso.",
+        "oCccCCoMimMMMoooSkkso",
+        ".oCCCCooMMmmMMookkkso",
+        "..oooooAoMMmiMMoosso.",
+        "...oAAAoSoMMoGGMooo..",
+        "....oAAAoSoMGfgMMoo..",
+        "....oxxxyoGoGggMMMo..",
+        "....oNNNnoGfooGMMMMo.",
+        ".....oooooooooMMMoo..",
+        "..............oMio...",
+        "...............oMMo..",
+        ".................MiM."
       ],
       "sockets": {
         "muzzle": [
@@ -3126,8 +3093,8 @@
           -13
         ],
         "grip": [
-          5,
-          -18
+          6,
+          -19
         ]
       }
     },
@@ -3136,33 +3103,31 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        11
       ],
       "rows": [
-        ".......oooooo...........",
-        ".....oohhjhhhoo.........",
-        "....ohhhjjjhhhho........",
-        "....ohhjjhhhhho.........",
-        "....oHhhhSskssso........",
-        "....oHhhSkkwekko........",
-        ".....oHhSkkkkkso........",
-        ".....oHhSSkkksso........",
-        "......ooSSksoo..........",
-        "..oooooAAovSoo..........",
+        ".........oooooo.........",
+        ".......oohhjhhhoo.......",
+        "......ohhhjjjhhhho......",
+        "......ohhjjhhhhho.......",
+        "......oHhhhSskssso......",
+        "......oHhhSkkwekko......",
+        ".......oHhSkkkkkso......",
+        ".......oHhSSkkksso......",
+        "..oooooAooSSksoo........",
         ".oCdddcoAavlvao.........",
-        "oCcdcccoAablvvao........",
-        "oCcccCcoAabTvoAgggo.....",
-        "oCcccCoooooTvoGffgG.....",
-        "oCccCCooooooogfffgg.....",
-        ".oCCCCooMmmmMooogG......",
-        "..ooooooGGGGGGMooo......",
-        "...oAAooGggggGGGGMoooo..",
-        "....oAaoGGGGGggGfgMMooo.",
-        ".....oAAAooMGGGGGGMMoooo",
-        ".....oxxxyxMMMyMMMMMiooo",
-        ".....oNNNnnMMMMooooooMMo",
-        ".....oNNNnnMMMM..ooooooo",
-        "......oooooooo.....ooooo"
+        "oCcdcccoAablvvooo.......",
+        "oCcccCcoAabTvoAbao......",
+        "oCcccCoooobTvoAaaao.....",
+        "oCccCoMimMoooooSkssoo...",
+        ".oCCCoMMmmMMMooookkkso..",
+        "..oooooMMmiMMMmmMoooo...",
+        "...oAAooMMMmioGGmmMMoo..",
+        "....oAAooMMMMGfgMMMMMoo.",
+        "....oxxxooMMMGggMMMioo..",
+        "....oNNNnoooMooGooooMMo.",
+        ".....oooooGfoooo.....MiM",
+        "..........oooo.........."
       ],
       "sockets": {
         "muzzle": [
@@ -3170,7 +3135,7 @@
           -17
         ],
         "grip": [
-          8,
+          7,
           -20
         ]
       }
@@ -3180,33 +3145,30 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        12
       ],
       "rows": [
-        ".......oooooo..........",
-        ".....oohhjhhhoo........",
-        "....ohhhjjjhhhho.......",
-        "....ohhjjhhhhho........",
-        "....oHhhhSskssso.......",
-        "....oHhhSkkwekko.......",
-        ".....oHhSkkkkkso.......",
-        ".....oHhSSkkksso.......",
-        "......ooSSksoo.........",
-        "..oooooAAovSoo.........",
-        ".oCdddcoAavlvao........",
-        "oCcdcccoAablvvao.......",
-        "oCcccCcoAabTvoAgggo....",
-        "oCcccooooooTvoGffgG....",
-        "oCccCooMmMooogfffgg....",
-        ".oCCCooMMmmMoooogG.....",
-        "..oooooMGGGGGmMooo.....",
-        "...oAoooGgggGGGGMooooo.",
-        "....oAaoGGGGggGfgMMoooo",
-        ".....oAAAoMGGGGGGMMoooo",
-        ".....oxxxyMMMMoMMMMiMoo",
-        ".....oNNNnMMMMoooooooMo",
-        ".....oNNNnnnnno..oooooo",
-        "......oooooooo........."
+        "........oooooo.........",
+        "......oohhjhhhoo.......",
+        ".....ohhhjjjhhhho......",
+        ".....ohhjjhhhhho.......",
+        ".....oHhhhSskssso......",
+        ".....oHhhSkkeekko......",
+        "......oHhSkkkkkso......",
+        "..oooooHhSSkkksso......",
+        ".oCdddcooSSksoo........",
+        "oCcdcccoAablvooo.......",
+        "oCcccCcoAabToAbao......",
+        "oCcccooooabToAaaao.....",
+        "oCccoMimMoooooSkssoo...",
+        ".oCCoMMmmMMMooookkkso..",
+        "..ooooMMmiMMMmmMoooo...",
+        "...oAAoMMMmioGGmmMMoo..",
+        "....oAAoMMMMGfgMMMMMoo.",
+        "....oxxxoMMMGggMMMioo..",
+        "....oNNNnooMooGooooMMo.",
+        ".....oooooGoooo.....MiM",
+        "..........oooo........."
       ],
       "sockets": {
         "muzzle": [
@@ -3214,7 +3176,7 @@
           -17
         ],
         "grip": [
-          7,
+          6,
           -20
         ]
       }
@@ -3315,30 +3277,28 @@
         10
       ],
       "rows": [
-        ".......oooooo...........",
-        ".....oohhjhhhoo.........",
-        "....ohhhjjjhhhho........",
-        "....ohhjjhhhhho.........",
-        "....oHhhhSskssso........",
-        "....oHhhSkkwekko........",
-        ".....oHhSkkkkkso........",
-        ".....oHhSSkkksso...ooooo",
-        "......ooSSksoo...ooooooo",
-        "..oooooAAovSoooooooooMMo",
-        ".oCdddcoAavloooMmmMMiooo",
-        "oCcdcccoAooooMmGGMMMoooo",
-        "oCcccCcooooMmGGGfgMMooo.",
-        "oCcccCooMmmmGGgGGGooo...",
-        "oCccCCooMMMGGgGGGog.....",
-        ".oCCCCooMGGGgGGogG......",
-        "..ooooooGGggGGyGo.......",
-        "...oAAooGgGGGMMo....oo..",
-        "....oAaaGGGMMMM.........",
-        ".....oAAAAAAxxo.........",
-        ".....oxxxyxxxxo.........",
-        ".....oNNNnnnqqo.........",
-        ".....oNNNnnnnno.........",
-        "......oooooooo.........."
+        "........oooooo..........",
+        "......oohhjhhhoo........",
+        ".....ohhhjjjhhhho.......",
+        ".....ohhjjhhhhho........",
+        ".....oHhhhSskssso.......",
+        ".....oHhhSkkwekko.......",
+        "......oHhSkkkkkso.......",
+        "......oHhSSkkksso.......",
+        ".......ooSSksoo.........",
+        "..oooooAAovSoooo.....MiM",
+        ".oCdddcoAaooMMMMooooMMo.",
+        "oCcdcccoAoMMMMoGGMMioo..",
+        "oCcccCcooMMMMmGfgMMMMoo.",
+        "oCcccCcoMMMmiMGggmMMoo..",
+        "oCccCCoMMmiMMMooGoooo...",
+        ".oCCCoMMmmMMMooookkkso..",
+        "..ooooMimMoooooAassso...",
+        "...oAAoooosoAoAabAoo....",
+        "....oAAAoSksoooooo......",
+        "....oxxxyoGggo..........",
+        "....oNNNnoGffgo.........",
+        ".....ooooooooo.........."
       ],
       "sockets": {
         "muzzle": [
@@ -3356,7 +3316,7 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        11
       ],
       "rows": [
         ".......oooooo..........",
@@ -3364,25 +3324,22 @@
         "....ohhhjjjhhhho.......",
         "....ohhjjhhhhho........",
         "....oHhhhSskssso.......",
-        "....oHhhSkkwekko.......",
+        "....oHhhSkkeekko.......",
         ".....oHhSkkkkkso.......",
         ".....oHhSSkkksso.......",
-        "......ooSSksoo...oooooo",
-        "..oooooAAovSoooooooooMo",
-        ".oCdddcoAavloooMmMMiMoo",
-        "oCcdcccoAooooMGGMMMoooo",
-        "oCcccCcoooMmmGGfgMMoooo",
-        "oCcccoooMmmMGGGGGoooo..",
-        "oCccCooMmMGGGgGGoog....",
-        ".oCCCooMMGGggGGogG.....",
-        "..oooooMGGgGGGGGo......",
-        "...oAoooGgGGMyGo....oo.",
-        "....oAaaGGGMMMo........",
-        ".....oAAAAMMMMo........",
-        ".....oxxxyxxxxo........",
-        ".....oNNNnnnqqo........",
-        ".....oNNNnnnnno........",
-        "......oooooooo........."
+        "..ooooooSSkoooo.....MiM",
+        ".oCdddcoAooMMMMooooMMo.",
+        "oCcdcccooMMMMoGGMMioo..",
+        "oCcccCcoMMMMmGfgMMMMoo.",
+        "oCcccCoMMMmiMGggmMMoo..",
+        "oCccCoMMmiMMMooGoooo...",
+        ".oCCoMMmmMMMooookkkso..",
+        "..oooMimMoooooAassso...",
+        "...oAooooSsooAabAoo....",
+        "....oAAAoSksooooo......",
+        "....oxxxyoGggo.........",
+        "....oNNNnoGffgo........",
+        ".....ooooooooo........."
       ],
       "sockets": {
         "muzzle": [
@@ -3400,33 +3357,30 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        11
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.ooooo.",
-        "....oHhhhSsksssooooMo.",
-        "....oHhhSkkwekooooioo.",
-        ".....oHhSkkkkooMMMooo.",
-        ".....oHhSSkkooMmMMooo.",
-        "......ooSSkooGGMMMoo..",
-        "..oooooAAoooGGfgMoo...",
-        ".oCdddcoAooMGGGGoo....",
-        "oCcdcccoooMGGgGoo.....",
-        "oCcccCcooMmGgGGoggo...",
-        "oCcccCooMmGGgGoffgG...",
-        "oCccCCooMGGgGGfffgg...",
-        ".oCCCCooMGgGGyfggG....",
-        "..ooooooGGgGMMGGo.....",
-        "...oAAooGgGGMMGo....oo",
-        "....oAaaGGGAAao.......",
-        ".....oAAAAAAxxo.......",
-        ".....oxxxyxxxxo.......",
-        ".....oNNNnnnqqo.......",
-        ".....oNNNnnnnno.......",
-        "......oooooooo........"
+        "...........oooooo....",
+        ".........oohhjhhhoo..",
+        "........ohhhjjjhhhho.",
+        "........ohhjjhhhhhMiM",
+        "........oHhhhSskoMMo.",
+        "........oHhhSkkoMioo.",
+        ".........oHhSkoMMMoo.",
+        ".........oHhSoGGMMMMo",
+        "..oooooAAooooGfgMMMo.",
+        ".oCdddcoAavoMGggMMooo",
+        "oCcdcccoAaoMMooGMooso",
+        "oCcccCcoAoMMmiMMooso.",
+        "oCcccCcooMMmmMMooSo..",
+        "oCccCCcoMimMMMooAo...",
+        ".oCCCCoMMmmMooooo....",
+        "..oooooMimMoaAao.....",
+        "...oAAAoooooAAo......",
+        "....oAAAoSksoo.......",
+        "....oxxxyoGggo.......",
+        "....oNNNnoGffgo......",
+        ".....ooooooooo......."
       ],
       "sockets": {
         "muzzle": [
@@ -3434,7 +3388,7 @@
           -34
         ],
         "grip": [
-          6,
+          7,
           -29
         ]
       }
@@ -3444,33 +3398,29 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        12
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhhhoo.......",
-        "....ohhhjjjhhhho......",
-        "....ohhjjhhhhho.ooooo.",
-        "....oHhhhSsksssoooooo.",
-        "....oHhhSkkwekooooMoo.",
-        ".....oHhSkkkkooooiooo.",
-        ".....oHhSSkkooMMMoooo.",
-        "......ooSSkooMmMMooo..",
-        "..oooooAAoooGGMMMoo...",
-        ".oCdddcoAooGGfgMoo....",
-        "oCcdcccoooMGGGGoo.....",
-        "oCcccCcooMGGgGooggo...",
-        "oCcccCooMmGgGGoffgG...",
-        "oCccCCoMmGGgGMfffgg...",
-        ".oCCCCoMMGgGGMfggG....",
-        "..oooooMGGgGMMGGo.....",
-        "...oAAooGgGGMMGo....oo",
-        "....oAaaGGGAAao.......",
-        ".....oAAAAAAxxo.......",
-        ".....oxxxyxxxxo.......",
-        ".....oNNNnnnqqo.......",
-        ".....oNNNnnnnno.......",
-        "......oooooooo........"
+        "..........oooooo....",
+        "........oohhjhhhoo..",
+        ".......ohhhjjjhhhho.",
+        ".......ohhjjhhhhhMiM",
+        ".......oHhhhSskoMMo.",
+        ".......oHhhSkkoMioo.",
+        "........oHhSkoMMMoo.",
+        "..oooooAoHhSoGGMMMMo",
+        ".oCdddcoAoooGfgMMMo.",
+        "oCcdcccoAaoMGggMMooo",
+        "oCcccCcoAoMMooGMooso",
+        "oCcccCcooMMmiMMooso.",
+        "oCccCCcoMMmmMMooSo..",
+        ".oCCCCoMimMMMooAo...",
+        "..ooooMMmmMooooo....",
+        "...oAoMimMooAAo.....",
+        "....oAooooksoo......",
+        "....oxxxyoGggo......",
+        "....oNNNnoGffgo.....",
+        ".....ooooooooo......"
       ],
       "sockets": {
         "muzzle": [
@@ -3478,7 +3428,7 @@
           -33
         ],
         "grip": [
-          5,
+          6,
           -28
         ]
       }
@@ -3488,33 +3438,30 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        11
       ],
       "rows": [
-        ".......oooooooooo.....",
-        ".....oohhjhoooMoo.....",
-        "....ohhhjjjoooMoo.....",
-        "....ohhjjhoooiooo.....",
-        "....oHhhhSoMMMooo.....",
-        "....oHhhSkoMMMoo......",
-        ".....oHhSoGGMMoo......",
-        ".....oHhSoGfgMoo......",
-        "......ooooGGGMo.......",
-        "..oooooAoGGgGoo.......",
-        ".oCdddcooGgGGoo.......",
-        "oCcdcccoMGgGooao......",
-        "oCcccCcoMGgGooAgggo...",
-        "oCcccCooMGgGMoGffgG...",
-        "oCccCCooGGgGMgfffgg...",
-        ".oCCCCooGgGGMffggG....",
-        "..ooooooGgGMMgGGo.....",
-        "...oAAooGgGggGGo....oo",
-        "....oAaaGGGAAao.......",
-        ".....oAAAAAAxxo.......",
-        ".....oxxxyxxxxo.......",
-        ".....oNNNnnnqqo.......",
-        ".....oNNNnnnnno.......",
-        "......oooooooo........"
+        ".............MiM........",
+        "............oMooooooo...",
+        "...........oMMohhhjhhoo.",
+        "...........oiohhhjjjhhho",
+        "..........oMMohhhhhjjhho",
+        "..........oMMoGGosShhhHo",
+        ".........oGGMofgGokShhHo",
+        ".........GfgMogGGokShHo.",
+        "..oooooAAGggMokkssoShHo.",
+        ".oCdddcooooGMoSkksoSoo..",
+        "oCcdcccooMmMMooSksosSo..",
+        "oCcccCcooMMMMoAasSooo...",
+        "oCcccCcooMMMMoabAoao....",
+        "oCccCCcoMiMMooooooo.....",
+        ".oCCCCooMmMMoAAo........",
+        "..ooooooMiMyoAao........",
+        "...oAAoMMmMMoAo.........",
+        "....oAoMimMooo..........",
+        "....oxxooooggo..........",
+        "....oNNNnoGffgo.........",
+        ".....ooooooooo.........."
       ],
       "sockets": {
         "muzzle": [
@@ -3523,7 +3470,7 @@
         ],
         "grip": [
           3,
-          -31
+          -30
         ]
       }
     },
@@ -3532,33 +3479,29 @@
       "channel": "upper",
       "at": [
         16,
-        10
+        12
       ],
       "rows": [
-        ".......oooooo.........",
-        ".....oohhjhooooo......",
-        "....ohhhjjjoooMo......",
-        "....ohhjjhoooMoo......",
-        "....oHhhhSoooioo......",
-        "....oHhhSkoMMMoo......",
-        ".....oHhSooMMMoo......",
-        ".....oHhSoGGMMoo......",
-        "......ooooGfgMo.......",
-        "..oooooAoMGGGoo.......",
-        ".oCdddcooGGgGoo.......",
-        "oCcdcccooGgGGoao......",
-        "oCcccCcoMGgGooAgggo...",
-        "oCcccCooMGgGooGffgG...",
-        "oCccCCoMGGgGogfffgg...",
-        ".oCCCCoMGgGGfffggG....",
-        "..oooooMGgGMggGGo.....",
-        "...oAAooGgGMgGGo....oo",
-        "....oAooGGGAAao.......",
-        ".....oAAAAAAxxo.......",
-        ".....oxxxyxxxxo.......",
-        ".....oNNNnnnqqo.......",
-        ".....oNNNnnnnno.......",
-        "......oooooooo........"
+        ".............MiM.......",
+        "............oMoooooo...",
+        "...........oMMohhjhhoo.",
+        "...........oiohhjjjhhho",
+        "..........oMMohhhhjjhho",
+        "..........oMMoGGoShhhHo",
+        ".........oGGMofgGoShhHo",
+        "..oooooAAGfgMogGGoShHo.",
+        ".oCdddcoAGggMokkssohHo.",
+        "oCcdcccooooGMoSkksoooo.",
+        "oCcccCcooMmMMooSksooo..",
+        "oCcccCcooMMMMoAasSoo...",
+        "oCccCCcooMMMMoabAoo....",
+        ".oCCCCooMiMMooooo......",
+        "..ooooooMmMMoAao.......",
+        "...oAAAoMiMyoAo........",
+        "....oAoMMmMMoo.........",
+        "....oxoMimMogo.........",
+        "....oNNooooffgo........",
+        ".....ooooooooo........."
       ],
       "sockets": {
         "muzzle": [
@@ -3567,7 +3510,7 @@
         ],
         "grip": [
           3,
-          -30
+          -29
         ]
       }
     },
@@ -3576,34 +3519,32 @@
       "channel": "upper",
       "at": [
         15,
-        8
+        10
       ],
       "rows": [
-        ".........ooooo",
-        ".........ooooo",
-        ".........ooMoo",
-        ".........ooMoo",
-        ".........ooioo",
-        ".........oMMMo",
-        "...oooo..oMMMo",
-        "..ohjjhoooMmMo",
-        ".ohjjhhhhoGGMo",
-        ".ohHhSksooGfgo",
-        ".oHhSkwsooGGGo",
-        "..oSSkksooGgGo",
-        "...oSkkSgoGgGo",
-        "....oSSkSoGgGo",
-        "...oAvSSkGGgGo",
-        ".oooAavvSGgGGM",
-        "oCddcAablGgGMM",
-        "oCcdcAabTGgGMM",
-        "oCcccAabTGgGMM",
-        "oCccCAaaAGgGoo",
-        ".oCCoAaaAGGG..",
-        "..oooAAAAxo...",
-        ".....oxxyxxo..",
-        ".....oNNnnno..",
-        "......ooooo..."
+        "...........oMo.............",
+        "...........oio.............",
+        "...........oMo.............",
+        "..........oMmMo..ooooooo...",
+        "..........oMmMooohhhjjhhoo.",
+        "..........oMiMoskhhhjjjhhho",
+        ".........ooMmMokwewkShhhhHo",
+        "........oGoMMMokkwwkkShhhHo",
+        ".......oGgoMmMMoskkkkSShHo.",
+        "......oSsoMmoGGGokkkSShHo..",
+        ".....oSkkoMMoGffgGoooooo...",
+        "...ooAaksoMMMoGggGgssso....",
+        "..ooAabAsoMMMMooooSkksso...",
+        ".oCoAAAaoAoMMMooooSkkso....",
+        "oCccoooooAaoMMMooAasSo.....",
+        "oCcccCCcoAaoMimoAabAo......",
+        "oCcccCCcoAaoMMMooooo.......",
+        ".oCCCCooAAaoMMooo..........",
+        "..oooooAAaaoMMoo...........",
+        "......oAAAAoMmoo...........",
+        "......oxxxyxoooo...........",
+        "......oNNNnnnqqo...........",
+        ".......oooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -3611,8 +3552,8 @@
           -38
         ],
         "grip": [
-          2,
-          -31
+          4,
+          -27
         ]
       }
     },
@@ -3621,33 +3562,31 @@
       "channel": "upper",
       "at": [
         15,
-        9
+        11
       ],
       "rows": [
-        ".........ooooo",
-        ".........ooooo",
-        ".........ooMoo",
-        ".........ooMoo",
-        ".........ooioo",
-        "...oooo..oMMMo",
-        "..ohjjhoooMMMo",
-        ".ohjjhhhhoMmMo",
-        ".ohHhSksooGGMo",
-        ".oHhSkwsooGfgo",
-        "..oSSkksooGGGo",
-        "...oSkkSgoGgGo",
-        "....oSSkSoGgGo",
-        "...oAvSSkGGgGo",
-        ".oooAavvSGgGGo",
-        "oCddcAablGgGMM",
-        "oCcdcAabTGgGMM",
-        "oCcccAabTGgGMM",
-        "oCccCAaaAGgGMM",
-        ".oCCoAaaAGGGoo",
-        "..oooAAAAxo...",
-        ".....oxxyxxo..",
-        ".....oNNnnno..",
-        "......ooooo..."
+        "...........oMo............",
+        "...........oio............",
+        "...........oMo............",
+        "..........oMmMo..ooooooo..",
+        "..........oMmMooohhhjjhhoo",
+        "..........oMiMokhhhjjjhhho",
+        ".........ooMmMokeekShhhhHo",
+        "........oGoMMMokwkkkShhhHo",
+        ".......oGgoMmMMokkkkSShHo.",
+        "......oSsoMmoGGGokkSShHo..",
+        "....ooSkkoMMoGffgGooooo...",
+        "..oooAaksoMMMoGggGgssso...",
+        ".oCoAabAsoMMMMooooSkksso..",
+        "oCcoAAAaoAoMMMooAoSkkso...",
+        "oCccoooooAaoMMMooAasSo....",
+        ".oCCCCCoAaaoMimoAabAo.....",
+        "..oCCCooAAaoMMMooooo......",
+        "...ooooAAaaoMMoo..........",
+        "......oAAAAoMMoo..........",
+        "......oxxxyoMmoo..........",
+        "......oNNNnnoooo..........",
+        ".......oooooooo..........."
       ],
       "sockets": {
         "muzzle": [
@@ -3655,8 +3594,8 @@
           -37
         ],
         "grip": [
-          2,
-          -30
+          4,
+          -26
         ]
       }
     },
@@ -3879,31 +3818,30 @@
       "channel": "upper",
       "at": [
         15,
-        11
+        12
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "..........oMo",
-        "...oooo...oio",
-        "..ohjjhoo.tMt",
-        ".ohjjhhhhotMt",
-        ".ohHhSkso.tut",
-        ".oHhSkwsoGGGM",
-        "..oSSkksoGGfg",
-        "...oSkkSgGGGG",
-        "....oSSkSgGgG",
-        "...oAvSSkSGgG",
-        ".oooAavvSGGgG",
-        "oCddcAablGgGG",
-        "oCcdcAabTGgGt",
-        "oCcccAabTGgGt",
-        "oCccCAaaAGgGt",
-        ".oCCoAaaAGGGo",
-        "..oooAAAAxo..",
-        ".....oxxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "...........MiM.............",
+        "...........MmM...ooooooo...",
+        "...........MiM.oohhhjjhhoo.",
+        "...........MmMoskhhhjjjhhho",
+        ".........ooMmMokwewkShhhhHo",
+        "........oGoMiMokkwwkkShhhHo",
+        ".......oGgoMumosskkkkSShHo.",
+        "......oSskoMoGGGokkkSShHo..",
+        ".....oSkksoMoGffgGoooooo...",
+        "...ooAaksoMmmoGggGgssso....",
+        "..ooAabAsoMMmMooooSkksso...",
+        ".oCoAAAaoAoMMMMoooSkkso....",
+        "oCccoooooAaoMtuooAasSo.....",
+        "oCcccCCcoAaoMtuoAabAo......",
+        "oCcccCCcoAaoMttuoooo.......",
+        ".oCCCCooAAaoMttuo..........",
+        "..oooooAAaaaottoo..........",
+        "......oAAAAAAooo...........",
+        "......oxxxyxxxxo...........",
+        "......oNNNnnnqqo...........",
+        ".......oooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -3911,8 +3849,8 @@
           -36
         ],
         "grip": [
-          2,
-          -29
+          4,
+          -27
         ]
       }
     },
@@ -3921,30 +3859,29 @@
       "channel": "upper",
       "at": [
         15,
-        12
+        13
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "...oooo...oMo",
-        "..ohjjhoo.oio",
-        ".ohjjhhhhotMt",
-        ".ohHhSkso.tMt",
-        ".oHhSkwsoGtut",
-        "..oSSkksoGGGM",
-        "...oSkkSgGGfg",
-        "....oSSkSgGGG",
-        "...oAvSSkSGgG",
-        ".oooAavvSGGgG",
-        "oCddcAablGgGG",
-        "oCcdcAabTGgGt",
-        "oCcccAabTGgGt",
-        "oCccCAaaAGgGt",
-        ".oCCoAaaAGGGt",
-        "..oooAAAAxooo",
-        ".....oxxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "...........MiM............",
+        "...........MmM...ooooooo..",
+        "...........MiM.oohhhjjhhoo",
+        "...........MmMskhhhjjjhhho",
+        ".........ooMmMokeekShhhhHo",
+        "........oGoMiMokwkkkShhhHo",
+        ".......oGgoMumoskkkkSShHo.",
+        "......oSskoMoGGGokkSShHo..",
+        "....ooSkksoMoGffgGooooo...",
+        "..oooAaksoMmmoGggGgssso...",
+        ".oCoAabAsoMMmMooooSkksso..",
+        "oCcoAAAaoAoMMMMoAoSkkso...",
+        "oCccoooooAaoMtuooAasSo....",
+        ".oCCCCCoAaaoMtuoAabAo.....",
+        "..oCCCooAAaoMttuoooo......",
+        "...ooooAAaaoMttuo.........",
+        "......oAAAAAottoo.........",
+        "......oxxxyxxooo..........",
+        "......oNNNnnnqqo..........",
+        ".......oooooooo..........."
       ],
       "sockets": {
         "muzzle": [
@@ -3952,8 +3889,8 @@
           -35
         ],
         "grip": [
-          2,
-          -28
+          4,
+          -26
         ]
       }
     },
@@ -3962,31 +3899,30 @@
       "channel": "upper",
       "at": [
         15,
-        11
+        12
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "..........oMo",
-        "...oooo...oio",
-        "..ohjjhoo.tMt",
-        ".ohjjhhhhotMt",
-        ".ohHhSkso.tut",
-        ".oHhSkwsoGtut",
-        "..oSSkksoGtut",
-        "...oSkkSgGtut",
-        "....oSSkSgGGM",
-        "...oAvSSkSGfg",
-        ".oooAavvSSGGG",
-        "oCddcAablGGgG",
-        "oCcdcAabTGgGG",
-        "oCcccAabTGgGt",
-        "oCccCAaaAGgGt",
-        ".oCCoAaaAGGGo",
-        "..oooAAAAxo..",
-        ".....oxxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "...........MiM.............",
+        "...........MmM...ooooooo...",
+        "...........MiM.oohhhjjhhoo.",
+        "...........MmMoskhhhjjjhhho",
+        ".........ooMmMokwewkShhhhHo",
+        "........oGoMiMokkwwkkShhhHo",
+        ".......oGgoMumosskkkkSShHo.",
+        "......oSskoMtuooskkkSShHo..",
+        ".....oSkksoMtuoooskSSooo...",
+        "...ooAaksoMmoGGGooSSo......",
+        "..ooAabAsoMMoGffgGoooo.....",
+        ".oCoAAAaoAoMMoGggGgssso....",
+        "oCccoooooAaoMtooooSkksso...",
+        "oCcccCCcoAaoMtuuooSkkso....",
+        "oCcccCCcoAaoMttuoAasSo.....",
+        ".oCCCCooAAaoMttoAabAo......",
+        "..oooooAAaaaottooooo.......",
+        "......oAAAAAAooo...........",
+        "......oxxxyxxxxo...........",
+        "......oNNNnnnqqo...........",
+        ".......oooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -3994,8 +3930,8 @@
           -36
         ],
         "grip": [
-          2,
-          -26
+          4,
+          -25
         ]
       }
     },
@@ -4003,47 +3939,44 @@
       "id": "upper-shotgun-down",
       "channel": "upper",
       "at": [
-        17,
-        13
+        15,
+        15
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "oCccCoAablAo...",
-        "oCCCooAabTvo...",
-        ".ooo.oAAaavAo..",
-        ".....oAGGGGgo..",
-        ".....oAGgGgGgo.",
-        ".....oxGgGffggo",
-        ".....oxGgGGfggo",
-        "......oGgGnGgo.",
-        ".......GgGoGgo.",
-        ".......GgGogo..",
-        ".......GgGGggo.",
-        ".......GGgGggo.",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GGMgo..",
-        "........Gfg.o..",
-        "........GGG....",
-        "........ttt....",
-        "........tMt....",
-        "........tMt....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkwwekso",
+        "...................oHSSkkkkso",
+        "...oooooooooo.......oSSkkkso.",
+        "..oCdddccooAAAo......ooSkso..",
+        ".oCcdccccCoAaAAaoo..oSkooo...",
+        "oCcccccCCCoAabvlAoooSSSoo....",
+        "oCccccCCCoooabTloAbaoao......",
+        "oCcccCCCoAbaoTvloAaaao.......",
+        ".oCCCCCooAaaoTvoAoSksso......",
+        "..oooooAAoSSsovoAAoSkkso.....",
+        "......oAAAoSksoxooSkkkso.....",
+        "......oxxxyoGooooSkksoo......",
+        "......oNNoGGottoogsso........",
+        ".......ooGfgMttuoGoo.........",
+        ".........GggMttuoo...........",
+        ".........ooGMtuuo............",
+        "...........oMtuo.............",
+        "..........oMMMMo.............",
+        ".........oMMmMMo.............",
+        ".........oMmmMMo.............",
+        "..........oMtuo..............",
+        "..........oMtuo..............",
+        "..........oMumo..............",
+        "..........oMiMo..............",
+        "..........oMmMo..............",
+        "...........MmM...............",
+        "...........MiM...............",
+        "...........MmM...............",
+        "...........MiM..............."
       ],
       "sockets": {
         "muzzle": [
@@ -4051,8 +3984,8 @@
           0
         ],
         "grip": [
-          2,
-          -7
+          3,
+          -15
         ]
       }
     },
@@ -4060,46 +3993,42 @@
       "id": "upper-shotgun-down-kick",
       "channel": "upper",
       "at": [
-        17,
-        13
+        15,
+        16
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "oCccCoAablAo...",
-        "oCCCooAabTvo...",
-        ".ooo.oAAaavAo..",
-        ".....oAGGGGgo..",
-        ".....oAGgGgGgo.",
-        ".....oxGgGffggo",
-        ".....oxGgGGfggo",
-        "......oGgGnGgo.",
-        ".......GgGoGgo.",
-        ".......GgGtgo..",
-        ".......GgGGggo.",
-        ".......GGgGggo.",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GGMgo..",
-        "........Gfggo..",
-        "........GGG.o..",
-        "........ttt....",
-        "........tMt....",
-        "........tMt....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        ".................ooooooo....",
+        "...............oohhjjjhhhoo.",
+        "...............ohhjjjhhhhho.",
+        "...............oHhhhhhhho...",
+        "................oHhhSskksso.",
+        ".................oHSSkeekkso",
+        "....oooooooooo....oHSSkkkkso",
+        "..ooCddccooAAAo....oSSkkkso.",
+        ".oCcdccccCoAaAAaooooooSkso..",
+        "oCcccccCCoooabvloAbaoSooo...",
+        "oCccccCCoAbaobTloAaaao......",
+        ".oCCCCCCoAaaoTvlAoSksso.....",
+        "..oCCCCoAoSSsovoAAoSkkso....",
+        "...ooooAAaoSksooAoSkkkso....",
+        "......oAAAAoGooooSkksoo.....",
+        "......oxxoGGottoogsso.......",
+        "......oNNGfgMttuoGoo........",
+        ".......ooGggMttuoo..........",
+        ".........ooGMtuuo...........",
+        "...........oMtuo............",
+        "..........oMMMMo............",
+        ".........oMMmMMo............",
+        ".........oMmmMMo............",
+        "..........oMtuo.............",
+        "..........oMtuo.............",
+        "..........oMumo.............",
+        "..........oMiMo.............",
+        "..........oMmMo.............",
+        "...........MmM..............",
+        "...........MiM..............",
+        "...........MmM..............",
+        "...........MiM.............."
       ],
       "sockets": {
         "muzzle": [
@@ -4107,8 +4036,8 @@
           -1
         ],
         "grip": [
-          2,
-          -8
+          3,
+          -16
         ]
       }
     },
@@ -4116,47 +4045,44 @@
       "id": "upper-shotgun-down-recover",
       "channel": "upper",
       "at": [
-        17,
-        13
+        15,
+        15
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "oCccCoAablAo...",
-        "oCCCooAabTvo...",
-        ".ooo.oAAaavAo..",
-        ".....oAGGGGgo..",
-        ".....oAGgGgGgo.",
-        ".....oxGgGffggo",
-        ".....oxGgGGfggo",
-        "......oGgGnGgo.",
-        ".......GgGoGgo.",
-        ".......GgGGgo..",
-        ".......GGgGggo.",
-        "........GgGggo.",
-        "........GgGgo..",
-        "........GgGgo..",
-        "........GGMgo..",
-        "........Gfggo..",
-        "........GGGgo..",
-        "........tutgo..",
-        "........tut.o..",
-        "........tut....",
-        "........ttt....",
-        "........tMt....",
-        "........tMt....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkwwekso",
+        "...................oHSSkkkkso",
+        "...oooooooooo.......oSSkkkso.",
+        "..oCdddccooAAAo......ooSkso..",
+        ".oCcdccccCoAaAAaoo..oSkooo...",
+        "oCcccccCCCoAabvlAAAoSSSoo....",
+        "oCccccCCCoooabTlvAoAAao......",
+        "oCcccCCCoAbaoTvlAooooo.......",
+        ".oCCCCCooAaaoTvooAbao........",
+        "..oooooAAoSSsovooAaaao.......",
+        "......oAAAoSksoxooSksso......",
+        "......oxxxyoGooooooSkkso.....",
+        "......oNNNnoottoooSkkkso.....",
+        ".......oooooMttuoSkksoo......",
+        ".........oGGMttuogsso........",
+        ".........GfgMtuuoGoo.........",
+        ".........GggMtuoGo...........",
+        ".........ooGMMMo.............",
+        ".........oMMmMMo.............",
+        ".........oMmmMMo.............",
+        "..........oMtuo..............",
+        "..........oMtuo..............",
+        "..........oMumo..............",
+        "..........oMiMo..............",
+        "..........oMmMo..............",
+        "...........MmM...............",
+        "...........MiM...............",
+        "...........MmM...............",
+        "...........MiM..............."
       ],
       "sockets": {
         "muzzle": [
@@ -4164,8 +4090,8 @@
           0
         ],
         "grip": [
-          2,
-          -10
+          3,
+          -13
         ]
       }
     },
@@ -4419,32 +4345,31 @@
       "id": "upper-flame-up",
       "channel": "upper",
       "at": [
-        15,
-        11
+        14,
+        12
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "..........oMo",
-        "...oooo...oio",
-        "..ohjjhoo.CMC",
-        ".ohjjhhhhoCMC",
-        ".ohHhSkso.CdC",
-        ".oHhSkwsoGGGM",
-        "..oSSkksoGGfg",
-        "...oSkkSgGGGG",
-        "....oSSkSMGgG",
-        "...oAvSSkMGgG",
-        ".oooooovMGGgG",
-        "oCoryrobMGgGG",
-        "oCorrroMTGgGC",
-        "oCorrroMTGgGC",
-        "oCorrrMaAGgGC",
-        ".oorrrMaAGGGo",
-        "..orrMoAAxo..",
-        "..oooooxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "............oMo.............",
+        "............oio...ooooooo...",
+        "...........oMimooohhhjjhhoo.",
+        "...........oMmmMokhhhjjjhhho",
+        "..........ooCddCowewkShhhhHo",
+        ".........oGoCccCokwwkkShhhHo",
+        "........oGgoCcmMoskkkkSShHo.",
+        ".......oSskoMoGGGokkkSShHo..",
+        "......oSkkoMmoGffgGoooooo...",
+        "....ooAaksoMMMoGggGgssso....",
+        "..ooooooAsooMMCooooSkksso...",
+        ".orRRRrrooAaoMCCoooSkkso....",
+        "orRRRrrrooAaoCCCooAasSo.....",
+        "orRrrrrocoAaoCMMoAabAo......",
+        "oryrrrrocoAaaMCCCoooo.......",
+        "orrrrrrooAAaMaoooo..........",
+        "orrrrrroAAaMaaAAo...........",
+        "orrrrrooAAMAAAxxo...........",
+        ".orrrrooxMxyxxxxo...........",
+        "..ooMoooMNNnnnqqo...........",
+        ".....MMMoooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -4452,8 +4377,8 @@
           -36
         ],
         "grip": [
-          2,
-          -29
+          4,
+          -27
         ]
       }
     },
@@ -4461,31 +4386,30 @@
       "id": "upper-flame-up-kick",
       "channel": "upper",
       "at": [
-        15,
-        12
+        14,
+        13
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "...oooo...oMo",
-        "..ohjjhoo.oio",
-        ".ohjjhhhhoCMC",
-        ".ohHhSkso.CMC",
-        ".oHhSkwsoGCdC",
-        "..oSSkksoGGGM",
-        "...oSkkSgGGfg",
-        "....oSSkSgGGG",
-        "...oAvSSkMGgG",
-        ".oooooovMGGgG",
-        "oCoryrobMGgGG",
-        "oCorrroMTGgGC",
-        "oCorrroMTGgGC",
-        "oCorrrMaAGgGC",
-        ".oorrrMaAGGGC",
-        "..orrMoAAxooo",
-        "..oooooxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "............oMo............",
+        "............oio...ooooooo..",
+        "...........oMimooohhhjjhhoo",
+        "...........oMmmMohhhjjjhhho",
+        "..........ooCddCoeekShhhhHo",
+        ".........oGoCccCowkkkShhhHo",
+        "........oGgoCcmMokkkkSShHo.",
+        ".......oSskoMoGGGokkSShHo..",
+        ".....ooSkkoMmoGffgGooooo...",
+        "..ooooooksoMMMoGggGgssso...",
+        ".orRRRrrosooMMCooooSkksso..",
+        "orRRRrrrooAaoMCCoAoSkkso...",
+        "orRrrrroooAaoCMMooAasSo....",
+        "oryrrrrooAaaoMmmoAabAo.....",
+        "orrrrrrooAAaMoCCCoooo......",
+        "orrrrrroAAaMaaooo..........",
+        "orrrrrooAAMAAAxxo..........",
+        ".orrrrooxMxyxxxxo..........",
+        "..ooMoooMNNnnnqqo..........",
+        ".....MMMoooooooo..........."
       ],
       "sockets": {
         "muzzle": [
@@ -4493,8 +4417,8 @@
           -35
         ],
         "grip": [
-          2,
-          -28
+          4,
+          -26
         ]
       }
     },
@@ -4502,32 +4426,31 @@
       "id": "upper-flame-up-recover",
       "channel": "upper",
       "at": [
-        15,
-        11
+        14,
+        12
       ],
       "rows": [
-        "..........ooo",
-        "..........oMo",
-        "..........oMo",
-        "...oooo...oio",
-        "..ohjjhoo.CMC",
-        ".ohjjhhhhoCMC",
-        ".ohHhSkso.CdC",
-        ".oHhSkwsoGGGM",
-        "..oSSkksoGGfg",
-        "...oSkkSgGGGG",
-        "....oSSkSMGgG",
-        "...oAvSSkMGgG",
-        ".oooooovMGGgG",
-        "oCorRrobMGgGG",
-        "oCorrroMTGgGC",
-        "oCorrroMTGgGC",
-        "oCorrrMaAGgGC",
-        ".oorrrMaAGGGo",
-        "..orrMoAAxo..",
-        "..oooooxyxxo.",
-        ".....oNNnnno.",
-        "......ooooo.."
+        "............oMo.............",
+        "............oio...ooooooo...",
+        "...........oMimooohhhjjhhoo.",
+        "...........oMmmMokhhhjjjhhho",
+        "..........ooCddCowewkShhhhHo",
+        ".........oGoCccCokwwkkShhhHo",
+        "........oGgoCcmMoskkkkSShHo.",
+        ".......oSskoMoGGGokkkSShHo..",
+        "......oSkkoMmoGffgGoooooo...",
+        "....ooAaksoMMMoGggGgssso....",
+        "..ooooooAsooMMCooooSkksso...",
+        ".orRRRrrooAaoMCCoooSkkso....",
+        "orRRRrrrooAaoCCCooAasSo.....",
+        "orRrrrrocoAaoCMMoAabAo......",
+        "oryrrrrocoAaaMCCCoooo.......",
+        "orrrrrrooAAaMaoooo..........",
+        "orrrrrroAAaMaaAAo...........",
+        "orrrrrooAAMAAAxxo...........",
+        ".orrrrooxMxyxxxxo...........",
+        "..ooMoooMNNnnnqqo...........",
+        ".....MMMoooooooo............"
       ],
       "sockets": {
         "muzzle": [
@@ -4535,8 +4458,8 @@
           -36
         ],
         "grip": [
-          2,
-          -29
+          4,
+          -27
         ]
       }
     },
@@ -4544,47 +4467,44 @@
       "id": "upper-flame-down",
       "channel": "upper",
       "at": [
-        17,
-        13
+        14,
+        15
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "ooooooAablAo...",
-        "oryrooAabTvo...",
-        "orrrooAAaavAo..",
-        "orrrooAGGGGgo..",
-        "orrrooAGgGgGgo.",
-        "orrrooxGgGffggo",
-        "orrMooxGgGGfggo",
-        "oooMo.oGgGnGgo.",
-        "....M..GgGoGgo.",
-        "....M..GgGogo..",
-        "....M..GgGGggo.",
-        "....M..GGgGggo.",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        "......M.GgGgo..",
-        "......M.GgGgo..",
-        "......M.GGMgo..",
-        "......M.Gfg.o..",
-        ".......MGGG....",
-        ".......MCCC....",
-        "........CMC....",
-        "........CMC....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        "...................ooooooo....",
+        ".................oohhjjjhhhoo.",
+        ".................ohhjjjhhhhho.",
+        ".................oHhhhhhhho...",
+        "..................oHhhSskksso.",
+        "...................oHSSkwwekso",
+        "....................oHSSkkkkso",
+        "..oooooooooooo.......oSSkkkso.",
+        ".orRRRrrocooAAAo......ooSkso..",
+        "orRRRrrrocCoAaAAaoo..oSkooo...",
+        "orRrrrroCCCoAabvlAAAoSSSoo....",
+        "oryrrrroCCoooabTlvAoAAao......",
+        "orrrrrroCoAbaoTvlAAoooo.......",
+        "orrrrrroooAaaoTvoAooo.........",
+        "orrrrrooAAoSSsovooAbao........",
+        ".orrrrooAAAoSksoxoAaaao.......",
+        "..ooMoooxxxyoGggoooSksso......",
+        "....M..oNNNnoGffgo.oSkkso.....",
+        ".....M..ooooooooo.oSkkkso.....",
+        "......M......oCCCoSkksoo......",
+        ".......MMMMMGCmmCogsso........",
+        "..........GfgCCCooGoo.........",
+        "..........GggMCCoGo...........",
+        "..........ooGMCMo.............",
+        "..........oMMMMMo.............",
+        "..........oMmiMMo.............",
+        "...........oMCmMo.............",
+        "...........oCcmMo.............",
+        "...........oCccCo.............",
+        "...........oCddCo.............",
+        "...........oMmmMo.............",
+        "...........oMimo..............",
+        "............oio...............",
+        "............oMo..............."
       ],
       "sockets": {
         "muzzle": [
@@ -4592,8 +4512,8 @@
           0
         ],
         "grip": [
-          2,
-          -7
+          3,
+          -12
         ]
       }
     },
@@ -4601,46 +4521,42 @@
       "id": "upper-flame-down-kick",
       "channel": "upper",
       "at": [
-        17,
-        13
+        14,
+        16
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "ooooooAablAo...",
-        "oryrooAabTvo...",
-        "orrrooAAaavAo..",
-        "orrrooAGGGGgo..",
-        "orrrooAGgGgGgo.",
-        "orrrooxGgGffggo",
-        "orrMooxGgGGfggo",
-        "oooMo.oGgGnGgo.",
-        "....M..GgGoGgo.",
-        "....M..GgGCgo..",
-        "....M..GgGGggo.",
-        ".....M.GGgGggo.",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        "......M.GgGgo..",
-        "......M.GGMgo..",
-        "......M.Gfggo..",
-        ".......MGGG.o..",
-        ".......MCCC....",
-        "........CMC....",
-        "........CMC....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        "..................ooooooo....",
+        "................oohhjjjhhhoo.",
+        "................ohhjjjhhhhho.",
+        "................oHhhhhhhho...",
+        ".................oHhhSskksso.",
+        "..................oHSSkeekkso",
+        "..ooooooooooooo....oHSSkkkkso",
+        ".orRRRrrocooAAAo....oSSkkkso.",
+        "orRRRrrrocCoAaAAaoo.oooSkso..",
+        "orRrrrroCCoooabvlAAoSSSooo...",
+        "oryrrrroCoAbaobTlvoAAao......",
+        "orrrrrroCoAaaoTvlAoooo.......",
+        "orrrrrrooAoSSsovooAbao.......",
+        "orrrrrooAAaoSksoooAaaao......",
+        ".orrrrooAAAAoGggoooSksso.....",
+        "..ooMoooxxxyoGffgoooSkkso....",
+        "....M..oNNNnnooooooSkkkso....",
+        ".....M..ooooooCCCoSkksoo.....",
+        "......M...oGGCmmCogsso.......",
+        ".......MMMMMgCCCooGoo........",
+        "..........GggMCCoGo..........",
+        "..........ooGMCMo............",
+        "..........oMMMMMo............",
+        "..........oMmiMMo............",
+        "...........oMCmMo............",
+        "...........oCcmMo............",
+        "...........oCccCo............",
+        "...........oCddCo............",
+        "...........oMmmMo............",
+        "...........oMimo.............",
+        "............oio..............",
+        "............oMo.............."
       ],
       "sockets": {
         "muzzle": [
@@ -4648,8 +4564,8 @@
           -1
         ],
         "grip": [
-          2,
-          -8
+          3,
+          -13
         ]
       }
     },
@@ -4657,47 +4573,44 @@
       "id": "upper-flame-down-recover",
       "channel": "upper",
       "at": [
-        17,
-        13
+        14,
+        15
       ],
       "rows": [
-        ".......ooooo...",
-        ".....oohhjjhhoo",
-        "....ohhhjjhhho.",
-        "....oHhhhhhho..",
-        "....oHhhSkksso.",
-        ".....oHSkwekso.",
-        "......oSSkksso.",
-        "..ooooAoSkkso..",
-        ".oCddcAAoSSo...",
-        "oCcccoAabvo....",
-        "ooooooAablAo...",
-        "orRrooAabTvo...",
-        "orrrooAAaavAo..",
-        "orrrooAGGGGgo..",
-        "orrrooAGgGgGgo.",
-        "orrrooxGgGffggo",
-        "orrMooxGgGGfggo",
-        "oooMo.oGgGnGgo.",
-        "....M..GgGoGgo.",
-        "....M..GgGogo..",
-        "....M..GgGGggo.",
-        "....M..GGgGggo.",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        ".....M..GgGgo..",
-        "......M.GgGgo..",
-        "......M.GgGgo..",
-        "......M.GGMgo..",
-        "......M.Gfg.o..",
-        ".......MGGG....",
-        ".......MCCC....",
-        "........CMC....",
-        "........CMC....",
-        "........oio....",
-        "........oMo....",
-        "........oMo....",
-        "........ooo...."
+        "...................ooooooo....",
+        ".................oohhjjjhhhoo.",
+        ".................ohhjjjhhhhho.",
+        ".................oHhhhhhhho...",
+        "..................oHhhSskksso.",
+        "...................oHSSkwwekso",
+        "....................oHSSkkkkso",
+        "..oooooooooooo.......oSSkkkso.",
+        ".orRRRrrocooAAAo......ooSkso..",
+        "orRRRrrrocCoAaAAaoo..oSkooo...",
+        "orRrrrroCCCoAabvlAAAoSSSoo....",
+        "oryrrrroCCoooabTlvAoAAao......",
+        "orrrrrroCoAbaoTvlAAoooo.......",
+        "orrrrrroooAaaoTvoAooo.........",
+        "orrrrrooAAoSSsovooAbao........",
+        ".orrrrooAAAoSksoxoAaaao.......",
+        "..ooMoooxxxyoGggoooSksso......",
+        "....M..oNNNnoGffgo.oSkkso.....",
+        ".....M..ooooooooo.oSkkkso.....",
+        "......M......oCCCoSkksoo......",
+        ".......MMMMMGCmmCogsso........",
+        "..........GfgCCCooGoo.........",
+        "..........GggMCCoGo...........",
+        "..........ooGMCMo.............",
+        "..........oMMMMMo.............",
+        "..........oMmiMMo.............",
+        "...........oMCmMo.............",
+        "...........oCcmMo.............",
+        "...........oCccCo.............",
+        "...........oCddCo.............",
+        "...........oMmmMo.............",
+        "...........oMimo..............",
+        "............oio...............",
+        "............oMo..............."
       ],
       "sockets": {
         "muzzle": [
@@ -4705,8 +4618,8 @@
           0
         ],
         "grip": [
-          2,
-          -7
+          3,
+          -12
         ]
       }
     },
@@ -6242,6 +6155,8 @@
     "Authored lower-body start, stop, reverse, crouch bridge and landing exposures. These cosmetic transitions must yield immediately to accepted movement, jump, life and seat state; they cannot delay gameplay.",
     "Action revision: explicit upper knife/throw drawings preserve accepted locomotion; release hand markers bind to current authoritative timelines. Static full-body death/reentry poses follow independent lifeStartTick. Original pixel parts are composed only when writing editable literal source rows, never at runtime.",
     "Horizontal run/idle/landing use authored head, jacket and pack changes. Gun grips meet adjacent hand/weapon pixels. Upper vertical anatomy, vehicle transfers, hurt response under accessible rules and the complete benchmark still require work and human review.",
-    "Crew revision: eight literal grounded ejection recovery drawings stay at the accepted safe feet root. Movement, aim, crouch, fire, jump, life or identity changes cancel recovery immediately. This visual clock never extends the twelve accepted protection ticks and does not invent an airborne path between the seat and safe pad."
+    "Crew revision: eight literal grounded ejection recovery drawings stay at the accepted safe feet root. Movement, aim, crouch, fire, jump, life or identity changes cancel recovery immediately. This visual clock never extends the twelve accepted protection ticks and does not invent an airborne path between the seat and safe pad.",
+    "Vertical-aim revision: original bent-elbow upper bodies replace stretched forearms. Weapon-specific receivers extend toward the grip while each accepted release keeps its existing muzzle. Up/down kick and recovery include head and shoulder changes; locomotion remains independently owned.",
+    "HMG sweep revision: six original diagonal receiver silhouettes and bent-arm grips bridge the vertical poses. Head and shoulder recoil is cosmetic; all accepted release muzzles retain the shared combat contract."
   ]
 }

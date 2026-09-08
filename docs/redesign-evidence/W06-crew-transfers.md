@@ -1,5 +1,7 @@
 # Breakwater crew transfer candidate
 
+The later [operative aim candidate](W06-operative-aim.md) refines 34 firearm poses and reruns the mission replay/still checks. The movies and artifact hashes below retain this crew revision.
+
 The continuous solo, two-player and four-player routes now keep the driver aboard until the final accepted armor hit forces a safe ejection. The releases occur at ticks 1980, 2003 and 2357. The driver remains alive, both sides of seat ownership clear, and the existing twelve protection ticks begin at the release boundary. The audio selects emergency ejection, destruction and engine stop together. Ordinary exit remains a separate accepted action in the tank fixture.
 
 Seven new boarding poses and seven ordinary-exit poses show boots, knees, hands, jacket and head crossing the hatch. The existing twelve-tick boarding and eight-tick exit timelines still own the transfers; the seat marker switches presentation to the accepted occupied/available state with a closed hatch. Eight new operative recovery poses use the actual safe feet root after a grounded emergency release. They last eight ticks and yield on the first accepted movement, aim, crouch, jump, fire or grenade input. They cannot extend invulnerability, move a collision body or replay a transfer when a scene starts from a cold observation. Airborne releases continue to use accepted airborne presentation; a new flight path is not implied by this recovery clip.

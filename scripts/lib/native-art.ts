@@ -116,7 +116,8 @@ export async function compileNativeArt(raw: Buffer, image: string) {
         );
       if (name !== "muzzle") {
         assert(adjacent("GgfSsk"), "Native hand/grip has no adjacent hand drawing");
-        if (name === "grip") assert(adjacent("Mmi"), "Native grip does not meet its weapon");
+        if (name === "grip")
+          assert(adjacent("Mmi"), `Native grip does not meet its weapon: ${frame.id}`);
         continue;
       }
       assert(

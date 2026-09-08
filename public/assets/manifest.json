@@ -691,28 +691,6 @@
       "originalFile": "NES00.ogg"
     },
     {
-      "path": "assets/art/hero/operative.png",
-      "bytes": 71217,
-      "sha256": "ea377af09841b34e18546832b7f6bd7e566796ac620e04e39f43f69b7a638758",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1156,
-        "height": 2040,
-        "colorType": 6
-      },
-      "atlas": "assets/art/hero/operative.atlas.json"
-    },
-    {
-      "path": "assets/art/hero/operative.atlas.json",
-      "bytes": 226275,
-      "sha256": "493728b127fb0fb84f56957a84a7f7fa23f8e875eac9c4f2561802e6ca86c924",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
       "path": "assets/art/enemies/quay-watch.png",
       "bytes": 3499,
       "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70",
@@ -841,6 +819,28 @@
       "bytes": 55964,
       "sha256": "8f2cc7de3bf1d4f8b0290f9d1b583c9cd68a22201df7f0c3e2b3a873a4b1e20f",
       "source": "edgefall-native-breakwater-fx",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/hero/operative.png",
+      "bytes": 76842,
+      "sha256": "7ed07b99111f9c1de34397ef36565c6a08af3f8201cc1d1607e09e79ba149325",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1156,
+        "height": 2040,
+        "colorType": 6
+      },
+      "atlas": "assets/art/hero/operative.atlas.json"
+    },
+    {
+      "path": "assets/art/hero/operative.atlas.json",
+      "bytes": 226283,
+      "sha256": "f48713b8e55051fd12d9d1bcc89f0f57693b12126deb4111d357ca414f4d02ed",
+      "source": "edgefall-native-operative",
       "licence": "Project-original",
       "maxBytes": 256000
     }

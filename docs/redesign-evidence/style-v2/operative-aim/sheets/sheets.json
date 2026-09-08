@@ -1,0 +1,31 @@
+{
+  "baseCommit": "9360fe710a0566850e2542fde339f7f7291c9ded",
+  "sourceSha256": "5e2d25d8dd14a4fb9c28115a35db754a319568b2ac540fa3c5ff0f71b6e5fd84",
+  "outputs": [
+    "up-black-1x.png",
+    "up-black-4x.png",
+    "up-white-1x.png",
+    "up-white-4x.png",
+    "up-chroma-1x.png",
+    "up-chroma-4x.png",
+    "down-black-1x.png",
+    "down-black-4x.png",
+    "down-white-1x.png",
+    "down-white-4x.png",
+    "down-chroma-1x.png",
+    "down-chroma-4x.png",
+    "hmg-sweep-black-1x.png",
+    "hmg-sweep-black-4x.png",
+    "hmg-sweep-white-1x.png",
+    "hmg-sweep-white-4x.png",
+    "hmg-sweep-chroma-1x.png",
+    "hmg-sweep-chroma-4x.png",
+    "palettes-black-1x.png",
+    "palettes-black-4x.png",
+    "palettes-white-1x.png",
+    "palettes-white-4x.png",
+    "palettes-chroma-1x.png",
+    "palettes-chroma-4x.png"
+  ],
+  "scope": "Literal source atlas comparison at native and nearest-neighbour enlarged sizes. HMG has two recoil drawings; its third vertical comparison column repeats the hold and does not imply a third drawing. Human craft approval remains pending."
+}
