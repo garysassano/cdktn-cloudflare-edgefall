@@ -57,6 +57,7 @@ import {
 import { HELD_MASK, Held } from "../input/types.js";
 import { worldRect, worldSocket } from "../physics/body.js";
 import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
+import type { MovementResult } from "../physics/move.js";
 import { type SweepTarget, displacementAtContact, earliestSweep } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
 import { type TankState, createTank } from "../vehicles/tank.js";
@@ -549,6 +550,7 @@ export function advanceCombatLab(
   };
   const lifeNotices: LifeNotice[] = [];
   const seatChanges: SeatChanges = new Map();
+  const playerMovement = new Map<number, MovementResult>();
   const outcomes: Array<{
     playerId: number;
     jumpAccepted: boolean;
@@ -583,7 +585,15 @@ export function advanceCombatLab(
       const killed = damagePlayer(life.actor, tick, 1, "classic", "crush");
       world.players[slot] = killed.actor;
       if (killed.notice) lifeNotices.push(killed.notice);
-    } else world.players[slot] = result.actor;
+    } else {
+      world.players[slot] = result.actor;
+      if (
+        result.status === "complete" &&
+        actor.life === "alive" &&
+        actor.controlEpoch === life.actor.controlEpoch
+      )
+        playerMovement.set(actor.playerId, result.physics.movement);
+    }
     outcomes.push({
       playerId: actor.playerId,
       jumpAccepted:
@@ -1418,7 +1428,7 @@ export function advanceCombatLab(
     "throw",
   ).state;
   const seatEvents = commitCombatSeats(current, world, seatChanges);
-  return { state: world, outcomes, lifeNotices, seatEvents, impacts };
+  return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }
 export interface CombatRecording {
   format: 11;

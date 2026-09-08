@@ -1,0 +1,10 @@
+{
+  "contracts": {
+    "node": "v24.20.0",
+    "chromium": "153.0.8010.12",
+    "wrangler": "4.128.0",
+    "worker": "local workerd; no deployed service"
+  },
+  "missionChromium": "Google Chrome for Testing 151.0.7922.34",
+  "sourceAndGeneratedObservability": "Traces/logs at sampling 1 and source maps configured; deployed ingestion remains unverified."
+}

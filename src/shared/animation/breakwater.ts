@@ -56,7 +56,7 @@ export function advanceBreakwaterVisual(
   const markers: EffectMarker[] = [];
   for (const notice of next.notices) {
     if (notice.kind !== "pickup") continue;
-    const cache = BREAKWATER.pickups.find((p) => p.id === notice.id);
+    const cache = BREAKWATER.pickups.find((p) => p.id === notice.claim?.sourceId);
     if (cache)
       markers.push({
         id: `pickup:${notice.id}:${notice.playerId}`,

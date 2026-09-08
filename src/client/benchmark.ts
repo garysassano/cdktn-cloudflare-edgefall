@@ -90,8 +90,9 @@ let mission = createBreakwater(),
     hero: ReturnType<NativeOperative["draw"]>;
     cast: ReturnType<NativeCast["draw"]>;
     boss: string;
+    supplies: ReturnType<BreakwaterScenery["supplyIndicators"]>;
     effects: ReturnType<typeof effectDrawings>;
-  } = { hero: [], cast: [], boss: "engine-idle", effects: [] },
+  } = { hero: [], cast: [], boss: "engine-idle", effects: [], supplies: [] },
   cameraX = 0;
 let lastFrameAt = performance.now();
 const timing = { frames: 0, monotonicMs: 0, rendererMs: 0, maxFrameMs: 0 };
@@ -169,7 +170,7 @@ function reset() {
 }
 function record(): BreakwaterRecording {
   return {
-    format: 1,
+    format: 2,
     contentHash: mission.contentHash,
     seed: mission.seed,
     players: mission.combat.players.length,
@@ -512,6 +513,7 @@ class BenchmarkScene extends Phaser.Scene {
       hero: hero?.draw(mission.combat, heroMotion) ?? [],
       cast: this.cast?.draw(mission.combat, castMotion, true) ?? [],
       boss: this.scenery?.draw(mission, visual.bossHitTick, reduced) ?? "engine-idle",
+      supplies: this.scenery?.supplyIndicators() ?? [],
       effects: this.effects
         ? effectDrawings(
             visual.effects,

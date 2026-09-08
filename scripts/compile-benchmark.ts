@@ -7,6 +7,7 @@ import {
   BREAKWATER,
   BREAKWATER_PROPS,
   BREAKWATER_TERRAIN,
+  breakwaterPickups,
 } from "../src/game/missions/breakwater-content.js";
 
 const bytes = `${JSON.stringify(
@@ -19,6 +20,7 @@ const bytes = `${JSON.stringify(
           terrain: BREAKWATER_TERRAIN,
           props: BREAKWATER_PROPS,
           combat: COMBAT_CONTENT,
+          supplies: [1, 2, 3, 4].map(breakwaterPickups),
         }),
       )
       .digest("hex"),

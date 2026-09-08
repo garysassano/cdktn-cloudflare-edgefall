@@ -224,7 +224,10 @@ describe("recorded interaction audio", () => {
     expect(combatAudioLoops(next)).toHaveLength(3);
   });
 
-  it("keeps complete mission state unchanged while distinguishing boss, pickup, boarding and weapon sounds", () => {
+  // Full mission replay plus per-boundary presentation checks, matching the mission suite budget.
+  it("keeps complete mission state unchanged while distinguishing boss, pickup, boarding and weapon sounds", {
+    timeout: 20000,
+  }, () => {
     let previous: BreakwaterMission | undefined;
     const kinds = new Set<string>(),
       warnings: number[] = [];

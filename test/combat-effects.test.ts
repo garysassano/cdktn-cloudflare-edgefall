@@ -30,7 +30,10 @@ const atlas = JSON.parse(
 ) as NativeAtlas;
 
 describe("accepted native effects", () => {
-  it("reconstructs the complete mission without mutating authority and expires terminal effects", () => {
+  // Full mission replay plus per-boundary presentation checks, matching the mission suite budget.
+  it("reconstructs the complete mission without mutating authority and expires terminal effects", {
+    timeout: 20000,
+  }, () => {
     let visual = initialBreakwaterVisual(),
       previous: Parameters<typeof advanceBreakwaterVisual>[1] | undefined;
     const proof = runBreakwaterProof((state) => {

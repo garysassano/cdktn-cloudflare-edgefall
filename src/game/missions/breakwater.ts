@@ -1,20 +1,32 @@
 import { createRifleState } from "../actors/rifle.js";
 import { createShieldState } from "../actors/shield.js";
+import { cancelArea } from "../combat/area-attack.js";
 import { createDestructible } from "../combat/destructible.js";
+import {
+  type WeaponPickupClaim,
+  type WeaponPickupState,
+  createWeaponPickups,
+  stepWeaponPickups,
+} from "../combat/pickups.js";
 import { canonical } from "../core/canonical.js";
-import { integer, nextCounter, pixels } from "../core/numeric.js";
+import { integer, pixels } from "../core/numeric.js";
 import { EncounterLifecycle } from "../encounters/lifecycle.js";
 import {
   type CombatCommand,
   type CombatLab,
   type CombatStage,
   advanceCombatLab,
+  combatAreaAnchor,
   combatEncounterDefinition,
   createCombatLab,
 } from "../labs/combat.js";
-import { SHIELD_PROFILE, TANK_PROFILE } from "../labs/combat-content.js";
+import {
+  AREA_PROFILES,
+  COMBAT_CATALOG,
+  SHIELD_PROFILE,
+  TANK_PROFILE,
+} from "../labs/combat-content.js";
 import { footActor } from "../labs/foot-fixture.js";
-import type { ControlledActor } from "../state.js";
 import { createTank } from "../vehicles/tank.js";
 import {
   type LockEngine,
@@ -23,11 +35,16 @@ import {
   initialLockEngine,
   lockEngineHurtboxes,
 } from "./breakwater-boss.js";
-import { BREAKWATER, BREAKWATER_PROPS, BREAKWATER_TERRAIN } from "./breakwater-content.js";
+import {
+  BREAKWATER,
+  BREAKWATER_PROPS,
+  BREAKWATER_TERRAIN,
+  breakwaterPickups,
+} from "./breakwater-content.js";
 import digest from "./compiled/breakwater.json" with { type: "json" };
 
 export interface BreakwaterMission {
-  format: 1;
+  format: 2;
   contentHash: string;
   seed: number;
   phase: "playing" | "victory" | "defeat";
@@ -35,12 +52,13 @@ export interface BreakwaterMission {
   checkpoint: number;
   combat: CombatLab;
   boss: LockEngine;
-  pickups: Array<{ id: number; claimedBy: number[] }>;
+  supplies: WeaponPickupState;
   notices: Array<{
     kind: "pickup" | "checkpoint" | "victory" | "defeat";
     tick: number;
     id: number;
     playerId: number | null;
+    claim: WeaponPickupClaim | null;
   }>;
 }
 export function createBreakwater(players = 1, seed = 0x42574159): BreakwaterMission {
@@ -86,7 +104,7 @@ export function createBreakwater(players = 1, seed = 0x42574159): BreakwaterMiss
   combat.nextEntityId = 2000;
   combat.encounter = new EncounterLifecycle(combatEncounterDefinition(combat)).begin();
   return {
-    format: 1,
+    format: 2,
     contentHash: digest.contentHash,
     seed,
     phase: "playing",
@@ -94,7 +112,7 @@ export function createBreakwater(players = 1, seed = 0x42574159): BreakwaterMiss
     checkpoint: 0,
     combat,
     boss: initialLockEngine(players),
-    pickups: BREAKWATER.pickups.map((pickup) => ({ id: pickup.id, claimedBy: [] })),
+    supplies: createWeaponPickups(breakwaterPickups(players), COMBAT_CATALOG, BREAKWATER_TERRAIN),
     notices: [],
   };
 }
@@ -142,82 +160,57 @@ export function breakwaterStage(mission: BreakwaterMission): CombatStage {
     extraHurtboxes: lockEngineHurtboxes(mission.boss),
   };
 }
-function takePickup(
-  mission: BreakwaterMission,
-  player: ControlledActor,
-  command: CombatCommand,
-): boolean {
-  if (
-    !command.interactPressed ||
-    player.life !== "alive" ||
-    player.vehicleId !== null ||
-    ["enter", "exit", "melee", "grenade"].includes(player.action.kind)
-  )
-    return false;
-  const definition = BREAKWATER.pickups.find(
-    (p) =>
-      Math.abs(player.body.x - pixels(p.x)) <= pixels(24) &&
-      Math.abs(player.body.y - pixels(p.y)) <= pixels(16) &&
-      !mission.pickups.find((state) => state.id === p.id)?.claimedBy.includes(player.playerId),
-  );
-  const state = definition && mission.pickups.find((state) => state.id === definition.id);
-  if (!definition || !state) return false;
-  state.claimedBy.push(player.playerId);
-  state.claimedBy.sort((a, b) => a - b);
-  player.controlEpoch = nextCounter(player.controlEpoch);
-  player.weapon = {
-    ...player.weapon,
-    id: definition.weapon,
-    ammo: definition.ammo,
-    cooldownTicks: 0,
-  };
-  player.firearmAim = {
-    pitch: player.aim === 1 ? 4 : player.aim === 2 ? -4 : 0,
-    nextStepTick: mission.combat.tick + 1,
-  };
-  player.action = {
-    kind: "ready",
-    actionInstanceId: 0,
-    stateStartTick: mission.combat.tick + 1,
-    definitionId: 0,
-    nextMarkerIndex: 0,
-  };
-  mission.notices.push({
-    kind: "pickup",
-    id: definition.id,
-    playerId: player.playerId,
-    tick: mission.combat.tick + 1,
-  });
-  return true;
-}
 /** One accepted mission boundary. Only input and this state can change inventory, targets or outcomes. */
 export function stepBreakwater(
   current: BreakwaterMission,
   commands: readonly CombatCommand[],
 ): BreakwaterMission {
-  if (current.contentHash !== digest.contentHash || current.format !== 1)
+  if (current.contentHash !== digest.contentHash || current.format !== 2)
     throw new Error("Mission content mismatch");
   if (current.phase !== "playing") return structuredClone(current);
   integer(current.combat.tick, 0, BREAKWATER.maxTicks - 1, "mission tick");
   if (commands.length !== current.combat.players.length) throw new Error("Missing mission input");
   const mission = structuredClone(current);
   mission.notices = [];
-  const inputs = commands.map((command, slot) => {
-    const player = mission.combat.players[slot];
-    if (!player) throw new Error("Missing mission player");
-    return takePickup(mission, player, command) ? { ...command, interactPressed: false } : command;
-  });
+  if (mission.supplies.tick !== mission.combat.tick)
+    throw new Error("Mission supply boundary mismatch");
   const lead = Math.max(
     0,
     ...mission.combat.players.filter((p) => p.life === "alive").map((p) => p.body.x),
   );
   const bossEvents = advanceLockEngine(mission.boss, mission.combat, lead);
-  const result = advanceCombatLab(mission.combat, inputs, undefined, breakwaterStage(mission));
+  const result = advanceCombatLab(mission.combat, commands, undefined, breakwaterStage(mission));
   mission.combat = result.state;
   mission.combat.events.unshift(...bossEvents);
   mission.combat.events.push(
     ...damageLockEngine(mission.boss, result.impacts, mission.combat.tick),
   );
+  const supplied = stepWeaponPickups(
+    mission.supplies,
+    breakwaterPickups(mission.combat.players.length),
+    mission.combat.players,
+    result.playerMovement,
+    breakwaterTerrain(mission),
+    COMBAT_CATALOG,
+  );
+  mission.supplies = supplied.state;
+  mission.combat.players = supplied.players;
+  for (const claim of supplied.claims)
+    mission.notices.push({
+      kind: "pickup",
+      id: claim.id,
+      playerId: claim.playerId,
+      tick: claim.tick,
+      claim,
+    });
+  mission.combat.beams = mission.combat.beams.filter(
+    (beam) => combatAreaAnchor(mission.combat, beam) !== null,
+  );
+  for (const area of mission.combat.areas) {
+    const profile = AREA_PROFILES.get(area.definitionId);
+    if (!profile) throw new Error("Missing supply cancellation profile");
+    if (!combatAreaAnchor(mission.combat, area)) cancelArea(area, mission.combat.tick, profile);
+  }
   const checkpoint = BREAKWATER.checkpoints.findLastIndex((p) => lead >= pixels(p.x));
   if (checkpoint > mission.checkpoint) {
     mission.checkpoint = checkpoint;
@@ -226,6 +219,7 @@ export function stepBreakwater(
       tick: mission.combat.tick,
       id: checkpoint,
       playerId: null,
+      claim: null,
     });
   }
   if (mission.boss.health === 0 && mission.combat.encounter.phase === "complete")
@@ -233,12 +227,18 @@ export function stepBreakwater(
   else if (mission.combat.players.every((p) => p.life === "spectating")) mission.phase = "defeat";
   if (mission.phase !== "playing") {
     mission.finishedTick = mission.combat.tick;
-    mission.notices.push({ kind: mission.phase, tick: mission.combat.tick, id: 0, playerId: null });
+    mission.notices.push({
+      kind: mission.phase,
+      tick: mission.combat.tick,
+      id: 0,
+      playerId: null,
+      claim: null,
+    });
   }
   return mission;
 }
 export interface BreakwaterRecording {
-  format: 1;
+  format: 2;
   contentHash: string;
   seed: number;
   players: number;
@@ -250,7 +250,7 @@ export function replayBreakwater(
   observe?: (state: BreakwaterMission) => void,
 ): BreakwaterMission {
   if (
-    recording.format !== 1 ||
+    recording.format !== 2 ||
     recording.contentHash !== digest.contentHash ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > BREAKWATER.maxTicks

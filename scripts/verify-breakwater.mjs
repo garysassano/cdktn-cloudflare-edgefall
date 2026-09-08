@@ -12,6 +12,7 @@ import {
   createBreakwater,
   stepBreakwater,
 } from "../src/game/missions/breakwater.ts";
+import { BREAKWATER } from "../src/game/missions/breakwater-content.ts";
 import {
   advanceBreakwaterVisual,
   initialBreakwaterVisual,
@@ -50,6 +51,7 @@ const root = resolve("dist/client"),
   expected = new Map(),
   expectedFrames = new Map(),
   ejections = [],
+  pickupClaims = [],
   hashes = [],
   visualHashes = [],
   hash = (text) => createHash("sha256").update(text).digest("hex");
@@ -118,6 +120,12 @@ const proof = runBreakwaterProof((state) => {
     const queue = (label, delay = 0) => {
       if (![...captures.values()].includes(label)) captures.set(state.combat.tick + delay, label);
     };
+    for (const notice of state.notices)
+      if (notice.kind === "pickup") {
+        assert(notice.claim, "Missing committed pickup claim");
+        pickupClaims.push(notice.claim);
+        queue(`supply-${notice.claim.sourceId}`);
+      }
     if (state.combat.grenades.length) queue("grenade", 3);
     if (state.combat.areas.some((a) => a.definitionId === 10)) queue("shotgun", 3);
     if (state.combat.areas.some((a) => a.definitionId === 11)) queue("flame", 4);
@@ -244,6 +252,7 @@ const errors = [],
     outcome: proof.state.phase,
     landmarks: proof.landmarks,
     forcedEjections: ejections,
+    supplies: { claims: pickupClaims, indicators: [] },
     crewBoundaries: [...expectedFrames].map(([tick, frames]) => ({ tick, ...frames })),
     boundaryHashes: hashes,
     visualHashes,
@@ -298,6 +307,22 @@ try {
     const state = await page.evaluate(() => globalThis.breakwater.state());
     assert.equal(canonical(state), canonical(expected.get(tick)));
     await paint();
+    const indicators = await page.evaluate(() => globalThis.breakwater.frames().supplies);
+    assert.equal(indicators.length, BREAKWATER.pickups.length);
+    for (const indicator of indicators) {
+      const claimed = pickupClaims.filter(
+        (claim) => claim.sourceId === indicator.sourceId && claim.tick <= tick,
+      ).length;
+      const remaining = tick === 0 ? 0 : playerCount - claimed;
+      assert.equal(indicator.visible, remaining > 0, `Supply visibility at ${tick}`);
+      assert.equal(indicator.countVisible, remaining > 1, `Supply count visibility at ${tick}`);
+      assert.equal(
+        indicator.countText,
+        `×${remaining}`,
+        `Remaining individual supplies at ${tick}`,
+      );
+    }
+    report.supplies.indicators.push({ tick, indicators });
     assert.deepEqual(
       await page.evaluate(() => {
         const { hero, cast } = globalThis.breakwater.frames();

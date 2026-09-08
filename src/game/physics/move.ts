@@ -10,6 +10,7 @@ import {
 import type { Point, Rect } from "../state.js";
 import { type CollisionFrame, CollisionIndex } from "./grid.js";
 import {
+  type ContactTime,
   type Normal,
   type SweepContact,
   type SweepTarget,
@@ -30,6 +31,12 @@ export interface MovementContact extends SweepContact {
   /** Time is relative to this residual sweep, not a multiplied whole-tick fraction. */
   iteration: number;
 }
+/** Accepted residual intervals; sensor queries must stop at each collision before sliding. */
+export interface MovementInterval {
+  rect: Rect;
+  motion: Point;
+  until: ContactTime;
+}
 export interface MovementResult extends KinematicState {
   status:
     | "complete"
@@ -39,6 +46,7 @@ export interface MovementResult extends KinematicState {
     | "unresolved-contact"
     | "crushed";
   contacts: MovementContact[];
+  path: MovementInterval[];
   correction: Point;
   remaining: Point;
   iterations: number;
@@ -304,6 +312,7 @@ export function moveKinematic(
     supportId: null,
     status: "complete",
     contacts: [],
+    path: [],
     correction: correction ?? { ...ZERO },
     remaining: { ...state.motion },
     iterations: 0,
@@ -327,6 +336,11 @@ export function moveKinematic(
     if (hits.overlaps.length)
       return { ...result, status: "residual-overlap", diagnosticIds: hits.overlaps };
     if (!hits.contacts.length) {
+      result.path.push({
+        rect: { ...result.rect },
+        motion: { ...result.remaining },
+        until: { numerator: 1, denominator: 1 },
+      });
       result.rect = translate(result.rect, result.remaining);
       for (const target of targets) target.rect = translate(target.rect, target.delta);
       result.remaining = { ...ZERO };
@@ -339,6 +353,11 @@ export function moveKinematic(
     const first = hits.contacts[0];
     if (!first) throw new Error("Missing movement contact");
     result.iterations++;
+    result.path.push({
+      rect: { ...result.rect },
+      motion: { ...result.remaining },
+      until: { ...first.time },
+    });
     const moved = displacementAtContact(result.remaining, first.time);
     result.rect = translate(result.rect, moved);
     result.remaining = { x: result.remaining.x - moved.x, y: result.remaining.y - moved.y };
@@ -420,6 +439,11 @@ export function moveKinematic(
       result.remaining.y === 0 &&
       targets.every((target) => target.delta.x === 0 && target.delta.y === 0)
     ) {
+      result.path.push({
+        rect: { ...result.rect },
+        motion: { ...ZERO },
+        until: { numerator: 1, denominator: 1 },
+      });
       result.supportId = support(
         result.rect,
         targets,

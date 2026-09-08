@@ -7,7 +7,7 @@ import {
   createBreakwater,
   stepBreakwater,
 } from "../../src/game/missions/breakwater.js";
-import { BREAKWATER } from "../../src/game/missions/breakwater-content.js";
+import { BREAKWATER, breakwaterPickups } from "../../src/game/missions/breakwater-content.js";
 
 /** Continuous input demonstrations. Directors inspect accepted state and never write the world. */
 export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void, players = 1) {
@@ -16,6 +16,19 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
     began = 0;
   const commands: CombatCommand[][] = [],
     landmarks: Array<{ phase: number; tick: number }> = [];
+  const supplies = breakwaterPickups(players);
+  const claimed = (sourceId: number, playerId: number) =>
+    supplies.some(
+      (def) =>
+        def.sourceId === sourceId &&
+        state.supplies.items.some((item) => item.id === def.id && item.claimedBy === playerId),
+    );
+  const available = (sourceId: number) =>
+    supplies.some(
+      (def) =>
+        def.sourceId === sourceId &&
+        state.supplies.items.some((item) => item.id === def.id && item.status === "available"),
+    );
   const begin = (next: number) => {
     phase = next;
     began = state.combat.tick;
@@ -109,8 +122,11 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
         break;
       }
       case 6:
-        go(1200);
-        fire();
+        go(Math.min(1200, target(24).enemy.body.x / 256 - 48));
+        if (!(held & Held.Left)) {
+          if (player.facing < 0) held |= Held.Right;
+          fire();
+        }
         if (target(24).health === 0) begin(7);
         break;
       case 7:
@@ -201,8 +217,10 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
       if (phase === 11 && x >= 2400) destination = 2450 - slot * 4;
       const cache = BREAKWATER.pickups.find(
         (p) =>
-          state.pickups.find((s) => s.id === p.id)?.claimedBy.includes(player.playerId) &&
-          !state.pickups.find((s) => s.id === p.id)?.claimedBy.includes(ally.playerId) &&
+          claimed(p.id, player.playerId) &&
+          available(p.id) &&
+          !claimed(p.id, ally.playerId) &&
+          !(ally.weapon.id === p.weapon && ally.weapon.ammo >= p.ammo) &&
           p.x >= ax - 24 &&
           p.x <= x + 32 &&
           x - p.x < 150,
@@ -212,7 +230,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
         use = tick % 8 === slot;
       }
       if (phase >= 12) {
-        const equipped = state.pickups.find((p) => p.id === 304)?.claimedBy.includes(ally.playerId);
+        const equipped = ally.weapon.id === "heavy-machine-gun";
         destination = equipped ? 2700 - slot * 28 : 2712;
         use = !equipped && tick % 8 === slot;
         const settled = Math.abs(ax - destination) <= 2;
@@ -299,7 +317,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
     observe?.(structuredClone(state));
   }
   const recording: BreakwaterRecording = {
-    format: 1,
+    format: 2,
     contentHash: state.contentHash,
     seed: state.seed,
     players: state.combat.players.length,

@@ -1,0 +1,631 @@
+{
+  "ticks": 180,
+  "claims": [
+    {
+      "id": 1400,
+      "claimId": 1400,
+      "sourceId": 1300,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 7,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 2
+    },
+    {
+      "id": 1401,
+      "claimId": 1401,
+      "sourceId": 1300,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 8,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 2
+    },
+    {
+      "id": 1402,
+      "claimId": 1402,
+      "sourceId": 1300,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 10,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 2
+    },
+    {
+      "id": 1403,
+      "claimId": 1403,
+      "sourceId": 1300,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 11,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 2
+    },
+    {
+      "id": 1404,
+      "claimId": 1404,
+      "sourceId": 1301,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 23,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1405,
+      "claimId": 1405,
+      "sourceId": 1301,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 24,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1406,
+      "claimId": 1406,
+      "sourceId": 1301,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 26,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1407,
+      "claimId": 1407,
+      "sourceId": 1301,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 27,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1408,
+      "claimId": 1408,
+      "sourceId": 1302,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 39,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1409,
+      "claimId": 1409,
+      "sourceId": 1302,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 40,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1410,
+      "claimId": 1410,
+      "sourceId": 1302,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 42,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1411,
+      "claimId": 1411,
+      "sourceId": 1302,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 43,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1412,
+      "claimId": 1412,
+      "sourceId": 1303,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 55,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1413,
+      "claimId": 1413,
+      "sourceId": 1303,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 56,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1414,
+      "claimId": 1414,
+      "sourceId": 1303,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 58,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1415,
+      "claimId": 1415,
+      "sourceId": 1303,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 59,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1416,
+      "claimId": 1416,
+      "sourceId": 1304,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 71,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1417,
+      "claimId": 1417,
+      "sourceId": 1304,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 72,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1418,
+      "claimId": 1418,
+      "sourceId": 1304,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 74,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 2,
+      "ammo": 2
+    },
+    {
+      "id": 1419,
+      "claimId": 1419,
+      "sourceId": 1304,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 75,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 2,
+      "ammo": 2
+    }
+  ],
+  "laserShots": [
+    {
+      "tick": 100,
+      "playerId": 1
+    },
+    {
+      "tick": 100,
+      "playerId": 2
+    },
+    {
+      "tick": 100,
+      "playerId": 3
+    },
+    {
+      "tick": 100,
+      "playerId": 4
+    },
+    {
+      "tick": 106,
+      "playerId": 1
+    },
+    {
+      "tick": 106,
+      "playerId": 2
+    },
+    {
+      "tick": 106,
+      "playerId": 3
+    },
+    {
+      "tick": 106,
+      "playerId": 4
+    }
+  ],
+  "checkpoints": [
+    {
+      "tick": 0,
+      "bytes": 6604,
+      "hash": "ec012150",
+      "resumedHash": "52dfbd2b",
+      "contacts": 0
+    },
+    {
+      "tick": 1,
+      "bytes": 7357,
+      "hash": "023ee31f",
+      "resumedHash": "d8947d02",
+      "contacts": 0
+    },
+    {
+      "tick": 6,
+      "bytes": 7357,
+      "hash": "41e482a4",
+      "resumedHash": "2c7af216",
+      "contacts": 0
+    },
+    {
+      "tick": 7,
+      "bytes": 7433,
+      "hash": "147fa544",
+      "resumedHash": "b0f02a20",
+      "contacts": 3
+    },
+    {
+      "tick": 8,
+      "bytes": 7460,
+      "hash": "bb453992",
+      "resumedHash": "5ea32ba1",
+      "contacts": 4
+    },
+    {
+      "tick": 9,
+      "bytes": 7460,
+      "hash": "41079c09",
+      "resumedHash": "76290120",
+      "contacts": 4
+    },
+    {
+      "tick": 10,
+      "bytes": 7443,
+      "hash": "3fa8152a",
+      "resumedHash": "1a77da45",
+      "contacts": 3
+    },
+    {
+      "tick": 11,
+      "bytes": 7372,
+      "hash": "7eed54d2",
+      "resumedHash": "f872b1ae",
+      "contacts": 0
+    },
+    {
+      "tick": 22,
+      "bytes": 7372,
+      "hash": "b0f02a20",
+      "resumedHash": "e1353bb9",
+      "contacts": 0
+    },
+    {
+      "tick": 23,
+      "bytes": 7429,
+      "hash": "5ea32ba1",
+      "resumedHash": "2bea71da",
+      "contacts": 3
+    },
+    {
+      "tick": 24,
+      "bytes": 7437,
+      "hash": "76290120",
+      "resumedHash": "502760e7",
+      "contacts": 4
+    },
+    {
+      "tick": 25,
+      "bytes": 7437,
+      "hash": "1a77da45",
+      "resumedHash": "d9589268",
+      "contacts": 4
+    },
+    {
+      "tick": 26,
+      "bytes": 7395,
+      "hash": "f872b1ae",
+      "resumedHash": "123bea85",
+      "contacts": 3
+    },
+    {
+      "tick": 27,
+      "bytes": 7304,
+      "hash": "54dd514d",
+      "resumedHash": "a44cccd7",
+      "contacts": 0
+    },
+    {
+      "tick": 38,
+      "bytes": 7304,
+      "hash": "2bea71da",
+      "resumedHash": "4c4dda32",
+      "contacts": 0
+    },
+    {
+      "tick": 39,
+      "bytes": 7376,
+      "hash": "502760e7",
+      "resumedHash": "8ad97bcb",
+      "contacts": 3
+    },
+    {
+      "tick": 40,
+      "bytes": 7399,
+      "hash": "d9589268",
+      "resumedHash": "c340bb19",
+      "contacts": 4
+    },
+    {
+      "tick": 41,
+      "bytes": 7399,
+      "hash": "123bea85",
+      "resumedHash": "27701fd2",
+      "contacts": 4
+    },
+    {
+      "tick": 42,
+      "bytes": 7372,
+      "hash": "a44cccd7",
+      "resumedHash": "841e635c",
+      "contacts": 3
+    },
+    {
+      "tick": 43,
+      "bytes": 7296,
+      "hash": "9a8eb57e",
+      "resumedHash": "d71d3506",
+      "contacts": 0
+    },
+    {
+      "tick": 54,
+      "bytes": 7296,
+      "hash": "8ad97bcb",
+      "resumedHash": "b95e0deb",
+      "contacts": 0
+    },
+    {
+      "tick": 55,
+      "bytes": 7366,
+      "hash": "c340bb19",
+      "resumedHash": "9b2372c7",
+      "contacts": 3
+    },
+    {
+      "tick": 56,
+      "bytes": 7387,
+      "hash": "27701fd2",
+      "resumedHash": "06bd37ae",
+      "contacts": 4
+    },
+    {
+      "tick": 57,
+      "bytes": 7387,
+      "hash": "841e635c",
+      "resumedHash": "6dbb0f9a",
+      "contacts": 4
+    },
+    {
+      "tick": 58,
+      "bytes": 7358,
+      "hash": "d71d3506",
+      "resumedHash": "edb4dbac",
+      "contacts": 3
+    },
+    {
+      "tick": 59,
+      "bytes": 7280,
+      "hash": "fd0b4aa9",
+      "resumedHash": "fb49f691",
+      "contacts": 0
+    },
+    {
+      "tick": 70,
+      "bytes": 7280,
+      "hash": "9b2372c7",
+      "resumedHash": "2139e5f6",
+      "contacts": 0
+    },
+    {
+      "tick": 71,
+      "bytes": 7337,
+      "hash": "06bd37ae",
+      "resumedHash": "6dec04d5",
+      "contacts": 3
+    },
+    {
+      "tick": 72,
+      "bytes": 7345,
+      "hash": "6dbb0f9a",
+      "resumedHash": "28732c93",
+      "contacts": 4
+    },
+    {
+      "tick": 73,
+      "bytes": 7345,
+      "hash": "edb4dbac",
+      "resumedHash": "7df7c0e9",
+      "contacts": 4
+    },
+    {
+      "tick": 74,
+      "bytes": 7303,
+      "hash": "fb49f691",
+      "resumedHash": "b0bbdff2",
+      "contacts": 3
+    },
+    {
+      "tick": 75,
+      "bytes": 7212,
+      "hash": "d3b2208e",
+      "resumedHash": "49ac9637",
+      "contacts": 0
+    },
+    {
+      "tick": 89,
+      "bytes": 7212,
+      "hash": "b0bbdff2",
+      "resumedHash": "a06b8b23",
+      "contacts": 0
+    },
+    {
+      "tick": 90,
+      "bytes": 7212,
+      "hash": "49ac9637",
+      "resumedHash": "435cb344",
+      "contacts": 0
+    },
+    {
+      "tick": 99,
+      "bytes": 7204,
+      "hash": "a9856334",
+      "resumedHash": "07b96f5a",
+      "contacts": 0
+    },
+    {
+      "tick": 100,
+      "bytes": 9623,
+      "hash": "73f0eeed",
+      "resumedHash": "4794db8e",
+      "contacts": 0
+    },
+    {
+      "tick": 105,
+      "bytes": 7852,
+      "hash": "435cb344",
+      "resumedHash": "627d5038",
+      "contacts": 0
+    },
+    {
+      "tick": 106,
+      "bytes": 9623,
+      "hash": "2f830f03",
+      "resumedHash": "dbf814db",
+      "contacts": 0
+    },
+    {
+      "tick": 107,
+      "bytes": 7852,
+      "hash": "1dd8b528",
+      "resumedHash": "e1f36128",
+      "contacts": 0
+    },
+    {
+      "tick": 111,
+      "bytes": 7852,
+      "hash": "d680effd",
+      "resumedHash": "cee70a4c",
+      "contacts": 0
+    },
+    {
+      "tick": 112,
+      "bytes": 9447,
+      "hash": "78bc6013",
+      "resumedHash": "fb27d959",
+      "contacts": 0
+    },
+    {
+      "tick": 120,
+      "bytes": 10051,
+      "hash": "627d5038",
+      "resumedHash": "7e1eafa9",
+      "contacts": 0
+    },
+    {
+      "tick": 159,
+      "bytes": 9041,
+      "hash": "d1736aee",
+      "resumedHash": "481bfb52",
+      "contacts": 0
+    }
+  ],
+  "traceHash": "61eb6985",
+  "finalHash": "5c705f5f",
+  "players": [
+    {
+      "playerId": 1,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 4,
+        "shotOrdinal": 11,
+        "lastActionInstanceId": 41
+      },
+      "lives": 3
+    },
+    {
+      "playerId": 2,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 4,
+        "shotOrdinal": 11,
+        "lastActionInstanceId": 42
+      },
+      "lives": 3
+    },
+    {
+      "playerId": 3,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 4,
+        "shotOrdinal": 11,
+        "lastActionInstanceId": 43
+      },
+      "lives": 3
+    },
+    {
+      "playerId": 4,
+      "weapon": {
+        "id": "sidearm",
+        "ammo": 0,
+        "cooldownTicks": 4,
+        "shotOrdinal": 11,
+        "lastActionInstanceId": 44
+      },
+      "lives": 3
+    }
+  ],
+  "scope": "Actual controller paths, individual supply contention, finite weapon swaps, JSON continuation and empty fallback. No pickup wire/archive/SQLite or deployed-room claim."
+}

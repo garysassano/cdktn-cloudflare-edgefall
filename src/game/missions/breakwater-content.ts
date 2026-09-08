@@ -1,5 +1,6 @@
 import type { DestructibleDefinition } from "../combat/destructible.js";
-import { pixels } from "../core/numeric.js";
+import type { WeaponPickupDefinition } from "../combat/pickups.js";
+import { integer, pixels } from "../core/numeric.js";
 import { footTerrain } from "../labs/foot-fixture.js";
 
 /** One continuous original quay, from the loading apron to the lock engine. Coordinates are native pixels. */
@@ -48,6 +49,26 @@ export const BREAKWATER = {
     weakPoint: { x: -54, y: -34, w: 24, h: 20 },
   },
 } as const;
+
+/** Separate shared items per active player; no item is reserved for a particular slot. */
+export function breakwaterPickups(players: number): WeaponPickupDefinition[] {
+  integer(players, 1, 4, "supply party size");
+  return BREAKWATER.pickups.flatMap((source) =>
+    Array.from({ length: players }, (_, index) => ({
+      id: source.id * 4 + index,
+      claimId: source.id * 4 + index,
+      sourceId: source.id,
+      kind: "weapon" as const,
+      weaponId: source.weapon,
+      ammo: source.ammo,
+      ammoLimit: source.ammo,
+      activationTick: 1,
+      expiresTick: BREAKWATER.maxTicks,
+      supportId: 100,
+      rect: { x: pixels(source.x - 12), y: pixels(source.y - 23), w: pixels(24), h: pixels(23) },
+    })),
+  );
+}
 
 export const BREAKWATER_TERRAIN = [
   footTerrain(100, 0, 200, BREAKWATER.width, 32),

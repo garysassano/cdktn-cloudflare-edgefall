@@ -200,21 +200,23 @@ describe("Breakwater Approach", () => {
     expect(state.boss.health).toBeLessThan(health);
   });
 
-  it.each([1, 2, 4])("gives each of %i players one independently claimed cache", (count) => {
+  it.each([1, 2, 4])("provides %i individual shared supplies with no duplicate grants", (count) => {
     let state = createBreakwater(count);
-    for (const [slot, player] of state.combat.players.entries())
-      player.body.x = pixels(558 + slot * 12);
+    for (const player of state.combat.players) player.body.x = pixels(576);
+    const epochs = state.combat.players.map((p) => p.controlEpoch);
     state = stepBreakwater(
       state,
-      state.combat.players.map(() => ({ ...neutral, interactPressed: true })),
+      state.combat.players.map(() => neutral),
     );
-    expect(state.pickups[0]?.claimedBy).toEqual(state.combat.players.map((p) => p.playerId));
+    const claimed = state.supplies.items.filter((item) => item.status === "claimed");
+    expect(claimed).toHaveLength(count);
+    expect(new Set(claimed.map((item) => item.claimedBy)).size).toBe(count);
     expect(
       state.combat.players.every(
         (p) => p.weapon.id === "heavy-machine-gun" && p.weapon.ammo === 150,
       ),
     ).toBe(true);
-    const epochs = state.combat.players.map((p) => p.controlEpoch);
+    expect(state.notices.filter((notice) => notice.kind === "pickup")).toHaveLength(count);
     state = stepBreakwater(
       state,
       state.combat.players.map(() => ({ ...neutral, interactPressed: true })),

@@ -43,6 +43,7 @@ import { spatialProof } from "./spatial-proof.js";
 import { supportProof } from "./support-proof.js";
 import { tankCombatProof } from "./tank-proof.js";
 import { traversalProof } from "./traversal-proof.js";
+import { weaponPickupProof } from "./weapon-pickup-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
 
 /** Portable conformance workload, not a substitute for the future movement/combat simulation. */
@@ -126,6 +127,7 @@ export async function contractProof() {
     rocketCombat: await rocketCombatProof(),
     beam: beamProof(),
     laserCombat: await laserCombatProof(),
+    weaponPickups: weaponPickupProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

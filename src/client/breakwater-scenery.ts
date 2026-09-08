@@ -4,14 +4,27 @@ import {
   BREAKWATER,
   BREAKWATER_PROPS,
   BREAKWATER_TERRAIN,
+  breakwaterPickups,
 } from "../game/missions/breakwater-content.js";
 import { BREAKWATER_ART } from "../shared/animation/breakwater.js";
 
 /** Native atlas tiles in fixed layers; terrain and damage remain mission-owned. */
 export class BreakwaterScenery {
   private readonly caches = new Map<number, Phaser.GameObjects.Image>();
+  private readonly supplyCounts = new Map<number, Phaser.GameObjects.Text>();
+  private readonly supplySources = new Map(
+    breakwaterPickups(4).map((item) => [item.id, item.sourceId]),
+  );
   private readonly props = new Map<number, Phaser.GameObjects.Image>();
   private readonly boss: Phaser.GameObjects.Image;
+  supplyIndicators() {
+    return [...this.caches].map(([sourceId, sprite]) => ({
+      sourceId,
+      visible: sprite.visible,
+      countText: this.supplyCounts.get(sourceId)?.text ?? "",
+      countVisible: this.supplyCounts.get(sourceId)?.visible ?? false,
+    }));
+  }
   static preload(scene: Phaser.Scene): void {
     for (const asset of BREAKWATER_ART)
       scene.load.atlas(
@@ -61,11 +74,23 @@ export class BreakwaterScenery {
       shotgun: "shotgun",
       flamethrower: "flame",
     };
-    for (const cache of BREAKWATER.pickups)
+    for (const cache of BREAKWATER.pickups) {
       this.caches.set(
         cache.id,
         image(`cache-${names[cache.weapon]}`, cache.x - 16, cache.y - 23, 0.7),
       );
+      this.supplyCounts.set(
+        cache.id,
+        scene.add
+          .text(cache.x + 8, cache.y - 30, "", {
+            fontFamily: "monospace",
+            fontSize: "8px",
+            color: "#fff0c1",
+            backgroundColor: "#102d3b",
+          })
+          .setDepth(0.8),
+      );
+    }
     for (const prop of BREAKWATER_PROPS)
       this.props.set(prop.id, image("crate", prop.rect.x / 256, prop.rect.y / 256, 0.75));
     this.boss = scene.add
@@ -74,10 +99,20 @@ export class BreakwaterScenery {
       .setDepth(0.7);
   }
   draw(mission: BreakwaterMission, hitTick: number | null = null, reduced = false): string {
-    for (const pickup of mission.pickups)
-      this.caches
-        .get(pickup.id)
-        ?.setVisible(pickup.claimedBy.length < mission.combat.players.length);
+    const available = new Map<number, number>();
+    for (const pickup of mission.supplies.items) {
+      const sourceId = this.supplySources.get(pickup.id);
+      if (sourceId !== undefined && pickup.status === "available")
+        available.set(sourceId, (available.get(sourceId) ?? 0) + 1);
+    }
+    for (const [sourceId, sprite] of this.caches) {
+      const count = available.get(sourceId) ?? 0;
+      sprite.setVisible(count > 0);
+      this.supplyCounts
+        .get(sourceId)
+        ?.setText(`×${count}`)
+        .setVisible(count > 1);
+    }
     for (const prop of mission.combat.props) this.props.get(prop.id)?.setVisible(prop.health > 0);
     const boss = mission.boss,
       age = mission.combat.tick - boss.phaseStartTick;
