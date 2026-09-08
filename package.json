@@ -40,6 +40,7 @@
     "content:compile": "tsx scripts/compile-content.ts && tsx scripts/compile-benchmark.ts",
     "test:network:controller": "tsx scripts/verify-network-controller.ts",
     "test:lab:combat": "node scripts/build-client.mjs --lab && node scripts/verify-combat-lab.mjs",
+    "test:lab:materials": "node scripts/build-client.mjs --lab && tsx scripts/verify-material-lab.mjs",
     "art:review": "tsx scripts/assets/review-studies.ts --write",
     "art:export": "tsx scripts/assets/export-native.ts && tsx scripts/assets/export-cast.ts && tsx scripts/assets/export-breakwater.ts && pnpm art:review",
     "art:validate": "tsx scripts/assets/review-studies.ts && tsx scripts/assets/export-native.ts --check && tsx scripts/assets/export-cast.ts --check && tsx scripts/assets/export-breakwater.ts --check",

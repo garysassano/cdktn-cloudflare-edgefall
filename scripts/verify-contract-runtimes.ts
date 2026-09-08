@@ -212,6 +212,7 @@ try {
     laserCombat: expected.laserCombat,
     weaponPickups: expected.weaponPickups,
     pickupCombat: expected.pickupCombat,
+    materials: expected.materials,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

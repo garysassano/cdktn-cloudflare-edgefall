@@ -124,7 +124,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props pickups pickupClaims projectiles rockets beams strikes grenades areas encounter events",
   );
-  check(combat.format === 12, "simulation format");
+  check(combat.format === 13, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -913,7 +913,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 15,
+    format: 16,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -937,7 +937,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 15 &&
+    envelope.format === 16 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

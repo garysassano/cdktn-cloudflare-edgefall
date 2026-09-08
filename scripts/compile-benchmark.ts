@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { SURFACE_MATERIALS } from "../src/game/content/materials.js";
 import { canonical } from "../src/game/core/canonical.js";
 import { COMBAT_CONTENT } from "../src/game/labs/combat-content.js";
 import {
@@ -20,6 +21,7 @@ const bytes = `${JSON.stringify(
           terrain: BREAKWATER_TERRAIN,
           props: BREAKWATER_PROPS,
           combat: COMBAT_CONTENT,
+          surfaceMaterials: SURFACE_MATERIALS,
           supplies: [1, 2, 3, 4].map(breakwaterPickups),
         }),
       )

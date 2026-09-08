@@ -1,0 +1,763 @@
+[
+  {
+    "players": 1,
+    "ticks": 3054,
+    "claims": [
+      {
+        "id": 1200,
+        "claimId": 1200,
+        "sourceId": 300,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 657,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1204,
+        "claimId": 1204,
+        "sourceId": 301,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 803,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 134,
+        "ammo": 24
+      },
+      {
+        "id": 1208,
+        "claimId": 1208,
+        "sourceId": 302,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1402,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1212,
+        "claimId": 1212,
+        "sourceId": 303,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1573,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 25,
+        "ammo": 0
+      },
+      {
+        "id": 1216,
+        "claimId": 1216,
+        "sourceId": 304,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 2086,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      }
+    ],
+    "indicatorBoundaries": 28,
+    "screenshots": 56,
+    "finalStateSha256": "d66d3e4e98f993a9d8b5295fe483426214c8ab12e53ac3f529fa417d7b35cd92",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 82,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 278,
+          "shotOrdinal": 166
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1402,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1573,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2086,
+          "status": "claimed"
+        }
+      ],
+      "tick": 3054
+    }
+  },
+  {
+    "players": 2,
+    "ticks": 3080,
+    "claims": [
+      {
+        "id": 1200,
+        "claimId": 1200,
+        "sourceId": 300,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 657,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1201,
+        "claimId": 1201,
+        "sourceId": 300,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 663,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1204,
+        "claimId": 1204,
+        "sourceId": 301,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 803,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 134,
+        "ammo": 24
+      },
+      {
+        "id": 1205,
+        "claimId": 1205,
+        "sourceId": 301,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 808,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 125,
+        "ammo": 24
+      },
+      {
+        "id": 1208,
+        "claimId": 1208,
+        "sourceId": 302,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1402,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1209,
+        "claimId": 1209,
+        "sourceId": 302,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 1408,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1212,
+        "claimId": 1212,
+        "sourceId": 303,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1573,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 25,
+        "ammo": 0
+      },
+      {
+        "id": 1213,
+        "claimId": 1213,
+        "sourceId": 303,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 1579,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 28,
+        "ammo": 0
+      },
+      {
+        "id": 1216,
+        "claimId": 1216,
+        "sourceId": 304,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 2132,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1217,
+        "claimId": 1217,
+        "sourceId": 304,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 2169,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      }
+    ],
+    "indicatorBoundaries": 28,
+    "screenshots": 56,
+    "finalStateSha256": "dc288e573c7bb1fdd1845aacb8d6f2ff87a2b530aed27d0682066c3982a815b8",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 86,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 395,
+          "shotOrdinal": 162
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "ammo": 115,
+          "cooldownTicks": 4,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 396,
+          "shotOrdinal": 112
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1201,
+          "resolvedTick": 663,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1205,
+          "resolvedTick": 808,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1402,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1209,
+          "resolvedTick": 1408,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1573,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1213,
+          "resolvedTick": 1579,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2132,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1217,
+          "resolvedTick": 2169,
+          "status": "claimed"
+        }
+      ],
+      "tick": 3080
+    }
+  },
+  {
+    "players": 4,
+    "ticks": 2989,
+    "claims": [
+      {
+        "id": 1200,
+        "claimId": 1200,
+        "sourceId": 300,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 657,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1201,
+        "claimId": 1201,
+        "sourceId": 300,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 663,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1202,
+        "claimId": 1202,
+        "sourceId": 300,
+        "playerId": 3,
+        "slot": 2,
+        "tick": 668,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1203,
+        "claimId": 1203,
+        "sourceId": 300,
+        "playerId": 4,
+        "slot": 3,
+        "tick": 672,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1204,
+        "claimId": 1204,
+        "sourceId": 301,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 803,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 134,
+        "ammo": 24
+      },
+      {
+        "id": 1205,
+        "claimId": 1205,
+        "sourceId": 301,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 808,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 125,
+        "ammo": 24
+      },
+      {
+        "id": 1206,
+        "claimId": 1206,
+        "sourceId": 301,
+        "playerId": 3,
+        "slot": 2,
+        "tick": 813,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 126,
+        "ammo": 24
+      },
+      {
+        "id": 1207,
+        "claimId": 1207,
+        "sourceId": 301,
+        "playerId": 4,
+        "slot": 3,
+        "tick": 817,
+        "weaponId": "shotgun",
+        "previousWeaponId": "heavy-machine-gun",
+        "previousAmmo": 130,
+        "ammo": 24
+      },
+      {
+        "id": 1208,
+        "claimId": 1208,
+        "sourceId": 302,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1332,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1209,
+        "claimId": 1209,
+        "sourceId": 302,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 1343,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1210,
+        "claimId": 1210,
+        "sourceId": 302,
+        "playerId": 3,
+        "slot": 2,
+        "tick": 1343,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1211,
+        "claimId": 1211,
+        "sourceId": 302,
+        "playerId": 4,
+        "slot": 3,
+        "tick": 1347,
+        "weaponId": "flamethrower",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 30
+      },
+      {
+        "id": 1212,
+        "claimId": 1212,
+        "sourceId": 303,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 1468,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 26,
+        "ammo": 0
+      },
+      {
+        "id": 1213,
+        "claimId": 1213,
+        "sourceId": 303,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 1474,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 28,
+        "ammo": 0
+      },
+      {
+        "id": 1214,
+        "claimId": 1214,
+        "sourceId": 303,
+        "playerId": 3,
+        "slot": 2,
+        "tick": 1479,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 28,
+        "ammo": 0
+      },
+      {
+        "id": 1215,
+        "claimId": 1215,
+        "sourceId": 303,
+        "playerId": 4,
+        "slot": 3,
+        "tick": 1483,
+        "weaponId": "sidearm",
+        "previousWeaponId": "flamethrower",
+        "previousAmmo": 28,
+        "ammo": 0
+      },
+      {
+        "id": 1216,
+        "claimId": 1216,
+        "sourceId": 304,
+        "playerId": 1,
+        "slot": 0,
+        "tick": 2019,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1217,
+        "claimId": 1217,
+        "sourceId": 304,
+        "playerId": 2,
+        "slot": 1,
+        "tick": 2019,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1218,
+        "claimId": 1218,
+        "sourceId": 304,
+        "playerId": 3,
+        "slot": 2,
+        "tick": 2048,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      },
+      {
+        "id": 1219,
+        "claimId": 1219,
+        "sourceId": 304,
+        "playerId": 4,
+        "slot": 3,
+        "tick": 2056,
+        "weaponId": "heavy-machine-gun",
+        "previousWeaponId": "sidearm",
+        "previousAmmo": 0,
+        "ammo": 150
+      }
+    ],
+    "indicatorBoundaries": 28,
+    "screenshots": 56,
+    "finalStateSha256": "429df5ac04838e0c97b805a4fdcf2d82ced098cca1ef65c3c14d4d6f9d5e4a13",
+    "finalPlayers": [
+      {
+        "playerId": 1,
+        "weapon": {
+          "ammo": 81,
+          "cooldownTicks": 4,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 592,
+          "shotOrdinal": 163
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 2,
+        "weapon": {
+          "ammo": 111,
+          "cooldownTicks": 2,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 591,
+          "shotOrdinal": 124
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 3,
+        "weapon": {
+          "ammo": 119,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 589,
+          "shotOrdinal": 112
+        },
+        "lives": 2
+      },
+      {
+        "playerId": 4,
+        "weapon": {
+          "ammo": 127,
+          "cooldownTicks": 1,
+          "id": "heavy-machine-gun",
+          "lastActionInstanceId": 590,
+          "shotOrdinal": 89
+        },
+        "lives": 2
+      }
+    ],
+    "supplies": {
+      "contacts": [],
+      "format": 1,
+      "items": [
+        {
+          "claimedBy": 1,
+          "id": 1200,
+          "resolvedTick": 657,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1201,
+          "resolvedTick": 663,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1202,
+          "resolvedTick": 668,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1203,
+          "resolvedTick": 672,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1204,
+          "resolvedTick": 803,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1205,
+          "resolvedTick": 808,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1206,
+          "resolvedTick": 813,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1207,
+          "resolvedTick": 817,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1208,
+          "resolvedTick": 1332,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1209,
+          "resolvedTick": 1343,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1210,
+          "resolvedTick": 1343,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1211,
+          "resolvedTick": 1347,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1212,
+          "resolvedTick": 1468,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1213,
+          "resolvedTick": 1474,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1214,
+          "resolvedTick": 1479,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1215,
+          "resolvedTick": 1483,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 1,
+          "id": 1216,
+          "resolvedTick": 2019,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 2,
+          "id": 1217,
+          "resolvedTick": 2019,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 3,
+          "id": 1218,
+          "resolvedTick": 2048,
+          "status": "claimed"
+        },
+        {
+          "claimedBy": 4,
+          "id": 1219,
+          "resolvedTick": 2056,
+          "status": "claimed"
+        }
+      ],
+      "tick": 2989
+    }
+  }
+]

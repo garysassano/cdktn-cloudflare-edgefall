@@ -26,6 +26,7 @@ import { inputCaptureProof } from "./input-capture-proof.js";
 import { inputFlowProof } from "./input-flow-proof.js";
 import { laserCombatProof } from "./laser-combat-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
+import { materialProof } from "./material-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import { ordnanceProof } from "./ordnance-proof.js";
@@ -130,6 +131,7 @@ export async function contractProof() {
     laserCombat: await laserCombatProof(),
     weaponPickups: weaponPickupProof(),
     pickupCombat: await pickupCombatProof(),
+    materials: materialProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

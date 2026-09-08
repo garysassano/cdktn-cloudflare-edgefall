@@ -1,7 +1,14 @@
+import {
+  type AttackMaterial,
+  type MaterialSurface,
+  type SurfaceMaterialId,
+  materialBlocks,
+  surfaceMaterialFor,
+} from "../content/materials.js";
 import type { AttackDefinition, ShapeDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, compareContactTime, divide, integer, position } from "../core/numeric.js";
 import { worldRect } from "../physics/body.js";
-import { type SweepTarget, sweepAabb, sweepBounds } from "../physics/sweep.js";
+import { sweepAabb, sweepBounds } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
 
 export interface BallisticProjectile {
@@ -22,6 +29,7 @@ export interface HurtTarget {
   kind: "body" | "shield";
   /** A damageable solid competes with concrete and occludes attacks behind its face. */
   solid?: boolean;
+  materialId?: SurfaceMaterialId;
   rect: Rect;
   delta: Point;
 }
@@ -43,7 +51,7 @@ export function sweepProjectile(
   projectile: BallisticProjectile,
   definition: AttackDefinition,
   shape: ShapeDefinition,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ) {
   if (
@@ -54,7 +62,13 @@ export function sweepProjectile(
     definition.material !== "bullet"
   )
     throw new Error("Unsupported ballistic policy");
-  return projectileImpact(projectile, shape, definition.damage, terrain, hurtboxes);
+  return projectileImpact(
+    projectile,
+    shape,
+    definition.damage,
+    terrain.filter((target) => materialBlocks(target, definition.material)),
+    hurtboxes.filter((target) => !target.solid || materialBlocks(target, definition.material)),
+  );
 }
 
 /** Shared swept contact query; the weapon owns direct-hit, blast and penetration policy. */
@@ -62,7 +76,7 @@ export function projectileImpact(
   projectile: BallisticProjectile,
   shape: ShapeDefinition,
   bodyDamage: number,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ) {
   integer(bodyDamage, 0, 65535, "projectile body damage");
@@ -90,6 +104,7 @@ export function projectileImpact(
   const ids = new Set<number>();
   let first: { target: (typeof candidates)[number]; time: Impact["time"] } | null = null;
   for (const target of candidates) {
+    surfaceMaterialFor(target);
     integer(target.id, 1, COUNTER_LIMIT - 1, "projectile collision ID");
     if (ids.has(target.id)) throw new Error("Duplicate projectile collision ID");
     ids.add(target.id);
@@ -143,12 +158,14 @@ export function muzzleBlocked(
   hand: Point,
   muzzle: Point,
   shape: ShapeDefinition,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
+  material: AttackMaterial = "bullet",
 ) {
   const bounds = worldRect(hand, shape.rect, 1);
   const delta = { x: muzzle.x - hand.x, y: muzzle.y - hand.y };
   return terrain.some(
     (target) =>
+      materialBlocks(target, material) &&
       sweepAabb(bounds, delta, {
         ...target.rect,
         x: target.rect.x + target.delta.x,

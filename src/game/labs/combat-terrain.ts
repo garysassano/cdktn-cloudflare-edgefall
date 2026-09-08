@@ -1,4 +1,5 @@
 import type { DestructibleDefinition, DestructibleState } from "../combat/destructible.js";
+import type { MaterialSurface } from "../content/materials.js";
 import { integer, pixels } from "../core/numeric.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
@@ -12,6 +13,7 @@ export const COMBAT_SUPPORT: readonly DestructibleDefinition[] = [
     definitionId: 1,
     rect: { x: pixels(176), y: pixels(160), w: pixels(152), h: pixels(56) },
     health: 8,
+    materialId: "timber",
   },
 ];
 export function combatGeometryRevision(props: readonly DestructibleState[]): number {
@@ -69,7 +71,7 @@ export function combatTerrain(
   scenario: CombatScenario,
   tick = 0,
   props: readonly DestructibleState[] = [],
-): SweepTarget[] {
+): MaterialSurface[] {
   if (scenario === "support") {
     if (props.length !== COMBAT_SUPPORT.length) throw new Error("Missing support state");
     return [
@@ -82,6 +84,7 @@ export function combatTerrain(
           return {
             id: prop.id,
             kind: "solid" as const,
+            materialId: definition.materialId,
             rect: { ...definition.rect },
             delta: { x: 0, y: 0 },
           };

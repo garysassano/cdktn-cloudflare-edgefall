@@ -14,6 +14,7 @@ interface SupportClient {
   geometryRevision: number;
   remainingEnemies: number;
   props: DestructibleState[];
+  pickups: CombatSnapshot["pickups"];
   removedIds: number[];
   combatBaseline: CombatSnapshot;
   authoritative: CombatLab["players"][number];
@@ -28,7 +29,8 @@ interface SupportClient {
 }
 /** Two actual short taps per keyboard destroy support; no world editing or synthetic tick advance. */
 export async function verifySupportCombat(pages: Page[], base: string, output: string) {
-  const samples: Array<Pick<CombatLab, "tick" | "props" | "targets" | "encounter">> = [];
+  const samples: Array<Pick<CombatLab, "tick" | "props" | "pickups" | "targets" | "encounter">> =
+    [];
   const world = (state: RoomProbeStatus) => {
     assert(state.combat);
     return state.combat.world;
@@ -52,6 +54,7 @@ export async function verifySupportCombat(pages: Page[], base: string, output: s
         samples.push({
           tick: current.tick,
           props: current.props,
+          pickups: current.pickups,
           targets: current.targets,
           encounter: current.encounter,
         });
@@ -89,6 +92,9 @@ export async function verifySupportCombat(pages: Page[], base: string, output: s
   const partial = await until((state) => world(state).props[0]?.health === 4);
   assert(world(partial).players.every((player) => player.weapon.shotOrdinal === 1));
   assert(world(partial).targets.every((target) => target.enemy.body.supportId === 104));
+  assert.deepEqual(world(partial).pickups.items, [
+    { id: 620, status: "available", resolvedTick: null, claimedBy: null },
+  ]);
   const page = pages[0];
   assert(page);
   await page.waitForFunction(() => {
@@ -135,6 +141,15 @@ export async function verifySupportCombat(pages: Page[], base: string, output: s
   assert(resolvedTick);
   const final = await until((state) => world(state).tick >= resolvedTick + 60);
   const accepted = world(final);
+  assert.deepEqual(accepted.pickups.items, [
+    {
+      id: 620,
+      status: "unsupported",
+      resolvedTick: accepted.props[0]?.destroyedTick,
+      claimedBy: null,
+    },
+  ]);
+  assert.deepEqual(accepted.pickupClaims, []);
   assert(
     accepted.encounter.members.every(
       (member) => member.reason === "out-of-bounds" && member.killerId === null,
@@ -158,7 +173,9 @@ export async function verifySupportCombat(pages: Page[], base: string, output: s
     assert(client.ready && !client.error && !client.requiresResync);
     assert.equal(client.geometryRevision, 2);
     assert.deepEqual(client.props, accepted.props);
-    assert.deepEqual(client.removedIds, [20, 21, 104]);
+    assert.deepEqual(client.removedIds, [20, 21, 104, 620]);
+    assert.deepEqual(client.pickups, accepted.pickups.items);
+    assert.equal(client.events.counts.pickup ?? 0, 0);
     assert.equal(client.events.counts["prop-destroyed"], 1);
     assert.equal(client.events.counts.killed ?? 0, 0);
     assert.equal(

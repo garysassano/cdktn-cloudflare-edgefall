@@ -1,6 +1,7 @@
+import { type MaterialSurface, materialBlocks, surfaceMaterialFor } from "../content/materials.js";
 import type { AttackDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, MAX_SHAPE, divide, integer, position } from "../core/numeric.js";
-import { type SweepTarget, sweepBounds, validateSweepTarget } from "../physics/sweep.js";
+import { sweepBounds, validateSweepTarget } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
 import {
   type AreaAnchor,
@@ -112,7 +113,7 @@ export function castBeam(
   profile: BeamProfile,
   origin: Point,
   heading: CardinalHeading,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ): BeamCast {
   validateBeamPolicy(source, definition, profile);
@@ -133,6 +134,7 @@ export function castBeam(
     sweepBounds(hurt.rect, hurt.delta);
   }
   for (const candidate of [...terrain, ...hurtboxes]) {
+    surfaceMaterialFor(candidate);
     integer(candidate.id, 1, COUNTER_LIMIT - 1, "beam collider identity");
     if (ids.has(candidate.id)) throw new Error("Duplicate beam collider identity");
     ids.add(candidate.id);
@@ -140,13 +142,15 @@ export function castBeam(
   const top = -divide(profile.width, 2).quotient,
     bottom = top + profile.width;
   const candidates = [
-    ...terrain.map((target) => ({
-      ...target,
-      kind: "terrain" as const,
-      entityId: null,
-      solid: true,
-      priority: 0,
-    })),
+    ...terrain
+      .filter((target) => materialBlocks(target, definition.material))
+      .map((target) => ({
+        ...target,
+        kind: "terrain" as const,
+        entityId: null,
+        solid: true,
+        priority: 0,
+      })),
     ...hurtboxes
       .filter(
         (target) =>
@@ -183,7 +187,9 @@ export function castBeam(
   let length = profile.range,
     stoppedBy: BeamCast["stoppedBy"] = null;
   for (const { target, rect, distance } of candidates) {
-    const blocking = target.kind === "terrain" || target.kind === "shield" || target.solid;
+    const blocking =
+      (target.kind === "terrain" || target.kind === "shield" || target.solid) &&
+      materialBlocks(target, definition.material);
     if (blocking) {
       length = distance;
       stoppedBy =
@@ -246,7 +252,7 @@ export function emitBeam(
   definition: AttackDefinition,
   profile: BeamProfile,
   anchor: AreaAnchor,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ): { beam: BeamPulse; cast: BeamCast } {
   const beam: BeamPulse = {
@@ -278,7 +284,7 @@ export function stepBeam(
   definition: AttackDefinition,
   profile: BeamProfile,
   anchor: AreaAnchor | null,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ): { beam: BeamPulse; cast: BeamCast } | { beam: null; cast: null } {
   validateBeamPulse(current, definition, profile);

@@ -7,6 +7,7 @@ import { type DestructibleState, validateDestructibles } from "../../game/combat
 import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { validateWeaponPickups } from "../../game/combat/pickups.js";
 import { actionPose } from "../../game/combat/timeline.js";
+import { SURFACE_MATERIALS } from "../../game/content/materials.js";
 import { LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import { ROCKET_PROFILE } from "../../game/content/weapons/rocket-launcher.js";
 import { stepFootController } from "../../game/controller/foot.js";
@@ -143,8 +144,9 @@ export async function combatIdentity() {
   const bytes = new TextEncoder().encode(
     canonical({
       content: COMBAT_CONTENT,
+      surfaceMaterials: SURFACE_MATERIALS,
       campaignFormat: 2,
-      combatFormat: 12,
+      combatFormat: 13,
       pickups: [1, 2, 3, 4].map((players) => [
         combatPickupDefinitions("pickups", players),
         combatPickupDefinitions("support", players),

@@ -1,4 +1,5 @@
 import type { Point, Rect, WeaponId } from "../state.js";
+import type { AttackMaterial } from "./materials.js";
 
 export interface ShapeDefinition {
   id: number;
@@ -32,7 +33,7 @@ export interface AttackDefinition {
   speed: number;
   maxTargets: number;
   repeatDamageTicks: number;
-  material: "bullet" | "explosive" | "heat" | "energy" | "blade" | "blunt";
+  material: AttackMaterial;
 }
 export interface WeaponDefinition {
   id: WeaponId;

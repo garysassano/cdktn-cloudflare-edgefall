@@ -2,6 +2,7 @@ import { canonical } from "../core/canonical.js";
 import { COUNTER_LIMIT, MAX_SHAPE, integer, motion, position } from "../core/numeric.js";
 import { validateLocalRect } from "../physics/body.js";
 import type { Point, Rect } from "../state.js";
+import { ATTACK_MATERIALS } from "./materials.js";
 import type { ContentDefinition } from "./schema.js";
 
 function check(condition: boolean, message: string): asserts condition {
@@ -98,6 +99,7 @@ export function validateContent(content: ContentDefinition): void {
     }
   }
   for (const attack of content.attacks) {
+    check(ATTACK_MATERIALS.includes(attack.material), "unknown attack material");
     check(shapes.has(attack.shapeId), "unknown attack shape");
     motion(attack.speed);
     integer(attack.damage, 1, 65535, "damage");

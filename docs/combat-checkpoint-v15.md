@@ -1,5 +1,7 @@
 # Diagnostic combat archive format 15
 
+Historical format 15 contract. Current material-aware continuation uses [format 16](combat-checkpoint-v16.md); format 15 archives are rejected.
+
 The combat laboratory uses archive **15**, simulation/recording format **12**, protocol **3.13** and combat snapshot section **4**. This extends [format 14](combat-checkpoint-v14.md) with individual weapon supplies, exact contact-entry continuation and confirmed pickup events. Earlier diagnostic archives and recordings reject explicitly. Breakwater mission/recording format **3** also rejects its previous embedded combat layout. Production v3 integration remains open.
 
 Private `pickups` state retains format 1, the committed tick, ordered item status/resolution/claimant records and contact-entry latches. Its tick must equal the world tick. At most 64 items and 256 contacts are permitted. The content identity binds definitions for each party size, including item and claim IDs, source, weapon, ammunition/capacity, activation/expiry and stationary support geometry. Item IDs cannot collide with any other gameplay entity, and the entity allocator must remain above every item ID. Terminal availability cannot regress within a run.

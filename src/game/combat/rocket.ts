@@ -1,7 +1,8 @@
+import { type MaterialSurface, surfaceMaterialFor } from "../content/materials.js";
 import type { AttackDefinition, ShapeDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, MAX_MOTION, divide, integer, motion, position } from "../core/numeric.js";
 import { worldRect } from "../physics/body.js";
-import { type SweepTarget, sweepAabb, sweepBounds, validateSweepTarget } from "../physics/sweep.js";
+import { sweepAabb, sweepBounds, validateSweepTarget } from "../physics/sweep.js";
 import type { Point } from "../state.js";
 import {
   type BallisticProjectile,
@@ -173,7 +174,7 @@ export function createRocket(
   return rocket;
 }
 
-function validateCandidates(terrain: readonly SweepTarget[], hurtboxes: readonly HurtTarget[]) {
+function validateCandidates(terrain: readonly MaterialSurface[], hurtboxes: readonly HurtTarget[]) {
   integer(terrain.length + hurtboxes.length, 0, 4096, "rocket candidates");
   const ids = new Set<number>();
   for (const target of terrain) validateSweepTarget(target);
@@ -190,6 +191,7 @@ function validateCandidates(terrain: readonly SweepTarget[], hurtboxes: readonly
     integer(target.rect.h, 1, 2 ** 24, "rocket hurt height");
   }
   for (const target of [...terrain, ...hurtboxes]) {
+    surfaceMaterialFor(target);
     if (ids.has(target.id)) throw new Error("Duplicate rocket collision ID");
     ids.add(target.id);
   }
@@ -198,7 +200,7 @@ function validateCandidates(terrain: readonly SweepTarget[], hurtboxes: readonly
 function guidanceTargets(
   rocket: Rocket,
   profile: RocketProfile,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
   retaining: boolean,
 ) {
@@ -264,7 +266,7 @@ export function stepRocket(
   definition: AttackDefinition,
   shape: ShapeDefinition,
   profile: RocketProfile,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ): RocketStep {
   validateRocketProfile(profile);

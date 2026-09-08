@@ -87,5 +87,6 @@ export const BREAKWATER_PROPS: readonly DestructibleDefinition[] = [
     definitionId: 2,
     rect: { x: pixels(1320), y: pixels(168), w: pixels(32), h: pixels(32) },
     health: 8,
+    materialId: "timber",
   },
 ];

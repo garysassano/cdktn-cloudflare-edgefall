@@ -49,6 +49,7 @@ if (process.argv.includes("--lab")) {
     "controller-lab",
     "network-lab",
     "combat-lab",
+    "material-lab",
     "art-review",
     "benchmark",
   ]) {

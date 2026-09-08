@@ -194,7 +194,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 12,
+    format: 13,
     scenario: state.scenario,
     players: state.players.length,
     commands,

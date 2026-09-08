@@ -1,3 +1,4 @@
+import { type AttackMaterial, type MaterialSurface, materialBlocks } from "../content/materials.js";
 import type { AttackDefinition } from "../content/schema.js";
 import {
   COUNTER_LIMIT,
@@ -7,7 +8,6 @@ import {
   position,
 } from "../core/numeric.js";
 import { validateLocalRect } from "../physics/body.js";
-import type { SweepTarget } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
 import type { HurtTarget, Impact } from "./projectile.js";
 import { type AttackSource, rectangularHits } from "./volume.js";
@@ -71,12 +71,17 @@ function forward(rect: Rect, origin: Point, heading: CardinalHeading): Rect {
 }
 
 /** Centerline walls stop propagation; parallel floors/ceilings clip the cross-section. */
-function clippedGeometry(geometry: Rect, lobe: AreaLobe, terrain: readonly SweepTarget[]) {
+function clippedGeometry(
+  geometry: Rect,
+  lobe: AreaLobe,
+  terrain: readonly MaterialSurface[],
+  material: AttackMaterial,
+) {
   let reach = lobe.reach;
   let top = geometry.y,
     bottom = geometry.y + geometry.h;
   for (const wall of terrain) {
-    if (wall.kind !== "solid") continue;
+    if (wall.kind !== "solid" || !materialBlocks(wall, material)) continue;
     const rect = forward(
       { ...wall.rect, x: wall.rect.x + wall.delta.x, y: wall.rect.y + wall.delta.y },
       lobe.origin,
@@ -110,11 +115,18 @@ export function areaExposures(
   attack: AreaAttack,
   tick: number,
   profile: AreaProfile,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
 ): AreaExposure[] {
   return attack.lobes.flatMap((lobe) => {
     const frame = geometryAt(attack, lobe, tick, profile);
-    const geometry = frame && clippedGeometry(frame.geometry, lobe, terrain).rect;
+    const geometry =
+      frame &&
+      clippedGeometry(
+        frame.geometry,
+        lobe,
+        terrain,
+        profile.kind === "shot-volume" ? "bullet" : "heat",
+      ).rect;
     return frame && geometry
       ? [
           {
@@ -171,7 +183,7 @@ export function stepArea(
   definition: AttackDefinition,
   profile: AreaProfile,
   anchor: AreaAnchor | null,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ) {
   const attack = structuredClone(current),
@@ -201,7 +213,17 @@ export function stepArea(
       : { x: lobe.origin.x - previous.origin.x, y: lobe.origin.y - previous.origin.y };
     const origin = endpoint ? lobe.origin : previous.origin;
     // Contacted solids remain a propagation limit after they move or are removed.
-    const clipped = clippedGeometry(frame, lobe, terrain);
+    const clipped = clippedGeometry(
+      frame,
+      lobe,
+      [
+        ...terrain,
+        ...hurtboxes
+          .filter((target) => target.solid)
+          .map((target) => ({ ...target, kind: "solid" as const })),
+      ],
+      definition.material,
+    );
     lobe.reach = clipped.reach;
     if (!clipped.rect) continue;
     const excluded = attack.hits
@@ -269,6 +291,8 @@ export function stepArea(
 export function validateAreaProfile(profile: AreaProfile, definition: AttackDefinition) {
   if (definition.kind !== profile.kind || !["shot-volume", "flame-volumes"].includes(profile.kind))
     throw new Error("Unknown area profile");
+  if (definition.material !== (profile.kind === "shot-volume" ? "bullet" : "heat"))
+    throw new Error("Area profile material mismatch");
   integer(profile.frames.length, 1, 120, "area frames");
   integer(profile.emissionOffsets.length, 1, 4, "area emissions");
   integer(profile.attachedTicks, 0, profile.frames.length, "area attachment");

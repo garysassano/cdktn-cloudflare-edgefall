@@ -49,6 +49,7 @@ import {
 import { type Rocket, createRocket, stepRocket } from "../combat/rocket.js";
 import { actionPose } from "../combat/timeline.js";
 import { type AttackSource, type MeleeStrike, explosionHits, meleeHits } from "../combat/volume.js";
+import type { MaterialSurface } from "../content/materials.js";
 import { LASER_ATTACK, LASER_PROFILE } from "../content/weapons/laser.js";
 import { ROCKET_ATTACK, ROCKET_PROFILE, ROCKET_SHAPE } from "../content/weapons/rocket-launcher.js";
 import { stepFootController } from "../controller/foot.js";
@@ -132,7 +133,9 @@ export interface CombatTarget {
 }
 /** Tick-local mission geometry and external damage targets, consumed by the same combat kernel. */
 export interface CombatStage {
-  terrain: SweepTarget[];
+  /** Authored idle/patrol tuning; committed attacks and shield behavior retain their own movement. */
+  patrolSpeed?: number;
+  terrain: MaterialSurface[];
   destructibles: readonly DestructibleDefinition[];
   enemyBounds: { x: number; y: number; w: number; h: number };
   fallBoundary: number;
@@ -169,7 +172,7 @@ export interface CombatNotice {
   beam: BeamGeometry | null;
 }
 export interface CombatLab {
-  format: 12;
+  format: 13;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -318,7 +321,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 12,
+    format: 13,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -532,7 +535,7 @@ export function advanceCombatLab(
   stage?: CombatStage,
 ) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
-  if (current.format !== 12 || current.pickups.tick !== current.tick)
+  if (current.format !== 13 || current.pickups.tick !== current.tick)
     throw new Error("Combat supply format/boundary mismatch");
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
@@ -663,7 +666,11 @@ export function advanceCombatLab(
     const result = stepGroundedEnemy(
       target.enemy,
       {
-        speed: shieldStep ? shieldStep.speed : target.rifle?.action.kind === "fire" ? 0 : 64,
+        speed: shieldStep
+          ? shieldStep.speed
+          : target.rifle?.action.kind === "fire"
+            ? 0
+            : (stage?.patrolSpeed ?? 64),
         turnAtBoundary: !target.guard && target.rifle?.action.kind !== "fire",
         gravity: 55,
         terminalVelocity: 2048,
@@ -838,6 +845,7 @@ export function advanceCombatLab(
           position,
           clearance,
           physicalTerrain,
+          rocket ? "bullet" : definition.material,
         );
         if (areaProfile) {
           let area = world.areas.find((area) => area.actionInstanceId === item.actionInstanceId);
@@ -1024,6 +1032,7 @@ export function advanceCombatLab(
           anchor.origin,
           clearance,
           physicalTerrain,
+          "energy",
         )
       )
         anchor = null;
@@ -1317,8 +1326,9 @@ export function advanceCombatLab(
     const prop = world.props.find((prop) => prop.id === impact.entityId);
     if (prop) {
       const attack = COMBAT_ATTACKS.get(impact.definitionId);
-      if (!attack) throw new Error("Missing prop attack definition");
-      if (damageDestructible(prop, impact, attack, tick))
+      const definition = destructibles.find((definition) => definition.id === prop.id);
+      if (!attack || !definition) throw new Error("Missing prop attack/material definition");
+      if (damageDestructible(prop, definition, impact, attack, tick))
         world.events.push({ ...notice, kind: "prop-destroyed" });
       continue;
     }
@@ -1463,7 +1473,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }
 export interface CombatRecording {
-  format: 12;
+  format: 13;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1472,7 +1482,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 12 ||
+    recording.format !== 13 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

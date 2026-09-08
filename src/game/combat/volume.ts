@@ -1,13 +1,13 @@
+import {
+  type AttackMaterial,
+  type MaterialSurface,
+  materialBlocks,
+  surfaceMaterialFor,
+} from "../content/materials.js";
 import type { AttackDefinition, ShapeDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, compareContactTime, divide, integer, position } from "../core/numeric.js";
 import { worldRect } from "../physics/body.js";
-import {
-  type ContactTime,
-  type SweepTarget,
-  sweepAabb,
-  sweepBounds,
-  validateSweepTarget,
-} from "../physics/sweep.js";
+import { type ContactTime, sweepAabb, sweepBounds, validateSweepTarget } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
 import type { HurtTarget, Impact } from "./projectile.js";
 
@@ -26,7 +26,7 @@ export interface MeleeStrike extends AttackSource {
 const END = { numerator: 1, denominator: 1 };
 function validateQuery(
   source: AttackSource,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
 ) {
   for (const id of [source.id, source.ownerId, source.actionInstanceId, source.definitionId])
@@ -45,6 +45,7 @@ function validateQuery(
     integer(target.rect.h, 1, 2 ** 24, "hurt height");
   }
   for (const target of [...terrain, ...hurtboxes]) {
+    surfaceMaterialFor(target);
     integer(target.id, 1, COUNTER_LIMIT - 1, "volume collision ID");
     if (ids.has(target.id)) throw new Error("Duplicate volume collision ID");
     ids.add(target.id);
@@ -69,14 +70,17 @@ function occluder(
   from: Point,
   to: Point,
   time: ContactTime,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   shields: readonly HurtTarget[],
+  material: AttackMaterial,
 ) {
   const candidates = [
     ...terrain
-      .filter((target) => target.kind === "solid")
+      .filter((target) => target.kind === "solid" && materialBlocks(target, material))
       .map((target) => ({ ...target, entityId: null, kind: "terrain" as const, priority: 0 })),
-    ...shields.map((target) => ({ ...target, priority: target.solid ? 0 : 1 })),
+    ...shields
+      .filter((target) => materialBlocks(target, material))
+      .map((target) => ({ ...target, priority: target.solid ? 0 : 1 })),
   ];
   let first: { target: (typeof candidates)[number]; time: ContactTime } | null = null;
   for (const target of candidates) {
@@ -127,6 +131,18 @@ function impact(
     position: point,
   };
 }
+/** A clipped volume still contacts a damageable face; a corner or ordinary body graze does not. */
+function solidFaceContact(volume: Rect, delta: Point, target: HurtTarget): ContactTime | null {
+  if (!target.solid) return null;
+  for (const time of [{ numerator: 0, denominator: 1 }, END]) {
+    const a = { ...volume, ...at(volume, delta, time) };
+    const b = { ...target.rect, ...at(target.rect, target.delta, time) };
+    const overlapX = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+    const overlapY = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+    if ((overlapX === 0 && overlapY > 0) || (overlapY === 0 && overlapX > 0)) return time;
+  }
+  return null;
+}
 function ordered(
   hits: Impact[],
   maximum: number,
@@ -164,7 +180,7 @@ export function meleeHits(
   delta: Point,
   facing: -1 | 1,
   occlusionOrigin: Point,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
   hitIds: readonly number[] = [],
 ): Impact[] {
@@ -194,7 +210,7 @@ export function rectangularHits(
   volume: Rect,
   delta: Point,
   occlusionOrigin: Point,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
   hitIds: readonly number[] = [],
 ): Impact[] {
@@ -216,8 +232,12 @@ export function rectangularHits(
     (target) => target.kind === "body" || definition.kind !== "melee",
   )) {
     const hit = sweepAabb(volume, delta, target.rect, target.delta);
-    if (!hit) continue;
-    const time = hit.kind === "overlap" ? { numerator: 0, denominator: 1 } : hit.time;
+    const time = hit
+      ? hit.kind === "overlap"
+        ? { numerator: 0, denominator: 1 }
+        : hit.time
+      : solidFaceContact(volume, delta, target);
+    if (!time) continue;
     const origin = at(occlusionOrigin, delta, time);
     const exposed = { ...target.rect, ...at(target.rect, target.delta, time) };
     const currentVolume = { ...volume, ...at(volume, delta, time) };
@@ -229,7 +249,7 @@ export function rectangularHits(
       w: Math.max(0, Math.min(exposed.x + exposed.w, currentVolume.x + currentVolume.w) - x),
       h: Math.max(0, Math.min(exposed.y + exposed.h, currentVolume.y + currentVolume.h) - y),
     });
-    const blocked = occluder(origin, point, time, terrain, shields);
+    const blocked = occluder(origin, point, time, terrain, shields, definition.material);
     if (blocked?.target.kind === "terrain") continue;
     if (blocked && definition.kind !== "melee") {
       const shield = {
@@ -267,7 +287,7 @@ export function explosionHits(
   definition: AttackDefinition,
   center: Point,
   radius: number,
-  terrain: readonly SweepTarget[],
+  terrain: readonly MaterialSurface[],
   hurtboxes: readonly HurtTarget[],
   options: { time?: ContactTime; primaryTarget?: number | null } = {},
 ): Impact[] {
@@ -296,7 +316,7 @@ export function explosionHits(
     const dx = point.x - center.x,
       dy = point.y - center.y;
     if (dx * dx + dy * dy > radius * radius) continue;
-    const blocked = occluder(center, point, time, terrain, shields);
+    const blocked = occluder(center, point, time, terrain, shields, definition.material);
     if (blocked?.target.kind === "terrain") continue;
     hits.push(
       blocked

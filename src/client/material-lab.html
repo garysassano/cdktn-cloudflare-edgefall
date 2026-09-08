@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edgefall weapon material laboratory</title>
+    <style>
+      :root { color-scheme: dark; font: 16px system-ui, sans-serif; background: #121c28; color: #eef3f6; }
+      body { max-width: 1050px; margin: 24px auto; padding: 0 16px; }
+      fieldset { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; border: 1px solid #637386; }
+      button, select { padding: 5px 8px; font: inherit; }
+      #game { width: min(100%, 768px); aspect-ratio: 16 / 9; outline: 2px solid #66c4dc; margin: 18px 0; }
+      #game canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; }
+      a { color: #9ddafa; }
+    </style>
+  </head>
+  <body>
+    <h1>Weapon material laboratory</h1>
+    <p>Compare a two-pixel barrier with stationary or patrolling calibration targets. Targets have 32 HP to expose repeated hits. One keyboard drives the selected party. These boxes show engineering collision geometry, attack volumes and impact points.</p>
+    <fieldset>
+      <label>Weapon <select id="weapon"></select></label>
+      <label>Surface <select id="material"></select></label>
+      <label>Players <select id="players"><option>1</option><option>2</option><option>4</option></select></label>
+      <label>Targets <select id="motion"><option value="stationary">Stationary</option><option value="patrol">Patrolling</option></select></label>
+    </fieldset>
+    <p id="policy"></p>
+    <p><button type="button" id="reset">Reset</button> <button type="button" id="run">Run</button> <button type="button" id="step">Step</button> <button type="button" id="replay">Check replay</button> <button type="button" id="export">Export recording</button> <label>Import recording <input id="import" type="file" accept="application/json,.json" /></label></p>
+    <p>Focus the surface. Arrows move and aim; Z fires or selects a nearby knife action; C throws a grenade; Space jumps. Enter advances one tick while paused. Hold Down for the calibrated grenade throw. Release Z before stepping to test a short tap. A grenade starts farther back so its real bounce and fuse can be compared with the blast radius.</p>
+    <!-- biome-ignore lint/a11y/noNoninteractiveTabindex: This application surface receives controller keyboard input. -->
+    <div id="game" tabindex="0" role="application" aria-label="Material laboratory keyboard surface"></div>
+    <p id="status" role="status"></p>
+    <p>Cyan: player bodies. Pink: target bodies. Gray, tan, blue or green: cover. Yellow: projectiles and shot volumes. Orange: flame. Pale cyan: laser. Red: recent impact points.</p>
+    <pre id="details"></pre>
+    <p><a href="combat-lab.html">Combat inspector</a></p>
+    <script src="material-lab.js"></script>
+  </body>
+</html>
