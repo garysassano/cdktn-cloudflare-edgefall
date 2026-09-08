@@ -1135,8 +1135,7 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
             this.members?.state.members.some((member) => member.slot === slot)));
       if (
         (replacing || waitingReplacement) &&
-        (this.world.players[slot]?.vehicleId !== null ||
-          this.context(slot).connectionEpoch >= COUNTER_LIMIT - 2)
+        this.context(slot).connectionEpoch >= COUNTER_LIMIT - 2
       )
         return new Response("Connection transition unavailable", { status: 409 });
       if (

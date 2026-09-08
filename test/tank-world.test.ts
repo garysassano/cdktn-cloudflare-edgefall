@@ -17,6 +17,7 @@ import {
 import { combatPeerContext } from "../src/shared/diagnostics/combat-workload.js";
 import { InputStream } from "../src/shared/protocol/input-stream.js";
 import { recordTankCombat, tankCombatProof } from "./fixtures/tank-proof.js";
+import { specialInput } from "./fixtures/tank-special-proof.js";
 
 const idle = {
   held: 0,
@@ -31,8 +32,10 @@ function required<T>(value: T | undefined): T {
   return value;
 }
 let fixture: ReturnType<typeof recordTankCombat>;
+let arming: ReturnType<typeof recordTankCombat>;
 beforeAll(() => {
   fixture = recordTankCombat();
+  arming = recordTankCombat(13, specialInput);
 });
 describe("authoritative tank laboratory", () => {
   it("keeps each depot tank reachable when four claims arrive in reverse slot order", () => {
@@ -225,36 +228,72 @@ describe("authoritative tank laboratory", () => {
     expect(canonical(before)).toBe(saved);
   });
 
-  it("replaces a waiting or playing seated connection with a fresh unseated baseline", () => {
-    const before = structuredClone(required(fixture.states[12]));
-    before.snapshot.roomMode = "loading";
-    const waiting = replaceWaitingCombatConnection(before, 1);
-    validateCombatCheckpoint(waiting);
-    expect(waiting.combat.players[0]).toMatchObject({ vehicleId: null, controlEpoch: 4, lives: 3 });
-    expect(waiting.combat.tanks[1]?.occupantId).toBe(2);
-    const playing = required(fixture.states[12]),
-      ack = required(playing.snapshot.acknowledgments[0]);
-    const stream = new InputStream({
-      ...combatPeerContext(playing.snapshot, 0),
-      connectionEpoch: ack.connectionEpoch + 1,
-      controlEpoch: ack.controlEpoch,
-      baselineServerTick: 12,
-    });
-    const committed = InputStream.processWorldTick([stream], 13, 208, (prepared) => {
-      const candidate = stageCombatRuntime(playing, prepared, [
-        { playerId: 1, connectionEpoch: ack.connectionEpoch + 1 },
-      ]);
-      expect(replayCombatTick(playing, candidate.journal)).toEqual(candidate.state);
-      return candidate;
-    });
-    validateCombatCheckpoint(committed.state);
-    expect(committed.state.combat.players[0]).toMatchObject({ vehicleId: null, controlEpoch: 4 });
-    expect(stream.acknowledgment).toMatchObject({
-      connectionEpoch: ack.connectionEpoch + 1,
-      controlEpoch: 4,
-      lastProcessedSequence: 0,
-    });
-  });
+  it.each([
+    { phase: "boarding", tick: 1 },
+    { phase: "final boarding tick", tick: 11 },
+    { phase: "occupied", tick: 12 },
+    { phase: "arming", tick: 13 },
+    { phase: "exiting", tick: 90 },
+    { phase: "final exit tick", tick: 96 },
+  ])(
+    "replaces a waiting or playing $phase connection with a fresh unseated baseline",
+    ({ tick, phase }) => {
+      const playing = required((phase === "arming" ? arming : fixture).states[tick]);
+      const saved = canonical(playing);
+      const expectedEpoch = required(playing.combat.players[0]).controlEpoch + 1;
+      const before = structuredClone(playing);
+      before.snapshot.roomMode = "loading";
+      const waiting = replaceWaitingCombatConnection(before, 1);
+      validateCombatCheckpoint(waiting);
+      expect(waiting.combat.players[0]).toMatchObject({
+        vehicleId: null,
+        controlEpoch: expectedEpoch,
+        lives: 3,
+      });
+      expect(waiting.combat.tanks.slice(1)).toEqual(before.combat.tanks.slice(1));
+      const ack = required(playing.snapshot.acknowledgments[0]);
+      const stream = new InputStream({
+        ...combatPeerContext(playing.snapshot, 0),
+        connectionEpoch: ack.connectionEpoch + 1,
+        controlEpoch: ack.controlEpoch,
+        baselineServerTick: tick,
+      });
+      const committed = InputStream.processWorldTick(
+        [stream],
+        tick + 1,
+        (tick + 1) * 16,
+        (prepared) => {
+          const candidate = stageCombatRuntime(playing, prepared, [
+            { playerId: 1, connectionEpoch: ack.connectionEpoch + 1 },
+          ]);
+          expect(replayCombatTick(playing, candidate.journal)).toEqual(candidate.state);
+          return candidate;
+        },
+      );
+      validateCombatCheckpoint(committed.state);
+      expect(committed.state.combat.players[0]).toMatchObject({
+        vehicleId: null,
+        controlEpoch: expectedEpoch,
+      });
+      expect(stream.acknowledgment).toMatchObject({
+        connectionEpoch: ack.connectionEpoch + 1,
+        controlEpoch: expectedEpoch,
+        lastProcessedSequence: 0,
+      });
+      for (const state of [waiting, committed.state]) {
+        expect(state.combat.tanks[0]).toMatchObject({
+          lifecycle: "available",
+          occupantId: null,
+          reservedBy: null,
+          ownerControlEpoch: null,
+          armor: playing.combat.tanks[0]?.armor,
+          secondary: { ammo: playing.combat.tanks[0]?.secondary.ammo },
+          special: { phase: phase === "arming" ? "canceled" : "ready" },
+        });
+      }
+      expect(canonical(playing)).toBe(saved);
+    },
+  );
 
   it("restores entry, turret, gun and exit cursors through nine exact wire/archive boundaries", async () => {
     const proof = await tankCombatProof();

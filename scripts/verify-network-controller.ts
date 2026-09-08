@@ -36,6 +36,7 @@ import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
 import { verifySpecialCombat } from "./lib/verify-special-combat.js";
 import { verifySupportCombat } from "./lib/verify-support-combat.js";
 import { verifyTankCombat } from "./lib/verify-tank-combat.js";
+import { verifyTankConnections } from "./lib/verify-tank-connections.js";
 import { verifyTankDamageCombat } from "./lib/verify-tank-damage-combat.js";
 
 interface ClientStatus {
@@ -117,7 +118,23 @@ const shieldMode = process.argv.includes("--combat-guard");
 const specialMode = process.argv.includes("--combat-special");
 const cannonMode = process.argv.includes("--combat-cannon");
 const damageMode = process.argv.includes("--combat-tank-damage");
-const tankMode = specialMode || cannonMode || damageMode || process.argv.includes("--combat-tank");
+const tankConnectionsMode = process.argv.includes("--combat-tank-connections");
+const tankMode =
+  specialMode ||
+  cannonMode ||
+  damageMode ||
+  tankConnectionsMode ||
+  process.argv.includes("--combat-tank");
+assert(
+  [
+    specialMode,
+    cannonMode,
+    damageMode,
+    tankConnectionsMode,
+    process.argv.includes("--combat-tank"),
+  ].filter(Boolean).length <= 1,
+  "Run each tank proof in its own fresh room",
+);
 const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
 const feedbackMode = process.argv
@@ -282,7 +299,9 @@ const output = feedbackMode
                       ? "dist/network-combat-cannon-evidence"
                       : damageMode
                         ? "dist/network-combat-tank-damage-evidence"
-                        : "dist/network-combat-tank-evidence"
+                        : tankConnectionsMode
+                          ? "dist/network-combat-tank-connections-evidence"
+                          : "dist/network-combat-tank-evidence"
                   : areaMode
                     ? `dist/network-combat-${areaMode}-evidence`
                     : shieldMode
@@ -369,6 +388,7 @@ try {
       ...(laserMode ? ["scripts/lib/verify-laser-combat.ts"] : []),
       ...(pickupMode ? ["scripts/lib/verify-pickup-combat.ts"] : []),
       ...(materialMode ? ["scripts/lib/verify-material-room-network.ts"] : []),
+      ...(tankConnectionsMode ? ["scripts/lib/verify-tank-connections.ts"] : []),
     ])
       sources.push({
         file,
@@ -681,7 +701,9 @@ try {
           ? await verifySpecialCombat(pages, base, output)
           : damageMode
             ? await verifyTankDamageCombat(pages, base, output)
-            : await verifyTankCombat(pages, base, output, cannonMode);
+            : tankConnectionsMode
+              ? await verifyTankConnections(pages, base, output, restart)
+              : await verifyTankCombat(pages, base, output, cannonMode);
         room = tank.final;
         return {
           status: "pass",
@@ -702,7 +724,9 @@ try {
               ? "Four Chromium keyboard clients board, jump, drive, spend two cannon shells each, hold the first trigger beyond its cooldown without repeating, fire the primary gun and exit with released shells. Exact shared snapshots and duplicate event delivery; engineering graphics and local workerd timing only."
               : damageMode
                 ? "Four Chromium keyboard clients board and receive actual rifle damage through three armor stages, protected impacts, safe ejection, wreck and later exposed-body death. All clients receive identical shared snapshots and duplicate event delivery; engineering indicators, local workerd timing and no network audio acceptance."
-                : "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
+                : tankConnectionsMode
+                  ? "Four Chromium keyboard clients prove seated takeover with a held trigger, a second player claiming the abandoned hull, neutral disconnect grace, same-document return, empty-room seat settlement and a same-origin SQLite restart. Fresh input and effect generations preserve tank stock and exact shared snapshots. Local workerd only; no deployed timing or network audio acceptance."
+                  : "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
         };
       }
       if (areaMode) {

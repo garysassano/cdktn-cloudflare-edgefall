@@ -1,0 +1,197 @@
+{
+  "checks": {
+    "tests": 890,
+    "files": 81,
+    "seatedPhases": [
+      "boarding",
+      "final boarding tick",
+      "occupied",
+      "arming",
+      "exiting",
+      "final exit tick"
+    ],
+    "waitingAndPlaying": true
+  },
+  "network": {
+    "browser": "151.0.7922.34",
+    "takeoverTick": 201,
+    "boundaries": [
+      {
+        "name": "occupied",
+        "tick": 18,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "settled-combat",
+        "tick": 137,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "takeover",
+        "tick": 209,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "takeover-stable",
+        "tick": 224,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "reclaimed-by-P2",
+        "tick": 298,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "driving-before-disconnect",
+        "tick": 307,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "disconnect-grace",
+        "tick": 313,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "disconnect-released",
+        "tick": 326,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "same-document-return",
+        "tick": 338,
+        "runEpoch": 1,
+        "roomMode": "playing"
+      },
+      {
+        "name": "empty-persisted",
+        "tick": 349,
+        "runEpoch": 1,
+        "roomMode": "paused-empty"
+      },
+      {
+        "name": "cold-empty",
+        "tick": 349,
+        "runEpoch": 1,
+        "roomMode": "paused-empty"
+      },
+      {
+        "name": "cold-loading",
+        "tick": 349,
+        "runEpoch": 2,
+        "roomMode": "loading"
+      },
+      {
+        "name": "continued",
+        "tick": 407,
+        "runEpoch": 2,
+        "roomMode": "playing"
+      }
+    ],
+    "grace": {
+      "observedTick": 313,
+      "disconnectedTicks": 2,
+      "releaseTick": 326,
+      "requiredTicks": 15
+    },
+    "empty": {
+      "tick": 349,
+      "committedTick": 349,
+      "backlogTicks": 0,
+      "timerPending": false
+    },
+    "clientTicks": [
+      396,
+      396,
+      396,
+      396
+    ],
+    "roomTick": 407,
+    "sharedSnapshots": 16,
+    "runEpoch": 2,
+    "connectionEpochs": [
+      3,
+      4,
+      4,
+      5
+    ],
+    "controlEpochs": [
+      5,
+      9,
+      5,
+      5
+    ],
+    "lives": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "armor": [
+      3,
+      3,
+      3,
+      2
+    ],
+    "shells": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "historicalEffectsOnColdReturn": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "worldFailure": null,
+    "persistenceFailure": null,
+    "clockFault": null
+  },
+  "observability": {
+    "configs": [
+      {
+        "path": "wrangler.jsonc",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      },
+      {
+        "path": ".wrangler.deploy.json",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      }
+    ],
+    "liveIngestionVerified": false,
+    "deployedTimingVerified": false
+  }
+}

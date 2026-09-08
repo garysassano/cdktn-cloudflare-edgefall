@@ -1,0 +1,18 @@
+[
+  {
+    "name": "obsolete-seated-admission-guard",
+    "reason": "The original Worker rejected seated replacement before reaching the existing simulation handoff. The first browser run never obtained a P1 replacement baseline and later stopped on a host time_regression. The original Worker source and rebuilt bundle are retained at the exact execution hash; the passing run uses the removed seat restriction and retains the generation-exhaustion guard."
+  },
+  {
+    "name": "renderer-readiness",
+    "reason": "The next verifier read controllerNetworkLab before the replacement renderer had installed it. Waiting for the actual lab object fixes the verifier race; the failed report is retained."
+  },
+  {
+    "name": "host-clock-and-polling",
+    "reason": "After the runtime fix, one run completed takeover and P2 reclaim but encountered fresh-baseline reconnects and a later host time_regression. The verifier then stopped copying entire accumulated recordings during every client poll. It now selects only needed fields and copies snapshot receipts once at completion. The independent passing run leaves all runtime clock and input guards unchanged. This is a bounded acceptance run, not resolution of the host clock discrepancy."
+  },
+  {
+    "name": "scope",
+    "reason": "The change is in the authoritative diagnostic room, not the old production protocol. Six portable transfer boundaries and a real four-browser socket/SQLite restart pass. Full tank geometry and degraded-network footage, final media, production v3, stable-host/deployed cadence and live Cloudflare trace ingestion remain open."
+  }
+]
