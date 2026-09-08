@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "wrangler": "4.128.0",
+  "miniflare": "5.20260831.0-alpha",
+  "sharp": "0.35.4",
+  "libheif": "1.23.2",
+  "image": {
+    "inputFormat": "avif",
+    "inputWidth": 8,
+    "inputHeight": 8,
+    "outputFormat": "png",
+    "outputWidth": 4,
+    "outputHeight": 4,
+    "decodedPixelChannels": 48,
+    "outputSha256": "ee9667807b1b92232b5f4bfc5ab2539767d6e9d38567b26b4dbcda58c95e7e29"
+  },
+  "scope": "Local Miniflare IMAGES binding decodes generated benign AVIF through the patched transitive Sharp/libheif, transforms it and returns verified PNG pixels. No image is added to game assets and no production binding is changed.",
+  "advisory": "https://github.com/lovell/sharp/security/advisories/GHSA-rgj7-g3m4-5g8c",
+  "checks": {
+    "tests": 940,
+    "files": 83,
+    "frozenInstall": "pass"
+  },
+  "baseCommit": "226de406c79757a6f9ffa22e0168b18f889fb764",
+  "inputs": [
+    {
+      "path": "package.json",
+      "sha256": "f2b41f0a7c4f6034bb58cd6274a41e5974a1cb199148678d2fdadd3b3e60c99d"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "c70b022b76cbdfdfdf878f0deb82d5cf35ae2bf46664f514228823bd28f74cbf"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "b5aac9e06cdfbf215a0361e8ec7fb1ccd28fc6e50ee41e9aaf42ad45d50b43e0"
+    }
+  ]
+}

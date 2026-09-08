@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "artifacts": [
+    {
+      "path": "check.log.gz",
+      "bytes": 2283,
+      "sha256": "7568c20839d15e2e833c2f2a386b295f7cb30475c88c653304d86cacd96324d9"
+    },
+    {
+      "path": "frozen.log.gz",
+      "bytes": 138,
+      "sha256": "e658c4c1dcc398134eb1c0b3b05f66488e9d6fdd0a583f64ae40d2f455d8288d"
+    },
+    {
+      "path": "install.log.gz",
+      "bytes": 184,
+      "sha256": "65913cc8522458192ba10a9503d803f81faec23820c4e0ee7ecaf05b0ead52b9"
+    },
+    {
+      "path": "report.json",
+      "bytes": 1283,
+      "sha256": "35fdc51523fcaf38bd6dabb91006aecd51c6e6734122cfc1574e3c88bfa17b9f"
+    },
+    {
+      "path": "verify-miniflare-sharp.mjs",
+      "bytes": 2784,
+      "sha256": "f90389c2616d4ff1c255508bbaf0a53b9a043807f027e3481e06877592960a73"
+    }
+  ]
+}
