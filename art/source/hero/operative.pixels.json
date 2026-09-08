@@ -537,53 +537,6 @@
       }
     },
     {
-      "id": "legs-rise",
-      "channel": "legs",
-      "at": [
-        12,
-        32
-      ],
-      "rows": [
-        "........oNNNNnnnnqo",
-        ".......oNNNNnnnnqqo",
-        "......oNNNNNoonnqqqo",
-        ".....oNNNNNo..onnqqqo",
-        "....oNNNNNo....onnqqo",
-        "...oNNNNNo.....onnno",
-        "..oNNNNNo.....onnnno",
-        ".oNNNNNo.....onnnno",
-        ".oNNNNo.....onnnno",
-        "..oBBtto...oxxxxo",
-        "..oBBttuo..oBBtto",
-        "...oooooo..oBBttuuo",
-        "............ooooooo"
-      ]
-    },
-    {
-      "id": "legs-fall",
-      "channel": "legs",
-      "at": [
-        12,
-        32
-      ],
-      "rows": [
-        "........oNNNNnnnnqo",
-        "........oNNNNnnnnqo",
-        ".......oNNNNoonnqqo",
-        "......oNNNNo..onqqqo",
-        ".....oNNNNo....onqqo",
-        "....oNNNNo......onnno",
-        "...oNNNNo.......onnnno",
-        "..oNNNNo.........onnno",
-        "..oNNNNo.........onnno",
-        "...oNNNo.........onnno",
-        "...oxxxo.........oxxxo",
-        "...oBBto.........oBBto",
-        "...oBBttuo.......oBBtuo",
-        "....oooooo........ooooo"
-      ]
-    },
-    {
       "id": "legs-crouch",
       "channel": "legs",
       "at": [
@@ -1132,58 +1085,6 @@
       ]
     },
     {
-      "id": "legs-land-compress",
-      "channel": "legs",
-      "at": [
-        12,
-        32
-      ],
-      "rows": [
-        "........oNNNNnnnnqo",
-        ".......oNNNNNnnnqqo",
-        "......oNNNNNnnnqqqqo",
-        ".....oNNNNNooonnqqqqo",
-        "....oNNNNNo...onnqqqo",
-        "...oNNNNNo.....onnqqo",
-        "...oNNNNo......onnnno",
-        "....oNNNNo....onnnno",
-        ".....oNNNNo..onnnno",
-        "......oNNNo..onnnno",
-        "......oNNNo...onnno",
-        "......oxxxo...oxxxo",
-        "......oBBto...oBBto",
-        "......oBBttuo.oBBtto",
-        "......oBBtttuooBBtttuo",
-        "......oooooooooooooooo"
-      ]
-    },
-    {
-      "id": "legs-land-rise",
-      "channel": "legs",
-      "at": [
-        12,
-        32
-      ],
-      "rows": [
-        "........oNNNNnnnnqo",
-        "........oNNNNnnnqqo",
-        ".......oNNNNoonnqqo",
-        "......oNNNNo..onqqo",
-        ".....oNNNNo...onqqo",
-        ".....oNNNNo...onnno",
-        "......oNNNNo..onnno",
-        ".......oNNNo..onnno",
-        ".......oNNNo...onnno",
-        ".......oNNNo...onnno",
-        "......oNNNNo...onnnno",
-        "......oxxxxo...oxxxxo",
-        "......oBBtto...oBBtto",
-        "......oBBtto...oBtttuo",
-        "......oBttuuo..oBtttuuo",
-        "......oooooooo.oooooooo"
-      ]
-    },
-    {
       "id": "upper-run-lift",
       "channel": "upper",
       "at": [
@@ -1268,94 +1169,6 @@
         "grip": [
           9,
           -24
-        ]
-      }
-    },
-    {
-      "id": "upper-land-compress",
-      "channel": "upper",
-      "at": [
-        15,
-        12
-      ],
-      "rows": [
-        "........oooooo",
-        "......oohhjhhhoo",
-        ".....ohhhjjjhhhho",
-        ".....ohhjjhhhhho",
-        ".....oHhhhSskssso",
-        ".....oHhhSkkwekko",
-        "......oHhSkkkkkso",
-        "......oHhSSkkksso",
-        ".......ooSSksoo",
-        "...oooooAAovSoo",
-        "..oCdddcoAavlvao",
-        ".oCcdcccoAablvvao",
-        ".oCcccCcoAabTvoAgggo",
-        ".oCcccCcoAabTvoGffgGMMimM",
-        ".oCccCCcoAaAGggfffggMmmMM",
-        "..oCCCCooAAGgfffggGMMmMMM",
-        "...ooooAAaaAGggGGo....MM",
-        "....oAAaaaAGggGGo....oo",
-        "....ooAaaaaAAAao",
-        ".....oAAAAAAxxo",
-        "......oxxxyxxxxo",
-        "......oNNNnnnqqo",
-        "......oNNNnnnnno",
-        ".......oooooooo"
-      ],
-      "sockets": {
-        "muzzle": [
-          15,
-          -21
-        ],
-        "grip": [
-          9,
-          -22
-        ]
-      }
-    },
-    {
-      "id": "upper-land-rise",
-      "channel": "upper",
-      "at": [
-        15,
-        11
-      ],
-      "rows": [
-        "........oooooo",
-        "......oohhjhhhoo",
-        ".....ohhhjjjhhhho",
-        ".....ohhjjhhhhho",
-        ".....oHhhhSskssso",
-        ".....oHhhSkkwekko",
-        "......oHhSkkkkkso",
-        "......oHhSSkkksso",
-        ".......ooSSksoo",
-        "...oooooAAovSoo",
-        "..oCdddcoAavlvao",
-        ".oCcdcccoAablvvao",
-        ".oCcccCcoAabTvoAgggo",
-        ".oCcccCcoAabTvoGffgGMMimM",
-        ".oCccCCcoAaAGggfffggMmmMM",
-        "..oCCCCooAAGgfffggGMMmMMM",
-        "...ooooAAaaAGggGGo....MM",
-        "....oAAaaaAGggGGo....oo",
-        "....ooAaaaaAAAao",
-        ".....oAAAAAAxxo",
-        "......oxxxyxxxxo",
-        "......oNNNnnnqqo",
-        "......oNNNnnnnno",
-        ".......oooooooo"
-      ],
-      "sockets": {
-        "muzzle": [
-          15,
-          -22
-        ],
-        "grip": [
-          9,
-          -23
         ]
       }
     },
@@ -5068,6 +4881,993 @@
         "...oBttuuo..oBtttuuo.",
         "...oooooooo.oooooooo."
       ]
+    },
+    {
+      "id": "legs-launch-drive",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        "........oNNNNnnnqqo",
+        ".......oNNNNnonnqqqo",
+        "......oNNNNNo..onnqqo",
+        ".....oNNNNNo....onnqqo",
+        "....oNNNNNo......onnno",
+        "...oNNNNNo.......onnnno",
+        "..oNNNNNo.........onnno",
+        ".oNNNNNo..........onnno",
+        ".oNNNNo...........oxxxxo",
+        ".oNNNo............oBBtto",
+        ".oNNo.............oBtttuo",
+        ".oBto..............oBttuuo",
+        ".oBBto..............oooooo",
+        "..oBtuo",
+        "...ooooo"
+      ]
+    },
+    {
+      "id": "legs-launch-fold",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnqqqo",
+        ".....oNNNNNoonnnqqqo",
+        "....oNNNNNo...onnqqqo",
+        "...oNNNNNo.....onnqqo",
+        "..oNNNNNo.....onnnno",
+        ".oNNNNNo.....onnnno",
+        ".oNNNNo.....onnnno",
+        "..oNNNo....oxxxxo",
+        "...oBBto...oBBtto",
+        "...oBBttuo.oBBttuo",
+        "....oBttuuo.oooooo",
+        ".....oooooo"
+      ]
+    },
+    {
+      "id": "legs-rise-open",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnnqqo",
+        ".....oNNNNNoonnnqqqo",
+        "....oNNNNNo..onnqqqqo",
+        "...oNNNNNo....onnqqqo",
+        "..oNNNNNo.....onnqqo",
+        "..oNNNNo.....onnnno",
+        "...oNNNo....onnnno",
+        "....oNNNo..oxxxxo",
+        ".....oBBto.oBBtto",
+        ".....oBBtuooBBttuo",
+        "......oooooooooooo"
+      ]
+    },
+    {
+      "id": "legs-rise-tuck",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnnqqo",
+        ".....oNNNNNnonnnqqqo",
+        "....oNNNNNo..onnqqqqo",
+        "....oNNNNo....onnqqqo",
+        ".....oNNNNo..onnnqqo",
+        "......oNNNNoonnnno",
+        ".......oNNNoonnno",
+        ".......oxxxooxxxo",
+        "......oBBtto.oBBto",
+        ".....oBBttuo.oBBtuo",
+        "......oooooo..ooooo"
+      ]
+    },
+    {
+      "id": "legs-apex-fold",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnnqqqo",
+        ".....oNNNNNNoonnqqqqo",
+        ".....oNNNNNo..onnqqqqo",
+        "......oNNNNNo.oxxxxxo",
+        ".......oNNNNo.oBBttuo",
+        "........oNNNo..oBBttuuo",
+        ".......oxxxxo...ooooooo",
+        "......oBBtto",
+        ".....oBBttuo",
+        "......oooooo"
+      ]
+    },
+    {
+      "id": "legs-apex-open",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        "........oNNNNnnnqqo",
+        ".......oNNNNnonnqqqo",
+        "......oNNNNNo.onnqqqqo",
+        "......oNNNNo...onnqqqo",
+        ".......oNNNNo..onnnno",
+        "........oNNNNo.oxxxxo",
+        "........oNNNNo.oBBtto",
+        "........oxxxxo.oBBttuo",
+        ".......oBBtto...oooooo",
+        "......oBBttuo",
+        ".......oooooo"
+      ]
+    },
+    {
+      "id": "legs-fall-reach",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        "........oNNNNnnnqqo",
+        ".......oNNNNoonnqqqo",
+        "......oNNNNo..onnqqqo",
+        ".....oNNNNo....onnqqo",
+        ".....oNNNNo....onnnno",
+        "......oNNNo.....onnnno",
+        "......oNNNo......onnno",
+        "......oxxxo......oxxxo",
+        ".....oBBtto......oBBto",
+        "....oBBttuo......oBBtuo",
+        ".....oooooo.......oBtuuo",
+        "...................ooooo"
+      ]
+    },
+    {
+      "id": "legs-fall-brace",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        "........oNNNNnnnqqo",
+        ".......oNNNNoonnqqqo",
+        "......oNNNNo..onnqqqo",
+        ".....oNNNNo....onnqqo",
+        "....oNNNNo......onnnno",
+        "....oNNNNo......onnnno",
+        ".....oNNNo.......onnno",
+        ".....oNNNo.......onnno",
+        ".....oNNNo.......onnno",
+        ".....oxxxo.......oxxxo",
+        "....oBBtto.......oBBtto",
+        "...oBBttuo.......oBBttuo",
+        "....oooooo........oooooo"
+      ]
+    },
+    {
+      "id": "legs-impact-touch",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnnqqqo",
+        ".....oNNNNNNoonnqqqqo",
+        "....oNNNNNNo..onnqqqqo",
+        "....oNNNNNo....onnqqqo",
+        ".....oNNNNo....onnnqqo",
+        "......oNNNNo..onnnqqo",
+        ".......oNNNo..onnnno",
+        ".......oNNNo...onnno",
+        ".......oNNNo...onnno",
+        ".......oxxxo...oxxxxo",
+        "......oBBtto...oBBtto",
+        "......oBBtto...oBtttuo",
+        ".....oBBttuo...oBtttuuo",
+        ".....oooooooo..oooooooo"
+      ],
+      "contact": {
+        "foot": "near",
+        "point": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "id": "legs-impact-absorb",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNNnnnqqqo",
+        ".....oNNNNNNnnnnqqqqo",
+        "....oNNNNNNNnnnnnqqqqo",
+        "...oNNNNNNNooonnnqqqqqo",
+        "...oNNNNNNo...onnnqqqqo",
+        "....oNNNNNo...onnnqqqo",
+        ".....oNNNNo..onnnqqo",
+        "......oNNNo..onnnno",
+        ".......oNNo...onnno",
+        ".......oxxxo..oxxxxo",
+        "......oBBtto..oBBtto",
+        "......oBBtto..oBtttuo",
+        ".....oBBttuo..oBtttuuo",
+        ".....oooooooo.oooooooo"
+      ],
+      "contact": {
+        "foot": "near",
+        "point": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "id": "legs-impact-rise",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        ".......oNNNNNnnnqqo",
+        "......oNNNNNnnnnqqo",
+        "......oNNNNNoonnqqqo",
+        ".....oNNNNNo..onnqqqo",
+        ".....oNNNNNo...onnqqo",
+        "......oNNNNo...onnnno",
+        ".......oNNNo..onnnno",
+        ".......oNNNo..onnnno",
+        ".......oNNNo...onnno",
+        "......oNNNNo...onnnno",
+        "......oxxxxo...oxxxxo",
+        "......oBBtto...oBBtto",
+        "......oBBtto...oBtttuo",
+        ".....oBBttuo...oBtttuuo",
+        ".....oooooooo..oooooooo"
+      ],
+      "contact": {
+        "foot": "near",
+        "point": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "id": "legs-impact-settle",
+      "channel": "legs",
+      "at": [
+        12,
+        32
+      ],
+      "rows": [
+        "........oNNNNnnnnqo",
+        "........oNNNNnnnqqo",
+        "........oNNNNoonqqo",
+        ".......oNNNNo..onqqo",
+        ".......oNNNNo..onqqo",
+        ".......oNNNo...onnno",
+        ".......oNNNo...onnno",
+        ".......oNNNo...onnno",
+        ".......oNNNo....onnno",
+        "......oNNNNo....onnno",
+        "......oNNNNo...onnnno",
+        "......oxxxxo...oxxxxo",
+        "......oBBtto...oBBtto",
+        "......oBBtto...oBtttuo",
+        ".....oBBttuo...oBtttuuo",
+        ".....oooooooo..oooooooo"
+      ],
+      "contact": {
+        "foot": "near",
+        "point": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-sidearm-touch",
+      "channel": "upper",
+      "at": [
+        16,
+        11
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        "......oHSSkkksso........",
+        ".......ooSSksoo.........",
+        "..oooooAAovSoo..........",
+        ".oCddccoAavlvao.........",
+        "oCcdcccoAabovvaoo.......",
+        "oCcccCcoAaoAvoAgggo.....",
+        "oCcccCcoAaoAvoGffgGMMimM",
+        "oCccCCcoAaAoggfffggMmmMM",
+        ".oCCCCooAAaafffggGMMmMMM",
+        "..oooooAAaaaggGGoo...MM.",
+        "...oAAAaAAAAgGGoo...oo..",
+        "....oAAAAAAxAao.........",
+        "....oxxxyxxxxxo.........",
+        "....oNNNnnnqxxo.........",
+        ".....oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -22
+        ],
+        "grip": [
+          9,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-sidearm-absorb",
+      "channel": "upper",
+      "at": [
+        16,
+        13
+      ],
+      "rows": [
+        "........ooooooo.........",
+        "......oohhjjjhhhoo......",
+        "......ohhhjjhhhho.......",
+        "......oHhhhhhhoo........",
+        ".......oHhSskksso.......",
+        "........oHSkweekso......",
+        ".........oSSkkkkso......",
+        "..........ooSksoo.......",
+        "..........oSkSo.........",
+        "...oooooAAoSSSo.........",
+        "..oCdddcoAaoooao........",
+        ".oCcdcccoAaovvaoo.......",
+        "oCccccCcoAoAvoAgggo.....",
+        "oCcccCCcoAoAvoGffgGMMimM",
+        ".oCCCCCoAAaoggfffggMmmMM",
+        "..oCCCooAAaafffggGMMmMMM",
+        "...ooooAAaaaggGGoo...MM.",
+        "....oAAAAAAxgGGoo...oo..",
+        "....oxxxyxxxAao.........",
+        "....oNNNnnnqxxo.........",
+        ".....oooooooxxo........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -20
+        ],
+        "grip": [
+          9,
+          -21
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-sidearm-rise",
+      "channel": "upper",
+      "at": [
+        16,
+        12
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        ".....oHhSkkwekko........",
+        "......oHSkkkkkso........",
+        "......oHSSkkksso........",
+        ".......ooSSksoo.........",
+        "..oooooAAovSoo..........",
+        ".oCddccoAavlvao.........",
+        "oCcdcccoAabovvaoo.......",
+        "oCcccCcoAaoAvoAgggo.....",
+        "oCcccCcoAaoAvoGffgGMMimM",
+        "oCccCCcoAaAoggfffggMmmMM",
+        ".oCCCCooAAaafffggGMMmMMM",
+        "..oooooAAaaaggGGoo...MM.",
+        "...oAAAaAAAAgGGoo...oo..",
+        "....oAAAAAAxAao.........",
+        "....oxxxyxxxxxo.........",
+        "....oNNNnnnqxxo.........",
+        ".....oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -21
+        ],
+        "grip": [
+          9,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-sidearm-settle",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo...........",
+        ".....oohhjhhhoo.........",
+        "....ohhhjjjhhhho........",
+        "....ohhjjhhhhho.........",
+        "....oHhhhSskssso........",
+        "....oHhhSkkwekko........",
+        ".....oHhSkkkkkso........",
+        ".....oHhSSkkksso........",
+        "......ooSSksoo..........",
+        "..oooooAAovSoo..........",
+        ".oCdddcoAavlvao.........",
+        "oCcdcccoAabovvaoo.......",
+        "oCcccCcoAaoAvoAgggo.....",
+        "oCcccCcoAaoAvoGffgGMMimM",
+        "oCccCCcoAaAoggfffggMmmMM",
+        ".oCCCCooAAaafffggGMMmMMM",
+        "..oooooAAaaaggGGoo...MM.",
+        "...oAAAaAAAAgGGoo...oo..",
+        "....oAAAAAAxAao.........",
+        "....oxxxyxxxxxo.........",
+        "....oNNNnnnqxxo.........",
+        ".....oooooooo..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          9,
+          -24
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-heavy-machine-gun-touch",
+      "channel": "upper",
+      "at": [
+        16,
+        11
+      ],
+      "rows": [
+        ".......oooooo.............",
+        ".....oohhjhhhoo...........",
+        "....ohhhjjjhhhho..........",
+        "....ohhjjhhhhho...........",
+        "....oHhhhSskssso..........",
+        "....oHhhSkkwekko..........",
+        ".....oHhSkkkkkso..........",
+        "......oHSSkkksso..........",
+        ".......ooSSksoo...........",
+        "..oooooAAovSoo............",
+        ".oCddccoAavlvao...........",
+        "oCcdcccoAabovvaoo.........",
+        "oCcccCcoAaoAvoAgggo.......",
+        "oCcccCcoAaoAoooooooooooooo",
+        "oCccCCcoAaAommGGGMmMMooooo",
+        ".oCCCCooAAaaGGGGfgMMMiMMoo",
+        "..oooooAAaaagggGGGMMMooooo",
+        "...oAAAaAAAAGGGGoooooooooo",
+        "....oAAAAAAxMMy...........",
+        "....oxxxyxxxMMM...........",
+        "....oNNNnnnqMMM...........",
+        ".....oooooooo............."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -22
+        ],
+        "grip": [
+          8,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-heavy-machine-gun-absorb",
+      "channel": "upper",
+      "at": [
+        16,
+        13
+      ],
+      "rows": [
+        "........ooooooo...........",
+        "......oohhjjjhhhoo........",
+        "......ohhhjjhhhho.........",
+        "......oHhhhhhhoo..........",
+        ".......oHhSskksso.........",
+        "........oHSkweekso........",
+        ".........oSSkkkkso........",
+        "..........ooSksoo.........",
+        "..........oSkSo...........",
+        "...oooooAAoSSSo...........",
+        "..oCdddcoAaoooao..........",
+        ".oCcdcccoAaovvaoo.........",
+        "oCccccCcoAoAvoAgggo.......",
+        "oCcccCCcoAoAoooooooooooooo",
+        ".oCCCCCoAAaommGGGMmMMooooo",
+        "..oCCCooAAaaGGGGfgMMMiMMoo",
+        "...ooooAAaaagggGGGMMMooooo",
+        "....oAAAAAAxGGGGoooooooooo",
+        "....oxxxyxxxMMy...........",
+        "....oNNNnnnqMMM...........",
+        ".....oooooooMMM..........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -20
+        ],
+        "grip": [
+          8,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-heavy-machine-gun-rise",
+      "channel": "upper",
+      "at": [
+        16,
+        12
+      ],
+      "rows": [
+        ".......oooooo.............",
+        ".....oohhjhhhoo...........",
+        "....ohhhjjjhhhho..........",
+        "....ohhjjhhhhho...........",
+        "....oHhhhSskssso..........",
+        ".....oHhSkkwekko..........",
+        "......oHSkkkkkso..........",
+        "......oHSSkkksso..........",
+        ".......ooSSksoo...........",
+        "..oooooAAovSoo............",
+        ".oCddccoAavlvao...........",
+        "oCcdcccoAabovvaoo.........",
+        "oCcccCcoAaoAvoAgggo.......",
+        "oCcccCcoAaoAoooooooooooooo",
+        "oCccCCcoAaAommGGGMmMMooooo",
+        ".oCCCCooAAaaGGGGfgMMMiMMoo",
+        "..oooooAAaaagggGGGMMMooooo",
+        "...oAAAaAAAAGGGGoooooooooo",
+        "....oAAAAAAxMMy...........",
+        "....oxxxyxxxMMM...........",
+        "....oNNNnnnqMMM...........",
+        ".....oooooooo............."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -21
+        ],
+        "grip": [
+          8,
+          -21
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-heavy-machine-gun-settle",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo.............",
+        ".....oohhjhhhoo...........",
+        "....ohhhjjjhhhho..........",
+        "....ohhjjhhhhho...........",
+        "....oHhhhSskssso..........",
+        "....oHhhSkkwekko..........",
+        ".....oHhSkkkkkso..........",
+        ".....oHhSSkkksso..........",
+        "......ooSSksoo............",
+        "..oooooAAovSoo............",
+        ".oCdddcoAavlvao...........",
+        "oCcdcccoAabovvaoo.........",
+        "oCcccCcoAaoAvoAgggo.......",
+        "oCcccCcoAaoAoooooooooooooo",
+        "oCccCCcoAaAommGGGMmMMooooo",
+        ".oCCCCooAAaaGGGGfgMMMiMMoo",
+        "..oooooAAaaagggGGGMMMooooo",
+        "...oAAAaAAAAGGGGoooooooooo",
+        "....oAAAAAAxMMy...........",
+        "....oxxxyxxxMMM...........",
+        "....oNNNnnnqMMM...........",
+        ".....oooooooo............."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-shotgun-touch",
+      "channel": "upper",
+      "at": [
+        16,
+        11
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        "......oHSSkkksso.........",
+        ".......ooSSksoo..........",
+        "..oooooAAovSoo...........",
+        ".oCddccoAavlvao..........",
+        "oCcdcccoAabovvaoo........",
+        "oCcccCcoAaoAvoAgggo......",
+        "oCcccCcoAaoAvoGffgGo.....",
+        "oCccCCcoAaAouuGGGMuttoooo",
+        ".oCCCCooAAaaGGGGfgtMMiMMo",
+        "..oooooAAaaagggGGGtttoooo",
+        "...oAAAaAAAAGGGGo...oo...",
+        "....oAAAAAAxAao..........",
+        "....oxxxyxxxxxo..........",
+        "....oNNNnnnqxxo..........",
+        ".....oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -22
+        ],
+        "grip": [
+          8,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-shotgun-absorb",
+      "channel": "upper",
+      "at": [
+        16,
+        13
+      ],
+      "rows": [
+        "........ooooooo..........",
+        "......oohhjjjhhhoo.......",
+        "......ohhhjjhhhho........",
+        "......oHhhhhhhoo.........",
+        ".......oHhSskksso........",
+        "........oHSkweekso.......",
+        ".........oSSkkkkso.......",
+        "..........ooSksoo........",
+        "..........oSkSo..........",
+        "...oooooAAoSSSo..........",
+        "..oCdddcoAaoooao.........",
+        ".oCcdcccoAaovvaoo........",
+        "oCccccCcoAoAvoAgggo......",
+        "oCcccCCcoAoAvoGffgGo.....",
+        ".oCCCCCoAAaouuGGGMuttoooo",
+        "..oCCCooAAaaGGGGfgtMMiMMo",
+        "...ooooAAaaagggGGGtttoooo",
+        "....oAAAAAAxGGGGo...oo...",
+        "....oxxxyxxxAao..........",
+        "....oNNNnnnqxxo..........",
+        ".....oooooooxxo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -20
+        ],
+        "grip": [
+          8,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-shotgun-rise",
+      "channel": "upper",
+      "at": [
+        16,
+        12
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        ".....oHhSkkwekko.........",
+        "......oHSkkkkkso.........",
+        "......oHSSkkksso.........",
+        ".......ooSSksoo..........",
+        "..oooooAAovSoo...........",
+        ".oCddccoAavlvao..........",
+        "oCcdcccoAabovvaoo........",
+        "oCcccCcoAaoAvoAgggo......",
+        "oCcccCcoAaoAvoGffgGo.....",
+        "oCccCCcoAaAouuGGGMuttoooo",
+        ".oCCCCooAAaaGGGGfgtMMiMMo",
+        "..oooooAAaaagggGGGtttoooo",
+        "...oAAAaAAAAGGGGo...oo...",
+        "....oAAAAAAxAao..........",
+        "....oxxxyxxxxxo..........",
+        "....oNNNnnnqxxo..........",
+        ".....oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -21
+        ],
+        "grip": [
+          8,
+          -21
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-shotgun-settle",
+      "channel": "upper",
+      "at": [
+        16,
+        10
+      ],
+      "rows": [
+        ".......oooooo............",
+        ".....oohhjhhhoo..........",
+        "....ohhhjjjhhhho.........",
+        "....ohhjjhhhhho..........",
+        "....oHhhhSskssso.........",
+        "....oHhhSkkwekko.........",
+        ".....oHhSkkkkkso.........",
+        ".....oHhSSkkksso.........",
+        "......ooSSksoo...........",
+        "..oooooAAovSoo...........",
+        ".oCdddcoAavlvao..........",
+        "oCcdcccoAabovvaoo........",
+        "oCcccCcoAaoAvoAgggo......",
+        "oCcccCcoAaoAvoGffgGo.....",
+        "oCccCCcoAaAouuGGGMuttoooo",
+        ".oCCCCooAAaaGGGGfgtMMiMMo",
+        "..oooooAAaaagggGGGtttoooo",
+        "...oAAAaAAAAGGGGo...oo...",
+        "....oAAAAAAxAao..........",
+        "....oxxxyxxxxxo..........",
+        "....oNNNnnnqxxo..........",
+        ".....oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-flamethrower-touch",
+      "channel": "upper",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "........oooooo............",
+        "......oohhjhhhoo..........",
+        ".....ohhhjjjhhhho.........",
+        ".....ohhjjhhhhho..........",
+        ".....oHhhhSskssso.........",
+        ".....oHhhSkkwekko.........",
+        "......oHhSkkkkkso.........",
+        ".......oHSSkkksso.........",
+        "........ooSSksoo..........",
+        "...oooooAAovSoo...........",
+        "..oCddccoAavlvao..........",
+        ".ooooooooAabovvaoo........",
+        ".orRRRrroAaoAvoAgggo......",
+        "orRRRrrroAaoAvoGffgGo.....",
+        "orRrrrrooAaAoddGGGMdCCoooo",
+        "oryrrrrooAAaaGGGGfgCMMiMMo",
+        "orrrrMroAAMMagggGGGCCCoooo",
+        "orrrrrMoaMAAAGGGGo...oo...",
+        ".orrrroMMAAAxAao..........",
+        "..oooooxxyxxxxxo..........",
+        ".....oNNNnnnqxxo..........",
+        "......oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -22
+        ],
+        "grip": [
+          8,
+          -22
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-flamethrower-absorb",
+      "channel": "upper",
+      "at": [
+        15,
+        13
+      ],
+      "rows": [
+        ".........ooooooo..........",
+        ".......oohhjjjhhhoo.......",
+        ".......ohhhjjhhhho........",
+        ".......oHhhhhhhoo.........",
+        "........oHhSskksso........",
+        ".........oHSkweekso.......",
+        "..........oSSkkkkso.......",
+        "...........ooSksoo........",
+        "...........oSkSo..........",
+        "....oooooAAoSSSo..........",
+        "...oCdddcoAaoooao.........",
+        "..oooooocoAaovvaoo........",
+        ".orRRRrrooAoAvoAgggo......",
+        "orRRRrrrooAoAvoGffgGo.....",
+        "orRrrrrooAAaoddGGGMdCCoooo",
+        "oryrrrrooAAaaGGGGfgCMMiMMo",
+        "orrrrMroAAMMagggGGGCCCoooo",
+        "orrrrrMoAMAAxGGGGo...oo...",
+        ".orrrroMMyxxxAao..........",
+        "..oooooNNnnnqxxo..........",
+        "......oooooooxxo.........."
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -20
+        ],
+        "grip": [
+          8,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-flamethrower-rise",
+      "channel": "upper",
+      "at": [
+        15,
+        12
+      ],
+      "rows": [
+        "........oooooo............",
+        "......oohhjhhhoo..........",
+        ".....ohhhjjjhhhho.........",
+        ".....ohhjjhhhhho..........",
+        ".....oHhhhSskssso.........",
+        "......oHhSkkwekko.........",
+        ".......oHSkkkkkso.........",
+        ".......oHSSkkksso.........",
+        "........ooSSksoo..........",
+        "...oooooAAovSoo...........",
+        "..oCddccoAavlvao..........",
+        ".ooooooooAabovvaoo........",
+        ".orRRRrroAaoAvoAgggo......",
+        "orRRRrrroAaoAvoGffgGo.....",
+        "orRrrrrooAaAoddGGGMdCCoooo",
+        "oryrrrrooAAaaGGGGfgCMMiMMo",
+        "orrrrMroAAMMagggGGGCCCoooo",
+        "orrrrrMoaMAAAGGGGo...oo...",
+        ".orrrroMMAAAxAao..........",
+        "..oooooxxyxxxxxo..........",
+        ".....oNNNnnnqxxo..........",
+        "......oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -21
+        ],
+        "grip": [
+          8,
+          -21
+        ]
+      }
+    },
+    {
+      "id": "upper-impact-flamethrower-settle",
+      "channel": "upper",
+      "at": [
+        15,
+        10
+      ],
+      "rows": [
+        "........oooooo............",
+        "......oohhjhhhoo..........",
+        ".....ohhhjjjhhhho.........",
+        ".....ohhjjhhhhho..........",
+        ".....oHhhhSskssso.........",
+        ".....oHhhSkkwekko.........",
+        "......oHhSkkkkkso.........",
+        "......oHhSSkkksso.........",
+        ".......ooSSksoo...........",
+        "...oooooAAovSoo...........",
+        "..oCdddcoAavlvao..........",
+        ".ooooooooAabovvaoo........",
+        ".orRRRrroAaoAvoAgggo......",
+        "orRRRrrroAaoAvoGffgGo.....",
+        "orRrrrrooAaAoddGGGMdCCoooo",
+        "oryrrrrooAAaaGGGGfgCMMiMMo",
+        "orrrrMroAAMMagggGGGCCCoooo",
+        "orrrrrMoaMAAAGGGGo...oo...",
+        ".orrrroMMAAAxAao..........",
+        "..oooooxxyxxxxxo..........",
+        ".....oNNNnnnqxxo..........",
+        "......oooooooo............"
+      ],
+      "sockets": {
+        "muzzle": [
+          15,
+          -23
+        ],
+        "grip": [
+          8,
+          -23
+        ]
+      }
     }
   ],
   "clips": [
@@ -5278,21 +6078,6 @@
       ]
     },
     {
-      "id": "legs.land",
-      "channel": "legs",
-      "mode": "hold-last",
-      "exposures": [
-        {
-          "frame": "legs-land-compress",
-          "ticks": 2
-        },
-        {
-          "frame": "legs-land-rise",
-          "ticks": 2
-        }
-      ]
-    },
-    {
       "id": "upper.run.horizontal",
       "channel": "upper",
       "mode": "loop",
@@ -5351,21 +6136,6 @@
         {
           "frame": "upper-idle-blink",
           "ticks": 4
-        }
-      ]
-    },
-    {
-      "id": "upper.land.horizontal",
-      "channel": "upper",
-      "mode": "hold-last",
-      "exposures": [
-        {
-          "frame": "upper-land-compress",
-          "ticks": 2
-        },
-        {
-          "frame": "upper-land-rise",
-          "ticks": 2
         }
       ]
     },
@@ -6143,6 +6913,276 @@
           "ticks": 1
         }
       ]
+    },
+    {
+      "id": "legs.air.launch",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-launch-drive",
+          "ticks": 1
+        },
+        {
+          "frame": "legs-launch-fold",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "legs.air.rise",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-rise-open",
+          "ticks": 2
+        },
+        {
+          "frame": "legs-rise-tuck",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "legs.air.apex",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-apex-fold",
+          "ticks": 2
+        },
+        {
+          "frame": "legs-apex-open",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "legs.air.fall",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-fall-reach",
+          "ticks": 2
+        },
+        {
+          "frame": "legs-fall-brace",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "legs.land-light",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-impact-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "legs-impact-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "legs-impact-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-light.sidearm",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-sidearm-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-sidearm-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-sidearm-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-light.heavy-machine-gun",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-heavy-machine-gun-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-heavy-machine-gun-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-heavy-machine-gun-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-light.shotgun",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-shotgun-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-shotgun-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-shotgun-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-light.flamethrower",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-flamethrower-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-flamethrower-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-flamethrower-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "legs.land-heavy",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "legs-impact-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "legs-impact-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "legs-impact-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "legs-impact-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-heavy.sidearm",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-sidearm-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-sidearm-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-impact-sidearm-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-sidearm-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-heavy.heavy-machine-gun",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-heavy-machine-gun-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-heavy-machine-gun-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-impact-heavy-machine-gun-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-heavy-machine-gun-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-heavy.shotgun",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-shotgun-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-shotgun-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-impact-shotgun-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-shotgun-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "upper.land-heavy.flamethrower",
+      "channel": "upper",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "upper-impact-flamethrower-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-flamethrower-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "upper-impact-flamethrower-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "upper-impact-flamethrower-settle",
+          "ticks": 1
+        }
+      ]
     }
   ],
   "notes": [
@@ -6157,6 +7197,7 @@
     "Horizontal run/idle/landing use authored head, jacket and pack changes. Gun grips meet adjacent hand/weapon pixels. Upper vertical anatomy, vehicle transfers, hurt response under accessible rules and the complete benchmark still require work and human review.",
     "Crew revision: eight literal grounded ejection recovery drawings stay at the accepted safe feet root. Movement, aim, crouch, fire, jump, life or identity changes cancel recovery immediately. This visual clock never extends the twelve accepted protection ticks and does not invent an airborne path between the seat and safe pad.",
     "Vertical-aim revision: original bent-elbow upper bodies replace stretched forearms. Weapon-specific receivers extend toward the grip while each accepted release keeps its existing muzzle. Up/down kick and recovery include head and shoulder changes; locomotion remains independently owned.",
-    "HMG sweep revision: six original diagonal receiver silhouettes and bent-arm grips bridge the vertical poses. Head and shoulder recoil is cosmetic; all accepted release muzzles retain the shared combat contract."
+    "HMG sweep revision: six original diagonal receiver silhouettes and bent-arm grips bridge the vertical poses. Head and shoulder recoil is cosmetic; all accepted release muzzles retain the shared combat contract.",
+    "Air/impact revision: original launch, rise, apex, fall and light/heavy landing silhouettes with independently sampled upper fire. Four neutral weapon-specific landing tracks compress and recover at the accepted feet root; gameplay fire/aim/actions override them immediately. No old air/landing aliases are retained."
   ]
 }

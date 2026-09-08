@@ -1,0 +1,31 @@
+{
+  "baseCommit": "eadc81042c667178536cc3c6aa07bc0985bbacde",
+  "sourceSha256": "5969f2491f54670b9fd374b9cb1f889719b9906ae545c76b9ad4db37eac78eff",
+  "weapons": [
+    "sidearm",
+    "heavy-machine-gun",
+    "shotgun",
+    "flamethrower"
+  ],
+  "outputs": [
+    "air-black-1x.png",
+    "air-black-4x.png",
+    "air-white-1x.png",
+    "air-white-4x.png",
+    "air-chroma-1x.png",
+    "air-chroma-4x.png",
+    "impact-black-1x.png",
+    "impact-black-4x.png",
+    "impact-white-1x.png",
+    "impact-white-4x.png",
+    "impact-chroma-1x.png",
+    "impact-chroma-4x.png",
+    "palettes-black-1x.png",
+    "palettes-black-4x.png",
+    "palettes-white-1x.png",
+    "palettes-white-4x.png",
+    "palettes-chroma-1x.png",
+    "palettes-chroma-4x.png"
+  ],
+  "scope": "Literal indexed atlas layers at native and 4x nearest-neighbour scale. Air phases retain the independently authored weapon hold. Light and heavy impact clips share touch/rise/settle; only the heavy clip includes absorb. Human craft acceptance remains pending."
+}

@@ -1,5 +1,7 @@
 # Operative firearm aim and recoil candidate
 
+The later [airborne and landing candidate](W06-operative-air.md) adds accepted locomotion phases and coordinated landing while preserving these firearm release drawings. The artifacts below retain the aim/recoil revision.
+
 Thirty-four existing operative drawings now use bent elbows, connected necks and shoulders, and weapon-specific vertical receivers. Downward aiming leans the torso toward the grip; upward aiming raises the hands beside the head. Recoil moves the head and shoulders as well as the weapon. Six intermediate HMG headings bridge the vertical poses, and the flamethrower keeps its green fuel pack and hose. These remain original palette-indexed source rows, with no runtime character rotation or generated geometry.
 
 The source still contains 127 drawings and four palettes. Every muzzle coordinate, release marker and exposure duration matches the preceding crew revision `9360fe710a0566850e2542fde339f7f7291c9ded`; the curation script independently compares all source frames and clips against that commit. The new grip coordinates describe the painted hands and do not feed collision or projectile authority. The hero atlas remains 1156×2040, and the seven native textures still occupy 26,904,960 decoded RGBA bytes. No authoring-capacity increase was needed.

@@ -31,6 +31,9 @@ export interface NativeDrawing {
   notes: string[];
 }
 const hash = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
+// 192 four-palette 64px drawings pack into 1768×2040; larger canvases still
+// have to pass the independent 2048px dimension gate below.
+export const NATIVE_DRAWING_LIMIT = 192;
 function number(value: number, min: number, max: number) {
   assert(
     Number.isSafeInteger(value) && value >= min && value <= max,
@@ -72,7 +75,7 @@ export async function compileNativeArt(raw: Buffer, image: string) {
         "Invalid native palette override",
       );
   }
-  number(source.frames.length, 1, 128);
+  number(source.frames.length, 1, NATIVE_DRAWING_LIMIT);
   const known = new Map<string, NativeDrawing["frames"][number]>();
   for (const frame of source.frames) {
     assert(/^[a-z][a-z0-9-]+$/.test(frame.id) && !known.has(frame.id), "Native frame ID collision");

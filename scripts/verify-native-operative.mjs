@@ -232,10 +232,10 @@ try {
   assert.equal((await stepMotion()).frames[0].legsFrame, "p1/legs-idle");
   await page.keyboard.press("Space");
   let falling = await stepMotion();
-  assert.equal(falling.frames[0].legsFrame, "p1/legs-rise");
+  assert.equal(falling.frames[0].legsFrame, "p1/legs-launch-drive");
   while (falling.state.players[0].locomotion === "airborne" && falling.state.tick < 120)
     falling = await stepMotion();
-  assert.equal(falling.frames[0].legsFrame, "p1/legs-land-compress");
+  assert.equal(falling.frames[0].legsFrame, "p1/legs-impact-touch");
   await canvas.screenshot({ path: `${output}/landing.png` });
   const landedY = falling.state.players[0].body.y,
     shots = falling.state.players[0].weapon.shotOrdinal;
@@ -243,14 +243,14 @@ try {
   await page.keyboard.press("KeyZ");
   const interrupted = await stepMotion();
   assert(interrupted.state.players[0].body.y < landedY);
-  assert.equal(interrupted.frames[0].legsFrame, "p1/legs-rise");
+  assert.equal(interrupted.frames[0].legsFrame, "p1/legs-launch-drive");
   assert.equal(interrupted.state.players[0].weapon.shotOrdinal, shots + 1);
   await checkRecording("motion-recording.json");
   const poses = [];
   for (const [name, aim, jump, upper, legs] of [
     ["crouch", "ArrowDown", false, "upper-crouch", "legs-crouch-mid"],
     ["up", "ArrowUp", false, "upper-up", "legs-idle"],
-    ["air-down", "ArrowDown", true, "upper-down", "legs-rise"],
+    ["air-down", "ArrowDown", true, "upper-down", "legs-launch-fold"],
   ]) {
     await page.locator("#reset").click();
     await surface.focus();
@@ -524,7 +524,8 @@ try {
   await page.locator("#native-play").click();
   assert.deepEqual(errors, []);
   const footage = [];
-  for (const speed of [1, 0.25]) {
+  const recordingSpeeds = process.argv.includes("--no-video") ? [] : [1, 0.25];
+  for (const speed of recordingSpeeds) {
     const context = await browser.newContext({
       viewport: { width: 768, height: 432 },
       recordVideo: { dir: `${output}/video`, size: { width: 768, height: 432 } },
@@ -570,7 +571,7 @@ try {
         "Real-time local inspector capture, repeated run/reverse/fire; no audio or network. Playwright video cadence is distinct from 60 Hz simulation.",
     });
   }
-  for (const speed of [1, 0.25]) {
+  for (const speed of recordingSpeeds) {
     const context = await browser.newContext({
       viewport: { width: 768, height: 432 },
       recordVideo: { dir: `${output}/video`, size: { width: 768, height: 432 } },

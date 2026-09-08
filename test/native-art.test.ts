@@ -1,7 +1,11 @@
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
-import { type NativeDrawing, compileNativeArt } from "../scripts/lib/native-art.js";
+import {
+  NATIVE_DRAWING_LIMIT,
+  type NativeDrawing,
+  compileNativeArt,
+} from "../scripts/lib/native-art.js";
 import { damagePlayer, stepPlayerLife } from "../src/game/campaign/life.js";
 import { canonical } from "../src/game/core/canonical.js";
 import { Held } from "../src/game/input/types.js";
@@ -24,6 +28,28 @@ const raw = await readFile("art/source/hero/operative.pixels.json"),
   built = await compileNativeArt(raw, "operative.png");
 const source = () => JSON.parse(raw.toString()) as NativeDrawing;
 describe("native operative source and playback", () => {
+  it("bounds the expanded authoring capacity and independently rejects oversized textures", async () => {
+    const data = source(),
+      seed = data.frames[0];
+    if (!seed) throw new Error("Missing capacity fixture");
+    data.clips = [];
+    // Repeated test pixels exercise packing only; these are never exported as production art.
+    data.frames = Array.from({ length: NATIVE_DRAWING_LIMIT }, (_, index) => ({
+      ...seed,
+      id: `capacity-${index}`,
+    }));
+    const capacity = await compileNativeArt(Buffer.from(JSON.stringify(data)), "capacity.png");
+    expect(capacity.atlas.meta.size).toEqual({ w: 1768, h: 2040 });
+    data.frames.push({ ...seed, id: "capacity-overflow" });
+    await expect(
+      compileNativeArt(Buffer.from(JSON.stringify(data)), "capacity.png"),
+    ).rejects.toThrow(/count/);
+    data.frames.pop();
+    data.canvas.width = data.canvas.height = 128;
+    await expect(
+      compileNativeArt(Buffer.from(JSON.stringify(data)), "capacity.png"),
+    ).rejects.toThrow(/2048-pixel/);
+  });
   it("keeps an airborne corpse off grounded settle poses and hides a removed corpse", () => {
     const killed = damagePlayer(airbornePlayer(), 0, 1, "classic").actor;
     const motion = initialOperativeMotion(killed, 20);
@@ -375,13 +401,13 @@ describe("native operative source and playback", () => {
     expect(motion.runStartTick).toBe(start);
     expect(step()?.legsFrame).toBe("p1/legs-stop-brake");
     expect(step(Held.Down)?.legsFrame).toBe("p1/legs-crouch-mid");
-    expect(step(0, true)?.legsFrame).toBe("p1/legs-rise");
+    expect(step(0, true)?.legsFrame).toBe("p1/legs-launch-drive");
     expect(state.players[0]?.locomotion).toBe("airborne");
     while (state.players[0]?.locomotion === "airborne" && state.tick < 120) step();
-    expect(motion.transition).toBe("land");
+    expect(motion.transition).toBe("land-heavy");
     const y = state.players[0]?.body.y ?? 0,
       shots = state.players[0]?.weapon.shotOrdinal ?? 0;
-    expect(step(0, true, true)?.legsFrame).toBe("p1/legs-rise");
+    expect(step(0, true, true)?.legsFrame).toBe("p1/legs-launch-drive");
     expect(state.players[0]?.body.y).toBeLessThan(y);
     expect(state.players[0]?.weapon.shotOrdinal).toBe(shots + 1);
     const recording = {
@@ -522,7 +548,7 @@ describe("native operative source and playback", () => {
         expect(actor.locomotion).toBe("airborne");
         expect(actor.weapon.shotOrdinal).toBe(before.weapon.shotOrdinal + 1);
         expect(draw?.fullBodyFrame).toBeNull();
-        expect(draw?.legsFrame).toBe("p1/legs-rise");
+        expect(draw?.legsFrame).toBe("p1/legs-launch-drive");
         break;
       }
     }

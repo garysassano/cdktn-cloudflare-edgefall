@@ -11,7 +11,10 @@ import {
   OPERATIVE_ARSENAL,
   OPERATIVE_POSES,
 } from "../../src/shared/animation/operative.js";
-import { OPERATIVE_EJECTION_TICKS } from "../../src/shared/animation/operative-motion.js";
+import {
+  OPERATIVE_EJECTION_TICKS,
+  OPERATIVE_LAUNCH_TICKS,
+} from "../../src/shared/animation/operative-motion.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -141,6 +144,56 @@ for (const [id, duration, minDrawings] of [
   );
 }
 assert(run && run.exposures.length === 8);
+for (const phase of ["launch", "rise", "apex", "fall"]) {
+  const clip = built.source.clips.find((c) => c.id === `legs.air.${phase}`);
+  assert(clip && clip.channel === "legs" && clip.mode === "hold-last");
+  assert.equal(
+    new Set(clip.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size,
+    2,
+    "Air phases require two distinct original drawings",
+  );
+  if (phase === "launch")
+    assert.equal(
+      clip.exposures.reduce((sum, e) => sum + e.ticks, 0),
+      OPERATIVE_LAUNCH_TICKS,
+      "Launch source differs from its accepted-boundary clock",
+    );
+}
+for (const [weight, count, ticks] of [
+  ["light", 3, 3],
+  ["heavy", 4, 5],
+] as const) {
+  const legs = built.source.clips.find((c) => c.id === `legs.land-${weight}`);
+  assert(legs);
+  for (const exposure of legs.exposures)
+    assert.deepEqual(
+      built.atlas.meta.edgefall.drawings[exposure.frame]?.contact,
+      { foot: "near", point: [6, 0] },
+      "Landing contact must stay at the accepted floor",
+    );
+  for (const clip of [
+    legs,
+    ...["sidearm", "heavy-machine-gun", "shotgun", "flamethrower"].map((weapon) =>
+      built.source.clips.find((c) => c.id === `upper.land-${weight}.${weapon}`),
+    ),
+  ]) {
+    assert(clip && clip.mode === "hold-last");
+    assert.equal(
+      new Set(clip.exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size,
+      count,
+      "Landing acting drawings are duplicates",
+    );
+    assert.equal(
+      clip.exposures.reduce((sum, e) => sum + e.ticks, 0),
+      ticks,
+    );
+    assert.deepEqual(
+      clip.exposures.map((e) => e.ticks),
+      legs.exposures.map((e) => e.ticks),
+      "Landing layers have different exposure boundaries",
+    );
+  }
+}
 assert.equal(
   new Set(run.exposures.map((exposure) => built.frameHashes[`p1/${exposure.frame}`])).size,
   8,
@@ -181,6 +234,8 @@ const report = {
   arsenalBindings: OPERATIVE_ARSENAL,
   actionBindings,
   fullBodyClips: ["body.death", "body.reentry", "body.eject"],
+  airPhases: ["launch", "rise", "apex", "fall"],
+  landingClips: { light: { drawings: 3, ticks: 3 }, heavy: { drawings: 4, ticks: 5 } },
   bindings: bindings.map(([frame, poseId]) => ({ frame, poseId })),
   image: audit,
   frameHashes: built.frameHashes,
@@ -201,7 +256,7 @@ const entries = files.map(({ path, bytes }) => ({
   sha256: sha(bytes),
   source: "edgefall-native-operative",
   licence: built.source.licence,
-  maxBytes: path.endsWith(".png") ? 500000 : 256000,
+  maxBytes: path.endsWith(".png") ? 500000 : 384000,
   ...(path.endsWith(".png")
     ? {
         png: { width: built.atlas.meta.size.w, height: built.atlas.meta.size.h, colorType: 6 },

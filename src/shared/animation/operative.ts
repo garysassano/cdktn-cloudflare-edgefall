@@ -1,7 +1,7 @@
 import { HMG_SWEEP } from "../../game/labs/combat-content.js";
 import type { ControlledActor } from "../../game/state.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
-import { type OperativeMotion, operativeMode } from "./operative-motion.js";
+import { type OperativeMotion, operativeLanding, operativeMode } from "./operative-motion.js";
 
 export const OPERATIVE_POSES = {
   "upper-horizontal": 10,
@@ -95,10 +95,8 @@ export function operativePresentation(
         ? nativeExposure(transition, transitionAge)
         : actor.locomotion === "crouched"
           ? "legs-crouch"
-          : actor.locomotion === "airborne"
-            ? actor.body.vy < 0
-              ? "legs-rise"
-              : "legs-fall"
+          : motion.airPhase
+            ? sample(`legs.air.${motion.airPhase}`, tick - motion.airPhaseStartTick)
             : actor.body.vx !== 0
               ? sample("legs.run", runAge)
               : "legs-idle";
@@ -126,7 +124,12 @@ export function operativePresentation(
         upper =
           action === "fire"
             ? sample(binding.clip, tick - actor.action.stateStartTick)
-            : binding.frame;
+            : transitionActive &&
+                operativeLanding(motion.transition) &&
+                index === 0 &&
+                (actor.weapon.id !== "heavy-machine-gun" || actor.firearmAim.pitch === 0)
+              ? sample(`upper.${motion.transition}.${actor.weapon.id}`, transitionAge)
+              : binding.frame;
       } else {
         timelineId = OPERATIVE_POSES[aim];
         upper =
@@ -134,8 +137,8 @@ export function operativePresentation(
             ? sample(`upper.fire.${aim.slice(6)}`, tick - actor.action.stateStartTick)
             : aim !== "upper-horizontal"
               ? aim
-              : transitionActive && motion.transition === "land"
-                ? sample("upper.land.horizontal", transitionAge)
+              : transitionActive && operativeLanding(motion.transition)
+                ? sample(`upper.${motion.transition}.sidearm`, transitionAge)
                 : motion.mode === "run"
                   ? sample("upper.run.horizontal", runAge)
                   : motion.mode === "idle" && !transitionActive
@@ -170,6 +173,8 @@ export function operativePresentation(
       transition: transitionActive ? motion.transition : null,
       transitionStartTick: motion.transitionStartTick,
       ejectionStartTick: motion.ejectionStartTick,
+      airPhase: motion.airPhase,
+      airPhaseStartTick: motion.airPhaseStartTick,
     },
     variant,
     upperFrame,

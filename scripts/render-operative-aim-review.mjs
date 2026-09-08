@@ -90,7 +90,11 @@ for (const page of pages)
       const left = cell.col * 68 + 2,
         top = cell.row * 78 + 2;
       for (const id of [cell.legs, cell.upper]) {
-        const f = cell.state.atlas.frames[`${cell.variant}/${id}`]?.frame;
+        const activeId =
+          id === "legs-rise" && !cell.state.atlas.frames[`${cell.variant}/${id}`]
+            ? "legs-rise-tuck"
+            : id;
+        const f = cell.state.atlas.frames[`${cell.variant}/${activeId}`]?.frame;
         assert(f);
         layers.push({
           input: await sharp(cell.state.png)

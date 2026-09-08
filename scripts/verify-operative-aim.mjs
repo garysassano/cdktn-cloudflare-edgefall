@@ -17,7 +17,8 @@ import {
   initialOperativeMotion,
 } from "../src/shared/animation/operative-motion.ts";
 
-const output = "dist/operative-aim-evidence",
+const airStudy = process.argv.includes("--air"),
+  output = airStudy ? "dist/operative-air-evidence" : "dist/operative-aim-evidence",
   root = resolve("dist/client"),
   hash = (b) => createHash("sha256").update(b).digest("hex");
 await rm(output, { recursive: true, force: true });
@@ -28,18 +29,19 @@ const image = await sharp(`${root}/assets/art/hero/operative.png`)
   .raw()
   .toBuffer({ resolveWithObject: true });
 const changed = Object.keys(atlas.meta.edgefall.drawings).filter((id) =>
-  /^upper-(up|down)(-|$)|^upper-(shotgun|flame)-(up|down)(-|$)|^upper-hmg-(15|16|20[0-5])(-|$)/.test(
-    id,
-  ),
+  (airStudy
+    ? /^legs-(launch|rise|apex|fall|impact)-|^upper-impact-/
+    : /^upper-(up|down)(-|$)|^upper-(shotgun|flame)-(up|down)(-|$)|^upper-hmg-(15|16|20[0-5])(-|$)/
+  ).test(id),
 );
-assert.equal(changed.length, 34);
+assert.equal(changed.length, airStudy ? 28 : 34);
 const scenes = ["range", "hmg", "shotgun", "flame"].flatMap((scenario) =>
   [-1, 1].map((facing) => ({
     scenario,
     facing,
     // The flame fixture contains a live rifleman. End its visual study before
     // his next burst rather than changing enemy rules or granting invulnerability.
-    ticks: scenario === "flame" ? 72 : 180,
+    ticks: airStudy ? 120 : scenario === "flame" ? 72 : 180,
     id: `${scenario}-${facing < 0 ? "left" : "right"}`,
   })),
 );
@@ -48,15 +50,17 @@ const keysFor = (scene, t) =>
     ? scene.facing < 0
       ? ["ArrowLeft"]
       : []
-    : [
-        "KeyZ",
-        ...(t <= 34 || (t >= 66 && t <= 91) || t >= 152 ? ["ArrowUp"] : []),
-        ...((t >= 36 && t <= 65) || (t >= 100 && t <= 111) || (t >= 123 && t <= 151)
-          ? ["ArrowDown"]
-          : []),
-        ...(t === 36 || t === 123 ? ["Space"] : []),
-        ...(t >= 92 && t <= 99 ? [scene.facing < 0 ? "ArrowLeft" : "ArrowRight"] : []),
-      ];
+    : airStudy
+      ? [...(t === 2 || t === 62 ? ["Space"] : []), ...(t >= 62 && t <= 116 ? ["KeyZ"] : [])]
+      : [
+          "KeyZ",
+          ...(t <= 34 || (t >= 66 && t <= 91) || t >= 152 ? ["ArrowUp"] : []),
+          ...((t >= 36 && t <= 65) || (t >= 100 && t <= 111) || (t >= 123 && t <= 151)
+            ? ["ArrowDown"]
+            : []),
+          ...(t === 36 || t === 123 ? ["Space"] : []),
+          ...(t >= 92 && t <= 99 ? [scene.facing < 0 ? "ArrowLeft" : "ArrowRight"] : []),
+        ];
 const command = (wanted, held) => ({
   held: [...wanted].reduce(
     (n, k) =>
@@ -102,11 +106,13 @@ const report = {
   sourceSha256: atlas.meta.edgefall.sourceSha256,
   clientSha256: hash(await readFile(`${root}/combat-lab.js`)),
   changed,
+  study: airStudy ? "air-and-landing" : "aim-and-recoil",
   runs: [],
   captures: [],
   videos: [],
-  scope:
-    "Input-only firearm aim and recoil in the actual local browser renderer. This comparison is separate from continuous mission footage and does not establish human style or listening approval.",
+  scope: airStudy
+    ? "Input-only neutral and firing jumps, airborne phases and heavy landing in the actual local browser renderer. Light landing, ceiling, coyote, buffered jump and cancellation physics have separate targeted tests. This is not human style/listening approval or continuous mission acceptance."
+    : "Input-only firearm aim and recoil in the actual local browser renderer. This comparison is separate from continuous mission footage and does not establish human style or listening approval.",
   browserAudioOutput:
     "Chromium --disable-audio-output; WebAudio and MediaRecorder active. No physical-device output claim.",
 };
@@ -210,6 +216,7 @@ try {
       label,
       tick: observed.state.tick,
       upper: drawing.upperFrame,
+      legs: drawing.legsFrame,
       pixels,
       occluded,
       sha256: hash(shot),
@@ -255,10 +262,12 @@ try {
         releases.push({ tick: t, timelineId: frame.timelineId, muzzle: frame.muzzle });
       }
       assert.equal(state.players[0].life, "alive", `${scene.id}: actor died at ${t}`);
-      const upper = frame.upperFrame.slice(3);
-      if (changed.includes(upper) && !seen.has(upper)) {
-        await pixelCheck(`${scene.id}-${upper}`, observed);
-        seen.add(upper);
+      for (const frameName of [frame.upperFrame, ...(airStudy ? [frame.legsFrame] : [])]) {
+        const id = frameName.slice(3);
+        if (changed.includes(id) && !seen.has(id)) {
+          await pixelCheck(`${scene.id}-${id}`, observed);
+          seen.add(id);
+        }
       }
       trace.push({ tick: t, worldSha256: hash(canonical(state)), frame });
     }

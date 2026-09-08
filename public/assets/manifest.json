@@ -824,13 +824,13 @@
     },
     {
       "path": "assets/art/hero/operative.png",
-      "bytes": 76842,
-      "sha256": "7ed07b99111f9c1de34397ef36565c6a08af3f8201cc1d1607e09e79ba149325",
+      "bytes": 82995,
+      "sha256": "0e9db482c43f901c3ea925e2fd601889cec02a03f78db866500a321f9fce8874",
       "source": "edgefall-native-operative",
       "licence": "Project-original",
       "maxBytes": 500000,
       "png": {
-        "width": 1156,
+        "width": 1360,
         "height": 2040,
         "colorType": 6
       },
@@ -838,11 +838,11 @@
     },
     {
       "path": "assets/art/hero/operative.atlas.json",
-      "bytes": 226283,
-      "sha256": "f48713b8e55051fd12d9d1bcc89f0f57693b12126deb4111d357ca414f4d02ed",
+      "bytes": 268549,
+      "sha256": "ef08ebfd3910677b2d48f80c281b54ef00b7a61f8e6a466ce29b167fa0a57064",
       "source": "edgefall-native-operative",
       "licence": "Project-original",
-      "maxBytes": 256000
+      "maxBytes": 384000
     }
   ]
 }
