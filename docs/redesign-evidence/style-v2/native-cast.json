@@ -462,8 +462,8 @@
     {
       "id": "kestrel",
       "source": "art/source/vehicles/kestrel.pixels.json",
-      "sourceSha256": "bdcfc813a458399b2da58852b9546c23c8ac39fd04f034adbcd1a668c79d64d8",
-      "drawings": 39,
+      "sourceSha256": "cbd6cfe6786daaee54f456a90990c3dd96a09cd253c980ad06501d101b6d88b0",
+      "drawings": 72,
       "variants": 4,
       "clips": [
         {
@@ -472,20 +472,161 @@
           "mode": "loop",
           "exposures": [
             {
-              "frame": "kestrel-treads-0",
+              "frame": "kestrel-track-0",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-1",
+              "frame": "kestrel-track-1",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-2",
+              "frame": "kestrel-track-2",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-3",
+              "frame": "kestrel-track-3",
               "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-4",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-5",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-6",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-7",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.suspension",
+          "channel": "legs",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-drive-load",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-idle",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-drive-return",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-idle",
+              "ticks": 4
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.launch",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-launch-load",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-launch-release",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.rise",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-rise-lift",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-rise-extend",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.apex",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-apex-float",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-apex-tip",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.fall",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-fall-reach",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-fall-brace",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.land-light",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-impact-touch",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-rise",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-settle",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.land-heavy",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-impact-touch",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-absorb",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-impact-rise",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-settle",
+              "ticks": 1
             }
           ]
         },
@@ -569,30 +710,162 @@
         }
       ],
       "frameHashes": {
-        "p1/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
-        "p2/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
-        "p3/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
-        "p4/kestrel-treads-0": "da3fe8718afa6798012b50021f8b0857089611ad9bad7b6af8c47dc4c952ecd6",
-        "p1/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
-        "p2/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
-        "p3/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
-        "p4/kestrel-treads-1": "79ba9236d9b9675c342da555e941b0a4a342b271e30c0ed107735a16d104b5b2",
-        "p1/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
-        "p2/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
-        "p3/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
-        "p4/kestrel-treads-2": "d158a608dc83da3055ceee9576a9a861b73620d90dc431f7bf5cccf3e72e8f8f",
-        "p1/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
-        "p2/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
-        "p3/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
-        "p4/kestrel-treads-3": "6b2f8c1add215964d1fb279b8d378adde52957960f80ca5cb8af0343aacc5689",
-        "p1/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
-        "p2/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
-        "p3/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
-        "p4/kestrel-air": "5f6f2266338a82cb380c63f8546d963dba3f2d3ae3eb63bf3e32e03a3ceac7ed",
-        "p1/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
-        "p2/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
-        "p3/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
-        "p4/kestrel-land": "2e76a249dc2534aa0e84844c7b77da69503f18b544bcb7fc20a8c00204d6e541",
+        "p1/kestrel-track-0": "2ec7ed2d000e80272bcbaea724a37498a3d7d5dbd61eb113c7882fa4de211293",
+        "p2/kestrel-track-0": "2ec7ed2d000e80272bcbaea724a37498a3d7d5dbd61eb113c7882fa4de211293",
+        "p3/kestrel-track-0": "2ec7ed2d000e80272bcbaea724a37498a3d7d5dbd61eb113c7882fa4de211293",
+        "p4/kestrel-track-0": "2ec7ed2d000e80272bcbaea724a37498a3d7d5dbd61eb113c7882fa4de211293",
+        "p1/kestrel-track-0-extended": "7c197c592588d2ba82af261c5326068a104e5f09022843b34003c559768adcf1",
+        "p2/kestrel-track-0-extended": "7c197c592588d2ba82af261c5326068a104e5f09022843b34003c559768adcf1",
+        "p3/kestrel-track-0-extended": "7c197c592588d2ba82af261c5326068a104e5f09022843b34003c559768adcf1",
+        "p4/kestrel-track-0-extended": "7c197c592588d2ba82af261c5326068a104e5f09022843b34003c559768adcf1",
+        "p1/kestrel-track-1": "2108a444d56a92d3b998b9bb7b97ac73697ff9f426abb6c0a78c1d540fcaf1b4",
+        "p2/kestrel-track-1": "2108a444d56a92d3b998b9bb7b97ac73697ff9f426abb6c0a78c1d540fcaf1b4",
+        "p3/kestrel-track-1": "2108a444d56a92d3b998b9bb7b97ac73697ff9f426abb6c0a78c1d540fcaf1b4",
+        "p4/kestrel-track-1": "2108a444d56a92d3b998b9bb7b97ac73697ff9f426abb6c0a78c1d540fcaf1b4",
+        "p1/kestrel-track-1-extended": "d4fa0b0b11a4284da13628986012e0b43b62de1fae880b8e24fbdfed7d7cf820",
+        "p2/kestrel-track-1-extended": "d4fa0b0b11a4284da13628986012e0b43b62de1fae880b8e24fbdfed7d7cf820",
+        "p3/kestrel-track-1-extended": "d4fa0b0b11a4284da13628986012e0b43b62de1fae880b8e24fbdfed7d7cf820",
+        "p4/kestrel-track-1-extended": "d4fa0b0b11a4284da13628986012e0b43b62de1fae880b8e24fbdfed7d7cf820",
+        "p1/kestrel-track-2": "59d3898cf0020c1beccdd812e56b455512339db9faf8e47e7fa4f7a989a7a8e5",
+        "p2/kestrel-track-2": "59d3898cf0020c1beccdd812e56b455512339db9faf8e47e7fa4f7a989a7a8e5",
+        "p3/kestrel-track-2": "59d3898cf0020c1beccdd812e56b455512339db9faf8e47e7fa4f7a989a7a8e5",
+        "p4/kestrel-track-2": "59d3898cf0020c1beccdd812e56b455512339db9faf8e47e7fa4f7a989a7a8e5",
+        "p1/kestrel-track-2-extended": "c67eb4cfaa886042e39c9624ea53aebed187c3287611d27ed17e3c74d33c75c0",
+        "p2/kestrel-track-2-extended": "c67eb4cfaa886042e39c9624ea53aebed187c3287611d27ed17e3c74d33c75c0",
+        "p3/kestrel-track-2-extended": "c67eb4cfaa886042e39c9624ea53aebed187c3287611d27ed17e3c74d33c75c0",
+        "p4/kestrel-track-2-extended": "c67eb4cfaa886042e39c9624ea53aebed187c3287611d27ed17e3c74d33c75c0",
+        "p1/kestrel-track-3": "4458b4743ff783628b4e7c7f667e392a3aad1d504b75638c632698dc6b47297e",
+        "p2/kestrel-track-3": "4458b4743ff783628b4e7c7f667e392a3aad1d504b75638c632698dc6b47297e",
+        "p3/kestrel-track-3": "4458b4743ff783628b4e7c7f667e392a3aad1d504b75638c632698dc6b47297e",
+        "p4/kestrel-track-3": "4458b4743ff783628b4e7c7f667e392a3aad1d504b75638c632698dc6b47297e",
+        "p1/kestrel-track-3-extended": "fbaae1d34c26b9d64572083bbfd1f60a1d3c1e1eb52c9207d3486ae895725c1d",
+        "p2/kestrel-track-3-extended": "fbaae1d34c26b9d64572083bbfd1f60a1d3c1e1eb52c9207d3486ae895725c1d",
+        "p3/kestrel-track-3-extended": "fbaae1d34c26b9d64572083bbfd1f60a1d3c1e1eb52c9207d3486ae895725c1d",
+        "p4/kestrel-track-3-extended": "fbaae1d34c26b9d64572083bbfd1f60a1d3c1e1eb52c9207d3486ae895725c1d",
+        "p1/kestrel-track-4": "c764c4a27826f94161e9df44beafc3f931360fe5081d34f63c07791300f21bd4",
+        "p2/kestrel-track-4": "c764c4a27826f94161e9df44beafc3f931360fe5081d34f63c07791300f21bd4",
+        "p3/kestrel-track-4": "c764c4a27826f94161e9df44beafc3f931360fe5081d34f63c07791300f21bd4",
+        "p4/kestrel-track-4": "c764c4a27826f94161e9df44beafc3f931360fe5081d34f63c07791300f21bd4",
+        "p1/kestrel-track-4-extended": "aacb8dd1e75951a2f3a0ed6901f4f0b12760c02e56c9fae4a30b701f729fd511",
+        "p2/kestrel-track-4-extended": "aacb8dd1e75951a2f3a0ed6901f4f0b12760c02e56c9fae4a30b701f729fd511",
+        "p3/kestrel-track-4-extended": "aacb8dd1e75951a2f3a0ed6901f4f0b12760c02e56c9fae4a30b701f729fd511",
+        "p4/kestrel-track-4-extended": "aacb8dd1e75951a2f3a0ed6901f4f0b12760c02e56c9fae4a30b701f729fd511",
+        "p1/kestrel-track-5": "30608369ecea99763106fabe9e8cda25479cc64d98ca97baf636b18ce0c230b6",
+        "p2/kestrel-track-5": "30608369ecea99763106fabe9e8cda25479cc64d98ca97baf636b18ce0c230b6",
+        "p3/kestrel-track-5": "30608369ecea99763106fabe9e8cda25479cc64d98ca97baf636b18ce0c230b6",
+        "p4/kestrel-track-5": "30608369ecea99763106fabe9e8cda25479cc64d98ca97baf636b18ce0c230b6",
+        "p1/kestrel-track-5-extended": "01d60b165dad57738e4f96141cf6f80b45b90051c81843b2a186ce7fbf232906",
+        "p2/kestrel-track-5-extended": "01d60b165dad57738e4f96141cf6f80b45b90051c81843b2a186ce7fbf232906",
+        "p3/kestrel-track-5-extended": "01d60b165dad57738e4f96141cf6f80b45b90051c81843b2a186ce7fbf232906",
+        "p4/kestrel-track-5-extended": "01d60b165dad57738e4f96141cf6f80b45b90051c81843b2a186ce7fbf232906",
+        "p1/kestrel-track-6": "5ab2f8f17d9f994445ba2e453f060ce535d835af625536056b584cab352ab5a2",
+        "p2/kestrel-track-6": "5ab2f8f17d9f994445ba2e453f060ce535d835af625536056b584cab352ab5a2",
+        "p3/kestrel-track-6": "5ab2f8f17d9f994445ba2e453f060ce535d835af625536056b584cab352ab5a2",
+        "p4/kestrel-track-6": "5ab2f8f17d9f994445ba2e453f060ce535d835af625536056b584cab352ab5a2",
+        "p1/kestrel-track-6-extended": "5a4d2ea2b0e298c354b36292ef73db74a45cf8d4a72516e7aa2fbaad03e30ee6",
+        "p2/kestrel-track-6-extended": "5a4d2ea2b0e298c354b36292ef73db74a45cf8d4a72516e7aa2fbaad03e30ee6",
+        "p3/kestrel-track-6-extended": "5a4d2ea2b0e298c354b36292ef73db74a45cf8d4a72516e7aa2fbaad03e30ee6",
+        "p4/kestrel-track-6-extended": "5a4d2ea2b0e298c354b36292ef73db74a45cf8d4a72516e7aa2fbaad03e30ee6",
+        "p1/kestrel-track-7": "eb2ec644c04f426eb070cd9a70e2ba53d1902adce8677b7e11ce946e026e0d1b",
+        "p2/kestrel-track-7": "eb2ec644c04f426eb070cd9a70e2ba53d1902adce8677b7e11ce946e026e0d1b",
+        "p3/kestrel-track-7": "eb2ec644c04f426eb070cd9a70e2ba53d1902adce8677b7e11ce946e026e0d1b",
+        "p4/kestrel-track-7": "eb2ec644c04f426eb070cd9a70e2ba53d1902adce8677b7e11ce946e026e0d1b",
+        "p1/kestrel-track-7-extended": "dbe7279bf818c7f551e39d2628c4ce6259793e76cabf04097185a86bb1838068",
+        "p2/kestrel-track-7-extended": "dbe7279bf818c7f551e39d2628c4ce6259793e76cabf04097185a86bb1838068",
+        "p3/kestrel-track-7-extended": "dbe7279bf818c7f551e39d2628c4ce6259793e76cabf04097185a86bb1838068",
+        "p4/kestrel-track-7-extended": "dbe7279bf818c7f551e39d2628c4ce6259793e76cabf04097185a86bb1838068",
+        "p1/kestrel-hull-idle": "723196c313cd5d048be6cdbfffff705eea886681ab25d3bac10a21f5df8421cd",
+        "p2/kestrel-hull-idle": "723196c313cd5d048be6cdbfffff705eea886681ab25d3bac10a21f5df8421cd",
+        "p3/kestrel-hull-idle": "723196c313cd5d048be6cdbfffff705eea886681ab25d3bac10a21f5df8421cd",
+        "p4/kestrel-hull-idle": "723196c313cd5d048be6cdbfffff705eea886681ab25d3bac10a21f5df8421cd",
+        "p1/kestrel-hull-drive-load": "1a532292b58f9d6cc3679f27242ae47c0560a11ec87643d5229db732d9848f70",
+        "p2/kestrel-hull-drive-load": "1a532292b58f9d6cc3679f27242ae47c0560a11ec87643d5229db732d9848f70",
+        "p3/kestrel-hull-drive-load": "1a532292b58f9d6cc3679f27242ae47c0560a11ec87643d5229db732d9848f70",
+        "p4/kestrel-hull-drive-load": "1a532292b58f9d6cc3679f27242ae47c0560a11ec87643d5229db732d9848f70",
+        "p1/kestrel-hull-drive-return": "7644d754047f736a922e0c83dd3f3a986f8b09839a66acce340f3096f7ac9224",
+        "p2/kestrel-hull-drive-return": "7644d754047f736a922e0c83dd3f3a986f8b09839a66acce340f3096f7ac9224",
+        "p3/kestrel-hull-drive-return": "7644d754047f736a922e0c83dd3f3a986f8b09839a66acce340f3096f7ac9224",
+        "p4/kestrel-hull-drive-return": "7644d754047f736a922e0c83dd3f3a986f8b09839a66acce340f3096f7ac9224",
+        "p1/kestrel-hull-launch-load": "3218ced19c651a3aa43be74529243cc417d364843fb043126d6534b9854ae1db",
+        "p2/kestrel-hull-launch-load": "3218ced19c651a3aa43be74529243cc417d364843fb043126d6534b9854ae1db",
+        "p3/kestrel-hull-launch-load": "3218ced19c651a3aa43be74529243cc417d364843fb043126d6534b9854ae1db",
+        "p4/kestrel-hull-launch-load": "3218ced19c651a3aa43be74529243cc417d364843fb043126d6534b9854ae1db",
+        "p1/kestrel-hull-launch-release": "fd4a7dc6798b4a68d58f1c7e2211583d526e56a267f8b3e65a20c7c8b45053cf",
+        "p2/kestrel-hull-launch-release": "fd4a7dc6798b4a68d58f1c7e2211583d526e56a267f8b3e65a20c7c8b45053cf",
+        "p3/kestrel-hull-launch-release": "fd4a7dc6798b4a68d58f1c7e2211583d526e56a267f8b3e65a20c7c8b45053cf",
+        "p4/kestrel-hull-launch-release": "fd4a7dc6798b4a68d58f1c7e2211583d526e56a267f8b3e65a20c7c8b45053cf",
+        "p1/kestrel-hull-rise-lift": "eadfb4bca5e804582fdd88c2448185337347f480e955dd60c22cbd7627aa7386",
+        "p2/kestrel-hull-rise-lift": "eadfb4bca5e804582fdd88c2448185337347f480e955dd60c22cbd7627aa7386",
+        "p3/kestrel-hull-rise-lift": "eadfb4bca5e804582fdd88c2448185337347f480e955dd60c22cbd7627aa7386",
+        "p4/kestrel-hull-rise-lift": "eadfb4bca5e804582fdd88c2448185337347f480e955dd60c22cbd7627aa7386",
+        "p1/kestrel-hull-rise-extend": "919067246cb28e800d92cec2753747df640fab0ed15e388842d08c0c8b3679a8",
+        "p2/kestrel-hull-rise-extend": "919067246cb28e800d92cec2753747df640fab0ed15e388842d08c0c8b3679a8",
+        "p3/kestrel-hull-rise-extend": "919067246cb28e800d92cec2753747df640fab0ed15e388842d08c0c8b3679a8",
+        "p4/kestrel-hull-rise-extend": "919067246cb28e800d92cec2753747df640fab0ed15e388842d08c0c8b3679a8",
+        "p1/kestrel-hull-apex-float": "b4e5199d6d21f2b140fd67d35814c9f525ef38130176900c0c81fdd4b036cdcc",
+        "p2/kestrel-hull-apex-float": "b4e5199d6d21f2b140fd67d35814c9f525ef38130176900c0c81fdd4b036cdcc",
+        "p3/kestrel-hull-apex-float": "b4e5199d6d21f2b140fd67d35814c9f525ef38130176900c0c81fdd4b036cdcc",
+        "p4/kestrel-hull-apex-float": "b4e5199d6d21f2b140fd67d35814c9f525ef38130176900c0c81fdd4b036cdcc",
+        "p1/kestrel-hull-apex-tip": "0412257c2341d47d3130a61ed61df97ab1a976a5a04d98438ac52d2091f4e9a1",
+        "p2/kestrel-hull-apex-tip": "0412257c2341d47d3130a61ed61df97ab1a976a5a04d98438ac52d2091f4e9a1",
+        "p3/kestrel-hull-apex-tip": "0412257c2341d47d3130a61ed61df97ab1a976a5a04d98438ac52d2091f4e9a1",
+        "p4/kestrel-hull-apex-tip": "0412257c2341d47d3130a61ed61df97ab1a976a5a04d98438ac52d2091f4e9a1",
+        "p1/kestrel-hull-fall-reach": "fd739b3aecdf9ce59f1f1d98b3af7793aed0acef39340cd271ce3da443d3cc01",
+        "p2/kestrel-hull-fall-reach": "fd739b3aecdf9ce59f1f1d98b3af7793aed0acef39340cd271ce3da443d3cc01",
+        "p3/kestrel-hull-fall-reach": "fd739b3aecdf9ce59f1f1d98b3af7793aed0acef39340cd271ce3da443d3cc01",
+        "p4/kestrel-hull-fall-reach": "fd739b3aecdf9ce59f1f1d98b3af7793aed0acef39340cd271ce3da443d3cc01",
+        "p1/kestrel-hull-fall-brace": "c51d41478a23cf3d3ac03785d90c5318cc41adab275cda0b86f4af626f735e60",
+        "p2/kestrel-hull-fall-brace": "c51d41478a23cf3d3ac03785d90c5318cc41adab275cda0b86f4af626f735e60",
+        "p3/kestrel-hull-fall-brace": "c51d41478a23cf3d3ac03785d90c5318cc41adab275cda0b86f4af626f735e60",
+        "p4/kestrel-hull-fall-brace": "c51d41478a23cf3d3ac03785d90c5318cc41adab275cda0b86f4af626f735e60",
+        "p1/kestrel-hull-impact-touch": "a398f500e9f58d7be10dcee3be0beebdd01a6f9e8f9830c53dd3021a376814cf",
+        "p2/kestrel-hull-impact-touch": "a398f500e9f58d7be10dcee3be0beebdd01a6f9e8f9830c53dd3021a376814cf",
+        "p3/kestrel-hull-impact-touch": "a398f500e9f58d7be10dcee3be0beebdd01a6f9e8f9830c53dd3021a376814cf",
+        "p4/kestrel-hull-impact-touch": "a398f500e9f58d7be10dcee3be0beebdd01a6f9e8f9830c53dd3021a376814cf",
+        "p1/kestrel-hull-impact-absorb": "ccc25ad932387ef95d494b9b804284d4b4ae8f5e72a95088a56e8b190fe7029e",
+        "p2/kestrel-hull-impact-absorb": "ccc25ad932387ef95d494b9b804284d4b4ae8f5e72a95088a56e8b190fe7029e",
+        "p3/kestrel-hull-impact-absorb": "ccc25ad932387ef95d494b9b804284d4b4ae8f5e72a95088a56e8b190fe7029e",
+        "p4/kestrel-hull-impact-absorb": "ccc25ad932387ef95d494b9b804284d4b4ae8f5e72a95088a56e8b190fe7029e",
+        "p1/kestrel-hull-impact-rise": "e4d33e0f7d1678fbcd93c9de3a19ba2f8f5a8ea21ee18099dccbd5fcfd3ecd50",
+        "p2/kestrel-hull-impact-rise": "e4d33e0f7d1678fbcd93c9de3a19ba2f8f5a8ea21ee18099dccbd5fcfd3ecd50",
+        "p3/kestrel-hull-impact-rise": "e4d33e0f7d1678fbcd93c9de3a19ba2f8f5a8ea21ee18099dccbd5fcfd3ecd50",
+        "p4/kestrel-hull-impact-rise": "e4d33e0f7d1678fbcd93c9de3a19ba2f8f5a8ea21ee18099dccbd5fcfd3ecd50",
+        "p1/kestrel-hull-impact-settle": "726645899dfb93f692cfd67d3746e2a3e5c7cfd8eb337dc0e1f54b7c642dbb02",
+        "p2/kestrel-hull-impact-settle": "726645899dfb93f692cfd67d3746e2a3e5c7cfd8eb337dc0e1f54b7c642dbb02",
+        "p3/kestrel-hull-impact-settle": "726645899dfb93f692cfd67d3746e2a3e5c7cfd8eb337dc0e1f54b7c642dbb02",
+        "p4/kestrel-hull-impact-settle": "726645899dfb93f692cfd67d3746e2a3e5c7cfd8eb337dc0e1f54b7c642dbb02",
+        "p1/kestrel-turret-0-kick": "712a51838121b6ec6242b4a6a564f4c99d83ee198350dbddf9a66a0e82b80001",
+        "p2/kestrel-turret-0-kick": "712a51838121b6ec6242b4a6a564f4c99d83ee198350dbddf9a66a0e82b80001",
+        "p3/kestrel-turret-0-kick": "712a51838121b6ec6242b4a6a564f4c99d83ee198350dbddf9a66a0e82b80001",
+        "p4/kestrel-turret-0-kick": "712a51838121b6ec6242b4a6a564f4c99d83ee198350dbddf9a66a0e82b80001",
+        "p1/kestrel-turret-1-kick": "84709a65682c1dd794dd4021e9a72822b1b6b25aa8c6336df03044cee9c5c097",
+        "p2/kestrel-turret-1-kick": "84709a65682c1dd794dd4021e9a72822b1b6b25aa8c6336df03044cee9c5c097",
+        "p3/kestrel-turret-1-kick": "84709a65682c1dd794dd4021e9a72822b1b6b25aa8c6336df03044cee9c5c097",
+        "p4/kestrel-turret-1-kick": "84709a65682c1dd794dd4021e9a72822b1b6b25aa8c6336df03044cee9c5c097",
+        "p1/kestrel-turret-2-kick": "75ce41a74991f4c051e111344c410e30f8c0304afb5b9fa2e19eb910994bb7ec",
+        "p2/kestrel-turret-2-kick": "75ce41a74991f4c051e111344c410e30f8c0304afb5b9fa2e19eb910994bb7ec",
+        "p3/kestrel-turret-2-kick": "75ce41a74991f4c051e111344c410e30f8c0304afb5b9fa2e19eb910994bb7ec",
+        "p4/kestrel-turret-2-kick": "75ce41a74991f4c051e111344c410e30f8c0304afb5b9fa2e19eb910994bb7ec",
+        "p1/kestrel-turret-3-kick": "25fcf1d94352b38e476a1454a95f6a3ef3fb0ca14b0333ebb4ddee15295663d6",
+        "p2/kestrel-turret-3-kick": "25fcf1d94352b38e476a1454a95f6a3ef3fb0ca14b0333ebb4ddee15295663d6",
+        "p3/kestrel-turret-3-kick": "25fcf1d94352b38e476a1454a95f6a3ef3fb0ca14b0333ebb4ddee15295663d6",
+        "p4/kestrel-turret-3-kick": "25fcf1d94352b38e476a1454a95f6a3ef3fb0ca14b0333ebb4ddee15295663d6",
+        "p1/kestrel-turret-4-kick": "103e95a54850b8af3222460b2d2ed6da908e90667946091ea7a1214108338cdf",
+        "p2/kestrel-turret-4-kick": "103e95a54850b8af3222460b2d2ed6da908e90667946091ea7a1214108338cdf",
+        "p3/kestrel-turret-4-kick": "103e95a54850b8af3222460b2d2ed6da908e90667946091ea7a1214108338cdf",
+        "p4/kestrel-turret-4-kick": "103e95a54850b8af3222460b2d2ed6da908e90667946091ea7a1214108338cdf",
+        "p1/kestrel-turret-5-kick": "7a2cd584c64217af58bc4cde9678fcf11aafb8d2dd816b25ed1f762ab7458276",
+        "p2/kestrel-turret-5-kick": "7a2cd584c64217af58bc4cde9678fcf11aafb8d2dd816b25ed1f762ab7458276",
+        "p3/kestrel-turret-5-kick": "7a2cd584c64217af58bc4cde9678fcf11aafb8d2dd816b25ed1f762ab7458276",
+        "p4/kestrel-turret-5-kick": "7a2cd584c64217af58bc4cde9678fcf11aafb8d2dd816b25ed1f762ab7458276",
+        "p1/kestrel-turret-6-kick": "a4c1e8e29715616913210b305350a0f697cdaa53d360b4c51acf83362baec65d",
+        "p2/kestrel-turret-6-kick": "a4c1e8e29715616913210b305350a0f697cdaa53d360b4c51acf83362baec65d",
+        "p3/kestrel-turret-6-kick": "a4c1e8e29715616913210b305350a0f697cdaa53d360b4c51acf83362baec65d",
+        "p4/kestrel-turret-6-kick": "a4c1e8e29715616913210b305350a0f697cdaa53d360b4c51acf83362baec65d",
+        "p1/kestrel-turret-7-kick": "0d7372d5dfd5e0e84e8845bb0a7061f83390e4a211fbb18b411d0efbc2addbcc",
+        "p2/kestrel-turret-7-kick": "0d7372d5dfd5e0e84e8845bb0a7061f83390e4a211fbb18b411d0efbc2addbcc",
+        "p3/kestrel-turret-7-kick": "0d7372d5dfd5e0e84e8845bb0a7061f83390e4a211fbb18b411d0efbc2addbcc",
+        "p4/kestrel-turret-7-kick": "0d7372d5dfd5e0e84e8845bb0a7061f83390e4a211fbb18b411d0efbc2addbcc",
         "p1/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
         "p2/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
         "p3/kestrel-turret-0": "4dfcbfc4e4405abde40161ffe002941438d4e19ab589f3b175e805007147fafd",
@@ -727,19 +1000,19 @@
         "p4/kestrel-exit-drop": "144b5ed5ed47dcb1807c7e61768ba533cc706666173b880df0b6b4f7582086a3"
       },
       "image": {
-        "width": 800,
+        "width": 1500,
         "height": 2000,
         "hasAlphaChannel": true,
-        "decodedRgbaSha256": "4dbc1098d663265788cf74f31bf2f4b8e365f3fc3dc8905411ee4be1dc6059d0",
+        "decodedRgbaSha256": "a878b14257841404e8ffb041d3d18e7cb24cebb986e79cfd62353658f4ee9f2c",
         "alpha": {
-          "transparent": 1548540,
-          "opaque": 51460,
+          "transparent": 2910340,
+          "opaque": 89660,
           "partial": 0,
           "hiddenRgb": 0
         },
         "visibleColors": 42,
         "expected": {
-          "width": 800,
+          "width": 1500,
           "height": 2000
         },
         "pixelScale": 1,

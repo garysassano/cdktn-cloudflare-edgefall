@@ -1,0 +1,972 @@
+{
+  "sourceSha256": "cbd6cfe6786daaee54f456a90990c3dd96a09cd253c980ad06501d101b6d88b0",
+  "baseCommit": "ccf416607dafa9ea42793dfc59ddd5c3d005b2da",
+  "pages": [
+    {
+      "name": "drive",
+      "rows": 3,
+      "columns": 8,
+      "cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-drive-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-load 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-1",
+            "kestrel-hull-drive-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-load 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-2",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-3",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-4",
+            "kestrel-hull-drive-return",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-return 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-5",
+            "kestrel-hull-drive-return",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-return 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-6",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-7",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-drive-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-load 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-1",
+            "kestrel-hull-drive-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-load 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-2",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-3",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-4",
+            "kestrel-hull-drive-return",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-return 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-5",
+            "kestrel-hull-drive-return",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 drive-return 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-6",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-7",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0",
+          "flip": true
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-1-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-2-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-3-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-4-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-5-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-6-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 2,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-7-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        }
+      ]
+    },
+    {
+      "name": "air",
+      "rows": 2,
+      "columns": 8,
+      "cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-launch-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 launch-load 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-launch-load",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 launch-load 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-launch-release",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 launch-release 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-launch-release",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 launch-release 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-rise-lift",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-lift 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-rise-lift",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-lift 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-rise-extend",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 rise-extend 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-apex-float",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 apex-float 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-apex-float",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 apex-float 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-apex-tip",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 apex-tip 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-apex-tip",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 apex-tip 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-fall-reach",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 fall-reach 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-fall-reach",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 fall-reach 0",
+          "flip": true
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-fall-brace",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 fall-brace 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0-extended",
+            "kestrel-hull-fall-brace",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 fall-brace 0",
+          "flip": true
+        }
+      ]
+    },
+    {
+      "name": "impact",
+      "rows": 2,
+      "columns": 4,
+      "cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-touch",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-touch 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-absorb",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-absorb 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-rise",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-rise 0",
+          "flip": false
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-settle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-settle 0",
+          "flip": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-touch",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-touch 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-absorb",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-absorb 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-rise",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-rise 0",
+          "flip": true
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-impact-settle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 impact-settle 0",
+          "flip": true
+        }
+      ]
+    },
+    {
+      "name": "aim",
+      "rows": 3,
+      "columns": 8,
+      "cells": [
+        {
+          "row": 0,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-0",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0"
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-1",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 1"
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-2",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 2"
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-3",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 3"
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-4",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 4"
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-5",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 5"
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-6",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 6"
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-7",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 7"
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-0-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0-kick"
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-1-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 1-kick"
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-2-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 2-kick"
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-3-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 3-kick"
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-4-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 4-kick"
+        },
+        {
+          "row": 1,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-5-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 5-kick"
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-6-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 6-kick"
+        },
+        {
+          "row": 1,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-7-kick",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 7-kick"
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-0-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 0-recoil"
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-1-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 1-recoil"
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-2-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 2-recoil"
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-3-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 3-recoil"
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-4-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 4-recoil"
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-5-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 5-recoil"
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-6-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 6-recoil"
+        },
+        {
+          "row": 2,
+          "col": 7,
+          "variant": "p1",
+          "frames": [
+            "kestrel-track-0",
+            "kestrel-hull-idle",
+            "kestrel-turret-7-recoil",
+            "kestrel-hatch-closed"
+          ],
+          "label": "p1 idle 7-recoil"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    "drive-black-1x.png",
+    "drive-black-4x.png",
+    "drive-white-1x.png",
+    "drive-white-4x.png",
+    "drive-chroma-1x.png",
+    "drive-chroma-4x.png",
+    "air-black-1x.png",
+    "air-black-4x.png",
+    "air-white-1x.png",
+    "air-white-4x.png",
+    "air-chroma-1x.png",
+    "air-chroma-4x.png",
+    "impact-black-1x.png",
+    "impact-black-4x.png",
+    "impact-white-1x.png",
+    "impact-white-4x.png",
+    "impact-chroma-1x.png",
+    "impact-chroma-4x.png",
+    "aim-black-1x.png",
+    "aim-black-4x.png",
+    "aim-white-1x.png",
+    "aim-white-4x.png",
+    "aim-chroma-1x.png",
+    "aim-chroma-4x.png"
+  ]
+}

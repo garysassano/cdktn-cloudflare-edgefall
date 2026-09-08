@@ -69,6 +69,24 @@
   ],
   "nativeDrawings": [
     {
+      "id": "operative-native-01",
+      "file": "art/source/hero/operative.pixels.json",
+      "bytes": 180461,
+      "sha256": "5969f2491f54670b9fd374b9cb1f889719b9906ae545c76b9ad4db37eac78eff",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [
+        "hero-key-poses-01"
+      ],
+      "method": "Explicit palette-indexed pixel rows authored by Codex; design reference only, no sampled concept pixels.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
+    },
+    {
       "id": "quay-watch-native-01",
       "file": "art/source/enemies/quay-watch.pixels.json",
       "bytes": 34483,
@@ -103,8 +121,8 @@
     {
       "id": "kestrel-native-01",
       "file": "art/source/vehicles/kestrel.pixels.json",
-      "bytes": 63374,
-      "sha256": "bdcfc813a458399b2da58852b9546c23c8ac39fd04f034adbcd1a668c79d64d8",
+      "bytes": 88263,
+      "sha256": "cbd6cfe6786daaee54f456a90990c3dd96a09cd253c980ad06501d101b6d88b0",
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "role": "native-benchmark-candidate",
@@ -158,24 +176,6 @@
       "role": "native-benchmark-candidate",
       "references": [],
       "method": "Original literal palette-indexed source rows for Breakwater Approach; no sampled reference pixels or runtime figure generation.",
-      "export": "pnpm art:export",
-      "humanReview": {
-        "status": "pending",
-        "reviewer": null
-      }
-    },
-    {
-      "id": "operative-native-01",
-      "file": "art/source/hero/operative.pixels.json",
-      "bytes": 180461,
-      "sha256": "5969f2491f54670b9fd374b9cb1f889719b9906ae545c76b9ad4db37eac78eff",
-      "creator": "Codex-authored indexed pixel drawings for Edgefall",
-      "licence": "Project-original",
-      "role": "native-benchmark-candidate",
-      "references": [
-        "hero-key-poses-01"
-      ],
-      "method": "Explicit palette-indexed pixel rows authored by Codex; design reference only, no sampled concept pixels.",
       "export": "pnpm art:export",
       "humanReview": {
         "status": "pending",

@@ -121,13 +121,20 @@ describe("native cast authority and sound", () => {
       if (!tank || !old || !clock) throw new Error("Missing tank");
       if (!old.body.grounded && tank.body.grounded) landTick = tick;
       const frames = tankPresentation(tank, tick, atlas("kestrel"), clock);
-      if (frames[0]?.frame === "p1/kestrel-land") landingFrames.push(tick);
+      if (frames.some((frame) => frame.frame.startsWith("p1/kestrel-hull-impact-")))
+        landingFrames.push(tick);
       if (tick < 15) expect(clock.landTick).toBeNull();
       state = next;
     }
     expect(landTick).not.toBeNull();
     if (landTick === null) throw new Error("Tank never landed");
-    expect(landingFrames).toEqual([landTick, landTick + 1, landTick + 2, landTick + 3]);
+    expect(landingFrames).toEqual([
+      landTick,
+      landTick + 1,
+      landTick + 2,
+      landTick + 3,
+      landTick + 4,
+    ]);
   });
 
   it("preserves world turret headings when the hull reverses and uses all four crew palettes", () => {
@@ -141,9 +148,9 @@ describe("native cast authority and sound", () => {
         tank.heading = heading;
         const frames = tankPresentation(tank, state.tick, atlas("kestrel"), clock, slot);
         expect(frames[0]?.flipX).toBe(true);
-        expect(frames[1]?.flipX).toBe(false);
-        expect(frames[1]?.frame).toBe(`p${slot + 1}/kestrel-turret-${heading}`);
-        expect(atlas("kestrel").frames[frames[1]?.frame ?? ""]).toBeDefined();
+        expect(frames[2]?.flipX).toBe(false);
+        expect(frames[2]?.frame).toBe(`p${slot + 1}/kestrel-turret-${heading}`);
+        expect(atlas("kestrel").frames[frames[2]?.frame ?? ""]).toBeDefined();
       }
   });
 

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -21,6 +21,8 @@ import {
   advanceOperativeMotion,
   initialOperativeMotion,
 } from "../src/shared/animation/operative-motion.ts";
+
+import { kestrelProofKeys } from "../test/fixtures/kestrel-proof.ts";
 
 const root = resolve("dist/client"),
   output = "dist/native-cast-evidence";
@@ -106,7 +108,11 @@ const server = createServer(async (request, response) => {
   }
 });
 await new Promise((ready) => server.listen(0, "127.0.0.1", ready));
+const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const report = {
+  status: "pass",
+  sourceSha256: atlases.get("kestrel").meta.edgefall.sourceSha256,
+  clientSha256: hash(await readFile(`${root}/combat-lab.js`)),
   captures: [],
   runs: [],
   videos: [],
@@ -222,7 +228,7 @@ try {
         state.tick,
         atlases.get("kestrel"),
         motion.tanks.find((c) => c.id === tank.body.id),
-        state.players.find((p) => p.body.id === (tank.occupantId ?? tank.reservedBy))?.slot ?? 0,
+        state.players.find((p) => p.playerId === (tank.occupantId ?? tank.reservedBy))?.slot ?? 0,
       ),
     ),
     ...state.targets
@@ -283,6 +289,18 @@ try {
       assist: true,
     },
   ];
+  cases.push(
+    ...[false, true].map((mirror) => ({
+      id: `kestrel-${mirror ? "left" : "right"}`,
+      scenario: "tank",
+      players: 1,
+      ticks: 180,
+      keys: (t) => kestrelProofKeys(t, mirror),
+      captures: [],
+      video: true,
+      study: true,
+    })),
+  );
   for (const scene of cases) {
     await page.locator("#scenario").selectOption(scene.scenario);
     await page.locator("#players").selectOption(String(scene.players));
@@ -294,7 +312,9 @@ try {
       heroMotion = state.players.map((p) => initialOperativeMotion(p, state.tick));
     const held = new Set(),
       cues = [],
-      trace = [];
+      trace = [],
+      seen = new Set(),
+      releases = [];
     if (scene.captures.includes(0)) await pixelCheck(`${scene.id}-0`);
     for (let tick = 1; tick <= scene.ticks; tick++) {
       const wanted = new Set(scene.keys(tick)),
@@ -354,13 +374,36 @@ try {
       assert.deepEqual(observed.audio.cues, cues, `${scene.id}: sound intents at ${tick}`);
       assert.equal(observed.audio.dropped, 0);
       assert(observed.audio.activeVoices <= observed.audio.voiceBudget);
+      for (const event of state.events.filter(
+        (e) => e.kind === "shot" && e.source?.definitionId === 16,
+      )) {
+        const tank = state.tanks.find((t) => t.occupantId === event.ownerId);
+        assert(tank);
+        const turret = expectedFrames(state, motion).find(
+          (f) => f.frame === `p1/kestrel-turret-${tank.heading}`,
+        );
+        assert(turret);
+        const muzzle =
+          atlases.get("kestrel").meta.edgefall.drawings[`kestrel-turret-${tank.heading}`].sockets
+            .muzzle;
+        assert.deepEqual(event.position, {
+          x: tank.body.x + muzzle[0] * 256,
+          y: tank.body.y + muzzle[1] * 256,
+        });
+        releases.push({ tick, heading: tank.heading, position: event.position });
+      }
+      const fresh = observed.frames.some((f) => f.texture === "kestrel" && !seen.has(f.frame));
+      for (const frame of observed.frames.filter((f) => f.texture === "kestrel"))
+        seen.add(frame.frame);
       trace.push({
         tick,
+        motion,
         frames: observed.frames,
         events: state.events,
         cues: cues.filter((c) => c.tick === tick),
       });
-      if (scene.captures.includes(tick)) await pixelCheck(`${scene.id}-${tick}`);
+      if (scene.captures.includes(tick) || (scene.study && fresh))
+        await pixelCheck(`${scene.id}-${tick}`);
     }
     for (const key of held) await page.keyboard.up(key);
     const before = await read(),
@@ -392,6 +435,8 @@ try {
       cues: cues.length,
       kinds: [...new Set(cues.map((c) => c.kind))].sort(),
       restored: true,
+      seen: [...seen].sort(),
+      releases,
     });
     if (scene.video)
       for (const [label, speed, debug] of [
@@ -503,7 +548,35 @@ try {
           duration >= expectedSeconds - 0.1 && duration <= expectedSeconds + 1,
           `${name}: incorrect presentation speed`,
         );
+        const stereo = [];
+        for (const path of [webm, mp4]) {
+          const audit = spawnSync(
+            "ffmpeg",
+            [
+              "-hide_banner",
+              "-nostats",
+              "-i",
+              path,
+              "-af",
+              "astats=reset=0",
+              "-vn",
+              "-f",
+              "null",
+              "-",
+            ],
+            { encoding: "utf8", timeout: 10000 },
+          );
+          assert.equal(audit.status, 0);
+          const peakDb = [...audit.stderr.matchAll(/Peak level dB: ([-.\d]+)/g)].map((m) =>
+            Number(m[1]),
+          );
+          assert.equal(peakDb.length, 3);
+          assert(peakDb.every((v) => v < 20 * Math.log10(0.99)));
+          stereo.push({ file: path.split("/").at(-1), peakDb });
+        }
         report.videos.push({
+          stereo,
+          audio: after.audio,
           name,
           ticks: scene.ticks,
           speed: Number(speed),

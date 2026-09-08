@@ -1,5 +1,7 @@
 # Operative airborne and landing candidate
 
+The later [Kestrel suspension and recoil increment](W06-kestrel-motion.md) retains current cast/mission evidence; the artifact package below remains the immutable operative-air baseline.
+
 The operative now has separate launch, rise, apex and fall poses, plus light and heavy landing. A cosmetic clock advances only at accepted world boundaries. The two launch drawings occupy one tick each; rise, apex and fall each have two drawings and hold their final pose until the accepted velocity changes phase. A ceiling contact enters descent immediately. Walking off support and cold falling observations do not invent a launch or apex. Coyote jumps and buffered land-and-jump boundaries can start a new launch without requiring an intervening grounded snapshot.
 
 Light landing uses touch, rise and settle over three ticks. Heavy landing adds a two-tick absorption pose, for five ticks total. Visual weight uses the previous accepted downward velocity, with heavy beginning at four logical pixels per tick; this is a cosmetic classification, not a damage rule or a measurement of relative collision impulse. All landing poses retain the accepted feet root and a painted contact at local `(6, 0)`. Each firearm has a coordinated neutral upper-body landing track. Fire, aim, grenade and melee retain their own accepted upper-body tracks. The next movement, crouch or jump input cancels decorative recovery, and landing with travel already held goes directly into the running contact cycle.

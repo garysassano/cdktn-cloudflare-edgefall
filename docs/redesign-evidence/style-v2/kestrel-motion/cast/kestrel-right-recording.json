@@ -1,0 +1,1628 @@
+{
+  "format": 9,
+  "scenario": "tank",
+  "players": 1,
+  "commands": [
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": true
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 1,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 2,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": true,
+        "firePressed": true,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 20,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 22,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 26,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 24,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 25,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 17,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 21,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 18,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": true,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 16,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ],
+    [
+      {
+        "held": 0,
+        "jumpPressed": false,
+        "firePressed": false,
+        "grenadePressed": false,
+        "interactPressed": false
+      }
+    ]
+  ],
+  "finalState": "{\"areas\":[],\"encounter\":{\"definitionKey\":\"{\\\"id\\\":1,\\\"members\\\":[{\\\"ambientCleanupTicks\\\":null,\\\"critical\\\":false,\\\"id\\\":20,\\\"required\\\":true,\\\"retreatAllowed\\\":false,\\\"watchdogTicks\\\":600},{\\\"ambientCleanupTicks\\\":null,\\\"critical\\\":false,\\\"id\\\":21,\\\"required\\\":true,\\\"retreatAllowed\\\":false,\\\"watchdogTicks\\\":600}],\\\"objectives\\\":[],\\\"participants\\\":[1]}\",\"failure\":null,\"kills\":[{\"count\":0,\"playerId\":1}],\"members\":[{\"activatedTick\":1,\"id\":20,\"killerId\":null,\"progressKey\":\"[75840,51200,0,0,100,-1]\",\"reason\":null,\"resolvedTick\":null,\"status\":\"alive\",\"unchangedSince\":160,\"unreachableSince\":null,\"warnedUnchanged\":false,\"warnedUnreachable\":false},{\"activatedTick\":1,\"id\":21,\"killerId\":null,\"progressKey\":\"[84800,51200,0,0,100,-1]\",\"reason\":null,\"resolvedTick\":null,\"status\":\"alive\",\"unchangedSince\":180,\"unreachableSince\":null,\"warnedUnchanged\":false,\"warnedUnreachable\":false}],\"objectives\":[],\"phase\":\"active\",\"receipts\":[\"{\\\"id\\\":20,\\\"kind\\\":\\\"activate\\\",\\\"sequence\\\":1,\\\"tick\\\":1}\",\"{\\\"id\\\":21,\\\"kind\\\":\\\"activate\\\",\\\"sequence\\\":2,\\\"tick\\\":1}\"],\"tick\":180},\"eventSequence\":2,\"events\":[],\"format\":9,\"grenades\":[],\"nextActionId\":35,\"nextEntityId\":1037,\"players\":[{\"action\":{\"actionInstanceId\":33,\"definitionId\":10,\"kind\":\"ready\",\"nextMarkerIndex\":3,\"stateStartTick\":168},\"aim\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":1,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":30720,\"y\":51200},\"bodyPresence\":\"present\",\"controlEpoch\":4,\"coyoteTicks\":4,\"facing\":1,\"firearmAim\":{\"nextStepTick\":0,\"pitch\":0},\"geometryRevision\":1,\"grenadeCooldownTicks\":0,\"grenadeStock\":10,\"health\":1,\"ignoredSupportId\":null,\"ignoredSupportTicks\":0,\"invulnerableTicks\":0,\"jumpBufferTicks\":0,\"lastRallyMission\":0,\"life\":\"alive\",\"lifeStartTick\":0,\"lives\":3,\"locomotion\":\"grounded\",\"meleeCooldownTicks\":0,\"playerId\":1,\"processedEdgeIds\":[0,0,0,0,0],\"reboardCooldownTicks\":17,\"slot\":0,\"vehicleId\":null,\"vehicleSpecialTicks\":0,\"weapon\":{\"ammo\":0,\"cooldownTicks\":0,\"id\":\"sidearm\",\"lastActionInstanceId\":33,\"shotOrdinal\":1}}],\"projectiles\":[{\"actionInstanceId\":3,\"definitionId\":3,\"id\":1010,\"ownerId\":21,\"position\":{\"x\":-9088,\"y\":45312},\"spawnTick\":62,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":14,\"definitionId\":3,\"id\":1021,\"ownerId\":20,\"position\":{\"x\":22912,\"y\":45312},\"spawnTick\":116,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":14,\"definitionId\":3,\"id\":1023,\"ownerId\":20,\"position\":{\"x\":27520,\"y\":45312},\"spawnTick\":122,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":18,\"definitionId\":3,\"id\":1025,\"ownerId\":21,\"position\":{\"x\":37696,\"y\":45312},\"spawnTick\":123,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":18,\"definitionId\":3,\"id\":1027,\"ownerId\":21,\"position\":{\"x\":42304,\"y\":45312},\"spawnTick\":129,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":18,\"definitionId\":3,\"id\":1029,\"ownerId\":21,\"position\":{\"x\":46912,\"y\":45312},\"spawnTick\":135,\"team\":2,\"velocity\":{\"x\":-768,\"y\":0}},{\"actionInstanceId\":27,\"definitionId\":16,\"id\":1031,\"ownerId\":1,\"position\":{\"x\":23040,\"y\":-162816},\"spawnTick\":143,\"team\":1,\"velocity\":{\"x\":0,\"y\":-5120}},{\"actionInstanceId\":28,\"definitionId\":16,\"id\":1032,\"ownerId\":1,\"position\":{\"x\":23040,\"y\":-135296},\"spawnTick\":148,\"team\":1,\"velocity\":{\"x\":0,\"y\":-5120}},{\"actionInstanceId\":29,\"definitionId\":16,\"id\":1033,\"ownerId\":1,\"position\":{\"x\":23040,\"y\":-106176},\"spawnTick\":153,\"team\":1,\"velocity\":{\"x\":0,\"y\":-5120}},{\"actionInstanceId\":30,\"definitionId\":16,\"id\":1034,\"ownerId\":1,\"position\":{\"x\":23040,\"y\":-75456},\"spawnTick\":158,\"team\":1,\"velocity\":{\"x\":0,\"y\":-5120}},{\"actionInstanceId\":32,\"definitionId\":16,\"id\":1035,\"ownerId\":1,\"position\":{\"x\":23040,\"y\":-48640},\"spawnTick\":163,\"team\":1,\"velocity\":{\"x\":0,\"y\":-5120}},{\"actionInstanceId\":33,\"definitionId\":1,\"id\":1036,\"ownerId\":1,\"position\":{\"x\":71424,\"y\":45312},\"spawnTick\":168,\"team\":1,\"velocity\":{\"x\":3072,\"y\":0}}],\"props\":[],\"scenario\":\"tank\",\"strikes\":[],\"tanks\":[{\"action\":{\"actionInstanceId\":0,\"definitionId\":0,\"kind\":\"ready\",\"nextMarkerIndex\":0,\"stateStartTick\":167},\"armor\":0,\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":30,\"remainderX\":0,\"remainderY\":0,\"shapeId\":15,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":23040,\"y\":51200},\"components\":[],\"controlEpoch\":3,\"coyoteTicks\":0,\"definitionId\":1,\"disconnectedTicks\":0,\"facing\":1,\"heading\":2,\"invulnerableTicks\":0,\"jumpBufferTicks\":0,\"kind\":\"tank\",\"lastGunControlEpoch\":3,\"lastGunOwnerId\":1,\"lifecycle\":\"wreck\",\"occupantId\":null,\"ownerControlEpoch\":null,\"reservedBy\":null,\"turnTicks\":0,\"weapon\":{\"ammo\":0,\"cooldownTicks\":1,\"id\":\"heavy-machine-gun\",\"lastActionInstanceId\":32,\"shotOrdinal\":26}}],\"targets\":[{\"enemy\":{\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":20,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":75840,\"y\":51200},\"facing\":-1,\"geometryRevision\":1,\"life\":\"alive\",\"removalReason\":null,\"turns\":0},\"guard\":null,\"health\":1,\"rifle\":{\"action\":{\"actionInstanceId\":31,\"definitionId\":30,\"kind\":\"fire\",\"nextMarkerIndex\":0,\"stateStartTick\":159},\"aim\":0,\"facing\":-1,\"targetId\":1},\"shield\":false},{\"enemy\":{\"body\":{\"contacts\":[{\"kind\":\"solid\",\"normalX\":0,\"normalY\":-1,\"otherId\":100,\"toiDenominator\":1,\"toiNumerator\":1}],\"grounded\":true,\"id\":21,\"remainderX\":0,\"remainderY\":0,\"shapeId\":1,\"supportId\":100,\"vx\":0,\"vy\":0,\"x\":84800,\"y\":51200},\"facing\":-1,\"geometryRevision\":1,\"life\":\"alive\",\"removalReason\":null,\"turns\":0},\"guard\":null,\"health\":1,\"rifle\":{\"action\":{\"actionInstanceId\":34,\"definitionId\":30,\"kind\":\"fire\",\"nextMarkerIndex\":0,\"stateStartTick\":179},\"aim\":0,\"facing\":-1,\"targetId\":1},\"shield\":false}],\"tick\":180}"
+}

@@ -71,200 +71,974 @@
   },
   "frames": [
     {
-      "id": "kestrel-treads-0",
+      "id": "kestrel-track-0",
       "channel": "legs",
       "at": [
-        0,
-        49
+        27,
+        63
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        ".............................ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo",
-        "..............................ooooooooooooooooooooooooooooo",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
-        "...........................oBtBuutuBBuutuBBuutuBBuutuBBuutuBBttBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtBBttBBBBttBBBBttBBBBttBBBBttBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBtuBttuBttuBttuBttuBttuBttuBttuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtuuttttttuuttttttuuttttttuuttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBttuuBttututtuutttuuuttuButtuBBttuo",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtuuttttttuuttttttuuttttttuutttto..",
+        "...oooooooooooooooooooooooooooooooo..."
       ]
     },
     {
-      "id": "kestrel-treads-1",
+      "id": "kestrel-track-0-extended",
       "channel": "legs",
       "at": [
-        0,
-        49
+        27,
+        65
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        ".............................ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo",
-        "..............................ooooooooooooooooooooooooooooo",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBtttBBtttBBtttBBtttBBtttBBttttBBo",
-        "...........................oBtButuuBButuuBButuuBButuuBButuuBBttBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtBBuuBBBBuuBBBBuuBBBBuuBBBBuuBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBttuBttuBttuBttuBttuBttuBttuBtuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtuuttttttuuttttttuuttttttuuttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBttuuBttututtuutttuuuttuButtuBBttuo",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtuuttttttuuttttttuuttttttuutttto..",
+        "...oooooooooooooooooooooooooooooooo..."
       ]
     },
     {
-      "id": "kestrel-treads-2",
+      "id": "kestrel-track-1",
       "channel": "legs",
       "at": [
-        0,
-        49
+        27,
+        63
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        ".............................ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo",
-        "..............................ooooooooooooooooooooooooooooo",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBtttBBtttBBtttBBtttBBtttBBttttBBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtBuutuBBuutuBBuutuBBuutuBBuutuBBttBo",
-        "...........................oBtBBtuBBBBtuBBBBtuBBBBtuBBBBtuBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBttuBttuBttuBttuBttuBttuBttuBttuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtuttttttuuttttttuuttttttuutttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBuuBtBututButttBuuttBuButBuBBtBuo",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttuuttttttuuttttttuuttttttuuttto..",
+        "...oooooooooooooooooooooooooooooooo..."
       ]
     },
     {
-      "id": "kestrel-treads-3",
+      "id": "kestrel-track-1-extended",
       "channel": "legs",
       "at": [
-        0,
-        49
+        27,
+        65
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        ".............................ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo",
-        "..............................ooooooooooooooooooooooooooooo",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtButuuBButuuBButuuBButuuBButuuBBttBo",
-        "...........................oBtBBttBBBBttBBBBttBBBBttBBBBttBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBtBttuBttuBttuBttuBttuBttuBttuuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtuttttttuuttttttuuttttttuutttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBuuBtBututButttBuuttBuButBuBBtBuo",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttuuttttttuuttttttuuttttttuuttto..",
+        "...oooooooooooooooooooooooooooooooo..."
       ]
     },
     {
-      "id": "kestrel-air",
+      "id": "kestrel-track-2",
       "channel": "legs",
       "at": [
-        0,
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttttttuuttttttuuttttttuuttttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBttuBBttutBttuttttuBtttuBBttuBBttuo",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttuuttttttuuttttttuuttttttuutto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-2-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttttttuuttttttuuttttttuuttttttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBttuBBttutBttuttttuBtttuBBttuBBttuo",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttuuttttttuuttttttuuttttttuutto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-3",
+      "channel": "legs",
+      "at": [
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttttttuuttttttuuttttttuuttttttuoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtutBBtuttBtuttttutBttutBBtutBBtuto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttttuuttttttuuttttttuuttttttuuto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-3-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttttttuuttttttuuttttttuuttttttuoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtutBBtuttBtuttttutBttutBBtutBBtuto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttttuuttttttuuttttttuuttttttuuto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-4",
+      "channel": "legs",
+      "at": [
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttttuuttttttuuttttttuuttttttuuoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtButtBButttButtttuttBtuttBButtBButto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttttuuttttttuuttttttuuttttttuuo..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-4-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttttuuttttttuuttttttuuttttttuuoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtButtBButttButtttuttBtuttBButtBButto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttttuuttttttuuttttttuuttttttuuo..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-5",
+      "channel": "legs",
+      "at": [
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttttuuttttttuuttttttuuttttttuutoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBuBtuBuBttuuBtttuBtutuBtBuuBtBBuBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttttttuuttttttuuttttttuuttttttuo..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-5-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttttuuttttttuuttttttuuttttttuutoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtttuBttttutttuttttuutttButttBBttto",
+        "oBtBuBtuBuBttuuBtttuBtutuBtBuuBtBBuBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBttttttuuttttttuuttttttuuttttttuo..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-6",
+      "channel": "legs",
+      "at": [
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttuuttttttuuttttttuuttttttuuttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtButtuButttuuttututtuuuttBuuttBButto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttttttuuttttttuuttttttuutttttto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-6-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBtttuuttttttuuttttttuuttttttuuttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtButtuButttuuttututtuuuttBuuttBButto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtttttttuuttttttuuttttttuutttttto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-7",
+      "channel": "legs",
+      "at": [
+        27,
+        63
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttuuttttttuuttttttuuttttttuutttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtutuBtuttutututtutuututBututBBtuto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtuttttttuuttttttuuttttttuuttttto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-track-7-extended",
+      "channel": "legs",
+      "at": [
+        27,
+        65
+      ],
+      "rows": [
+        "...oooooooooooooooooooooooooooooooo...",
+        ".ooBttuuttttttuuttttttuuttttttuutttoo.",
+        "oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
+        "oBtBtutuBtuttutututtutuututBututBBtuto",
+        "oBtBtBtuBtBttutBttttBtuttBtButBtBBtBto",
+        "oBtBtttBBttttBttttttttBttttBBtttBBttto",
+        ".oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo..",
+        "..oBtuttttttuuttttttuuttttttuuttttto..",
+        "...oooooooooooooooooooooooooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-hull-idle",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        ".............oooooooooooooooo..........",
+        ".......ooooooCddddddccccCCCCCCooo......",
+        "...ooooCddddccccccccccccCCCCCCCCCo.....",
+        "..oCddddccccccccccccccccccccCCCCCCoo...",
+        ".oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo..",
+        "oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo.",
+        "oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
+        ".oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo....",
+        "....ooooooooooooooooooooooooooooo......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-drive-load",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        "..............ooooooooooooooo.ooo......",
+        ".............oddddddccccCCCCCCCCCo.....",
+        ".......ooooooCccccccccccCCCCCCCCCCoo...",
+        "...ooooCddddccccccccccccccccCCCCCCCCo..",
+        "..oCddddcccccccccccCCCCCCCCCCCCCCCCCCo.",
+        ".oCcccCCCCCcccccCCCMiMMCCCCCCCddCCCCCCo",
+        "oCccCCMMiMCCccCCCCCMMMMCCCCCCCdCCCCCCCo",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCdCCCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCCCCccCCCo.",
+        "oCCCCCCCCCCCCccCCCCCdddccCCCCCCCCCCCo..",
+        ".oCCCyVyyCCCCcCCCCCCdddccCCCCCCCCCo....",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCCCCoo....",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCooo......",
+        "...ooCCCCCCCCCoooooooooooooooo.Mm......",
+        "....oooooooooo......Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-drive-return",
+      "channel": "legs",
+      "at": [
+        26,
         48
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        ".............................ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo",
-        "..............................ooooooooooooooooooooooooooooo",
-        ".",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBtttBBtttBBtttBBtttBBtttBBttttBBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtBuutuBBuutuBBuutuBBuutuBBuutuBBttBo",
-        "...........................oBtBBtuBBBBtuBBBBtuBBBBtuBBBBtuBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBttuBttuBttuBttuBttuBttuBttuBttuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        ".............o.........................",
+        ".......ooooooCooooooooooooooo..........",
+        "...ooooCddddccddddddccccCCCCCC.........",
+        "..oCddddccccccccccccccccCCCCCCooo......",
+        ".oCcccCCCCCcccccccccccccccccCCCCCo.....",
+        "oCccCCMMiMCCcccccccCCCCCCCCCCCCCCCoo...",
+        "oCCCCCMmmMCCccccCCCMiMMCCCCCCCCCCCCCo..",
+        "oCCCCCMMMMCCCcCCCCCMMMMCCCCCCCCCCCCCCo.",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCdddCCCCCCo",
+        ".oCCCyVyyCCCCccccCCCCCCCCCCCCCdCCCCCCCo",
+        "..oCCVVVVCCCCCcCCCCCdddccCCCCCCCCCCCCCo",
+        "...oCCCCCCCCCCCCCCCCdddccCCCCCCCccCCCo.",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "....ooooooooooCCCCCCCCCCCCCCCCCCCCo....",
+        ".........Mm...ooooooooooooooooCCCoo....",
+        ".........Mu.........Mu........ooo......",
+        ".........Mm.........Mm.........Mm......"
       ]
     },
     {
-      "id": "kestrel-land",
+      "id": "kestrel-hull-launch-load",
       "channel": "legs",
       "at": [
-        0,
-        51
+        26,
+        49
       ],
       "rows": [
-        ".......................................oooooooooooooooo",
-        ".................................ooooooCddddddccccCCCCCCooo",
-        ".............................ooooCddddccccccccccccCCCCCCCCCo",
-        "............................oCddddccccccccccccccccccccCCCCCCoo",
-        "...........................oCcccCCCCCccccccccCCCCCCCCCCCCCCCCCo",
-        "..........................oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCCo",
-        "..........................oCCCCCMmmMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
-        "..........................oCCCCCMMMMCCCccccCCCCCCCCCCCCddCCCCCCCo",
-        "..........................oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
-        "...........................oCCCyVyyCCCCccCCCCCdddccCCCCCCCccCCCo",
-        "............................oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCo",
-        ".............................oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo",
-        "..............................oooooooooooooooooooooooooooooooo",
-        "............................ooBttttttttttttttttttttttttttttttBoo",
-        "...........................oBttBBuuuBBuuuBBuuuBBuuuBBuuuBBttttBBo",
-        "...........................oBtBuutuBBuutuBBuutuBBuutuBBuutuBBttBo",
-        "...........................oBtButtuBButtuBButtuBButtuBButtuBBttBo",
-        "...........................oBtBBttBBBBttBBBBttBBBBttBBBBttBBBttBo",
-        "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
-        ".............................oBtuBttuBttuBttuBttuBttuBttuBttuBo",
-        "..............................oooooooooooooooooooooooooooooooo"
+        "..............ooooooooooooooo..........",
+        ".............oddddddccccCCCCCC.........",
+        ".......ooooooCccccccccccCCCCCCooo......",
+        "...ooooCddddccccccccccccccccCCCCCo.....",
+        "..oCddddcccccccccccCCCCCCCCCCCCCCCoo...",
+        ".oCcccCCCCCcccccCCCMiMMCCCCCCCCCCCCCo..",
+        "oCccCCMMiMCCccCCCCCMMMMCCCCCCCCCCCCCCo.",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCdddCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCCdCCCCCCCo",
+        "oCCCCCCCCCCCCccCCCCCdddccCCCCCCCCCCCCCo",
+        ".oCCCyVyyCCCCcCCCCCCdddccCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "...ooCCCCCCCCCooooooooooooooooCCCoo....",
+        "....oooooooooo......Mu........ooo......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-launch-release",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        "..............................ooo......",
+        "..............ooooooooooooooo.CCCo.....",
+        ".............oddddddccccCCCCCCCCCCoo...",
+        ".......ooooooCccccccccccCCCCCCCCCCCCo..",
+        "...ooooCddddccccccccccccccccCCCCCCCCCo.",
+        "..oCddddcccccccccccCCCCCCCCCCCddCCCCCCo",
+        ".oCcccCCCCCcccccCCCMiMMCCCCCCCdCCCCCCCo",
+        "oCccCCMMiMCCccCCCCCMMMMCCCCCCCCCCCCCCCo",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCdCCccCCCo.",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCCCCCCCCo..",
+        "oCCCCCCCCCCCCccCCCCCdddccCCCCCCCCCo....",
+        ".oCCCyVyyCCCCcCCCCCCdddccCCCCCCCCoo....",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCooo......",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCC.Mu......",
+        "...ooCCCCCCCCCoooooooooooooooo.Mm......",
+        "....oooooooooo......Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-rise-lift",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        "..............................ooo......",
+        ".............oooooooooooooooo.CCCo.....",
+        ".......ooooooCddddddccccCCCCCCCCCCoo...",
+        "...ooooCddddccccccccccccCCCCCCCCCCCCo..",
+        "..oCddddccccccccccccccccccccCCCCCCCCCo.",
+        ".oCcccCCCCCccccccccCCCCCCCCCCCddCCCCCCo",
+        "oCccCCMMiMCCccccCCCMiMMCCCCCCCdCCCCCCCo",
+        "oCCCCCMmmMCCccCCCCCMMMMCCCCCCCCCCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCdCCccCCCo.",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCCCCCCCCo..",
+        ".oCCCyVyyCCCCccCCCCCdddccCCCCCCCCCo....",
+        "..oCCVVVVCCCCCCCCCCCdddccCCCCCCCCoo....",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCooo......",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCC.Mu......",
+        "....oooooooooooooooooooooooooo.Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-rise-extend",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        ".............o.........................",
+        ".......ooooooCooooooooooooooo.ooo......",
+        "...ooooCddddccddddddccccCCCCCCCCCo.....",
+        "..oCddddccccccccccccccccCCCCCCCCCCoo...",
+        ".oCcccCCCCCcccccccccccccccccCCCCCCCCo..",
+        "oCccCCMMiMCCcccccccCCCCCCCCCCCCCCCCCCo.",
+        "oCCCCCMmmMCCccccCCCMiMMCCCCCCCddCCCCCCo",
+        "oCCCCCMMMMCCCcCCCCCMMMMCCCCCCCdCCCCCCCo",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCdCCCCCCCCo",
+        ".oCCCyVyyCCCCccccCCCCCCCCCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCcCCCCCdddccCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCCCCCCCdddccCCCCCCCCCo....",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo....",
+        "....ooooooooooCCCCCCCCCCCCCCCCooo......",
+        ".........Mm...oooooooooooooooo.Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-apex-float",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        ".............o.........................",
+        ".......ooooooCooooooooooooooo..........",
+        "...ooooCddddccddddddccccCCCCCCooo......",
+        "..oCddddccccccccccccccccCCCCCCCCCo.....",
+        ".oCcccCCCCCcccccccccccccccccCCCCCCoo...",
+        "oCccCCMMiMCCcccccccCCCCCCCCCCCCCCCCCo..",
+        "oCCCCCMmmMCCccccCCCMiMMCCCCCCCCCCCCCCo.",
+        "oCCCCCMMMMCCCcCCCCCMMMMCCCCCCCddCCCCCCo",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCddCCCCCCCo",
+        ".oCCCyVyyCCCCccccCCCCCCCCCCCCCCCCCCCCCo",
+        "..oCCVVVVCCCCCcCCCCCdddccCCCCCCCccCCCo.",
+        "...oCCCCCCCCCCCCCCCCdddccCCCCCCCCCCCo..",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "....ooooooooooCCCCCCCCCCCCCCCCCCCoo....",
+        ".........Mm...ooooooooooooooooooo......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-apex-tip",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        ".............o.........................",
+        ".......ooooooCooooooooooooooo..........",
+        "...ooooCddddccddddddccccCCCCCC.........",
+        "..oCddddccccccccccccccccCCCCCCooo......",
+        ".oCcccCCCCCcccccccccccccccccCCCCCo.....",
+        "oCccCCMMiMCCcccccccCCCCCCCCCCCCCCCoo...",
+        "oCCCCCMmmMCCccccCCCMiMMCCCCCCCCCCCCCo..",
+        "oCCCCCMMMMCCCcCCCCCMMMMCCCCCCCCCCCCCCo.",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCdddCCCCCCo",
+        ".oCCCyVyyCCCCccccCCCCCCCCCCCCCdCCCCCCCo",
+        "..oCCVVVVCCCCCcCCCCCdddccCCCCCCCCCCCCCo",
+        "...oCCCCCCCCCCCCCCCCdddccCCCCCCCccCCCo.",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "....ooooooooooCCCCCCCCCCCCCCCCCCCCo....",
+        ".........Mm...ooooooooooooooooCCCoo....",
+        ".........Mu.........Mu........ooo......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-fall-reach",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        ".............oooooooooooooooo..........",
+        ".......ooooooCddddddccccCCCCCC.........",
+        "...ooooCddddccccccccccccCCCCCC.........",
+        "..oCddddccccccccccccccccccccCCooo......",
+        ".oCcccCCCCCccccccccCCCCCCCCCCCCCCo.....",
+        "oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCoo...",
+        "oCCCCCMmmMCCccCCCCCMMMMCCCCCCCCCCCCCo..",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCdCCCCCCCo.",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCCddCCCCCCo",
+        ".oCCCyVyyCCCCccCCCCCdddccCCCCCdCCCCCCCo",
+        "..oCCVVVVCCCCCCCCCCCdddccCCCCCCCCCCCCCo",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCccCCCo.",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "....ooooooooooooooooooooooooooCCCCo....",
+        ".........Mu.........Mu........CCCoo....",
+        ".........Mm.........Mm........ooo......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-fall-brace",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        "..............ooooooooooooooo..........",
+        ".............oddddddccccCCCCCC.........",
+        ".......ooooooCccccccccccCCCCCCooo......",
+        "...ooooCddddccccccccccccccccCCCCCo.....",
+        "..oCddddcccccccccccCCCCCCCCCCCCCCCoo...",
+        ".oCcccCCCCCcccccCCCMiMMCCCCCCCCCCCCCo..",
+        "oCccCCMMiMCCccCCCCCMMMMCCCCCCCCCCCCCCo.",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCdddCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCCdCCCCCCCo",
+        "oCCCCCCCCCCCCccCCCCCdddccCCCCCCCCCCCCCo",
+        ".oCCCyVyyCCCCcCCCCCCdddccCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "...ooCCCCCCCCCooooooooooooooooCCCoo....",
+        "....oooooooooo......Mu........ooo......",
+        ".........Mm.........Mm.........Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-impact-touch",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        ".............oooooooooooooooo..........",
+        ".......ooooooCddddddccccCCCCCC.........",
+        "...ooooCddddccccccccccccCCCCCCooo......",
+        "..oCddddccccccccccccccccccccCCCCCo.....",
+        ".oCcccCCCCCccccccccCCCCCCCCCCCCCCCoo...",
+        "oCccCCMMiMCCccccCCCMiMMCCCCCCCCCCCCCo..",
+        "oCCCCCMmmMCCccCCCCCMMMMCCCCCCCCCCCCCCo.",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCdddCCCCCCo",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCCdCCCCCCCo",
+        ".oCCCyVyyCCCCccCCCCCdddccCCCCCCCCCCCCCo",
+        "..oCCVVVVCCCCCCCCCCCdddccCCCCCCCccCCCo.",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "....ooooooooooooooooooooooooooCCCoo....",
+        ".........Mu.........Mu........ooo......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-impact-absorb",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        "..............ooooooooooooooo..........",
+        "..............ddddddccccCCCCCC.........",
+        ".............occccccccccCCCCCC.........",
+        ".......ooooooCccccccccccccccCCooo......",
+        "...ooooCddddcccccccCCCCCCCCCCCCCCo.....",
+        "..oCddddccccccccCCCMiMMCCCCCCCCCCCoo...",
+        ".oCcccCCCCCcccCCCCCMMMMCCCCCCCCCCCCCo..",
+        "oCccCCMMiMCCcccccCCCCCCCCCCCCdCCCCCCCo.",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCCddCCCCCCo",
+        "oCCCCCMMMMCCCccCCCCCdddccCCCCCdCCCCCCCo",
+        "oCCCCCCCCCCCCcCCCCCCdddccCCCCCCCCCCCCCo",
+        ".oCCCyVyyCCCCcCCCCCCCCCCCCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCooooooooooooooooCCCCo....",
+        "...ooCCCCCCCCC......Mu........CCCoo....",
+        "....oooooooooo......Mm........ooo......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-impact-rise",
+      "channel": "legs",
+      "at": [
+        26,
+        48
+      ],
+      "rows": [
+        ".............o.........................",
+        ".......ooooooCooooooooooooooo.ooo......",
+        "...ooooCddddccddddddccccCCCCCCCCCo.....",
+        "..oCddddccccccccccccccccCCCCCCCCCCoo...",
+        ".oCcccCCCCCcccccccccccccccccCCCCCCCCo..",
+        "oCccCCMMiMCCcccccccCCCCCCCCCCCCCCCCCCo.",
+        "oCCCCCMmmMCCccccCCCMiMMCCCCCCCddCCCCCCo",
+        "oCCCCCMMMMCCCcCCCCCMMMMCCCCCCCdCCCCCCCo",
+        "oCCCCCCCCCCCCccccCCCCCCCCCCCCdCCCCCCCCo",
+        ".oCCCyVyyCCCCccccCCCCCCCCCCCCCCCccCCCo.",
+        "..oCCVVVVCCCCCcCCCCCdddccCCCCCCCCCCCo..",
+        "...oCCCCCCCCCCCCCCCCdddccCCCCCCCCCo....",
+        "...ooCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo....",
+        "....ooooooooooCCCCCCCCCCCCCCCCooo......",
+        ".........Mm...oooooooooooooooo.Mm......",
+        ".........Mu.........Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-hull-impact-settle",
+      "channel": "legs",
+      "at": [
+        26,
+        49
+      ],
+      "rows": [
+        "..............ooooooooooooooo..........",
+        ".............oddddddccccCCCCCCooo......",
+        ".......ooooooCccccccccccCCCCCCCCCo.....",
+        "...ooooCddddccccccccccccccccCCCCCCoo...",
+        "..oCddddcccccccccccCCCCCCCCCCCCCCCCCo..",
+        ".oCcccCCCCCcccccCCCMiMMCCCCCCCCCCCCCCo.",
+        "oCccCCMMiMCCccCCCCCMMMMCCCCCCCddCCCCCCo",
+        "oCCCCCMmmMCCcccccCCCCCCCCCCCCddCCCCCCCo",
+        "oCCCCCMMMMCCCccccCCCCCCCCCCCCCCCCCCCCCo",
+        "oCCCCCCCCCCCCccCCCCCdddccCCCCCCCccCCCo.",
+        ".oCCCyVyyCCCCcCCCCCCdddccCCCCCCCCCCCo..",
+        "..oCCVVVVCCCCCCCCCCCCCCCCCCCCCCCCCo....",
+        "...oCCCCCCCCCCCCCCCCCCCCCCCCCCCCCoo....",
+        "...ooCCCCCCCCCooooooooooooooooooo......",
+        "....oooooooooo......Mu.........Mu......",
+        ".........Mm.........Mm.........Mm......"
+      ]
+    },
+    {
+      "id": "kestrel-turret-0-kick",
+      "channel": "upper",
+      "at": [
+        41,
+        42
+      ],
+      "rows": [
+        ".....ooooooo.....................",
+        "...ooCdddddCoo...................",
+        "..oCddccccCCCoo..................",
+        ".oCccccccccCCCCo.................",
+        "oCccCMiMMCCCCCCCoooooooooooooooo.",
+        "oCCCCMMMMCCCCCCCommmmmmmmmmmmmiMo",
+        "oCCCCCCCCCCCCCCCommmmmmmmmmmmiMMo",
+        ".oCCCCCCCCCCCCCoMMMMMMMMMMMMMMo..",
+        "..oCCCCCCCCCCCoooooooooooooooo...",
+        "...oooooooooo...................."
+      ]
+    },
+    {
+      "id": "kestrel-turret-1-kick",
+      "channel": "upper",
+      "at": [
+        41,
+        29
+      ],
+      "rows": [
+        "......................ooMio",
+        ".....................oMmimo",
+        "....................oMmimMo",
+        "...................oMmimMo.",
+        "..................oMmimMo..",
+        ".................oMmimMo...",
+        "................oMmimMo....",
+        "...............oMmimMo.....",
+        "..............oMmimMo......",
+        ".............oMmimMo.......",
+        "............oMmimMo........",
+        "...........oMmimMo.........",
+        "..........oMmimMo..........",
+        ".....oooooooimMo...........",
+        "...ooCdddddCooo............",
+        "..oCddccccCCCoo............",
+        ".oCccccccccCCCCo...........",
+        "oCccCMiMMCCCCCCCo..........",
+        "oCCCCMMMMCCCCCCCo..........",
+        "oCCCCCCCCCCCCCCCo..........",
+        ".oCCCCCCCCCCCCCo...........",
+        "..oCCCCCCCCCCCo............",
+        "...oooooooooo.............."
+      ]
+    },
+    {
+      "id": "kestrel-turret-2-kick",
+      "channel": "upper",
+      "at": [
+        41,
+        23
+      ],
+      "rows": [
+        "......oMio.......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....ooooooo.....",
+        "...ooCdddddCoo...",
+        "..oCddccccCCCoo..",
+        ".oCccccccccCCCCo.",
+        "oCccCMiMMCCCCCCCo",
+        "oCCCCMMMMCCCCCCCo",
+        "oCCCCCCCCCCCCCCCo",
+        ".oCCCCCCCCCCCCCo.",
+        "..oCCCCCCCCCCCo..",
+        "...oooooooooo...."
+      ]
+    },
+    {
+      "id": "kestrel-turret-3-kick",
+      "channel": "upper",
+      "at": [
+        28,
+        29
+      ],
+      "rows": [
+        "oiMoo......................",
+        "omimMo.....................",
+        "oMmimMo....................",
+        ".oMmimMo...................",
+        "..oMmimMo..................",
+        "...oMmimMo.................",
+        "....oMmimMo................",
+        ".....oMmimMo...............",
+        "......oMmimMo..............",
+        ".......oMmimMo.............",
+        "........oMmimMo............",
+        ".........oMmimMo...........",
+        "..........oMmimMo..........",
+        "...........oMmiooooooo.....",
+        "............oooCdddddCoo...",
+        "............ooCCCccccddCo..",
+        "...........oCCCCccccccccCo.",
+        "..........oCCCCCCCMMiMCccCo",
+        "..........oCCCCCCCMMMMCCCCo",
+        "..........oCCCCCCCCCCCCCCCo",
+        "...........oCCCCCCCCCCCCCo.",
+        "............oCCCCCCCCCCCo..",
+        "..............oooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-turret-4-kick",
+      "channel": "upper",
+      "at": [
+        22,
+        42
+      ],
+      "rows": [
+        ".....................ooooooo.....",
+        "...................ooCdddddCoo...",
+        "..................ooCCCccccddCo..",
+        ".................oCCCCccccccccCo.",
+        ".ooooooooooooooooCCCCCCCMMiMCccCo",
+        "oMimmmmmmmmmmmmmoCCCCCCCMMMMCCCCo",
+        "oMMimmmmmmmmmmmmoCCCCCCCCCCCCCCCo",
+        "..oMMMMMMMMMMMMMMoCCCCCCCCCCCCCo.",
+        "...ooooooooooooooooCCCCCCCCCCCo..",
+        "....................oooooooooo..."
+      ]
+    },
+    {
+      "id": "kestrel-turret-5-kick",
+      "channel": "upper",
+      "at": [
+        28,
+        42
+      ],
+      "rows": [
+        "...............ooooooo.....",
+        ".............ooCdddddCoo...",
+        "............ooCCCccccddCo..",
+        "...........oCCCCccccccccCo.",
+        "..........oCCCCCCCMMiMCccCo",
+        "..........oCCCCCCCMMMMCCCCo",
+        "..........oCCCCooooCCCCCCCo",
+        "...........oCCooMMMoCCCCCo.",
+        "............oCoMmimMoCCCo..",
+        ".............oMmimMooooo...",
+        "............oMmimMo........",
+        "...........oMmimMo.........",
+        "..........oMmimMo..........",
+        ".........oMmimMo...........",
+        "........oMmimMo............",
+        ".......oMmimMo.............",
+        "......oMmimMo..............",
+        ".....oMmimMo...............",
+        "....oMmimMo................",
+        "...oMmimMo.................",
+        "..oMmimMo..................",
+        ".oMmimMo...................",
+        "oMmimMo....................",
+        "omimMo.....................",
+        "oiMoo......................"
+      ]
+    },
+    {
+      "id": "kestrel-turret-6-kick",
+      "channel": "upper",
+      "at": [
+        41,
+        42
+      ],
+      "rows": [
+        ".....ooooooo.....",
+        "...ooCdddddCoo...",
+        "..oCddccccCCCoo..",
+        ".oCccccccccCCCCo.",
+        "oCccCMiMMCCCCCCCo",
+        "oCCCCMMMMCCCCCCCo",
+        "oCCCCCoMioCCCCCCo",
+        ".oCCCoMmimoCCCCo.",
+        "..oCCoMmimoCCCo..",
+        "...oooMmimooo....",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        ".....oMmimo......",
+        "......oMMo.......",
+        ".......oo........"
+      ]
+    },
+    {
+      "id": "kestrel-turret-7-kick",
+      "channel": "upper",
+      "at": [
+        41,
+        42
+      ],
+      "rows": [
+        ".....ooooooo...............",
+        "...ooCdddddCoo.............",
+        "..oCddccccCCCoo............",
+        ".oCccccccccCCCCo...........",
+        "oCccCMiMMCCCCCCCo..........",
+        "oCCCCMMMMCCCCCCCo..........",
+        "oCCCCCCCooooCCCCo..........",
+        ".oCCCCCoMMMooCCo...........",
+        "..oCCCoMmimMoCo............",
+        "...oooooMmimMo.............",
+        "........oMmimMo............",
+        ".........oMmimMo...........",
+        "..........oMmimMo..........",
+        "...........oMmimMo.........",
+        "............oMmimMo........",
+        ".............oMmimMo.......",
+        "..............oMmimMo......",
+        "...............oMmimMo.....",
+        "................oMmimMo....",
+        ".................oMmimMo...",
+        "..................oMmimMo..",
+        "...................oMmimMo.",
+        "....................oMmimMo",
+        ".....................oMmimo",
+        "......................ooMio"
       ]
     },
     {
@@ -1776,20 +2550,161 @@
       "mode": "loop",
       "exposures": [
         {
-          "frame": "kestrel-treads-0",
+          "frame": "kestrel-track-0",
           "ticks": 2
         },
         {
-          "frame": "kestrel-treads-1",
+          "frame": "kestrel-track-1",
           "ticks": 2
         },
         {
-          "frame": "kestrel-treads-2",
+          "frame": "kestrel-track-2",
           "ticks": 2
         },
         {
-          "frame": "kestrel-treads-3",
+          "frame": "kestrel-track-3",
           "ticks": 2
+        },
+        {
+          "frame": "kestrel-track-4",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-track-5",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-track-6",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-track-7",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "kestrel.suspension",
+      "channel": "legs",
+      "mode": "loop",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-drive-load",
+          "ticks": 4
+        },
+        {
+          "frame": "kestrel-hull-idle",
+          "ticks": 4
+        },
+        {
+          "frame": "kestrel-hull-drive-return",
+          "ticks": 4
+        },
+        {
+          "frame": "kestrel-hull-idle",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "kestrel.air.launch",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-launch-load",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-launch-release",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "kestrel.air.rise",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-rise-lift",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-hull-rise-extend",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "kestrel.air.apex",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-apex-float",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-apex-tip",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "kestrel.air.fall",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-fall-reach",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-hull-fall-brace",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "kestrel.land-light",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-impact-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-impact-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-impact-settle",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "kestrel.land-heavy",
+      "channel": "legs",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "kestrel-hull-impact-touch",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-impact-absorb",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-hull-impact-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-hull-impact-settle",
+          "ticks": 1
         }
       ]
     },
@@ -1876,7 +2791,7 @@
     "Kestrel is an original compact teal amphibious tractor with warm tread rollers, slab armor and a separate eight-direction turret.",
     "Chassis, tread phase, turret and hatch/crew are separate native layers. Turret headings follow world aim and do not inherit hull facing.",
     "Boarding and exit hatch acting sample the accepted 12/8-tick seat action. The simulation alone transfers ownership and places the occupant.",
-    "Literal native pixels include stride-independent track motion, airborne suspension, grounded compression and a bounded inert wreck. Further crew/ejection acting and human weight/readability review remain open.",
-    "Crew revision: seven boarding and seven ordinary exit drawings show boots, knees, hands, jacket and head crossing the hatch. The last closed/open exposure coincides with the existing seat-transfer marker. The operative atlas owns emergency recovery at the accepted safe root; no duplicated crew remains on the wreck."
+    "Crew revision: seven boarding and seven ordinary exit drawings show boots, knees, hands, jacket and head crossing the hatch. The last closed/open exposure coincides with the existing seat-transfer marker. The operative atlas owns emergency recovery at the accepted safe root; no duplicated crew remains on the wreck.",
+    "Suspension revision: eight literal track phases, also drawn extended, run separately from the hull. Solver-owned ground velocity advances the tread clock; it excludes support carry, holds in flight and stays at the accepted phase when stopped. Hull drawings keep the turret hardpoint fixed while nose, rear and exposed springs articulate through drive, accepted launch/rise/apex/fall and light/heavy impact. Eight additional kick drawings shorten each barrel by two native pixels for the tick after release, followed by its retained one-pixel recovery. Accepted release sockets and all crew/seat/wreck drawings remain unchanged. Human weight/readability review remains pending."
   ]
 }

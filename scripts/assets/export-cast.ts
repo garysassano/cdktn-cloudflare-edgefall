@@ -10,6 +10,11 @@ import {
 } from "../../src/game/labs/combat-content.js";
 import { CAST_ART, CAST_TIMING } from "../../src/shared/animation/cast.js";
 import { nativeExposure } from "../../src/shared/animation/native.js";
+import {
+  TANK_LAND_TICKS,
+  TANK_LAUNCH_TICKS,
+  TANK_TREAD_DISTANCE,
+} from "../../src/shared/animation/tank-motion.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -70,6 +75,39 @@ for (const asset of CAST_ART) {
       }
     }
   } else {
+    assert.equal(duration("kestrel.drive"), TANK_TREAD_DISTANCE / 256);
+    assert.equal(duration("kestrel.suspension"), duration("kestrel.drive"));
+    const distinct = (id: string, count: number) =>
+      assert.equal(
+        new Set(clip(id).exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size,
+        count,
+        `Distinct tank acting required for ${id}`,
+      );
+    distinct("kestrel.drive", 8);
+    for (const phase of ["launch", "rise", "apex", "fall"]) distinct(`kestrel.air.${phase}`, 2);
+    assert.equal(duration("kestrel.air.launch"), TANK_LAUNCH_TICKS);
+    for (const impact of ["light", "heavy"] as const) {
+      distinct(`kestrel.land-${impact}`, impact === "light" ? 3 : 4);
+      assert.equal(duration(`kestrel.land-${impact}`), TANK_LAND_TICKS[impact]);
+    }
+    for (let i = 0; i < 8; i++) {
+      const frame = source.frames.find((f) => f.id === `kestrel-track-${i}`);
+      assert(frame);
+      assert.equal(
+        frame.at[1] + frame.rows.length,
+        source.canvas.root[1],
+        "Tracks must meet the accepted floor",
+      );
+      assert(source.frames.some((f) => f.id === `kestrel-track-${i}-extended`));
+      assert.equal(
+        new Set(
+          ["", "-kick", "-recoil"].map(
+            (suffix) => built.frameHashes[`p1/kestrel-turret-${i}${suffix}`],
+          ),
+        ).size,
+        3,
+      );
+    }
     for (const name of ["kestrel.board", "kestrel.exit"])
       assert(
         new Set(clip(name).exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size >= 8,
@@ -90,7 +128,7 @@ for (const asset of CAST_ART) {
     nativeWidth: atlas.meta.size.w,
     nativeHeight: atlas.meta.size.h,
     pixelScale: 1,
-    columns: 8,
+    columns: atlas.meta.size.w / (source.canvas.width + 4),
     rows: atlas.meta.size.h / (source.canvas.height + 4),
   });
   assert(audit.canImportUnchanged, "Cast PNG violates pixel/alpha policy");

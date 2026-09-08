@@ -1,6 +1,6 @@
 {
   "frames": {
-    "p1/kestrel-treads-0": {
+    "p1/kestrel-track-0": {
       "frame": {
         "x": 2,
         "y": 2,
@@ -20,9 +20,9 @@
         "h": 96
       }
     },
-    "p2/kestrel-treads-0": {
+    "p2/kestrel-track-0": {
       "frame": {
-        "x": 702,
+        "x": 1202,
         "y": 402,
         "w": 96,
         "h": 96
@@ -40,9 +40,9 @@
         "h": 96
       }
     },
-    "p3/kestrel-treads-0": {
+    "p3/kestrel-track-0": {
       "frame": {
-        "x": 602,
+        "x": 902,
         "y": 902,
         "w": 96,
         "h": 96
@@ -60,87 +60,7 @@
         "h": 96
       }
     },
-    "p4/kestrel-treads-0": {
-      "frame": {
-        "x": 502,
-        "y": 1402,
-        "w": 96,
-        "h": 96
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 96,
-        "h": 96
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      }
-    },
-    "p1/kestrel-treads-1": {
-      "frame": {
-        "x": 102,
-        "y": 2,
-        "w": 96,
-        "h": 96
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 96,
-        "h": 96
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      }
-    },
-    "p2/kestrel-treads-1": {
-      "frame": {
-        "x": 2,
-        "y": 502,
-        "w": 96,
-        "h": 96
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 96,
-        "h": 96
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      }
-    },
-    "p3/kestrel-treads-1": {
-      "frame": {
-        "x": 702,
-        "y": 902,
-        "w": 96,
-        "h": 96
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 96,
-        "h": 96
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      }
-    },
-    "p4/kestrel-treads-1": {
+    "p4/kestrel-track-0": {
       "frame": {
         "x": 602,
         "y": 1402,
@@ -160,9 +80,9 @@
         "h": 96
       }
     },
-    "p1/kestrel-treads-2": {
+    "p1/kestrel-track-0-extended": {
       "frame": {
-        "x": 202,
+        "x": 102,
         "y": 2,
         "w": 96,
         "h": 96
@@ -180,10 +100,10 @@
         "h": 96
       }
     },
-    "p2/kestrel-treads-2": {
+    "p2/kestrel-track-0-extended": {
       "frame": {
-        "x": 102,
-        "y": 502,
+        "x": 1302,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -200,10 +120,10 @@
         "h": 96
       }
     },
-    "p3/kestrel-treads-2": {
+    "p3/kestrel-track-0-extended": {
       "frame": {
-        "x": 2,
-        "y": 1002,
+        "x": 1002,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -220,7 +140,7 @@
         "h": 96
       }
     },
-    "p4/kestrel-treads-2": {
+    "p4/kestrel-track-0-extended": {
       "frame": {
         "x": 702,
         "y": 1402,
@@ -240,7 +160,87 @@
         "h": 96
       }
     },
-    "p1/kestrel-treads-3": {
+    "p1/kestrel-track-1": {
+      "frame": {
+        "x": 202,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-1": {
+      "frame": {
+        "x": 1402,
+        "y": 402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-1": {
+      "frame": {
+        "x": 1102,
+        "y": 902,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-1": {
+      "frame": {
+        "x": 802,
+        "y": 1402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-1-extended": {
       "frame": {
         "x": 302,
         "y": 2,
@@ -260,9 +260,9 @@
         "h": 96
       }
     },
-    "p2/kestrel-treads-3": {
+    "p2/kestrel-track-1-extended": {
       "frame": {
-        "x": 202,
+        "x": 2,
         "y": 502,
         "w": 96,
         "h": 96
@@ -280,10 +280,10 @@
         "h": 96
       }
     },
-    "p3/kestrel-treads-3": {
+    "p3/kestrel-track-1-extended": {
       "frame": {
-        "x": 102,
-        "y": 1002,
+        "x": 1202,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -300,10 +300,10 @@
         "h": 96
       }
     },
-    "p4/kestrel-treads-3": {
+    "p4/kestrel-track-1-extended": {
       "frame": {
-        "x": 2,
-        "y": 1502,
+        "x": 902,
+        "y": 1402,
         "w": 96,
         "h": 96
       },
@@ -320,7 +320,7 @@
         "h": 96
       }
     },
-    "p1/kestrel-air": {
+    "p1/kestrel-track-2": {
       "frame": {
         "x": 402,
         "y": 2,
@@ -340,9 +340,9 @@
         "h": 96
       }
     },
-    "p2/kestrel-air": {
+    "p2/kestrel-track-2": {
       "frame": {
-        "x": 302,
+        "x": 102,
         "y": 502,
         "w": 96,
         "h": 96
@@ -360,10 +360,10 @@
         "h": 96
       }
     },
-    "p3/kestrel-air": {
+    "p3/kestrel-track-2": {
       "frame": {
-        "x": 202,
-        "y": 1002,
+        "x": 1302,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -380,10 +380,10 @@
         "h": 96
       }
     },
-    "p4/kestrel-air": {
+    "p4/kestrel-track-2": {
       "frame": {
-        "x": 102,
-        "y": 1502,
+        "x": 1002,
+        "y": 1402,
         "w": 96,
         "h": 96
       },
@@ -400,7 +400,7 @@
         "h": 96
       }
     },
-    "p1/kestrel-land": {
+    "p1/kestrel-track-2-extended": {
       "frame": {
         "x": 502,
         "y": 2,
@@ -420,7 +420,167 @@
         "h": 96
       }
     },
-    "p2/kestrel-land": {
+    "p2/kestrel-track-2-extended": {
+      "frame": {
+        "x": 202,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-2-extended": {
+      "frame": {
+        "x": 1402,
+        "y": 902,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-2-extended": {
+      "frame": {
+        "x": 1102,
+        "y": 1402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-3": {
+      "frame": {
+        "x": 602,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-3": {
+      "frame": {
+        "x": 302,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-3": {
+      "frame": {
+        "x": 2,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-3": {
+      "frame": {
+        "x": 1202,
+        "y": 1402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-3-extended": {
+      "frame": {
+        "x": 702,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-3-extended": {
       "frame": {
         "x": 402,
         "y": 502,
@@ -440,7 +600,167 @@
         "h": 96
       }
     },
-    "p3/kestrel-land": {
+    "p3/kestrel-track-3-extended": {
+      "frame": {
+        "x": 102,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-3-extended": {
+      "frame": {
+        "x": 1302,
+        "y": 1402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-4": {
+      "frame": {
+        "x": 802,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-4": {
+      "frame": {
+        "x": 502,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-4": {
+      "frame": {
+        "x": 202,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-4": {
+      "frame": {
+        "x": 1402,
+        "y": 1402,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-4-extended": {
+      "frame": {
+        "x": 902,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-4-extended": {
+      "frame": {
+        "x": 602,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-4-extended": {
       "frame": {
         "x": 302,
         "y": 1002,
@@ -460,10 +780,2330 @@
         "h": 96
       }
     },
-    "p4/kestrel-land": {
+    "p4/kestrel-track-4-extended": {
+      "frame": {
+        "x": 2,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-5": {
+      "frame": {
+        "x": 1002,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-5": {
+      "frame": {
+        "x": 702,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-5": {
+      "frame": {
+        "x": 402,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-5": {
+      "frame": {
+        "x": 102,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-5-extended": {
+      "frame": {
+        "x": 1102,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-5-extended": {
+      "frame": {
+        "x": 802,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-5-extended": {
+      "frame": {
+        "x": 502,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-5-extended": {
       "frame": {
         "x": 202,
         "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-6": {
+      "frame": {
+        "x": 1202,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-6": {
+      "frame": {
+        "x": 902,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-6": {
+      "frame": {
+        "x": 602,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-6": {
+      "frame": {
+        "x": 302,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-6-extended": {
+      "frame": {
+        "x": 1302,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-6-extended": {
+      "frame": {
+        "x": 1002,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-6-extended": {
+      "frame": {
+        "x": 702,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-6-extended": {
+      "frame": {
+        "x": 402,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-7": {
+      "frame": {
+        "x": 1402,
+        "y": 2,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-7": {
+      "frame": {
+        "x": 1102,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-7": {
+      "frame": {
+        "x": 802,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-7": {
+      "frame": {
+        "x": 502,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-track-7-extended": {
+      "frame": {
+        "x": 2,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-track-7-extended": {
+      "frame": {
+        "x": 1202,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-track-7-extended": {
+      "frame": {
+        "x": 902,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-track-7-extended": {
+      "frame": {
+        "x": 602,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-idle": {
+      "frame": {
+        "x": 102,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-idle": {
+      "frame": {
+        "x": 1302,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-idle": {
+      "frame": {
+        "x": 1002,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-idle": {
+      "frame": {
+        "x": 702,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-drive-load": {
+      "frame": {
+        "x": 202,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-drive-load": {
+      "frame": {
+        "x": 1402,
+        "y": 502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-drive-load": {
+      "frame": {
+        "x": 1102,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-drive-load": {
+      "frame": {
+        "x": 802,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-drive-return": {
+      "frame": {
+        "x": 302,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-drive-return": {
+      "frame": {
+        "x": 2,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-drive-return": {
+      "frame": {
+        "x": 1202,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-drive-return": {
+      "frame": {
+        "x": 902,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-launch-load": {
+      "frame": {
+        "x": 402,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-launch-load": {
+      "frame": {
+        "x": 102,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-launch-load": {
+      "frame": {
+        "x": 1302,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-launch-load": {
+      "frame": {
+        "x": 1002,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-launch-release": {
+      "frame": {
+        "x": 502,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-launch-release": {
+      "frame": {
+        "x": 202,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-launch-release": {
+      "frame": {
+        "x": 1402,
+        "y": 1002,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-launch-release": {
+      "frame": {
+        "x": 1102,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-rise-lift": {
+      "frame": {
+        "x": 602,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-rise-lift": {
+      "frame": {
+        "x": 302,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-rise-lift": {
+      "frame": {
+        "x": 2,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-rise-lift": {
+      "frame": {
+        "x": 1202,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-rise-extend": {
+      "frame": {
+        "x": 702,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-rise-extend": {
+      "frame": {
+        "x": 402,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-rise-extend": {
+      "frame": {
+        "x": 102,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-rise-extend": {
+      "frame": {
+        "x": 1302,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-apex-float": {
+      "frame": {
+        "x": 802,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-apex-float": {
+      "frame": {
+        "x": 502,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-apex-float": {
+      "frame": {
+        "x": 202,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-apex-float": {
+      "frame": {
+        "x": 1402,
+        "y": 1502,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-apex-tip": {
+      "frame": {
+        "x": 902,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-apex-tip": {
+      "frame": {
+        "x": 602,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-apex-tip": {
+      "frame": {
+        "x": 302,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-apex-tip": {
+      "frame": {
+        "x": 2,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-fall-reach": {
+      "frame": {
+        "x": 1002,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-fall-reach": {
+      "frame": {
+        "x": 702,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-fall-reach": {
+      "frame": {
+        "x": 402,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-fall-reach": {
+      "frame": {
+        "x": 102,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-fall-brace": {
+      "frame": {
+        "x": 1102,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-fall-brace": {
+      "frame": {
+        "x": 802,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-fall-brace": {
+      "frame": {
+        "x": 502,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-fall-brace": {
+      "frame": {
+        "x": 202,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-impact-touch": {
+      "frame": {
+        "x": 1202,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-impact-touch": {
+      "frame": {
+        "x": 902,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-impact-touch": {
+      "frame": {
+        "x": 602,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-impact-touch": {
+      "frame": {
+        "x": 302,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-impact-absorb": {
+      "frame": {
+        "x": 1302,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-impact-absorb": {
+      "frame": {
+        "x": 1002,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-impact-absorb": {
+      "frame": {
+        "x": 702,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-impact-absorb": {
+      "frame": {
+        "x": 402,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-impact-rise": {
+      "frame": {
+        "x": 1402,
+        "y": 102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-impact-rise": {
+      "frame": {
+        "x": 1102,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-impact-rise": {
+      "frame": {
+        "x": 802,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-impact-rise": {
+      "frame": {
+        "x": 502,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-hull-impact-settle": {
+      "frame": {
+        "x": 2,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-hull-impact-settle": {
+      "frame": {
+        "x": 1202,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-hull-impact-settle": {
+      "frame": {
+        "x": 902,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-hull-impact-settle": {
+      "frame": {
+        "x": 602,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-0-kick": {
+      "frame": {
+        "x": 102,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-0-kick": {
+      "frame": {
+        "x": 1302,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-0-kick": {
+      "frame": {
+        "x": 1002,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-0-kick": {
+      "frame": {
+        "x": 702,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-1-kick": {
+      "frame": {
+        "x": 202,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-1-kick": {
+      "frame": {
+        "x": 1402,
+        "y": 602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-1-kick": {
+      "frame": {
+        "x": 1102,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-1-kick": {
+      "frame": {
+        "x": 802,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-2-kick": {
+      "frame": {
+        "x": 302,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-2-kick": {
+      "frame": {
+        "x": 2,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-2-kick": {
+      "frame": {
+        "x": 1202,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-2-kick": {
+      "frame": {
+        "x": 902,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-3-kick": {
+      "frame": {
+        "x": 402,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-3-kick": {
+      "frame": {
+        "x": 102,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-3-kick": {
+      "frame": {
+        "x": 1302,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-3-kick": {
+      "frame": {
+        "x": 1002,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-4-kick": {
+      "frame": {
+        "x": 502,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-4-kick": {
+      "frame": {
+        "x": 202,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-4-kick": {
+      "frame": {
+        "x": 1402,
+        "y": 1102,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-4-kick": {
+      "frame": {
+        "x": 1102,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-5-kick": {
+      "frame": {
+        "x": 602,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-5-kick": {
+      "frame": {
+        "x": 302,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-5-kick": {
+      "frame": {
+        "x": 2,
+        "y": 1202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-5-kick": {
+      "frame": {
+        "x": 1202,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-6-kick": {
+      "frame": {
+        "x": 702,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-6-kick": {
+      "frame": {
+        "x": 402,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-6-kick": {
+      "frame": {
+        "x": 102,
+        "y": 1202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-6-kick": {
+      "frame": {
+        "x": 1302,
+        "y": 1602,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p1/kestrel-turret-7-kick": {
+      "frame": {
+        "x": 802,
+        "y": 202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p2/kestrel-turret-7-kick": {
+      "frame": {
+        "x": 502,
+        "y": 702,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p3/kestrel-turret-7-kick": {
+      "frame": {
+        "x": 202,
+        "y": 1202,
+        "w": 96,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      }
+    },
+    "p4/kestrel-turret-7-kick": {
+      "frame": {
+        "x": 1402,
+        "y": 1602,
         "w": 96,
         "h": 96
       },
@@ -482,8 +3122,8 @@
     },
     "p1/kestrel-turret-0": {
       "frame": {
-        "x": 602,
-        "y": 2,
+        "x": 902,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -502,8 +3142,8 @@
     },
     "p2/kestrel-turret-0": {
       "frame": {
-        "x": 502,
-        "y": 502,
+        "x": 602,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -522,8 +3162,8 @@
     },
     "p3/kestrel-turret-0": {
       "frame": {
-        "x": 402,
-        "y": 1002,
+        "x": 302,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -542,8 +3182,8 @@
     },
     "p4/kestrel-turret-0": {
       "frame": {
-        "x": 302,
-        "y": 1502,
+        "x": 2,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -562,8 +3202,8 @@
     },
     "p1/kestrel-turret-0-recoil": {
       "frame": {
-        "x": 702,
-        "y": 2,
+        "x": 1002,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -582,8 +3222,8 @@
     },
     "p2/kestrel-turret-0-recoil": {
       "frame": {
-        "x": 602,
-        "y": 502,
+        "x": 702,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -602,8 +3242,8 @@
     },
     "p3/kestrel-turret-0-recoil": {
       "frame": {
-        "x": 502,
-        "y": 1002,
+        "x": 402,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -622,8 +3262,8 @@
     },
     "p4/kestrel-turret-0-recoil": {
       "frame": {
-        "x": 402,
-        "y": 1502,
+        "x": 102,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -642,8 +3282,8 @@
     },
     "p1/kestrel-turret-1": {
       "frame": {
-        "x": 2,
-        "y": 102,
+        "x": 1102,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -662,8 +3302,8 @@
     },
     "p2/kestrel-turret-1": {
       "frame": {
-        "x": 702,
-        "y": 502,
+        "x": 802,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -682,8 +3322,8 @@
     },
     "p3/kestrel-turret-1": {
       "frame": {
-        "x": 602,
-        "y": 1002,
+        "x": 502,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -702,8 +3342,8 @@
     },
     "p4/kestrel-turret-1": {
       "frame": {
-        "x": 502,
-        "y": 1502,
+        "x": 202,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -722,8 +3362,8 @@
     },
     "p1/kestrel-turret-1-recoil": {
       "frame": {
-        "x": 102,
-        "y": 102,
+        "x": 1202,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -742,8 +3382,8 @@
     },
     "p2/kestrel-turret-1-recoil": {
       "frame": {
-        "x": 2,
-        "y": 602,
+        "x": 902,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -762,8 +3402,8 @@
     },
     "p3/kestrel-turret-1-recoil": {
       "frame": {
-        "x": 702,
-        "y": 1002,
+        "x": 602,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -782,8 +3422,8 @@
     },
     "p4/kestrel-turret-1-recoil": {
       "frame": {
-        "x": 602,
-        "y": 1502,
+        "x": 302,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -802,8 +3442,8 @@
     },
     "p1/kestrel-turret-2": {
       "frame": {
-        "x": 202,
-        "y": 102,
+        "x": 1302,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -822,8 +3462,8 @@
     },
     "p2/kestrel-turret-2": {
       "frame": {
-        "x": 102,
-        "y": 602,
+        "x": 1002,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -842,8 +3482,8 @@
     },
     "p3/kestrel-turret-2": {
       "frame": {
-        "x": 2,
-        "y": 1102,
+        "x": 702,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -862,8 +3502,8 @@
     },
     "p4/kestrel-turret-2": {
       "frame": {
-        "x": 702,
-        "y": 1502,
+        "x": 402,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -882,8 +3522,8 @@
     },
     "p1/kestrel-turret-2-recoil": {
       "frame": {
-        "x": 302,
-        "y": 102,
+        "x": 1402,
+        "y": 202,
         "w": 96,
         "h": 96
       },
@@ -902,8 +3542,8 @@
     },
     "p2/kestrel-turret-2-recoil": {
       "frame": {
-        "x": 202,
-        "y": 602,
+        "x": 1102,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -922,8 +3562,8 @@
     },
     "p3/kestrel-turret-2-recoil": {
       "frame": {
-        "x": 102,
-        "y": 1102,
+        "x": 802,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -942,8 +3582,8 @@
     },
     "p4/kestrel-turret-2-recoil": {
       "frame": {
-        "x": 2,
-        "y": 1602,
+        "x": 502,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -962,8 +3602,8 @@
     },
     "p1/kestrel-turret-6": {
       "frame": {
-        "x": 402,
-        "y": 102,
+        "x": 2,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -982,8 +3622,8 @@
     },
     "p2/kestrel-turret-6": {
       "frame": {
-        "x": 302,
-        "y": 602,
+        "x": 1202,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -1002,8 +3642,8 @@
     },
     "p3/kestrel-turret-6": {
       "frame": {
-        "x": 202,
-        "y": 1102,
+        "x": 902,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1022,8 +3662,8 @@
     },
     "p4/kestrel-turret-6": {
       "frame": {
-        "x": 102,
-        "y": 1602,
+        "x": 602,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1042,8 +3682,8 @@
     },
     "p1/kestrel-turret-6-recoil": {
       "frame": {
-        "x": 502,
-        "y": 102,
+        "x": 102,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1062,8 +3702,8 @@
     },
     "p2/kestrel-turret-6-recoil": {
       "frame": {
-        "x": 402,
-        "y": 602,
+        "x": 1302,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -1082,8 +3722,8 @@
     },
     "p3/kestrel-turret-6-recoil": {
       "frame": {
-        "x": 302,
-        "y": 1102,
+        "x": 1002,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1102,8 +3742,8 @@
     },
     "p4/kestrel-turret-6-recoil": {
       "frame": {
-        "x": 202,
-        "y": 1602,
+        "x": 702,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1122,8 +3762,8 @@
     },
     "p1/kestrel-turret-7": {
       "frame": {
-        "x": 602,
-        "y": 102,
+        "x": 202,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1142,8 +3782,8 @@
     },
     "p2/kestrel-turret-7": {
       "frame": {
-        "x": 502,
-        "y": 602,
+        "x": 1402,
+        "y": 702,
         "w": 96,
         "h": 96
       },
@@ -1162,8 +3802,8 @@
     },
     "p3/kestrel-turret-7": {
       "frame": {
-        "x": 402,
-        "y": 1102,
+        "x": 1102,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1182,8 +3822,8 @@
     },
     "p4/kestrel-turret-7": {
       "frame": {
-        "x": 302,
-        "y": 1602,
+        "x": 802,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1202,8 +3842,8 @@
     },
     "p1/kestrel-turret-7-recoil": {
       "frame": {
-        "x": 702,
-        "y": 102,
+        "x": 302,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1222,8 +3862,8 @@
     },
     "p2/kestrel-turret-7-recoil": {
       "frame": {
-        "x": 602,
-        "y": 602,
+        "x": 2,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1242,8 +3882,8 @@
     },
     "p3/kestrel-turret-7-recoil": {
       "frame": {
-        "x": 502,
-        "y": 1102,
+        "x": 1202,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1262,8 +3902,8 @@
     },
     "p4/kestrel-turret-7-recoil": {
       "frame": {
-        "x": 402,
-        "y": 1602,
+        "x": 902,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1282,8 +3922,8 @@
     },
     "p1/kestrel-turret-3": {
       "frame": {
-        "x": 2,
-        "y": 202,
+        "x": 402,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1302,8 +3942,8 @@
     },
     "p2/kestrel-turret-3": {
       "frame": {
-        "x": 702,
-        "y": 602,
+        "x": 102,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1322,8 +3962,8 @@
     },
     "p3/kestrel-turret-3": {
       "frame": {
-        "x": 602,
-        "y": 1102,
+        "x": 1302,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1342,8 +3982,8 @@
     },
     "p4/kestrel-turret-3": {
       "frame": {
-        "x": 502,
-        "y": 1602,
+        "x": 1002,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1362,8 +4002,8 @@
     },
     "p1/kestrel-turret-3-recoil": {
       "frame": {
-        "x": 102,
-        "y": 202,
+        "x": 502,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1382,8 +4022,8 @@
     },
     "p2/kestrel-turret-3-recoil": {
       "frame": {
-        "x": 2,
-        "y": 702,
+        "x": 202,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1402,8 +4042,8 @@
     },
     "p3/kestrel-turret-3-recoil": {
       "frame": {
-        "x": 702,
-        "y": 1102,
+        "x": 1402,
+        "y": 1202,
         "w": 96,
         "h": 96
       },
@@ -1422,8 +4062,8 @@
     },
     "p4/kestrel-turret-3-recoil": {
       "frame": {
-        "x": 602,
-        "y": 1602,
+        "x": 1102,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1442,8 +4082,8 @@
     },
     "p1/kestrel-turret-4": {
       "frame": {
-        "x": 202,
-        "y": 202,
+        "x": 602,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1462,8 +4102,8 @@
     },
     "p2/kestrel-turret-4": {
       "frame": {
-        "x": 102,
-        "y": 702,
+        "x": 302,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1483,7 +4123,7 @@
     "p3/kestrel-turret-4": {
       "frame": {
         "x": 2,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1502,8 +4142,8 @@
     },
     "p4/kestrel-turret-4": {
       "frame": {
-        "x": 702,
-        "y": 1602,
+        "x": 1202,
+        "y": 1702,
         "w": 96,
         "h": 96
       },
@@ -1522,8 +4162,8 @@
     },
     "p1/kestrel-turret-4-recoil": {
       "frame": {
-        "x": 302,
-        "y": 202,
+        "x": 702,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1542,8 +4182,8 @@
     },
     "p2/kestrel-turret-4-recoil": {
       "frame": {
-        "x": 202,
-        "y": 702,
+        "x": 402,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1563,7 +4203,7 @@
     "p3/kestrel-turret-4-recoil": {
       "frame": {
         "x": 102,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1582,7 +4222,7 @@
     },
     "p4/kestrel-turret-4-recoil": {
       "frame": {
-        "x": 2,
+        "x": 1302,
         "y": 1702,
         "w": 96,
         "h": 96
@@ -1602,8 +4242,8 @@
     },
     "p1/kestrel-turret-5": {
       "frame": {
-        "x": 402,
-        "y": 202,
+        "x": 802,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1622,8 +4262,8 @@
     },
     "p2/kestrel-turret-5": {
       "frame": {
-        "x": 302,
-        "y": 702,
+        "x": 502,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1643,7 +4283,7 @@
     "p3/kestrel-turret-5": {
       "frame": {
         "x": 202,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1662,7 +4302,7 @@
     },
     "p4/kestrel-turret-5": {
       "frame": {
-        "x": 102,
+        "x": 1402,
         "y": 1702,
         "w": 96,
         "h": 96
@@ -1682,8 +4322,8 @@
     },
     "p1/kestrel-turret-5-recoil": {
       "frame": {
-        "x": 502,
-        "y": 202,
+        "x": 902,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1702,8 +4342,8 @@
     },
     "p2/kestrel-turret-5-recoil": {
       "frame": {
-        "x": 402,
-        "y": 702,
+        "x": 602,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1723,7 +4363,7 @@
     "p3/kestrel-turret-5-recoil": {
       "frame": {
         "x": 302,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1742,8 +4382,8 @@
     },
     "p4/kestrel-turret-5-recoil": {
       "frame": {
-        "x": 202,
-        "y": 1702,
+        "x": 2,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -1762,8 +4402,8 @@
     },
     "p1/kestrel-hatch-closed": {
       "frame": {
-        "x": 602,
-        "y": 202,
+        "x": 1002,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1782,8 +4422,8 @@
     },
     "p2/kestrel-hatch-closed": {
       "frame": {
-        "x": 502,
-        "y": 702,
+        "x": 702,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1803,7 +4443,7 @@
     "p3/kestrel-hatch-closed": {
       "frame": {
         "x": 402,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1822,8 +4462,8 @@
     },
     "p4/kestrel-hatch-closed": {
       "frame": {
-        "x": 302,
-        "y": 1702,
+        "x": 102,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -1842,8 +4482,8 @@
     },
     "p1/kestrel-hatch-open": {
       "frame": {
-        "x": 702,
-        "y": 202,
+        "x": 1102,
+        "y": 302,
         "w": 96,
         "h": 96
       },
@@ -1862,8 +4502,8 @@
     },
     "p2/kestrel-hatch-open": {
       "frame": {
-        "x": 602,
-        "y": 702,
+        "x": 802,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1883,7 +4523,7 @@
     "p3/kestrel-hatch-open": {
       "frame": {
         "x": 502,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1902,8 +4542,8 @@
     },
     "p4/kestrel-hatch-open": {
       "frame": {
-        "x": 402,
-        "y": 1702,
+        "x": 202,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -1922,7 +4562,7 @@
     },
     "p1/kestrel-wreck": {
       "frame": {
-        "x": 2,
+        "x": 1202,
         "y": 302,
         "w": 96,
         "h": 96
@@ -1942,8 +4582,8 @@
     },
     "p2/kestrel-wreck": {
       "frame": {
-        "x": 702,
-        "y": 702,
+        "x": 902,
+        "y": 802,
         "w": 96,
         "h": 96
       },
@@ -1963,7 +4603,7 @@
     "p3/kestrel-wreck": {
       "frame": {
         "x": 602,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -1982,8 +4622,8 @@
     },
     "p4/kestrel-wreck": {
       "frame": {
-        "x": 502,
-        "y": 1702,
+        "x": 302,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -2002,7 +4642,7 @@
     },
     "p1/kestrel-board-climb": {
       "frame": {
-        "x": 102,
+        "x": 1302,
         "y": 302,
         "w": 96,
         "h": 96
@@ -2022,7 +4662,7 @@
     },
     "p2/kestrel-board-climb": {
       "frame": {
-        "x": 2,
+        "x": 1002,
         "y": 802,
         "w": 96,
         "h": 96
@@ -2043,7 +4683,7 @@
     "p3/kestrel-board-climb": {
       "frame": {
         "x": 702,
-        "y": 1202,
+        "y": 1302,
         "w": 96,
         "h": 96
       },
@@ -2062,8 +4702,8 @@
     },
     "p4/kestrel-board-climb": {
       "frame": {
-        "x": 602,
-        "y": 1702,
+        "x": 402,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -2082,7 +4722,7 @@
     },
     "p1/kestrel-board-step": {
       "frame": {
-        "x": 202,
+        "x": 1402,
         "y": 302,
         "w": 96,
         "h": 96
@@ -2102,7 +4742,7 @@
     },
     "p2/kestrel-board-step": {
       "frame": {
-        "x": 102,
+        "x": 1102,
         "y": 802,
         "w": 96,
         "h": 96
@@ -2122,7 +4762,7 @@
     },
     "p3/kestrel-board-step": {
       "frame": {
-        "x": 2,
+        "x": 802,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2142,8 +4782,8 @@
     },
     "p4/kestrel-board-step": {
       "frame": {
-        "x": 702,
-        "y": 1702,
+        "x": 502,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -2162,8 +4802,8 @@
     },
     "p1/kestrel-board-vault": {
       "frame": {
-        "x": 302,
-        "y": 302,
+        "x": 2,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -2182,7 +4822,7 @@
     },
     "p2/kestrel-board-vault": {
       "frame": {
-        "x": 202,
+        "x": 1202,
         "y": 802,
         "w": 96,
         "h": 96
@@ -2202,7 +4842,7 @@
     },
     "p3/kestrel-board-vault": {
       "frame": {
-        "x": 102,
+        "x": 902,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2222,7 +4862,7 @@
     },
     "p4/kestrel-board-vault": {
       "frame": {
-        "x": 2,
+        "x": 602,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2242,8 +4882,8 @@
     },
     "p1/kestrel-board-straddle": {
       "frame": {
-        "x": 402,
-        "y": 302,
+        "x": 102,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -2262,7 +4902,7 @@
     },
     "p2/kestrel-board-straddle": {
       "frame": {
-        "x": 302,
+        "x": 1302,
         "y": 802,
         "w": 96,
         "h": 96
@@ -2282,7 +4922,7 @@
     },
     "p3/kestrel-board-straddle": {
       "frame": {
-        "x": 202,
+        "x": 1002,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2302,7 +4942,7 @@
     },
     "p4/kestrel-board-straddle": {
       "frame": {
-        "x": 102,
+        "x": 702,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2322,8 +4962,8 @@
     },
     "p1/kestrel-board-sink": {
       "frame": {
-        "x": 502,
-        "y": 302,
+        "x": 202,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -2342,7 +4982,7 @@
     },
     "p2/kestrel-board-sink": {
       "frame": {
-        "x": 402,
+        "x": 1402,
         "y": 802,
         "w": 96,
         "h": 96
@@ -2362,7 +5002,7 @@
     },
     "p3/kestrel-board-sink": {
       "frame": {
-        "x": 302,
+        "x": 1102,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2382,7 +5022,7 @@
     },
     "p4/kestrel-board-sink": {
       "frame": {
-        "x": 202,
+        "x": 802,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2402,8 +5042,8 @@
     },
     "p1/kestrel-board-duck": {
       "frame": {
-        "x": 602,
-        "y": 302,
+        "x": 302,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -2422,8 +5062,8 @@
     },
     "p2/kestrel-board-duck": {
       "frame": {
-        "x": 502,
-        "y": 802,
+        "x": 2,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -2442,7 +5082,7 @@
     },
     "p3/kestrel-board-duck": {
       "frame": {
-        "x": 402,
+        "x": 1202,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2462,7 +5102,7 @@
     },
     "p4/kestrel-board-duck": {
       "frame": {
-        "x": 302,
+        "x": 902,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2482,8 +5122,8 @@
     },
     "p1/kestrel-board-hands": {
       "frame": {
-        "x": 702,
-        "y": 302,
+        "x": 402,
+        "y": 402,
         "w": 96,
         "h": 96
       },
@@ -2502,8 +5142,8 @@
     },
     "p2/kestrel-board-hands": {
       "frame": {
-        "x": 602,
-        "y": 802,
+        "x": 102,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -2522,7 +5162,7 @@
     },
     "p3/kestrel-board-hands": {
       "frame": {
-        "x": 502,
+        "x": 1302,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2542,7 +5182,7 @@
     },
     "p4/kestrel-board-hands": {
       "frame": {
-        "x": 402,
+        "x": 1002,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2562,7 +5202,7 @@
     },
     "p1/kestrel-exit-peek": {
       "frame": {
-        "x": 2,
+        "x": 502,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2582,8 +5222,8 @@
     },
     "p2/kestrel-exit-peek": {
       "frame": {
-        "x": 702,
-        "y": 802,
+        "x": 202,
+        "y": 902,
         "w": 96,
         "h": 96
       },
@@ -2602,7 +5242,7 @@
     },
     "p3/kestrel-exit-peek": {
       "frame": {
-        "x": 602,
+        "x": 1402,
         "y": 1302,
         "w": 96,
         "h": 96
@@ -2622,7 +5262,7 @@
     },
     "p4/kestrel-exit-peek": {
       "frame": {
-        "x": 502,
+        "x": 1102,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2642,7 +5282,7 @@
     },
     "p1/kestrel-exit-brace": {
       "frame": {
-        "x": 102,
+        "x": 602,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2662,7 +5302,7 @@
     },
     "p2/kestrel-exit-brace": {
       "frame": {
-        "x": 2,
+        "x": 302,
         "y": 902,
         "w": 96,
         "h": 96
@@ -2682,8 +5322,8 @@
     },
     "p3/kestrel-exit-brace": {
       "frame": {
-        "x": 702,
-        "y": 1302,
+        "x": 2,
+        "y": 1402,
         "w": 96,
         "h": 96
       },
@@ -2702,7 +5342,7 @@
     },
     "p4/kestrel-exit-brace": {
       "frame": {
-        "x": 602,
+        "x": 1202,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2722,7 +5362,7 @@
     },
     "p1/kestrel-exit-push": {
       "frame": {
-        "x": 202,
+        "x": 702,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2742,7 +5382,7 @@
     },
     "p2/kestrel-exit-push": {
       "frame": {
-        "x": 102,
+        "x": 402,
         "y": 902,
         "w": 96,
         "h": 96
@@ -2762,7 +5402,7 @@
     },
     "p3/kestrel-exit-push": {
       "frame": {
-        "x": 2,
+        "x": 102,
         "y": 1402,
         "w": 96,
         "h": 96
@@ -2782,7 +5422,7 @@
     },
     "p4/kestrel-exit-push": {
       "frame": {
-        "x": 702,
+        "x": 1302,
         "y": 1802,
         "w": 96,
         "h": 96
@@ -2802,7 +5442,7 @@
     },
     "p1/kestrel-exit-knee": {
       "frame": {
-        "x": 302,
+        "x": 802,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2822,7 +5462,7 @@
     },
     "p2/kestrel-exit-knee": {
       "frame": {
-        "x": 202,
+        "x": 502,
         "y": 902,
         "w": 96,
         "h": 96
@@ -2842,7 +5482,7 @@
     },
     "p3/kestrel-exit-knee": {
       "frame": {
-        "x": 102,
+        "x": 202,
         "y": 1402,
         "w": 96,
         "h": 96
@@ -2862,8 +5502,8 @@
     },
     "p4/kestrel-exit-knee": {
       "frame": {
-        "x": 2,
-        "y": 1902,
+        "x": 1402,
+        "y": 1802,
         "w": 96,
         "h": 96
       },
@@ -2882,7 +5522,7 @@
     },
     "p1/kestrel-exit-turn": {
       "frame": {
-        "x": 402,
+        "x": 902,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2902,7 +5542,7 @@
     },
     "p2/kestrel-exit-turn": {
       "frame": {
-        "x": 302,
+        "x": 602,
         "y": 902,
         "w": 96,
         "h": 96
@@ -2922,7 +5562,7 @@
     },
     "p3/kestrel-exit-turn": {
       "frame": {
-        "x": 202,
+        "x": 302,
         "y": 1402,
         "w": 96,
         "h": 96
@@ -2942,7 +5582,7 @@
     },
     "p4/kestrel-exit-turn": {
       "frame": {
-        "x": 102,
+        "x": 2,
         "y": 1902,
         "w": 96,
         "h": 96
@@ -2962,7 +5602,7 @@
     },
     "p1/kestrel-exit-swing": {
       "frame": {
-        "x": 502,
+        "x": 1002,
         "y": 402,
         "w": 96,
         "h": 96
@@ -2982,7 +5622,7 @@
     },
     "p2/kestrel-exit-swing": {
       "frame": {
-        "x": 402,
+        "x": 702,
         "y": 902,
         "w": 96,
         "h": 96
@@ -3002,7 +5642,7 @@
     },
     "p3/kestrel-exit-swing": {
       "frame": {
-        "x": 302,
+        "x": 402,
         "y": 1402,
         "w": 96,
         "h": 96
@@ -3022,7 +5662,7 @@
     },
     "p4/kestrel-exit-swing": {
       "frame": {
-        "x": 202,
+        "x": 102,
         "y": 1902,
         "w": 96,
         "h": 96
@@ -3042,7 +5682,7 @@
     },
     "p1/kestrel-exit-drop": {
       "frame": {
-        "x": 602,
+        "x": 1102,
         "y": 402,
         "w": 96,
         "h": 96
@@ -3062,7 +5702,7 @@
     },
     "p2/kestrel-exit-drop": {
       "frame": {
-        "x": 502,
+        "x": 802,
         "y": 902,
         "w": 96,
         "h": 96
@@ -3082,7 +5722,7 @@
     },
     "p3/kestrel-exit-drop": {
       "frame": {
-        "x": 402,
+        "x": 502,
         "y": 1402,
         "w": 96,
         "h": 96
@@ -3102,7 +5742,7 @@
     },
     "p4/kestrel-exit-drop": {
       "frame": {
-        "x": 302,
+        "x": 202,
         "y": 1902,
         "w": 96,
         "h": 96
@@ -3124,13 +5764,13 @@
   "meta": {
     "image": "kestrel.png",
     "size": {
-      "w": 800,
+      "w": 1500,
       "h": 2000
     },
     "edgefall": {
       "format": 2,
       "sourceId": "kestrel-native-01",
-      "sourceSha256": "bdcfc813a458399b2da58852b9546c23c8ac39fd04f034adbcd1a668c79d64d8",
+      "sourceSha256": "cbd6cfe6786daaee54f456a90990c3dd96a09cd253c980ad06501d101b6d88b0",
       "root": [
         48,
         72
@@ -3142,23 +5782,122 @@
         "p4"
       ],
       "drawings": {
-        "kestrel-treads-0": {
+        "kestrel-track-0": {
           "channel": "legs"
         },
-        "kestrel-treads-1": {
+        "kestrel-track-0-extended": {
           "channel": "legs"
         },
-        "kestrel-treads-2": {
+        "kestrel-track-1": {
           "channel": "legs"
         },
-        "kestrel-treads-3": {
+        "kestrel-track-1-extended": {
           "channel": "legs"
         },
-        "kestrel-air": {
+        "kestrel-track-2": {
           "channel": "legs"
         },
-        "kestrel-land": {
+        "kestrel-track-2-extended": {
           "channel": "legs"
+        },
+        "kestrel-track-3": {
+          "channel": "legs"
+        },
+        "kestrel-track-3-extended": {
+          "channel": "legs"
+        },
+        "kestrel-track-4": {
+          "channel": "legs"
+        },
+        "kestrel-track-4-extended": {
+          "channel": "legs"
+        },
+        "kestrel-track-5": {
+          "channel": "legs"
+        },
+        "kestrel-track-5-extended": {
+          "channel": "legs"
+        },
+        "kestrel-track-6": {
+          "channel": "legs"
+        },
+        "kestrel-track-6-extended": {
+          "channel": "legs"
+        },
+        "kestrel-track-7": {
+          "channel": "legs"
+        },
+        "kestrel-track-7-extended": {
+          "channel": "legs"
+        },
+        "kestrel-hull-idle": {
+          "channel": "legs"
+        },
+        "kestrel-hull-drive-load": {
+          "channel": "legs"
+        },
+        "kestrel-hull-drive-return": {
+          "channel": "legs"
+        },
+        "kestrel-hull-launch-load": {
+          "channel": "legs"
+        },
+        "kestrel-hull-launch-release": {
+          "channel": "legs"
+        },
+        "kestrel-hull-rise-lift": {
+          "channel": "legs"
+        },
+        "kestrel-hull-rise-extend": {
+          "channel": "legs"
+        },
+        "kestrel-hull-apex-float": {
+          "channel": "legs"
+        },
+        "kestrel-hull-apex-tip": {
+          "channel": "legs"
+        },
+        "kestrel-hull-fall-reach": {
+          "channel": "legs"
+        },
+        "kestrel-hull-fall-brace": {
+          "channel": "legs"
+        },
+        "kestrel-hull-impact-touch": {
+          "channel": "legs"
+        },
+        "kestrel-hull-impact-absorb": {
+          "channel": "legs"
+        },
+        "kestrel-hull-impact-rise": {
+          "channel": "legs"
+        },
+        "kestrel-hull-impact-settle": {
+          "channel": "legs"
+        },
+        "kestrel-turret-0-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-1-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-2-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-3-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-4-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-5-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-6-kick": {
+          "channel": "upper"
+        },
+        "kestrel-turret-7-kick": {
+          "channel": "upper"
         },
         "kestrel-turret-0": {
           "channel": "upper",
@@ -3315,20 +6054,161 @@
           "mode": "loop",
           "exposures": [
             {
-              "frame": "kestrel-treads-0",
+              "frame": "kestrel-track-0",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-1",
+              "frame": "kestrel-track-1",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-2",
+              "frame": "kestrel-track-2",
               "ticks": 2
             },
             {
-              "frame": "kestrel-treads-3",
+              "frame": "kestrel-track-3",
               "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-4",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-5",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-6",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-track-7",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.suspension",
+          "channel": "legs",
+          "mode": "loop",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-drive-load",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-idle",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-drive-return",
+              "ticks": 4
+            },
+            {
+              "frame": "kestrel-hull-idle",
+              "ticks": 4
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.launch",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-launch-load",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-launch-release",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.rise",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-rise-lift",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-rise-extend",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.apex",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-apex-float",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-apex-tip",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.air.fall",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-fall-reach",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-fall-brace",
+              "ticks": 2
+            }
+          ]
+        },
+        {
+          "id": "kestrel.land-light",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-impact-touch",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-rise",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-settle",
+              "ticks": 1
+            }
+          ]
+        },
+        {
+          "id": "kestrel.land-heavy",
+          "channel": "legs",
+          "mode": "hold-last",
+          "exposures": [
+            {
+              "frame": "kestrel-hull-impact-touch",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-absorb",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-hull-impact-rise",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-hull-impact-settle",
+              "ticks": 1
             }
           ]
         },

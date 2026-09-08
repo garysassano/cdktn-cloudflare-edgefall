@@ -2,6 +2,7 @@ import type { CombatLab, CombatTarget } from "../../game/labs/combat.js";
 import { RIFLE_PROFILE, SHIELD_PROFILE } from "../../game/labs/combat-content.js";
 import type { VehicleState } from "../../game/state.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
+import { type TankMotion, advanceTankMotion, initialTankMotion } from "./tank-motion.js";
 
 export const CAST_ART = [
   { id: "quay-watch", source: "enemies/quay-watch", directory: "enemies" },
@@ -21,13 +22,13 @@ export interface CastDrawing {
 export interface CastMotion {
   tick: number;
   enemies: Array<{ id: number; strideQ: number }>;
-  tanks: Array<{ id: number; strideQ: number; landTick: number | null }>;
+  tanks: TankMotion[];
 }
 export function initialCastMotion(world: CombatLab): CastMotion {
   return {
     tick: world.tick,
     enemies: world.targets.map(({ enemy }) => ({ id: enemy.body.id, strideQ: 0 })),
-    tanks: world.tanks.map((tank) => ({ id: tank.body.id, strideQ: 0, landTick: null })),
+    tanks: world.tanks.map((tank) => initialTankMotion(tank, world.tick)),
   };
 }
 /** Accepted movement advances a bounded cosmetic stride; collision contacts alone are not landings. */
@@ -47,17 +48,14 @@ export function advanceCastMotion(
           (enemy.life === "alive" && enemy.body.grounded ? Math.abs(enemy.body.vx) : 0)) %
         (18 * 256),
     })),
-    tanks: next.tanks.map((tank) => {
-      const old = before.tanks.find((t) => t.body.id === tank.body.id),
-        clock = current.tanks.find((c) => c.id === tank.body.id);
-      return {
-        id: tank.body.id,
-        strideQ:
-          ((clock?.strideQ ?? 0) + (tank.body.grounded ? Math.abs(tank.body.vx) : 0)) % (8 * 256),
-        landTick:
-          old && !old.body.grounded && tank.body.grounded ? next.tick : (clock?.landTick ?? null),
-      };
-    }),
+    tanks: next.tanks.map((tank) =>
+      advanceTankMotion(
+        before.tanks.find((t) => t.body.id === tank.body.id),
+        tank,
+        current.tanks.find((c) => c.id === tank.body.id),
+        next.tick,
+      ),
+    ),
   };
 }
 function sample(atlas: NativeAtlas, id: string, age: number): string {
@@ -160,33 +158,24 @@ export function tankPresentation(
   ownerSlot = 0,
 ): CastDrawing[] {
   const variant = `p${ownerSlot + 1}`;
-  const hull =
-    tank.lifecycle === "wreck" || tank.lifecycle === "destroying"
-      ? "kestrel-wreck"
-      : !tank.body.grounded
-        ? "kestrel-air"
-        : clock.landTick !== null && tick - clock.landTick < 4
-          ? "kestrel-land"
-          : tank.body.vx !== 0
-            ? sample(atlas, "kestrel.drive", Math.floor(clock.strideQ / 256))
-            : "kestrel-treads-0";
-  const layers = [
-    drawing("kestrel", hull, atlas, tank.body.x, tank.body.y, tank.facing === -1, variant),
-  ];
-  if (tank.lifecycle === "wreck" || tank.lifecycle === "destroying") return layers;
-  const recoil =
-    tank.action.kind === "fire" &&
-    tick - tank.action.stateStartTick >= 1 &&
-    tick - tank.action.stateStartTick <= 2;
+  const layer = (frame: string, flipX = tank.facing === -1) =>
+    drawing("kestrel", frame, atlas, tank.body.x, tank.body.y, flipX, variant);
+  if (tank.lifecycle === "wreck" || tank.lifecycle === "destroying")
+    return [layer("kestrel-wreck")];
+  const hull = clock.airPhase
+    ? sample(atlas, `kestrel.air.${clock.airPhase}`, tick - clock.airPhaseStartTick)
+    : clock.landTick !== null && clock.impact
+      ? sample(atlas, `kestrel.land-${clock.impact}`, tick - clock.landTick)
+      : tank.body.vx !== 0
+        ? sample(atlas, "kestrel.suspension", Math.floor(clock.strideQ / 256))
+        : "kestrel-hull-idle";
+  const track = sample(atlas, "kestrel.drive", Math.floor(clock.strideQ / 256));
+  const layers = [layer(`${track}${clock.airPhase ? "-extended" : ""}`), layer(hull)];
+  const fireAge = tank.action.kind === "fire" ? tick - tank.action.stateStartTick : -1;
   layers.push(
-    drawing(
-      "kestrel",
-      `kestrel-turret-${tank.heading}${recoil ? "-recoil" : ""}`,
-      atlas,
-      tank.body.x,
-      tank.body.y,
+    layer(
+      `kestrel-turret-${tank.heading}${fireAge === 1 ? "-kick" : fireAge === 2 ? "-recoil" : ""}`,
       false,
-      variant,
     ),
   );
   const hatch =
@@ -197,9 +186,7 @@ export function tankPresentation(
           tick - tank.action.stateStartTick,
         )
       : "kestrel-hatch-closed";
-  layers.push(
-    drawing("kestrel", hatch, atlas, tank.body.x, tank.body.y, tank.facing === -1, variant),
-  );
+  layers.push(layer(hatch));
   return layers;
 }
 

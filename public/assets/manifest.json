@@ -691,6 +691,28 @@
       "originalFile": "NES00.ogg"
     },
     {
+      "path": "assets/art/hero/operative.png",
+      "bytes": 82995,
+      "sha256": "0e9db482c43f901c3ea925e2fd601889cec02a03f78db866500a321f9fce8874",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1360,
+        "height": 2040,
+        "colorType": 6
+      },
+      "atlas": "assets/art/hero/operative.atlas.json"
+    },
+    {
+      "path": "assets/art/hero/operative.atlas.json",
+      "bytes": 268549,
+      "sha256": "ef08ebfd3910677b2d48f80c281b54ef00b7a61f8e6a466ce29b167fa0a57064",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 384000
+    },
+    {
       "path": "assets/art/enemies/quay-watch.png",
       "bytes": 3499,
       "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70",
@@ -736,13 +758,13 @@
     },
     {
       "path": "assets/art/vehicles/kestrel.png",
-      "bytes": 23577,
-      "sha256": "6cbd8a7047b84a8291698d1e6629781d9f2612735abf6e2de085347f3d90f110",
+      "bytes": 37331,
+      "sha256": "c79adf47fde03460efb5bd1c8c110aa987f8ac11c3cc914fe7bcb7865d5f03b8",
       "source": "edgefall-native-kestrel",
       "licence": "Project-original",
       "maxBytes": 500000,
       "png": {
-        "width": 800,
+        "width": 1500,
         "height": 2000,
         "colorType": 6
       },
@@ -750,8 +772,8 @@
     },
     {
       "path": "assets/art/vehicles/kestrel.atlas.json",
-      "bytes": 60682,
-      "sha256": "74bc20ca96cc83260558756fc51f4e62ac67d52a78fbda8bbc6737eec657838c",
+      "bytes": 113047,
+      "sha256": "196e823708e6b6e7b315a488d51e639a851f60db4f8baea840ef38bf443f1ad4",
       "source": "edgefall-native-kestrel",
       "licence": "Project-original",
       "maxBytes": 256000
@@ -821,28 +843,6 @@
       "source": "edgefall-native-breakwater-fx",
       "licence": "Project-original",
       "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/hero/operative.png",
-      "bytes": 82995,
-      "sha256": "0e9db482c43f901c3ea925e2fd601889cec02a03f78db866500a321f9fce8874",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1360,
-        "height": 2040,
-        "colorType": 6
-      },
-      "atlas": "assets/art/hero/operative.atlas.json"
-    },
-    {
-      "path": "assets/art/hero/operative.atlas.json",
-      "bytes": 268549,
-      "sha256": "ef08ebfd3910677b2d48f80c281b54ef00b7a61f8e6a466ce29b167fa0a57064",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 384000
     }
   ]
 }
