@@ -1,0 +1,794 @@
+{
+  "codeCommit": "5bf507e10eed5482af2430a94ac4341af809f507",
+  "checks": {
+    "tests": 940,
+    "files": 83
+  },
+  "runtimes": {
+    "node": "v24.20.0",
+    "browser": "151.0.7922.34",
+    "wrangler": "4.128.0",
+    "worker": "local workerd"
+  },
+  "cases": [
+    {
+      "mode": "foot",
+      "players": 1,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 8170,
+      "finalHash": "f195b6aa",
+      "commandHash": "f3b19f22",
+      "entered": [],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse"
+      ],
+      "lives": [
+        3
+      ],
+      "armor": [
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "f8f45fc1"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "296b5568"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "0fd5413e"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "05cd539a"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "5a122205"
+        },
+        {
+          "tick": 4200,
+          "throughTick": 4208,
+          "hash": "480c2e26"
+        },
+        {
+          "tick": 6000,
+          "throughTick": 6008,
+          "hash": "9206c5df"
+        }
+      ]
+    },
+    {
+      "mode": "foot",
+      "players": 2,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 8170,
+      "finalHash": "46042df9",
+      "commandHash": "457118ee",
+      "entered": [],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse"
+      ],
+      "lives": [
+        3,
+        3
+      ],
+      "armor": [
+        3,
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "902b7364"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "af881a55"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "da80982f"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "1bfb5324"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "a420dc35"
+        },
+        {
+          "tick": 4200,
+          "throughTick": 4208,
+          "hash": "22f82117"
+        },
+        {
+          "tick": 6000,
+          "throughTick": 6008,
+          "hash": "d7ee0465"
+        }
+      ]
+    },
+    {
+      "mode": "foot",
+      "players": 4,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 8170,
+      "finalHash": "505e01bc",
+      "commandHash": "7d63abc8",
+      "entered": [],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse",
+        "2:apron",
+        "2:bridge",
+        "2:docks",
+        "2:rescue",
+        "2:rocket-cache",
+        "2:rooftops",
+        "2:shield-yard",
+        "2:siege-arena",
+        "2:tank-depot",
+        "2:warehouse",
+        "3:apron",
+        "3:bridge",
+        "3:docks",
+        "3:rescue",
+        "3:rocket-cache",
+        "3:rooftops",
+        "3:shield-yard",
+        "3:siege-arena",
+        "3:tank-depot",
+        "3:warehouse"
+      ],
+      "lives": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "armor": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "9d3ae656"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "df949083"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "5efa7644"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "0ca91c80"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "e779f4b9"
+        },
+        {
+          "tick": 4200,
+          "throughTick": 4208,
+          "hash": "8526272d"
+        },
+        {
+          "tick": 6000,
+          "throughTick": 6008,
+          "hash": "3989aa21"
+        }
+      ]
+    },
+    {
+      "mode": "tank",
+      "players": 1,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4107,
+      "finalHash": "a0db2bf8",
+      "commandHash": "b88759f3",
+      "entered": [
+        1
+      ],
+      "fired": [
+        1
+      ],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse"
+      ],
+      "lives": [
+        3
+      ],
+      "armor": [
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "f8f45fc1"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "296b5568"
+        },
+        {
+          "tick": 2605,
+          "throughTick": 2613,
+          "hash": "8cad98e0"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "9e5602b6"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "344501fb"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "e57cbf98"
+        }
+      ]
+    },
+    {
+      "mode": "tank",
+      "players": 2,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4107,
+      "finalHash": "54d6d828",
+      "commandHash": "5a7b0928",
+      "entered": [
+        1,
+        2
+      ],
+      "fired": [
+        1,
+        2
+      ],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse"
+      ],
+      "lives": [
+        3,
+        3
+      ],
+      "armor": [
+        3,
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "902b7364"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "af881a55"
+        },
+        {
+          "tick": 2606,
+          "throughTick": 2614,
+          "hash": "6eac7640"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "efc65168"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "5080a2f6"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "2ab58ef3"
+        }
+      ]
+    },
+    {
+      "mode": "tank",
+      "players": 4,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4107,
+      "finalHash": "c86ad2b1",
+      "commandHash": "2ca398ea",
+      "entered": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "fired": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse",
+        "2:apron",
+        "2:bridge",
+        "2:docks",
+        "2:rescue",
+        "2:rocket-cache",
+        "2:rooftops",
+        "2:shield-yard",
+        "2:siege-arena",
+        "2:tank-depot",
+        "2:warehouse",
+        "3:apron",
+        "3:bridge",
+        "3:docks",
+        "3:rescue",
+        "3:rocket-cache",
+        "3:rooftops",
+        "3:shield-yard",
+        "3:siege-arena",
+        "3:tank-depot",
+        "3:warehouse"
+      ],
+      "lives": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "armor": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "9d3ae656"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "df949083"
+        },
+        {
+          "tick": 2624,
+          "throughTick": 2632,
+          "hash": "66bf1584"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "ef4756db"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "19ddd48c"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "cefd113e"
+        }
+      ]
+    },
+    {
+      "mode": "spent-tanks",
+      "players": 1,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4146,
+      "finalHash": "c1d2b0ad",
+      "commandHash": "bd2c8d85",
+      "entered": [
+        1
+      ],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse"
+      ],
+      "lives": [
+        3
+      ],
+      "armor": [
+        0
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "f8f45fc1"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "296b5568"
+        },
+        {
+          "tick": 2605,
+          "throughTick": 2613,
+          "hash": "aea5b29c"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "28cf266a"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "3a61e4dd"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "88f57520"
+        }
+      ]
+    },
+    {
+      "mode": "spent-tanks",
+      "players": 2,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4146,
+      "finalHash": "65827140",
+      "commandHash": "8efb2c20",
+      "entered": [
+        1,
+        2
+      ],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse"
+      ],
+      "lives": [
+        3,
+        3
+      ],
+      "armor": [
+        0,
+        0
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "902b7364"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "af881a55"
+        },
+        {
+          "tick": 2606,
+          "throughTick": 2614,
+          "hash": "be1340e2"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "e54c855a"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "43d7d41d"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "dde1f5b3"
+        }
+      ]
+    },
+    {
+      "mode": "spent-tanks",
+      "players": 4,
+      "contentHash": "f63fd2a3f9980c82758057e18bed6b9c957fe2c53a13522ebaaabc313cd55c4c",
+      "ticks": 4146,
+      "finalHash": "c01c982c",
+      "commandHash": "81af4b81",
+      "entered": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "fired": [],
+      "visited": [
+        "0:apron",
+        "0:bridge",
+        "0:docks",
+        "0:rescue",
+        "0:rocket-cache",
+        "0:rooftops",
+        "0:shield-yard",
+        "0:siege-arena",
+        "0:tank-depot",
+        "0:warehouse",
+        "1:apron",
+        "1:bridge",
+        "1:docks",
+        "1:rescue",
+        "1:rocket-cache",
+        "1:rooftops",
+        "1:shield-yard",
+        "1:siege-arena",
+        "1:tank-depot",
+        "1:warehouse",
+        "2:apron",
+        "2:bridge",
+        "2:docks",
+        "2:rescue",
+        "2:rocket-cache",
+        "2:rooftops",
+        "2:shield-yard",
+        "2:siege-arena",
+        "2:tank-depot",
+        "2:warehouse",
+        "3:apron",
+        "3:bridge",
+        "3:docks",
+        "3:rescue",
+        "3:rocket-cache",
+        "3:rooftops",
+        "3:shield-yard",
+        "3:siege-arena",
+        "3:tank-depot",
+        "3:warehouse"
+      ],
+      "lives": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "continuations": [
+        {
+          "tick": 0,
+          "throughTick": 8,
+          "hash": "9d3ae656"
+        },
+        {
+          "tick": 1800,
+          "throughTick": 1808,
+          "hash": "df949083"
+        },
+        {
+          "tick": 2624,
+          "throughTick": 2632,
+          "hash": "7cb22952"
+        },
+        {
+          "tick": 3599,
+          "throughTick": 3607,
+          "hash": "ad0fdda0"
+        },
+        {
+          "tick": 3600,
+          "throughTick": 3608,
+          "hash": "8c1e2464"
+        },
+        {
+          "tick": 3601,
+          "throughTick": 3609,
+          "hash": "9559db7b"
+        }
+      ]
+    }
+  ],
+  "ticks": 49269,
+  "continuations": 57,
+  "resultSha256": "5d26f732fb4a9abafe31b3c6967913bc79e20e612ee0faabf07db9b1bd58320a",
+  "previousControl": {
+    "status": "pass",
+    "baseCommit": "cc4f8016b88bd15df6be10b9e7ec3b241a199719",
+    "mode": "tank",
+    "players": 1,
+    "expectedFailure": "RangeError: combat tick must be an integer in [0, 3599]",
+    "scope": "Node only: full input-driven Harbor traversal with exact prior combat source and current route content reaches the old one-minute budget.",
+    "bundleSha256": "ffe288ee8c599946a2b5098d3f677132146927a8f58346838b75b70bba7d71fb"
+  },
+  "observability": {
+    "configs": [
+      {
+        "path": "wrangler.jsonc",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      },
+      {
+        "path": ".wrangler.deploy.json",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      }
+    ],
+    "liveIngestionVerified": false,
+    "deployedTimingVerified": false
+  }
+}

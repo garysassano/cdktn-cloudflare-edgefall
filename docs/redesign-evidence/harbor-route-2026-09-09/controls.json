@@ -1,0 +1,19 @@
+[
+  {
+    "name": "previous-one-minute-limit",
+    "detail": "Node only: full input-driven Harbor traversal with exact prior combat source and current route content reaches the old one-minute budget.",
+    "expectedFailure": "RangeError: combat tick must be an integer in [0, 3599]"
+  },
+  {
+    "name": "whole-recording-hash-bound",
+    "detail": "The first focused run completed all route assertions but four result summaries exceeded the 100,000-node canonical limit when hashing the entire input recording. The final fixture folds each accepted input frame into a rolling hash. The passing full check covers all 22 new cases; the original focused failure log is retained. The canonical size guard is unchanged."
+  },
+  {
+    "name": "physical-route-scope",
+    "detail": "Harbor physical route and finite shared depot in the full combat kernel across Node, Chromium and local workerd. No authored encounters, siege boss, mission victory, automatic checkpoint progression, custom-stage SQLite, rendered/network footage, final media or deployed timing/trace ingestion claim."
+  },
+  {
+    "name": "remaining-acceptance",
+    "detail": "Harbor encounter and supply activation, camera/group progression, grenadier and armored-car behavior, multipart siege engine, mission identity/persistence and presentation remain to integrate. W08 still requires rendered normal/degraded network acceptance and final media review. The W06 human review remains pending."
+  }
+]

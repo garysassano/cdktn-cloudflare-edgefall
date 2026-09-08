@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { resolve, relative } from 'node:path';
+const { build } = createRequire(resolve('package.json'))('esbuild');
+const baseCommit = 'cc4f8016b88bd15df6be10b9e7ec3b241a199719';
+const original = execFileSync('git', ['show', `${baseCommit}:src/game/labs/combat.ts`], { encoding: 'utf8' });
+const bundle = await build({ entryPoints: ['test/fixtures/harbor-route-proof.ts'], bundle: true, write: false, platform: 'neutral', format: 'esm', plugins: [{ name: 'previous-combat-clock', setup(plugin) { plugin.onLoad({filter: /\/labs\/combat\.ts$/}, args => relative(process.cwd(), args.path) === 'src/game/labs/combat.ts' ? { contents: original, loader: 'ts', resolveDir: resolve('src/game/labs') } : undefined); } }] });
+const bytes = bundle.outputFiles[0].contents;
+const fixture = await import(`data:text/javascript;base64,${Buffer.from(bytes).toString('base64')}`);
+let failure = null;
+try { fixture.recordHarborRoute('tank', 1); } catch (error) { failure = String(error); }
+assert.equal(failure, 'RangeError: combat tick must be an integer in [0, 3599]');
+const report = { status: 'pass', baseCommit, mode: 'tank', players: 1, expectedFailure: failure, scope: 'Node only: full input-driven Harbor traversal with exact prior combat source and current route content reaches the old one-minute budget.', bundleSha256: createHash('sha256').update(bytes).digest('hex') };
+const output = 'dist/harbor-route-before-proof';
+await mkdir(output, { recursive: true });
+await writeFile(`${output}/node.js`, bytes);
+await writeFile(`${output}/combat.ts`, original);
+await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
+console.log(JSON.stringify(report));
