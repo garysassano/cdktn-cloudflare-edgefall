@@ -129,6 +129,8 @@ export interface CombatTarget {
 }
 /** Tick-local mission geometry and external damage targets, consumed by the same combat kernel. */
 export interface CombatStage {
+  /** An authored mission may outlive the one-minute diagnostic recording budget. */
+  tickLimit?: number;
   /** Authored idle/patrol tuning; committed attacks and shield behavior retain their own movement. */
   patrolSpeed?: number;
   terrain: MaterialSurface[];
@@ -190,6 +192,7 @@ export interface CombatLab {
   events: CombatNotice[];
 }
 export const COMBAT_LAB_LIMIT = 3600;
+export const COMBAT_STAGE_LIMIT = 20 * 60 * 60;
 export const COMBAT_ENTRY = {
   firstX: pixels(45),
   slotSpacing: pixels(4),
@@ -545,7 +548,13 @@ export function advanceCombatLab(
   },
   stage?: CombatStage,
 ) {
-  integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
+  const tickLimit = integer(
+    stage?.tickLimit ?? COMBAT_LAB_LIMIT,
+    1,
+    COMBAT_STAGE_LIMIT,
+    "combat tick limit",
+  );
+  integer(current.tick, 0, tickLimit - 1, "combat tick");
   if (current.format !== 16 || current.pickups.tick !== current.tick)
     throw new Error("Combat supply format/boundary mismatch");
   stage ??= materialCombatStage(current);

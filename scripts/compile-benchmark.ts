@@ -10,6 +10,7 @@ import {
   BREAKWATER_TERRAIN,
   breakwaterPickups,
 } from "../src/game/missions/breakwater-content.js";
+import { HARBOR, HARBOR_TERRAIN, harborDepot } from "../src/game/missions/harbor-content.js";
 
 const bytes = `${JSON.stringify(
   {
@@ -38,3 +39,27 @@ else {
   await writeFile(output, bytes);
 }
 console.log(JSON.stringify({ status: "pass", content: BREAKWATER.id, ...JSON.parse(bytes) }));
+
+const harborBytes = `${JSON.stringify(
+  {
+    format: 1,
+    contentHash: createHash("sha256")
+      .update(
+        canonical({
+          mission: HARBOR,
+          terrain: HARBOR_TERRAIN,
+          depots: [1, 2, 3, 4].map(harborDepot),
+          combat: COMBAT_CONTENT,
+          surfaceMaterials: SURFACE_MATERIALS,
+        }),
+      )
+      .digest("hex"),
+  },
+  null,
+  2,
+)}\n`;
+const harborOutput = "src/game/missions/compiled/harbor.json";
+if (process.argv.includes("--check"))
+  assert.equal(await readFile(harborOutput, "utf8"), harborBytes, "Stale Harbor content digest");
+else await writeFile(harborOutput, harborBytes);
+console.log(JSON.stringify({ status: "pass", content: HARBOR.id, ...JSON.parse(harborBytes) }));
