@@ -207,6 +207,7 @@ try {
     support: expected.support,
     rocket: expected.rocket,
     rocketCombat: expected.rocketCombat,
+    beam: expected.beam,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {
@@ -218,7 +219,7 @@ try {
     },
     status: "pass",
     scope:
-      "Portable simulation, input/snapshot/recovery and released-rocket fixtures in Node, Chromium and local workerd. No production gameplay, deployed cadence or per-tick CPU claim.",
+      "Portable simulation, input/snapshot/recovery, released-rocket and beam-charge fixtures in Node, Chromium and local workerd. No production gameplay, deployed cadence or per-tick CPU claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));

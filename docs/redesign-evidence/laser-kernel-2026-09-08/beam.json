@@ -1,0 +1,2125 @@
+{
+  "scope": "Instantaneous energy-beam geometry and prepaid charge continuation in a deterministic fixture; no room input/ammo, event delivery, durable archive, media or production claim.",
+  "cases": [
+    {
+      "name": "empty-long-range",
+      "hash": "22358c9e",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "long-range-target",
+      "hash": "27ab6dbf",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 102400,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "range-endpoint",
+      "hash": "84f78862",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 131072,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "width-edges",
+      "hash": "b0cf210e",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 220,
+            "entityId": 22,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 256
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "thin-cover",
+      "hash": "5cb7a0c6",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 76800,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 11264,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 76800,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "partial-cover",
+      "hash": "26034d78",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 256
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "one-way-cover",
+      "hash": "9f45152b",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "muzzle-overlap",
+      "hash": "0e8c2222",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 0,
+        "width": 1024,
+        "segments": [],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 0,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "cover-arriving",
+      "hash": "9f45152b",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "cover-departing",
+      "hash": "ca0e2b9c",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 20480,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "body-arriving",
+      "hash": "3ad2423d",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "body-crossing-between-samples",
+      "hash": "22358c9e",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "component-deduplication",
+      "hash": "192d039e",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 7680,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 7680,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 5120,
+              "y": 0
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 7680,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "penetration"
+      }
+    },
+    {
+      "name": "coincident-order",
+      "hash": "1b473b6b",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "penetration"
+      }
+    },
+    {
+      "name": "shield-before-body",
+      "hash": "4f046438",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 201,
+            "entityId": 20,
+            "kind": "shield",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "shield"
+      }
+    },
+    {
+      "name": "terrain-before-shield",
+      "hash": "9f45152b",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 900,
+            "entityId": null,
+            "kind": "terrain",
+            "damage": 0,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "terrain"
+      }
+    },
+    {
+      "name": "exposed-component-before-shield",
+      "hash": "9c5501f0",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 7680,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "shield"
+      }
+    },
+    {
+      "name": "allied-solid",
+      "hash": "09bec2a8",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 10240,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 10240,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": "solid"
+      }
+    },
+    {
+      "name": "owner-and-allies",
+      "hash": "df110381",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 0,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": 0,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": 65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 15360,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "up",
+      "hash": "7c2313f1",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 1,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": -512,
+            "y": -65536,
+            "w": 1024,
+            "h": 65536
+          },
+          {
+            "x": -512,
+            "y": -131072,
+            "w": 1024,
+            "h": 65536
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 0,
+              "y": -10240
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "down",
+      "hash": "c4b9a791",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 2,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": -512,
+            "y": 0,
+            "w": 1024,
+            "h": 65536
+          },
+          {
+            "x": -512,
+            "y": 65536,
+            "w": 1024,
+            "h": 65536
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": 0,
+              "y": 10240
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    },
+    {
+      "name": "left",
+      "hash": "3ed0176f",
+      "cast": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "heading": 3,
+        "length": 131072,
+        "width": 1024,
+        "segments": [
+          {
+            "x": -65536,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          },
+          {
+            "x": -131072,
+            "y": -512,
+            "w": 65536,
+            "h": 1024
+          }
+        ],
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 18,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 2,
+            "time": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "position": {
+              "x": -10240,
+              "y": 0
+            }
+          }
+        ],
+        "stoppedBy": null
+      }
+    }
+  ],
+  "charges": [
+    {
+      "name": "held-moving-muzzle",
+      "hash": "34da6a61",
+      "visibleTicks": 6,
+      "terminalTick": 7,
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "followupDamage": 0,
+      "frames": [
+        {
+          "tick": 1,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 1,
+            "origin": {
+              "x": 256,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 256,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 256,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65792,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [
+              {
+                "sourceId": 1000,
+                "definitionId": 18,
+                "ownerId": 1,
+                "actionInstanceId": 7,
+                "colliderId": 200,
+                "entityId": 20,
+                "kind": "body",
+                "damage": 2,
+                "time": {
+                  "numerator": 1,
+                  "denominator": 1
+                },
+                "position": {
+                  "x": 25600,
+                  "y": 0
+                }
+              }
+            ],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 2,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 2,
+            "origin": {
+              "x": 512,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 512,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 512,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 66048,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 3,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 3,
+            "origin": {
+              "x": 768,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 768,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 768,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 66304,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 4,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 4,
+            "origin": {
+              "x": 1024,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 1024,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 1024,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 66560,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 5,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 5,
+            "origin": {
+              "x": 1280,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 1280,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 1280,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 66816,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 6,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 6,
+            "origin": {
+              "x": 1536,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 1536,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 1536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 67072,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 7,
+          "beam": null,
+          "cast": null
+        }
+      ]
+    },
+    {
+      "name": "held-turning-muzzle",
+      "hash": "9a62ac37",
+      "visibleTicks": 6,
+      "terminalTick": 7,
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "followupDamage": 0,
+      "frames": [
+        {
+          "tick": 1,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 1,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 1,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 1,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": -512,
+                "y": -65536,
+                "w": 1024,
+                "h": 65536
+              },
+              {
+                "x": -512,
+                "y": -131072,
+                "w": 1024,
+                "h": 65536
+              }
+            ],
+            "impacts": [
+              {
+                "sourceId": 1000,
+                "definitionId": 18,
+                "ownerId": 1,
+                "actionInstanceId": 7,
+                "colliderId": 210,
+                "entityId": 21,
+                "kind": "body",
+                "damage": 2,
+                "time": {
+                  "numerator": 1,
+                  "denominator": 1
+                },
+                "position": {
+                  "x": 0,
+                  "y": -25600
+                }
+              }
+            ],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 2,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 2,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 2,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 2,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": -512,
+                "y": 0,
+                "w": 1024,
+                "h": 65536
+              },
+              {
+                "x": -512,
+                "y": 65536,
+                "w": 1024,
+                "h": 65536
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 3,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 3,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 3,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 3,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": -65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": -131072,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 4,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 4,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 5,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 5,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 1,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 1,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": -512,
+                "y": -65536,
+                "w": 1024,
+                "h": 65536
+              },
+              {
+                "x": -512,
+                "y": -131072,
+                "w": 1024,
+                "h": 65536
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 6,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 6,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 2,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 2,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": -512,
+                "y": 0,
+                "w": 1024,
+                "h": 65536
+              },
+              {
+                "x": -512,
+                "y": 65536,
+                "w": 1024,
+                "h": 65536
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 7,
+          "beam": null,
+          "cast": null
+        }
+      ]
+    },
+    {
+      "name": "short-tap",
+      "hash": "b2daf961",
+      "visibleTicks": 1,
+      "terminalTick": 2,
+      "restoredTicks": [
+        1
+      ],
+      "followupDamage": 0,
+      "frames": [
+        {
+          "tick": 1,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 1,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [
+              {
+                "sourceId": 1000,
+                "definitionId": 18,
+                "ownerId": 1,
+                "actionInstanceId": 7,
+                "colliderId": 200,
+                "entityId": 20,
+                "kind": "body",
+                "damage": 2,
+                "time": {
+                  "numerator": 1,
+                  "denominator": 1
+                },
+                "position": {
+                  "x": 25600,
+                  "y": 0
+                }
+              }
+            ],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 2,
+          "beam": null,
+          "cast": null
+        }
+      ]
+    },
+    {
+      "name": "interrupted-owner",
+      "hash": "a08fdc27",
+      "visibleTicks": 3,
+      "terminalTick": 4,
+      "restoredTicks": [
+        1,
+        2,
+        3
+      ],
+      "followupDamage": 0,
+      "frames": [
+        {
+          "tick": 1,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 1,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [
+              {
+                "sourceId": 1000,
+                "definitionId": 18,
+                "ownerId": 1,
+                "actionInstanceId": 7,
+                "colliderId": 200,
+                "entityId": 20,
+                "kind": "body",
+                "damage": 2,
+                "time": {
+                  "numerator": 1,
+                  "denominator": 1
+                },
+                "position": {
+                  "x": 25600,
+                  "y": 0
+                }
+              }
+            ],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 2,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 2,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 3,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 3,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 4,
+          "beam": null,
+          "cast": null
+        }
+      ]
+    },
+    {
+      "name": "moving-cover-and-target",
+      "hash": "a97b0272",
+      "visibleTicks": 6,
+      "terminalTick": 7,
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "followupDamage": 0,
+      "frames": [
+        {
+          "tick": 1,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 1,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [
+              {
+                "sourceId": 1000,
+                "definitionId": 18,
+                "ownerId": 1,
+                "actionInstanceId": 7,
+                "colliderId": 210,
+                "entityId": 21,
+                "kind": "body",
+                "damage": 2,
+                "time": {
+                  "numerator": 1,
+                  "denominator": 1
+                },
+                "position": {
+                  "x": 25600,
+                  "y": 0
+                }
+              }
+            ],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 2,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 2,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 3,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 3,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 10240
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 10240,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 10240,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": "terrain"
+          }
+        },
+        {
+          "tick": 4,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 4,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 10240
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 10240,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 10240,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": "terrain"
+          }
+        },
+        {
+          "tick": 5,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 5,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 6,
+          "beam": {
+            "id": 1000,
+            "ownerId": 1,
+            "team": 1,
+            "actionInstanceId": 7,
+            "definitionId": 18,
+            "spawnTick": 1,
+            "tick": 6,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072
+          },
+          "cast": {
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "heading": 0,
+            "length": 131072,
+            "width": 1024,
+            "segments": [
+              {
+                "x": 0,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              },
+              {
+                "x": 65536,
+                "y": -512,
+                "w": 65536,
+                "h": 1024
+              }
+            ],
+            "impacts": [],
+            "stoppedBy": null
+          }
+        },
+        {
+          "tick": 7,
+          "beam": null,
+          "cast": null
+        }
+      ]
+    }
+  ]
+}

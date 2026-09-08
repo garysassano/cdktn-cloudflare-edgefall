@@ -273,7 +273,7 @@ export const SHIELD_PROFILE: ShieldProfile = {
   bashHeight: pixels(24),
   bashActiveTick: 12,
   bashActiveTicks: 4,
-  damageByMaterial: { bullet: 0, explosive: 2, heat: 1, blade: 0, blunt: 1 },
+  damageByMaterial: { bullet: 0, explosive: 2, heat: 1, energy: 1, blade: 0, blunt: 1 },
 };
 COMBAT_CONTENT.attacks.push({
   id: 6,

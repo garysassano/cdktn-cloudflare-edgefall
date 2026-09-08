@@ -32,7 +32,7 @@ export interface AttackDefinition {
   speed: number;
   maxTargets: number;
   repeatDamageTicks: number;
-  material: "bullet" | "explosive" | "heat" | "blade" | "blunt";
+  material: "bullet" | "explosive" | "heat" | "energy" | "blade" | "blunt";
 }
 export interface WeaponDefinition {
   id: WeaponId;
