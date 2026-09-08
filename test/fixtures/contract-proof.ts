@@ -29,6 +29,7 @@ import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import { ordnanceProof } from "./ordnance-proof.js";
+import { pickupCombatProof } from "./pickup-combat-proof.js";
 import { playerLifeProof } from "./player-life-proof.js";
 import { playerLifeRecoveryProof } from "./player-life-recovery-proof.js";
 import { predictionProof } from "./prediction-proof.js";
@@ -128,6 +129,7 @@ export async function contractProof() {
     beam: beamProof(),
     laserCombat: await laserCombatProof(),
     weaponPickups: weaponPickupProof(),
+    pickupCombat: await pickupCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

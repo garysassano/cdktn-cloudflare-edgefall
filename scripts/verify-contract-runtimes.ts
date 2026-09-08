@@ -10,6 +10,8 @@ import { contractProof } from "../test/fixtures/contract-proof.js";
 
 const require = createRequire(import.meta.url);
 const output = "dist/contract-runtime-proof";
+// Bounds the complete cross-domain conformance suite, including archive replay, not a room tick.
+const WORKERD_REQUEST_TIMEOUT_MS = 60_000;
 await mkdir(output, { recursive: true });
 for (const name of ["report.json", "failure.json"]) await rm(`${output}/${name}`, { force: true });
 const bundle = await build({
@@ -96,8 +98,7 @@ try {
   phase = "workerd contract workload";
   const workerdStarted = performance.now();
   const response = await fetch(`http://127.0.0.1:${port}/contract-proof`, {
-    // This deadline covers the entire growing conformance suite, not one game tick.
-    signal: AbortSignal.timeout(20_000),
+    signal: AbortSignal.timeout(WORKERD_REQUEST_TIMEOUT_MS),
   });
   assert(response.ok, "workerd contract proof failed");
   assert.deepEqual(await response.json(), expected, "workerd differs from Node");
@@ -135,7 +136,7 @@ try {
       worker: "local workerd; no deployed service",
     },
     durationsMs,
-    workerdRequestTimeoutMs: 20_000,
+    workerdRequestTimeoutMs: WORKERD_REQUEST_TIMEOUT_MS,
     snapshotBytes: expected.snapshots.map((snapshot) => ({
       name: snapshot.name,
       bytes: snapshot.hex.length / 2,
@@ -210,6 +211,7 @@ try {
     beam: expected.beam,
     laserCombat: expected.laserCombat,
     weaponPickups: expected.weaponPickups,
+    pickupCombat: expected.pickupCombat,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

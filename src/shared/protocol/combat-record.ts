@@ -10,8 +10,14 @@ export const AREA_EXPOSURE_BYTES = 48;
 export const MAX_AREA_EXPOSURES = 64;
 export const DESTRUCTIBLE_BYTES = 24;
 export const MAX_DESTRUCTIBLES = 32;
+export const PICKUP_BYTES = 16;
+export const MAX_PICKUPS = 64;
 export const MAX_COMBAT_BYTES =
-  8788 + AREA_EXPOSURE_BYTES * MAX_AREA_EXPOSURES + DESTRUCTIBLE_BYTES * MAX_DESTRUCTIBLES;
+  8788 +
+  AREA_EXPOSURE_BYTES * MAX_AREA_EXPOSURES +
+  DESTRUCTIBLE_BYTES * MAX_DESTRUCTIBLES +
+  PICKUP_BYTES * MAX_PICKUPS;
+const PICKUP_STATUSES = ["dormant", "available", "claimed", "expired", "unsupported"] as const;
 const PHASES = ["active", "complete", "retired", "failed"] as const;
 const STATUSES = ["pending", "alive", "resolved"] as const;
 const RESOLUTIONS = [
@@ -42,6 +48,7 @@ function length(
   kills: number,
   volumes: number,
   props: number,
+  pickups: number,
 ) {
   check(Number.isInteger(members) && members >= 0 && members <= 256, "member count");
   check(Number.isInteger(objectives) && objectives >= 0 && objectives <= 64, "objective count");
@@ -51,7 +58,9 @@ function length(
     "area volume count",
   );
   check(Number.isInteger(props) && props >= 0 && props <= MAX_DESTRUCTIBLES, "destructible count");
+  check(Number.isInteger(pickups) && pickups >= 0 && pickups <= MAX_PICKUPS, "pickup count");
   return (
+    pickups * PICKUP_BYTES +
     props * DESTRUCTIBLE_BYTES +
     COMBAT_HEADER_BYTES +
     members * COMBAT_MEMBER_BYTES +
@@ -68,6 +77,7 @@ export function combatRecordBytes(combat: CombatSnapshot | null) {
         combat.kills.length,
         combat.volumes.length,
         combat.props.length,
+        combat.pickups.length,
       );
 }
 function writeTick(w: Writer, tick: number | null) {
@@ -86,7 +96,7 @@ function readOptional<T extends string>(r: Reader, values: readonly T[]): T | nu
   return index === 0 ? null : (values[index - 1] ?? null);
 }
 export function writeCombat(w: Writer, combat: CombatSnapshot) {
-  w.u16(3);
+  w.u16(4);
   w.u16(COMBAT_HEADER_BYTES);
   w.u32(combat.nextEntityId, 1);
   w.u32(combat.nextActionId, 1);
@@ -98,11 +108,17 @@ export function writeCombat(w: Writer, combat: CombatSnapshot) {
   w.u16(combat.kills.length);
   w.u16(combat.volumes.length);
   w.u16(combat.props.length);
-  w.zero(2);
+  w.u16(combat.pickups.length);
   w.optionalId(combat.failure?.id ?? null);
   writeTick(w, combat.failure?.tick ?? null);
   writeOptional(w, FAILURES, combat.failure?.reason ?? null);
   writeOptional(w, CAUSES, combat.failure?.cause ?? null);
+  for (const pickup of combat.pickups) {
+    w.u32(pickup.id, 1);
+    w.choice(PICKUP_STATUSES, pickup.status);
+    writeTick(w, pickup.resolvedTick);
+    w.optionalId(pickup.claimedBy);
+  }
   for (const prop of combat.props) {
     w.u32(prop.id, 1);
     w.u32(prop.definitionId, 1);
@@ -159,7 +175,7 @@ export function writeCombat(w: Writer, combat: CombatSnapshot) {
 }
 export function readCombat(r: Reader): CombatSnapshot {
   const start = r.offset;
-  check(r.u16() === 3 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
+  check(r.u16() === 4 && r.u16() === COMBAT_HEADER_BYTES, "section version/header");
   const cursors = {
     nextEntityId: r.u32(1),
     nextActionId: r.u32(1),
@@ -171,10 +187,10 @@ export function readCombat(r: Reader): CombatSnapshot {
     objectives = r.u16(),
     kills = r.u16(),
     volumes = r.u16(),
-    props = r.u16();
-  r.zero(2);
+    props = r.u16(),
+    pickups = r.u16();
   check(
-    start + length(members, objectives, kills, volumes, props) === r.bytes.byteLength,
+    start + length(members, objectives, kills, volumes, props, pickups) === r.bytes.byteLength,
     "section length",
   );
   const id = r.u32() || null,
@@ -194,11 +210,19 @@ export function readCombat(r: Reader): CombatSnapshot {
         ? { id, tick, reason, cause }
         : null,
     props: [],
+    pickups: [],
     members: [],
     objectives: [],
     kills: [],
     volumes: [],
   };
+  for (let i = 0; i < pickups; i++)
+    combat.pickups.push({
+      id: r.u32(1),
+      status: r.choice(PICKUP_STATUSES),
+      resolvedTick: readTick(r),
+      claimedBy: r.u32() || null,
+    });
   for (let i = 0; i < props; i++)
     combat.props.push({
       id: r.u32(1),
@@ -271,6 +295,7 @@ export function validateCombat(snapshot: FullSnapshot) {
     );
   }
   ordered(combat.props.map((p) => p.id));
+  ordered(combat.pickups.map((p) => p.id));
   ordered(combat.members.map((m) => m.id));
   ordered(combat.objectives.map((o) => o.id));
   ordered(combat.kills.map((k) => k.playerId));
@@ -341,6 +366,38 @@ export function validateCombat(snapshot: FullSnapshot) {
     );
   }
   const propOwners = new Set([...participants, ...combat.members.map((m) => m.id)]);
+  for (const pickup of combat.pickups) {
+    check(
+      Object.keys(pickup).sort().join() === "claimedBy,id,resolvedTick,status",
+      "pickup fields",
+    );
+    check(PICKUP_STATUSES.includes(pickup.status), "pickup status");
+    time(pickup.resolvedTick);
+    const resolved = !["dormant", "available"].includes(pickup.status);
+    check(
+      resolved === (pickup.resolvedTick !== null) && (!resolved || (pickup.resolvedTick ?? 0) > 0),
+      "pickup resolution",
+    );
+    check(
+      pickup.status === "claimed"
+        ? pickup.claimedBy !== null && participants.has(pickup.claimedBy)
+        : pickup.claimedBy === null,
+      "pickup claimant",
+    );
+    check(resolved === snapshot.removedIds.includes(pickup.id), "pickup removal mismatch");
+    check(
+      ![
+        ...participants,
+        ...combat.members.map((m) => m.id),
+        ...combat.props.map((p) => p.id),
+        ...snapshot.vehicles.map((v) => v.body.id),
+        ...snapshot.projectiles.map((p) => p.id),
+        ...snapshot.platforms.map((p) => p.id),
+        ...combat.volumes.map((v) => v.id),
+      ].includes(pickup.id),
+      "pickup identity reused",
+    );
+  }
   for (const prop of combat.props) {
     time(prop.destroyedTick);
     check(prop.id < combat.nextEntityId, "unallocated prop identity");
@@ -447,6 +504,7 @@ export function validateCombat(snapshot: FullSnapshot) {
     ...snapshot.threats.map((t) => t.sourceId),
     ...snapshot.removedIds,
     ...combat.members.map((m) => m.id),
+    ...combat.pickups.map((p) => p.id),
     ...combat.volumes.map((volume) => volume.id),
   ];
   const actionIds = [

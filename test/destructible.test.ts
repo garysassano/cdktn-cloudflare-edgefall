@@ -69,7 +69,7 @@ describe("attack-driven support destruction", () => {
     ).toBe(true);
     expect(fixture.state.combat.encounter.kills.every((kill) => kill.count === 0)).toBe(true);
     expect(fixture.state.combat.encounter.receipts).toHaveLength(4);
-    expect(fixture.state.snapshot.removedIds).toEqual([20, 21, 104]);
+    expect(fixture.state.snapshot.removedIds).toEqual([20, 21, 104, 620]);
     expect(fixture.state.snapshot.campaign.remainingEnemies).toBe(0);
     expect(
       fixture.states

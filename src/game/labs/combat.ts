@@ -34,6 +34,12 @@ import { firearmVelocity } from "../combat/firearm-aim.js";
 import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions.js";
 import { type Grenade, grenadeLaunchVelocity, stepGrenade } from "../combat/grenade.js";
 import {
+  type WeaponPickupClaim,
+  type WeaponPickupState,
+  createWeaponPickups,
+  stepWeaponPickups,
+} from "../combat/pickups.js";
+import {
   type BallisticProjectile,
   type HurtTarget,
   type Impact,
@@ -72,6 +78,7 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "./combat-content.js";
+import { combatPickupDefinitions } from "./combat-pickups.js";
 import {
   type CombatTankConnections,
   type SeatChanges,
@@ -106,6 +113,7 @@ export const COMBAT_SCENARIOS = [
   "support",
   "rocket",
   "laser",
+  "pickups",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -161,7 +169,7 @@ export interface CombatNotice {
   beam: BeamGeometry | null;
 }
 export interface CombatLab {
-  format: 11;
+  format: 12;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -171,6 +179,8 @@ export interface CombatLab {
   tanks: TankState[];
   targets: CombatTarget[];
   props: DestructibleState[];
+  pickups: WeaponPickupState;
+  pickupClaims: WeaponPickupClaim[];
   projectiles: BallisticProjectile[];
   rockets: Rocket[];
   beams: BeamPulse[];
@@ -256,7 +266,8 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     actor.playerId = actor.body.id = slot + 1;
     actor.slot = slot;
     if (scenario === "ordnance") actor.body.supportId = 102;
-    if (slot === 1) actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
+    if (slot === 1 && scenario !== "pickups")
+      actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
     if (scenario === "hmg") actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
     if (scenario === "shotgun") actor.weapon = { ...actor.weapon, id: "shotgun", ammo: 24 };
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
@@ -307,7 +318,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 11,
+    format: 12,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -333,6 +344,12 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : [],
     targets,
     props,
+    pickups: createWeaponPickups(
+      combatPickupDefinitions(scenario, count),
+      COMBAT_CATALOG,
+      combatTerrain(scenario, 0, props),
+    ),
+    pickupClaims: [],
     projectiles: [],
     rockets: [],
     beams: [],
@@ -515,6 +532,8 @@ export function advanceCombatLab(
   stage?: CombatStage,
 ) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
+  if (current.format !== 12 || current.pickups.tick !== current.tick)
+    throw new Error("Combat supply format/boundary mismatch");
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
     integer(command.held, 0, HELD_MASK, "combat held mask");
@@ -1391,6 +1410,19 @@ export function advanceCombatLab(
     world.players[slot] = death.actor;
     if (death.notice) lifeNotices.push(death.notice);
   }
+  const supplies = stepWeaponPickups(
+    current.pickups,
+    combatPickupDefinitions(world.scenario, world.players.length),
+    world.players,
+    playerMovement,
+    physicalTerrain.filter(
+      (surface) => !world.props.some((prop) => prop.id === surface.id && prop.health === 0),
+    ),
+    COMBAT_CATALOG,
+  );
+  world.pickups = supplies.state;
+  world.players = supplies.players;
+  world.pickupClaims = supplies.claims;
   world.strikes = world.strikes.filter((strike) =>
     world.players.some(
       (player) =>
@@ -1431,7 +1463,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }
 export interface CombatRecording {
-  format: 11;
+  format: 12;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1440,7 +1472,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 11 ||
+    recording.format !== 12 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

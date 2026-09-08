@@ -1,0 +1,7065 @@
+{
+  "ticks": 150,
+  "claims": [
+    {
+      "id": 600,
+      "claimId": 600,
+      "sourceId": 500,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 5,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 150
+    },
+    {
+      "id": 601,
+      "claimId": 601,
+      "sourceId": 500,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 6,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 150
+    },
+    {
+      "id": 602,
+      "claimId": 602,
+      "sourceId": 500,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 8,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 150
+    },
+    {
+      "id": 603,
+      "claimId": 603,
+      "sourceId": 500,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 9,
+      "weaponId": "heavy-machine-gun",
+      "previousWeaponId": "sidearm",
+      "previousAmmo": 0,
+      "ammo": 150
+    },
+    {
+      "id": 604,
+      "claimId": 604,
+      "sourceId": 501,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 23,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 147,
+      "ammo": 24
+    },
+    {
+      "id": 605,
+      "claimId": 605,
+      "sourceId": 501,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 25,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 146,
+      "ammo": 24
+    },
+    {
+      "id": 606,
+      "claimId": 606,
+      "sourceId": 501,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 26,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 146,
+      "ammo": 24
+    },
+    {
+      "id": 607,
+      "claimId": 607,
+      "sourceId": 501,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 27,
+      "weaponId": "shotgun",
+      "previousWeaponId": "heavy-machine-gun",
+      "previousAmmo": 147,
+      "ammo": 24
+    },
+    {
+      "id": 608,
+      "claimId": 608,
+      "sourceId": 502,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 42,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 23,
+      "ammo": 30
+    },
+    {
+      "id": 609,
+      "claimId": 609,
+      "sourceId": 502,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 43,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 23,
+      "ammo": 30
+    },
+    {
+      "id": 610,
+      "claimId": 610,
+      "sourceId": 502,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 44,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 23,
+      "ammo": 30
+    },
+    {
+      "id": 611,
+      "claimId": 611,
+      "sourceId": 502,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 46,
+      "weaponId": "flamethrower",
+      "previousWeaponId": "shotgun",
+      "previousAmmo": 23,
+      "ammo": 30
+    },
+    {
+      "id": 612,
+      "claimId": 612,
+      "sourceId": 503,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 60,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 29,
+      "ammo": 20
+    },
+    {
+      "id": 613,
+      "claimId": 613,
+      "sourceId": 503,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 61,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 29,
+      "ammo": 20
+    },
+    {
+      "id": 614,
+      "claimId": 614,
+      "sourceId": 503,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 63,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 29,
+      "ammo": 20
+    },
+    {
+      "id": 615,
+      "claimId": 615,
+      "sourceId": 503,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 64,
+      "weaponId": "rocket-launcher",
+      "previousWeaponId": "flamethrower",
+      "previousAmmo": 29,
+      "ammo": 20
+    },
+    {
+      "id": 616,
+      "claimId": 616,
+      "sourceId": 504,
+      "playerId": 4,
+      "slot": 3,
+      "tick": 78,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 20,
+      "ammo": 120
+    },
+    {
+      "id": 617,
+      "claimId": 617,
+      "sourceId": 504,
+      "playerId": 3,
+      "slot": 2,
+      "tick": 80,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 20,
+      "ammo": 120
+    },
+    {
+      "id": 618,
+      "claimId": 618,
+      "sourceId": 504,
+      "playerId": 2,
+      "slot": 1,
+      "tick": 81,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 20,
+      "ammo": 120
+    },
+    {
+      "id": 619,
+      "claimId": 619,
+      "sourceId": 504,
+      "playerId": 1,
+      "slot": 0,
+      "tick": 82,
+      "weaponId": "laser",
+      "previousWeaponId": "rocket-launcher",
+      "previousAmmo": 20,
+      "ammo": 120
+    }
+  ],
+  "checkpoints": [
+    {
+      "tick": 0,
+      "hash": "b42ca6a4",
+      "checkpointBytes": 16209,
+      "snapshotBytes": 2092,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 601,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 602,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 603,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 604,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "dormant",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 15,
+      "resumedHash": "22c9f0df"
+    },
+    {
+      "tick": 1,
+      "hash": "0fce2c66",
+      "checkpointBytes": 23467,
+      "snapshotBytes": 2284,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 601,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 602,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 603,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 16,
+      "resumedHash": "38ac9349"
+    },
+    {
+      "tick": 6,
+      "hash": "f7cf318e",
+      "checkpointBytes": 24071,
+      "snapshotBytes": 2292,
+      "contacts": [
+        {
+          "id": 602,
+          "playerId": 3
+        },
+        {
+          "id": 602,
+          "playerId": 4
+        },
+        {
+          "id": 603,
+          "playerId": 3
+        },
+        {
+          "id": 603,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 603,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 21,
+      "resumedHash": "9e709e31"
+    },
+    {
+      "tick": 7,
+      "hash": "ea15d7f4",
+      "checkpointBytes": 23890,
+      "snapshotBytes": 2292,
+      "contacts": [
+        {
+          "id": 602,
+          "playerId": 3
+        },
+        {
+          "id": 602,
+          "playerId": 4
+        },
+        {
+          "id": 603,
+          "playerId": 3
+        },
+        {
+          "id": 603,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 603,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 22,
+      "resumedHash": "90d9f8dd"
+    },
+    {
+      "tick": 8,
+      "hash": "e2a46d18",
+      "checkpointBytes": 24454,
+      "snapshotBytes": 2296,
+      "contacts": [
+        {
+          "id": 603,
+          "playerId": 2
+        },
+        {
+          "id": 603,
+          "playerId": 3
+        },
+        {
+          "id": 603,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 23,
+      "resumedHash": "9827fb27"
+    },
+    {
+      "tick": 9,
+      "hash": "edbe1346",
+      "checkpointBytes": 30694,
+      "snapshotBytes": 2492,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 24,
+      "resumedHash": "74d1d89d"
+    },
+    {
+      "tick": 10,
+      "hash": "a3520dcd",
+      "checkpointBytes": 28676,
+      "snapshotBytes": 2492,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 25,
+      "resumedHash": "30ba8e5c"
+    },
+    {
+      "tick": 12,
+      "hash": "47f6434b",
+      "checkpointBytes": 29670,
+      "snapshotBytes": 2492,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 27,
+      "resumedHash": "f1d86e84"
+    },
+    {
+      "tick": 18,
+      "hash": "6ffe8b32",
+      "checkpointBytes": 34790,
+      "snapshotBytes": 2684,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 33,
+      "resumedHash": "090bb06a"
+    },
+    {
+      "tick": 23,
+      "hash": "9827fb27",
+      "checkpointBytes": 40876,
+      "snapshotBytes": 2880,
+      "contacts": [
+        {
+          "id": 605,
+          "playerId": 4
+        },
+        {
+          "id": 606,
+          "playerId": 4
+        },
+        {
+          "id": 607,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 38,
+      "resumedHash": "c414fd98"
+    },
+    {
+      "tick": 24,
+      "hash": "74d1d89d",
+      "checkpointBytes": 45835,
+      "snapshotBytes": 3028,
+      "contacts": [
+        {
+          "id": 605,
+          "playerId": 4
+        },
+        {
+          "id": 606,
+          "playerId": 4
+        },
+        {
+          "id": 607,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 39,
+      "resumedHash": "ecf8761c"
+    },
+    {
+      "tick": 25,
+      "hash": "30ba8e5c",
+      "checkpointBytes": 44787,
+      "snapshotBytes": 3032,
+      "contacts": [
+        {
+          "id": 606,
+          "playerId": 3
+        },
+        {
+          "id": 606,
+          "playerId": 4
+        },
+        {
+          "id": 607,
+          "playerId": 3
+        },
+        {
+          "id": 607,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 607,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 40,
+      "resumedHash": "f99dd455"
+    },
+    {
+      "tick": 30,
+      "hash": "624e0ee2",
+      "checkpointBytes": 48730,
+      "snapshotBytes": 3136,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 609,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 610,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 45,
+      "resumedHash": "b2a1ff5d"
+    },
+    {
+      "tick": 45,
+      "hash": "b2a1ff5d",
+      "checkpointBytes": 46905,
+      "snapshotBytes": 2524,
+      "contacts": [
+        {
+          "id": 611,
+          "playerId": 2
+        },
+        {
+          "id": 611,
+          "playerId": 3
+        },
+        {
+          "id": 611,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 612,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 60,
+      "resumedHash": "ecf82a36"
+    },
+    {
+      "tick": 60,
+      "hash": "ecf82a36",
+      "checkpointBytes": 50616,
+      "snapshotBytes": 2340,
+      "contacts": [
+        {
+          "id": 613,
+          "playerId": 4
+        },
+        {
+          "id": 614,
+          "playerId": 4
+        },
+        {
+          "id": 615,
+          "playerId": 4
+        }
+      ],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 614,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 615,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 75,
+      "resumedHash": "9b04e86a"
+    },
+    {
+      "tick": 75,
+      "hash": "9b04e86a",
+      "checkpointBytes": 50600,
+      "snapshotBytes": 2160,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "claimed",
+          "resolvedTick": 61,
+          "claimedBy": 3
+        },
+        {
+          "id": 614,
+          "status": "claimed",
+          "resolvedTick": 63,
+          "claimedBy": 2
+        },
+        {
+          "id": 615,
+          "status": "claimed",
+          "resolvedTick": 64,
+          "claimedBy": 1
+        },
+        {
+          "id": 616,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 617,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 618,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 619,
+          "status": "available",
+          "resolvedTick": null,
+          "claimedBy": null
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 90,
+      "resumedHash": "8872d70d"
+    },
+    {
+      "tick": 90,
+      "hash": "8872d70d",
+      "checkpointBytes": 57913,
+      "snapshotBytes": 2560,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "claimed",
+          "resolvedTick": 61,
+          "claimedBy": 3
+        },
+        {
+          "id": 614,
+          "status": "claimed",
+          "resolvedTick": 63,
+          "claimedBy": 2
+        },
+        {
+          "id": 615,
+          "status": "claimed",
+          "resolvedTick": 64,
+          "claimedBy": 1
+        },
+        {
+          "id": 616,
+          "status": "claimed",
+          "resolvedTick": 78,
+          "claimedBy": 4
+        },
+        {
+          "id": 617,
+          "status": "claimed",
+          "resolvedTick": 80,
+          "claimedBy": 3
+        },
+        {
+          "id": 618,
+          "status": "claimed",
+          "resolvedTick": 81,
+          "claimedBy": 2
+        },
+        {
+          "id": 619,
+          "status": "claimed",
+          "resolvedTick": 82,
+          "claimedBy": 1
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 105,
+      "resumedHash": "526114b6"
+    },
+    {
+      "tick": 105,
+      "hash": "526114b6",
+      "checkpointBytes": 65673,
+      "snapshotBytes": 2560,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "claimed",
+          "resolvedTick": 61,
+          "claimedBy": 3
+        },
+        {
+          "id": 614,
+          "status": "claimed",
+          "resolvedTick": 63,
+          "claimedBy": 2
+        },
+        {
+          "id": 615,
+          "status": "claimed",
+          "resolvedTick": 64,
+          "claimedBy": 1
+        },
+        {
+          "id": 616,
+          "status": "claimed",
+          "resolvedTick": 78,
+          "claimedBy": 4
+        },
+        {
+          "id": 617,
+          "status": "claimed",
+          "resolvedTick": 80,
+          "claimedBy": 3
+        },
+        {
+          "id": 618,
+          "status": "claimed",
+          "resolvedTick": 81,
+          "claimedBy": 2
+        },
+        {
+          "id": 619,
+          "status": "claimed",
+          "resolvedTick": 82,
+          "claimedBy": 1
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 120,
+      "resumedHash": "70261d17"
+    },
+    {
+      "tick": 120,
+      "hash": "70261d17",
+      "checkpointBytes": 72354,
+      "snapshotBytes": 2560,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "claimed",
+          "resolvedTick": 61,
+          "claimedBy": 3
+        },
+        {
+          "id": 614,
+          "status": "claimed",
+          "resolvedTick": 63,
+          "claimedBy": 2
+        },
+        {
+          "id": 615,
+          "status": "claimed",
+          "resolvedTick": 64,
+          "claimedBy": 1
+        },
+        {
+          "id": 616,
+          "status": "claimed",
+          "resolvedTick": 78,
+          "claimedBy": 4
+        },
+        {
+          "id": 617,
+          "status": "claimed",
+          "resolvedTick": 80,
+          "claimedBy": 3
+        },
+        {
+          "id": 618,
+          "status": "claimed",
+          "resolvedTick": 81,
+          "claimedBy": 2
+        },
+        {
+          "id": 619,
+          "status": "claimed",
+          "resolvedTick": 82,
+          "claimedBy": 1
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 135,
+      "resumedHash": "1ed047bc"
+    },
+    {
+      "tick": 135,
+      "hash": "1ed047bc",
+      "checkpointBytes": 61095,
+      "snapshotBytes": 2176,
+      "contacts": [],
+      "items": [
+        {
+          "id": 600,
+          "status": "claimed",
+          "resolvedTick": 5,
+          "claimedBy": 4
+        },
+        {
+          "id": 601,
+          "status": "claimed",
+          "resolvedTick": 6,
+          "claimedBy": 3
+        },
+        {
+          "id": 602,
+          "status": "claimed",
+          "resolvedTick": 8,
+          "claimedBy": 2
+        },
+        {
+          "id": 603,
+          "status": "claimed",
+          "resolvedTick": 9,
+          "claimedBy": 1
+        },
+        {
+          "id": 604,
+          "status": "claimed",
+          "resolvedTick": 23,
+          "claimedBy": 4
+        },
+        {
+          "id": 605,
+          "status": "claimed",
+          "resolvedTick": 25,
+          "claimedBy": 3
+        },
+        {
+          "id": 606,
+          "status": "claimed",
+          "resolvedTick": 26,
+          "claimedBy": 2
+        },
+        {
+          "id": 607,
+          "status": "claimed",
+          "resolvedTick": 27,
+          "claimedBy": 1
+        },
+        {
+          "id": 608,
+          "status": "claimed",
+          "resolvedTick": 42,
+          "claimedBy": 4
+        },
+        {
+          "id": 609,
+          "status": "claimed",
+          "resolvedTick": 43,
+          "claimedBy": 3
+        },
+        {
+          "id": 610,
+          "status": "claimed",
+          "resolvedTick": 44,
+          "claimedBy": 2
+        },
+        {
+          "id": 611,
+          "status": "claimed",
+          "resolvedTick": 46,
+          "claimedBy": 1
+        },
+        {
+          "id": 612,
+          "status": "claimed",
+          "resolvedTick": 60,
+          "claimedBy": 4
+        },
+        {
+          "id": 613,
+          "status": "claimed",
+          "resolvedTick": 61,
+          "claimedBy": 3
+        },
+        {
+          "id": 614,
+          "status": "claimed",
+          "resolvedTick": 63,
+          "claimedBy": 2
+        },
+        {
+          "id": 615,
+          "status": "claimed",
+          "resolvedTick": 64,
+          "claimedBy": 1
+        },
+        {
+          "id": 616,
+          "status": "claimed",
+          "resolvedTick": 78,
+          "claimedBy": 4
+        },
+        {
+          "id": 617,
+          "status": "claimed",
+          "resolvedTick": 80,
+          "claimedBy": 3
+        },
+        {
+          "id": 618,
+          "status": "claimed",
+          "resolvedTick": 81,
+          "claimedBy": 2
+        },
+        {
+          "id": 619,
+          "status": "claimed",
+          "resolvedTick": 82,
+          "claimedBy": 1
+        },
+        {
+          "id": 621,
+          "status": "expired",
+          "resolvedTick": 24,
+          "claimedBy": null
+        }
+      ],
+      "resumedTick": 150,
+      "resumedHash": "9f303192"
+    }
+  ],
+  "deliveries": [
+    {
+      "firstCursor": 1,
+      "bytes": 6176
+    },
+    {
+      "firstCursor": 65,
+      "bytes": 6176
+    },
+    {
+      "firstCursor": 129,
+      "bytes": 2720
+    }
+  ],
+  "events": [
+    {
+      "cursor": 1,
+      "tick": 1,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "markerIndex": 0,
+        "definitionId": 1,
+        "x": 12800,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 2,
+      "tick": 1,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "markerIndex": 1,
+        "definitionId": 1,
+        "x": 12800,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 3,
+      "tick": 1,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "markerIndex": 0,
+        "definitionId": 1,
+        "x": 13824,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 4,
+      "tick": 1,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "markerIndex": 1,
+        "definitionId": 1,
+        "x": 13824,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 5,
+      "tick": 1,
+      "counter": 4,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "markerIndex": 0,
+        "definitionId": 1,
+        "x": 14848,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 6,
+      "tick": 1,
+      "counter": 5,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "markerIndex": 1,
+        "definitionId": 1,
+        "x": 14848,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 7,
+      "tick": 1,
+      "counter": 6,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "markerIndex": 0,
+        "definitionId": 1,
+        "x": 15872,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 8,
+      "tick": 1,
+      "counter": 7,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "markerIndex": 1,
+        "definitionId": 1,
+        "x": 15872,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 9,
+      "tick": 3,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "markerIndex": 2,
+        "definitionId": 1,
+        "x": 13824,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 10,
+      "tick": 3,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "markerIndex": 2,
+        "definitionId": 1,
+        "x": 14848,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 11,
+      "tick": 3,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "markerIndex": 2,
+        "definitionId": 1,
+        "x": 15872,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 12,
+      "tick": 3,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "markerIndex": 2,
+        "definitionId": 1,
+        "x": 16896,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 1
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 13,
+      "tick": 5,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 500,
+        "targetId": 600,
+        "x": 19968,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 600,
+          "weaponId": "heavy-machine-gun",
+          "previousWeaponId": "sidearm",
+          "previousAmmo": 0,
+          "ammo": 150
+        }
+      }
+    },
+    {
+      "cursor": 14,
+      "tick": 6,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 500,
+        "targetId": 601,
+        "x": 19968,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 601,
+          "weaponId": "heavy-machine-gun",
+          "previousWeaponId": "sidearm",
+          "previousAmmo": 0,
+          "ammo": 150
+        }
+      }
+    },
+    {
+      "cursor": 15,
+      "tick": 8,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 500,
+        "targetId": 602,
+        "x": 19968,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 602,
+          "weaponId": "heavy-machine-gun",
+          "previousWeaponId": "sidearm",
+          "previousAmmo": 0,
+          "ammo": 150
+        }
+      }
+    },
+    {
+      "cursor": 16,
+      "tick": 9,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 5,
+        "markerIndex": 0,
+        "definitionId": 1,
+        "x": 18944,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 17,
+      "tick": 9,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 5,
+        "markerIndex": 1,
+        "definitionId": 1,
+        "x": 18944,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 18,
+      "tick": 9,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 6,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 19968,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 19,
+      "tick": 9,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 6,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 19968,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 20,
+      "tick": 9,
+      "counter": 4,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 7,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 20992,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 21,
+      "tick": 9,
+      "counter": 5,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 7,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 20992,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 22,
+      "tick": 9,
+      "counter": 6,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 8,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 22016,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 23,
+      "tick": 9,
+      "counter": 7,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 8,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 22016,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 24,
+      "tick": 9,
+      "counter": 8,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 500,
+        "targetId": 603,
+        "x": 19968,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 603,
+          "weaponId": "heavy-machine-gun",
+          "previousWeaponId": "sidearm",
+          "previousAmmo": 0,
+          "ammo": 150
+        }
+      }
+    },
+    {
+      "cursor": 25,
+      "tick": 11,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 6,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 20992,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 26,
+      "tick": 11,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 7,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 22016,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 27,
+      "tick": 11,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 8,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 23040,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 2
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 28,
+      "tick": 14,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 9,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 23808,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 29,
+      "tick": 14,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 9,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 23808,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 30,
+      "tick": 14,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 10,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 24832,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 31,
+      "tick": 14,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 10,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 24832,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 32,
+      "tick": 14,
+      "counter": 4,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 11,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 25856,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 33,
+      "tick": 14,
+      "counter": 5,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 11,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 25856,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 34,
+      "tick": 16,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 9,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 24832,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 35,
+      "tick": 16,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 10,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 25856,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 36,
+      "tick": 16,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 11,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 26880,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 37,
+      "tick": 17,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 12,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 25088,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 38,
+      "tick": 17,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 12,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 25088,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 39,
+      "tick": 19,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 12,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 26112,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 3
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 40,
+      "tick": 19,
+      "counter": 1,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 13,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 27648,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 41,
+      "tick": 19,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 13,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 27648,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 42,
+      "tick": 19,
+      "counter": 3,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 14,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 28672,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 43,
+      "tick": 19,
+      "counter": 4,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 14,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 28672,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 44,
+      "tick": 19,
+      "counter": 5,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 15,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 29696,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 45,
+      "tick": 19,
+      "counter": 6,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 15,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 29696,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 46,
+      "tick": 21,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 13,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 28672,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 47,
+      "tick": 21,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 14,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 29696,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 48,
+      "tick": 21,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 15,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 30720,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 49,
+      "tick": 22,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 16,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 28928,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 50,
+      "tick": 22,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 16,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 28928,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 51,
+      "tick": 23,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 501,
+        "targetId": 604,
+        "x": 34048,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 604,
+          "weaponId": "shotgun",
+          "previousWeaponId": "heavy-machine-gun",
+          "previousAmmo": 147,
+          "ammo": 24
+        }
+      }
+    },
+    {
+      "cursor": 52,
+      "tick": 24,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 16,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 29952,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 4
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 53,
+      "tick": 24,
+      "counter": 1,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 17,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 31488,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 54,
+      "tick": 24,
+      "counter": 2,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 17,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 31488,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 55,
+      "tick": 24,
+      "counter": 3,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 18,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 32512,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 56,
+      "tick": 24,
+      "counter": 4,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 18,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 32512,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 57,
+      "tick": 24,
+      "counter": 5,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 19,
+        "markerIndex": 0,
+        "definitionId": 10,
+        "x": 33536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 58,
+      "tick": 24,
+      "counter": 6,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 19,
+        "markerIndex": 1,
+        "definitionId": 10,
+        "x": 33536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 59,
+      "tick": 25,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 501,
+        "targetId": 605,
+        "x": 34048,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 605,
+          "weaponId": "shotgun",
+          "previousWeaponId": "heavy-machine-gun",
+          "previousAmmo": 146,
+          "ammo": 24
+        }
+      }
+    },
+    {
+      "cursor": 60,
+      "tick": 26,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 17,
+        "markerIndex": 2,
+        "definitionId": 2,
+        "x": 32512,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 61,
+      "tick": 26,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 19,
+        "markerIndex": 2,
+        "definitionId": 10,
+        "x": 34560,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 62,
+      "tick": 26,
+      "counter": 2,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 501,
+        "targetId": 606,
+        "x": 34048,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 606,
+          "weaponId": "shotgun",
+          "previousWeaponId": "heavy-machine-gun",
+          "previousAmmo": 146,
+          "ammo": 24
+        }
+      }
+    },
+    {
+      "cursor": 63,
+      "tick": 27,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 20,
+        "markerIndex": 0,
+        "definitionId": 2,
+        "x": 32768,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 64,
+      "tick": 27,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 20,
+        "markerIndex": 1,
+        "definitionId": 2,
+        "x": 32768,
+        "y": 41472,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 5
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 65,
+      "tick": 27,
+      "counter": 2,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 501,
+        "targetId": 607,
+        "x": 34048,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 607,
+          "weaponId": "shotgun",
+          "previousWeaponId": "heavy-machine-gun",
+          "previousAmmo": 147,
+          "ammo": 24
+        }
+      }
+    },
+    {
+      "cursor": 66,
+      "tick": 29,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 21,
+        "markerIndex": 0,
+        "definitionId": 10,
+        "x": 35328,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 67,
+      "tick": 29,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 21,
+        "markerIndex": 1,
+        "definitionId": 10,
+        "x": 35328,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 68,
+      "tick": 29,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 22,
+        "markerIndex": 0,
+        "definitionId": 10,
+        "x": 36352,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 69,
+      "tick": 29,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 22,
+        "markerIndex": 1,
+        "definitionId": 10,
+        "x": 36352,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 70,
+      "tick": 31,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 21,
+        "markerIndex": 2,
+        "definitionId": 10,
+        "x": 36352,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 71,
+      "tick": 31,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 22,
+        "markerIndex": 2,
+        "definitionId": 10,
+        "x": 37376,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 72,
+      "tick": 32,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 23,
+        "markerIndex": 0,
+        "definitionId": 10,
+        "x": 36608,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 73,
+      "tick": 32,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 23,
+        "markerIndex": 1,
+        "definitionId": 10,
+        "x": 36608,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 74,
+      "tick": 34,
+      "counter": 0,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 23,
+        "markerIndex": 2,
+        "definitionId": 10,
+        "x": 37632,
+        "y": 45312,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 75,
+      "tick": 42,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 502,
+        "targetId": 608,
+        "x": 48128,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 608,
+          "weaponId": "flamethrower",
+          "previousWeaponId": "shotgun",
+          "previousAmmo": 23,
+          "ammo": 30
+        }
+      }
+    },
+    {
+      "cursor": 76,
+      "tick": 43,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 502,
+        "targetId": 609,
+        "x": 48128,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 609,
+          "weaponId": "flamethrower",
+          "previousWeaponId": "shotgun",
+          "previousAmmo": 23,
+          "ammo": 30
+        }
+      }
+    },
+    {
+      "cursor": 77,
+      "tick": 44,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 502,
+        "targetId": 610,
+        "x": 48128,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 610,
+          "weaponId": "flamethrower",
+          "previousWeaponId": "shotgun",
+          "previousAmmo": 23,
+          "ammo": 30
+        }
+      }
+    },
+    {
+      "cursor": 78,
+      "tick": 46,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 502,
+        "targetId": 611,
+        "x": 48128,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 611,
+          "weaponId": "flamethrower",
+          "previousWeaponId": "shotgun",
+          "previousAmmo": 23,
+          "ammo": 30
+        }
+      }
+    },
+    {
+      "cursor": 79,
+      "tick": 52,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 24,
+        "markerIndex": 0,
+        "definitionId": 11,
+        "x": 55040,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 80,
+      "tick": 52,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 24,
+        "markerIndex": 1,
+        "definitionId": 11,
+        "x": 55040,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 81,
+      "tick": 57,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 25,
+        "markerIndex": 0,
+        "definitionId": 11,
+        "x": 56832,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 82,
+      "tick": 57,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 25,
+        "markerIndex": 1,
+        "definitionId": 11,
+        "x": 56832,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 83,
+      "tick": 57,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 26,
+        "markerIndex": 0,
+        "definitionId": 11,
+        "x": 57856,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 84,
+      "tick": 57,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 26,
+        "markerIndex": 1,
+        "definitionId": 11,
+        "x": 57856,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 85,
+      "tick": 58,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 24,
+        "markerIndex": 2,
+        "definitionId": 11,
+        "x": 59648,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 86,
+      "tick": 58,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 24,
+        "markerIndex": 3,
+        "definitionId": 11,
+        "x": 59648,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 6
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 87,
+      "tick": 60,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 27,
+        "markerIndex": 0,
+        "definitionId": 11,
+        "x": 58112,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 88,
+      "tick": 60,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 27,
+        "markerIndex": 1,
+        "definitionId": 11,
+        "x": 58112,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 89,
+      "tick": 60,
+      "counter": 2,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 503,
+        "targetId": 612,
+        "x": 62208,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 612,
+          "weaponId": "rocket-launcher",
+          "previousWeaponId": "flamethrower",
+          "previousAmmo": 29,
+          "ammo": 20
+        }
+      }
+    },
+    {
+      "cursor": 90,
+      "tick": 61,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 503,
+        "targetId": 613,
+        "x": 62208,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 613,
+          "weaponId": "rocket-launcher",
+          "previousWeaponId": "flamethrower",
+          "previousAmmo": 29,
+          "ammo": 20
+        }
+      }
+    },
+    {
+      "cursor": 91,
+      "tick": 63,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 25,
+        "markerIndex": 2,
+        "definitionId": 11,
+        "x": 61440,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 92,
+      "tick": 63,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 25,
+        "markerIndex": 3,
+        "definitionId": 11,
+        "x": 61440,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 93,
+      "tick": 63,
+      "counter": 2,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 503,
+        "targetId": 614,
+        "x": 62208,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 614,
+          "weaponId": "rocket-launcher",
+          "previousWeaponId": "flamethrower",
+          "previousAmmo": 29,
+          "ammo": 20
+        }
+      }
+    },
+    {
+      "cursor": 94,
+      "tick": 64,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 503,
+        "targetId": 615,
+        "x": 62208,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 615,
+          "weaponId": "rocket-launcher",
+          "previousWeaponId": "flamethrower",
+          "previousAmmo": 29,
+          "ammo": 20
+        }
+      }
+    },
+    {
+      "cursor": 95,
+      "tick": 78,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 504,
+        "targetId": 616,
+        "x": 76288,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 616,
+          "weaponId": "laser",
+          "previousWeaponId": "rocket-launcher",
+          "previousAmmo": 20,
+          "ammo": 120
+        }
+      }
+    },
+    {
+      "cursor": 96,
+      "tick": 80,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 504,
+        "targetId": 617,
+        "x": 76288,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 617,
+          "weaponId": "laser",
+          "previousWeaponId": "rocket-launcher",
+          "previousAmmo": 20,
+          "ammo": 120
+        }
+      }
+    },
+    {
+      "cursor": 97,
+      "tick": 81,
+      "counter": 0,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 504,
+        "targetId": 618,
+        "x": 76288,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 618,
+          "weaponId": "laser",
+          "previousWeaponId": "rocket-launcher",
+          "previousAmmo": 20,
+          "ammo": 120
+        }
+      }
+    },
+    {
+      "cursor": 98,
+      "tick": 82,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 28,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 78080,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 99,
+      "tick": 82,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 28,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 78080,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 7
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 100,
+      "tick": 82,
+      "counter": 2,
+      "event": {
+        "kind": "pickup",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 0,
+        "markerIndex": 0,
+        "definitionId": 504,
+        "targetId": 619,
+        "x": 76288,
+        "y": 45312,
+        "material": "none",
+        "confirmation": null,
+        "beam": null,
+        "pickup": {
+          "claimId": 619,
+          "weaponId": "laser",
+          "previousWeaponId": "rocket-launcher",
+          "previousAmmo": 20,
+          "ammo": 120
+        }
+      }
+    },
+    {
+      "cursor": 101,
+      "tick": 87,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 29,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 79872,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 102,
+      "tick": 87,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 29,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 79872,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 103,
+      "tick": 87,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 30,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 80896,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 104,
+      "tick": 87,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 30,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 80896,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 105,
+      "tick": 88,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 31,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 82688,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 106,
+      "tick": 88,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 31,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 82688,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 107,
+      "tick": 90,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 32,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 81152,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 108,
+      "tick": 90,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 32,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 81152,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 8
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 109,
+      "tick": 93,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 33,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 84480,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 110,
+      "tick": 93,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 33,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 84480,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 111,
+      "tick": 93,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 34,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 85504,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 112,
+      "tick": 93,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 34,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 85504,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 113,
+      "tick": 94,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 35,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 87296,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 114,
+      "tick": 94,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 35,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 87296,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 115,
+      "tick": 96,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 36,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 85760,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 116,
+      "tick": 96,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 36,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 85760,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 9
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 117,
+      "tick": 99,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 37,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 89088,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 118,
+      "tick": 99,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 37,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 89088,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 119,
+      "tick": 99,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 38,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 90112,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 120,
+      "tick": 99,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 38,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 90112,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 121,
+      "tick": 100,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 39,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 91904,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 122,
+      "tick": 100,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 39,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 91904,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 123,
+      "tick": 102,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 40,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 90368,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 124,
+      "tick": 102,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 40,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 90368,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 10
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 125,
+      "tick": 105,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 41,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 93696,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 126,
+      "tick": 105,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 41,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 93696,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 127,
+      "tick": 105,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 42,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 94720,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 128,
+      "tick": 105,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 42,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 94720,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 129,
+      "tick": 106,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 43,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 130,
+      "tick": 106,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 43,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 131,
+      "tick": 108,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 44,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 94976,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 132,
+      "tick": 108,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 44,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 94976,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 11
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 133,
+      "tick": 111,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 45,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 134,
+      "tick": 111,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 45,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 135,
+      "tick": 111,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 46,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 136,
+      "tick": 111,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 46,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 137,
+      "tick": 112,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 47,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 138,
+      "tick": 112,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 47,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 139,
+      "tick": 114,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 48,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 140,
+      "tick": 114,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 48,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 12
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 141,
+      "tick": 117,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 49,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 142,
+      "tick": 117,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 49,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 143,
+      "tick": 117,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 50,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 144,
+      "tick": 117,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 50,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 145,
+      "tick": 118,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 51,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 146,
+      "tick": 118,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 51,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 147,
+      "tick": 120,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 52,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 148,
+      "tick": 120,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 52,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 13
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 149,
+      "tick": 123,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 53,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 150,
+      "tick": 123,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 2,
+        "actionInstanceId": 53,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 97536,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 2,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 151,
+      "tick": 123,
+      "counter": 2,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 54,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 152,
+      "tick": 123,
+      "counter": 3,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 3,
+        "actionInstanceId": 54,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 98560,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 3,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 153,
+      "tick": 124,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 55,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 154,
+      "tick": 124,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 4,
+        "actionInstanceId": 55,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 99584,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 4,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": null,
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 155,
+      "tick": 126,
+      "counter": 0,
+      "event": {
+        "kind": "shot",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 56,
+        "markerIndex": 0,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": {
+          "heading": 1,
+          "length": 131072,
+          "width": 1024
+        },
+        "pickup": null
+      }
+    },
+    {
+      "cursor": 156,
+      "tick": 126,
+      "counter": 1,
+      "event": {
+        "kind": "sound",
+        "origin": "player",
+        "ownerId": 1,
+        "actionInstanceId": 56,
+        "markerIndex": 1,
+        "definitionId": 18,
+        "x": 96512,
+        "y": 41984,
+        "targetId": null,
+        "material": "none",
+        "confirmation": {
+          "playerId": 1,
+          "controlEpoch": 1,
+          "shotOrdinal": 14
+        },
+        "beam": null,
+        "pickup": null
+      }
+    }
+  ],
+  "duplicates": 600,
+  "finalHash": "9f303192",
+  "traceHash": "9cc7060b",
+  "players": [
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 14,
+        "lastActionInstanceId": 56
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 14,
+        "lastActionInstanceId": 53
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 14,
+        "lastActionInstanceId": 54
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 112,
+        "cooldownTicks": 0,
+        "shotOrdinal": 14,
+        "lastActionInstanceId": 55
+      },
+      "lives": 3
+    }
+  ],
+  "scope": "Accepted inputs, individual supplies, exact inventory and contact latches through public snapshots, claim events and durable checkpoint/journal reconstruction. SQLite and actual network delivery use separate harnesses."
+}

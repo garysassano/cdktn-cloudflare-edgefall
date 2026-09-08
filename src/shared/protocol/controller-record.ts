@@ -11,7 +11,7 @@ import { ProtocolError } from "./schema.js";
 
 const CONTACTS = ["solid", "one-way", "platform"] as const;
 const ACTIONS = ["ready", "fire", "melee", "grenade", "enter", "exit", "hurt"] as const;
-const WEAPONS = [
+export const WEAPONS = [
   "sidearm",
   "heavy-machine-gun",
   "shotgun",

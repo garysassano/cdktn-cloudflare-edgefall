@@ -170,7 +170,7 @@ function reset() {
 }
 function record(): BreakwaterRecording {
   return {
-    format: 2,
+    format: 3,
     contentHash: mission.contentHash,
     seed: mission.seed,
     players: mission.combat.players.length,

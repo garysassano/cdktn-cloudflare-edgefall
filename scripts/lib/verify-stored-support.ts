@@ -14,7 +14,7 @@ export async function verifyStoredSupport(
       tick: number;
       hash: string;
       archiveRows: number;
-      support: Pick<CombatLab, "props" | "targets" | "players" | "encounter"> & {
+      support: Pick<CombatLab, "props" | "targets" | "players" | "encounter" | "pickups"> & {
         geometryRevision: number;
       };
     };
@@ -24,6 +24,14 @@ export async function verifyStoredSupport(
     const saved = await request(String(tick));
     assert.equal(saved.tick, tick);
     assert(saved.archiveRows <= 6);
+    assert.deepEqual(saved.support.pickups.items, [
+      {
+        id: 620,
+        status: tick < 35 ? "available" : "unsupported",
+        resolvedTick: tick < 35 ? null : 35,
+        claimedBy: null,
+      },
+    ]);
     assert.equal(saved.support.geometryRevision, tick < 35 ? 1 : 2);
     if (tick === 11) assert.equal(saved.support.props[0]?.health, 4);
     if (tick >= 35)

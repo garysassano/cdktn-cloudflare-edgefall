@@ -1,13 +1,15 @@
 import { type BeamGeometry, type BeamProfile, beamSegments } from "../../game/combat/beam.js";
+import type { WeaponPickupClaim, WeaponPickupDefinition } from "../../game/combat/pickups.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { Reader, Writer } from "./binary.js";
+import { WEAPONS } from "./controller-record.js";
 import { MAGIC, PROTOCOL_MAJOR, PROTOCOL_MINOR } from "./limits.js";
 import { type InputIdentity, ProtocolError } from "./schema.js";
 
 export const EVENT_CAPABILITY = 2;
 export const EVENT_TYPE = 3;
 export const EVENT_HEADER_BYTES = 32;
-export const EVENT_RECORD_BYTES = 76;
+export const EVENT_RECORD_BYTES = 96;
 export const MAX_EVENT_BATCH = 64;
 export const MAX_EVENT_HISTORY = 512;
 export const EVENT_HISTORY_TICKS = 120;
@@ -23,6 +25,7 @@ export const EVENT_KINDS = [
   "explosion",
   "shield-break",
   "prop-destroyed",
+  "pickup",
 ] as const;
 export const EVENT_MATERIALS = ["none", "terrain", "shield", "body"] as const;
 export const EVENT_ORIGINS = ["player", "enemy"] as const;
@@ -47,6 +50,10 @@ export interface GameplayEvent {
   confirmation: ActionConfirmationKey | null;
   /** Acknowledged birth geometry survives short taps and dropped live snapshots. */
   beam: BeamGeometry | null;
+  pickup: Pick<
+    WeaponPickupClaim,
+    "claimId" | "weaponId" | "previousWeaponId" | "previousAmmo" | "ammo"
+  > | null;
 }
 export interface EventEnvelope {
   cursor: number;
@@ -62,6 +69,7 @@ export interface EventContext extends InputIdentity {
   attackIds: ReadonlySet<number>;
   soundIds: ReadonlySet<number>;
   beamProfiles: ReadonlyMap<number, Pick<BeamProfile, "range" | "width">>;
+  pickupDefinitions: ReadonlyMap<number, WeaponPickupDefinition>;
 }
 export function eventCounter(value: number, zero = false): number {
   return integer(value, zero ? 0 : 1, COUNTER_LIMIT - 1, "event counter");
@@ -78,16 +86,59 @@ function identity(value: InputIdentity, expected: InputIdentity) {
 export function validateGameplayEvent(event: GameplayEvent, context: EventContext): void {
   eventRequire(
     Object.keys(event).sort().join() ===
-      "actionInstanceId,beam,confirmation,definitionId,kind,markerIndex,material,origin,ownerId,targetId,x,y",
+      "actionInstanceId,beam,confirmation,definitionId,kind,markerIndex,material,origin,ownerId,pickup,targetId,x,y",
     "Unexpected gameplay event fields",
   );
   eventRequire(EVENT_KINDS.includes(event.kind), "Unknown gameplay event kind");
   eventRequire(EVENT_ORIGINS.includes(event.origin), "Unknown event origin");
   eventRequire(EVENT_MATERIALS.includes(event.material), "Unknown impact material");
   eventCounter(event.ownerId);
-  eventCounter(event.actionInstanceId);
+  eventCounter(event.actionInstanceId, event.kind === "pickup");
   integer(event.markerIndex, 0, MAX_EVENT_HISTORY - 1, "event marker");
   eventCounter(event.definitionId);
+  integer(event.x, -MAX_POSITION, MAX_POSITION, "event x");
+  integer(event.y, -MAX_POSITION, MAX_POSITION, "event y");
+  if (event.kind === "pickup") {
+    const def = event.targetId === null ? undefined : context.pickupDefinitions.get(event.targetId);
+    const grant = event.pickup;
+    eventRequire(def !== undefined && grant !== null, "Unknown or missing pickup grant");
+    eventRequire(
+      Object.keys(grant).sort().join() === "ammo,claimId,previousAmmo,previousWeaponId,weaponId",
+      "Unexpected pickup grant fields",
+    );
+    integer(grant.previousAmmo, 0, 65535, "previous pickup ammunition");
+    eventRequire(
+      grant.previousWeaponId !== "sidearm" || grant.previousAmmo === 0,
+      "Sidearm pickup ammunition",
+    );
+    integer(grant.ammo, 0, def.ammoLimit, "granted ammunition");
+    eventRequire(
+      WEAPONS.includes(grant.previousWeaponId) &&
+        grant.weaponId === def.weaponId &&
+        grant.claimId === def.claimId,
+      "Pickup content identity",
+    );
+    eventRequire(
+      event.origin === "player" &&
+        event.actionInstanceId === 0 &&
+        event.markerIndex === 0 &&
+        event.definitionId === def.sourceId &&
+        event.confirmation === null &&
+        event.beam === null &&
+        event.material === "none",
+      "Pickup event attribution",
+    );
+    eventRequire(event.x === def.rect.x && event.y === def.rect.y, "Pickup event location");
+    eventRequire(
+      grant.previousWeaponId === grant.weaponId
+        ? grant.ammo === Math.min(def.ammoLimit, grant.previousAmmo + def.ammo) &&
+            grant.ammo > grant.previousAmmo
+        : grant.ammo === def.ammo,
+      "Pickup inventory grant",
+    );
+    return;
+  }
+  eventRequire(event.pickup === null, "Unexpected pickup grant");
   eventRequire(
     (["sound", "action-sound"].includes(event.kind) ? context.soundIds : context.attackIds).has(
       event.definitionId,
@@ -182,6 +233,13 @@ export function validateEventBatch(batch: EventBatch, context: EventContext): vo
     if (previous)
       eventRequire(followsEvent(previous, envelope), "Noncontiguous event identities/cursors");
     validateGameplayEvent(envelope.event, context);
+    if (envelope.event.kind === "pickup") {
+      const def = context.pickupDefinitions.get(envelope.event.targetId ?? 0);
+      eventRequire(
+        def !== undefined && envelope.tick >= def.activationTick && envelope.tick < def.expiresTick,
+        "Pickup event lifetime",
+      );
+    }
     previous = envelope;
   }
 }
@@ -222,6 +280,11 @@ export function encodeEventBatch(batch: EventBatch, context: EventContext): Uint
     w.u32(event.beam?.length ?? 0);
     w.u32(event.beam?.width ?? 0);
     w.u32(event.beam?.heading ?? 0);
+    w.u32(event.pickup?.claimId ?? 0);
+    w.u32(event.pickup ? WEAPONS.indexOf(event.pickup.weaponId) + 1 : 0, 0, WEAPONS.length);
+    w.u32(event.pickup ? WEAPONS.indexOf(event.pickup.previousWeaponId) + 1 : 0, 0, WEAPONS.length);
+    w.u32(event.pickup?.previousAmmo ?? 0, 0, 65535);
+    w.u32(event.pickup?.ammo ?? 0, 0, 65535);
   }
   eventRequire(w.offset === length, "Event writer size mismatch");
   return w.bytes;
@@ -266,7 +329,7 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       kind: r.choice(EVENT_KINDS),
       origin: r.choice(EVENT_ORIGINS),
       ownerId: r.u32(1),
-      actionInstanceId: r.u32(1),
+      actionInstanceId: r.u32(),
       markerIndex: r.u32(0, MAX_EVENT_HISTORY - 1),
       definitionId: r.u32(1),
       x: r.i32(MAX_POSITION),
@@ -275,6 +338,7 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       material: r.choice(EVENT_MATERIALS),
       confirmation: null,
       beam: null,
+      pickup: null,
     };
     const playerId = r.u32(),
       controlEpoch = r.u32(),
@@ -289,6 +353,32 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       heading = r.u32(0, 3);
     eventRequire(width !== 0 || (length === 0 && heading === 0), "Partial beam geometry");
     if (width) event.beam = { length, width, heading: heading as BeamGeometry["heading"] };
+    const claimId = r.u32(),
+      weapon = r.u32(0, WEAPONS.length),
+      previousWeapon = r.u32(0, WEAPONS.length),
+      previousAmmo = r.u32(0, 65535),
+      ammo = r.u32(0, 65535);
+    eventRequire(
+      claimId
+        ? weapon > 0 && previousWeapon > 0
+        : weapon === 0 && previousWeapon === 0 && previousAmmo === 0 && ammo === 0,
+      "Partial pickup grant",
+    );
+    if (claimId) {
+      const weaponId = WEAPONS[weapon - 1],
+        previousWeaponId = WEAPONS[previousWeapon - 1];
+      eventRequire(
+        weaponId !== undefined && previousWeaponId !== undefined,
+        "Unknown pickup weapon",
+      );
+      event.pickup = {
+        claimId,
+        weaponId,
+        previousWeaponId,
+        previousAmmo,
+        ammo,
+      };
+    }
     batch.events.push({ cursor, tick, counter, event });
   }
   eventRequire(batch.events[0]?.cursor === firstCursor, "Event prefix mismatch");

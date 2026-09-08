@@ -1,5 +1,6 @@
 import type { AreaExposure } from "../../game/combat/area-attack.js";
 import type { DestructibleState } from "../../game/combat/destructible.js";
+import type { WeaponPickupState } from "../../game/combat/pickups.js";
 import type {
   EncounterFailure,
   EncounterState,
@@ -85,6 +86,7 @@ export type CampaignSnapshot = Omit<CampaignState, "requiredEntities" | "resolve
 /** Public encounter accounting. Private AI/watchdog/receipt state belongs in checkpoints. */
 export interface CombatSnapshot {
   props: DestructibleState[];
+  pickups: WeaponPickupState["items"];
   volumes: AreaExposure[];
   nextEntityId: number;
   nextActionId: number;

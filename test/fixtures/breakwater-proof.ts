@@ -317,7 +317,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
     observe?.(structuredClone(state));
   }
   const recording: BreakwaterRecording = {
-    format: 2,
+    format: 3,
     contentHash: state.contentHash,
     seed: state.seed,
     players: state.combat.players.length,

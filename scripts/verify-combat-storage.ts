@@ -15,6 +15,7 @@ import { verifyStoredHmg } from "./lib/verify-stored-hmg.js";
 import { verifyStoredLaser } from "./lib/verify-stored-laser.js";
 import { verifyStoredOrdnance } from "./lib/verify-stored-ordnance.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
+import { verifyStoredPickups } from "./lib/verify-stored-pickups.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
 import { verifyStoredRocket } from "./lib/verify-stored-rocket.js";
 import { verifyStoredShield } from "./lib/verify-stored-shield.js";
@@ -223,6 +224,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    pickups: await verifyStoredPickups(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     laser: await verifyStoredLaser(origin, async () => {
       await runtime.dispose();
       runtime = create();

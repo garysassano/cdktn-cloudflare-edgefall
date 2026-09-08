@@ -11,6 +11,7 @@ import {
   combatEntryContext,
   createCombatLab,
 } from "./combat.js";
+import { combatPickupDefinitions } from "./combat-pickups.js";
 import { combatEndTerrain } from "./combat-terrain.js";
 
 export interface CombatContinue {
@@ -202,6 +203,22 @@ export function continueCombatCheckpoint(
     return tank;
   });
   world.props = structuredClone(template.props);
+  // A paid checkpoint restart begins a new run epoch; its authored supply claims restart too.
+  const pickupDefinitions = combatPickupDefinitions(world.scenario, world.players.length);
+  world.pickups = structuredClone(template.pickups);
+  world.pickups.tick = world.tick;
+  for (const item of world.pickups.items) {
+    const def = pickupDefinitions.find((def) => def.id === item.id);
+    if (!def) throw new Error("Missing checkpoint supply definition");
+    item.status =
+      world.tick >= def.expiresTick
+        ? "expired"
+        : world.tick >= def.activationTick
+          ? "available"
+          : "dormant";
+    item.resolvedTick = item.status === "expired" ? def.expiresTick : null;
+  }
+  world.pickupClaims = [];
   for (const player of world.players) player.geometryRevision = 1;
   world.projectiles = [];
   world.rockets = [];

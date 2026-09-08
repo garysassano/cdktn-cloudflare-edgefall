@@ -17,6 +17,7 @@ import {
   GRENADE_PROFILE,
   SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
+import { combatPickupDefinitions } from "../game/labs/combat-pickups.js";
 import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
@@ -74,6 +75,7 @@ import {
   readRoomControlState,
 } from "../shared/session/room-control.js";
 import { browserConnectionPort } from "./connection-port.js";
+import { PickupOverlay } from "./pickup-overlay.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 async function startLab() {
@@ -151,9 +153,19 @@ async function startLab() {
     definitionId: number;
     confirmation: GameplayEvent["confirmation"];
     beam: GameplayEvent["beam"];
+    pickup: GameplayEvent["pickup"];
+    targetId: GameplayEvent["targetId"];
     hash: string;
   }> = [];
   const confirmedEffects: Array<EventEnvelope & { receivedAtTick: number }> = [];
+  let supplyMarkers: ReturnType<PickupOverlay["draw"]> = [];
+  const renderedPickupEvents: Array<{
+    cursor: number;
+    tick: number;
+    receivedAtTick: number;
+    presentedAtTick: number;
+    claimId: number;
+  }> = [];
   const renderedBeamEvents: Array<{
     cursor: number;
     tick: number;
@@ -276,6 +288,8 @@ async function startLab() {
       vehicles: snapshot?.vehicles ?? [],
       platforms: snapshot?.platforms ?? [],
       props: snapshot?.combat?.props ?? [],
+      pickups: snapshot?.combat?.pickups ?? [],
+      supplyMarkers,
       geometryRevision: snapshot?.geometryRevision ?? null,
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
@@ -287,6 +301,7 @@ async function startLab() {
             hash: eventHash,
             receipts: eventReceipts,
             renderedBeams: renderedBeamEvents,
+            renderedPickups: renderedPickupEvents,
             framesDropped: eventFramesDropped,
             gapsInjected: eventGapsInjected,
             pendingBaseline: pendingEventBaseline,
@@ -521,6 +536,8 @@ async function startLab() {
               definitionId: item.event.definitionId,
               confirmation: item.event.confirmation,
               beam: item.event.beam,
+              pickup: item.event.pickup,
+              targetId: item.event.targetId,
               hash: eventHash,
             });
             confirmedEffects.push({ ...item, receivedAtTick: snapshot?.tick ?? item.tick });
@@ -619,6 +636,7 @@ async function startLab() {
           eventFaults.pauseUntilBaseline = false;
           confirmedEffects.length = 0;
           renderedBeamEvents.length = 0;
+          renderedPickupEvents.length = 0;
           // Explicit acceptance couples this full snapshot to its replacement event prefix.
           sendCommands([]);
         }
@@ -681,6 +699,7 @@ async function startLab() {
     eventReceipts.length = 0;
     confirmedEffects.length = 0;
     renderedBeamEvents.length = 0;
+    renderedPickupEvents.length = 0;
     for (const key of Object.keys(eventCounts)) delete eventCounts[key];
     receipts.length = 0;
     packet = 0;
@@ -694,14 +713,23 @@ async function startLab() {
     rendered = resolve;
   });
   class NetworkScene extends Phaser.Scene {
+    private supplies?: PickupOverlay;
     private graphics?: Phaser.GameObjects.Graphics;
     create() {
+      this.supplies = new PickupOverlay(this);
       this.graphics = this.add.graphics();
       this.game.events.once(Phaser.Core.Events.POST_RENDER, rendered);
     }
     update() {
       const g = this.graphics;
       if (!g) return;
+      supplyMarkers =
+        this.supplies?.draw(
+          snapshot?.combat?.pickups ?? [],
+          mode === "combat" && snapshot
+            ? combatPickupDefinitions(combatSnapshotScenario(snapshot), snapshot.players.length)
+            : [],
+        ) ?? [];
       g.clear();
       g.fillStyle(0x526075);
       for (const t of mode === "combat" && snapshot
@@ -836,7 +864,9 @@ async function startLab() {
           g.fillRect(projectile.x / 256 - 1, projectile.y / 256 - 1, 3, 2);
         }
         for (const item of confirmedEffects) {
-          const age = (snapshot?.tick ?? 0) - (item.event.beam ? item.receivedAtTick : item.tick);
+          const age =
+            (snapshot?.tick ?? 0) -
+            (item.event.beam || item.event.pickup ? item.receivedAtTick : item.tick);
           if (
             age < 0 ||
             age > 8 ||
@@ -869,6 +899,26 @@ async function startLab() {
                 });
                 if (renderedBeamEvents.length > 512) renderedBeamEvents.shift();
               }
+            }
+            continue;
+          }
+          if (item.event.pickup) {
+            g.lineStyle(2, 0xd7ffb4, 1 - age / 9);
+            g.strokeRect(
+              item.event.x / 256 - age,
+              item.event.y / 256 - age,
+              24 + age * 2,
+              23 + age * 2,
+            );
+            if (!renderedPickupEvents.some((event) => event.cursor === item.cursor)) {
+              renderedPickupEvents.push({
+                cursor: item.cursor,
+                tick: item.tick,
+                receivedAtTick: item.receivedAtTick,
+                presentedAtTick: snapshot?.tick ?? 0,
+                claimId: item.event.pickup.claimId,
+              });
+              if (renderedPickupEvents.length > 512) renderedPickupEvents.shift();
             }
             continue;
           }

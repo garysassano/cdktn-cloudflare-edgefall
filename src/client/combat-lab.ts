@@ -33,6 +33,7 @@ import {
   RIFLE_PROFILE,
   SHIELD_PROFILE,
 } from "../game/labs/combat-content.js";
+import { combatPickupDefinitions } from "../game/labs/combat-pickups.js";
 import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import {
@@ -50,6 +51,7 @@ import {
 import { CastAudio } from "./cast-audio.js";
 import { NativeCast } from "./native-cast.js";
 import { NativeOperative } from "./native-operative.js";
+import { PickupOverlay } from "./pickup-overlay.js";
 import { drawTankOverlay } from "./tank-overlay.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -73,6 +75,7 @@ let state = createCombatLab("range"),
 const keys = new Set<string>();
 const audio = new CastAudio();
 let castFrames: CastDrawing[] = [];
+let supplyMarkers: ReturnType<PickupOverlay["draw"]> = [];
 let castMotion = initialCastMotion(state);
 let nativeFrames: ReturnType<NativeOperative["draw"]> = [];
 let nativeAtlas: NativeAtlas | undefined;
@@ -191,7 +194,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 11,
+    format: 12,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -339,6 +342,7 @@ if (new URLSearchParams(location.search).get("cast") === "1") {
     element<HTMLInputElement>(id).checked = false;
 }
 class CombatScene extends Phaser.Scene {
+  private supplies?: PickupOverlay;
   private overlay?: Phaser.GameObjects.Graphics;
   private cast?: NativeCast;
   private hero?: NativeOperative;
@@ -350,6 +354,7 @@ class CombatScene extends Phaser.Scene {
     NativeOperative.preload(this);
   }
   create() {
+    this.supplies = new PickupOverlay(this);
     this.cast = new NativeCast(this);
     this.hero = new NativeOperative(this);
     nativeAtlas = this.hero.atlas;
@@ -371,6 +376,11 @@ class CombatScene extends Phaser.Scene {
     }
     const g = this.overlay;
     if (!g) return;
+    supplyMarkers =
+      this.supplies?.draw(
+        state.pickups.items,
+        combatPickupDefinitions(state.scenario, state.players.length),
+      ) ?? [];
     g.clear();
     const showCast = element<HTMLInputElement>("native-cast").checked,
       castOverlays = !showCast || element<HTMLInputElement>("cast-overlays").checked;
@@ -599,6 +609,7 @@ Object.assign(globalThis, {
     running: () => running,
     nativeFrames: () => structuredClone(nativeFrames),
     castFrames: () => structuredClone(castFrames),
+    supplyMarkers: () => structuredClone(supplyMarkers),
     audio: () => audio.inspect(),
     startAudioCapture: () => audio.startCapture(),
     startVideoCapture: () => {

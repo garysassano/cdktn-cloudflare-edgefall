@@ -9,6 +9,7 @@ import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
 import { verifyHmgLab } from "./lib/verify-hmg-lab.mjs";
 import { verifyLaserLab } from "./lib/verify-laser-lab.mjs";
 import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
+import { verifyPickupLab } from "./lib/verify-pickup-lab.mjs";
 import { verifyRocketLab } from "./lib/verify-rocket-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
 import { verifySupportLab } from "./lib/verify-support-lab.mjs";
@@ -153,7 +154,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 11);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 12);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -182,6 +183,7 @@ try {
   const support = await verifySupportLab(page, output);
   const rocket = await verifyRocketLab(page, output);
   const laser = await verifyLaserLab(page, output);
+  const pickups = await verifyPickupLab(page, output);
   await page.locator("#scenario").selectOption("range");
   await page.locator("#players").selectOption("1");
   await page.locator("#assist").uncheck();
@@ -288,6 +290,7 @@ try {
     support,
     rocket,
     laser,
+    pickups,
     life: { transitions, restoredPhases, state: lifeState },
     scope:
       "Local Chromium keyboard/renderer, four input slots, gun/knife/grenade actions, active shield/rifle counterplay and exact broken-shield recording reconstruction, three fall deaths, protected entry and spectating; no network room, final media or full W05 acceptance",

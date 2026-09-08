@@ -5,6 +5,7 @@ import { areaExposures } from "../../game/combat/area-attack.js";
 import { beamExposures } from "../../game/combat/beam.js";
 import { type DestructibleState, validateDestructibles } from "../../game/combat/destructible.js";
 import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
+import { validateWeaponPickups } from "../../game/combat/pickups.js";
 import { actionPose } from "../../game/combat/timeline.js";
 import { LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import { ROCKET_PROFILE } from "../../game/content/weapons/rocket-launcher.js";
@@ -34,6 +35,7 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
+import { combatPickupDefinitions } from "../../game/labs/combat-pickups.js";
 import {
   COMBAT_ORDNANCE,
   COMBAT_SUPPORT,
@@ -67,6 +69,13 @@ export function combatGeometryContext() {
     validateGeometry: (snapshot: FullSnapshot) => {
       const combat = snapshot.combat;
       if (!combat) throw new Error("Missing combat geometry baseline");
+      const scenario = combatSnapshotScenario(snapshot);
+      validateWeaponPickups(
+        { format: 1, tick: snapshot.tick, items: combat.pickups, contacts: [] },
+        combatPickupDefinitions(scenario, snapshot.players.length),
+        COMBAT_CATALOG,
+        new Set(snapshot.players.map((p) => p.playerId)),
+      );
       validateDestructibles(
         combat.props,
         combat.props.length ? COMBAT_SUPPORT : [],
@@ -81,6 +90,23 @@ export function combatGeometryContext() {
 }
 /** Within one run, accepted solid removals are permanent and retain their original attribution. */
 export function validateCombatGeometryTransition(previous: FullSnapshot, incoming: FullSnapshot) {
+  const previousPickups = previous.combat?.pickups,
+    nextPickups = incoming.combat?.pickups;
+  if (!previousPickups || !nextPickups || previousPickups.length !== nextPickups.length)
+    throw new Error("Pickup roster changed unexpectedly");
+  for (const [index, item] of previousPickups.entries()) {
+    const next = nextPickups[index];
+    if (
+      !next ||
+      next.id !== item.id ||
+      (!["dormant", "available"].includes(item.status) && canonical(next) !== canonical(item)) ||
+      (item.status === "available" && next.status === "dormant") ||
+      (item.resolvedTick === null &&
+        next.resolvedTick !== null &&
+        next.resolvedTick <= previous.tick)
+    )
+      throw new Error("Pickup history regressed or changed attribution");
+  }
   const before = previous.combat?.props,
     after = incoming.combat?.props;
   if (
@@ -108,7 +134,9 @@ export function combatSnapshotScenario(snapshot: FullSnapshot): CombatScenario {
     ? "support"
     : snapshot.platforms.length
       ? "ordnance"
-      : "range";
+      : snapshot.combat?.pickups.length
+        ? "pickups"
+        : "range";
 }
 /** Real content digest; simulation/presentation identities remain explicitly diagnostic. */
 export async function combatIdentity() {
@@ -116,6 +144,11 @@ export async function combatIdentity() {
     canonical({
       content: COMBAT_CONTENT,
       campaignFormat: 2,
+      combatFormat: 12,
+      pickups: [1, 2, 3, 4].map((players) => [
+        combatPickupDefinitions("pickups", players),
+        combatPickupDefinitions("support", players),
+      ]),
       rifle: RIFLE_PROFILE,
       shield: SHIELD_PROFILE,
       areas: [...AREA_PROFILES],
@@ -380,12 +413,18 @@ export function combatSnapshot(
     .filter((target) => target.health === 0)
     .map((target) => target.enemy.body.id)
     .concat(combat.props.filter((prop) => prop.health === 0).map((prop) => prop.id))
+    .concat(
+      combat.pickups.items
+        .filter((item) => !["dormant", "available"].includes(item.status))
+        .map((item) => item.id),
+    )
     .sort((a, b) => a - b);
   snapshot.campaign.remainingEnemies = combat.targets.filter((target) => target.health > 0).length;
   snapshot.campaign.encounterId = 1;
   const definition = combatEncounterDefinition(combat);
   snapshot.combat = {
     props: structuredClone(combat.props),
+    pickups: structuredClone(combat.pickups.items),
     volumes: combat.areas
       .flatMap((area) => {
         const profile = AREA_PROFILES.get(area.definitionId);

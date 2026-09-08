@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.11
+# Arcade full snapshots v3.13
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -7,7 +7,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | Byte offset | Field                          | Encoding                 |
 | ----------- | ------------------------------ | ------------------------ |
 | 0           | Magic EF (`0x4645`)            | u16                      |
-| 2           | Major 3, minor 11              | u8, u8                   |
+| 2           | Major 3, minor 13              | u8, u8                   |
 | 4           | Message type 2, flags 0 or 1   | u8, u8                   |
 | 6           | Exact frame length             | u16                      |
 | 8           | Run epoch                      | u32, nonzero             |
@@ -27,7 +27,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | 48          | Room mode                      | u8 enum                  |
 | 49          | Reserved zero                  | 15 bytes                 |
 
-Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 448 bytes and the base sections can reach 39,432 bytes; the maximum combat section raises the complete frame limit to 52,060 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
+Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 448 bytes and the base sections can reach 39,432 bytes; the maximum combat section raises the complete frame limit to 53,084 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
 
 ## Record sequence and sizes
 
@@ -79,45 +79,51 @@ Contextual knife actions project their authored hand position, facing and shape 
 
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.11; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.13; there is no compatibility decoder for earlier minors.
 
 | Section offset | Field                                                                            | Encoding |
 | -------------- | -------------------------------------------------------------------------------- | -------- |
-| 0              | Section version 3, header size 52                                                | 2 × u16  |
+| 0              | Section version 4, header size 52                                                | 2 × u16  |
 | 4              | Next entity ID, next action ID                                                   | 2 × u32  |
 | 12             | Encounter receipt cursor, encounter ID, phase                                    | 3 × u32  |
 | 24             | Member count 0–256, objective count 0–64, participant count 1–4, area count 0–64 | 4 × u16  |
-| 32             | Destructible count 0–32, reserved zero                                           | 2 × u16  |
+| 32             | Destructible count 0–32, pickup count 0–64                                       | 2 × u16  |
 | 36             | Failure owner, failure tick, reason, cause                                       | 4 × u32  |
 
 Phase is `active, complete, retired, failed`. Failure fields are all zero when absent. Failure tick and every optional tick below use `tick + 1`, reserving zero for null; tick zero is representable. Failure reason is a one-based index into `critical-loss, forbidden-retreat, invalid-pose`; cause is a one-based index into `initial-overlap, residual-overlap, contact-limit, unresolved-contact, retreated, crushed, out-of-bounds`.
 
-The header is followed by 24-byte destructible records: six u32 words `id, definitionId, health, destroyedTick, destroyerId, destroyActionId`. Optional destruction ticks use `tick + 1`; owner/action IDs use zero for null. Live props have positive health and no destruction attribution; destroyed props have zero health, a past destruction tick and an allocated action/known owner. All prop IDs are ordered, unique across gameplay sections, and present in removals exactly when destroyed. The negotiated content supplies their immutable collision rectangles.
+The header is followed first by sixteen-byte pickup records, then by 24-byte destructible records: six u32 words `id, definitionId, health, destroyedTick, destroyerId, destroyActionId`. Optional destruction ticks use `tick + 1`; owner/action IDs use zero for null. Live props have positive health and no destruction attribution; destroyed props have zero health, a past destruction tick and an allocated action/known owner. All prop IDs are ordered, unique across gameplay sections, and present in removals exactly when destroyed. The negotiated content supplies their immutable collision rectangles.
 
 Each 32-byte member is eight u32 words: `id, policyFlags, status, activatedTick, resolvedTick, resolution, killerId, reservedZero`. Policy bits are required (1), critical (2), retreat-allowed (4); other bits are invalid. Status is `pending, alive, resolved`. Resolution is null/zero or a one-based index into `killed, retreated, crushed, out-of-bounds, ambient-timeout, checkpoint-retired`. Killer IDs are nullable player IDs. Members retain terminal attribution after their visible enemy records are removed.
 
 Member records are followed by eight-byte objective records (`id, completedTick`), then eight-byte kill credits (`playerId, count`). All three tables have unique ascending IDs. Credits cover the player roster and equal kills attributed by the member ledger. The encounter ID matches the campaign; complete encounters have no unresolved requirement, retired encounters have no unresolved members, and failure fields agree with the failed phase. Allocation cursors exceed every referenced allocated entity/action ID, including removals and projectiles whose owners have disappeared.
 
-The section is `52 + 24 × props + 32 × members + 8 × objectives + 8 × participants + 48 × areas` bytes, at most 12,628. The four-player/two-target fixture adds 148 bytes with no props or active areas, 340 bytes during four shotgun blasts, and up to 724 bytes during twelve flame lobes; the scaffold adds another 24 bytes. Decoder count/length validation happens before allocating tables. Independent Python-struct section goldens cover pending and completed encounters and an attached flame exposure. This section restores accounting after missed transient effects; completing one encounter does not set whole-campaign victory. See [server checkpoint and journal](./combat-checkpoint-v12.md) for the separate private continuation format.
+The section is `52 + 16 × pickups + 24 × props + 32 × members + 8 × objectives + 8 × participants + 48 × areas` bytes, at most 13,652. The four-player/two-target fixture adds 148 bytes with no props or active areas, 340 bytes during four shotgun blasts, and up to 724 bytes during twelve flame lobes; the scaffold adds another 24 bytes. Decoder count/length validation happens before allocating tables. Independent Python-struct section goldens cover pending and completed encounters and an attached flame exposure. This section restores accounting after missed transient effects; completing one encounter does not set whole-campaign victory. See [server checkpoint and journal](./combat-checkpoint-v15.md) for the separate private continuation format.
 
 ## Validation and baseline ownership
 
 Each entity section is strictly ordered by ascending entity ID, with no ID reused across live sections. Threats are ordered by action instance ID and removals by ID. Live entities cannot also be removed. Player IDs and slots are unique; vehicle component IDs are ordered/unique. A full baseline must include the local player. The decoder rejects unknown loaded shape IDs, mismatched run/socket/geometry, inconsistent acknowledgment/controller state, malformed enums, nonzero padding, excess counts, truncated records and trailing data before returning any entity state.
 
-The room/client adapter must separately enforce monotonic applied snapshot IDs, accepted baselines, event-ring gaps, table/geometry installation and current-socket ownership. Receiving bytes does not authorize applying them to the current game. Full-state baselines reset the event delivery cursor after explicit acceptance; they must not replay obsolete gun sounds. Future gameplay sections such as pickups must extend this declared schema and fixtures before becoming active; arbitrary JSON additions are not a fallback.
+The room/client adapter must separately enforce monotonic applied snapshot IDs, accepted baselines, event-ring gaps, table/geometry installation and current-socket ownership. Receiving bytes does not authorize applying them to the current game. Full-state baselines reset the event delivery cursor after explicit acceptance; they must not replay obsolete gun sounds. Future gameplay sections must extend this declared schema and fixtures before becoming active; arbitrary JSON additions are not a fallback.
 
 ## Active shield projection
 
 Enemy definition 4 identifies active shield infantry. Modes 0–5 encode brace, advance, turn, bash, stunned and dead; modes 6–11 retain those phases after the shield has broken permanently. The action ID, timeline ID, start tick and mode age identify the exact continuation. An unstarted pending guard has age zero. The shield is raised in brace/advance and the first 12 bash ticks, lowered during turns and the remaining bash, and absent after break. Integrity amounts, committed target/turn facing and the per-bash hit ledger remain private in archive 10.
 
-The 30-tick bash projects an attached threat with attack 6 and shape 12 from windup through its four active ticks (offsets 12–15). It uses the enemy body as source, a global action identity, committed target and facing, and an authored hand socket. This projection and the shield-break event extend protocol 3.5 without increasing snapshot or event record sizes. See the [private continuation contract](combat-checkpoint-v12.md).
+The 30-tick bash projects an attached threat with attack 6 and shape 12 from windup through its four active ticks (offsets 12–15). It uses the enemy body as source, a global action identity, committed target and facing, and an authored hand socket. This projection and the shield-break event extend protocol 3.5 without increasing snapshot or event record sizes. See the [private continuation contract](combat-checkpoint-v15.md).
 
 ## Authored area exposures
 
-Combat section version 3 appends 48-byte area records after kill credits. Each record contains six u32 fields (`id, ownerId, actionInstanceId, definitionId, spawnTick, endTick`), signed i32 `rect.x, rect.y`, unsigned u32 `rect.w, rect.h, heading`, then u16 `lobe, attached`. Headings are right/up/down/left (0–3), lobe index is 0–3, and attachment is exactly 0 or 1. Positions retain Q256 precision, positive dimensions are at most 65,536 subpixels, endpoints remain in position bounds, and `spawnTick ≤ snapshot.tick < endTick` with at most 120 lifetime ticks.
+Combat section version 4 appends 48-byte area records after kill credits. Each record contains six u32 fields (`id, ownerId, actionInstanceId, definitionId, spawnTick, endTick`), signed i32 `rect.x, rect.y`, unsigned u32 `rect.w, rect.h, heading`, then u16 `lobe, attached`. Headings are right/up/down/left (0–3), lobe index is 0–3, and attachment is exactly 0 or 1. Positions retain Q256 precision, positive dimensions are at most 65,536 subpixels, endpoints remain in position bounds, and `spawnTick ≤ snapshot.tick < endTick` with at most 120 lifetime ticks.
 
 Records are strictly ordered by source ID then lobe index. Lobes sharing a source also share its player owner, action ID and definition. Area IDs cannot collide with visible entities, retained encounter members or removals. Source and action IDs participate in allocation-cursor validation. There are at most 64 records; the private world separately limits area groups to 16.
 
 These are the actual terrain-clipped damage rectangles for shotgun definition 10 and flame definition 11. Clients draw them directly without reconstructing hit shapes from velocity or guessing clipping from visual particles. An impact can refer to an earlier point along the tick's swept exposure. New emissions and heading changes use endpoint exposure; attached motion sweeps eligible moving hurtboxes. Per-target cooldowns, blocked emission history, retained reach and cancellation state stay in the private archive. Expired or completely clipped lobes have no public rectangle.
 
 The diagnostic scaffold has two fully loaded revisions. The decoder admits a revision from the explicit loaded set only while also checking the complete prop state against its authored definition; the revision equals one plus the number of destroyed props. Within a run, prop IDs/definitions remain fixed, health cannot increase, and destruction time/owner/action cannot change. Removing a support clears its contacts and grounded/ignored-support references without moving bodies. Prediction keeps the existing input queue, installs the validated geometry, restores the accepted actor and replays only unacknowledged commands. Unknown geometry still requires a fresh baseline.
+
+## Individual supply availability
+
+Protocol 3.13 uses combat section version 4. The previous reserved u16 at section offset 34 now stores pickup count, bounded to 64; header size remains 52 bytes. Before prop records, each pickup writes four u32 words: item ID, status, resolution tick plus one (zero for none), and claimant player ID (zero for none). Status indexes are `dormant, available, claimed, expired, unsupported`. Items remain ordered in the baseline after resolution, with terminal IDs also present in removals. A claim requires a known participant and resolution tick; expired/unsupported items have no claimant. Live items have neither field.
+
+Item IDs are unique across gameplay entities and below the allocator. The negotiated content supplies exact weapon, source/claim identity, sensor rectangle, active lifetime and support policy. The diagnostic adapter validates the complete expected item roster and lifetime state before exposing the snapshot, and rejects availability resurrection or changed terminal attribution within a run. Contact-entry latches remain private archive state; clients do not predict inventory grants from their local overlap. Confirmed grant details travel through acknowledged gameplay events. A full baseline restores availability and inventory without replaying historical pickup effects.

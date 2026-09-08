@@ -6,6 +6,7 @@ import { beamSegments, validateBeamPulse } from "../../game/combat/beam.js";
 import { validateDestructibles } from "../../game/combat/destructible.js";
 import { validateFirearmAim } from "../../game/combat/firearm-aim.js";
 import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
+import { validateWeaponPickups } from "../../game/combat/pickups.js";
 import { validateRocket } from "../../game/combat/rocket.js";
 import { LASER_ATTACK, LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import {
@@ -34,6 +35,7 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
+import { combatPickupDefinitions } from "../../game/labs/combat-pickups.js";
 import { COMBAT_SUPPORT, combatGeometryRevision } from "../../game/labs/combat-terrain.js";
 import { worldRect } from "../../game/physics/body.js";
 import { sweepBounds } from "../../game/physics/sweep.js";
@@ -52,7 +54,7 @@ import { PROTOCOL_MAJOR, PROTOCOL_MINOR } from "../protocol/limits.js";
 import { decodeSnapshot, encodeSnapshot } from "../protocol/snapshot.js";
 import { BODY_BYTES } from "../protocol/snapshot-schema.js";
 import { isPausableRoom } from "../session/room-phase.js";
-import { combatEventContext } from "./combat-events.js";
+import { combatEventContext, combatGameplayEvents } from "./combat-events.js";
 import {
   type CombatJournalTick,
   type CombatRuntime,
@@ -120,9 +122,9 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles rockets beams strikes grenades areas encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props pickups pickupClaims projectiles rockets beams strikes grenades areas encounter events",
   );
-  check(combat.format === 11, "simulation format");
+  check(combat.format === 12, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -144,6 +146,75 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   integer(combat.events.length, 0, MAX_EVENT_HISTORY, "combat checkpoint notices");
   const initial = createCombatLab(combat.scenario, combat.players.length);
+  validateWeaponPickups(
+    combat.pickups,
+    combatPickupDefinitions(combat.scenario, combat.players.length),
+    COMBAT_CATALOG,
+    new Set(combat.players.map((p) => p.playerId)),
+  );
+  check(combat.pickups.tick === combat.tick, "pickup boundary");
+  integer(combat.pickupClaims.length, 0, 64, "pickup claim budget");
+  const claims = new Set<number>();
+  const finalGrants = new Map<number, (typeof combat.pickupClaims)[number]>();
+  for (const claim of combat.pickupClaims) {
+    fields(
+      claim,
+      "id claimId sourceId playerId slot tick weaponId previousWeaponId previousAmmo ammo",
+    );
+    const item = combat.pickups.items.find((item) => item.id === claim.id);
+    const actor = combat.players.find((actor) => actor.playerId === claim.playerId);
+    check(
+      !claims.has(claim.id) &&
+        claim.tick === combat.tick &&
+        item?.status === "claimed" &&
+        item.resolvedTick === claim.tick &&
+        item.claimedBy === claim.playerId &&
+        actor?.slot === claim.slot,
+      "pickup claim attribution",
+    );
+    claims.add(claim.id);
+    const previous = finalGrants.get(claim.playerId);
+    check(
+      !previous ||
+        (claim.previousWeaponId === previous.weaponId && claim.previousAmmo === previous.ammo),
+      "pickup grant chain",
+    );
+    finalGrants.set(claim.playerId, claim);
+  }
+  for (const claim of finalGrants.values()) {
+    const actor = combat.players.find((actor) => actor.playerId === claim.playerId);
+    check(
+      actor?.weapon.id === claim.weaponId && actor.weapon.ammo === claim.ammo,
+      "pickup terminal inventory",
+    );
+  }
+  for (const contact of combat.pickups.contacts) {
+    const actor = combat.players.find((actor) => actor.playerId === contact.playerId);
+    const def = combatPickupDefinitions(combat.scenario, combat.players.length).find(
+      (def) => def.id === contact.id,
+    );
+    const shape = actor && COMBAT_SHAPES.get(actor.body.shapeId);
+    check(actor && def && shape, "pickup contact content");
+    const rect = worldRect(actor.body, shape.rect, actor.facing);
+    check(
+      rect.x <= def.rect.x + def.rect.w &&
+        rect.x + rect.w >= def.rect.x &&
+        rect.y <= def.rect.y + def.rect.h &&
+        rect.y + rect.h >= def.rect.y,
+      "pickup contact geometry",
+    );
+  }
+  check(
+    combat.pickups.items
+      .filter((item) => item.status === "claimed" && item.resolvedTick === combat.tick)
+      .every((item) => claims.has(item.id)),
+    "missing committed pickup claim",
+  );
+  if (combat.tick > 0)
+    for (const event of combatGameplayEvents({ ...combat, tick: combat.tick - 1 }, combat).filter(
+      (event) => event.kind === "pickup",
+    ))
+      validateGameplayEvent(event, combatEventContext(snapshot));
   validateDestructibles(
     combat.props,
     combat.scenario === "support" ? COMBAT_SUPPORT : [],
@@ -780,6 +851,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     history.capEvictions + history.ageEvictions + history.entries.length === history.cursor,
     "event retention accounting",
   );
+  const retainedPickupClaims = new Set<number>();
   for (const [index, envelope] of history.entries.entries()) {
     fields(envelope, "cursor tick counter event");
     eventCounter(envelope.cursor);
@@ -807,6 +879,20 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
       "retained event owner/origin",
     );
     ownAction(event.actionInstanceId, event.ownerId);
+    if (event.kind === "pickup") {
+      check(
+        event.pickup && !retainedPickupClaims.has(event.pickup.claimId),
+        "duplicate retained pickup claim",
+      );
+      retainedPickupClaims.add(event.pickup.claimId);
+      const item = combat.pickups.items.find((item) => item.id === event.targetId);
+      check(
+        item?.status === "claimed" &&
+          item.claimedBy === event.ownerId &&
+          item.resolvedTick === envelope.tick,
+        "retained pickup attribution",
+      );
+    }
     check(envelope.event.actionInstanceId < combat.nextActionId, "future retained action");
   }
 }
@@ -827,7 +913,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 14,
+    format: 15,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -851,7 +937,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 14 &&
+    envelope.format === 15 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

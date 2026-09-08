@@ -176,7 +176,7 @@ describe("build and content handshake", () => {
   const hello: Handshake = {
     type: "welcome",
     protocolMajor: 3,
-    protocolMinor: 12,
+    protocolMinor: 13,
     runId: "contract-fixture",
     runEpoch: 1,
     connectionEpoch: 2,
