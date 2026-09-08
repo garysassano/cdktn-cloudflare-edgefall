@@ -2,6 +2,7 @@ import type { CombatLab, CombatTarget } from "../../game/labs/combat.js";
 import { RIFLE_PROFILE, SHIELD_PROFILE } from "../../game/labs/combat-content.js";
 import type { VehicleState } from "../../game/state.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
+import { tankFeedback } from "./tank-feedback.js";
 import { type TankMotion, advanceTankMotion, initialTankMotion } from "./tank-motion.js";
 
 export const CAST_ART = [
@@ -18,6 +19,8 @@ export interface CastDrawing {
   flipX: boolean;
   originX: number;
   originY: number;
+  tint?: number;
+  tintFill?: boolean;
 }
 export interface CastMotion {
   tick: number;
@@ -186,6 +189,11 @@ export function tankPresentation(
         )
       : "kestrel-hatch-closed";
   layers.push(layer(hatch));
+  const feedback = tankFeedback(tank, tick);
+  if (feedback.hitFlash)
+    return layers.map((frame) => ({ ...frame, tint: 0xffffff, tintFill: true }));
+  const hullLayer = layers[1];
+  if (hullLayer && feedback.hullTint !== 0xffffff) hullLayer.tint = feedback.hullTint;
   return layers;
 }
 

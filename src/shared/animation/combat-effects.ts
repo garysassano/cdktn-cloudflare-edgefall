@@ -141,7 +141,8 @@ export function advanceEffects(
       );
     } else if (event.kind === "impact" || event.kind === "muzzle-blocked") {
       const material =
-        event.impact?.kind === "shield"
+        event.impact?.kind === "shield" ||
+        next.tanks.some((tank) => tank.body.id === event.impact?.entityId)
           ? "metal"
           : event.impact?.kind === "body"
             ? "body"
@@ -185,7 +186,7 @@ export function advanceEffects(
         x - tank.facing * 20,
         y - 23,
         24,
-        0,
+        1,
         false,
         0,
         "smoke",

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import type { VehicleState } from "../../src/game/state.js";
 import type { TankState } from "../../src/game/vehicles/tank.js";
+import { tankFeedback } from "../../src/shared/animation/tank-feedback.js";
 import { TANK_BOUNDARIES, TANK_DAMAGE_BOUNDARIES } from "../../test/fixtures/tank-proof.js";
 
 export async function verifyStoredTank(
@@ -49,7 +50,16 @@ export async function verifyStoredTank(
       const cold = await request("restore");
       assert.notEqual(cold.instance, saved.instance);
       assert.deepEqual({ ...cold, instance: saved.instance }, saved);
-      boundaries.push({ saved, coldInstance: cold.instance });
+      const feedback = saved.vehicles.map((tank) => tankFeedback(tank, tick));
+      assert.deepEqual(
+        cold.vehicles.map((tank) => tankFeedback(tank, tick)),
+        feedback,
+      );
+      assert.deepEqual(
+        cold.tanks.map((tank) => tankFeedback(tank, tick)),
+        feedback,
+      );
+      boundaries.push({ saved, coldInstance: cold.instance, feedback });
     }
     scenarios.push({ mode, boundaries });
   }

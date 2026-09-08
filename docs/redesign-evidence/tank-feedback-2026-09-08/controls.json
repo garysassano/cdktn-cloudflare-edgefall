@@ -1,0 +1,22 @@
+[
+  {
+    "name": "initial-native-pixel-fixture",
+    "reason": "The first pixel comparison disabled the native operative, leaving engineering player colliders over the hull at tick zero. The proof now uses the actual operative layers and includes them in the independent pixel composition; the failed log is retained."
+  },
+  {
+    "name": "Phaser-4-tint-mode",
+    "reason": "Type checking caught the removed Phaser 3 setTintFill method. The adapter uses installed Phaser 4 setTint/setTintMode and resets mode for every reused image. Browser pixels verify both the brief fill and later multiply state."
+  },
+  {
+    "name": "initial-network-expectation",
+    "reason": "The initial proof expected every other tank to retain full armor after P4 destruction. Recorded snapshots show rifle fire reaching P3 after the fourth hull becomes a nonblocking wreck. The passing proof checks that real impact and P3 armor 2 while retaining all peer and clock guards."
+  },
+  {
+    "name": "initial-network-failure-capture",
+    "reason": "The retained failed run also records a P2 mapping fresh-baseline fault after tick 240 and later seat release. The successful independent run agrees across all four clients at tick 228. This checkpoint does not resolve the historical host-clock or broader impairment findings."
+  },
+  {
+    "name": "tank-component-scope",
+    "reason": "The tank specification retains three armor pips and working hardpoints until destruction. Separate breakable gun arms belong to the walker. This checkpoint adds feedback, not invented tank weapon loss or final authored damage media."
+  }
+]

@@ -36,6 +36,7 @@ import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
 import { verifySpecialCombat } from "./lib/verify-special-combat.js";
 import { verifySupportCombat } from "./lib/verify-support-combat.js";
 import { verifyTankCombat } from "./lib/verify-tank-combat.js";
+import { verifyTankDamageCombat } from "./lib/verify-tank-damage-combat.js";
 
 interface ClientStatus {
   documentId: string;
@@ -115,7 +116,8 @@ const areaMode = process.argv.includes("--combat-shotgun")
 const shieldMode = process.argv.includes("--combat-guard");
 const specialMode = process.argv.includes("--combat-special");
 const cannonMode = process.argv.includes("--combat-cannon");
-const tankMode = specialMode || cannonMode || process.argv.includes("--combat-tank");
+const damageMode = process.argv.includes("--combat-tank-damage");
+const tankMode = specialMode || cannonMode || damageMode || process.argv.includes("--combat-tank");
 const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
 const feedbackMode = process.argv
@@ -278,7 +280,9 @@ const output = feedbackMode
                     ? "dist/network-combat-special-evidence"
                     : cannonMode
                       ? "dist/network-combat-cannon-evidence"
-                      : "dist/network-combat-tank-evidence"
+                      : damageMode
+                        ? "dist/network-combat-tank-damage-evidence"
+                        : "dist/network-combat-tank-evidence"
                   : areaMode
                     ? `dist/network-combat-${areaMode}-evidence`
                     : shieldMode
@@ -675,7 +679,9 @@ try {
       if (tankMode) {
         const tank = specialMode
           ? await verifySpecialCombat(pages, base, output)
-          : await verifyTankCombat(pages, base, output, cannonMode);
+          : damageMode
+            ? await verifyTankDamageCombat(pages, base, output)
+            : await verifyTankCombat(pages, base, output, cannonMode);
         room = tank.final;
         return {
           status: "pass",
@@ -694,7 +700,9 @@ try {
             ? "Four Chromium keyboard clients defeat infantry, arm, cancel, rearm, safely eject and sacrifice their tanks. Charges expire or fall out of bounds, with at most one blast per hull, identical shared snapshots and duplicate event delivery; engineering graphics and local workerd timing only."
             : cannonMode
               ? "Four Chromium keyboard clients board, jump, drive, spend two cannon shells each, hold the first trigger beyond its cooldown without repeating, fire the primary gun and exit with released shells. Exact shared snapshots and duplicate event delivery; engineering graphics and local workerd timing only."
-              : "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
+              : damageMode
+                ? "Four Chromium keyboard clients board and receive actual rifle damage through three armor stages, protected impacts, safe ejection, wreck and later exposed-body death. All clients receive identical shared snapshots and duplicate event delivery; engineering indicators, local workerd timing and no network audio acceptance."
+                : "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
         };
       }
       if (areaMode) {

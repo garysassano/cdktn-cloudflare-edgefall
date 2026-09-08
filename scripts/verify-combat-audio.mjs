@@ -233,6 +233,44 @@ try {
   current = await inspect();
   assert.equal(current.cues.filter((c) => c.kind === "eject").length, 1);
   report.lifecycle.push({ case: "duplicate accepted ejection plays once", audio: current });
+  const damageFrames = tankRun.states.slice(1).flatMap((state, index) => {
+    const tank = state.combat.tanks[3];
+    return state.combat.events.some(
+      (event) => event.kind === "impact" && event.targetId === tank.body.id,
+    )
+      ? [{ state: state.combat, cues: combatAudioCues(tankRun.states[index].combat, state.combat) }]
+      : [];
+  });
+  await page.evaluate(async (frames) => {
+    audioProof.audio().reset();
+    for (const { state, cues } of frames) {
+      audioProof.audio().consume(state, cues);
+      audioProof.audio().consume(state, cues);
+      await new Promise((resolve) => setTimeout(resolve, 110));
+    }
+  }, damageFrames);
+  current = await inspect();
+  assert.deepEqual(
+    current.cues.filter((cue) => cue.kind === "tank-hit").map((cue) => cue.tick),
+    [37, 110, 183],
+  );
+  assert.equal(current.cues.filter((cue) => cue.kind === "impact-metal").length, 13);
+  assert.equal(current.cues.filter((cue) => cue.kind === "tank-destroyed").length, 1);
+  assert.equal(current.cues.filter((cue) => cue.kind === "eject").length, 1);
+  report.lifecycle.push({
+    case: "thirteen impacts, three armor debits and duplicate delivery",
+    audio: current,
+  });
+  await page.evaluate(() => audioProof.audio().reset());
+  current = await resume(tankRun.states[110].combat);
+  assert.equal(current.loops.length, 4);
+  assert.deepEqual(current.cues, []);
+  report.lifecycle.push({
+    case: "critical checkpoint restores engines without replaying damage",
+    audio: current,
+  });
+  await page.evaluate(() => audioProof.audio().hush());
+  assert.equal(requests.length, noTriggerRequests, "Damage feedback requested a sound file");
   report.captureDisposal = await page.evaluate(async () => {
     audioProof.audio().startCapture();
     const stopped = audioProof

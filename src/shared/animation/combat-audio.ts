@@ -91,7 +91,7 @@ export function combatAudioCues(
       tank && event.kind === "killed"
         ? "tank-destroyed"
         : tank && event.kind === "impact"
-          ? "tank-hit"
+          ? "impact-metal"
           : event.kind === "killed" &&
               event.targetId !== bossId &&
               !next.players.some((p) => p.body.id === event.targetId)
@@ -140,6 +140,24 @@ export function combatAudioCues(
   }
   for (const tank of next.tanks) {
     const old = before.tanks.find((value) => value.body.id === tank.body.id);
+    if (
+      old &&
+      tank.armor < old.armor &&
+      tank.special.phase !== "charging" &&
+      next.events.some(
+        (event) =>
+          event.kind === "impact" &&
+          event.impact?.entityId === tank.body.id &&
+          event.impact.damage > 0,
+      )
+    )
+      cues.push({
+        id: `${next.tick}:tank:${tank.body.id}:armor:${tank.armor}`,
+        kind: "tank-hit",
+        tick: next.tick,
+        x: tank.body.x / 256,
+        emitter: `tank:${tank.body.id}`,
+      });
     if (old && !old.body.grounded && tank.body.grounded)
       cues.push({
         id: `${next.tick}:tank:${tank.body.id}:land`,

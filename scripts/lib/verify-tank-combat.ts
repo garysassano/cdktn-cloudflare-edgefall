@@ -5,7 +5,7 @@ import type { VehicleState } from "../../src/game/state.js";
 import type { RoomProbeStatus } from "../../src/shared/diagnostics/room-probe-types.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./room-host-control.js";
 
-interface TankClient {
+export interface TankClient {
   snapshotTick: number;
   ready: boolean;
   error: string | null;

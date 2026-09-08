@@ -1,4 +1,4 @@
-import type Phaser from "phaser";
+import Phaser from "phaser";
 import type { CombatLab } from "../game/labs/combat.js";
 import {
   CAST_ART,
@@ -8,11 +8,13 @@ import {
   tankPresentation,
 } from "../shared/animation/cast.js";
 import type { NativeAtlas } from "../shared/animation/native.js";
+import { drawTankIndicators } from "./tank-indicators.js";
 
 /** Static atlas images only; this adapter cannot change a body, action, hit or seat. */
 export class NativeCast {
   private readonly images: Phaser.GameObjects.Image[] = [];
   private readonly atlases: Map<string, NativeAtlas>;
+  private readonly indicators: Phaser.GameObjects.Graphics;
   static preload(scene: Phaser.Scene): void {
     for (const asset of CAST_ART) {
       const path = `/assets/art/${asset.directory}/${asset.id}`;
@@ -21,6 +23,7 @@ export class NativeCast {
     }
   }
   constructor(private readonly scene: Phaser.Scene) {
+    this.indicators = scene.add.graphics().setDepth(2.5);
     this.atlases = new Map(
       CAST_ART.map((asset) => [
         asset.id,
@@ -30,6 +33,7 @@ export class NativeCast {
   }
   draw(world: CombatLab, motion: CastMotion, enabled: boolean): CastDrawing[] {
     const frames: CastDrawing[] = [];
+    this.indicators.clear();
     if (enabled) {
       for (const tank of world.tanks) {
         const owner = world.players.find(
@@ -40,6 +44,7 @@ export class NativeCast {
         const clock = motion.tanks.find((c) => c.id === tank.body.id);
         if (!clock) throw new Error("Missing tank motion");
         frames.push(...tankPresentation(tank, world.tick, atlas, clock, owner?.slot ?? 0));
+        drawTankIndicators(this.indicators, tank, world.tick);
       }
       for (const target of world.targets) {
         const atlas = this.atlases.get(target.guard || target.shield ? "breakwater" : "quay-watch");
@@ -57,12 +62,18 @@ export class NativeCast {
     for (const [index, image] of this.images.entries()) {
       const frame = frames[index];
       image.setVisible(Boolean(frame));
-      if (frame)
+      if (frame) {
         image
           .setTexture(frame.texture, frame.frame)
           .setOrigin(frame.originX, frame.originY)
           .setPosition(frame.x, frame.y)
-          .setFlipX(frame.flipX);
+          .setFlipX(frame.flipX)
+          .clearTint()
+          .setTintMode(frame.tintFill ? Phaser.TintModes.FILL : Phaser.TintModes.MULTIPLY);
+        if (frame.tint !== undefined) {
+          image.setTint(frame.tint);
+        }
+      }
     }
     return frames;
   }

@@ -21,7 +21,9 @@ import { decodeSnapshot, encodeSnapshot } from "../../src/shared/protocol/snapsh
 import { combatArchiveIdentity } from "./combat-recovery-proof.js";
 
 export const TANK_BOUNDARIES = [1, 11, 12, 15, 21, 60, 90, 96, 97] as const;
-export const TANK_DAMAGE_BOUNDARIES = [1, 12, 182, 183, 195] as const;
+export const TANK_DAMAGE_BOUNDARIES = [
+  1, 12, 36, 37, 43, 67, 109, 110, 116, 140, 182, 183, 195,
+] as const;
 export const tankDamageInput: TankInputScript = (tick) => ({
   held: 0,
   edges: tick === 1 ? [Edge.Interact] : [],

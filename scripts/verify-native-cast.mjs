@@ -171,6 +171,13 @@ try {
           if (!image.data[from + 3] || worldX < 0 || worldX >= 384 || worldY < 0 || worldY >= 200)
             continue;
           image.data.copy(expected, (worldY * 384 + worldX) * 4, from, from + 4);
+          if (drawing.tint !== undefined)
+            for (let channel = 0; channel < 3; channel++) {
+              const color = (drawing.tint >> (16 - channel * 8)) & 255;
+              expected[(worldY * 384 + worldX) * 4 + channel] = drawing.tintFill
+                ? color
+                : Math.round((image.data[from + channel] * color) / 255);
+            }
         }
     }
     let pixels = 0;

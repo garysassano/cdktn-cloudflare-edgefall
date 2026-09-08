@@ -1,0 +1,861 @@
+{
+  "checks": {
+    "tests": 885,
+    "files": 81
+  },
+  "armor": {
+    "impactTicks": [
+      37,
+      43,
+      49,
+      51,
+      57,
+      63,
+      110,
+      116,
+      122,
+      124,
+      130,
+      136,
+      183
+    ],
+    "debitTicks": [
+      37,
+      110,
+      183
+    ],
+    "snapshotAndCheckpointBoundaries": [
+      36,
+      37,
+      43,
+      67,
+      109,
+      110,
+      116,
+      120,
+      140,
+      182,
+      183,
+      195
+    ]
+  },
+  "native": {
+    "captures": 17,
+    "pixels": 14071,
+    "movies": [
+      {
+        "speed": 1,
+        "tick": 196,
+        "cues": 47,
+        "armorCues": [
+          37,
+          110,
+          183
+        ],
+        "maxVoices": 15,
+        "criticalDropped": 0
+      },
+      {
+        "speed": 0.25,
+        "tick": 196,
+        "cues": 47,
+        "armorCues": [
+          37,
+          110,
+          183
+        ],
+        "maxVoices": 11,
+        "criticalDropped": 0
+      }
+    ]
+  },
+  "sqlite": {
+    "boundaries": 14,
+    "ticks": [
+      1,
+      12,
+      36,
+      37,
+      43,
+      67,
+      109,
+      110,
+      116,
+      140,
+      182,
+      183,
+      195,
+      210
+    ],
+    "maxArchiveRows": 6,
+    "feedback": [
+      {
+        "tick": 1,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 12,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 36,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 37,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "damaged",
+            "damageAgeTicks": 0,
+            "hitFlash": true,
+            "hullTint": 14207925,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 43,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "damaged",
+            "damageAgeTicks": 6,
+            "hitFlash": false,
+            "hullTint": 14207925,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 67,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "damaged",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 14207925,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 109,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "damaged",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 14207925,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 110,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "critical",
+            "damageAgeTicks": 0,
+            "hitFlash": true,
+            "hullTint": 16757666,
+            "critical": true,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 116,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "critical",
+            "damageAgeTicks": 6,
+            "hitFlash": false,
+            "hullTint": 16757666,
+            "critical": true,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 140,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "critical",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16757666,
+            "critical": true,
+            "warningBright": true
+          }
+        ]
+      },
+      {
+        "tick": 182,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "critical",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16757666,
+            "critical": true,
+            "warningBright": true
+          }
+        ]
+      },
+      {
+        "tick": 183,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "wreck",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 195,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "wreck",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      },
+      {
+        "tick": 210,
+        "tanks": [
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "intact",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "damaged",
+            "damageAgeTicks": 2,
+            "hitFlash": false,
+            "hullTint": 14207925,
+            "critical": false,
+            "warningBright": false
+          },
+          {
+            "integrity": "wreck",
+            "damageAgeTicks": null,
+            "hitFlash": false,
+            "hullTint": 16777215,
+            "critical": false,
+            "warningBright": false
+          }
+        ]
+      }
+    ]
+  },
+  "network": {
+    "tick": 228,
+    "clientTicks": [
+      228,
+      228,
+      228,
+      228
+    ],
+    "sharedSnapshots": 15,
+    "sharedEvents": 50,
+    "duplicates": 68,
+    "observedArmorBoundaries": [
+      {
+        "tick": 37,
+        "feedback": {
+          "integrity": "damaged",
+          "damageAgeTicks": 0,
+          "hitFlash": true,
+          "hullTint": 14207925,
+          "critical": false,
+          "warningBright": false
+        }
+      },
+      {
+        "tick": 111,
+        "feedback": {
+          "integrity": "critical",
+          "damageAgeTicks": 1,
+          "hitFlash": true,
+          "hullTint": 16757666,
+          "critical": true,
+          "warningBright": false
+        }
+      },
+      {
+        "tick": 183,
+        "feedback": {
+          "integrity": "wreck",
+          "damageAgeTicks": null,
+          "hitFlash": false,
+          "hullTint": 16777215,
+          "critical": false,
+          "warningBright": false
+        }
+      }
+    ],
+    "lives": [
+      3,
+      3,
+      3,
+      2
+    ],
+    "armor": [
+      3,
+      3,
+      2,
+      0
+    ],
+    "worldFailure": null,
+    "clockFault": null
+  },
+  "audio": {
+    "decodedSamples": 52,
+    "damage": [
+      {
+        "case": "thirteen impacts, three armor debits and duplicate delivery",
+        "cues": [
+          {
+            "kind": "rifle",
+            "tick": 37
+          },
+          {
+            "kind": "rifle",
+            "tick": 37
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 37
+          },
+          {
+            "kind": "tank-hit",
+            "tick": 37
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 43
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 49
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 51
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 57
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 63
+          },
+          {
+            "kind": "rifle",
+            "tick": 110
+          },
+          {
+            "kind": "rifle",
+            "tick": 110
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 110
+          },
+          {
+            "kind": "tank-hit",
+            "tick": 110
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 116
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 122
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 124
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 130
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 136
+          },
+          {
+            "kind": "rifle",
+            "tick": 183
+          },
+          {
+            "kind": "rifle",
+            "tick": 183
+          },
+          {
+            "kind": "impact-metal",
+            "tick": 183
+          },
+          {
+            "kind": "tank-destroyed",
+            "tick": 183
+          },
+          {
+            "kind": "eject",
+            "tick": 183
+          },
+          {
+            "kind": "tank-hit",
+            "tick": 183
+          },
+          {
+            "kind": "engine-stop",
+            "tick": 183
+          }
+        ],
+        "loops": 0
+      },
+      {
+        "case": "critical checkpoint restores engines without replaying damage",
+        "cues": [],
+        "loops": 4
+      }
+    ],
+    "files": [
+      {
+        "file": "maximum-mix.webm",
+        "bytes": 11888,
+        "sha256": "c7fcbf686219d6e9a2784428dba02c7780c1fec5b5ee7aeb893fe157c62000fe",
+        "seconds": 0.72,
+        "channels": [
+          {
+            "peak": 0.9316452145576477,
+            "rms": 0.1735718437683024
+          },
+          {
+            "peak": 0.8957493305206299,
+            "rms": 0.14989773780076585
+          }
+        ]
+      },
+      {
+        "file": "weapon-comparison.webm",
+        "bytes": 287843,
+        "sha256": "ed6780f8dfff8ef3878c077b433b2896c13c769edce9148461d1e2f82c9f00dc",
+        "seconds": 25.86,
+        "channels": [
+          {
+            "peak": 0.10694573074579239,
+            "rms": 0.007518517017986617
+          },
+          {
+            "peak": 0.10694573074579239,
+            "rms": 0.007518517002184524
+          }
+        ]
+      }
+    ]
+  },
+  "observability": {
+    "configs": [
+      {
+        "path": "wrangler.jsonc",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      },
+      {
+        "path": ".wrangler.deploy.json",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      }
+    ],
+    "liveIngestionVerified": false,
+    "deployedTimingVerified": false
+  }
+}

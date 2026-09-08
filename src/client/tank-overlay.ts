@@ -3,9 +3,15 @@ import { COMBAT_SHAPES, TANK_PROFILE } from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import type { VehicleState } from "../game/state.js";
 import { tankCannonPose } from "../shared/animation/tank-cannon.js";
+import { drawTankIndicators } from "./tank-indicators.js";
 
 /** Engineering collision/ownership inspection; these shapes are not final game media. */
-export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleState, tick: number) {
+export function drawTankOverlay(
+  g: Phaser.GameObjects.Graphics,
+  tank: VehicleState,
+  tick: number,
+  indicators = true,
+) {
   const shape = COMBAT_SHAPES.get(tank.body.shapeId),
     heading = TANK_PROFILE.headings[tank.heading];
   if (!shape || !heading) return;
@@ -46,10 +52,7 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
     tank.body.x / 256 + tank.facing * 12,
     tank.body.y / 256 - 5,
   );
-  for (let pip = 0; pip < TANK_PROFILE.definition.armor; pip++) {
-    g.fillStyle(pip < tank.armor ? color : 0x303946);
-    g.fillRect(tank.body.x / 256 - 8 + pip * 6, tank.body.y / 256 - 32, 4, 3);
-  }
+  if (indicators) drawTankIndicators(g, tank, tick);
   if (tank.lifecycle === "boarding" || tank.lifecycle === "exiting") {
     g.lineStyle(2, 0xffe475);
     const duration = tank.lifecycle === "boarding" ? 12 : 8;
@@ -60,19 +63,5 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
       r.x / 256 + (r.w / 256) * Math.min(1, (tick - tank.action.stateStartTick + 1) / duration),
       tank.body.y / 256 + 3,
     );
-  }
-  if (tank.special.phase === "arming") {
-    const progress = Math.min(
-      1,
-      (tick - tank.special.startTick + 1) / TANK_PROFILE.special.armTicks,
-    );
-    g.fillStyle(0x303946);
-    g.fillRect(r.x / 256, tank.body.y / 256 - 44, r.w / 256, 3);
-    g.fillStyle(tick % 10 < 5 ? 0xff6655 : 0xffcc88);
-    g.fillRect(r.x / 256, tank.body.y / 256 - 44, (r.w / 256) * progress, 3);
-  }
-  for (let shell = 0; shell < TANK_PROFILE.cannon.stock; shell++) {
-    g.fillStyle(shell < tank.secondary.ammo ? 0xffcc88 : 0x303946);
-    g.fillRect(tank.body.x / 256 - 19 + shell * 4, tank.body.y / 256 - 38, 2, 3);
   }
 }

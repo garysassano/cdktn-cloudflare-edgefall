@@ -465,7 +465,8 @@ class CombatScene extends Phaser.Scene {
         g.fillCircle(point.x / 256, point.y / 256, 2);
       }
     }
-    if (castOverlays) for (const tank of state.tanks) drawTankOverlay(g, tank, state.tick);
+    if (castOverlays)
+      for (const tank of state.tanks) drawTankOverlay(g, tank, state.tick, !showCast);
     for (const hurt of combatHurtboxes(state.targets, state.tick)) {
       if (!castOverlays) break;
       g.lineStyle(1, hurt.kind === "shield" ? 0xffae43 : 0xff677d);
