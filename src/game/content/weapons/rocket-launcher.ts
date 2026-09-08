@@ -2,7 +2,7 @@ import { type RocketProfile, validateRocketProfile } from "../../combat/rocket.j
 import { pixels } from "../../core/numeric.js";
 import type { AttackDefinition, ShapeDefinition, WeaponDefinition } from "../schema.js";
 
-/** Proposed W07 launcher values; registration and final media follow the kernel proof. */
+/** W07 engineering launcher values; final media and balance remain separate acceptance gates. */
 export const ROCKET_WEAPON: WeaponDefinition = {
   id: "rocket-launcher",
   attackId: 17,
@@ -15,11 +15,11 @@ export const ROCKET_WEAPON: WeaponDefinition = {
   audioFamily: "fixture-rocket",
 };
 export const ROCKET_SHAPE: ShapeDefinition = {
-  id: 17,
+  id: 19,
   rect: { x: -pixels(2), y: -pixels(2), w: pixels(4), h: pixels(4) },
 };
 export const ROCKET_BLAST_SHAPE: ShapeDefinition = {
-  id: 18,
+  id: 20,
   rect: { x: -pixels(48), y: -pixels(48), w: pixels(96), h: pixels(96) },
 };
 export const ROCKET_PROFILE: RocketProfile = {

@@ -1,0 +1,2592 @@
+{
+  "ticks": 160,
+  "duplicates": 640,
+  "checkpoints": [
+    {
+      "tick": 0,
+      "checkpointBytes": 12933,
+      "snapshotBytes": 1756,
+      "rockets": [],
+      "hash": "97f36b18",
+      "resumedTick": 15,
+      "resumedHash": "7516b1f5"
+    },
+    {
+      "tick": 7,
+      "checkpointBytes": 19451,
+      "snapshotBytes": 1948,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 15360,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 7,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 8,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 16384,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 7,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 8,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 17408,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 7,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 8,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 18432,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 7,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 8,
+          "nextTurnTick": 10
+        }
+      ],
+      "hash": "d8dcdb3c",
+      "resumedTick": 22,
+      "resumedHash": "3aa3e399"
+    },
+    {
+      "tick": 8,
+      "checkpointBytes": 17693,
+      "snapshotBytes": 1948,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 16000,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 8,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 17024,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 8,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 18048,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 8,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 10
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 19072,
+            "y": 36842
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 8,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 10
+        }
+      ],
+      "hash": "240a7f65",
+      "resumedTick": 23,
+      "resumedHash": "a5be4fb0"
+    },
+    {
+      "tick": 10,
+      "checkpointBytes": 18944,
+      "snapshotBytes": 1948,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 17646,
+            "y": 37016
+          },
+          "velocity": {
+            "x": 878,
+            "y": 174
+          },
+          "spawnTick": 7,
+          "tick": 10,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 896,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 13
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 18670,
+            "y": 37016
+          },
+          "velocity": {
+            "x": 878,
+            "y": 174
+          },
+          "spawnTick": 7,
+          "tick": 10,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 896,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 13
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 19694,
+            "y": 37016
+          },
+          "velocity": {
+            "x": 878,
+            "y": 174
+          },
+          "spawnTick": 7,
+          "tick": 10,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 896,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 13
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 20718,
+            "y": 37016
+          },
+          "velocity": {
+            "x": 878,
+            "y": 174
+          },
+          "spawnTick": 7,
+          "tick": 10,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 896,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 13
+        }
+      ],
+      "hash": "3d8b49fc",
+      "resumedTick": 25,
+      "resumedHash": "f70df0a5"
+    },
+    {
+      "tick": 13,
+      "checkpointBytes": 18956,
+      "snapshotBytes": 1948,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 21034,
+            "y": 37688
+          },
+          "velocity": {
+            "x": 1255,
+            "y": 249
+          },
+          "spawnTick": 7,
+          "tick": 13,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1280,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 16
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 22058,
+            "y": 37688
+          },
+          "velocity": {
+            "x": 1255,
+            "y": 249
+          },
+          "spawnTick": 7,
+          "tick": 13,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1280,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 16
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 23082,
+            "y": 37688
+          },
+          "velocity": {
+            "x": 1255,
+            "y": 249
+          },
+          "spawnTick": 7,
+          "tick": 13,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1280,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 16
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 24106,
+            "y": 37688
+          },
+          "velocity": {
+            "x": 1255,
+            "y": 249
+          },
+          "spawnTick": 7,
+          "tick": 13,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1280,
+          "targetId": 20,
+          "nextAcquireTick": 14,
+          "nextTurnTick": 16
+        }
+      ],
+      "hash": "3b5a7567",
+      "resumedTick": 28,
+      "resumedHash": "257c359b"
+    },
+    {
+      "tick": 31,
+      "checkpointBytes": 25035,
+      "snapshotBytes": 2140,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 47494,
+            "y": 44773
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 7,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 48431,
+            "y": 45061
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 49455,
+            "y": 45061
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 50305,
+            "y": 45637
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 7,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 15360,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 16384,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 17408,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 18432,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 31,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 32,
+          "nextTurnTick": 34
+        }
+      ],
+      "hash": "da0f3c34",
+      "resumedTick": 46,
+      "resumedHash": "9481b6cb"
+    },
+    {
+      "tick": 32,
+      "checkpointBytes": 23280,
+      "snapshotBytes": 2140,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 49000,
+            "y": 45072
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 7,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 49850,
+            "y": 45648
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 50874,
+            "y": 45648
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 17,
+          "position": {
+            "x": 51811,
+            "y": 45936
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 7,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 16000,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 17024,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 18048,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 19072,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 32,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        }
+      ],
+      "hash": "d85a0647",
+      "resumedTick": 47,
+      "resumedHash": "bb1fd570"
+    },
+    {
+      "tick": 33,
+      "checkpointBytes": 26592,
+      "snapshotBytes": 2032,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 50506,
+            "y": 45371
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 7,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 51269,
+            "y": 46235
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 52293,
+            "y": 46235
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 16768,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 768,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 768,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 17792,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 768,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 768,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 18816,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 768,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 768,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 19840,
+            "y": 28262
+          },
+          "velocity": {
+            "x": 768,
+            "y": 0
+          },
+          "spawnTick": 31,
+          "tick": 33,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 768,
+          "targetId": 20,
+          "nextAcquireTick": 38,
+          "nextTurnTick": 34
+        }
+      ],
+      "hash": "a644fa52",
+      "resumedTick": 48,
+      "resumedHash": "0d0e7745"
+    },
+    {
+      "tick": 40,
+      "checkpointBytes": 24745,
+      "snapshotBytes": 2032,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 61078,
+            "y": 47165
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 17,
+          "position": {
+            "x": 61202,
+            "y": 50344
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 17,
+          "position": {
+            "x": 62226,
+            "y": 50344
+          },
+          "velocity": {
+            "x": 1419,
+            "y": 587
+          },
+          "spawnTick": 7,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 2,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 25570,
+            "y": 28561
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 26594,
+            "y": 28561
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 27618,
+            "y": 28561
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 28642,
+            "y": 28561
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 40,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        }
+      ],
+      "hash": "652fe22c",
+      "resumedTick": 55,
+      "resumedHash": "d280aa56"
+    },
+    {
+      "tick": 41,
+      "checkpointBytes": 26611,
+      "snapshotBytes": 1876,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 62614,
+            "y": 47165
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 41,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 27076,
+            "y": 28860
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 41,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 28100,
+            "y": 28860
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 41,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 29124,
+            "y": 28860
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 41,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 30148,
+            "y": 28860
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 41,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": 21,
+          "nextAcquireTick": 44,
+          "nextTurnTick": 43
+        }
+      ],
+      "hash": "d2cdf8b2",
+      "resumedTick": 56,
+      "resumedHash": "aec60b02"
+    },
+    {
+      "tick": 55,
+      "checkpointBytes": 31934,
+      "snapshotBytes": 2068,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 84118,
+            "y": 47165
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 48160,
+            "y": 33046
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 49184,
+            "y": 33046
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 50208,
+            "y": 33046
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 51232,
+            "y": 33046
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 17,
+          "position": {
+            "x": 15360,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 17,
+          "position": {
+            "x": 16384,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 17,
+          "position": {
+            "x": 17408,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 17,
+          "position": {
+            "x": 18432,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 512,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 55,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 512,
+          "targetId": null,
+          "nextAcquireTick": 56,
+          "nextTurnTick": 58
+        }
+      ],
+      "hash": "d280aa56",
+      "resumedTick": 70,
+      "resumedHash": "ccc3d0ce"
+    },
+    {
+      "tick": 56,
+      "checkpointBytes": 30180,
+      "snapshotBytes": 2068,
+      "rockets": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 17,
+          "position": {
+            "x": 85654,
+            "y": 47165
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 7,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 49666,
+            "y": 33345
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 50690,
+            "y": 33345
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 51714,
+            "y": 33345
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 52738,
+            "y": 33345
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 17,
+          "position": {
+            "x": 16000,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 17,
+          "position": {
+            "x": 17024,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 17,
+          "position": {
+            "x": 18048,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 17,
+          "position": {
+            "x": 19072,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 640,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 56,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 640,
+          "targetId": null,
+          "nextAcquireTick": 62,
+          "nextTurnTick": 58
+        }
+      ],
+      "hash": "aec60b02",
+      "resumedTick": 71,
+      "resumedHash": "74f3643b"
+    },
+    {
+      "tick": 120,
+      "checkpointBytes": 30993,
+      "snapshotBytes": 2020,
+      "rockets": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 17,
+          "position": {
+            "x": 146050,
+            "y": 52481
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 17,
+          "position": {
+            "x": 147074,
+            "y": 52481
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 17,
+          "position": {
+            "x": 148098,
+            "y": 52481
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 17,
+          "position": {
+            "x": 149122,
+            "y": 52481
+          },
+          "velocity": {
+            "x": 1506,
+            "y": 299
+          },
+          "spawnTick": 31,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 1,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 17,
+          "position": {
+            "x": 111616,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 17,
+          "position": {
+            "x": 112640,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 17,
+          "position": {
+            "x": 113664,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 17,
+          "position": {
+            "x": 114688,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 120,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 121
+        }
+      ],
+      "hash": "0be84eea",
+      "resumedTick": 135,
+      "resumedHash": "9204d181"
+    },
+    {
+      "tick": 121,
+      "checkpointBytes": 29049,
+      "snapshotBytes": 1828,
+      "rockets": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 17,
+          "position": {
+            "x": 113152,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 121,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 124
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 17,
+          "position": {
+            "x": 114176,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 121,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 124
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 17,
+          "position": {
+            "x": 115200,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 121,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 124
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 17,
+          "position": {
+            "x": 116224,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 121,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 122,
+          "nextTurnTick": 124
+        }
+      ],
+      "hash": "3d27b24a",
+      "resumedTick": 136,
+      "resumedHash": "e8c78dff"
+    },
+    {
+      "tick": 144,
+      "checkpointBytes": 25415,
+      "snapshotBytes": 1828,
+      "rockets": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 17,
+          "position": {
+            "x": 148480,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 144,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 146,
+          "nextTurnTick": 145
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 17,
+          "position": {
+            "x": 149504,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 144,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 146,
+          "nextTurnTick": 145
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 17,
+          "position": {
+            "x": 150528,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 144,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 146,
+          "nextTurnTick": 145
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 17,
+          "position": {
+            "x": 151552,
+            "y": 45312
+          },
+          "velocity": {
+            "x": 1536,
+            "y": 0
+          },
+          "spawnTick": 55,
+          "tick": 144,
+          "launchHeading": 0,
+          "heading": 0,
+          "speed": 1536,
+          "targetId": null,
+          "nextAcquireTick": 146,
+          "nextTurnTick": 145
+        }
+      ],
+      "hash": "d1f06853",
+      "resumedTick": 159,
+      "resumedHash": "6258a750"
+    },
+    {
+      "tick": 145,
+      "checkpointBytes": 23483,
+      "snapshotBytes": 1636,
+      "rockets": [],
+      "hash": "fb2d3131",
+      "resumedTick": 160,
+      "resumedHash": "ba5ca38c"
+    }
+  ],
+  "events": [
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 15360,
+        "y": 36842
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 16384,
+        "y": 36842
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 17408,
+        "y": 36842
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 18432,
+        "y": 36842
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 5,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 15360,
+        "y": 28262
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 6,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 16384,
+        "y": 28262
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 7,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 17408,
+        "y": 28262
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 8,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 18432,
+        "y": 28262
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 33,
+      "kind": "explosion",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "spawnTick": 7,
+        "sourceId": 1003
+      },
+      "position": {
+        "x": 52452,
+        "y": 46063
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 33,
+      "kind": "impact",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 52965,
+        "y": 46063
+      },
+      "impact": {
+        "sourceId": 1003,
+        "definitionId": 17,
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 4,
+        "time": {
+          "numerator": 669,
+          "denominator": 1570
+        },
+        "position": {
+          "x": 52965,
+          "y": 46063
+        }
+      },
+      "targetId": 20
+    },
+    {
+      "tick": 33,
+      "kind": "killed",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 52965,
+        "y": 46063
+      },
+      "impact": {
+        "sourceId": 1003,
+        "definitionId": 17,
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 4,
+        "time": {
+          "numerator": 669,
+          "denominator": 1570
+        },
+        "position": {
+          "x": 52965,
+          "y": 46063
+        }
+      },
+      "targetId": 20
+    },
+    {
+      "tick": 41,
+      "kind": "explosion",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "spawnTick": 7,
+        "sourceId": 1001
+      },
+      "position": {
+        "x": 62033,
+        "y": 50688
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 41,
+      "kind": "explosion",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "spawnTick": 7,
+        "sourceId": 1002
+      },
+      "position": {
+        "x": 63057,
+        "y": 50688
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 41,
+      "kind": "impact",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 67803,
+        "y": 50688
+      },
+      "impact": {
+        "sourceId": 1001,
+        "definitionId": 17,
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 4,
+        "time": {
+          "numerator": 344,
+          "denominator": 587
+        },
+        "position": {
+          "x": 67803,
+          "y": 50688
+        }
+      },
+      "targetId": 21
+    },
+    {
+      "tick": 41,
+      "kind": "killed",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 67803,
+        "y": 50688
+      },
+      "impact": {
+        "sourceId": 1001,
+        "definitionId": 17,
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 4,
+        "time": {
+          "numerator": 344,
+          "denominator": 587
+        },
+        "position": {
+          "x": 67803,
+          "y": 50688
+        }
+      },
+      "targetId": 21
+    },
+    {
+      "tick": 41,
+      "kind": "impact",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 67803,
+        "y": 50688
+      },
+      "impact": {
+        "sourceId": 1002,
+        "definitionId": 17,
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 4,
+        "time": {
+          "numerator": 344,
+          "denominator": 587
+        },
+        "position": {
+          "x": 67803,
+          "y": 50688
+        }
+      },
+      "targetId": 21
+    },
+    {
+      "tick": 55,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 9,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 15360,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 55,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 10,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 16384,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 55,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 11,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 17408,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null
+    },
+    {
+      "tick": 55,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 12,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 17,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 18432,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null
+    }
+  ],
+  "finalHash": "ba5ca38c",
+  "traceHash": "70bbdbaf",
+  "encounter": "complete",
+  "players": [
+    {
+      "weapon": {
+        "id": "rocket-launcher",
+        "ammo": 17,
+        "cooldownTicks": 0,
+        "shotOrdinal": 3,
+        "lastActionInstanceId": 9
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "rocket-launcher",
+        "ammo": 17,
+        "cooldownTicks": 0,
+        "shotOrdinal": 3,
+        "lastActionInstanceId": 10
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "rocket-launcher",
+        "ammo": 17,
+        "cooldownTicks": 0,
+        "shotOrdinal": 3,
+        "lastActionInstanceId": 11
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "rocket-launcher",
+        "ammo": 17,
+        "cooldownTicks": 0,
+        "shotOrdinal": 3,
+        "lastActionInstanceId": 12
+      },
+      "lives": 3
+    }
+  ],
+  "scope": "Accepted four-player launcher input/ammo, visible flight and private lock/clocks through checkpoint and journal replay. Engineering content; SQLite and browser room execution are separate harnesses."
+}

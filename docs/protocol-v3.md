@@ -2,6 +2,8 @@
 
 This is the implemented input and acknowledgment wire contract, currently isolated from the active v2 game. All integers are little endian. Counters never wrap and must remain below `0xfffff000`; rotate connection epochs or establish a controlled new run before exhaustion. The handshake binds a controlling socket to one run/player and independently checks simulation/content/presentation identities. Unknown fields, versions, flags, reserved bits, enum values and incompatible identities fail closed.
 
+The launcher uses the existing projectile and acknowledged explosion records. Its private target and guidance clocks are retained by [combat archive 13](combat-checkpoint-v13.md), with simulation/recording format 10. The wire remains 3.11; the content identity binds the new weapon definitions and guidance profile.
+
 ## Input frame
 
 | Header offset | Field                                          | Type    |

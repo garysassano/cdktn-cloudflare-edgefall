@@ -204,6 +204,7 @@ export function continueCombatCheckpoint(
   world.props = structuredClone(template.props);
   for (const player of world.players) player.geometryRevision = 1;
   world.projectiles = [];
+  world.rockets = [];
   world.strikes = [];
   world.grenades = [];
   world.areas = [];

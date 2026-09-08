@@ -39,8 +39,10 @@ import {
   muzzleBlocked,
   sweepProjectile,
 } from "../combat/projectile.js";
+import { type Rocket, createRocket, stepRocket } from "../combat/rocket.js";
 import { actionPose } from "../combat/timeline.js";
 import { type MeleeStrike, explosionHits, meleeHits } from "../combat/volume.js";
+import { ROCKET_ATTACK, ROCKET_PROFILE, ROCKET_SHAPE } from "../content/weapons/rocket-launcher.js";
 import { stepFootController } from "../controller/foot.js";
 import { canonical } from "../core/canonical.js";
 import { compareContactTime, integer, nextCounter, pixels, position } from "../core/numeric.js";
@@ -99,6 +101,7 @@ export const COMBAT_SCENARIOS = [
   "ordnance",
   "hmg",
   "support",
+  "rocket",
 ] as const;
 export type CombatScenario = (typeof COMBAT_SCENARIOS)[number];
 export interface CombatCommand {
@@ -153,7 +156,7 @@ export interface CombatNotice {
   targetId: number | null;
 }
 export interface CombatLab {
-  format: 9;
+  format: 10;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -164,6 +167,7 @@ export interface CombatLab {
   targets: CombatTarget[];
   props: DestructibleState[];
   projectiles: BallisticProjectile[];
+  rockets: Rocket[];
   strikes: MeleeStrike[];
   grenades: Grenade[];
   areas: AreaAttack[];
@@ -250,6 +254,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     if (scenario === "hmg") actor.weapon = { ...actor.weapon, id: "heavy-machine-gun", ammo: 150 };
     if (scenario === "shotgun") actor.weapon = { ...actor.weapon, id: "shotgun", ammo: 24 };
     if (scenario === "flame") actor.weapon = { ...actor.weapon, id: "flamethrower", ammo: 30 };
+    if (scenario === "rocket") actor.weapon = { ...actor.weapon, id: "rocket-launcher", ammo: 20 };
     return actor;
   });
   const props = scenario === "support" ? COMBAT_SUPPORT.map(createDestructible) : [];
@@ -295,7 +300,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 9,
+    format: 10,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -322,6 +327,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
     targets,
     props,
     projectiles: [],
+    rockets: [],
     strikes: [],
     grenades: [],
     areas: [],
@@ -780,7 +786,8 @@ export function advanceCombatLab(
         if (!definition || !shape || !hand) throw new Error("Missing release definition");
         notice.kind = "shot";
         const areaProfile = AREA_PROFILES.get(definition.id);
-        const clearance = areaProfile ? COMBAT_SHAPES.get(4) : shape;
+        const rocket = definition.id === ROCKET_ATTACK.id;
+        const clearance = rocket ? ROCKET_SHAPE : areaProfile ? COMBAT_SHAPES.get(4) : shape;
         if (!clearance) throw new Error("Missing muzzle clearance shape");
         const blocked = muzzleBlocked(
           worldSocket(actor.body, hand, actor.facing),
@@ -819,7 +826,25 @@ export function advanceCombatLab(
           );
           if (blocked) notice.kind = "muzzle-blocked";
         } else if (blocked) notice.kind = "muzzle-blocked";
-        else {
+        else if (rocket) {
+          if (world.rockets.length >= 32) throw new Error("Rocket cap requires recovery");
+          world.rockets.push(
+            createRocket(
+              {
+                id: world.nextEntityId,
+                ownerId: actor.playerId,
+                team: 1,
+                actionInstanceId: item.actionInstanceId,
+                definitionId: definition.id,
+              },
+              position,
+              actor.aim === 1 ? 24 : actor.aim === 2 ? 8 : actor.facing === 1 ? 0 : 16,
+              tick,
+              ROCKET_PROFILE,
+            ),
+          );
+          world.nextEntityId = nextCounter(world.nextEntityId);
+        } else {
           if (world.projectiles.length >= 256) throw new Error("Projectile cap requires recovery");
           world.projectiles.push({
             id: world.nextEntityId,
@@ -922,6 +947,37 @@ export function advanceCombatLab(
     ...(stage?.extraHurtboxes ?? []),
   ];
   const impacts: Impact[] = [];
+  world.rockets = world.rockets.flatMap((rocket) => {
+    if (rocket.spawnTick === tick) return [rocket];
+    const result = stepRocket(
+      rocket,
+      tick,
+      ROCKET_ATTACK,
+      ROCKET_SHAPE,
+      ROCKET_PROFILE,
+      terrain,
+      hurtboxes,
+    );
+    if (result.status === "active") return [result.rocket];
+    if (result.status === "detonated") {
+      world.events.push({
+        kind: "explosion",
+        ownerId: rocket.ownerId,
+        actionInstanceId: rocket.actionInstanceId,
+        markerIndex: 0,
+        source: {
+          definitionId: rocket.definitionId,
+          spawnTick: rocket.spawnTick,
+          sourceId: rocket.id,
+        },
+        position: result.contact.position,
+        impact: null,
+        targetId: null,
+      });
+      impacts.push(...result.impacts);
+    }
+    return [];
+  });
   world.areas = world.areas.flatMap((area) => {
     const definition = COMBAT_ATTACKS.get(area.definitionId),
       profile = AREA_PROFILES.get(area.definitionId);
@@ -1272,7 +1328,7 @@ export function advanceCombatLab(
   return { state: world, outcomes, lifeNotices, seatEvents, impacts };
 }
 export interface CombatRecording {
-  format: 9;
+  format: 10;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1281,7 +1337,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 9 ||
+    recording.format !== 10 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

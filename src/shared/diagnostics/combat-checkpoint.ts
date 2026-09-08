@@ -5,6 +5,12 @@ import { validateArea } from "../../game/combat/area-attack.js";
 import { validateDestructibles } from "../../game/combat/destructible.js";
 import { validateFirearmAim } from "../../game/combat/firearm-aim.js";
 import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
+import { validateRocket } from "../../game/combat/rocket.js";
+import {
+  ROCKET_ATTACK,
+  ROCKET_PROFILE,
+  ROCKET_SHAPE,
+} from "../../game/content/weapons/rocket-launcher.js";
 import { canonical } from "../../game/core/canonical.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { EncounterLifecycle } from "../../game/encounters/lifecycle.js";
@@ -27,6 +33,8 @@ import {
   TANK_PROFILE,
 } from "../../game/labs/combat-content.js";
 import { COMBAT_SUPPORT, combatGeometryRevision } from "../../game/labs/combat-terrain.js";
+import { worldRect } from "../../game/physics/body.js";
+import { sweepBounds } from "../../game/physics/sweep.js";
 import { tankOwner, validateTankState } from "../../game/vehicles/tank.js";
 import type { GameIdentity } from "../content-id.js";
 import { Reader, Writer } from "../protocol/binary.js";
@@ -110,17 +118,19 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles strikes grenades areas encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles rockets strikes grenades areas encounter events",
   );
-  check(combat.format === 9, "simulation format");
+  check(combat.format === 10, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
+  integer(combat.rockets.length, 0, 32, "combat checkpoint rockets");
   integer(combat.strikes.length, 0, 4, "combat checkpoint strikes");
   integer(combat.grenades.length, 0, 32, "combat checkpoint grenades");
   integer(combat.areas.length, 0, 16, "combat area budget");
   integer(
     combat.projectiles.length +
+      combat.rockets.length +
       combat.strikes.length +
       combat.grenades.length +
       combat.areas.length,
@@ -365,6 +375,29 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     );
     ownAction(source.actionInstanceId, source.ownerId);
   };
+  const rocketActions = new Set<number>();
+  for (const rocket of combat.rockets) {
+    fields(
+      rocket,
+      "id ownerId team actionInstanceId definitionId position velocity spawnTick tick launchHeading heading speed targetId nextAcquireTick nextTurnTick",
+    );
+    fields(rocket.position, "x y");
+    fields(rocket.velocity, "x y");
+    ownAttack(rocket);
+    check(!rocketActions.has(rocket.actionInstanceId), "duplicate rocket action");
+    rocketActions.add(rocket.actionInstanceId);
+    check(
+      rocket.definitionId === ROCKET_ATTACK.id && rocket.tick === combat.tick,
+      "rocket definition/tick",
+    );
+    check(
+      rocket.targetId === null ||
+        combat.targets.some((target) => target.enemy.body.id === rocket.targetId),
+      "rocket target roster",
+    );
+    validateRocket(rocket, ROCKET_PROFILE);
+    sweepBounds(worldRect(rocket.position, ROCKET_SHAPE.rect, 1), { x: 0, y: 0 });
+  }
   for (const strike of combat.strikes) {
     fields(strike, "id ownerId team actionInstanceId definitionId spawnTick endTick hitIds");
     ownAttack(strike);
@@ -581,10 +614,14 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
         fields(notice.source, "definitionId spawnTick sourceId");
         check(
           notice.kind === "explosion" &&
-            notice.source.definitionId === 5 &&
-            notice.source.spawnTick === combat.tick - GRENADE_PROFILE.fuseTicks,
-          "detonation fuse boundary",
+            ((notice.source.definitionId === 5 &&
+              notice.source.spawnTick === combat.tick - GRENADE_PROFILE.fuseTicks) ||
+              (notice.source.definitionId === ROCKET_ATTACK.id &&
+                notice.source.spawnTick < combat.tick &&
+                combat.tick - notice.source.spawnTick <= ROCKET_PROFILE.lifetimeTicks)),
+          "detonation lifetime boundary",
         );
+        integer(notice.source.spawnTick, 1, combat.tick - 1, "detonation birth tick");
         integer(notice.source.sourceId, 1, combat.nextEntityId - 1, "detonation source");
       }
       if (!("spawnTick" in notice.source))
@@ -747,7 +784,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 12,
+    format: 13,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -771,7 +808,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 12 &&
+    envelope.format === 13 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

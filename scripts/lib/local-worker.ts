@@ -27,6 +27,7 @@ export async function withDirectRoomWorker<T>(
       | "tank"
       | "ordnance"
       | "hmg"
+      | "rocket"
       | "support";
   } = {},
 ): Promise<T> {

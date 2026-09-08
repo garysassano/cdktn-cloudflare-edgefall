@@ -2,6 +2,11 @@ import Phaser from "phaser";
 import { shieldPresentation } from "../game/actors/shield.js";
 import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
+import {
+  ROCKET_ATTACK,
+  ROCKET_PROFILE,
+  ROCKET_SHAPE,
+} from "../game/content/weapons/rocket-launcher.js";
 import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
 import {
@@ -780,6 +785,18 @@ async function startLab() {
           g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
         }
         for (const projectile of snapshot?.projectiles ?? []) {
+          if (projectile.definitionId === ROCKET_ATTACK.id) {
+            const rect = worldRect(projectile, ROCKET_SHAPE.rect, 1);
+            g.lineStyle(1, 0xffb56b);
+            g.strokeRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+            g.lineBetween(
+              projectile.x / 256,
+              projectile.y / 256,
+              (projectile.x - projectile.vx * 3) / 256,
+              (projectile.y - projectile.vy * 3) / 256,
+            );
+            continue;
+          }
           if (projectile.definitionId === 5) {
             g.fillStyle(0xa4e488);
             g.fillCircle(projectile.x / 256, projectile.y / 256, 3);
@@ -813,7 +830,9 @@ async function startLab() {
             item.event.x / 256,
             item.event.y / 256,
             item.event.kind === "explosion"
-              ? GRENADE_PROFILE.radius / 256
+              ? (item.event.definitionId === ROCKET_ATTACK.id
+                  ? ROCKET_PROFILE.blastRadius
+                  : GRENADE_PROFILE.radius) / 256
               : item.event.kind === "killed"
                 ? 7
                 : 3,

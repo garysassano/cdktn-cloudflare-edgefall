@@ -5,6 +5,7 @@ import { areaExposures } from "../../game/combat/area-attack.js";
 import { type DestructibleState, validateDestructibles } from "../../game/combat/destructible.js";
 import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { actionPose } from "../../game/combat/timeline.js";
+import { ROCKET_PROFILE } from "../../game/content/weapons/rocket-launcher.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
 import { Edge, type InputCommand } from "../../game/input/types.js";
@@ -118,6 +119,7 @@ export async function combatIdentity() {
       areas: [...AREA_PROFILES],
       footActions: FOOT_ACTION_PROFILES,
       grenade: GRENADE_PROFILE,
+      rocket: ROCKET_PROFILE,
       tank: TANK_PROFILE,
       tankDepot: COMBAT_TANK_DEPOT,
       ordnance: COMBAT_ORDNANCE,
@@ -354,6 +356,21 @@ export function combatSnapshot(
       lifetimeTicks: GRENADE_PROFILE.fuseTicks,
       heading: grenade.body.vy < 0 ? 1 : grenade.body.vy > 0 ? 2 : grenade.body.vx < 0 ? 3 : 0,
       shapeId: grenade.body.shapeId,
+    });
+  for (const rocket of combat.rockets)
+    snapshot.projectiles.push({
+      id: rocket.id,
+      ownerId: rocket.ownerId,
+      actionInstanceId: rocket.actionInstanceId,
+      definitionId: rocket.definitionId,
+      x: rocket.position.x,
+      y: rocket.position.y,
+      vx: rocket.velocity.x,
+      vy: rocket.velocity.y,
+      spawnTick: rocket.spawnTick,
+      lifetimeTicks: ROCKET_PROFILE.lifetimeTicks,
+      heading: rocket.heading,
+      shapeId: ROCKET_PROFILE.bodyShapeId,
     });
   snapshot.projectiles.sort((a, b) => a.id - b.id);
   snapshot.removedIds = combat.targets

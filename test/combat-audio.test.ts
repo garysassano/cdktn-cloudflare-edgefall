@@ -42,6 +42,15 @@ function burningPlayers() {
 }
 
 describe("recorded interaction audio", () => {
+  it("keeps the engineering launcher silent at release instead of confirming it as a sidearm", () => {
+    const before = createCombatLab("rocket");
+    const next = stepCombatLab(before, [input(Held.Fire)]);
+    expect(
+      next.events.some((event) => event.kind === "shot" && event.source?.definitionId === 17),
+    ).toBe(true);
+    expect(combatAudioCues(before, next)).toEqual([]);
+  });
+
   it("covers every preload variant with a distinct checked-in export and declared loop policy", () => {
     const metadata = JSON.parse(
         readFileSync("public/assets/audio/sfx/breakwater-sfx.json", "utf8"),

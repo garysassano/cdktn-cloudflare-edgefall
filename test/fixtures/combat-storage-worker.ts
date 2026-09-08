@@ -18,6 +18,7 @@ import {
 } from "./ordnance-proof.js";
 import { recordPlayerLifeRecovery } from "./player-life-recovery-proof.js";
 import { recordRifleRecovery } from "./rifle-proof.js";
+import { ROCKET_COMBAT_BOUNDARIES, recordRocketCombat } from "./rocket-combat-proof.js";
 import { SHIELD_BOUNDARIES, recordShieldCombat } from "./shield-proof.js";
 import { SUPPORT_BOUNDARIES, recordSupport } from "./support-proof.js";
 import {
@@ -56,7 +57,8 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "ordnance-press" ||
       name === "ordnance-delayed" ||
       name === "hmg-sweep" ||
-      name === "support-fall"
+      name === "support-fall" ||
+      name === "rocket-flight"
     ) {
       const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
@@ -66,40 +68,55 @@ export class CombatStorageProof extends DurableObject<Env> {
       const ordnanceStart = name === "ordnance-delayed" ? 6 : 1;
       const hmg = name === "hmg-sweep";
       const support = name === "support-fall";
+      const rocket = name === "rocket-flight";
       if (action !== "restore") {
-        const fixture = support
-          ? recordSupport()
-          : hmg
-            ? recordHmg()
-            : ordnance
-              ? recordOrdnance(ordnanceStart)
-              : tank
-                ? damage
-                  ? recordTankCombat(210, tankDamageInput)
-                  : recordTankCombat()
-                : area
-                  ? recordAreaCombat(area)
-                  : recordShieldCombat(mode);
-        const boundaries = support
-          ? SUPPORT_BOUNDARIES
-          : hmg
-            ? HMG_BOUNDARIES
-            : ordnance
-              ? ordnanceStart === 1
-                ? ORDNANCE_BOUNDARIES
-                : DELAYED_ORDNANCE_BOUNDARIES
-              : tank
-                ? damage
-                  ? TANK_DAMAGE_BOUNDARIES
-                  : TANK_BOUNDARIES
-                : area
-                  ? AREA_BOUNDARIES[area]
-                  : SHIELD_BOUNDARIES[mode];
+        const fixture = rocket
+          ? recordRocketCombat()
+          : support
+            ? recordSupport()
+            : hmg
+              ? recordHmg()
+              : ordnance
+                ? recordOrdnance(ordnanceStart)
+                : tank
+                  ? damage
+                    ? recordTankCombat(210, tankDamageInput)
+                    : recordTankCombat()
+                  : area
+                    ? recordAreaCombat(area)
+                    : recordShieldCombat(mode);
+        const boundaries = rocket
+          ? ROCKET_COMBAT_BOUNDARIES
+          : support
+            ? SUPPORT_BOUNDARIES
+            : hmg
+              ? HMG_BOUNDARIES
+              : ordnance
+                ? ordnanceStart === 1
+                  ? ORDNANCE_BOUNDARIES
+                  : DELAYED_ORDNANCE_BOUNDARIES
+                : tank
+                  ? damage
+                    ? TANK_DAMAGE_BOUNDARIES
+                    : TANK_BOUNDARIES
+                  : area
+                    ? AREA_BOUNDARIES[area]
+                    : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
         if (
           ![
             ...boundaries,
-            support || hmg || ordnance ? 120 : tank ? (damage ? 210 : 120) : area ? 120 : 180,
+            rocket
+              ? 160
+              : support || hmg || ordnance
+                ? 120
+                : tank
+                  ? damage
+                    ? 210
+                    : 120
+                  : area
+                    ? 120
+                    : 180,
           ].includes(through)
         )
           throw new Error("Unknown shield storage boundary");
@@ -161,6 +178,9 @@ export class CombatStorageProof extends DurableObject<Env> {
           : undefined,
         volumes: saved.snapshot.combat?.volumes,
         weapons: saved.combat.players.map((player) => player.weapon),
+        rocket: rocket
+          ? { rockets: saved.combat.rockets, projectiles: saved.snapshot.projectiles }
+          : undefined,
         archiveRows: this.ctx.storage.sql
           .exec<{ count: number }>("SELECT COUNT(*) AS count FROM combat_archive")
           .one().count,
@@ -614,6 +634,7 @@ export default {
         "ordnance-delayed",
         "hmg-sweep",
         "support-fall",
+        "rocket-flight",
         "shield-bash",
         "shield-break",
         "campaign",

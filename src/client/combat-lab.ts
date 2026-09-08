@@ -4,6 +4,11 @@ import { shieldMode, shieldPresentation } from "../game/actors/shield.js";
 import { areaExposures } from "../game/combat/area-attack.js";
 import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
+import {
+  ROCKET_ATTACK,
+  ROCKET_PROFILE,
+  ROCKET_SHAPE,
+} from "../game/content/weapons/rocket-launcher.js";
 import { canonical } from "../game/core/canonical.js";
 import { Held } from "../game/input/types.js";
 import {
@@ -184,7 +189,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 9,
+    format: 10,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -522,6 +527,17 @@ class CombatScene extends Phaser.Scene {
         g.strokeCircle(grenade.body.x / 256, grenade.body.y / 256, 5);
       }
     }
+    for (const rocket of state.rockets) {
+      const rect = worldRect(rocket.position, ROCKET_SHAPE.rect, 1);
+      g.lineStyle(1, 0xffb56b);
+      g.strokeRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+      g.lineBetween(
+        rocket.position.x / 256,
+        rocket.position.y / 256,
+        (rocket.position.x - rocket.velocity.x * 3) / 256,
+        (rocket.position.y - rocket.velocity.y * 3) / 256,
+      );
+    }
     for (const projectile of state.projectiles) {
       if (projectile.spawnTick === state.tick) {
         g.fillStyle(projectile.team === 2 ? 0xff677d : 0xffe475);
@@ -545,7 +561,9 @@ class CombatScene extends Phaser.Scene {
         g.strokeCircle(
           event.position.x / 256,
           event.position.y / 256,
-          GRENADE_PROFILE.radius / 256,
+          (event.source?.definitionId === ROCKET_ATTACK.id
+            ? ROCKET_PROFILE.blastRadius
+            : GRENADE_PROFILE.radius) / 256,
         );
       } else if (event.kind === "impact" || event.kind === "muzzle-blocked") {
         g.lineStyle(1, 0xffffff);

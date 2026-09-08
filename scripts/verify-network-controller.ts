@@ -20,6 +20,7 @@ import { verifyHmgCombat } from "./lib/verify-hmg-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
+import { verifyRocketCombat } from "./lib/verify-rocket-combat.js";
 import { verifyRoomPhases } from "./lib/verify-room-phases.js";
 import { verifyShieldCombat } from "./lib/verify-shield-combat.js";
 import { verifySupportCombat } from "./lib/verify-support-combat.js";
@@ -103,6 +104,7 @@ const areaMode = process.argv.includes("--combat-shotgun")
 const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
 const supportMode = process.argv.includes("--combat-support");
+const rocketMode = process.argv.includes("--combat-rocket");
 const hmgMode = process.argv.includes("--combat-hmg");
 const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
@@ -129,9 +131,19 @@ const combatMode =
   tankMode ||
   ordnanceMode ||
   hmgMode ||
-  supportMode;
+  supportMode ||
+  rocketMode;
 assert(
-  !(footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode) ||
+  !(
+    footMode ||
+    shieldMode ||
+    areaMode ||
+    tankMode ||
+    ordnanceMode ||
+    hmgMode ||
+    supportMode ||
+    rocketMode
+  ) ||
     !(
       hostileMode ||
       campaignMode ||
@@ -155,6 +167,7 @@ assert(
     ordnanceMode,
     hmgMode,
     supportMode,
+    rocketMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -189,45 +202,47 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = supportMode
-  ? "dist/network-combat-support-evidence"
-  : hmgMode
-    ? "dist/network-combat-hmg-evidence"
-    : ordnanceMode
-      ? "dist/network-combat-ordnance-evidence"
-      : tankMode
-        ? "dist/network-combat-tank-evidence"
-        : areaMode
-          ? `dist/network-combat-${areaMode}-evidence`
-          : shieldMode
-            ? "dist/network-combat-guard-evidence"
-            : footMode
-              ? `dist/network-combat-${footMode}-evidence`
-              : hostileMode
-                ? "dist/network-combat-hostile-evidence"
-                : campaignMode
-                  ? "dist/network-combat-campaign-evidence"
-                  : automaticMode
-                    ? "dist/network-combat-auto-evidence"
-                    : combatReconnectMode
-                      ? loadingMode
-                        ? phaseMode
-                          ? "dist/network-combat-phase-evidence"
-                          : "dist/network-combat-loading-evidence"
-                        : "dist/network-combat-reconnect-evidence"
-                      : combatRecoveryMode
-                        ? "dist/network-combat-recovery-evidence"
-                        : baselineMode
-                          ? "dist/network-combat-baseline-evidence"
-                          : combatMode
-                            ? eventMode
-                              ? "dist/network-event-evidence"
-                              : faultMode
-                                ? "dist/network-combat-fault-evidence"
-                                : "dist/network-combat-evidence"
-                            : recoveryMode
-                              ? "dist/network-controller-recovery-evidence"
-                              : "dist/network-controller-evidence";
+const output = rocketMode
+  ? "dist/network-combat-rocket-evidence"
+  : supportMode
+    ? "dist/network-combat-support-evidence"
+    : hmgMode
+      ? "dist/network-combat-hmg-evidence"
+      : ordnanceMode
+        ? "dist/network-combat-ordnance-evidence"
+        : tankMode
+          ? "dist/network-combat-tank-evidence"
+          : areaMode
+            ? `dist/network-combat-${areaMode}-evidence`
+            : shieldMode
+              ? "dist/network-combat-guard-evidence"
+              : footMode
+                ? `dist/network-combat-${footMode}-evidence`
+                : hostileMode
+                  ? "dist/network-combat-hostile-evidence"
+                  : campaignMode
+                    ? "dist/network-combat-campaign-evidence"
+                    : automaticMode
+                      ? "dist/network-combat-auto-evidence"
+                      : combatReconnectMode
+                        ? loadingMode
+                          ? phaseMode
+                            ? "dist/network-combat-phase-evidence"
+                            : "dist/network-combat-loading-evidence"
+                          : "dist/network-combat-reconnect-evidence"
+                        : combatRecoveryMode
+                          ? "dist/network-combat-recovery-evidence"
+                          : baselineMode
+                            ? "dist/network-combat-baseline-evidence"
+                            : combatMode
+                              ? eventMode
+                                ? "dist/network-event-evidence"
+                                : faultMode
+                                  ? "dist/network-combat-fault-evidence"
+                                  : "dist/network-combat-evidence"
+                              : recoveryMode
+                                ? "dist/network-controller-recovery-evidence"
+                                : "dist/network-controller-evidence";
 // This generated directory belongs to this invocation, including scenario-specific screenshots.
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -278,6 +293,7 @@ try {
       "scripts/lib/room-host-control.ts",
       ...(hmgMode ? ["scripts/lib/verify-hmg-combat.ts"] : []),
       ...(supportMode ? ["scripts/lib/verify-support-combat.ts"] : []),
+      ...(rocketMode ? ["scripts/lib/verify-rocket-combat.ts"] : []),
     ])
       sources.push({
         file,
@@ -340,7 +356,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -424,6 +440,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (rocketMode) {
+        const rocket = await verifyRocketCombat(pages, base, output);
+        room = rocket.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          rocket,
+          clients: rocket.clients,
+          sharedSnapshots: rocket.common.length,
+          room,
+          scope:
+            "Four real keyboards fire two short launcher taps each into an authoritative local workerd room. Flight snapshots, one ammo debit per release, explosions, kill credit and deduplicated events agree. Engineering content; deployed timing and final media remain open.",
+        };
       }
       if (supportMode) {
         const support = await verifySupportCombat(pages, base, output);
@@ -2066,15 +2102,17 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: supportMode
-      ? "support"
-      : hmgMode
-        ? "hmg"
-        : ordnanceMode
-          ? "ordnance"
-          : tankMode
-            ? "tank"
-            : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario: rocketMode
+      ? "rocket"
+      : supportMode
+        ? "support"
+        : hmgMode
+          ? "hmg"
+          : ordnanceMode
+            ? "ordnance"
+            : tankMode
+              ? "tank"
+              : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

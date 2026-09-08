@@ -411,7 +411,7 @@ describe("native operative source and playback", () => {
     expect(state.players[0]?.body.y).toBeLessThan(y);
     expect(state.players[0]?.weapon.shotOrdinal).toBe(shots + 1);
     const recording = {
-      format: 9 as const,
+      format: 10 as const,
       scenario: state.scenario,
       players: 1,
       commands,

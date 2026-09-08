@@ -206,6 +206,7 @@ try {
     hmg: expected.hmg,
     support: expected.support,
     rocket: expected.rocket,
+    rocketCombat: expected.rocketCombat,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

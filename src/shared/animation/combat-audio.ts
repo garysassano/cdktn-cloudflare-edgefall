@@ -44,6 +44,8 @@ function eventCue(event: CombatNotice, bossId?: number): CombatCueName | null {
         return null; // The accepted emitter transition owns ignition and persistent roar.
       case 16:
         return "tank";
+      case 17:
+        return null; // Launcher launch audio awaits its reviewed family.
       default:
         return "sidearm";
     }
