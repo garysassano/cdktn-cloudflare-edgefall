@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-08T06:19:10Z",
+  "worker": "edgefall",
+  "authentication": "Existing Wrangler OAuth profile; credentials omitted",
+  "scope": "Read-only account inspection. No deployment, settings update or trace ingestion claim.",
+  "sourceAndGeneratedConfig": {
+    "tracesEnabled": true,
+    "traceSamplingRate": 1,
+    "logsEnabled": true,
+    "invocationLogs": true,
+    "logSamplingRate": 1,
+    "uploadSourceMaps": true
+  },
+  "workerList": {
+    "success": true,
+    "targetPresent": false
+  },
+  "scriptSettings": {
+    "path": "/accounts/[account]/workers/scripts/edgefall/script-settings",
+    "httpStatus": 404,
+    "errors": [
+      {
+        "code": 10007,
+        "message": "This Worker does not exist on your account."
+      }
+    ]
+  },
+  "liveIngestionVerified": false,
+  "references": [
+    "https://developers.cloudflare.com/workers/observability/traces/",
+    "https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/settings/methods/get/"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "scope": "Read-only Linux clocks during the serial browser matrix; no clock, service or host setting changes",
+  "clocksource": "tsc",
+  "requestedIntervalSeconds": 0.05,
+  "reads": 1194,
+  "finalElapsedSeconds": {
+    "CLOCK_REALTIME": 56.328843163,
+    "CLOCK_MONOTONIC": 60.026612029,
+    "CLOCK_MONOTONIC_RAW": 56.325642149,
+    "CLOCK_BOOTTIME": 60.026612423
+  },
+  "realtimeBacksteps": 3,
+  "offsetChanges": [
+    {
+      "atMonotonicSeconds": 9.911576834,
+      "realtimeBackwards": true,
+      "offsetChangeSeconds": -0.778190601,
+      "deltaSeconds": {
+        "CLOCK_REALTIME": -0.728046622,
+        "CLOCK_MONOTONIC": 0.050143979,
+        "CLOCK_MONOTONIC_RAW": 0.047104569,
+        "CLOCK_BOOTTIME": 0.050143905
+      }
+    },
+    {
+      "atMonotonicSeconds": 9.961865645,
+      "realtimeBackwards": true,
+      "offsetChangeSeconds": -1.052678244,
+      "deltaSeconds": {
+        "CLOCK_REALTIME": -1.002389433,
+        "CLOCK_MONOTONIC": 0.050288811,
+        "CLOCK_MONOTONIC_RAW": 0.047240582,
+        "CLOCK_BOOTTIME": 0.050288779
+      }
+    },
+    {
+      "atMonotonicSeconds": 39.950409895,
+      "realtimeBackwards": true,
+      "offsetChangeSeconds": -1.8668991689999999,
+      "deltaSeconds": {
+        "CLOCK_REALTIME": -1.816662759,
+        "CLOCK_MONOTONIC": 0.05023641,
+        "CLOCK_MONOTONIC_RAW": 0.047161893,
+        "CLOCK_BOOTTIME": 0.050236111
+      }
+    }
+  ],
+  "samples": [
+    {
+      "CLOCK_REALTIME": 5.029974363,
+      "CLOCK_MONOTONIC": 5.029975279,
+      "CLOCK_MONOTONIC_RAW": 4.721152093,
+      "CLOCK_BOOTTIME": 5.029976057
+    },
+    {
+      "CLOCK_REALTIME": 8.181168042,
+      "CLOCK_MONOTONIC": 10.012038548,
+      "CLOCK_MONOTONIC_RAW": 9.398129979,
+      "CLOCK_BOOTTIME": 10.012039207
+    },
+    {
+      "CLOCK_REALTIME": 13.210508536,
+      "CLOCK_MONOTONIC": 15.041378861,
+      "CLOCK_MONOTONIC_RAW": 14.122621428,
+      "CLOCK_BOOTTIME": 15.041379394
+    },
+    {
+      "CLOCK_REALTIME": 18.188537144,
+      "CLOCK_MONOTONIC": 20.019406832,
+      "CLOCK_MONOTONIC_RAW": 18.797764962,
+      "CLOCK_BOOTTIME": 20.01940729
+    },
+    {
+      "CLOCK_REALTIME": 23.218811253,
+      "CLOCK_MONOTONIC": 25.049680898,
+      "CLOCK_MONOTONIC_RAW": 23.519205369,
+      "CLOCK_BOOTTIME": 25.049681409
+    },
+    {
+      "CLOCK_REALTIME": 28.204679383,
+      "CLOCK_MONOTONIC": 30.035549408,
+      "CLOCK_MONOTONIC_RAW": 28.18409464,
+      "CLOCK_BOOTTIME": 30.035550019
+    },
+    {
+      "CLOCK_REALTIME": 33.190133388,
+      "CLOCK_MONOTONIC": 35.021003192,
+      "CLOCK_MONOTONIC_RAW": 32.844048435,
+      "CLOCK_BOOTTIME": 35.021003629
+    },
+    {
+      "CLOCK_REALTIME": 36.30284922,
+      "CLOCK_MONOTONIC": 40.000618086,
+      "CLOCK_MONOTONIC_RAW": 37.518931735,
+      "CLOCK_BOOTTIME": 40.00061847
+    },
+    {
+      "CLOCK_REALTIME": 41.333311467,
+      "CLOCK_MONOTONIC": 45.031079544,
+      "CLOCK_MONOTONIC_RAW": 42.241913689,
+      "CLOCK_BOOTTIME": 45.031080193
+    },
+    {
+      "CLOCK_REALTIME": 46.315639231,
+      "CLOCK_MONOTONIC": 50.013408106,
+      "CLOCK_MONOTONIC_RAW": 46.922551764,
+      "CLOCK_BOOTTIME": 50.013408563
+    },
+    {
+      "CLOCK_REALTIME": 51.347238706,
+      "CLOCK_MONOTONIC": 55.045007518,
+      "CLOCK_MONOTONIC_RAW": 51.648188526,
+      "CLOCK_BOOTTIME": 55.045007944
+    },
+    {
+      "CLOCK_REALTIME": 56.328843163,
+      "CLOCK_MONOTONIC": 60.026612029,
+      "CLOCK_MONOTONIC_RAW": 56.325642149,
+      "CLOCK_BOOTTIME": 60.026612423
+    }
+  ]
+}

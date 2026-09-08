@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only host timing evidence; no claim of a repaired host or deployed Worker timing",
+  "artifacts": [
+    {
+      "path": "probe.py",
+      "bytes": 1946,
+      "sha256": "db447dc9b710fe30ff8ef648819cf025bc07ac9a83c323651f33f96026e8cf2d"
+    },
+    {
+      "path": "coarse.json",
+      "bytes": 2036,
+      "sha256": "de2e0bf9af799769d2474d8b574752e7520704ef7d4c5fc587829e21950240cb"
+    },
+    {
+      "path": "fine.json",
+      "bytes": 3453,
+      "sha256": "4db9782c8584fd83f7d518194117565e6a72c360c9624ade6afc4faf67691a74"
+    },
+    {
+      "path": "context.json",
+      "bytes": 648,
+      "sha256": "ddbc55a79aced8d031b35d0aa5c6677d5abf1cc904e96f0995b4d4b1315a1c92"
+    }
+  ]
+}

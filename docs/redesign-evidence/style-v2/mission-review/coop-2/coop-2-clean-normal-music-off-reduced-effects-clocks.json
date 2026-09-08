@@ -1,0 +1,30 @@
+{
+  "wallMs": 46757,
+  "monotonicMs": 50363.69999998808,
+  "acceptedClockMs": 50314.5,
+  "renderedFrames": 3019,
+  "rendererMs": 50314.660000011616,
+  "maximumFrameMs": 28,
+  "videoSeconds": 50.917533,
+  "audioCues": 942,
+  "audioDropped": 0,
+  "maximumAudioVoices": 14,
+  "audioVoiceBudget": 32,
+  "audioState": "running",
+  "audioSeconds": 50.362666666666655,
+  "maxStalledAudioTicks": 1,
+  "droppedExamples": [],
+  "music": {
+    "ready": true,
+    "enabled": false,
+    "playing": false,
+    "phase": "lock-engine",
+    "voices": 0,
+    "seconds": 49.29066666666665,
+    "decodedBytes": 20480000,
+    "transitions": []
+  },
+  "decodedAudioBytes": 24242240,
+  "capturedAudioPeak": 0.3481471538543701,
+  "capturedAudioRms": 0.031470516667425334
+}

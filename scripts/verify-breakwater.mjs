@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -7,7 +7,11 @@ import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
 import { canonical } from "../src/game/core/canonical.ts";
-import { createBreakwater, stepBreakwater } from "../src/game/missions/breakwater.ts";
+import {
+  breakwaterTerrain,
+  createBreakwater,
+  stepBreakwater,
+} from "../src/game/missions/breakwater.ts";
 import {
   advanceBreakwaterVisual,
   initialBreakwaterVisual,
@@ -18,7 +22,7 @@ import {
   initialCastMotion,
   tankPresentation,
 } from "../src/shared/animation/cast.ts";
-import { EFFECT_POSTROLL } from "../src/shared/animation/combat-effects.ts";
+import { EFFECT_POSTROLL, effectDrawings } from "../src/shared/animation/combat-effects.ts";
 import { operativePresentation } from "../src/shared/animation/operative.ts";
 import {
   advanceOperativeMotion,
@@ -33,9 +37,15 @@ const playerCount = Number(
 );
 assert([1, 2, 4].includes(playerCount));
 const prefix = playerCount === 1 ? "solo" : `coop-${playerCount}`;
+const fullMatrix = process.argv.includes("--all-videos"),
+  resume = process.argv.includes("--resume");
+assert(!resume || fullMatrix, "Resume is supported for the complete review matrix");
 const root = resolve("dist/client"),
-  output =
-    playerCount === 1 ? "dist/breakwater-evidence" : `dist/breakwater-${playerCount}-evidence`,
+  output = fullMatrix
+    ? `dist/breakwater-matrix/${prefix}`
+    : playerCount === 1
+      ? "dist/breakwater-evidence"
+      : `dist/breakwater-${playerCount}-evidence`,
   captures = new Map([[0, "apron"]]),
   expected = new Map(),
   expectedFrames = new Map(),
@@ -43,7 +53,29 @@ const root = resolve("dist/client"),
   hashes = [],
   visualHashes = [],
   hash = (text) => createHash("sha256").update(text).digest("hex");
-await rm(output, { recursive: true, force: true });
+const identity = {
+  format: 1,
+  players: playerCount,
+  clientSha256: hash(await readFile(`${root}/benchmark.js`)),
+  assetManifestSha256: hash(await readFile(`${root}/assets/manifest.json`)),
+  verifierSha256: hash(await readFile("scripts/verify-breakwater.mjs")),
+  exporterSha256: hash(await readFile("scripts/lib/export-breakwater-video.mjs")),
+  routeSha256: hash(await readFile("test/fixtures/breakwater-proof.ts")),
+};
+let previous;
+if (resume) {
+  try {
+    previous = JSON.parse(await readFile(`${output}/report.json`, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  if (previous)
+    assert.deepEqual(
+      previous.captureIdentity,
+      identity,
+      "Cannot resume captures from a different build or verifier",
+    );
+} else await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 const atlases = new Map(
   await Promise.all(
@@ -52,6 +84,7 @@ const atlases = new Map(
       ["kestrel", "vehicles"],
       ["quay-watch", "enemies"],
       ["breakwater", "enemies"],
+      ["breakwater-fx", "effects"],
     ].map(async ([id, directory]) => [
       id,
       JSON.parse(await readFile(`${root}/assets/art/${directory}/${id}.atlas.json`, "utf8")),
@@ -196,6 +229,9 @@ await new Promise((done) => server.listen(0, "127.0.0.1", done));
 let browser;
 const errors = [],
   report = {
+    captureIdentity: identity,
+    validationOnly: process.argv.includes("--no-video"),
+    fullMatrix,
     scope: `Continuous local ${playerCount}-player mission with native crew transfers, destruction-driven safe ejection, finite effects and recorded audio. Network integration and human W06 approval are pending.`,
     browserAudioOutput:
       "Chromium --disable-audio-output; WebAudio rendering and MediaRecorder remain active. Physical-device output is not verified.",
@@ -213,7 +249,7 @@ const errors = [],
     visualHashes,
     presentationPostrollTicks: EFFECT_POSTROLL,
     screenshots: [],
-    videos: [],
+    videos: previous?.videos ?? [],
     checks: [],
   };
 try {
@@ -270,10 +306,33 @@ try {
       expectedFrames.get(tick),
       `Accepted crew/hero frames at ${tick}`,
     );
-    for (const debug of [false, true]) {
+    for (const [debug, reduced] of [false, true].flatMap((debug) =>
+      (fullMatrix ? [false, true] : [false]).map((reduced) => [debug, reduced]),
+    )) {
       await page.locator("#debug").setChecked(debug);
+      await page.locator("#reduced-effects").setChecked(reduced);
       await paint();
-      const name = `${String(tick).padStart(4, "0")}-${label}-${debug ? "debug" : "clean"}.png`,
+      const visual = await page.evaluate(() => globalThis.breakwater.visual());
+      const effects = effectDrawings(
+        visual.effects,
+        state.combat,
+        atlases.get("breakwater-fx"),
+        breakwaterTerrain(state),
+        tick,
+        reduced,
+        state.phase !== "playing",
+      );
+      assert.deepEqual(
+        await page.evaluate(() => globalThis.breakwater.frames().effects),
+        effects,
+        `Reduced effect adapter at ${tick}`,
+      );
+      assert.equal(
+        canonical(await page.evaluate(() => globalThis.breakwater.state())),
+        canonical(state),
+        "Display controls changed authority",
+      );
+      const name = `${String(tick).padStart(4, "0")}-${label}-${debug ? "debug" : "clean"}${reduced ? "-reduced-effects" : ""}.png`,
         bytes = await page.locator("#game canvas").screenshot({ path: `${output}/${name}` }),
         image = await sharp(bytes).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       assert.equal(image.info.width, 768);
@@ -292,7 +351,15 @@ try {
               `Non-native pixel at ${x},${y} in ${name}`,
             );
           }
-      report.screenshots.push({ name, tick, debug, sha256: hash(bytes) });
+      report.screenshots.push({
+        name,
+        tick,
+        debug,
+        reduced,
+        effectCount: effects.length,
+        effectHash: hash(JSON.stringify(effects)),
+        sha256: hash(bytes),
+      });
     }
     console.log(`Verified mission boundary ${tick}: ${label}`);
   }
@@ -431,25 +498,60 @@ try {
   if (!process.argv.includes("--no-video")) {
     await page.locator("#sound").check();
     await page.waitForFunction(() => globalThis.breakwater.audio().ready);
-    const modes = process.argv.includes("--all-videos")
+    const modes = fullMatrix
       ? [1, 0.25].flatMap((speed) =>
-          [false, true].flatMap((debug) => [true, false].map((music) => [speed, debug, music])),
+          [false, true].flatMap((debug) =>
+            [true, false].flatMap((music) =>
+              [false, true].map((reduced) => [speed, debug, music, reduced]),
+            ),
+          ),
         )
       : [
-          [1, false, true],
-          [1, true, true],
-          [0.25, false, true],
+          [1, false, true, false],
+          [1, true, true, false],
+          [0.25, false, true, false],
         ];
-    for (const [speed, debug, music] of modes) {
-      const name = `${prefix}-${debug ? "debug" : "clean"}-${speed === 1 ? "normal" : "quarter"}${music ? "" : "-music-off"}`;
+    report.requestedModes = modes;
+    for (const [speed, debug, music, reduced] of modes) {
+      const name = `${prefix}-${debug ? "debug" : "clean"}-${speed === 1 ? "normal" : "quarter"}${music ? "" : "-music-off"}${reduced ? "-reduced-effects" : ""}`;
+      const completed = report.videos.find((v) => v.name === name);
+      if (completed) {
+        assert.deepEqual(
+          [completed.speed, completed.debug, completed.music, completed.reduced],
+          [speed, debug, music, reduced],
+        );
+        for (const file of completed.files)
+          assert.equal(
+            hash(await readFile(`${output}/${file.name}`)),
+            file.sha256,
+            `Cached capture changed: ${file.name}`,
+          );
+        console.log(`Verified completed capture ${name}`);
+        continue;
+      }
+      report.status = "recording";
+      report.activeCapture = name;
+      await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
       await page.locator("#speed").selectOption(String(speed));
       await page.locator("#debug").setChecked(debug);
       await page.locator("#music").setChecked(music);
-      await page.locator("#play-recording").click();
+      await page.locator("#reduced-effects").setChecked(reduced);
+      assert.equal(await page.evaluate(() => globalThis.breakwater.preparePlayback()), true);
+      await paint();
+      const startState = await page.evaluate(() => globalThis.breakwater.state());
+      assert.equal(startState.combat.tick, 0);
+      assert.equal(hash(canonical(startState)), hashes[0]);
       await page.evaluate(() => globalThis.breakwater.startCapture());
+      await paint();
+      assert.equal(await page.evaluate(() => globalThis.breakwater.state().combat.tick), 0);
+      const initialFrame = await page
+        .locator("#game canvas")
+        .screenshot({ path: `${output}/${name}-start.png` });
       const start = Date.now(),
         beforeTiming = await page.evaluate(() => globalThis.breakwater.timing()),
         beforeAudio = await page.evaluate(() => globalThis.breakwater.audio());
+      await page.locator("#run").click();
+      await page.waitForFunction(() => globalThis.breakwater.running());
       await page.waitForFunction(() => !globalThis.breakwater.running(), {}, { timeout: 260000 });
       assert.equal(
         canonical(await page.evaluate(() => globalThis.breakwater.state())),
@@ -521,6 +623,35 @@ try {
       }
       const rms = Math.sqrt(energy / (pcm.length / 4));
       assert(peak < 0.99 && rms > 0.0001, "Clipped or silent browser capture");
+      const stereo = [];
+      for (const extension of ["webm", "mp4"]) {
+        const audit = spawnSync(
+          "ffmpeg",
+          [
+            "-hide_banner",
+            "-nostats",
+            "-i",
+            `${output}/${name}.${extension}`,
+            "-af",
+            "astats=reset=0",
+            "-vn",
+            "-f",
+            "null",
+            "-",
+          ],
+          { encoding: "utf8", timeout: 60000 },
+        );
+        assert.equal(audit.status, 0);
+        const peakDb = [...audit.stderr.matchAll(/Peak level dB: ([-.\d]+)/g)].map((m) =>
+          Number(m[1]),
+        );
+        assert.equal(peakDb.length, 3);
+        assert(
+          peakDb.every((v) => v < 20 * Math.log10(0.99)),
+          "Stereo capture clipped",
+        );
+        stereo.push({ extension, peakDb });
+      }
       const clocks = {
         wallMs: afterTiming.wallMs - beforeTiming.wallMs,
         monotonicMs: afterTiming.monotonicNow - beforeTiming.monotonicNow,
@@ -559,6 +690,18 @@ try {
         speed,
         debug,
         music,
+        reduced,
+        initialTick: startState.combat.tick,
+        initialFrameSha256: hash(initialFrame),
+        finalStateSha256: hash(proof.recording.finalState),
+        stereo,
+        files: await Promise.all(
+          ["webm", "mp4", "-clocks.json", "-start.png"].map(async (suffix) => {
+            const file = suffix.startsWith("-") ? `${name}${suffix}` : `${name}.${suffix}`,
+              bytes = await readFile(`${output}/${file}`);
+            return { name: file, bytes: bytes.length, sha256: hash(bytes) };
+          }),
+        ),
         audioExport: AUDIO_EXPORT,
         mimeType: capture.mimeType,
         wallMs: Date.now() - start,
@@ -566,8 +709,16 @@ try {
         bytes: capture.bytes,
         clocks,
       });
+      report.activeCapture = null;
+      await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
       console.log(`Captured ${name}: ${media.format.duration} seconds`);
     }
+    assert.equal(report.videos.length, modes.length, "Incomplete capture matrix");
+    assert.equal(
+      new Set(report.videos.map((video) => video.name)).size,
+      modes.length,
+      "Duplicate capture modes",
+    );
   }
   assert.deepEqual(errors, []);
   report.status = "pass";

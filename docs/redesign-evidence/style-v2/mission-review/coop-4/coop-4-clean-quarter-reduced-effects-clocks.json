@@ -1,0 +1,362 @@
+{
+  "wallMs": 208854,
+  "monotonicMs": 223843.20000001788,
+  "acceptedClockMs": 223807.59999999404,
+  "renderedFrames": 13429,
+  "rendererMs": 223807.73000050115,
+  "maximumFrameMs": 24.099999994039536,
+  "videoSeconds": 224.44,
+  "audioCues": 1888,
+  "audioDropped": 0,
+  "maximumAudioVoices": 14,
+  "audioVoiceBudget": 32,
+  "audioState": "running",
+  "audioSeconds": 223.84533333333331,
+  "maxStalledAudioTicks": 0,
+  "droppedExamples": [
+    {
+      "id": "1016:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1017:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1023:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1024:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1025:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1031:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1032:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1033:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1039:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1040:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1041:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1047:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1048:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1049:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1055:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1056:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1057:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1063:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1064:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1065:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1071:player:2:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1072:player:1:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1073:player:3:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1760:player:4:entry",
+      "kind": "entry",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1774:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1782:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1790:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1798:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1806:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1814:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1822:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1830:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1838:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1846:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1854:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1862:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1870:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1878:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1886:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1894:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1902:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1910:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1918:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1926:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1934:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1942:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1950:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1958:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1966:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1974:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "1996:player:4:jump",
+      "kind": "jump",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2046:player:4:land",
+      "kind": "land",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2054:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2062:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2070:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2078:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2086:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2094:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2102:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2110:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2118:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2126:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2134:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    },
+    {
+      "id": "2142:player:4:step",
+      "kind": "step",
+      "reason": "inaudible"
+    }
+  ],
+  "music": {
+    "ready": true,
+    "enabled": true,
+    "playing": false,
+    "phase": "lock-engine",
+    "voices": 0,
+    "seconds": 219.736,
+    "decodedBytes": 20480000,
+    "transitions": [
+      {
+        "phase": "breakwater-quay",
+        "when": 706.4613333333333,
+        "offset": 0
+      },
+      {
+        "phase": "lock-engine",
+        "when": 858.1279999999999,
+        "offset": 18.33333333333329
+      }
+    ]
+  },
+  "decodedAudioBytes": 24242240,
+  "capturedAudioPeak": 0.4867869019508362,
+  "capturedAudioRms": 0.03610511220278872
+}

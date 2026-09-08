@@ -349,12 +349,15 @@ element("check-recording").onclick = () => {
     status(`Replay rejected: ${error}`);
   }
 };
-element("play-recording").onclick = async () => {
+function preparePlayback(): boolean {
   const saved = structuredClone(commands);
-  if (!saved.length) return;
+  if (!saved.length) return false;
   startMission(mission.combat.players.length, mission.seed);
   playback = saved;
-  await play();
+  return true;
+}
+element("play-recording").onclick = async () => {
+  if (preparePlayback()) await play();
 };
 element("export").onclick = () => {
   const url = URL.createObjectURL(
@@ -624,6 +627,7 @@ Object.assign(globalThis, {
     visual: () => structuredClone(visual),
     presentationTick: () => mission.combat.tick + postroll,
     running: () => running,
+    preparePlayback,
     cameraX: () => cameraX,
     audio: () => audio.inspect(),
     timing: () => ({ ...timing, wallMs: Date.now(), monotonicNow: performance.now() }),

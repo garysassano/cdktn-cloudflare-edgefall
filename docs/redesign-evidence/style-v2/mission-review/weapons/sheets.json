@@ -1,0 +1,54 @@
+{
+  "weapons": [
+    "sidearm",
+    "heavy-machine-gun",
+    "shotgun",
+    "grenade",
+    "flamethrower"
+  ],
+  "ages": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "assetManifestSha256": "63cdfd874b4b7f49fb7eccdd2507185d8d74f559f277d6d70aa573595a318202",
+  "scope": "Literal source compositions at five accepted right-facing horizontal solo weapon releases and two/four/six ticks later. Each column retains the current operative and only effects/projectiles/areas/grenades belonging to that release's action instance. The actor root is aligned across cells; other actions, actors and scenery are omitted. These are source sheets, not screenshots of a live browser or complete animation sequences.",
+  "files": [
+    {
+      "name": "weapons-black-1x.png",
+      "bytes": 38746,
+      "sha256": "c380cac422f4f1b594f1d52b372e2c959f066e14c482fb8fe488c930492e8069"
+    },
+    {
+      "name": "weapons-black-4x.png",
+      "bytes": 248861,
+      "sha256": "ec30c6acd03e1050eb0476c050931d03e14d8866db9a96e8f99407dd41082f96"
+    },
+    {
+      "name": "weapons-white-1x.png",
+      "bytes": 28912,
+      "sha256": "f27b4558eb3c977952d796dbd588bc9a9690f44d42a5e063d3646f03ea78bdff"
+    },
+    {
+      "name": "weapons-white-4x.png",
+      "bytes": 100366,
+      "sha256": "a8a9794c9587a0526b06dc4df9bdf61585722f2418369fc45a315bd1380c8ab8"
+    },
+    {
+      "name": "weapons-chroma-1x.png",
+      "bytes": 37678,
+      "sha256": "cc90d31ba77d6282722127e9ef367f5308472f4cb4eae769b7392760acf3e83f"
+    },
+    {
+      "name": "weapons-chroma-4x.png",
+      "bytes": 248582,
+      "sha256": "079c0a047759882eb8d9135c66b86ee5712a84fbc94c4a0c48a9424e65d36bc3"
+    },
+    {
+      "name": "accepted-states.json",
+      "bytes": 514623,
+      "sha256": "e726df748bb958bc53fc26285e9230365cc1f466123f4f306930e37ea85c349e"
+    }
+  ]
+}

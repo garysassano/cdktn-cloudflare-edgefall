@@ -1,0 +1,28 @@
+{
+  "clocksource": "tsc",
+  "availableClocksources": [
+    "tsc",
+    "hyperv_clocksource_tsc_page",
+    "hyperv_clocksource_msr",
+    "acpi_pm"
+  ],
+  "timesync": {
+    "NTP": true,
+    "NTPSynchronized": true,
+    "LocalRTC": false
+  },
+  "adjtimex": {
+    "modes": 0,
+    "result": 0,
+    "status": 8192,
+    "frequencyScaledPpm": 919156,
+    "tickMicroseconds": 10658,
+    "offset": 0,
+    "maxerror": 202249,
+    "esterror": 120479,
+    "constant": 1
+  },
+  "mutationPerformed": false,
+  "scope": "Read-only Linux clock and time-service inspection during the W06 matrix; no deployment or host clock adjustment",
+  "clockTicksPerSecond": 100
+}
