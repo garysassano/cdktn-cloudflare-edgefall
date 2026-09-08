@@ -15,6 +15,7 @@ const neutral = {
   firePressed: false,
   jumpPressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 

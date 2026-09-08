@@ -13,8 +13,7 @@ export interface TankMotion {
   landTick: number | null;
   impact: "light" | "heavy" | null;
 }
-const terminal = (tank: VehicleState) =>
-  tank.lifecycle === "wreck" || tank.lifecycle === "destroying";
+const terminal = (tank: VehicleState) => tank.lifecycle === "wreck";
 const phase = (tank: VehicleState): TankAirPhase =>
   Math.abs(tank.body.vy) <= TANK_APEX_SPEED ? "apex" : tank.body.vy < 0 ? "rise" : "fall";
 

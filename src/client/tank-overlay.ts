@@ -12,13 +12,15 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
   const r = worldRect(tank.body, shape.rect, tank.facing),
     owner = tank.occupantId ?? tank.reservedBy;
   const color =
-    tank.lifecycle === "wreck"
-      ? 0x667080
-      : tank.invulnerableTicks
-        ? 0xffcc88
-        : owner === null
-          ? 0xa4e488
-          : ([0x72dfed, 0xbba4ff, 0xa4e488, 0xffcc88][owner - 1] ?? 0xffffff);
+    tank.special.phase === "charging"
+      ? 0xff6655
+      : tank.lifecycle === "wreck"
+        ? 0x667080
+        : tank.invulnerableTicks
+          ? 0xffcc88
+          : owner === null
+            ? 0xa4e488
+            : ([0x72dfed, 0xbba4ff, 0xa4e488, 0xffcc88][owner - 1] ?? 0xffffff);
   g.fillStyle(color, 0.15);
   g.fillRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
   g.lineStyle(1, color);
@@ -58,6 +60,16 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
       r.x / 256 + (r.w / 256) * Math.min(1, (tick - tank.action.stateStartTick + 1) / duration),
       tank.body.y / 256 + 3,
     );
+  }
+  if (tank.special.phase === "arming") {
+    const progress = Math.min(
+      1,
+      (tick - tank.special.startTick + 1) / TANK_PROFILE.special.armTicks,
+    );
+    g.fillStyle(0x303946);
+    g.fillRect(r.x / 256, tank.body.y / 256 - 44, r.w / 256, 3);
+    g.fillStyle(tick % 10 < 5 ? 0xff6655 : 0xffcc88);
+    g.fillRect(r.x / 256, tank.body.y / 256 - 44, (r.w / 256) * progress, 3);
   }
   for (let shell = 0; shell < TANK_PROFILE.cannon.stock; shell++) {
     g.fillStyle(shell < tank.secondary.ammo ? 0xffcc88 : 0x303946);

@@ -164,7 +164,18 @@ export function advanceEffects(
     const old = before.tanks.find((t) => t.body.id === tank.body.id),
       x = tank.body.x / 256,
       y = tank.body.y / 256;
-    if (old && old.armor > 0 && tank.armor === 0) {
+    if (
+      old &&
+      old.lifecycle !== "wreck" &&
+      tank.lifecycle === "wreck" &&
+      !next.events.some(
+        (event) =>
+          event.kind === "explosion" &&
+          event.source &&
+          "sourceId" in event.source &&
+          event.source.sourceId === tank.body.id,
+      )
+    ) {
       add(`wreck:${tank.body.id}`, "blast", x, y - 18, 30, 3);
       debris(`wreck:${tank.body.id}`, x, y - 18, "metal");
     } else if (tank.armor > 0 && tank.armor <= 1 && next.tick % 12 === 0)

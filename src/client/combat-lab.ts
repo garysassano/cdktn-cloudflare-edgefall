@@ -76,6 +76,7 @@ let state = createCombatLab("range"),
   jump = false,
   grenade = false,
   interact = false,
+  special = false,
   fire = false;
 const keys = new Set<string>();
 const audio = new CastAudio();
@@ -119,6 +120,7 @@ const bindings: Record<string, number> = {
   ArrowDown: Held.Down,
   KeyS: Held.Down,
   KeyZ: Held.Fire,
+  KeyV: Held.VehicleSpecial,
 };
 function inspect(message = "") {
   element("state").textContent = JSON.stringify(state, null, 2);
@@ -130,7 +132,7 @@ function pause() {
   running = false;
   accumulator = 0;
   keys.clear();
-  jump = fire = grenade = interact = false;
+  jump = fire = grenade = interact = special = false;
   element("run").textContent = "Run";
 }
 function step() {
@@ -151,8 +153,9 @@ function step() {
     firePressed: fire,
     grenadePressed: grenade,
     interactPressed: interact,
+    specialPressed: special,
   };
-  jump = fire = grenade = interact = false;
+  jump = fire = grenade = interact = special = false;
   const inputs =
     playback?.[state.tick] ??
     state.players.map((_, slot) =>
@@ -163,6 +166,7 @@ function step() {
             jumpPressed: false,
             firePressed: false,
             grenadePressed: false,
+            specialPressed: false,
             interactPressed: false,
           },
     );
@@ -199,7 +203,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 15,
+    format: 16,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -225,6 +229,7 @@ surface.addEventListener("keydown", (event) => {
   if (event.repeat) return;
   if (!keys.has(event.code)) {
     if (event.code === "KeyE") interact = true;
+    if (event.code === "KeyV") special = true;
     if (event.code === "Space") jump = true;
     if (event.code === "KeyZ") fire = true;
     if (event.code === "KeyC") grenade = true;

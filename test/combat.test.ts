@@ -18,6 +18,7 @@ const idle = {
   held: 0,
   firePressed: false,
   jumpPressed: false,
+  specialPressed: false,
   interactPressed: false,
   grenadePressed: false,
 };
@@ -269,7 +270,7 @@ describe("ordered controller/combat/encounter integration", () => {
     }
     expect(
       replayCombatLab({
-        format: 15,
+        format: 16,
         scenario: "range",
         players: 2,
         commands,

@@ -20,6 +20,7 @@ import { verifyStoredPickups } from "./lib/verify-stored-pickups.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
 import { verifyStoredRocket } from "./lib/verify-stored-rocket.js";
 import { verifyStoredShield } from "./lib/verify-stored-shield.js";
+import { verifyStoredSpecial } from "./lib/verify-stored-special.js";
 import { verifyStoredSupport } from "./lib/verify-stored-support.js";
 import { verifyStoredTank } from "./lib/verify-stored-tank.js";
 
@@ -246,6 +247,10 @@ try {
       runtime = create();
     }),
     ordnance: await verifyStoredOrdnance(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
+    special: await verifyStoredSpecial(origin, async () => {
       await runtime.dispose();
       runtime = create();
     }),

@@ -26,7 +26,15 @@ import type {
   VehicleState,
 } from "../state.js";
 
+import {
+  type TankSpecialProfile,
+  cancelTankSpecial,
+  idleTankSpecial,
+  validateTankSpecial,
+} from "./tank-special.js";
+
 export interface TankProfile {
+  special: TankSpecialProfile;
   definition: VehicleDefinition;
   locomotion: ActorDefinition;
   exitTimelineId: number;
@@ -117,6 +125,7 @@ export function createTank(
       shotOrdinal: 0,
       lastActionInstanceId: 0,
     },
+    special: idleTankSpecial(),
     secondary: {
       ammo: profile.cannon.stock,
       shotsFired: 0,
@@ -166,13 +175,13 @@ export function moveTank(
   frame: CollisionFrame,
 ) {
   const tank = structuredClone(current);
-  if (tank.lifecycle === "wreck" || tank.lifecycle === "destroying")
-    return { tank, jumpAccepted: false, fault: null };
+  if (tank.lifecycle === "wreck") return { tank, jumpAccepted: false, fault: null };
   tank.invulnerableTicks = Math.max(0, tank.invulnerableTicks - 1);
   tank.weapon.cooldownTicks = Math.max(0, tank.weapon.cooldownTicks - 1);
   tank.secondary.cooldownTicks = Math.max(0, tank.secondary.cooldownTicks - 1);
   tank.turnTicks = Math.max(0, tank.turnTicks - 1);
   const driving = tank.lifecycle === "occupied";
+  const charging = tank.special.phase === "charging";
   const actor: FootActor = {
     body: tank.body,
     life: "alive",
@@ -190,10 +199,16 @@ export function moveTank(
   const result = stepFootController(
     actor,
     {
-      held: driving ? intent.held & (Held.Left | Held.Right) : 0,
+      held: charging
+        ? tank.special.direction === 1
+          ? Held.Right
+          : Held.Left
+        : driving
+          ? intent.held & (Held.Left | Held.Right)
+          : 0,
       jumpPressed: driving && intent.jumpPressed,
     },
-    profile.locomotion,
+    charging ? { ...profile.locomotion, runSpeed: profile.special.speed } : profile.locomotion,
     shapes,
     index,
     frame,
@@ -386,6 +401,8 @@ export function requestTankExit(
     !tankExitBody(tank, actor, profile, shape, index, frame)
   )
     return false;
+  cancelTankSpecial(tank, tick);
+  actor.vehicleSpecialTicks = 0;
   tank.lifecycle = "exiting";
   tank.secondary.action = idleTankAction(tick);
   tank.action = {
@@ -410,6 +427,8 @@ export function releaseTank(
 ) {
   if (tankOwner(tank) !== actor.playerId) throw new Error("Tank release owner mismatch");
   const body = tankExitBody(tank, actor, profile, shape, index, frame);
+  cancelTankSpecial(tank, tick);
+  actor.vehicleSpecialTicks = 0;
   tank.occupantId = tank.reservedBy = null;
   tank.ownerControlEpoch = null;
   tank.controlEpoch = nextCounter(tank.controlEpoch);
@@ -593,6 +612,7 @@ export function publicTankState(tank: TankState): VehicleState {
     components: tank.components,
     weapon: tank.weapon,
     secondary: tank.secondary,
+    special: tank.special,
   });
 }
 
@@ -614,7 +634,14 @@ export function validateTankState(
     "definition",
   );
   integer(tank.armor, 0, profile.definition.armor, "tank armor");
-  check((tank.armor === 0) === (tank.lifecycle === "wreck"), "wreck armor");
+  check((tank.armor === 0) === ["wreck", "destroying"].includes(tank.lifecycle), "wreck armor");
+  validateTankSpecial(tank, tick, players, profile.special);
+  check(
+    tank.special.actionInstanceId === 0 ||
+      (tank.special.actionInstanceId !== tank.weapon.lastActionInstanceId &&
+        tank.special.actionInstanceId !== tank.secondary.lastActionInstanceId),
+    "special action reuse",
+  );
   integer(tank.heading, 0, 7, "tank heading");
   check(tank.facing === -1 || tank.facing === 1, "facing");
   integer(tank.invulnerableTicks, 0, profile.damageProtectionTicks, "tank protection");
@@ -723,7 +750,7 @@ export function validateTankState(
   }
   if (tank.action.kind === "ready") {
     check(
-      ["available", "occupied", "wreck"].includes(tank.lifecycle) &&
+      ["available", "occupied", "destroying", "wreck"].includes(tank.lifecycle) &&
         tank.action.actionInstanceId === 0 &&
         tank.action.definitionId === 0 &&
         tank.action.nextMarkerIndex === 0,
@@ -797,6 +824,10 @@ export function validateTankProfile(
     profile.disconnectGraceTicks,
   ])
     integer(ticks, 1, 120, "tank timing");
+  integer(profile.special.armTicks, 2, 120, "tank arming time");
+  integer(profile.special.chargeTicks, 1, 120, "tank charge duration");
+  integer(profile.special.speed, 1, MAX_MOTION, "tank charge speed");
+  integer(profile.special.blastRadius, 1, 2 ** 16, "tank sacrifice radius");
   const cannon = profile.cannon;
   integer(cannon.stock, 1, 65535, "cannon stock");
   integer(cannon.recoil.length, 1, 120, "cannon action duration");

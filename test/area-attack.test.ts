@@ -274,6 +274,7 @@ describe("authored shotgun and flame volumes", () => {
             held: Held.Down | Held.Fire,
             firePressed: tick === 1,
             jumpPressed: false,
+            specialPressed: false,
             interactPressed: false,
             grenadePressed: false,
           },

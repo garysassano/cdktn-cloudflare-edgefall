@@ -1,0 +1,30 @@
+[
+  {
+    "name": "cast-regression-fixture",
+    "reason": "The new presentation test initially omitted the existing p1/ atlas namespace from its expected wreck frame. The expectation now uses the real exported frame key; the failed log is retained."
+  },
+  {
+    "name": "native-charge-review",
+    "reason": "Final review found the candidate cast mapping treated destroying as a wreck. It now keeps the released hull and tread animation until the terminal wreck; a real recorded-state presentation regression covers it. No new media was produced."
+  },
+  {
+    "name": "initial-schema-integration",
+    "reason": "Required special fields and old wire/recording constants were updated through the TypeScript and protocol fixtures. The material recording exact-key validator also needed specialPressed."
+  },
+  {
+    "name": "initial-fixtures",
+    "reason": "The kill counter field is count, and custom geometry must still observe living encounter members. A test used a nonexistent material name; the registered ID is open-grating. These were harness corrections."
+  },
+  {
+    "name": "wall-occlusion-regression",
+    "reason": "A feet-origin blast could graze beneath a concrete wall. The implementation now uses the hull center; tests cover moving concrete and open-grating, moving grouped enemy hurtboxes and friendly exclusion. The failed focused log is retained."
+  },
+  {
+    "name": "first-required-check",
+    "reason": "Two old synthetic wire byte counts, the occupied-destroying fixture and material command exact-key validator failed. All five failures are retained; final check passes 878 tests."
+  },
+  {
+    "name": "initial-inspector-life-assumption",
+    "reason": "The driver safely ejects at tick 62 and retains three lives through 98, then an already released rifle bullet kills them at tick 109. The inspector now checks both events and the final two-life state explicitly. The failed log, screenshots and recording exports are retained."
+  }
+]

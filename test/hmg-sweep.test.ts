@@ -124,6 +124,7 @@ describe("authoritative HMG heading sweep", () => {
         firePressed: false,
         grenadePressed: false,
         jumpPressed: false,
+        specialPressed: false,
         interactPressed: false,
       })),
     );

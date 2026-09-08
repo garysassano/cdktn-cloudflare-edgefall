@@ -10,7 +10,7 @@ export type BoundaryEvent =
       playerId: number;
       vehicleId: number | null;
       controlEpoch: number;
-      reason: "board" | "exit" | "destroyed" | "disconnect";
+      reason: "board" | "exit" | "destroyed" | "disconnect" | "special";
     }
   | { kind: "room"; phase: "paused-empty" | "recovering" | "playing"; runEpoch: number };
 

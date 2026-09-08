@@ -223,6 +223,7 @@ describe("native operative source and playback", () => {
           jumpPressed: false,
           firePressed: tick === 1,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         },
       ]);
@@ -296,6 +297,7 @@ describe("native operative source and playback", () => {
               firePressed: tick === 1,
               jumpPressed: tick === 24 || tick === 72,
               grenadePressed: false,
+              specialPressed: false,
               interactPressed: false,
             },
           ]);
@@ -384,7 +386,14 @@ describe("native operative source and playback", () => {
     const step = (held = 0, jumpPressed = false, firePressed = false) => {
       const before = state.players[0];
       const input = [
-        { held, jumpPressed, firePressed, grenadePressed: false, interactPressed: false },
+        {
+          held,
+          jumpPressed,
+          firePressed,
+          grenadePressed: false,
+          specialPressed: false,
+          interactPressed: false,
+        },
       ];
       state = stepCombatLab(state, input);
       commands.push(input);
@@ -411,7 +420,7 @@ describe("native operative source and playback", () => {
     expect(state.players[0]?.body.y).toBeLessThan(y);
     expect(state.players[0]?.weapon.shotOrdinal).toBe(shots + 1);
     const recording = {
-      format: 15 as const,
+      format: 16 as const,
       scenario: state.scenario,
       players: 1,
       commands,
@@ -443,6 +452,7 @@ describe("native operative source and playback", () => {
             jumpPressed: mode === "air" && age === 0,
             firePressed: false,
             grenadePressed: age === 0,
+            specialPressed: false,
             interactPressed: false,
           },
         ]);
@@ -483,6 +493,7 @@ describe("native operative source and playback", () => {
           jumpPressed: false,
           firePressed: age === 0,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         },
       ]);
@@ -523,6 +534,7 @@ describe("native operative source and playback", () => {
           jumpPressed: resume,
           firePressed: resume,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         },
       ]);

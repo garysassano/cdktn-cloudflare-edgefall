@@ -160,8 +160,7 @@ export function tankPresentation(
   const variant = `p${ownerSlot + 1}`;
   const layer = (frame: string, flipX = tank.facing === -1) =>
     drawing("kestrel", frame, atlas, tank.body.x, tank.body.y, flipX, variant);
-  if (tank.lifecycle === "wreck" || tank.lifecycle === "destroying")
-    return [layer("kestrel-wreck")];
+  if (tank.lifecycle === "wreck") return [layer("kestrel-wreck")];
   const hull = clock.airPhase
     ? sample(atlas, `kestrel.air.${clock.airPhase}`, tick - clock.airPhaseStartTick)
     : clock.landTick !== null && clock.impact

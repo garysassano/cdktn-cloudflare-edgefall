@@ -30,7 +30,7 @@ export {
   materialLabProp,
 } from "../content/scenarios/materials.js";
 export interface MaterialLab {
-  format: 2;
+  format: 3;
   definition: MaterialLabDefinition;
   world: CombatLab;
 }
@@ -38,7 +38,7 @@ export interface MaterialLab {
 export function createMaterialLab(definition: MaterialLabDefinition): MaterialLab {
   validateMaterialDefinition(definition);
   return {
-    format: 2,
+    format: 3,
     definition: { ...definition },
     world: createCombatLab(materialScenario(definition), definition.players),
   };
@@ -55,13 +55,13 @@ export function stepMaterialLab(
 ): MaterialLab {
   validateMaterialDefinition(current.definition);
   if (
-    current.format !== 2 ||
+    current.format !== 3 ||
     current.world.players.length !== current.definition.players ||
     current.world.scenario !== materialScenario(current.definition)
   )
     throw new Error("Material laboratory format/roster mismatch");
   return {
-    format: 2,
+    format: 3,
     definition: { ...current.definition },
     world: advanceCombatLab(current.world, commands).state,
   };
@@ -73,12 +73,13 @@ export function materialLabCommands(lab: MaterialLab): CombatCommand[] {
     firePressed: lab.definition.weapon !== "grenade" && lab.world.tick === 0,
     jumpPressed: false,
     grenadePressed: lab.definition.weapon === "grenade" && lab.world.tick === 0,
+    specialPressed: false,
     interactPressed: false,
   }));
 }
 
 export interface MaterialRecording {
-  format: 2;
+  format: 3;
   kind: "material-lab";
   contentFingerprint: string;
   definition: MaterialLabDefinition;
@@ -108,7 +109,7 @@ export function createMaterialRecording(
 ): MaterialRecording {
   if (commands.length !== lab.world.tick) throw new Error("Material recording boundary mismatch");
   return {
-    format: 2,
+    format: 3,
     kind: "material-lab",
     contentFingerprint: materialLabFingerprint(lab.definition),
     definition: { ...lab.definition },
@@ -126,7 +127,7 @@ export function replayMaterialLab(
     Array.isArray(recording) ||
     Object.keys(recording).sort().join() !==
       "commands,contentFingerprint,definition,finalState,format,kind" ||
-    recording.format !== 2 ||
+    recording.format !== 3 ||
     recording.kind !== "material-lab" ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > 3600 ||
@@ -146,7 +147,7 @@ export function replayMaterialLab(
           typeof command !== "object" ||
           Array.isArray(command) ||
           Object.keys(command).sort().join() !==
-            "firePressed,grenadePressed,held,interactPressed,jumpPressed",
+            "firePressed,grenadePressed,held,interactPressed,jumpPressed,specialPressed",
       )
     )
       throw new Error("Invalid material recording command");

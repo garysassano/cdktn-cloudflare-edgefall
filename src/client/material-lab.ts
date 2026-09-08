@@ -131,6 +131,7 @@ function step() {
     firePressed: fire,
     grenadePressed: grenade,
     jumpPressed: jump,
+    specialPressed: false,
     interactPressed: false,
   }));
   try {

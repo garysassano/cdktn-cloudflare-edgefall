@@ -105,21 +105,42 @@ const held = new Set<string>(),
     jumpPressed: false,
     firePressed: false,
     grenadePressed: false,
+    specialPressed: false,
     interactPressed: false,
   }));
 const bindings = [
-  { KeyA: Held.Left, KeyD: Held.Right, KeyW: Held.Up, KeyS: Held.Down, KeyZ: Held.Fire },
+  {
+    KeyA: Held.Left,
+    KeyD: Held.Right,
+    KeyW: Held.Up,
+    KeyS: Held.Down,
+    KeyZ: Held.Fire,
+    KeyV: Held.VehicleSpecial,
+  },
   {
     ArrowLeft: Held.Left,
     ArrowRight: Held.Right,
     ArrowUp: Held.Up,
     ArrowDown: Held.Down,
     KeyN: Held.Fire,
+    Period: Held.VehicleSpecial,
   },
 ] as const;
 const edges = [
-  { Space: "jumpPressed", KeyZ: "firePressed", KeyC: "grenadePressed", KeyE: "interactPressed" },
-  { Slash: "jumpPressed", KeyN: "firePressed", KeyM: "grenadePressed", Comma: "interactPressed" },
+  {
+    Space: "jumpPressed",
+    KeyZ: "firePressed",
+    KeyC: "grenadePressed",
+    KeyE: "interactPressed",
+    KeyV: "specialPressed",
+  },
+  {
+    Slash: "jumpPressed",
+    KeyN: "firePressed",
+    KeyM: "grenadePressed",
+    Comma: "interactPressed",
+    Period: "specialPressed",
+  },
 ] as const;
 function status(message = "") {
   element("status").textContent =
@@ -170,7 +191,7 @@ function reset() {
 }
 function record(): BreakwaterRecording {
   return {
-    format: 5,
+    format: 6,
     contentHash: mission.contentHash,
     seed: mission.seed,
     players: mission.combat.players.length,
@@ -247,6 +268,7 @@ function step(submitted?: readonly CombatCommand[]) {
           jumpPressed: false,
           firePressed: false,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         }),
       }))
@@ -470,9 +492,14 @@ class BenchmarkScene extends Phaser.Scene {
         (x > 0.35 || pressed(15) ? Held.Right : 0) |
         (y < -0.35 || pressed(12) ? Held.Up : 0) |
         (y > 0.35 || pressed(13) ? Held.Down : 0) |
-        (pressed(2) ? Held.Fire : 0);
+        (pressed(2) ? Held.Fire : 0) |
+        (pressed(5) ? Held.VehicleSpecial : 0);
       const mask =
-          (pressed(0) ? 1 : 0) | (pressed(2) ? 2 : 0) | (pressed(1) ? 4 : 0) | (pressed(3) ? 8 : 0),
+          (pressed(0) ? 1 : 0) |
+          (pressed(2) ? 2 : 0) |
+          (pressed(1) ? 4 : 0) |
+          (pressed(3) ? 8 : 0) |
+          (pressed(5) ? 16 : 0),
         fresh = mask & ~(padEdges[slot] ?? 0),
         edge = pending[slot];
       if (document.activeElement !== surface || playback) padArmed[slot] = false;
@@ -483,6 +510,7 @@ class BenchmarkScene extends Phaser.Scene {
         edge.firePressed ||= Boolean(fresh & 2);
         edge.grenadePressed ||= Boolean(fresh & 4);
         edge.interactPressed ||= Boolean(fresh & 8);
+        edge.specialPressed ||= Boolean(fresh & 16);
       }
       padEdges[slot] = mask;
     }

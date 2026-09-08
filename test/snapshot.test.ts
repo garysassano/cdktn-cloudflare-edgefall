@@ -104,7 +104,7 @@ describe("full v3 snapshot records", () => {
     vehicle.lifecycle = "exiting";
     expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
     vehicle.lifecycle = "destroying";
-    expect(decodeSnapshot(encodeSnapshot(snapshot, context), context)).toEqual(snapshot);
+    expect(() => encodeSnapshot(snapshot, context)).toThrow(/Tank special state/);
   });
 
   it("round-trips exact signed numerical/counter boundaries without render quantization", () => {
@@ -220,7 +220,7 @@ describe("full v3 snapshot records", () => {
     snapshot.campaign.remainingEnemies = 320;
     const bytes = encodeSnapshot(snapshot, context);
     expect(bytes.length).toBe(MAX_SNAPSHOT_BYTES);
-    expect(bytes.length).toBe(53728);
+    expect(bytes.length).toBe(54240);
     expect(decodeSnapshot(bytes, context)).toEqual(snapshot);
     snapshot.projectiles.push({ ...projectile, id: 9000 });
     expect(() => encodeSnapshot(snapshot, context)).toThrow(/count/);

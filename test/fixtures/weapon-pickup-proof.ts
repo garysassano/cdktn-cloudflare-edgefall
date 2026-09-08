@@ -54,6 +54,7 @@ export function weaponPickupProof() {
       firePressed: false,
       jumpPressed: false,
       grenadePressed: false,
+      specialPressed: false,
       interactPressed: false,
     }));
     const result = advanceCombatLab(current.combat, commands);

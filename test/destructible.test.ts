@@ -203,6 +203,7 @@ describe("attack-driven support destruction", () => {
           jumpPressed: false,
           firePressed: tick === 41,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         },
       ]);

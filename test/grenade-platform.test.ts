@@ -52,6 +52,7 @@ const idle = {
   firePressed: false,
   grenadePressed: false,
   jumpPressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 

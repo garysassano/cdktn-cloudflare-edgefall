@@ -47,6 +47,7 @@ import { shieldCombatProof } from "./shield-proof.js";
 import { spatialProof } from "./spatial-proof.js";
 import { supportProof } from "./support-proof.js";
 import { tankCombatProof } from "./tank-proof.js";
+import { tankSpecialProof } from "./tank-special-proof.js";
 import { traversalProof } from "./traversal-proof.js";
 import { weaponPickupProof } from "./weapon-pickup-proof.js";
 import { worldCombatProof } from "./world-combat-proof.js";
@@ -126,6 +127,7 @@ export async function contractProof() {
     areaCombat: await areaCombatProof(),
     tankCombat: await tankCombatProof(),
     cannonCombat: await cannonCombatProof(),
+    tankSpecial: await tankSpecialProof(),
     ordnance: await ordnanceProof(),
     hmg: await hmgProof(),
     support: await supportProof(),

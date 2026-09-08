@@ -15,6 +15,7 @@ export function playerLifeProof() {
       {
         held: Held.Right,
         jumpPressed: false,
+        specialPressed: false,
         interactPressed: false,
         grenadePressed: false,
         firePressed: false,

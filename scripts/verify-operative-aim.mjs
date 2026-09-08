@@ -77,6 +77,7 @@ const command = (wanted, held) => ({
   jumpPressed: wanted.has("Space") && !held.has("Space"),
   firePressed: wanted.has("KeyZ") && !held.has("KeyZ"),
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 });
 const server = createServer(async (req, res) => {

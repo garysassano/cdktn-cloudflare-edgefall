@@ -1,5 +1,5 @@
 import type { CombatLab, CombatNotice } from "../../game/labs/combat.js";
-import { AREA_PROFILES } from "../../game/labs/combat-content.js";
+import { AREA_PROFILES, TANK_PROFILE } from "../../game/labs/combat-content.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
 import type { OperativeMotion } from "./operative-motion.js";
 import type { CombatCueName, CombatLoopName } from "./sfx-profile.js";
@@ -46,7 +46,8 @@ function eventCue(event: CombatNotice, bossId?: number): CombatCueName | null {
         return "tank";
       case 17:
       case 18:
-        return null; // Launcher and laser audio await their reviewed families.
+      case 19:
+        return null; // Heavy ordnance and laser audio await their reviewed families.
       default:
         return "sidearm";
     }
@@ -195,6 +196,15 @@ export function combatAudioLoops(
 ): CombatLoop[] {
   const loops: CombatLoop[] = [];
   for (const tank of state.tanks) {
+    if (tank.special.phase === "charging") {
+      loops.push({
+        id: `charge:${tank.body.id}:${tank.special.actionInstanceId}`,
+        kind: "engine",
+        x: tank.body.x / 256,
+        rate: 1.6,
+      });
+      continue;
+    }
     const player = state.players.find((p) => p.playerId === tank.occupantId);
     if (
       tank.lifecycle !== "occupied" ||
@@ -210,7 +220,10 @@ export function combatAudioLoops(
       id: `engine:${tank.body.id}:${tank.controlEpoch}:${player.controlEpoch}`,
       kind: "engine",
       x: tank.body.x / 256,
-      rate: 0.85 + Math.min(0.45, (Math.abs(tank.body.vx) / 256) * 0.13),
+      rate:
+        tank.special.phase === "arming"
+          ? 1 + (0.6 * (state.tick - tank.special.startTick + 1)) / TANK_PROFILE.special.armTicks
+          : 0.85 + Math.min(0.45, (Math.abs(tank.body.vx) / 256) * 0.13),
     });
   }
   for (const player of state.players) {

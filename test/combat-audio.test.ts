@@ -23,6 +23,7 @@ const input = (held = 0, interactPressed = false) => ({
   firePressed: !!(held & Held.Fire),
   grenadePressed: false,
   interactPressed,
+  specialPressed: false,
 });
 function seatedTank() {
   let world = createCombatLab("tank", 4);

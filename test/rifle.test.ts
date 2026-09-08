@@ -13,6 +13,7 @@ import { rifleRecoveryProof } from "./fixtures/rifle-proof.js";
 const idle = {
   held: 0,
   jumpPressed: false,
+  specialPressed: false,
   interactPressed: false,
   grenadePressed: false,
   firePressed: false,

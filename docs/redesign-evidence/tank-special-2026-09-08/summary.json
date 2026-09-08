@@ -1,0 +1,305 @@
+{
+  "checks": {
+    "tests": 878,
+    "files": 80
+  },
+  "contracts": {
+    "durationsMs": {
+      "node": 43918,
+      "workerdRequest": 37280,
+      "chromium": 38784
+    },
+    "resultSha256": "c0dacd41d2c0216ff03fa1b68959e7f9810d136f330049db26b1bad66c4d5b0b",
+    "cases": [
+      {
+        "players": 1,
+        "ticks": 130,
+        "duplicates": 130,
+        "checkpoints": 13,
+        "finalHash": "3ea452ae",
+        "traceHash": "9a55461e",
+        "blasts": [
+          {
+            "tick": 97,
+            "ownerId": 1
+          }
+        ],
+        "tanks": [
+          {
+            "id": 30,
+            "armor": 0,
+            "special": {
+              "phase": "spent",
+              "actionInstanceId": 4,
+              "ownerId": 1,
+              "ownerControlEpoch": 3,
+              "startTick": 33,
+              "commitTick": 62,
+              "endTick": 97,
+              "direction": 1
+            }
+          }
+        ],
+        "lives": [
+          2
+        ]
+      },
+      {
+        "players": 4,
+        "ticks": 130,
+        "duplicates": 520,
+        "checkpoints": 13,
+        "finalHash": "ecc25df7",
+        "traceHash": "0281a888",
+        "blasts": [
+          {
+            "tick": 80,
+            "ownerId": 3
+          },
+          {
+            "tick": 122,
+            "ownerId": 1
+          },
+          {
+            "tick": 122,
+            "ownerId": 2
+          }
+        ],
+        "tanks": [
+          {
+            "id": 30,
+            "armor": 0,
+            "special": {
+              "phase": "spent",
+              "actionInstanceId": 11,
+              "ownerId": 1,
+              "ownerControlEpoch": 3,
+              "startTick": 33,
+              "commitTick": 62,
+              "endTick": 122,
+              "direction": 1
+            }
+          },
+          {
+            "id": 31,
+            "armor": 0,
+            "special": {
+              "phase": "spent",
+              "actionInstanceId": 12,
+              "ownerId": 2,
+              "ownerControlEpoch": 3,
+              "startTick": 33,
+              "commitTick": 62,
+              "endTick": 122,
+              "direction": 1
+            }
+          },
+          {
+            "id": 32,
+            "armor": 0,
+            "special": {
+              "phase": "spent",
+              "actionInstanceId": 13,
+              "ownerId": 3,
+              "ownerControlEpoch": 3,
+              "startTick": 33,
+              "commitTick": 62,
+              "endTick": 80,
+              "direction": 1
+            }
+          },
+          {
+            "id": 33,
+            "armor": 2,
+            "special": {
+              "phase": "canceled",
+              "actionInstanceId": 14,
+              "ownerId": 4,
+              "ownerControlEpoch": 3,
+              "startTick": 33,
+              "commitTick": null,
+              "endTick": 37,
+              "direction": 1
+            }
+          }
+        ],
+        "lives": [
+          3,
+          3,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "sqlite": {
+    "boundaries": 14,
+    "ticks": [
+      12,
+      13,
+      26,
+      27,
+      32,
+      33,
+      61,
+      62,
+      63,
+      64,
+      97,
+      98,
+      120,
+      130
+    ],
+    "maxArchiveRows": 6
+  },
+  "inspector": {
+    "restoredTicks": [
+      26,
+      27,
+      61,
+      62,
+      98
+    ],
+    "lifeBoundaries": [
+      {
+        "tick": 62,
+        "lives": 3,
+        "life": "alive",
+        "lifeStartTick": 0
+      },
+      {
+        "tick": 98,
+        "lives": 3,
+        "life": "alive",
+        "lifeStartTick": 0
+      },
+      {
+        "tick": 109,
+        "lives": 2,
+        "life": "death",
+        "lifeStartTick": 109
+      },
+      {
+        "tick": 130,
+        "lives": 2,
+        "life": "death",
+        "lifeStartTick": 109
+      }
+    ],
+    "final": {
+      "phase": "spent",
+      "actionInstanceId": 4,
+      "ownerId": 1,
+      "ownerControlEpoch": 3,
+      "startTick": 33,
+      "commitTick": 62,
+      "endTick": 97,
+      "direction": 1
+    }
+  },
+  "network": {
+    "tick": 199,
+    "sharedSnapshots": 15,
+    "sharedEvents": 39,
+    "duplicates": 55,
+    "boundaries": {
+      "boarding": 6,
+      "occupied": 18,
+      "defeated": 33,
+      "arming": 44,
+      "canceled": 53,
+      "rearmed": 65,
+      "released": 95,
+      "spent": 154,
+      "final": 199
+    },
+    "blasts": [
+      {
+        "tick": 154,
+        "ownerId": 1,
+        "actionInstanceId": 23
+      },
+      {
+        "tick": 154,
+        "ownerId": 2,
+        "actionInstanceId": 24
+      }
+    ],
+    "tanks": [
+      {
+        "id": 30,
+        "x": 107520,
+        "y": 51392,
+        "special": {
+          "phase": "spent",
+          "actionInstanceId": 23,
+          "ownerId": 1,
+          "ownerControlEpoch": 3,
+          "startTick": 65,
+          "commitTick": 94,
+          "endTick": 154,
+          "direction": 1
+        }
+      },
+      {
+        "id": 31,
+        "x": 121856,
+        "y": 56192,
+        "special": {
+          "phase": "spent",
+          "actionInstanceId": 24,
+          "ownerId": 2,
+          "ownerControlEpoch": 3,
+          "startTick": 65,
+          "commitTick": 94,
+          "endTick": 154,
+          "direction": 1
+        }
+      },
+      {
+        "id": 32,
+        "x": 134656,
+        "y": 64640,
+        "special": {
+          "phase": "spent",
+          "actionInstanceId": 25,
+          "ownerId": 3,
+          "ownerControlEpoch": 3,
+          "startTick": 65,
+          "commitTick": 94,
+          "endTick": 153,
+          "direction": 1
+        }
+      },
+      {
+        "id": 33,
+        "x": 135168,
+        "y": 64640,
+        "special": {
+          "phase": "spent",
+          "actionInstanceId": 26,
+          "ownerId": 4,
+          "ownerControlEpoch": 3,
+          "startTick": 65,
+          "commitTick": 94,
+          "endTick": 144,
+          "direction": 1
+        }
+      }
+    ],
+    "lives": [
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "observability": {
+    "traces": true,
+    "invocationLogs": true,
+    "sourceMaps": true,
+    "headSamplingRate": 1,
+    "liveIngestionVerified": false,
+    "deployedTimingVerified": false
+  }
+}

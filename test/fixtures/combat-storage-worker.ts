@@ -34,6 +34,7 @@ import {
   recordTankCombat,
   tankDamageInput,
 } from "./tank-proof.js";
+import { SPECIAL_BOUNDARIES, SPECIAL_TICKS, recordTankSpecial } from "./tank-special-proof.js";
 
 interface Env {
   STORES: DurableObjectNamespace<CombatStorageProof>;
@@ -62,6 +63,7 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "tank-drive" ||
       name === "tank-damage" ||
       name === "tank-cannon" ||
+      name === "tank-special" ||
       name === "ordnance-press" ||
       name === "ordnance-delayed" ||
       name === "hmg-sweep" ||
@@ -81,73 +83,80 @@ export class CombatStorageProof extends DurableObject<Env> {
       const rocket = name === "rocket-flight";
       const laser = name === "laser-charge";
       const pickups = name === "pickup-travel";
-      const cannon = name === "tank-cannon";
+      const cannon = name === "tank-cannon",
+        special = name === "tank-special";
       if (action !== "restore") {
-        const fixture = cannon
-          ? recordCannonCombat()
-          : pickups
-            ? recordPickupCombat()
-            : laser
-              ? recordLaserCombat()
-              : rocket
-                ? recordRocketCombat()
-                : support
-                  ? recordSupport()
-                  : hmg
-                    ? recordHmg()
-                    : ordnance
-                      ? recordOrdnance(ordnanceStart)
-                      : tank
-                        ? damage
-                          ? recordTankCombat(210, tankDamageInput)
-                          : recordTankCombat()
-                        : area
-                          ? recordAreaCombat(area)
-                          : recordShieldCombat(mode);
-        const boundaries = cannon
-          ? CANNON_BOUNDARIES
-          : pickups
-            ? PICKUP_COMBAT_BOUNDARIES
-            : laser
-              ? LASER_COMBAT_BOUNDARIES
-              : rocket
-                ? ROCKET_COMBAT_BOUNDARIES
-                : support
-                  ? SUPPORT_BOUNDARIES
-                  : hmg
-                    ? HMG_BOUNDARIES
-                    : ordnance
-                      ? ordnanceStart === 1
-                        ? ORDNANCE_BOUNDARIES
-                        : DELAYED_ORDNANCE_BOUNDARIES
-                      : tank
-                        ? damage
-                          ? TANK_DAMAGE_BOUNDARIES
-                          : TANK_BOUNDARIES
-                        : area
-                          ? AREA_BOUNDARIES[area]
-                          : SHIELD_BOUNDARIES[mode];
+        const fixture = special
+          ? recordTankSpecial()
+          : cannon
+            ? recordCannonCombat()
+            : pickups
+              ? recordPickupCombat()
+              : laser
+                ? recordLaserCombat()
+                : rocket
+                  ? recordRocketCombat()
+                  : support
+                    ? recordSupport()
+                    : hmg
+                      ? recordHmg()
+                      : ordnance
+                        ? recordOrdnance(ordnanceStart)
+                        : tank
+                          ? damage
+                            ? recordTankCombat(210, tankDamageInput)
+                            : recordTankCombat()
+                          : area
+                            ? recordAreaCombat(area)
+                            : recordShieldCombat(mode);
+        const boundaries = special
+          ? SPECIAL_BOUNDARIES
+          : cannon
+            ? CANNON_BOUNDARIES
+            : pickups
+              ? PICKUP_COMBAT_BOUNDARIES
+              : laser
+                ? LASER_COMBAT_BOUNDARIES
+                : rocket
+                  ? ROCKET_COMBAT_BOUNDARIES
+                  : support
+                    ? SUPPORT_BOUNDARIES
+                    : hmg
+                      ? HMG_BOUNDARIES
+                      : ordnance
+                        ? ordnanceStart === 1
+                          ? ORDNANCE_BOUNDARIES
+                          : DELAYED_ORDNANCE_BOUNDARIES
+                        : tank
+                          ? damage
+                            ? TANK_DAMAGE_BOUNDARIES
+                            : TANK_BOUNDARIES
+                          : area
+                            ? AREA_BOUNDARIES[area]
+                            : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
         if (
           ![
             ...boundaries,
-            cannon
-              ? CANNON_TICKS
-              : pickups
-                ? PICKUP_COMBAT_TICKS
-                : laser
-                  ? 72
-                  : rocket
-                    ? 160
-                    : support || hmg || ordnance
-                      ? 120
-                      : tank
-                        ? damage
-                          ? 210
-                          : 120
-                        : area
-                          ? 120
-                          : 180,
+            special
+              ? SPECIAL_TICKS
+              : cannon
+                ? CANNON_TICKS
+                : pickups
+                  ? PICKUP_COMBAT_TICKS
+                  : laser
+                    ? 72
+                    : rocket
+                      ? 160
+                      : support || hmg || ordnance
+                        ? 120
+                        : tank
+                          ? damage
+                            ? 210
+                            : 120
+                          : area
+                            ? 120
+                            : 180,
           ].includes(through)
         )
           throw new Error("Unknown shield storage boundary");
@@ -187,7 +196,7 @@ export class CombatStorageProof extends DurableObject<Env> {
         guard: saved.combat.targets[0]?.guard,
         areas: saved.combat.areas,
         tanks: saved.combat.tanks,
-        shells: cannon ? saved.combat.projectiles : undefined,
+        shells: cannon || special ? saved.combat.projectiles : undefined,
         vehicles: saved.snapshot.vehicles,
         support: support
           ? {
@@ -674,6 +683,7 @@ export default {
         "tank-drive",
         "tank-damage",
         "tank-cannon",
+        "tank-special",
         "ordnance-press",
         "ordnance-delayed",
         "hmg-sweep",

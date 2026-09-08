@@ -170,7 +170,7 @@ export async function combatIdentity() {
         destructibles: COMBAT_SCENARIOS.map(combatDestructibles),
       },
       campaignFormat: 2,
-      combatFormat: 15,
+      combatFormat: 16,
       pickups: [1, 2, 3, 4].map((players) => [
         combatPickupDefinitions("pickups", players),
         combatPickupDefinitions("support", players),
@@ -530,6 +530,8 @@ export function evaluateCombatTick(
       jumpPressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Jump) ?? false,
       firePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.FireOnset) ?? false,
       grenadePressed: item?.input.command.edges.some((edge) => edge.kind === Edge.Grenade) ?? false,
+      specialPressed:
+        item?.input.command.edges.some((edge) => edge.kind === Edge.VehicleSpecial) ?? false,
       interactPressed:
         item?.input.command.edges.some((edge) => edge.kind === Edge.Interact) ?? false,
     };
@@ -546,7 +548,8 @@ export function evaluateCombatTick(
     let jump = false,
       grenade = false,
       fire = false,
-      interact = false;
+      interact = false,
+      special = false;
     return {
       playerId: actor.playerId,
       ...(actor.controlEpoch !== item.acknowledgment.controlEpoch
@@ -570,6 +573,10 @@ export function evaluateCombatTick(
           accepted = outcome.interact === "none" ? "unavailable" : outcome.interact;
           interact = true;
         } else if (edge.kind === Edge.Interact) accepted = "cooldown";
+        if (edge.kind === Edge.VehicleSpecial && !special) {
+          accepted = outcome.special === "none" ? "unavailable" : outcome.special;
+          special = true;
+        } else if (edge.kind === Edge.VehicleSpecial) accepted = "cooldown";
         return { ...edge, outcome: accepted };
       }),
     };

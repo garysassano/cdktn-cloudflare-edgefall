@@ -77,6 +77,7 @@ export function firearmFeedbackProof() {
             firePressed: tick === 1,
             jumpPressed: tick === 21,
             grenadePressed: false,
+            specialPressed: false,
             interactPressed: false,
           })),
         );

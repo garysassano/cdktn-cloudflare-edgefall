@@ -28,6 +28,7 @@ const idle: CombatCommand = {
   jumpPressed: false,
   firePressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 const fire = { ...idle, held: Held.Fire, firePressed: true };

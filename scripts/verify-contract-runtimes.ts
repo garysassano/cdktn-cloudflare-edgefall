@@ -204,6 +204,7 @@ try {
     areaCombat: expected.areaCombat,
     tankCombat: expected.tankCombat,
     cannonCombat: expected.cannonCombat,
+    tankSpecial: expected.tankSpecial,
     ordnance: expected.ordnance,
     hmg: expected.hmg,
     support: expected.support,

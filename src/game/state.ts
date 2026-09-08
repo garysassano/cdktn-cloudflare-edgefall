@@ -108,6 +108,16 @@ export interface VehicleSecondaryState {
   lastActionInstanceId: number;
   action: ActionState;
 }
+export interface VehicleSpecialState {
+  phase: "ready" | "arming" | "canceled" | "charging" | "spent";
+  actionInstanceId: number;
+  ownerId: number | null;
+  ownerControlEpoch: number | null;
+  startTick: Tick;
+  commitTick: Tick | null;
+  endTick: Tick | null;
+  direction: -1 | 1;
+}
 export interface VehicleState {
   body: Body;
   definitionId: number;
@@ -126,6 +136,7 @@ export interface VehicleState {
   components: Array<{ id: number; health: number; broken: boolean }>;
   weapon: WeaponState;
   secondary: VehicleSecondaryState;
+  special: VehicleSpecialState;
 }
 export interface CampaignState {
   ruleset: RulesetId;

@@ -1,7 +1,9 @@
 import { validBodyPresence } from "../../game/campaign/life.js";
+import { TANK_SPECIAL_PROFILE } from "../../game/content/weapons/tank-special.js";
 import { MAX_MOTION, MAX_POSITION } from "../../game/core/numeric.js";
 import type { PlayerAcknowledgment } from "../../game/input/types.js";
 import type { ActionState, Body } from "../../game/state.js";
+import { validateTankSpecial } from "../../game/vehicles/tank-special.js";
 import { Reader, Writer } from "./binary.js";
 import {
   COMBAT_HEADER_BYTES,
@@ -184,6 +186,16 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
         ack.processedEdgeIds.every((value, edge) => value === player.processedEdgeIds[edge]),
       "Controller/acknowledgment edge mismatch",
     );
+    check(
+      player.vehicleSpecialTicks === 0 ||
+        snapshot.vehicles.some(
+          (vehicle) =>
+            vehicle.occupantId === player.playerId &&
+            vehicle.special.phase === "arming" &&
+            player.vehicleSpecialTicks === snapshot.tick - vehicle.special.startTick + 1,
+        ),
+      "Unowned vehicle special progress",
+    );
     if (player.vehicleId !== null) {
       const vehicle = snapshot.vehicles.find((v) => v.body.id === player.vehicleId);
       check(
@@ -207,6 +219,7 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
     check(vehicle.components.length <= 8, "Vehicle component count limit");
     body(vehicle.body);
     action(vehicle.action);
+    validateTankSpecial(vehicle, snapshot.tick, snapshot.players, TANK_SPECIAL_PROFILE);
     const secondary = vehicle.secondary;
     action(secondary.action);
     check(

@@ -203,7 +203,9 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
       )
     )
       jumpPressed = true;
-    const row = [{ held, firePressed, jumpPressed, grenadePressed, interactPressed }];
+    const row = [
+      { held, firePressed, jumpPressed, grenadePressed, interactPressed, specialPressed: false },
+    ];
     for (let slot = 1; slot < players; slot++) {
       const ally = state.combat.players[slot];
       if (!ally) throw new Error("Missing demonstration ally");
@@ -310,6 +312,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
         jumpPressed: jump,
         grenadePressed: grenade,
         interactPressed: use,
+        specialPressed: false,
       });
     }
     state = stepBreakwater(state, row);
@@ -317,7 +320,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
     observe?.(structuredClone(state));
   }
   const recording: BreakwaterRecording = {
-    format: 5,
+    format: 6,
     contentHash: state.contentHash,
     seed: state.seed,
     players: state.combat.players.length,

@@ -124,7 +124,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     combat,
     "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props pickups pickupClaims projectiles rockets beams strikes grenades areas encounter events",
   );
-  check(combat.format === 15, "simulation format");
+  check(combat.format === 16, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
@@ -287,10 +287,15 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   for (const tank of combat.tanks) {
     fields(
       tank,
-      "body definitionId kind lifecycle occupantId reservedBy controlEpoch ownerControlEpoch facing heading invulnerableTicks armor action components weapon secondary jumpBufferTicks coyoteTicks turnTicks disconnectedTicks lastGunOwnerId lastGunControlEpoch lastCannonOwnerId lastCannonControlEpoch",
+      "body definitionId kind lifecycle occupantId reservedBy controlEpoch ownerControlEpoch facing heading invulnerableTicks armor action components weapon secondary special jumpBufferTicks coyoteTicks turnTicks disconnectedTicks lastGunOwnerId lastGunControlEpoch lastCannonOwnerId lastCannonControlEpoch",
     );
     fields(tank.action, "kind actionInstanceId stateStartTick definitionId nextMarkerIndex");
     fields(tank.weapon, "id ammo cooldownTicks shotOrdinal lastActionInstanceId");
+    fields(
+      tank.special,
+      "phase actionInstanceId ownerId ownerControlEpoch startTick commitTick endTick direction",
+    );
+    ownAction(tank.special.actionInstanceId, tank.special.ownerId ?? 0);
     fields(tank.secondary, "ammo shotsFired cooldownTicks shotOrdinal lastActionInstanceId action");
     fields(
       tank.secondary.action,
@@ -737,6 +742,7 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
           "timeline notice marker",
         );
       } else {
+        const detonation = notice.source;
         fields(notice.source, "definitionId spawnTick sourceId");
         check(
           notice.kind === "explosion" &&
@@ -748,7 +754,17 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
               (notice.source.definitionId === TANK_PROFILE.cannon.attackId &&
                 notice.source.spawnTick < combat.tick &&
                 combat.tick - notice.source.spawnTick <=
-                  (COMBAT_ATTACKS.get(TANK_PROFILE.cannon.attackId)?.lifetimeTicks ?? 0))),
+                  (COMBAT_ATTACKS.get(TANK_PROFILE.cannon.attackId)?.lifetimeTicks ?? 0)) ||
+              (notice.source.definitionId === TANK_PROFILE.special.attackId &&
+                combat.tanks.some(
+                  (tank) =>
+                    tank.body.id === detonation.sourceId &&
+                    tank.special.phase === "spent" &&
+                    tank.special.endTick === combat.tick &&
+                    tank.special.commitTick === detonation.spawnTick &&
+                    tank.special.ownerId === notice.ownerId &&
+                    tank.special.actionInstanceId === notice.actionInstanceId,
+                ))),
           "detonation lifetime boundary",
         );
         integer(notice.source.spawnTick, 1, combat.tick - 1, "detonation birth tick");
@@ -929,7 +945,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 18,
+    format: 19,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -953,7 +969,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 18 &&
+    envelope.format === 19 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

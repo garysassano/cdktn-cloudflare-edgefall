@@ -418,6 +418,7 @@ try {
         firePressed: tick % 8 === 0,
         jumpPressed: tick === 10 + slot * 5,
         grenadePressed: tick === 70 + slot * 3,
+        specialPressed: false,
         interactPressed: false,
       })),
     );

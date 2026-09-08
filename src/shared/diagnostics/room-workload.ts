@@ -1,6 +1,7 @@
 import { stateHash } from "../../game/core/canonical.js";
 import { type AppliedInput, Held, type PlayerAcknowledgment } from "../../game/input/types.js";
 import type { Body, ControlledActor } from "../../game/state.js";
+import { idleTankSpecial } from "../../game/vehicles/tank-special.js";
 import type { GameIdentity } from "../content-id.js";
 import type { FullSnapshot, SnapshotContext } from "../protocol/snapshot-schema.js";
 
@@ -150,6 +151,7 @@ export function createRoomWorkload(multiplier: 1 | 2): FullSnapshot {
       action: action(),
       components: [{ id: 1, health: 100, broken: false }],
       weapon: weapon(),
+      special: idleTankSpecial(),
       secondary: {
         ammo: 10,
         shotsFired: 0,

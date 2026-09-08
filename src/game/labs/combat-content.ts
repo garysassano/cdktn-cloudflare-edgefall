@@ -21,6 +21,11 @@ import {
   CANNON_PROFILE,
   CANNON_SHAPE,
 } from "../content/weapons/tank-cannon.js";
+import {
+  TANK_SPECIAL_ATTACK,
+  TANK_SPECIAL_PROFILE,
+  TANK_SPECIAL_SHAPE,
+} from "../content/weapons/tank-special.js";
 import { pixels } from "../core/numeric.js";
 import { type TankProfile, validateTankProfile } from "../vehicles/tank.js";
 import { COMBAT_ORDNANCE } from "./combat-terrain.js";
@@ -460,6 +465,7 @@ const tankDefinition = {
 };
 export const TANK_PROFILE: TankProfile = {
   cannon: CANNON_PROFILE,
+  special: TANK_SPECIAL_PROFILE,
   definition: tankDefinition,
   locomotion: tankActor,
   exitTimelineId: 131,
@@ -494,8 +500,9 @@ COMBAT_CONTENT.shapes.push(
   { id: 16, rect: { x: -pixels(40), y: -pixels(40), w: pixels(80), h: pixels(40) } },
   structuredClone(CANNON_SHAPE),
   structuredClone(CANNON_BLAST_SHAPE),
+  structuredClone(TANK_SPECIAL_SHAPE),
 );
-COMBAT_CONTENT.attacks.push(structuredClone(CANNON_ATTACK));
+COMBAT_CONTENT.attacks.push(structuredClone(CANNON_ATTACK), structuredClone(TANK_SPECIAL_ATTACK));
 COMBAT_CONTENT.attacks.push({
   id: 16,
   kind: "swept-projectile",

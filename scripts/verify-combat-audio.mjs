@@ -180,6 +180,7 @@ try {
       firePressed: true,
       jumpPressed: false,
       grenadePressed: false,
+      specialPressed: false,
       interactPressed: false,
     })),
   );

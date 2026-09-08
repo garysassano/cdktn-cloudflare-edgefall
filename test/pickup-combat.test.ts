@@ -39,6 +39,7 @@ const idle = {
   firePressed: false,
   jumpPressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 function required<T>(value: T | undefined): T {

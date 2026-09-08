@@ -13,6 +13,7 @@ import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
 import { verifyPickupLab } from "./lib/verify-pickup-lab.mjs";
 import { verifyRocketLab } from "./lib/verify-rocket-lab.mjs";
 import { verifyShieldLab } from "./lib/verify-shield-lab.mjs";
+import { verifySpecialLab } from "./lib/verify-special-lab.mjs";
 import { verifySupportLab } from "./lib/verify-support-lab.mjs";
 import { verifyTankLab } from "./lib/verify-tank-lab.mjs";
 
@@ -155,7 +156,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 15);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 16);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -180,6 +181,7 @@ try {
   const area = await verifyAreaLab(page, output);
   const tank = await verifyTankLab(page, output);
   const cannon = await verifyCannonLab(page, output);
+  const special = await verifySpecialLab(page, output);
   const ordnance = await verifyOrdnanceLab(page, output);
   const hmg = await verifyHmgLab(page, output);
   const support = await verifySupportLab(page, output);
@@ -288,6 +290,7 @@ try {
     area,
     tank,
     cannon,
+    special,
     ordnance,
     hmg,
     support,

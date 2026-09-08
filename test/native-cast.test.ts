@@ -40,6 +40,7 @@ const input = (values: Partial<CombatCommand> = {}): CombatCommand => ({
   jumpPressed: false,
   firePressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
   ...values,
 });

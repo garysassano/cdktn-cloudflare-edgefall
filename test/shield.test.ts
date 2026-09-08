@@ -24,6 +24,7 @@ const idle = {
   held: 0,
   jumpPressed: false,
   firePressed: false,
+  specialPressed: false,
   interactPressed: false,
   grenadePressed: false,
 };

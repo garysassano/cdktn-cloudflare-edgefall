@@ -17,13 +17,15 @@ import {
   stepTankCannon,
   stepTankGun,
   stepTankTransfer,
+  tankExitBody,
   tankOwner,
 } from "../vehicles/tank.js";
+import { cancelTankSpecial, finishTankCharge } from "../vehicles/tank-special.js";
 import type { CombatCommand, CombatLab, CombatNotice } from "./combat.js";
 import { COMBAT_ATTACKS, COMBAT_CATALOG, COMBAT_SHAPES, TANK_PROFILE } from "./combat-content.js";
 import { FOOT_DEFINITION } from "./foot-fixture.js";
 
-export type SeatReason = "board" | "exit" | "destroyed" | "disconnect";
+export type SeatReason = "board" | "exit" | "destroyed" | "disconnect" | "special";
 export type SeatChanges = Map<number, SeatReason>;
 export interface CombatTankConnections {
   connectedPlayerIds: readonly number[];
@@ -78,7 +80,10 @@ export function advanceCombatTanks(
   index: CollisionIndex,
   frame: CollisionFrame,
 ) {
-  const outcomes = new Map<number, { jumpAccepted: boolean; interact: ActionOutcome }>();
+  const outcomes = new Map<
+    number,
+    { jumpAccepted: boolean; interact: ActionOutcome; special: ActionOutcome }
+  >();
   for (const player of world.players) {
     if (
       player.vehicleId !== null &&
@@ -87,7 +92,11 @@ export function advanceCombatTanks(
       )
     )
       throw new Error("Combat vehicle owner mismatch");
-    outcomes.set(player.playerId, { jumpAccepted: false, interact: "none" });
+    outcomes.set(player.playerId, {
+      jumpAccepted: false,
+      interact: "none",
+      special: commands[player.slot]?.specialPressed ? "unavailable" : "none",
+    });
   }
   for (const [tankIndex, before] of world.tanks.entries()) {
     if (before.lifecycle === "wreck") continue;
@@ -105,6 +114,11 @@ export function advanceCombatTanks(
     if (moved.fault && moved.fault.reason !== "crushed")
       throw new Error(`Combat tank: ${moved.fault.reason}`);
     if (moved.fault || tank.body.y > TANK_PROFILE.fallBoundary) {
+      if (tank.special.phase === "charging") {
+        // A crush or fall consumes the released hull without inventing an off-stage damage volume.
+        finishTankCharge(tank, frame.tick);
+        continue;
+      }
       releaseCombatTank(world, tank, "destroyed", changes, lifeNotices, index, frame);
       continue;
     }
@@ -183,7 +197,86 @@ export function advanceCombatTanks(
       }
     }
   }
+  for (const tank of world.tanks) {
+    const ownerId = tankOwner(tank),
+      actor = world.players.find((player) => player.playerId === ownerId);
+    const command = actor && commands[actor.slot],
+      outcome = actor && outcomes.get(actor.playerId);
+    const permitted =
+      actor?.life === "alive" &&
+      tank.lifecycle === "occupied" &&
+      !changes.has(actor.playerId) &&
+      connections.connectedPlayerIds.includes(actor.playerId) &&
+      !connections.releasePlayerIds.includes(actor.playerId) &&
+      Boolean((command?.held ?? 0) & Held.VehicleSpecial);
+    if (!permitted) {
+      cancelTankSpecial(tank, frame.tick);
+      if (actor) actor.vehicleSpecialTicks = 0;
+      continue;
+    }
+    if (!actor || !command || !outcome) throw new Error("Missing special owner");
+    if (command.specialPressed) {
+      if (tank.special.phase === "arming") outcome.special = "cooldown";
+      else {
+        tank.special = {
+          phase: "arming",
+          actionInstanceId: world.nextActionId,
+          ownerId: actor.playerId,
+          ownerControlEpoch: actor.controlEpoch,
+          startTick: frame.tick,
+          commitTick: null,
+          endTick: null,
+          direction: tank.facing,
+        };
+        world.nextActionId = nextCounter(world.nextActionId);
+        outcome.special = "applied";
+      }
+    }
+    actor.vehicleSpecialTicks =
+      tank.special.phase === "arming" ? frame.tick - tank.special.startTick + 1 : 0;
+  }
   return outcomes;
+}
+
+/** Resolve damage first: a hit on the final hold tick cancels before the irreversible release. */
+export function commitCombatSpecials(
+  world: CombatLab,
+  changes: SeatChanges,
+  index: CollisionIndex,
+  frame: CollisionFrame,
+) {
+  for (const tank of world.tanks) {
+    const special = tank.special;
+    if (
+      special.phase !== "arming" ||
+      frame.tick - special.startTick + 1 < TANK_PROFILE.special.armTicks
+    )
+      continue;
+    const actor = world.players.find((player) => player.playerId === special.ownerId);
+    if (
+      actor?.life !== "alive" ||
+      tank.lifecycle !== "occupied" ||
+      !tankExitBody(tank, actor, TANK_PROFILE, exitShape(), index, frame)
+    ) {
+      cancelTankSpecial(tank, frame.tick);
+      if (actor) actor.vehicleSpecialTicks = 0;
+      continue;
+    }
+    const direction = tank.facing;
+    if (!releaseTank(tank, actor, frame.tick, TANK_PROFILE, exitShape(), index, frame))
+      throw new Error("Special ejection changed within one boundary");
+    tank.special = {
+      ...special,
+      phase: "charging",
+      commitTick: frame.tick,
+      endTick: null,
+      direction,
+    };
+    // This hull is now a released attack, consumed permanently and unavailable for boarding.
+    tank.armor = tank.invulnerableTicks = 0;
+    tank.lifecycle = "destroying";
+    changes.set(actor.playerId, "special");
+  }
 }
 
 export function fireCombatTanks(

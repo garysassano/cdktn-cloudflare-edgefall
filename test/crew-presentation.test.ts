@@ -27,6 +27,7 @@ const neutral: CombatCommand = {
   jumpPressed: false,
   firePressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 const releaseTick = damage.findIndex((state, tick) => {

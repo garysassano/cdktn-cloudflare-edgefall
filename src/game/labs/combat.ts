@@ -75,6 +75,7 @@ import type { MovementResult } from "../physics/move.js";
 import { type SweepTarget, displacementAtContact, earliestSweep } from "../physics/sweep.js";
 import type { ControlledActor, Point } from "../state.js";
 import { type TankState, createTank } from "../vehicles/tank.js";
+import { cancelTankSpecial, stepTankCharge } from "../vehicles/tank-special.js";
 import {
   AREA_PROFILES,
   COMBAT_ATTACKS,
@@ -94,6 +95,7 @@ import {
   type SeatChanges,
   advanceCombatTanks,
   commitCombatSeats,
+  commitCombatSpecials,
   fireCombatTanks,
   releaseCombatTank,
   tankCombatHurtboxes,
@@ -116,6 +118,7 @@ export interface CombatCommand {
   firePressed: boolean;
   grenadePressed: boolean;
   interactPressed: boolean;
+  specialPressed: boolean;
 }
 export interface CombatTarget {
   enemy: GroundedEnemy;
@@ -165,7 +168,7 @@ export interface CombatNotice {
   beam: BeamGeometry | null;
 }
 export interface CombatLab {
-  format: 15;
+  format: 16;
   scenario: CombatScenario;
   tick: number;
   nextActionId: number;
@@ -336,7 +339,7 @@ export function createCombatLab(scenario: CombatScenario, count = 1): CombatLab 
         : null,
   }));
   return {
-    format: 15,
+    format: 16,
     scenario,
     tick: 0,
     nextActionId: 1,
@@ -543,7 +546,7 @@ export function advanceCombatLab(
   stage?: CombatStage,
 ) {
   integer(current.tick, 0, COMBAT_LAB_LIMIT - 1, "combat tick");
-  if (current.format !== 15 || current.pickups.tick !== current.tick)
+  if (current.format !== 16 || current.pickups.tick !== current.tick)
     throw new Error("Combat supply format/boundary mismatch");
   stage ??= materialCombatStage(current);
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
@@ -553,7 +556,8 @@ export function advanceCombatLab(
       typeof command.firePressed !== "boolean" ||
       typeof command.jumpPressed !== "boolean" ||
       typeof command.grenadePressed !== "boolean" ||
-      typeof command.interactPressed !== "boolean"
+      typeof command.interactPressed !== "boolean" ||
+      typeof command.specialPressed !== "boolean"
     )
       throw new Error("Invalid combat edges");
   }
@@ -588,6 +592,7 @@ export function advanceCombatLab(
     fire: ActionOutcome;
     grenade: ActionOutcome;
     interact: ActionOutcome;
+    special: ActionOutcome;
   }> = [];
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
@@ -633,6 +638,7 @@ export function advanceCombatLab(
       fire: "none",
       grenade: "none",
       interact: "none",
+      special: "none",
     });
   }
   const tankOutcomes = advanceCombatTanks(
@@ -649,6 +655,7 @@ export function advanceCombatLab(
     if (!tank) throw new Error("Missing tank input outcome");
     outcome.jumpAccepted ||= tank.jumpAccepted;
     outcome.interact = tank.interact;
+    outcome.special = tank.special;
   }
   for (const target of world.targets) {
     if (!active(target)) continue;
@@ -1340,6 +1347,40 @@ export function advanceCombatLab(
     };
     return tick - projectile.spawnTick < definition.lifetimeTicks;
   });
+  for (const tank of world.tanks) {
+    const before = current.tanks.find((candidate) => candidate.body.id === tank.body.id);
+    const definition = COMBAT_ATTACKS.get(TANK_PROFILE.special.attackId),
+      shape = COMBAT_SHAPES.get(tank.body.shapeId);
+    if (!before || !definition || !shape) throw new Error("Missing sacrifice content");
+    const blast = stepTankCharge(
+      before,
+      tank,
+      tick,
+      definition,
+      shape,
+      TANK_PROFILE.special,
+      terrain,
+      hurtboxes,
+    );
+    if (blast) {
+      impacts.push(...blast.impacts);
+      world.events.push({
+        kind: "explosion",
+        ownerId: tank.special.ownerId ?? 0,
+        actionInstanceId: tank.special.actionInstanceId,
+        markerIndex: 0,
+        source: {
+          definitionId: definition.id,
+          spawnTick: tank.special.commitTick ?? 0,
+          sourceId: tank.body.id,
+        },
+        position: blast.position,
+        impact: null,
+        targetId: null,
+        beam: null,
+      });
+    }
+  }
   impacts.sort(
     (a, b) =>
       compareContactTime(
@@ -1377,6 +1418,9 @@ export function advanceCombatLab(
     const tank = world.tanks.find((tank) => tank.body.id === impact.entityId);
     if (tank) {
       if (impact.damage > 0 && tank.armor > 0 && tank.invulnerableTicks === 0) {
+        cancelTankSpecial(tank, tick);
+        const driver = world.players.find((player) => player.playerId === tank.occupantId);
+        if (driver) driver.vehicleSpecialTicks = 0;
         tank.armor--;
         tank.invulnerableTicks = TANK_PROFILE.damageProtectionTicks;
         if (tank.armor === 0) {
@@ -1511,11 +1555,12 @@ export function advanceCombatLab(
       })),
     "throw",
   ).state;
+  commitCombatSpecials(world, seatChanges, index, frame);
   const seatEvents = commitCombatSeats(current, world, seatChanges);
   return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }
 export interface CombatRecording {
-  format: 15;
+  format: 16;
   scenario: CombatScenario;
   players: number;
   commands: CombatCommand[][];
@@ -1524,7 +1569,7 @@ export interface CombatRecording {
 /** Optional inspector observations are isolated copies and cannot mutate the replay. */
 export function replayCombatLab(recording: CombatRecording, observe?: (world: CombatLab) => void) {
   if (
-    recording.format !== 15 ||
+    recording.format !== 16 ||
     !Array.isArray(recording.commands) ||
     recording.commands.length > COMBAT_LAB_LIMIT
   )

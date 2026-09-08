@@ -347,6 +347,7 @@ try {
           firePressed: slot === 0 && pressed.has("KeyZ"),
           grenadePressed: slot === 0 && pressed.has("KeyC"),
           interactPressed: slot === 0 && pressed.has("KeyE"),
+          specialPressed: false,
         })),
         next = stepCombatLab(state, inputs);
       motion = advanceCastMotion(state, next, motion);

@@ -186,12 +186,12 @@ def main():
         for entry in entries:
             data = bytearray.fromhex(entry["hex"])
             assert data[:3] == b"EF\x03"
-            assert data[3] in (14, 15)
+            assert data[3] in (15, 16)
             assert entry.get("snapshot", {}).get("combat") is None
             if "snapshot" in entry:
                 vehicles = entry["snapshot"]["vehicles"]
                 start = 104 + len(entry["snapshot"]["players"]) * 344
-                stride = 324 if data[3] == 14 else 364
+                stride = 364 if data[3] == 15 else 396
                 packed = bytearray()
                 for index, vehicle in enumerate(vehicles):
                     secondary = vehicle.setdefault(
@@ -238,10 +238,38 @@ def main():
                             action["nextMarkerIndex"],
                         )
                     )
+                    special = vehicle.setdefault(
+                        "special",
+                        {
+                            "phase": "ready",
+                            "actionInstanceId": 0,
+                            "ownerId": None,
+                            "ownerControlEpoch": None,
+                            "startTick": 0,
+                            "commitTick": None,
+                            "endTick": None,
+                            "direction": 1,
+                        },
+                    )
+                    packed.extend(
+                        struct.pack(
+                            "<7Ii",
+                            ["ready", "arming", "canceled", "charging", "spent"].index(
+                                special["phase"]
+                            ),
+                            special["actionInstanceId"],
+                            special["ownerId"] or 0,
+                            special["ownerControlEpoch"] or 0,
+                            special["startTick"],
+                            special["commitTick"] or 0,
+                            special["endTick"] or 0,
+                            special["direction"],
+                        )
+                    )
                 data[start : start + len(vehicles) * stride] = packed
                 struct.pack_into("<H", data, 6, len(data))
                 entry["byteLength"] = len(data)
-            data[3] = 15
+            data[3] = 16
             entry["hex"] = data.hex()
         update(path, entries, write)
     print(
@@ -249,7 +277,7 @@ def main():
             {
                 "combatSections": len(cases),
                 "section": 5,
-                "protocol": "3.15",
+                "protocol": "3.16",
                 "status": "written" if write else "pass",
             }
         )

@@ -288,6 +288,7 @@ describe("finite tank cannon", () => {
           jumpPressed: false,
           firePressed: false,
           grenadePressed: false,
+          specialPressed: false,
           interactPressed: false,
         },
       ]);

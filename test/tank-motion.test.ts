@@ -11,6 +11,7 @@ import { createTank, moveTank } from "../src/game/vehicles/tank.js";
 import { tankPresentation } from "../src/shared/animation/cast.js";
 import type { NativeAtlas } from "../src/shared/animation/native.js";
 import { advanceTankMotion, initialTankMotion } from "../src/shared/animation/tank-motion.js";
+import { recordTankSpecial } from "./fixtures/tank-special-proof.js";
 
 function required<T>(value: T | null | undefined): T {
   if (value === null || value === undefined) throw new Error("Missing tank acting fixture");
@@ -25,6 +26,7 @@ const neutral: CombatCommand = {
   jumpPressed: false,
   firePressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 function physics(initial = createTank(30, { x: 100 * 256, y: 200 * 256 }, 100, TANK_PROFILE)) {
@@ -180,6 +182,24 @@ describe("accepted Kestrel suspension and independent treads", () => {
       }
     }
     expect(buffered).toBe(true);
+  });
+  it("keeps a released sacrifice animated until its terminal wreck", () => {
+    const states = recordTankSpecial(1).states;
+    let previous = required(required(states[61]).combat.tanks[0]);
+    let motion = initialTankMotion(previous, 61);
+    const tracks = new Set<string>();
+    for (let tick = 62; tick <= 98; tick++) {
+      const tank = required(required(states[tick]).combat.tanks[0]);
+      motion = advanceTankMotion(previous, tank, motion, tick);
+      const frames = tankPresentation(tank, tick, atlas, motion);
+      if (tank.special.phase === "charging") {
+        expect(frames).toHaveLength(4);
+        expect(frames.some((frame) => frame.frame === "p1/kestrel-wreck")).toBe(false);
+        tracks.add(required(frames[0]).frame);
+      } else expect(frames.map((frame) => frame.frame)).toEqual(["p1/kestrel-wreck"]);
+      previous = tank;
+    }
+    expect(tracks.size).toBeGreaterThan(1);
   });
   it("resets a replacement body and a wreck, while a seat epoch preserves the physical clock", () => {
     const run = physics();

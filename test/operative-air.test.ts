@@ -33,6 +33,7 @@ const neutral: CombatCommand = {
   jumpPressed: false,
   firePressed: false,
   grenadePressed: false,
+  specialPressed: false,
   interactPressed: false,
 };
 function combat(weapon: WeaponId = "sidearm", facing: 1 | -1 = 1) {

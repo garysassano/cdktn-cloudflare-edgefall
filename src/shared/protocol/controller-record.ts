@@ -174,6 +174,8 @@ export function readPlayer(reader: Reader): ControlledActor {
     processedEdgeIds: [reader.u32(), reader.u32(), reader.u32(), reader.u32(), reader.u32()],
   };
 }
+const SPECIAL_PHASES = ["ready", "arming", "canceled", "charging", "spent"] as const;
+
 export function writeVehicle(writer: Writer, vehicle: VehicleState): void {
   writeBody(writer, vehicle.body);
   writer.u32(vehicle.definitionId, 1, 65535);
@@ -202,9 +204,17 @@ export function writeVehicle(writer: Writer, vehicle: VehicleState): void {
   writer.u32(vehicle.secondary.shotOrdinal);
   writer.u32(vehicle.secondary.lastActionInstanceId);
   writeAction(writer, vehicle.secondary.action);
+  writer.choice(SPECIAL_PHASES, vehicle.special.phase);
+  writer.u32(vehicle.special.actionInstanceId);
+  writer.optionalId(vehicle.special.ownerId);
+  writer.optionalId(vehicle.special.ownerControlEpoch);
+  writer.u32(vehicle.special.startTick);
+  writer.optionalId(vehicle.special.commitTick);
+  writer.optionalId(vehicle.special.endTick);
+  writer.i32(vehicle.special.direction, 1);
 }
 export function readVehicle(reader: Reader): VehicleState {
-  const vehicle: Omit<VehicleState, "secondary"> = {
+  const vehicle: Omit<VehicleState, "secondary" | "special"> = {
     body: readBody(reader),
     definitionId: reader.u32(1, 65535),
     kind: reader.choice(VEHICLES),
@@ -241,5 +251,15 @@ export function readVehicle(reader: Reader): VehicleState {
     lastActionInstanceId: reader.u32(),
     action: readAction(reader),
   };
-  return { ...vehicle, secondary };
+  const special = {
+    phase: reader.choice(SPECIAL_PHASES),
+    actionInstanceId: reader.u32(),
+    ownerId: reader.u32() || null,
+    ownerControlEpoch: reader.u32() || null,
+    startTick: reader.u32(),
+    commitTick: reader.u32() || null,
+    endTick: reader.u32() || null,
+    direction: reader.i32(1) as -1 | 1,
+  };
+  return { ...vehicle, secondary, special };
 }
