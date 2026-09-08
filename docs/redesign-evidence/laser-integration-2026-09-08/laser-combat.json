@@ -1,0 +1,3782 @@
+{
+  "ticks": 72,
+  "duplicates": 288,
+  "checkpoints": [
+    {
+      "tick": 0,
+      "checkpointBytes": 12873,
+      "snapshotBytes": 1756,
+      "beams": [],
+      "volumes": [],
+      "hash": "1cfe0456",
+      "resumedTick": 15,
+      "resumedHash": "a059983e"
+    },
+    {
+      "tick": 1,
+      "checkpointBytes": 27684,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 1,
+          "definitionId": 18,
+          "spawnTick": 1,
+          "tick": 1,
+          "origin": {
+            "x": 15360,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 2,
+          "definitionId": 18,
+          "spawnTick": 1,
+          "tick": 1,
+          "origin": {
+            "x": 16384,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 3,
+          "definitionId": 18,
+          "spawnTick": 1,
+          "tick": 1,
+          "origin": {
+            "x": 17408,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 4,
+          "definitionId": 18,
+          "spawnTick": 1,
+          "tick": 1,
+          "origin": {
+            "x": 18432,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 15360,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1000,
+          "ownerId": 1,
+          "actionInstanceId": 1,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 80896,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 16384,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1001,
+          "ownerId": 2,
+          "actionInstanceId": 2,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 81920,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 17408,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1002,
+          "ownerId": 3,
+          "actionInstanceId": 3,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 82944,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 18432,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1003,
+          "ownerId": 4,
+          "actionInstanceId": 4,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 1,
+          "endTick": 7,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 83968,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "7e2d7ae2",
+      "resumedTick": 16,
+      "resumedHash": "f1695310"
+    },
+    {
+      "tick": 2,
+      "checkpointBytes": 19333,
+      "snapshotBytes": 1636,
+      "beams": [],
+      "volumes": [],
+      "hash": "f263a142",
+      "resumedTick": 17,
+      "resumedHash": "04984d22"
+    },
+    {
+      "tick": 6,
+      "checkpointBytes": 19333,
+      "snapshotBytes": 1636,
+      "beams": [],
+      "volumes": [],
+      "hash": "49cc6a72",
+      "resumedTick": 21,
+      "resumedHash": "362b4374"
+    },
+    {
+      "tick": 7,
+      "checkpointBytes": 26425,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 7,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 7,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 7,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 7,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "e1f81064",
+      "resumedTick": 22,
+      "resumedHash": "a090841a"
+    },
+    {
+      "tick": 8,
+      "checkpointBytes": 24391,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 8,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 8,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 8,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 8,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "bfa6badc",
+      "resumedTick": 23,
+      "resumedHash": "4c93e184"
+    },
+    {
+      "tick": 12,
+      "checkpointBytes": 24407,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 12,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 12,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 12,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "spawnTick": 7,
+          "tick": 12,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1004,
+          "ownerId": 1,
+          "actionInstanceId": 5,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1005,
+          "ownerId": 2,
+          "actionInstanceId": 6,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1006,
+          "ownerId": 3,
+          "actionInstanceId": 7,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1007,
+          "ownerId": 4,
+          "actionInstanceId": 8,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 7,
+          "endTick": 13,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "d32ad7b6",
+      "resumedTick": 27,
+      "resumedHash": "06052c5f"
+    },
+    {
+      "tick": 13,
+      "checkpointBytes": 29220,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 13,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 13,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 13,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 13,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "3e4c36a4",
+      "resumedTick": 28,
+      "resumedHash": "deef4db3"
+    },
+    {
+      "tick": 18,
+      "checkpointBytes": 27180,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 18,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 18,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 18,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "spawnTick": 13,
+          "tick": 18,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1008,
+          "ownerId": 1,
+          "actionInstanceId": 9,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1009,
+          "ownerId": 2,
+          "actionInstanceId": 10,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1010,
+          "ownerId": 3,
+          "actionInstanceId": 11,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1011,
+          "ownerId": 4,
+          "actionInstanceId": 12,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 13,
+          "endTick": 19,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "ec9dea78",
+      "resumedTick": 33,
+      "resumedHash": "70cd1c3e"
+    },
+    {
+      "tick": 19,
+      "checkpointBytes": 31962,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 19,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 19,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 19,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 19,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "48ed80bc",
+      "resumedTick": 34,
+      "resumedHash": "a62ffd15"
+    },
+    {
+      "tick": 24,
+      "checkpointBytes": 29919,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 24,
+          "origin": {
+            "x": 12032,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 24,
+          "origin": {
+            "x": 13056,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 24,
+          "origin": {
+            "x": 14080,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "spawnTick": 19,
+          "tick": 24,
+          "origin": {
+            "x": 15104,
+            "y": 41984
+          },
+          "heading": 1,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1012,
+          "ownerId": 1,
+          "actionInstanceId": 13,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 11520,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1013,
+          "ownerId": 2,
+          "actionInstanceId": 14,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 12544,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1014,
+          "ownerId": 3,
+          "actionInstanceId": 15,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 13568,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -23552,
+            "w": 1024,
+            "h": 65536
+          }
+        },
+        {
+          "id": 1015,
+          "ownerId": 4,
+          "actionInstanceId": 16,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 19,
+          "endTick": 25,
+          "heading": 1,
+          "attached": true,
+          "rect": {
+            "x": 14592,
+            "y": -89088,
+            "w": 1024,
+            "h": 65536
+          }
+        }
+      ],
+      "hash": "54d633be",
+      "resumedTick": 39,
+      "resumedHash": "c0705a0d"
+    },
+    {
+      "tick": 25,
+      "checkpointBytes": 27557,
+      "snapshotBytes": 1636,
+      "beams": [],
+      "volumes": [],
+      "hash": "fc510cdf",
+      "resumedTick": 40,
+      "resumedHash": "a6c29c56"
+    },
+    {
+      "tick": 31,
+      "checkpointBytes": 34702,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 31,
+          "origin": {
+            "x": 16128,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 31,
+          "origin": {
+            "x": 17152,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 31,
+          "origin": {
+            "x": 18176,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 31,
+          "origin": {
+            "x": 19200,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 16128,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 81664,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 17152,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 82688,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 18176,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 83712,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 19200,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 84736,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "d2c4c1f7",
+      "resumedTick": 46,
+      "resumedHash": "f383ef7c"
+    },
+    {
+      "tick": 32,
+      "checkpointBytes": 32659,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 32,
+          "origin": {
+            "x": 16896,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 32,
+          "origin": {
+            "x": 17920,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 32,
+          "origin": {
+            "x": 18944,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "spawnTick": 31,
+          "tick": 32,
+          "origin": {
+            "x": 19968,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 16896,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1016,
+          "ownerId": 1,
+          "actionInstanceId": 17,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 82432,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 17920,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1017,
+          "ownerId": 2,
+          "actionInstanceId": 18,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 83456,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 18944,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1018,
+          "ownerId": 3,
+          "actionInstanceId": 19,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 84480,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 19968,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1019,
+          "ownerId": 4,
+          "actionInstanceId": 20,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 31,
+          "endTick": 37,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 85504,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "2753461c",
+      "resumedTick": 47,
+      "resumedHash": "86b69b14"
+    },
+    {
+      "tick": 37,
+      "checkpointBytes": 37434,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 37,
+          "origin": {
+            "x": 20736,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 37,
+          "origin": {
+            "x": 21760,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 37,
+          "origin": {
+            "x": 22784,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 37,
+          "origin": {
+            "x": 23808,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 20736,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 86272,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 21760,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 87296,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 22784,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 88320,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 23808,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 89344,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "b9557596",
+      "resumedTick": 52,
+      "resumedHash": "02cf00f9"
+    },
+    {
+      "tick": 42,
+      "checkpointBytes": 35391,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 42,
+          "origin": {
+            "x": 24576,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 42,
+          "origin": {
+            "x": 25600,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 42,
+          "origin": {
+            "x": 26624,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "spawnTick": 37,
+          "tick": 42,
+          "origin": {
+            "x": 27648,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 24576,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1020,
+          "ownerId": 1,
+          "actionInstanceId": 21,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 90112,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 25600,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1021,
+          "ownerId": 2,
+          "actionInstanceId": 22,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 91136,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 26624,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1022,
+          "ownerId": 3,
+          "actionInstanceId": 23,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 92160,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 27648,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1023,
+          "ownerId": 4,
+          "actionInstanceId": 24,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 37,
+          "endTick": 43,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 93184,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "a7a4665c",
+      "resumedTick": 57,
+      "resumedHash": "07d9a0b1"
+    },
+    {
+      "tick": 43,
+      "checkpointBytes": 33020,
+      "snapshotBytes": 1636,
+      "beams": [],
+      "volumes": [],
+      "hash": "feac8314",
+      "resumedTick": 58,
+      "resumedHash": "6abe20cd"
+    },
+    {
+      "tick": 49,
+      "checkpointBytes": 40150,
+      "snapshotBytes": 2020,
+      "beams": [
+        {
+          "id": 1024,
+          "ownerId": 1,
+          "team": 1,
+          "actionInstanceId": 25,
+          "definitionId": 18,
+          "spawnTick": 49,
+          "tick": 49,
+          "origin": {
+            "x": 24576,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1025,
+          "ownerId": 2,
+          "team": 1,
+          "actionInstanceId": 26,
+          "definitionId": 18,
+          "spawnTick": 49,
+          "tick": 49,
+          "origin": {
+            "x": 25600,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1026,
+          "ownerId": 3,
+          "team": 1,
+          "actionInstanceId": 27,
+          "definitionId": 18,
+          "spawnTick": 49,
+          "tick": 49,
+          "origin": {
+            "x": 26624,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        },
+        {
+          "id": 1027,
+          "ownerId": 4,
+          "team": 1,
+          "actionInstanceId": 28,
+          "definitionId": 18,
+          "spawnTick": 49,
+          "tick": 49,
+          "origin": {
+            "x": 27648,
+            "y": 45312
+          },
+          "heading": 0,
+          "length": 131072
+        }
+      ],
+      "volumes": [
+        {
+          "id": 1024,
+          "ownerId": 1,
+          "actionInstanceId": 25,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 24576,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1024,
+          "ownerId": 1,
+          "actionInstanceId": 25,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 90112,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1025,
+          "ownerId": 2,
+          "actionInstanceId": 26,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 25600,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1025,
+          "ownerId": 2,
+          "actionInstanceId": 26,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 91136,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1026,
+          "ownerId": 3,
+          "actionInstanceId": 27,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 26624,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1026,
+          "ownerId": 3,
+          "actionInstanceId": 27,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 92160,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1027,
+          "ownerId": 4,
+          "actionInstanceId": 28,
+          "definitionId": 18,
+          "lobe": 0,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 27648,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        },
+        {
+          "id": 1027,
+          "ownerId": 4,
+          "actionInstanceId": 28,
+          "definitionId": 18,
+          "lobe": 1,
+          "spawnTick": 49,
+          "endTick": 55,
+          "heading": 0,
+          "attached": true,
+          "rect": {
+            "x": 93184,
+            "y": 44800,
+            "w": 65536,
+            "h": 1024
+          }
+        }
+      ],
+      "hash": "86c68527",
+      "resumedTick": 64,
+      "resumedHash": "2ffe1295"
+    },
+    {
+      "tick": 50,
+      "checkpointBytes": 35743,
+      "snapshotBytes": 1636,
+      "beams": [],
+      "volumes": [],
+      "hash": "a868b6b9",
+      "resumedTick": 65,
+      "resumedHash": "fe90c299"
+    }
+  ],
+  "events": [
+    {
+      "tick": 1,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 15360,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 1,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 16384,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 1,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 17408,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 1,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 1
+      },
+      "position": {
+        "x": 18432,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 54976,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1000,
+        "definitionId": 18,
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 54976,
+          "y": 45312
+        }
+      },
+      "targetId": 20,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "killed",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 54976,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1000,
+        "definitionId": 18,
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 54976,
+          "y": 45312
+        }
+      },
+      "targetId": 20,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 70336,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1000,
+        "definitionId": 18,
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 70336,
+          "y": 45312
+        }
+      },
+      "targetId": 21,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "killed",
+      "ownerId": 1,
+      "actionInstanceId": 1,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 70336,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1000,
+        "definitionId": 18,
+        "ownerId": 1,
+        "actionInstanceId": 1,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 70336,
+          "y": 45312
+        }
+      },
+      "targetId": 21,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 54976,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1001,
+        "definitionId": 18,
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 54976,
+          "y": 45312
+        }
+      },
+      "targetId": 20,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 2,
+      "actionInstanceId": 2,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 70336,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1001,
+        "definitionId": 18,
+        "ownerId": 2,
+        "actionInstanceId": 2,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 70336,
+          "y": 45312
+        }
+      },
+      "targetId": 21,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 54976,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1002,
+        "definitionId": 18,
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 54976,
+          "y": 45312
+        }
+      },
+      "targetId": 20,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 3,
+      "actionInstanceId": 3,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 70336,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1002,
+        "definitionId": 18,
+        "ownerId": 3,
+        "actionInstanceId": 3,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 70336,
+          "y": 45312
+        }
+      },
+      "targetId": 21,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 54976,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1003,
+        "definitionId": 18,
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "colliderId": 40,
+        "entityId": 20,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 54976,
+          "y": 45312
+        }
+      },
+      "targetId": 20,
+      "beam": null
+    },
+    {
+      "tick": 1,
+      "kind": "impact",
+      "ownerId": 4,
+      "actionInstanceId": 4,
+      "markerIndex": 0,
+      "source": null,
+      "position": {
+        "x": 70336,
+        "y": 45312
+      },
+      "impact": {
+        "sourceId": 1003,
+        "definitionId": 18,
+        "ownerId": 4,
+        "actionInstanceId": 4,
+        "colliderId": 42,
+        "entityId": 21,
+        "kind": "body",
+        "damage": 2,
+        "time": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "position": {
+          "x": 70336,
+          "y": 45312
+        }
+      },
+      "targetId": 21,
+      "beam": null
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 5,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 12032,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 6,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 13056,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 7,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 14080,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 7,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 8,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 2
+      },
+      "position": {
+        "x": 15104,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 13,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 9,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 12032,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 13,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 10,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 13056,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 13,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 11,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 14080,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 13,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 12,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 3
+      },
+      "position": {
+        "x": 15104,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 19,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 13,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 4
+      },
+      "position": {
+        "x": 12032,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 19,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 14,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 4
+      },
+      "position": {
+        "x": 13056,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 19,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 15,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 4
+      },
+      "position": {
+        "x": 14080,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 19,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 16,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 4
+      },
+      "position": {
+        "x": 15104,
+        "y": 41984
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 1,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 17,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 5
+      },
+      "position": {
+        "x": 16128,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 18,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 5
+      },
+      "position": {
+        "x": 17152,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 19,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 5
+      },
+      "position": {
+        "x": 18176,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 31,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 20,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 5
+      },
+      "position": {
+        "x": 19200,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 37,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 21,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 6
+      },
+      "position": {
+        "x": 20736,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 37,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 22,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 6
+      },
+      "position": {
+        "x": 21760,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 37,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 23,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 6
+      },
+      "position": {
+        "x": 22784,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 37,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 24,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 6
+      },
+      "position": {
+        "x": 23808,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 49,
+      "kind": "shot",
+      "ownerId": 1,
+      "actionInstanceId": 25,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 7
+      },
+      "position": {
+        "x": 24576,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 49,
+      "kind": "shot",
+      "ownerId": 2,
+      "actionInstanceId": 26,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 7
+      },
+      "position": {
+        "x": 25600,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 49,
+      "kind": "shot",
+      "ownerId": 3,
+      "actionInstanceId": 27,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 7
+      },
+      "position": {
+        "x": 26624,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    },
+    {
+      "tick": 49,
+      "kind": "shot",
+      "ownerId": 4,
+      "actionInstanceId": 28,
+      "markerIndex": 0,
+      "source": {
+        "definitionId": 18,
+        "controlEpoch": 1,
+        "shotOrdinal": 7
+      },
+      "position": {
+        "x": 27648,
+        "y": 45312
+      },
+      "impact": null,
+      "targetId": null,
+      "beam": {
+        "heading": 0,
+        "length": 131072,
+        "width": 1024
+      }
+    }
+  ],
+  "finalHash": "6e14b3ed",
+  "traceHash": "a40b2679",
+  "encounter": "complete",
+  "players": [
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 7,
+        "lastActionInstanceId": 25
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 7,
+        "lastActionInstanceId": 26
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 7,
+        "lastActionInstanceId": 27
+      },
+      "lives": 3
+    },
+    {
+      "weapon": {
+        "id": "laser",
+        "ammo": 113,
+        "cooldownTicks": 0,
+        "shotOrdinal": 7,
+        "lastActionInstanceId": 28
+      },
+      "lives": 3
+    }
+  ],
+  "scope": "Accepted four-player laser energy/pulse accounting, public clipped geometry and private charge lifetime through checkpoint and journal replay. Engineering content; SQLite and browser room execution are separate harnesses."
+}

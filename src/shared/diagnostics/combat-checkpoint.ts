@@ -2,10 +2,12 @@ import { validateRifleState } from "../../game/actors/rifle.js";
 import { validateShield } from "../../game/actors/shield.js";
 import { validatePlayerLife } from "../../game/campaign/life.js";
 import { validateArea } from "../../game/combat/area-attack.js";
+import { beamSegments, validateBeamPulse } from "../../game/combat/beam.js";
 import { validateDestructibles } from "../../game/combat/destructible.js";
 import { validateFirearmAim } from "../../game/combat/firearm-aim.js";
 import { grenadeVelocityBounds } from "../../game/combat/grenade.js";
 import { validateRocket } from "../../game/combat/rocket.js";
+import { LASER_ATTACK, LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import {
   ROCKET_ATTACK,
   ROCKET_PROFILE,
@@ -118,19 +120,21 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   );
   fields(
     combat,
-    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles rockets strikes grenades areas encounter events",
+    "format scenario tick nextActionId nextEntityId eventSequence players tanks targets props projectiles rockets beams strikes grenades areas encounter events",
   );
-  check(combat.format === 10, "simulation format");
+  check(combat.format === 11, "simulation format");
   integer(combat.tick, 0, COMBAT_LAB_LIMIT, "combat checkpoint tick");
   integer(combat.players.length, 1, 4, "combat checkpoint players");
   integer(combat.projectiles.length, 0, 256, "combat checkpoint projectiles");
   integer(combat.rockets.length, 0, 32, "combat checkpoint rockets");
+  integer(combat.beams.length, 0, 4, "combat checkpoint beams");
   integer(combat.strikes.length, 0, 4, "combat checkpoint strikes");
   integer(combat.grenades.length, 0, 32, "combat checkpoint grenades");
   integer(combat.areas.length, 0, 16, "combat area budget");
   integer(
     combat.projectiles.length +
       combat.rockets.length +
+      combat.beams.length +
       combat.strikes.length +
       combat.grenades.length +
       combat.areas.length,
@@ -376,6 +380,29 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
     ownAction(source.actionInstanceId, source.ownerId);
   };
   const rocketActions = new Set<number>();
+  const beamOwners = new Set<number>();
+  for (const beam of combat.beams) {
+    fields(
+      beam,
+      "id ownerId team actionInstanceId definitionId spawnTick tick origin heading length",
+    );
+    fields(beam.origin, "x y");
+    ownAttack(beam);
+    check(!beamOwners.has(beam.ownerId), "duplicate beam owner");
+    beamOwners.add(beam.ownerId);
+    validateBeamPulse(beam, LASER_ATTACK, LASER_PROFILE);
+    const actor = combat.players.find((player) => player.playerId === beam.ownerId);
+    const anchor = combatAreaAnchor(combat, beam);
+    check(
+      beam.tick === combat.tick &&
+        actor?.weapon.id === "laser" &&
+        actor.action.stateStartTick === beam.spawnTick &&
+        anchor !== null &&
+        canonical(anchor.origin) === canonical(beam.origin) &&
+        anchor.heading === beam.heading,
+      "beam owner/clock/muzzle",
+    );
+  }
   for (const rocket of combat.rockets) {
     fields(
       rocket,
@@ -507,8 +534,24 @@ export function validateCombatCheckpoint(state: CombatRuntime): void {
   }
   for (const notice of combat.events) {
     ownAction(notice.actionInstanceId, notice.ownerId);
-    fields(notice, "kind ownerId actionInstanceId markerIndex source position impact targetId");
+    fields(
+      notice,
+      "kind ownerId actionInstanceId markerIndex source position impact targetId beam",
+    );
     fields(notice.position, "x y");
+    check(
+      (notice.beam !== null) ===
+        (notice.kind === "shot" && notice.source?.definitionId === LASER_ATTACK.id),
+      "beam notice presence",
+    );
+    if (notice.beam !== null) {
+      fields(notice.beam, "heading length width");
+      check(
+        notice.beam.width === LASER_PROFILE.width && notice.beam.length <= LASER_PROFILE.range,
+        "beam notice profile",
+      );
+      beamSegments(notice.position, notice.beam.heading, notice.beam.length, notice.beam.width);
+    }
     check(
       [
         "shot",
@@ -784,7 +827,7 @@ async function seal(
     "payload size limit",
   );
   return canonical({
-    format: 13,
+    format: 14,
     protocolMajor: PROTOCOL_MAJOR,
     protocolMinor: PROTOCOL_MINOR,
     kind,
@@ -808,7 +851,7 @@ async function unseal(
   const envelope = JSON.parse(raw);
   fields(envelope, "format protocolMajor protocolMinor kind identity payload sha256");
   check(
-    envelope.format === 13 &&
+    envelope.format === 14 &&
       envelope.kind === kind &&
       envelope.protocolMajor === PROTOCOL_MAJOR &&
       envelope.protocolMinor === PROTOCOL_MINOR,

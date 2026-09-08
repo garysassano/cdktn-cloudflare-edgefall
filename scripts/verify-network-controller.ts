@@ -18,6 +18,7 @@ import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
 import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHmgCombat } from "./lib/verify-hmg-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
+import { verifyLaserCombat } from "./lib/verify-laser-combat.js";
 import { verifyLoadingConnections } from "./lib/verify-loading-connections.js";
 import { verifyOrdnanceCombat } from "./lib/verify-ordnance-combat.js";
 import { verifyRocketCombat } from "./lib/verify-rocket-combat.js";
@@ -105,6 +106,7 @@ const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
 const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
+const laserMode = process.argv.includes("--combat-laser");
 const hmgMode = process.argv.includes("--combat-hmg");
 const ordnanceMode = process.argv.includes("--combat-ordnance");
 const hostileMode = process.argv.includes("--combat-hostile");
@@ -132,7 +134,8 @@ const combatMode =
   ordnanceMode ||
   hmgMode ||
   supportMode ||
-  rocketMode;
+  rocketMode ||
+  laserMode;
 assert(
   !(
     footMode ||
@@ -142,7 +145,8 @@ assert(
     ordnanceMode ||
     hmgMode ||
     supportMode ||
-    rocketMode
+    rocketMode ||
+    laserMode
   ) ||
     !(
       hostileMode ||
@@ -168,6 +172,7 @@ assert(
     hmgMode,
     supportMode,
     rocketMode,
+    laserMode,
   ].filter(Boolean).length <= 1,
   "Run each foot action in its own fresh room",
 );
@@ -202,47 +207,49 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = rocketMode
-  ? "dist/network-combat-rocket-evidence"
-  : supportMode
-    ? "dist/network-combat-support-evidence"
-    : hmgMode
-      ? "dist/network-combat-hmg-evidence"
-      : ordnanceMode
-        ? "dist/network-combat-ordnance-evidence"
-        : tankMode
-          ? "dist/network-combat-tank-evidence"
-          : areaMode
-            ? `dist/network-combat-${areaMode}-evidence`
-            : shieldMode
-              ? "dist/network-combat-guard-evidence"
-              : footMode
-                ? `dist/network-combat-${footMode}-evidence`
-                : hostileMode
-                  ? "dist/network-combat-hostile-evidence"
-                  : campaignMode
-                    ? "dist/network-combat-campaign-evidence"
-                    : automaticMode
-                      ? "dist/network-combat-auto-evidence"
-                      : combatReconnectMode
-                        ? loadingMode
-                          ? phaseMode
-                            ? "dist/network-combat-phase-evidence"
-                            : "dist/network-combat-loading-evidence"
-                          : "dist/network-combat-reconnect-evidence"
-                        : combatRecoveryMode
-                          ? "dist/network-combat-recovery-evidence"
-                          : baselineMode
-                            ? "dist/network-combat-baseline-evidence"
-                            : combatMode
-                              ? eventMode
-                                ? "dist/network-event-evidence"
-                                : faultMode
-                                  ? "dist/network-combat-fault-evidence"
-                                  : "dist/network-combat-evidence"
-                              : recoveryMode
-                                ? "dist/network-controller-recovery-evidence"
-                                : "dist/network-controller-evidence";
+const output = laserMode
+  ? "dist/network-combat-laser-evidence"
+  : rocketMode
+    ? "dist/network-combat-rocket-evidence"
+    : supportMode
+      ? "dist/network-combat-support-evidence"
+      : hmgMode
+        ? "dist/network-combat-hmg-evidence"
+        : ordnanceMode
+          ? "dist/network-combat-ordnance-evidence"
+          : tankMode
+            ? "dist/network-combat-tank-evidence"
+            : areaMode
+              ? `dist/network-combat-${areaMode}-evidence`
+              : shieldMode
+                ? "dist/network-combat-guard-evidence"
+                : footMode
+                  ? `dist/network-combat-${footMode}-evidence`
+                  : hostileMode
+                    ? "dist/network-combat-hostile-evidence"
+                    : campaignMode
+                      ? "dist/network-combat-campaign-evidence"
+                      : automaticMode
+                        ? "dist/network-combat-auto-evidence"
+                        : combatReconnectMode
+                          ? loadingMode
+                            ? phaseMode
+                              ? "dist/network-combat-phase-evidence"
+                              : "dist/network-combat-loading-evidence"
+                            : "dist/network-combat-reconnect-evidence"
+                          : combatRecoveryMode
+                            ? "dist/network-combat-recovery-evidence"
+                            : baselineMode
+                              ? "dist/network-combat-baseline-evidence"
+                              : combatMode
+                                ? eventMode
+                                  ? "dist/network-event-evidence"
+                                  : faultMode
+                                    ? "dist/network-combat-fault-evidence"
+                                    : "dist/network-combat-evidence"
+                                : recoveryMode
+                                  ? "dist/network-controller-recovery-evidence"
+                                  : "dist/network-controller-evidence";
 // This generated directory belongs to this invocation, including scenario-specific screenshots.
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -294,6 +301,7 @@ try {
       ...(hmgMode ? ["scripts/lib/verify-hmg-combat.ts"] : []),
       ...(supportMode ? ["scripts/lib/verify-support-combat.ts"] : []),
       ...(rocketMode ? ["scripts/lib/verify-rocket-combat.ts"] : []),
+      ...(laserMode ? ["scripts/lib/verify-laser-combat.ts"] : []),
     ])
       sources.push({
         file,
@@ -356,7 +364,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode || laserMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -440,6 +448,26 @@ try {
         if (baselineMode) await configureEvents(0, { pauseUntilBaseline: true });
         await configureEvents(1, { duplicate: true });
         await configureEvents(2, { dropNext: 1 });
+      }
+      if (laserMode) {
+        const laser = await verifyLaserCombat(pages, base, output);
+        room = laser.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          laser,
+          clients: laser.clients,
+          sharedSnapshots: laser.common.length,
+          room,
+          scope:
+            "Four real keyboards tap and hold laser fire in an authoritative local workerd room. Six-tick energy pulses, clipped snapshot geometry, delayed acknowledged beam rendering and duplicate suppression agree. Engineering content; deployed timing and final media remain open.",
+        };
       }
       if (rocketMode) {
         const rocket = await verifyRocketCombat(pages, base, output);
@@ -2102,17 +2130,19 @@ try {
     }
   };
   const report = await withDirectRoomWorker(runProbe, {
-    combatScenario: rocketMode
-      ? "rocket"
-      : supportMode
-        ? "support"
-        : hmgMode
-          ? "hmg"
-          : ordnanceMode
-            ? "ordnance"
-            : tankMode
-              ? "tank"
-              : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario: laserMode
+      ? "laser"
+      : rocketMode
+        ? "rocket"
+        : supportMode
+          ? "support"
+          : hmgMode
+            ? "hmg"
+            : ordnanceMode
+              ? "ordnance"
+              : tankMode
+                ? "tank"
+                : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

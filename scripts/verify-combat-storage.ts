@@ -12,6 +12,7 @@ import { verifyStoredDeathBody } from "./lib/verify-stored-death-body.js";
 import { verifyStoredEntry } from "./lib/verify-stored-entry.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
 import { verifyStoredHmg } from "./lib/verify-stored-hmg.js";
+import { verifyStoredLaser } from "./lib/verify-stored-laser.js";
 import { verifyStoredOrdnance } from "./lib/verify-stored-ordnance.js";
 import { verifyStoredPhases } from "./lib/verify-stored-phases.js";
 import { verifyStoredRifle } from "./lib/verify-stored-rifle.js";
@@ -222,6 +223,10 @@ try {
   assert.equal(coldEntry.hash, entering.hash);
   assert.deepEqual(coldEntry.lives, entering.lives);
   const report = {
+    laser: await verifyStoredLaser(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
     rocket: await verifyStoredRocket(origin, async () => {
       await runtime.dispose();
       runtime = create();

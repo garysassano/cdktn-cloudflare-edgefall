@@ -208,6 +208,7 @@ try {
     rocket: expected.rocket,
     rocketCombat: expected.rocketCombat,
     beam: expected.beam,
+    laserCombat: expected.laserCombat,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {

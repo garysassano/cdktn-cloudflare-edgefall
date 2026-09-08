@@ -19,6 +19,7 @@ import { roomWorkloadHash } from "./room-workload.js";
 
 /** Empty rooms do not tick through a grace timer; settle seats in the persisted phase boundary. */
 function settleSeats(state: CombatRuntime, playerIds: readonly number[], advanceControl = true) {
+  state.combat.beams = state.combat.beams.filter((beam) => !playerIds.includes(beam.ownerId));
   const before = structuredClone(state.combat),
     changes: SeatChanges = new Map();
   const frame = { tick: state.combat.tick, geometryRevision: state.snapshot.geometryRevision },

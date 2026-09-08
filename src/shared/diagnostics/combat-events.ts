@@ -1,3 +1,4 @@
+import { LASER_ATTACK, LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import type { CombatLab } from "../../game/labs/combat.js";
 import { COMBAT_CONTENT } from "../../game/labs/combat-content.js";
 import type { EventContext, GameplayEvent } from "../protocol/events.js";
@@ -7,6 +8,7 @@ export function combatEventContext(identity: InputIdentity): EventContext {
   return {
     ...identity,
     attackIds: new Set(COMBAT_CONTENT.attacks.map((value) => value.id)),
+    beamProfiles: new Map([[LASER_ATTACK.id, LASER_PROFILE]]),
     soundIds: new Set(
       COMBAT_CONTENT.timelines.flatMap((timeline) =>
         timeline.markers
@@ -34,6 +36,7 @@ export function combatGameplayEvents(previous: CombatLab, next: CombatLab): Game
       targetId: notice.targetId,
       material: notice.impact?.kind ?? (notice.kind === "muzzle-blocked" ? "terrain" : "none"),
       confirmation: null,
+      beam: notice.beam,
     };
     if (notice.impact) {
       if (notice.impact.actionInstanceId !== notice.actionInstanceId)

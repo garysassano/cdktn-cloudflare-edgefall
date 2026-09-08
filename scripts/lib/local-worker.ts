@@ -28,6 +28,7 @@ export async function withDirectRoomWorker<T>(
       | "ordnance"
       | "hmg"
       | "rocket"
+      | "laser"
       | "support";
   } = {},
 ): Promise<T> {

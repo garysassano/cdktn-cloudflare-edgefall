@@ -11,6 +11,7 @@ import { combatArchiveIdentity, recordCombatRecovery } from "./combat-recovery-p
 import { recordMovingEntry } from "./entry-recovery-proof.js";
 import { recordFootCombat } from "./foot-combat-proof.js";
 import { HMG_BOUNDARIES, recordHmg } from "./hmg-proof.js";
+import { LASER_COMBAT_BOUNDARIES, recordLaserCombat } from "./laser-combat-proof.js";
 import {
   DELAYED_ORDNANCE_BOUNDARIES,
   ORDNANCE_BOUNDARIES,
@@ -58,7 +59,8 @@ export class CombatStorageProof extends DurableObject<Env> {
       name === "ordnance-delayed" ||
       name === "hmg-sweep" ||
       name === "support-fall" ||
-      name === "rocket-flight"
+      name === "rocket-flight" ||
+      name === "laser-charge"
     ) {
       const area = name === "area-shotgun" ? "shotgun" : name === "area-flame" ? "flame" : null;
       const mode = name === "shield-bash" ? "bash" : "break";
@@ -69,54 +71,61 @@ export class CombatStorageProof extends DurableObject<Env> {
       const hmg = name === "hmg-sweep";
       const support = name === "support-fall";
       const rocket = name === "rocket-flight";
+      const laser = name === "laser-charge";
       if (action !== "restore") {
-        const fixture = rocket
-          ? recordRocketCombat()
-          : support
-            ? recordSupport()
-            : hmg
-              ? recordHmg()
-              : ordnance
-                ? recordOrdnance(ordnanceStart)
-                : tank
-                  ? damage
-                    ? recordTankCombat(210, tankDamageInput)
-                    : recordTankCombat()
-                  : area
-                    ? recordAreaCombat(area)
-                    : recordShieldCombat(mode);
-        const boundaries = rocket
-          ? ROCKET_COMBAT_BOUNDARIES
-          : support
-            ? SUPPORT_BOUNDARIES
-            : hmg
-              ? HMG_BOUNDARIES
-              : ordnance
-                ? ordnanceStart === 1
-                  ? ORDNANCE_BOUNDARIES
-                  : DELAYED_ORDNANCE_BOUNDARIES
-                : tank
-                  ? damage
-                    ? TANK_DAMAGE_BOUNDARIES
-                    : TANK_BOUNDARIES
-                  : area
-                    ? AREA_BOUNDARIES[area]
-                    : SHIELD_BOUNDARIES[mode];
+        const fixture = laser
+          ? recordLaserCombat()
+          : rocket
+            ? recordRocketCombat()
+            : support
+              ? recordSupport()
+              : hmg
+                ? recordHmg()
+                : ordnance
+                  ? recordOrdnance(ordnanceStart)
+                  : tank
+                    ? damage
+                      ? recordTankCombat(210, tankDamageInput)
+                      : recordTankCombat()
+                    : area
+                      ? recordAreaCombat(area)
+                      : recordShieldCombat(mode);
+        const boundaries = laser
+          ? LASER_COMBAT_BOUNDARIES
+          : rocket
+            ? ROCKET_COMBAT_BOUNDARIES
+            : support
+              ? SUPPORT_BOUNDARIES
+              : hmg
+                ? HMG_BOUNDARIES
+                : ordnance
+                  ? ordnanceStart === 1
+                    ? ORDNANCE_BOUNDARIES
+                    : DELAYED_ORDNANCE_BOUNDARIES
+                  : tank
+                    ? damage
+                      ? TANK_DAMAGE_BOUNDARIES
+                      : TANK_BOUNDARIES
+                    : area
+                      ? AREA_BOUNDARIES[area]
+                      : SHIELD_BOUNDARIES[mode];
         const through = Number(action);
         if (
           ![
             ...boundaries,
-            rocket
-              ? 160
-              : support || hmg || ordnance
-                ? 120
-                : tank
-                  ? damage
-                    ? 210
-                    : 120
-                  : area
-                    ? 120
-                    : 180,
+            laser
+              ? 72
+              : rocket
+                ? 160
+                : support || hmg || ordnance
+                  ? 120
+                  : tank
+                    ? damage
+                      ? 210
+                      : 120
+                    : area
+                      ? 120
+                      : 180,
           ].includes(through)
         )
           throw new Error("Unknown shield storage boundary");
@@ -178,6 +187,9 @@ export class CombatStorageProof extends DurableObject<Env> {
           : undefined,
         volumes: saved.snapshot.combat?.volumes,
         weapons: saved.combat.players.map((player) => player.weapon),
+        laser: laser
+          ? { beams: saved.combat.beams, volumes: saved.snapshot.combat?.volumes }
+          : undefined,
         rocket: rocket
           ? { rockets: saved.combat.rockets, projectiles: saved.snapshot.projectiles }
           : undefined,
@@ -635,6 +647,7 @@ export default {
         "hmg-sweep",
         "support-fall",
         "rocket-flight",
+        "laser-charge",
         "shield-bash",
         "shield-break",
         "campaign",

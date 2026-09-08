@@ -822,7 +822,8 @@ export class RoomLoadProbe extends DurableObject<ProbeEnv> {
         requested !== "ordnance" &&
         requested !== "hmg" &&
         requested !== "support" &&
-        requested !== "rocket"
+        requested !== "rocket" &&
+        requested !== "laser"
       )
         throw new Error("Unsupported room combat scenario");
       const initial = createCombatRuntime(requested);

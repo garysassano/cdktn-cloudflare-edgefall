@@ -2,9 +2,11 @@ import { rifleMode } from "../../game/actors/rifle.js";
 import { shieldMode } from "../../game/actors/shield.js";
 import { damagePlayer, stepPlayerLife } from "../../game/campaign/life.js";
 import { areaExposures } from "../../game/combat/area-attack.js";
+import { beamExposures } from "../../game/combat/beam.js";
 import { type DestructibleState, validateDestructibles } from "../../game/combat/destructible.js";
 import { advanceFirearmAim } from "../../game/combat/firearm-aim.js";
 import { actionPose } from "../../game/combat/timeline.js";
+import { LASER_PROFILE } from "../../game/content/weapons/laser.js";
 import { ROCKET_PROFILE } from "../../game/content/weapons/rocket-launcher.js";
 import { stepFootController } from "../../game/controller/foot.js";
 import { canonical } from "../../game/core/canonical.js";
@@ -123,6 +125,7 @@ export async function combatIdentity() {
       tank: TANK_PROFILE,
       tankDepot: COMBAT_TANK_DEPOT,
       ordnance: COMBAT_ORDNANCE,
+      laser: LASER_PROFILE,
       support: COMBAT_SUPPORT,
       life: {
         rules: RULE_PRESETS,
@@ -394,6 +397,7 @@ export function combatSnapshot(
           combatTerrain(combat.scenario, combat.tick, combat.props),
         );
       })
+      .concat(combat.beams.flatMap((beam) => beamExposures(beam, LASER_PROFILE)))
       .sort((a, b) => a.id - b.id || a.lobe - b.lobe),
     nextEntityId: combat.nextEntityId,
     nextActionId: combat.nextActionId,

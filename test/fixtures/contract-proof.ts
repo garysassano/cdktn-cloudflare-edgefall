@@ -24,6 +24,7 @@ import { groundedProof, seamProof } from "./grounded-proof.js";
 import { hmgProof } from "./hmg-proof.js";
 import { inputCaptureProof } from "./input-capture-proof.js";
 import { inputFlowProof } from "./input-flow-proof.js";
+import { laserCombatProof } from "./laser-combat-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
@@ -124,6 +125,7 @@ export async function contractProof() {
     rocket: rocketProof(),
     rocketCombat: await rocketCombatProof(),
     beam: beamProof(),
+    laserCombat: await laserCombatProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

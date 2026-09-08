@@ -45,7 +45,8 @@ function eventCue(event: CombatNotice, bossId?: number): CombatCueName | null {
       case 16:
         return "tank";
       case 17:
-        return null; // Launcher launch audio awaits its reviewed family.
+      case 18:
+        return null; // Launcher and laser audio await their reviewed families.
       default:
         return "sidearm";
     }

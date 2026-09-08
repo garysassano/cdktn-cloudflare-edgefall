@@ -2,8 +2,10 @@ import Phaser from "phaser";
 import { rifleMode } from "../game/actors/rifle.js";
 import { shieldMode, shieldPresentation } from "../game/actors/shield.js";
 import { areaExposures } from "../game/combat/area-attack.js";
+import { beamExposures } from "../game/combat/beam.js";
 import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
+import { LASER_PROFILE } from "../game/content/weapons/laser.js";
 import {
   ROCKET_ATTACK,
   ROCKET_PROFILE,
@@ -189,7 +191,7 @@ function reset() {
 }
 function recording(): CombatRecording {
   return {
-    format: 10,
+    format: 11,
     scenario: state.scenario,
     players: state.players.length,
     commands,
@@ -525,6 +527,12 @@ class CombatScene extends Phaser.Scene {
       if (state.tick - grenade.spawnTick >= GRENADE_PROFILE.fuseTicks - 15) {
         g.lineStyle(1, 0xff677d);
         g.strokeCircle(grenade.body.x / 256, grenade.body.y / 256, 5);
+      }
+    }
+    for (const beam of state.beams) {
+      for (const { rect } of beamExposures(beam, LASER_PROFILE)) {
+        g.fillStyle(0x75f6ff, 0.65);
+        g.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
       }
     }
     for (const rocket of state.rockets) {

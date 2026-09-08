@@ -2,7 +2,12 @@ import type { AttackDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, MAX_SHAPE, divide, integer, position } from "../core/numeric.js";
 import { type SweepTarget, sweepBounds, validateSweepTarget } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
-import { type AreaAnchor, type CardinalHeading, cardinalRect } from "./area-attack.js";
+import {
+  type AreaAnchor,
+  type AreaExposure,
+  type CardinalHeading,
+  cardinalRect,
+} from "./area-attack.js";
 import type { HurtTarget, Impact } from "./projectile.js";
 import type { AttackSource } from "./volume.js";
 
@@ -28,6 +33,22 @@ export interface BeamCast {
   segments: Rect[];
   impacts: Impact[];
   stoppedBy: "terrain" | "shield" | "solid" | "penetration" | null;
+}
+export type BeamGeometry = Pick<BeamCast, "heading" | "length" | "width">;
+
+export function beamExposures(beam: BeamPulse, profile: BeamProfile): AreaExposure[] {
+  return beamSegments(beam.origin, beam.heading, beam.length, profile.width).map((rect, lobe) => ({
+    id: beam.id,
+    ownerId: beam.ownerId,
+    actionInstanceId: beam.actionInstanceId,
+    definitionId: beam.definitionId,
+    lobe,
+    spawnTick: beam.spawnTick,
+    endTick: beam.spawnTick + profile.pulseTicks,
+    heading: beam.heading,
+    attached: true,
+    rect,
+  }));
 }
 
 export function validateBeamProfile(profile: BeamProfile) {

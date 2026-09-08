@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import { shieldPresentation } from "../game/actors/shield.js";
+import { beamSegments } from "../game/combat/beam.js";
 import { firearmPoseTimeline } from "../game/combat/firearm-aim.js";
 import { actionPose } from "../game/combat/timeline.js";
+import { LASER_ATTACK } from "../game/content/weapons/laser.js";
 import {
   ROCKET_ATTACK,
   ROCKET_PROFILE,
@@ -144,10 +146,21 @@ async function startLab() {
     kind: string;
     origin: string;
     ownerId: number;
+    x: number;
+    y: number;
+    definitionId: number;
     confirmation: GameplayEvent["confirmation"];
+    beam: GameplayEvent["beam"];
     hash: string;
   }> = [];
-  const confirmedEffects: EventEnvelope[] = [];
+  const confirmedEffects: Array<EventEnvelope & { receivedAtTick: number }> = [];
+  const renderedBeamEvents: Array<{
+    cursor: number;
+    tick: number;
+    receivedAtTick: number;
+    presentedAtTick: number;
+    geometryHash: string;
+  }> = [];
   const eventCounts: Record<string, number> = {};
   let eventHash = "0";
   let input: InputCapture | null = null;
@@ -273,6 +286,7 @@ async function startLab() {
             counts: eventCounts,
             hash: eventHash,
             receipts: eventReceipts,
+            renderedBeams: renderedBeamEvents,
             framesDropped: eventFramesDropped,
             gapsInjected: eventGapsInjected,
             pendingBaseline: pendingEventBaseline,
@@ -502,10 +516,14 @@ async function startLab() {
               kind: item.event.kind,
               origin: item.event.origin,
               ownerId: item.event.ownerId,
+              x: item.event.x,
+              y: item.event.y,
+              definitionId: item.event.definitionId,
               confirmation: item.event.confirmation,
+              beam: item.event.beam,
               hash: eventHash,
             });
-            confirmedEffects.push(item);
+            confirmedEffects.push({ ...item, receivedAtTick: snapshot?.tick ?? item.tick });
           }
           if (eventReceipts.length > 512) eventReceipts.splice(0, eventReceipts.length - 512);
           if (confirmedEffects.length > 512)
@@ -600,6 +618,7 @@ async function startLab() {
           eventRepairRequested = false;
           eventFaults.pauseUntilBaseline = false;
           confirmedEffects.length = 0;
+          renderedBeamEvents.length = 0;
           // Explicit acceptance couples this full snapshot to its replacement event prefix.
           sendCommands([]);
         }
@@ -661,6 +680,7 @@ async function startLab() {
     eventHash = "0";
     eventReceipts.length = 0;
     confirmedEffects.length = 0;
+    renderedBeamEvents.length = 0;
     for (const key of Object.keys(eventCounts)) delete eventCounts[key];
     receipts.length = 0;
     packet = 0;
@@ -778,7 +798,13 @@ async function startLab() {
         for (const exposure of snapshot?.combat?.volumes ?? []) {
           const r = exposure.rect,
             color =
-              exposure.definitionId === 10 ? 0xffe475 : exposure.attached ? 0xff9647 : 0xff5b45;
+              exposure.definitionId === LASER_ATTACK.id
+                ? 0x75f6ff
+                : exposure.definitionId === 10
+                  ? 0xffe475
+                  : exposure.attached
+                    ? 0xff9647
+                    : 0xff5b45;
           g.fillStyle(color, 0.3);
           g.fillRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
           g.lineStyle(1, color);
@@ -810,7 +836,7 @@ async function startLab() {
           g.fillRect(projectile.x / 256 - 1, projectile.y / 256 - 1, 3, 2);
         }
         for (const item of confirmedEffects) {
-          const age = (snapshot?.tick ?? 0) - item.tick;
+          const age = (snapshot?.tick ?? 0) - (item.event.beam ? item.receivedAtTick : item.tick);
           if (
             age < 0 ||
             age > 8 ||
@@ -818,6 +844,34 @@ async function startLab() {
             item.event.kind === "action-sound"
           )
             continue;
+          if (item.event.beam) {
+            const live = snapshot?.combat?.volumes.some(
+              (volume) =>
+                volume.definitionId === LASER_ATTACK.id && volume.ownerId === item.event.ownerId,
+            );
+            if (!live) {
+              const geometry = beamSegments(
+                { x: item.event.x, y: item.event.y },
+                item.event.beam.heading,
+                item.event.beam.length,
+                item.event.beam.width,
+              );
+              g.fillStyle(0x75f6ff, 0.7 * (1 - age / 9));
+              for (const rect of geometry)
+                g.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+              if (!renderedBeamEvents.some((entry) => entry.cursor === item.cursor)) {
+                renderedBeamEvents.push({
+                  cursor: item.cursor,
+                  tick: item.tick,
+                  receivedAtTick: item.receivedAtTick,
+                  presentedAtTick: snapshot?.tick ?? 0,
+                  geometryHash: stateHash(geometry),
+                });
+                if (renderedBeamEvents.length > 512) renderedBeamEvents.shift();
+              }
+            }
+            continue;
+          }
           g.lineStyle(
             1,
             item.event.kind === "explosion"

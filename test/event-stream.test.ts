@@ -35,6 +35,7 @@ const shot: GameplayEvent = {
   targetId: null,
   material: "none",
   confirmation: { playerId: 1, controlEpoch: 2, shotOrdinal: 7 },
+  beam: null,
 };
 const firstEvent = { cursor: 1, tick: 1, counter: 0, event: shot };
 const packet: EventBatch = {
@@ -69,7 +70,7 @@ describe("bounded gameplay event transport", () => {
   it("round-trips signed Q256 and stable action identities with a fixed little-endian layout", () => {
     const bytes = encodeEventBatch(packet, context);
     expect(bytes.byteLength).toBe(32 + EVENT_RECORD_BYTES);
-    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 11, 3, 0, 96, 0]);
+    expect(Array.from(bytes.slice(0, 8))).toEqual([0x45, 0x46, 3, 12, 3, 0, 108, 0]);
     const padded = new Uint8Array(bytes.length + 6);
     padded.set(bytes, 3);
     expect(decodeEventBatch(padded.subarray(3, 3 + bytes.length), context)).toEqual(packet);

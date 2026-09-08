@@ -1,3 +1,4 @@
+import { type BeamGeometry, type BeamProfile, beamSegments } from "../../game/combat/beam.js";
 import { COUNTER_LIMIT, MAX_POSITION, integer } from "../../game/core/numeric.js";
 import { Reader, Writer } from "./binary.js";
 import { MAGIC, PROTOCOL_MAJOR, PROTOCOL_MINOR } from "./limits.js";
@@ -6,7 +7,7 @@ import { type InputIdentity, ProtocolError } from "./schema.js";
 export const EVENT_CAPABILITY = 2;
 export const EVENT_TYPE = 3;
 export const EVENT_HEADER_BYTES = 32;
-export const EVENT_RECORD_BYTES = 64;
+export const EVENT_RECORD_BYTES = 76;
 export const MAX_EVENT_BATCH = 64;
 export const MAX_EVENT_HISTORY = 512;
 export const EVENT_HISTORY_TICKS = 120;
@@ -44,6 +45,8 @@ export interface GameplayEvent {
   targetId: number | null;
   material: (typeof EVENT_MATERIALS)[number];
   confirmation: ActionConfirmationKey | null;
+  /** Acknowledged birth geometry survives short taps and dropped live snapshots. */
+  beam: BeamGeometry | null;
 }
 export interface EventEnvelope {
   cursor: number;
@@ -58,6 +61,7 @@ export interface EventBatch extends InputIdentity {
 export interface EventContext extends InputIdentity {
   attackIds: ReadonlySet<number>;
   soundIds: ReadonlySet<number>;
+  beamProfiles: ReadonlyMap<number, Pick<BeamProfile, "range" | "width">>;
 }
 export function eventCounter(value: number, zero = false): number {
   return integer(value, zero ? 0 : 1, COUNTER_LIMIT - 1, "event counter");
@@ -72,6 +76,11 @@ function identity(value: InputIdentity, expected: InputIdentity) {
     throw new ProtocolError("identity-mismatch", "Event session mismatch");
 }
 export function validateGameplayEvent(event: GameplayEvent, context: EventContext): void {
+  eventRequire(
+    Object.keys(event).sort().join() ===
+      "actionInstanceId,beam,confirmation,definitionId,kind,markerIndex,material,origin,ownerId,targetId,x,y",
+    "Unexpected gameplay event fields",
+  );
   eventRequire(EVENT_KINDS.includes(event.kind), "Unknown gameplay event kind");
   eventRequire(EVENT_ORIGINS.includes(event.origin), "Unknown event origin");
   eventRequire(EVENT_MATERIALS.includes(event.material), "Unknown impact material");
@@ -87,11 +96,36 @@ export function validateGameplayEvent(event: GameplayEvent, context: EventContex
   );
   integer(event.x, -MAX_POSITION, MAX_POSITION, "event x");
   integer(event.y, -MAX_POSITION, MAX_POSITION, "event y");
+  const beamProfile = context.beamProfiles.get(event.definitionId);
+  eventRequire(
+    (event.beam !== null) === (event.kind === "shot" && beamProfile !== undefined),
+    "Invalid beam event geometry presence",
+  );
+  if (event.beam !== null) {
+    eventRequire(
+      event.beam.width === beamProfile?.width && event.beam.length <= beamProfile.range,
+      "Beam event disagrees with content profile",
+    );
+    eventRequire(
+      Object.keys(event.beam).sort().join() === "heading,length,width",
+      "Unexpected beam geometry fields",
+    );
+    beamSegments(
+      { x: event.x, y: event.y },
+      event.beam.heading,
+      event.beam.length,
+      event.beam.width,
+    );
+  }
   if (event.targetId !== null) eventCounter(event.targetId);
   const firearm = ["shot", "sound", "muzzle-blocked"].includes(event.kind);
   if (firearm) {
     if (event.origin === "player") {
       eventRequire(event.confirmation !== null, "Missing firearm confirmation identity");
+      eventRequire(
+        Object.keys(event.confirmation).sort().join() === "controlEpoch,playerId,shotOrdinal",
+        "Unexpected confirmation fields",
+      );
       eventCounter(event.confirmation.playerId);
       eventCounter(event.confirmation.controlEpoch);
       eventCounter(event.confirmation.shotOrdinal);
@@ -185,6 +219,9 @@ export function encodeEventBatch(batch: EventBatch, context: EventContext): Uint
     w.u32(event.confirmation?.playerId ?? 0);
     w.u32(event.confirmation?.controlEpoch ?? 0);
     w.u32(event.confirmation?.shotOrdinal ?? 0);
+    w.u32(event.beam?.length ?? 0);
+    w.u32(event.beam?.width ?? 0);
+    w.u32(event.beam?.heading ?? 0);
   }
   eventRequire(w.offset === length, "Event writer size mismatch");
   return w.bytes;
@@ -237,6 +274,7 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       targetId: r.u32() || null,
       material: r.choice(EVENT_MATERIALS),
       confirmation: null,
+      beam: null,
     };
     const playerId = r.u32(),
       controlEpoch = r.u32(),
@@ -246,6 +284,11 @@ export function decodeEventBatch(bytes: Uint8Array, context: EventContext): Even
       "Partial confirmation identity",
     );
     if (playerId) event.confirmation = { playerId, controlEpoch, shotOrdinal };
+    const length = r.u32(),
+      width = r.u32(),
+      heading = r.u32(0, 3);
+    eventRequire(width !== 0 || (length === 0 && heading === 0), "Partial beam geometry");
+    if (width) event.beam = { length, width, heading: heading as BeamGeometry["heading"] };
     batch.events.push({ cursor, tick, counter, event });
   }
   eventRequire(batch.events[0]?.cursor === firstCursor, "Event prefix mismatch");

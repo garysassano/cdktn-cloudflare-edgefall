@@ -108,6 +108,7 @@ export function advanceLockEngine(
       position,
       impact: null,
       targetId: null,
+      beam: null,
     },
   ];
 }
@@ -140,6 +141,7 @@ export function damageLockEngine(
         position: impact.position,
         impact,
         targetId: BREAKWATER.boss.id,
+        beam: null,
       });
     }
   }

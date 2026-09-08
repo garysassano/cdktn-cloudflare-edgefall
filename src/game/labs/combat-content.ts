@@ -8,6 +8,7 @@ import type { GrenadeProfile } from "../combat/grenade.js";
 import { CONTRACT_FIXTURE } from "../content/contract-fixture.js";
 import type { ContentDefinition } from "../content/schema.js";
 import { validateContent } from "../content/validate.js";
+import { LASER_ATTACK, LASER_SHAPE, LASER_WEAPON } from "../content/weapons/laser.js";
 import {
   ROCKET_ATTACK,
   ROCKET_BLAST_SHAPE,
@@ -31,6 +32,7 @@ COMBAT_CONTENT.shapes.push(
   { id: 14, rect: { x: 0, y: pixels(-8), w: pixels(14), h: pixels(8) } },
   structuredClone(ROCKET_SHAPE),
   structuredClone(ROCKET_BLAST_SHAPE),
+  structuredClone(LASER_SHAPE),
 );
 const sidearm = COMBAT_CONTENT.weapons[0];
 const attack = COMBAT_CONTENT.attacks[0];
@@ -90,9 +92,11 @@ const flame = {
   audioFamily: "fixture-flame",
 };
 const rocket = structuredClone(ROCKET_WEAPON);
-COMBAT_CONTENT.weapons.push(shotgun, flame, rocket);
+const laser = structuredClone(LASER_WEAPON);
+COMBAT_CONTENT.weapons.push(shotgun, flame, rocket, laser);
 COMBAT_CONTENT.attacks.push(
   structuredClone(ROCKET_ATTACK),
+  structuredClone(LASER_ATTACK),
   {
     id: 10,
     kind: "shot-volume",
@@ -323,16 +327,23 @@ COMBAT_CONTENT.timelines.push(
   },
 );
 const profiles: FirearmProfile[] = [];
-for (const [index, weapon] of [sidearm, hmg, shotgun, flame, rocket].entries()) {
-  const base = weapon.id === "rocket-launcher" ? ROCKET_WEAPON.timelineId : 10 + index * 4;
+for (const [index, weapon] of [sidearm, hmg, shotgun, flame, rocket, laser].entries()) {
+  const base =
+    weapon.id === "laser"
+      ? LASER_WEAPON.timelineId
+      : weapon.id === "rocket-launcher"
+        ? ROCKET_WEAPON.timelineId
+        : 10 + index * 4;
   const timelineIds: [number, number, number, number] = [base, base + 1, base + 2, base + 3];
   weapon.timelineId = base;
   const duration =
-    weapon.id === "flamethrower"
-      ? 30
-      : weapon.id === "shotgun" || weapon.id === "rocket-launcher"
-        ? 12
-        : 4;
+    weapon.id === "laser"
+      ? LASER_WEAPON.cadenceTicks
+      : weapon.id === "flamethrower"
+        ? 30
+        : weapon.id === "shotgun" || weapon.id === "rocket-launcher"
+          ? 12
+          : 4;
   const emissions = AREA_PROFILES.get(weapon.attackId)?.emissionOffsets ?? [0];
   for (const [poseIndex, id] of timelineIds.entries()) {
     const muzzle =
@@ -375,7 +386,7 @@ for (const [index, weapon] of [sidearm, hmg, shotgun, flame, rocket].entries()) 
             socket: "muzzle" as const,
           },
         ]),
-        ...(weapon.id === "flamethrower"
+        ...(["flamethrower", "laser"].includes(weapon.id)
           ? []
           : [
               {

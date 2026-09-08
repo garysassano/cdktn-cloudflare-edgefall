@@ -234,6 +234,7 @@ export function fireCombatTanks(
         position: point,
         impact: null,
         targetId: null,
+        beam: null,
       };
       if (item.marker.kind === "spawn-attack") {
         notice.kind = "shot";
