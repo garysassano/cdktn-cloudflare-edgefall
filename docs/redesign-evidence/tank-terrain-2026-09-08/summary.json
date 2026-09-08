@@ -1,0 +1,1456 @@
+{
+  "checks": {
+    "tests": 918,
+    "files": 82
+  },
+  "terrain": {
+    "runtimes": {
+      "node": "v24.20.0",
+      "browser": "151.0.7922.34",
+      "wrangler": "4.128.0",
+      "worker": "local workerd"
+    },
+    "cases": 28,
+    "ticks": 3840,
+    "checkpoints": 140,
+    "resultSha256": "7afcc221c24609996acaf334e0de996e5f3f6ed2c3dc7628eb29a483e57fdd49",
+    "caseResults": [
+      {
+        "name": "lower-depot",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "06378247",
+        "traceHash": "f4593ac3",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "1be37a65"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "3fa00b68"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "9cdc057b"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "90a09918"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "f91ba0be"
+          }
+        ]
+      },
+      {
+        "name": "lower-special",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "3102dc86",
+        "traceHash": "33969463",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "31c63df5"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "ba4cd612"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "0fc74e1d"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "97c8b59c"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "a426b24f"
+          }
+        ]
+      },
+      {
+        "name": "lower-damage",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "883e1608",
+        "traceHash": "918434fb",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "a3399789"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "cf40406f"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "1156fb56"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "1e8d6b52"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "1e04d4e4"
+          }
+        ]
+      },
+      {
+        "name": "ledge-landing",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "7762af4b",
+        "traceHash": "fce75cf9",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "0b286f83"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "ccc27b49"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "816e6176"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "ef432318"
+          }
+        ]
+      },
+      {
+        "name": "ledge-fall",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "8b8e20a5",
+        "traceHash": "73a8602d",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "0b286f83"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "ccc27b49"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "8e434e17"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "bd24b13c"
+          }
+        ]
+      },
+      {
+        "name": "step",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "a4b8658d",
+        "traceHash": "c100159a",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "4f175dca"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "a1a32239"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "5ecaa4c8"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "e1945200"
+          }
+        ]
+      },
+      {
+        "name": "ceiling",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "81d086e5",
+        "traceHash": "7156e8ac",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "94f521c1"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "2cb99efa"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "a088285e"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "eac7f548"
+          }
+        ]
+      },
+      {
+        "name": "narrow-pass",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "81d086e5",
+        "traceHash": "91c46d1d",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "a3f962ec"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "2e89fdcf"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "a6b2ded5"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "eac7f548"
+          }
+        ]
+      },
+      {
+        "name": "narrow-block",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "62330d95",
+        "traceHash": "9acfbc54",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "cc131fdb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "6f2d97a5"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "f20b5f78"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "96658acb"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "88898c90"
+          }
+        ]
+      },
+      {
+        "name": "lift",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "91eaa5a8",
+        "traceHash": "682581d8",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "9bbc19eb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "604e1f00"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "cb494dc7"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "dbfee5b4"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "5da51c38"
+          }
+        ]
+      },
+      {
+        "name": "crush",
+        "players": 1,
+        "ticks": 180,
+        "finalHash": "34e7aeb4",
+        "traceHash": "c13f17db",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "9bbc19eb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "1609577c"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "ec26cc43"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "8f3eb8d3"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "4684e401"
+          }
+        ]
+      },
+      {
+        "name": "blocked-exit",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "b2ea7d40",
+        "traceHash": "c9de37ee",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "9bbc19eb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "e435e6bf"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "db1450dc"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "755844ba"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "a6a12364"
+          }
+        ]
+      },
+      {
+        "name": "blocked-disconnect",
+        "players": 1,
+        "ticks": 180,
+        "finalHash": "13beb5c4",
+        "traceHash": "b072d6a2",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "9bbc19eb"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "819e4e4f"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "9e56fe36"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "962ae813"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "f149fa4d"
+          }
+        ]
+      },
+      {
+        "name": "crossing",
+        "players": 1,
+        "ticks": 130,
+        "finalHash": "e4efc3d1",
+        "traceHash": "c375badd",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "52c031fd"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "4414b478"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "efc92c55"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "e975a6dc"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "5e15ea31"
+          }
+        ]
+      },
+      {
+        "name": "lower-depot",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "1203d5da",
+        "traceHash": "e2531642",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "149c9609"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "5c382bb7"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "39a879cd"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "530fff53"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "0bf00f37"
+          }
+        ]
+      },
+      {
+        "name": "lower-special",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "dc0e41d4",
+        "traceHash": "84eea60c",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "e368e0ed"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "3e07689d"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "af34ca1e"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "b23e9aa7"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "656501bd"
+          }
+        ]
+      },
+      {
+        "name": "lower-damage",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "97fe1dd5",
+        "traceHash": "a978d8aa",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "6c26ab91"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "942c6edf"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "f20b0db4"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "a9c8df01"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "ccea0e9e"
+          }
+        ]
+      },
+      {
+        "name": "ledge-landing",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "9331fc4f",
+        "traceHash": "53c5657f",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "ca17dc65"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "59dd0608"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "63125960"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "510e25f6"
+          }
+        ]
+      },
+      {
+        "name": "ledge-fall",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "f4edcecd",
+        "traceHash": "2de7109c",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "ca17dc65"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "59dd0608"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "caf2a586"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "09bf54dc"
+          }
+        ]
+      },
+      {
+        "name": "step",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "484ad4d9",
+        "traceHash": "73d3f25f",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "6fd405c1"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "ee980e60"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "b3c243ea"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "ebac1a68"
+          }
+        ]
+      },
+      {
+        "name": "ceiling",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "e314bb8d",
+        "traceHash": "1bfc8cec",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "371934d5"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "99acc6aa"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "c73feb50"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "55cadd1c"
+          }
+        ]
+      },
+      {
+        "name": "narrow-pass",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "e314bb8d",
+        "traceHash": "187ae051",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "8d52eb7f"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "d31fadda"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "a0117d86"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "55cadd1c"
+          }
+        ]
+      },
+      {
+        "name": "narrow-block",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "8eddfc29",
+        "traceHash": "85a1a7bc",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "b23da60d"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "8a9be589"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "2802a73c"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "34f1a9de"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "5b130f40"
+          }
+        ]
+      },
+      {
+        "name": "lift",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "6985156d",
+        "traceHash": "b268524b",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "aaad18dd"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "7c4509fd"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "a117ff8e"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "a07c1ca0"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "4ec25426"
+          }
+        ]
+      },
+      {
+        "name": "crush",
+        "players": 4,
+        "ticks": 180,
+        "finalHash": "a13165d3",
+        "traceHash": "8fb2e5d1",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "aaad18dd"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "9f7817e9"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "feb4ddda"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "44ab9647"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "c6a34df7"
+          }
+        ]
+      },
+      {
+        "name": "blocked-exit",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "e952acdd",
+        "traceHash": "072c65e8",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "aaad18dd"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "4e66f995"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "d1a0143e"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "3a15485c"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "be4c2334"
+          }
+        ]
+      },
+      {
+        "name": "blocked-disconnect",
+        "players": 4,
+        "ticks": 180,
+        "finalHash": "831d170d",
+        "traceHash": "78b5ba9b",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "aaad18dd"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "20bb1a91"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "79dd51ca"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "3db60119"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "2e093b4f"
+          }
+        ]
+      },
+      {
+        "name": "crossing",
+        "players": 4,
+        "ticks": 130,
+        "finalHash": "307c9f0d",
+        "traceHash": "df8dd2be",
+        "checkpoints": [
+          {
+            "tick": 12,
+            "resumedTick": 20,
+            "hash": "5009ba7c"
+          },
+          {
+            "tick": 29,
+            "resumedTick": 37,
+            "hash": "78c63804"
+          },
+          {
+            "tick": 42,
+            "resumedTick": 50,
+            "hash": "6f844dc1"
+          },
+          {
+            "tick": 70,
+            "resumedTick": 78,
+            "hash": "88f84365"
+          },
+          {
+            "tick": 100,
+            "resumedTick": 108,
+            "hash": "158a93f5"
+          }
+        ]
+      }
+    ]
+  },
+  "previous": {
+    "baseCommit": "e8df4946887c687378965f64ca9af6f6bf9a3343",
+    "expectedFailures": 10,
+    "unchangedControls": 2,
+    "cases": [
+      {
+        "name": "lower-depot",
+        "players": 1,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-depot did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lower-special",
+        "players": 1,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-special did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lower-damage",
+        "players": 1,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-damage did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          2
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lift",
+        "players": 1,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lift consumed a life",
+        "tickOne": [
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          }
+        ],
+        "finalLives": [
+          2
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 64000
+          }
+        ]
+      },
+      {
+        "name": "ledge-fall",
+        "players": 1,
+        "expectedFailure": true,
+        "error": "Error: Player life: vehicle damage requires the vehicle owner"
+      },
+      {
+        "name": "step",
+        "players": 1,
+        "expectedFailure": false,
+        "error": null,
+        "tickOne": [
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          }
+        ],
+        "finalLives": [
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 3,
+            "lifecycle": "occupied",
+            "y": 51200
+          }
+        ]
+      },
+      {
+        "name": "lower-depot",
+        "players": 4,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-depot did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lower-special",
+        "players": 4,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-special did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lower-damage",
+        "players": 4,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lower-damage did not board every driver",
+        "tickOne": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ],
+        "finalLives": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 92160
+          }
+        ]
+      },
+      {
+        "name": "lift",
+        "players": 4,
+        "expectedFailure": true,
+        "error": "Error: Tank terrain: lift consumed a life",
+        "tickOne": [
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          }
+        ],
+        "finalLives": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "finalTanks": [
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 64000
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 64000
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 64000
+          },
+          {
+            "armor": 0,
+            "lifecycle": "wreck",
+            "y": 64000
+          }
+        ]
+      },
+      {
+        "name": "ledge-fall",
+        "players": 4,
+        "expectedFailure": true,
+        "error": "Error: Player life: vehicle damage requires the vehicle owner"
+      },
+      {
+        "name": "step",
+        "players": 4,
+        "expectedFailure": false,
+        "error": null,
+        "tickOne": [
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "boarding",
+            "y": 51200
+          }
+        ],
+        "finalLives": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "finalTanks": [
+          {
+            "armor": 3,
+            "lifecycle": "occupied",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "occupied",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "occupied",
+            "y": 51200
+          },
+          {
+            "armor": 3,
+            "lifecycle": "occupied",
+            "y": 51200
+          }
+        ]
+      }
+    ]
+  },
+  "network": {
+    "clientTicks": [
+      369,
+      369,
+      369,
+      369
+    ],
+    "roomTick": 378,
+    "sharedSnapshots": 16,
+    "runEpoch": 2,
+    "lives": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "armor": [
+      3,
+      3,
+      3,
+      2
+    ],
+    "shells": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "worldFailure": null,
+    "persistenceFailure": null,
+    "clockFault": null
+  },
+  "observability": {
+    "configs": [
+      {
+        "path": "wrangler.jsonc",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      },
+      {
+        "path": ".wrangler.deploy.json",
+        "upload_source_maps": true,
+        "observability": {
+          "enabled": true,
+          "logs": {
+            "enabled": true,
+            "invocation_logs": true,
+            "head_sampling_rate": 1
+          },
+          "traces": {
+            "enabled": true,
+            "head_sampling_rate": 1
+          }
+        }
+      }
+    ],
+    "liveIngestionVerified": false,
+    "deployedTimingVerified": false
+  }
+}

@@ -549,6 +549,8 @@ export function advanceCombatLab(
   if (current.format !== 16 || current.pickups.tick !== current.tick)
     throw new Error("Combat supply format/boundary mismatch");
   stage ??= materialCombatStage(current);
+  const fallBoundary = position(stage?.fallBoundary ?? COMBAT_ENTRY.fallBoundary);
+  const tankProfile = { ...TANK_PROFILE, fallBoundary };
   if (commands.length !== current.players.length) throw new Error("Missing combat input owner");
   for (const command of commands) {
     integer(command.held, 0, HELD_MASK, "combat held mask");
@@ -601,7 +603,7 @@ export function advanceCombatLab(
       ...combatEntryContext(actor, index, frame, world.scenario),
       ...(stage
         ? {
-            fallBoundary: stage.fallBoundary,
+            fallBoundary,
             anchors: [{ x: stage.entry.x + actor.slot * pixels(24), y: stage.entry.y }],
           }
         : {}),
@@ -649,6 +651,7 @@ export function advanceCombatLab(
     lifeNotices,
     index,
     frame,
+    tankProfile,
   );
   for (const outcome of outcomes) {
     const tank = tankOutcomes.get(outcome.playerId);
@@ -1424,7 +1427,16 @@ export function advanceCombatLab(
         tank.armor--;
         tank.invulnerableTicks = TANK_PROFILE.damageProtectionTicks;
         if (tank.armor === 0) {
-          releaseCombatTank(world, tank, "destroyed", seatChanges, lifeNotices, index, frame);
+          releaseCombatTank(
+            world,
+            tank,
+            "destroyed",
+            seatChanges,
+            lifeNotices,
+            index,
+            frame,
+            tankProfile,
+          );
           world.events.push({ ...notice, kind: "killed" });
         }
       }
@@ -1497,11 +1509,7 @@ export function advanceCombatLab(
   }
   for (const [slot, actor] of world.players.entries()) {
     // The range's authored lower kill boundary resolves real falls, not a client death command.
-    if (
-      actor.life !== "alive" ||
-      actor.body.y <= (stage?.fallBoundary ?? COMBAT_ENTRY.fallBoundary)
-    )
-      continue;
+    if (actor.life !== "alive" || actor.body.y <= fallBoundary) continue;
     const death = damagePlayer(actor, tick, 1, "classic", "fall");
     world.players[slot] = death.actor;
     if (death.notice) lifeNotices.push(death.notice);
@@ -1555,7 +1563,7 @@ export function advanceCombatLab(
       })),
     "throw",
   ).state;
-  commitCombatSpecials(world, seatChanges, index, frame);
+  commitCombatSpecials(world, seatChanges, index, frame, tankProfile);
   const seatEvents = commitCombatSeats(current, world, seatChanges);
   return { state: world, outcomes, lifeNotices, seatEvents, impacts, playerMovement };
 }

@@ -1,6 +1,7 @@
 import { stateHash } from "../../game/core/canonical.js";
 import { nextCounter } from "../../game/core/numeric.js";
 import { continueCombatCheckpoint } from "../../game/labs/combat-campaign.js";
+import { TANK_PROFILE } from "../../game/labs/combat-content.js";
 import {
   type SeatChanges,
   commitCombatSeats,
@@ -36,7 +37,7 @@ function settleSeats(state: CombatRuntime, playerIds: readonly number[], advance
       (tank) => tankOwner(tank) === player.playerId && tank.body.id === player.vehicleId,
     );
     if (!tank) throw new Error("Combat vehicle handoff owner mismatch");
-    releaseCombatTank(state.combat, tank, "disconnect", changes, [], index, frame);
+    releaseCombatTank(state.combat, tank, "disconnect", changes, [], index, frame, TANK_PROFILE);
   }
   if (advanceControl) commitCombatSeats(before, state.combat, changes);
   for (const ack of state.snapshot.acknowledgments) {

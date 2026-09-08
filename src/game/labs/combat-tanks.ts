@@ -7,6 +7,7 @@ import { worldRect, worldSocket } from "../physics/body.js";
 import type { CollisionFrame, CollisionIndex } from "../physics/grid.js";
 import type { SweepTarget } from "../physics/sweep.js";
 import {
+  type TankProfile,
   type TankState,
   attachTankDriver,
   idleTankAction,
@@ -47,6 +48,7 @@ export function releaseCombatTank(
   lifeNotices: LifeNotice[],
   index: CollisionIndex,
   frame: CollisionFrame,
+  profile: TankProfile,
 ) {
   const id = tankOwner(tank);
   if (reason === "destroyed") tank.armor = 0;
@@ -61,10 +63,10 @@ export function releaseCombatTank(
   const slot = world.players.findIndex((player) => player.playerId === id);
   const actor = world.players[slot];
   if (!actor) throw new Error("Missing tank release owner");
-  const safe = releaseTank(tank, actor, frame.tick, TANK_PROFILE, exitShape(), index, frame);
+  const safe = releaseTank(tank, actor, frame.tick, profile, exitShape(), index, frame);
   if (tank.armor === 0) tank.body.vx = tank.body.vy = tank.invulnerableTicks = 0;
   changes.set(id, reason);
-  if (!safe || tank.body.y > TANK_PROFILE.fallBoundary) {
+  if (!safe || tank.body.y > profile.fallBoundary) {
     const death = damagePlayer(actor, frame.tick, 1, "classic", "fall");
     world.players[slot] = death.actor;
     if (death.notice) lifeNotices.push(death.notice);
@@ -79,6 +81,7 @@ export function advanceCombatTanks(
   lifeNotices: LifeNotice[],
   index: CollisionIndex,
   frame: CollisionFrame,
+  profile: TankProfile,
 ) {
   const outcomes = new Map<
     number,
@@ -107,25 +110,25 @@ export function advanceCombatTanks(
     const forced = id !== null && connections.releasePlayerIds.includes(id);
     const intent =
       connected && !forced && slot !== undefined ? (commands[slot] ?? neutral) : neutral;
-    const moved = moveTank(before, intent, TANK_PROFILE, COMBAT_SHAPES, index, frame);
+    const moved = moveTank(before, intent, profile, COMBAT_SHAPES, index, frame);
     const tank = moved.tank;
     world.tanks[tankIndex] = tank;
-    if (actor) attachTankDriver(tank, actor, TANK_PROFILE);
+    if (actor) attachTankDriver(tank, actor, profile);
     if (moved.fault && moved.fault.reason !== "crushed")
       throw new Error(`Combat tank: ${moved.fault.reason}`);
-    if (moved.fault || tank.body.y > TANK_PROFILE.fallBoundary) {
+    if (moved.fault || tank.body.y > profile.fallBoundary) {
       if (tank.special.phase === "charging") {
         // A crush or fall consumes the released hull without inventing an off-stage damage volume.
         finishTankCharge(tank, frame.tick);
         continue;
       }
-      releaseCombatTank(world, tank, "destroyed", changes, lifeNotices, index, frame);
+      releaseCombatTank(world, tank, "destroyed", changes, lifeNotices, index, frame, profile);
       continue;
     }
     if (id === null || !actor) continue;
     tank.disconnectedTicks = connected ? 0 : tank.disconnectedTicks + 1;
-    if (forced || tank.disconnectedTicks >= TANK_PROFILE.disconnectGraceTicks) {
-      releaseCombatTank(world, tank, "disconnect", changes, lifeNotices, index, frame);
+    if (forced || tank.disconnectedTicks >= profile.disconnectGraceTicks) {
+      releaseCombatTank(world, tank, "disconnect", changes, lifeNotices, index, frame, profile);
       continue;
     }
     const outcome = outcomes.get(id);
@@ -134,7 +137,7 @@ export function advanceCombatTanks(
       tank,
       actor,
       frame.tick,
-      TANK_PROFILE,
+      profile,
       COMBAT_CATALOG,
       exitShape(),
       index,
@@ -158,7 +161,7 @@ export function advanceCombatTanks(
           actor,
           frame.tick,
           world.nextActionId,
-          TANK_PROFILE,
+          profile,
           exitShape(),
           index,
           frame,
@@ -183,7 +186,7 @@ export function advanceCombatTanks(
             actor,
             frame.tick,
             world.nextActionId,
-            TANK_PROFILE,
+            profile,
             COMBAT_SHAPES,
             index,
             frame,
@@ -244,26 +247,24 @@ export function commitCombatSpecials(
   changes: SeatChanges,
   index: CollisionIndex,
   frame: CollisionFrame,
+  profile: TankProfile,
 ) {
   for (const tank of world.tanks) {
     const special = tank.special;
-    if (
-      special.phase !== "arming" ||
-      frame.tick - special.startTick + 1 < TANK_PROFILE.special.armTicks
-    )
+    if (special.phase !== "arming" || frame.tick - special.startTick + 1 < profile.special.armTicks)
       continue;
     const actor = world.players.find((player) => player.playerId === special.ownerId);
     if (
       actor?.life !== "alive" ||
       tank.lifecycle !== "occupied" ||
-      !tankExitBody(tank, actor, TANK_PROFILE, exitShape(), index, frame)
+      !tankExitBody(tank, actor, profile, exitShape(), index, frame)
     ) {
       cancelTankSpecial(tank, frame.tick);
       if (actor) actor.vehicleSpecialTicks = 0;
       continue;
     }
     const direction = tank.facing;
-    if (!releaseTank(tank, actor, frame.tick, TANK_PROFILE, exitShape(), index, frame))
+    if (!releaseTank(tank, actor, frame.tick, profile, exitShape(), index, frame))
       throw new Error("Special ejection changed within one boundary");
     tank.special = {
       ...special,

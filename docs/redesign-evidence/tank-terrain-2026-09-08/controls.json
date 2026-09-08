@@ -1,0 +1,18 @@
+[
+  {
+    "name": "previous-stage-boundary",
+    "reason": "Current terrain fixtures against exact prior combat/tank source fail ten expected cases. Lower depots are destroyed before boarding; descending lifts consume lives; an earlier fall boundary reaches seated-player damage before releasing ownership. Solo/four-player ordinary step routes remain valid controls."
+  },
+  {
+    "name": "noncanonical-observation",
+    "reason": "The initial cross-runtime report hashed an absent optional event definition as undefined. The verifier now records explicit null, preserving strict canonical validation. The failed bundle, execution record and log are retained."
+  },
+  {
+    "name": "terrain-scope",
+    "reason": "Four-player terrain cases use separate lanes for simultaneous geometry stress, except the shared friendly crossing. These are full combat-step fixtures with deterministic terrain and authored hostile projectiles, not completed mission content, actual enemy-AI pressure, socket impairment or rendered footage. The five reconstruction boundaries per case use JSON state plus known scenario geometry; they are not SQLite/archive validation."
+  },
+  {
+    "name": "acceptance-remaining",
+    "reason": "The existing four-browser takeover/grace/cold-SQLite proof passes again with the updated default profile. Full degraded-network vehicle footage, final visual/audio review, Harbor and the remaining campaign, production v3, stable-host/deployed cadence and live trace ingestion remain open. No clock/input guard is weakened."
+  }
+]
