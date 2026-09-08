@@ -52,6 +52,7 @@
     "test:tank:feedback": "node scripts/build-client.mjs --lab && tsx scripts/verify-tank-feedback.mjs",
     "test:tank:terrain": "tsx scripts/verify-tank-terrain.mjs",
     "test:mission:harbor:route": "tsx scripts/verify-harbor-route.mjs",
+    "test:mission:harbor:combat": "tsx scripts/verify-harbor-combat.mjs",
     "test:mission:breakwater": "node scripts/build-client.mjs --lab && tsx scripts/verify-breakwater.mjs",
     "test:art:native": "node scripts/build-client.mjs --lab && node scripts/verify-native-operative.mjs",
     "test:art:review": "node scripts/build-client.mjs --lab && node scripts/verify-art-review.mjs",

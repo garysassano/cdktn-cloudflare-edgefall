@@ -1,3 +1,6 @@
+import { HARBOR_GRENADIER } from "../actors/grenadier.js";
+import type { DestructibleDefinition } from "../combat/destructible.js";
+import type { WeaponPickupDefinition } from "../combat/pickups.js";
 import type { MaterialSurface } from "../content/materials.js";
 import { integer, pixels } from "../core/numeric.js";
 import type { CombatStage } from "../labs/combat.js";
@@ -11,6 +14,7 @@ export const HARBOR = {
   width: 12288,
   fallBoundary: 448,
   maxTicks: 20 * 60 * 60,
+  loadout: { weapon: "sidearm", ammo: 0, grenades: 6 },
   beats: [
     { id: "apron", start: 0, end: 1536 },
     { id: "docks", start: 1536, end: 3072 },
@@ -32,7 +36,60 @@ export const HARBOR = {
     { x: 10816, y: 200, supportId: 1012 },
   ],
   depot: { firstId: 600, firstX: 7784, spacing: 56, y: 264, supportId: 1007 },
+  grenadier: HARBOR_GRENADIER,
+  infantry: [
+    { id: 20, kind: "rifle", x: 1824, y: 200, supportId: 1000, activateX: 1568 },
+    { id: 21, kind: "rifle", x: 2368, y: 184, supportId: 1001, activateX: 2112 },
+    { id: 22, kind: "grenadier", x: 3360, y: 128, supportId: 1021, activateX: 3104 },
+    { id: 23, kind: "rifle", x: 3808, y: 168, supportId: 1002, activateX: 3552 },
+    { id: 24, kind: "rifle", x: 5056, y: 200, supportId: 1003, activateX: 4800 },
+    { id: 25, kind: "shield", x: 5536, y: 200, supportId: 1003, activateX: 5280 },
+    { id: 26, kind: "shield", x: 6384, y: 200, supportId: 1004, activateX: 6128 },
+    { id: 27, kind: "grenadier", x: 6864, y: 200, supportId: 1004, activateX: 6608 },
+    { id: 28, kind: "rifle", x: 7088, y: 200, supportId: 1004, activateX: 6832 },
+  ],
+  supplies: [
+    { id: 300, weapon: "heavy-machine-gun", ammo: 150, x: 4240, y: 200, supportId: 1003 },
+    { id: 301, weapon: "shotgun", ammo: 24, x: 4752, y: 200, supportId: 1003 },
+    { id: 302, weapon: "rocket-launcher", ammo: 12, x: 10400, y: 216, supportId: 1011 },
+  ],
 } as const;
+
+export const HARBOR_PROPS: readonly DestructibleDefinition[] = [
+  {
+    id: 200,
+    definitionId: 2,
+    rect: { x: pixels(1712), y: pixels(168), w: pixels(32), h: pixels(32) },
+    health: 6,
+    materialId: "timber",
+  },
+  {
+    id: 201,
+    definitionId: 2,
+    rect: { x: pixels(2640), y: pixels(152), w: pixels(32), h: pixels(32) },
+    health: 6,
+    materialId: "timber",
+  },
+];
+
+export function harborPickups(players: number): WeaponPickupDefinition[] {
+  integer(players, 1, 4, "Harbor supply party size");
+  return HARBOR.supplies.flatMap((source) =>
+    Array.from({ length: players }, (_, index) => ({
+      id: source.id * 4 + index,
+      claimId: source.id * 4 + index,
+      sourceId: source.id,
+      kind: "weapon" as const,
+      weaponId: source.weapon,
+      ammo: source.ammo,
+      ammoLimit: source.ammo,
+      activationTick: 1,
+      expiresTick: HARBOR.maxTicks,
+      supportId: source.supportId,
+      rect: { x: pixels(source.x - 12), y: pixels(source.y - 23), w: pixels(24), h: pixels(23) },
+    })),
+  );
+}
 
 /** Contiguous walkable ground, including a lower depot and a stepped return from the bridge. */
 export const HARBOR_TERRAIN: readonly MaterialSurface[] = [

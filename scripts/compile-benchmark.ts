@@ -10,7 +10,13 @@ import {
   BREAKWATER_TERRAIN,
   breakwaterPickups,
 } from "../src/game/missions/breakwater-content.js";
-import { HARBOR, HARBOR_TERRAIN, harborDepot } from "../src/game/missions/harbor-content.js";
+import {
+  HARBOR,
+  HARBOR_PROPS,
+  HARBOR_TERRAIN,
+  harborDepot,
+  harborPickups,
+} from "../src/game/missions/harbor-content.js";
 
 const bytes = `${JSON.stringify(
   {
@@ -49,6 +55,8 @@ const harborBytes = `${JSON.stringify(
           mission: HARBOR,
           terrain: HARBOR_TERRAIN,
           depots: [1, 2, 3, 4].map(harborDepot),
+          props: HARBOR_PROPS,
+          supplies: [1, 2, 3, 4].map(harborPickups),
           combat: COMBAT_CONTENT,
           surfaceMaterials: SURFACE_MATERIALS,
         }),

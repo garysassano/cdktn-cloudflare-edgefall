@@ -1,3 +1,4 @@
+import type { EnemyGrenadeIntent } from "../actors/grenadier.js";
 import { type GroundedEnemy, stepGroundedEnemy } from "../actors/grounded.js";
 import {
   type RifleState,
@@ -36,6 +37,7 @@ import { type ActionOutcome, stepFootCombatAction } from "../combat/foot-actions
 import { type Grenade, grenadeLaunchVelocity, stepGrenade } from "../combat/grenade.js";
 import {
   type WeaponPickupClaim,
+  type WeaponPickupDefinition,
   type WeaponPickupState,
   createWeaponPickups,
   stepWeaponPickups,
@@ -88,6 +90,7 @@ import {
   SHIELD_PROFILE,
   TANK_PROFILE,
 } from "./combat-content.js";
+import { appendEnemyGrenades } from "./combat-enemy-grenades.js";
 import { combatPickupDefinitions } from "./combat-pickups.js";
 import { type CombatScenario, isCombatScenario } from "./combat-scenarios.js";
 import {
@@ -133,6 +136,10 @@ export interface CombatStage {
   tickLimit?: number;
   /** Authored idle/patrol tuning; committed attacks and shield behavior retain their own movement. */
   patrolSpeed?: number;
+  /** Mission-owned enemy controllers still use the common grounded solver and release boundary. */
+  enemyPatrolSpeeds?: ReadonlyMap<number, number>;
+  enemyGrenades?: readonly EnemyGrenadeIntent[];
+  pickups?: readonly WeaponPickupDefinition[];
   terrain: MaterialSurface[];
   destructibles: readonly DestructibleDefinition[];
   enemyBounds: { x: number; y: number; w: number; h: number };
@@ -698,8 +705,11 @@ export function advanceCombatLab(
           ? shieldStep.speed
           : target.rifle?.action.kind === "fire"
             ? 0
-            : (stage?.patrolSpeed ?? 64),
-        turnAtBoundary: !target.guard && target.rifle?.action.kind !== "fire",
+            : (stage?.enemyPatrolSpeeds?.get(target.enemy.body.id) ?? stage?.patrolSpeed ?? 64),
+        turnAtBoundary:
+          !stage?.enemyPatrolSpeeds?.has(target.enemy.body.id) &&
+          !target.guard &&
+          target.rifle?.action.kind !== "fire",
         gravity: 55,
         terminalVelocity: 2048,
         bounds: stage?.enemyBounds ?? { x: 0, y: 0, w: pixels(384), h: pixels(220) },
@@ -725,6 +735,7 @@ export function advanceCombatLab(
     }
     if (shieldStep) appendShieldMarkers(world, target, shieldStep.markers);
   }
+  if (stage?.enemyGrenades) appendEnemyGrenades(world, stage.enemyGrenades, physicalTerrain);
   for (const [slot, actor] of world.players.entries()) {
     const command = commands[slot];
     if (!command) throw new Error("Missing firearm input");
@@ -1525,7 +1536,7 @@ export function advanceCombatLab(
   }
   const supplies = stepWeaponPickups(
     current.pickups,
-    combatPickupDefinitions(world.scenario, world.players.length),
+    stage?.pickups ?? combatPickupDefinitions(world.scenario, world.players.length),
     world.players,
     playerMovement,
     physicalTerrain.filter(
