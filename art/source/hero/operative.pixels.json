@@ -4823,6 +4823,338 @@
           -12
         ]
       }
+    },
+    {
+      "id": "body-eject-brace",
+      "channel": "full-body",
+      "at": [
+        15,
+        17
+      ],
+      "rows": [
+        "......ooooooo.........",
+        "....oohhjjhhhoo.......",
+        "...ohhhjjjhhhho.......",
+        "...oHhhhhhhhho........",
+        "....oHhSkkssso........",
+        "....oHSkkSeekso.......",
+        ".....oSSkkksso........",
+        "......ooSksoo.........",
+        "....ooooAAovSoo.......",
+        "..ooCddcoAavlvaoo.....",
+        ".oCcdcccoAablvAaggo...",
+        "oCcccCCcoAabTvoGffgo..",
+        "oCcccCCcoAaAGggfffGgo.",
+        "oCcccCCooAAGgfffGGo...",
+        ".oCCCCooAaaAGggGGo....",
+        "..oooooAAaaAAAao......",
+        ".....oAAAAAAxxo.......",
+        ".....oxxxyxxxxo.......",
+        ".....oNNNnnnqqo.......",
+        "......oNNNNnnnqqo.....",
+        ".....oNNNNoonnnqqo....",
+        "....oNNNNo..onnnqqo...",
+        "...oNNNNo....onnnqo...",
+        "..oNNNNo.....onnnno...",
+        ".oNNNNo.......onnnno..",
+        ".oNNNNo.......onnnno..",
+        "..oxxxxo......oxxxxo..",
+        "..oBBtto......oBBtto..",
+        ".oBBttuuo.....oBtttuo.",
+        ".oooooooo.....oBtttuuo",
+        "..............oooooooo"
+      ]
+    },
+    {
+      "id": "body-eject-tuck",
+      "channel": "full-body",
+      "at": [
+        16,
+        19
+      ],
+      "rows": [
+        ".......ooooooo.......",
+        ".....oohhjjhhhoo.....",
+        "....ohhhjjjhhhho.....",
+        "....oHhhhhhhhho......",
+        ".....oHhSkkssso......",
+        ".....oHSkkSeekso.....",
+        "......oSSkkksso......",
+        ".......ooSksoo.......",
+        "....ooooAAovSoo......",
+        "..ooCddcoAavlvaoo....",
+        ".oCcdcccoAablvAaggo..",
+        "oCcccCCcoAabTGgffgGo.",
+        "oCcccCCcoAAGgfffGgo..",
+        ".oCCCCCoAAAGgfffGo...",
+        "..oCCCooAaaAGgGGo....",
+        "...ooooAAaaaAAAao....",
+        ".....oAAAAAAxxo......",
+        ".....oxxxyxxxxoo.....",
+        "....ooNNNnnnqqoqo....",
+        "...oNNNNo..onnnqqo...",
+        "..oNNNNo....onnnqo...",
+        ".oNNNNo.....onnnno...",
+        "oNNNNo.......onnnno..",
+        "oNNNNo.......onnnno..",
+        ".oxxxxo......oxxxxo..",
+        ".oBBtto......oBBtto..",
+        "oBBttuuo.....oBtttuo.",
+        "oooooooo.....oBtttuuo",
+        ".............oooooooo"
+      ]
+    },
+    {
+      "id": "body-eject-absorb",
+      "channel": "full-body",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        "..........ooooooo.....",
+        "........oohhjjhhhoo...",
+        ".......ohhhjjjhhhho...",
+        ".......oHhhhhhhhho....",
+        "........oHhSkkssso....",
+        "........oHSkkSeekso...",
+        ".........oSSkkksso....",
+        "..........ooSksoo.....",
+        "......ooooAAovSoo.....",
+        "....ooCddcoAavlvaoo...",
+        "...oCcdcccoAablvAaggo.",
+        "..oCcccCCcoAabTGgffgGo",
+        "..oCcccCCcoAAGgfffGgo.",
+        "...oCCCCCoAAAGgfffGo..",
+        "....oCCCooAaaAGgGGo...",
+        ".....ooooAAaaaAAAao...",
+        ".......oAAAAAAxxo.....",
+        ".......oxxxyxxxxo.....",
+        ".......oNNNnnnqqo.....",
+        ".....oooNNNNnnqqooo...",
+        "...ooNNNNNoonnnnqqqo..",
+        "..oNNNNNo....oonnqqo..",
+        ".oNNNNNo......onnnno..",
+        ".oxxxxo.......oxxxxo..",
+        ".oBBtto.......oBBtto..",
+        "oBBttuuo......oBtttuo.",
+        "oooooooo......oooooooo"
+      ]
+    },
+    {
+      "id": "body-eject-low",
+      "channel": "full-body",
+      "at": [
+        15,
+        21
+      ],
+      "rows": [
+        ".........oooooo.......",
+        ".......oohhjhhhoo.....",
+        ".......ohhjjjhhhho....",
+        ".......oHhhhhhhoo.....",
+        "........oHSskkkso.....",
+        "........oHSekwkso.....",
+        ".........oSSkkkso.....",
+        "..........oSSkso......",
+        ".....oooooAoooooo.....",
+        "....oCdddcoAavlvaoo...",
+        "...oCcdcccoAablvAAao..",
+        "..oCcccCCcoAabTvoAaao.",
+        "..oCcccCCcoAabTvoAAao.",
+        "...oCCCCCoAaaAGgoGggo.",
+        "....oCCCooAaaAGgogffgo",
+        ".....ooooAAaaaGgoGffgo",
+        ".......oAAAAAAGgGogGo.",
+        ".......oxxxyxxGggGo...",
+        ".......oNNNnnnqqo.....",
+        ".....oooNNNNnnqqooo...",
+        "...ooNNNNNoonnnnqqqo..",
+        "..oNNNNNo....oonnqqo..",
+        ".oNNNNNo......onnnno..",
+        ".oxxxxo.......oxxxxo..",
+        ".oBBtto.......oBBtto..",
+        "oBBttuuo......oBtttuo.",
+        "oooooooo......oooooooo"
+      ]
+    },
+    {
+      "id": "body-eject-push",
+      "channel": "full-body",
+      "at": [
+        16,
+        17
+      ],
+      "rows": [
+        ".......oooooo.......",
+        ".....oohhjhhhoo.....",
+        ".....ohhjjjhhhho....",
+        ".....oHhhhhhhoo.....",
+        "......oHSskkkso.....",
+        "......oHSekwkso.....",
+        ".......oSSkkkso.....",
+        "........oSSkso......",
+        "...oooooAoooooo.....",
+        "..oCdddcoAavlvaoo...",
+        ".oCcdcccoAablvAAao..",
+        "oCcccCCcoAabTvoAaao.",
+        "oCcccCCcoAabTvoAAao.",
+        ".oCCCCCoAaaAGgoGggo.",
+        "..oCCCooAaaAGgogffgo",
+        "...ooooAAaaaGgoGffgo",
+        ".....oAAAAAAGgGogGo.",
+        ".....oxxxyxxGggGo...",
+        ".....oNNNnnnqqoo....",
+        "....oNNNNNoonnqqo...",
+        "...oNNNNNo..onnqqo..",
+        "..oNNNNo.....onnno..",
+        ".oNNNNo......onnno..",
+        "oNNNNo......onnnno..",
+        ".oNNNNo.....onnnno..",
+        "..oNNNNo...onnnno...",
+        "...oxxxxo..oxxxxo...",
+        "...oBBtto..oBBtto...",
+        "..oBBttuuo.oBtttuo..",
+        "..oooooooo.oBtttuuo.",
+        "...........oooooooo."
+      ]
+    },
+    {
+      "id": "body-eject-rise",
+      "channel": "full-body",
+      "at": [
+        15,
+        14
+      ],
+      "rows": [
+        "........oooooo......",
+        "......oohhjhhhoo....",
+        ".....ohhhjjjhhhho...",
+        ".....ohhjjhhhhho....",
+        ".....oHhhhSskssso...",
+        ".....oHhhSkkwekko...",
+        "......oHhSkkkkkso...",
+        "......oHhSSkkksso...",
+        "...ooooooSSksoo.....",
+        "..oCdddcoAavlvaoo...",
+        ".oCcdcccoAablvAAao..",
+        "oCcccCCcoAabTvoAaao.",
+        "oCcccCCcoAabTvoAAao.",
+        ".oCCCCCoAaaAGgoGggo.",
+        "..oCCCooAaaAGgogffgo",
+        "...ooooAAaaaGgoGffgo",
+        ".....oAAAAAAGgGogGo.",
+        ".....oxxxyxxGggGo...",
+        ".....oNNNnnnqqo.....",
+        ".....oNNNNnnnnqo....",
+        ".....oNNNNonnqqo....",
+        "....oNNNNo.onqqo....",
+        "...oNNNNo..onqqo....",
+        "..oNNNNo...onnno....",
+        "..oNNNNo...onnno....",
+        "...oNNNNo..onnno....",
+        "....oNNNo..onnno....",
+        "....oNNNo..onnno....",
+        "...oNNNNo..onnno....",
+        "...oxxxxo..oxxxxo...",
+        "...oBBtto..oBBtto...",
+        "...oBBtto..oBtttuo..",
+        "..oBBttuuo.oBtttuuo.",
+        "..oooooooo.oooooooo."
+      ]
+    },
+    {
+      "id": "body-eject-settle",
+      "channel": "full-body",
+      "at": [
+        15,
+        12
+      ],
+      "rows": [
+        ".......oooooo........",
+        ".....oohhjhhhoo......",
+        ".....ohhjjjhhhho.....",
+        ".....oHhhhhhhoo......",
+        "......oHSskkkso......",
+        "......oHSekwkso......",
+        ".......oSSkkkso......",
+        "........oSSkso.......",
+        ".........oooo........",
+        "...oooooAAovSoo......",
+        "..oCdddcoAavlvaoo....",
+        ".oCcdcccoAablvAAao...",
+        "oCcccCCcoAabTvoAgggo.",
+        "oCcccCCcoAabTvoGffgGo",
+        ".oCCCCCoAaAGggfffggGo",
+        "..oCCCooAAGgfffggGoo.",
+        "...ooooAAaaAGggGGo...",
+        ".....oAAAAAAxxo......",
+        ".....oxxxyxxxxo......",
+        ".....oNNNnnnqqo......",
+        ".....oNNNNnnnnqo.....",
+        ".....oNNNNnnnnqo.....",
+        ".....oNNNNonnqqo.....",
+        ".....oNNNo.onqqo.....",
+        ".....oNNNo.onqqo.....",
+        ".....oNNNo.onnno.....",
+        "....oNNNNo.onnno.....",
+        "....oNNNNo..onnno....",
+        "....oNNNNo..onnno....",
+        "...oNNNNNo..onnnno...",
+        "...oNNNNo...onnnno...",
+        "...oxxxxo...oxxxxo...",
+        "...oBBtto...oBBtto...",
+        "...oBBtto...oBtttuo..",
+        "...oBttuuo..oBtttuuo.",
+        "...oooooooo.oooooooo."
+      ]
+    },
+    {
+      "id": "body-eject-ready",
+      "channel": "full-body",
+      "at": [
+        15,
+        11
+      ],
+      "rows": [
+        "........oooooo.......",
+        "......oohhjhhhoo.....",
+        ".....ohhhjjjhhhho....",
+        ".....ohhjjhhhhho.....",
+        ".....oHhhhSskssso....",
+        ".....oHhhSkkwekko....",
+        "......oHhSkkkkkso....",
+        "......oHhSSkkksso....",
+        ".......ooSSksoo......",
+        "...oooooAAovSoo......",
+        "..oCdddcoAavlvaoo....",
+        ".oCcdcccoAablvAAao...",
+        "oCcccCCcoAabTvoAgggo.",
+        "oCcccCCcoAabTvoGffgGo",
+        ".oCCCCCoAaAGggfffggGo",
+        "..oCCCooAAGgfffggGoo.",
+        "...ooooAAaaAGggGGo...",
+        ".....oAAAAAAxxo......",
+        ".....oxxxyxxxxo......",
+        ".....oNNNnnnqqo......",
+        ".....................",
+        ".....oNNNNnnnnqo.....",
+        ".....oNNNNnnnnqo.....",
+        ".....oNNNNonnqqo.....",
+        ".....oNNNo.onqqo.....",
+        ".....oNNNo.onqqo.....",
+        ".....oNNNo.onnno.....",
+        "....oNNNNo.onnno.....",
+        "....oNNNNo..onnno....",
+        "....oNNNNo..onnno....",
+        "...oNNNNNo..onnnno...",
+        "...oNNNNo...onnnno...",
+        "...oxxxxo...oxxxxo...",
+        "...oBBtto...oBBtto...",
+        "...oBBtto...oBtttuo..",
+        "...oBttuuo..oBtttuuo.",
+        "...oooooooo.oooooooo."
+      ]
     }
   ],
   "clips": [
@@ -5859,6 +6191,45 @@
           "ticks": 2
         }
       ]
+    },
+    {
+      "id": "body.eject",
+      "channel": "full-body",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "body-eject-brace",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-tuck",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-absorb",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-low",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-push",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-rise",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-settle",
+          "ticks": 1
+        },
+        {
+          "frame": "body-eject-ready",
+          "ticks": 1
+        }
+      ]
     }
   ],
   "notes": [
@@ -5870,6 +6241,7 @@
     "Sidearm recoil exposures retain the exact authoritative muzzle on release, then show separately drawn kick/settle poses before returning. Cosmetic muzzle movement after release cannot produce another shot.",
     "Authored lower-body start, stop, reverse, crouch bridge and landing exposures. These cosmetic transitions must yield immediately to accepted movement, jump, life and seat state; they cannot delay gameplay.",
     "Action revision: explicit upper knife/throw drawings preserve accepted locomotion; release hand markers bind to current authoritative timelines. Static full-body death/reentry poses follow independent lifeStartTick. Original pixel parts are composed only when writing editable literal source rows, never at runtime.",
-    "Horizontal run/idle/landing use authored head, jacket and pack changes. Gun grips meet adjacent hand/weapon pixels. Upper vertical anatomy, vehicle transfers, hurt response under accessible rules and the complete benchmark still require work and human review."
+    "Horizontal run/idle/landing use authored head, jacket and pack changes. Gun grips meet adjacent hand/weapon pixels. Upper vertical anatomy, vehicle transfers, hurt response under accessible rules and the complete benchmark still require work and human review.",
+    "Crew revision: eight literal grounded ejection recovery drawings stay at the accepted safe feet root. Movement, aim, crouch, fire, jump, life or identity changes cancel recovery immediately. This visual clock never extends the twelve accepted protection ticks and does not invent an airborne path between the seat and safe pad."
   ]
 }

@@ -33,7 +33,7 @@ export class NativeCast {
     if (enabled) {
       for (const tank of world.tanks) {
         const owner = world.players.find(
-          (player) => player.body.id === (tank.occupantId ?? tank.reservedBy),
+          (player) => player.playerId === (tank.occupantId ?? tank.reservedBy),
         );
         const atlas = this.atlases.get("kestrel");
         if (!atlas) throw new Error("Missing tank atlas");

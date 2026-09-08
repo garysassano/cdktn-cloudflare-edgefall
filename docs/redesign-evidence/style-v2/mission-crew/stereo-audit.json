@@ -1,0 +1,258 @@
+{
+  "status": "pass",
+  "scope": "Independent per-channel and overall decode of raw WebM and published MP4, without downmix.",
+  "files": [
+    {
+      "name": "solo-clean-normal.webm",
+      "sha256": "9bf0b634e27f09ac0df3d479849c73da58723dce63998c8b1f6e22d61ae06f2b",
+      "peakDb": [
+        -12.682625,
+        -14.111251,
+        -12.682625
+      ],
+      "rmsDb": [
+        -30.791431,
+        -31.852584,
+        -31.289677
+      ]
+    },
+    {
+      "name": "solo-clean-normal.mp4",
+      "sha256": "9e211fb9d040a5a913bf8e6192bda8554385920ee0e02f2d54b110fd4d16519d",
+      "peakDb": [
+        -13.755724,
+        -15.128864,
+        -13.755724
+      ],
+      "rmsDb": [
+        -31.835725,
+        -32.878988,
+        -32.326105
+      ]
+    },
+    {
+      "name": "solo-debug-normal.webm",
+      "sha256": "1635f564467e279f2f1412248d6b56ba615cd0cc98f4e617c6a59e6493117124",
+      "peakDb": [
+        -13.260684,
+        -15.579327,
+        -13.260684
+      ],
+      "rmsDb": [
+        -30.813777,
+        -31.888011,
+        -31.317764
+      ]
+    },
+    {
+      "name": "solo-debug-normal.mp4",
+      "sha256": "1ad4283994bb2d4e1793a53ddb8ce8ab64425c4064b5735102cbd98b9973026e",
+      "peakDb": [
+        -14.412895,
+        -16.569161,
+        -14.412895
+      ],
+      "rmsDb": [
+        -31.855171,
+        -32.911112,
+        -32.351127
+      ]
+    },
+    {
+      "name": "solo-clean-quarter.webm",
+      "sha256": "6effc5a7f886765d09b8aa369f06675b9780324ae9083d819353190ab4abfe18",
+      "peakDb": [
+        -14.097755,
+        -16.0667,
+        -14.097755
+      ],
+      "rmsDb": [
+        -32.151833,
+        -33.616774,
+        -32.822825
+      ]
+    },
+    {
+      "name": "solo-clean-quarter.mp4",
+      "sha256": "1334685853c882a21c6d824b6e98f18b2638fa78c28dc7e6a9cf9e886048d04a",
+      "peakDb": [
+        -15.179619,
+        -17.17761,
+        -15.179619
+      ],
+      "rmsDb": [
+        -33.193408,
+        -34.636159,
+        -33.855146
+      ]
+    },
+    {
+      "name": "coop-2-clean-normal.webm",
+      "sha256": "4983c22eda24cf708a5f22a8eb4b9ef244b9cf9b6209d90283b2ceb30a86c4fd",
+      "peakDb": [
+        -10.648359,
+        -12.812063,
+        -10.648359
+      ],
+      "rmsDb": [
+        -29.811117,
+        -31.08033,
+        -30.399522
+      ]
+    },
+    {
+      "name": "coop-2-clean-normal.mp4",
+      "sha256": "eed92c0b060302b7ede28a833166ce9cd95b25aa58032af2c2c2553670f71259",
+      "peakDb": [
+        -11.680666,
+        -13.870208,
+        -11.680666
+      ],
+      "rmsDb": [
+        -30.862152,
+        -32.106567,
+        -31.43994
+      ]
+    },
+    {
+      "name": "coop-2-debug-normal.webm",
+      "sha256": "a5bd6bddbf2e99eaa885e9aaef26c22f16fb5e04ce7f0994e509f8f87c5a7f35",
+      "peakDb": [
+        -11.184405,
+        -12.860182,
+        -11.184405
+      ],
+      "rmsDb": [
+        -29.81764,
+        -31.064883,
+        -30.39664
+      ]
+    },
+    {
+      "name": "coop-2-debug-normal.mp4",
+      "sha256": "7e7c1a1ffdee9ebe71fd7ed7f3ffa2f9537ae03bf4a49aa325a019dcc3f3602e",
+      "peakDb": [
+        -12.285143,
+        -13.844636,
+        -12.285143
+      ],
+      "rmsDb": [
+        -30.869439,
+        -32.09435,
+        -31.438852
+      ]
+    },
+    {
+      "name": "coop-2-clean-quarter.webm",
+      "sha256": "79cd4fc84cbe3ea9edacfa49b917bec4f87aa7d57a3318ee6768187ec726e852",
+      "peakDb": [
+        -11.720857,
+        -14.124771,
+        -11.720857
+      ],
+      "rmsDb": [
+        -31.785951,
+        -33.301169,
+        -32.477812
+      ]
+    },
+    {
+      "name": "coop-2-clean-quarter.mp4",
+      "sha256": "3d8404891423f576e9d0fc53f717291c9a45aea1032ee259a80328d3f9d0dd1a",
+      "peakDb": [
+        -12.765481,
+        -15.16284,
+        -12.765481
+      ],
+      "rmsDb": [
+        -32.830126,
+        -34.322737,
+        -33.512621
+      ]
+    },
+    {
+      "name": "coop-4-clean-normal.webm",
+      "sha256": "740ecf9522d9b2e5fac4757b0f5585df2fe341fec744a2608440337ba09de35a",
+      "peakDb": [
+        -7.647097,
+        -11.274942,
+        -7.647097
+      ],
+      "rmsDb": [
+        -28.261586,
+        -30.026516,
+        -29.055005
+      ]
+    },
+    {
+      "name": "coop-4-clean-normal.mp4",
+      "sha256": "4cf307afa34e51da0bad94898fc5566c4ca5bafcfd6f86d82bb6cf16bddf5d38",
+      "peakDb": [
+        -8.731717,
+        -12.314532,
+        -8.731717
+      ],
+      "rmsDb": [
+        -29.320261,
+        -31.060821,
+        -30.103921
+      ]
+    },
+    {
+      "name": "coop-4-debug-normal.webm",
+      "sha256": "ab88c11b78eb3901c369d7d12a90e61b102bdd53c70786498058598899ba270a",
+      "peakDb": [
+        -6.847436,
+        -10.931523,
+        -6.847436
+      ],
+      "rmsDb": [
+        -28.294943,
+        -30.070044,
+        -29.092425
+      ]
+    },
+    {
+      "name": "coop-4-debug-normal.mp4",
+      "sha256": "0765721dd8cb366782ade67c597f5e27c42f36b8b28f63f14c90f68761ee0ab5",
+      "peakDb": [
+        -7.848958,
+        -11.788528,
+        -7.848958
+      ],
+      "rmsDb": [
+        -29.35126,
+        -31.098776,
+        -30.137709
+      ]
+    },
+    {
+      "name": "coop-4-clean-quarter.webm",
+      "sha256": "75b22a35b1ca81b8042671abae98711176fc62b25a94680527a5f166d6705836",
+      "peakDb": [
+        -7.166455,
+        -11.219395,
+        -7.166455
+      ],
+      "rmsDb": [
+        -30.936532,
+        -32.69278,
+        -31.726478
+      ]
+    },
+    {
+      "name": "coop-4-clean-quarter.mp4",
+      "sha256": "6b0ed3fbdcd2f9e0575804f3e32b7eba2a217e2bede8bd65420d908a6c28dd67",
+      "peakDb": [
+        -8.157806,
+        -12.158883,
+        -8.157806
+      ],
+      "rmsDb": [
+        -31.984645,
+        -33.71652,
+        -32.764819
+      ]
+    }
+  ]
+}

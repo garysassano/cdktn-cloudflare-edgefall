@@ -70,6 +70,11 @@ for (const asset of CAST_ART) {
       }
     }
   } else {
+    for (const name of ["kestrel.board", "kestrel.exit"])
+      assert(
+        new Set(clip(name).exposures.map((e) => built.frameHashes[`p1/${e.frame}`])).size >= 8,
+        "Crew transfers need distinct acting drawings",
+      );
     assert.equal(
       duration("kestrel.board"),
       COMBAT_CATALOG.timelines.get(TANK_PROFILE.definition.seat.boardingTimelineId)?.durationTicks,

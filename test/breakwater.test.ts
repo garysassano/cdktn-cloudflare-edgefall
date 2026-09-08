@@ -24,11 +24,27 @@ describe("Breakwater Approach", () => {
     { timeout: 20000 },
     (count) => {
       const shooters = new Set<number>();
+      let previous = createBreakwater(count),
+        forcedEjections = 0;
       const proof = runBreakwaterProof((state) => {
+        if (
+          previous.combat.players[0]?.vehicleId !== null &&
+          state.combat.players[0]?.vehicleId === null
+        ) {
+          expect(previous.combat.players[0]?.action.kind).not.toBe("exit");
+          expect(state.combat.players[0]).toMatchObject({ life: "alive", invulnerableTicks: 12 });
+          expect(state.combat.tanks[0]).toMatchObject({
+            armor: 0,
+            lifecycle: "wreck",
+            occupantId: null,
+          });
+          forcedEjections++;
+        }
         if (state.boss.phase !== "dormant")
           for (const event of state.combat.events)
             if (event.kind === "shot" && event.source?.definitionId === 2)
               shooters.add(event.ownerId);
+        previous = state;
       }, count);
       expect(proof.state.phase).toBe("victory");
       expect(proof.state.combat.tick).toBeGreaterThanOrEqual(2700);
@@ -37,10 +53,11 @@ describe("Breakwater Approach", () => {
         proof.state.combat.players.every((p) => p.life === "alive" && p.body.x / 256 > 2600),
       ).toBe(true);
       expect(shooters.size).toBe(count);
+      expect(forcedEjections).toBe(1);
       expect(canonical(replayBreakwater(proof.recording))).toBe(proof.recording.finalState);
     },
   );
-  // This replays the complete 2,949-tick mission four times, including rejection
+  // This replays the complete mission four times, including rejection
   // and observer-isolation checks, alongside the other kernel suites.
   it("finishes one continuous input recording with the weapon, enemy, life, vehicle and boss beats", {
     timeout: 20_000,
@@ -53,6 +70,7 @@ describe("Breakwater Approach", () => {
       actions = new Set<string>();
     let tankJump = false,
       tankLanding = false,
+      forcedEjections = 0,
       previous = createBreakwater();
     const proof = runBreakwaterProof((state) => {
       for (const e of state.combat.events) {
@@ -63,6 +81,19 @@ describe("Breakwater Approach", () => {
       actions.add(state.combat.players[0]?.action.kind ?? "missing");
       armor.add(state.combat.tanks[0]?.armor ?? -1);
       phases.add(state.boss.phase);
+      if (
+        previous.combat.players[0]?.vehicleId !== null &&
+        state.combat.players[0]?.vehicleId === null
+      ) {
+        expect(previous.combat.players[0]?.action.kind).not.toBe("exit");
+        expect(state.combat.players[0]).toMatchObject({ life: "alive", invulnerableTicks: 12 });
+        expect(state.combat.tanks[0]).toMatchObject({
+          armor: 0,
+          lifecycle: "wreck",
+          occupantId: null,
+        });
+        forcedEjections++;
+      }
       if (previous.combat.tanks[0]?.body.grounded && !state.combat.tanks[0]?.body.grounded)
         tankJump = true;
       if (
@@ -84,7 +115,9 @@ describe("Breakwater Approach", () => {
       expect.arrayContaining(["throw", "explosion", "shield-break", "prop-destroyed"]),
     );
     expect([...lives]).toEqual(expect.arrayContaining(["alive", "death", "respawning"]));
-    expect([...actions]).toEqual(expect.arrayContaining(["enter", "exit"]));
+    expect(actions.has("enter")).toBe(true);
+    expect(actions.has("exit")).toBe(false);
+    expect(forcedEjections).toBe(1);
     expect([...armor]).toEqual(expect.arrayContaining([3, 2, 1, 0]));
     expect([...phases]).toEqual(
       expect.arrayContaining(["dormant", "windup", "burst", "recovery", "destroyed"]),

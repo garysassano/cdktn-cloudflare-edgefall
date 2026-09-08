@@ -16,14 +16,14 @@
   "palette": {
     ".": "00000000",
     "o": "201e2aff",
-    "H": "302c35ff",
-    "h": "555160ff",
-    "j": "918477ff",
-    "S": "8f5145ff",
-    "s": "c88b65ff",
-    "k": "edbf88ff",
-    "w": "f4deafff",
-    "e": "191e2aff",
+    "H": "302633ff",
+    "h": "654333ff",
+    "j": "a66b45ff",
+    "S": "ad5c44ff",
+    "s": "e39a65ff",
+    "k": "ffd39aff",
+    "w": "fff0d2ff",
+    "e": "211e2aff",
     "A": "983f35ff",
     "a": "d7613eff",
     "b": "fa9960ff",
@@ -36,9 +36,9 @@
     "B": "29272eff",
     "t": "544341ff",
     "u": "9c7853ff",
-    "G": "63523eff",
-    "g": "ad905fff",
-    "f": "dec28bff",
+    "G": "8e633fff",
+    "g": "c4945eff",
+    "f": "f0c888ff",
     "M": "243641ff",
     "m": "678a98ff",
     "i": "cbe0d5ff",
@@ -47,7 +47,9 @@
     "y": "ecd181ff",
     "r": "493c43ff",
     "R": "8a4740ff",
-    "x": "332c30ff"
+    "x": "332c30ff",
+    "l": "fff0d3ff",
+    "T": "a3a28dff"
   },
   "variants": {
     "p1": {},
@@ -1331,45 +1333,6 @@
       ]
     },
     {
-      "id": "kestrel-crew-up",
-      "channel": "full-body",
-      "at": [
-        0,
-        31
-      ],
-      "rows": [
-        ".................................................ooooo",
-        "...............................................ooHhhhHoo",
-        "..............................................oHhhjjhhHHo",
-        ".........................................ooooooHhhSskssHo",
-        "........................................oMimmmMoHSkkwkso",
-        ".......................................oMimmmmMoHSSkkso",
-        "......................................oMimmmmmMooHSsoo",
-        ".....................................oMimmmmmMooAaAAao",
-        ".....................................oMmmmmMMooAabAAAGgo",
-        "......................................oMMMMMo..oooooGGgo",
-        ".......................................ooooo"
-      ]
-    },
-    {
-      "id": "kestrel-crew-down",
-      "channel": "full-body",
-      "at": [
-        0,
-        34
-      ],
-      "rows": [
-        ".........................................oooooo",
-        "........................................oMimmmMo.ooooo",
-        ".......................................oMimmmmMooHhhhHoo",
-        "......................................oMimmmmmoHhhjjhhHHo",
-        ".....................................oMimmmmmMoHhhSskssHo",
-        ".....................................oMmmmmMMo.oHSkkwkso",
-        "......................................oMMMMMo..oHSSkkso",
-        ".......................................ooooo"
-      ]
-    },
-    {
       "id": "kestrel-wreck",
       "channel": "legs",
       "at": [
@@ -1400,6 +1363,409 @@
         "............................oBttBBBBBBBBBBBBBBBBBBBBBBBBBBBttBo",
         ".............................oBttuBttuBttuBttuBttuBttuBttuBttuBo",
         "..............................oooooooooooooooooooooooooooooooo"
+      ]
+    },
+    {
+      "id": "kestrel-board-climb",
+      "channel": "full-body",
+      "at": [
+        30,
+        29
+      ],
+      "rows": [
+        ".......oooooo.....",
+        ".....oohhjhhhoo...",
+        "....ohhhjjjhhhho..",
+        "....ohhjjhhhhho...",
+        "....oHhhhSskssso..",
+        "....oHhhSkkwekkoo.",
+        ".....oHhSkkkkksoMo",
+        ".....oHhSSkkkssoMo",
+        "...oooooSSksoommMo",
+        ".ooCAAAavlvAaomMo.",
+        "oCcCAAabTAAaaoGgo.",
+        "oCCCAaaAGgGggffgo.",
+        ".oCCAAAAGfffggGGo.",
+        "..ooAAaaAGgGGooo..",
+        "....oAAAxxxyxo....",
+        "....oNNNNnnnqo....",
+        "...oNNNNoonnqqo...",
+        "..oNNNNo..onqqo...",
+        "..oxxxxo..onqqo...",
+        ".oBBtttuo.onnno...",
+        ".oooooooo.oxxxo...",
+        "..........oBBttuo.",
+        "..........ooooooo."
+      ]
+    },
+    {
+      "id": "kestrel-board-step",
+      "channel": "full-body",
+      "at": [
+        34,
+        24
+      ],
+      "rows": [
+        ".......oooooo......",
+        ".....oohhjhhhoo....",
+        "....ohhhjjjhhhho...",
+        "....ohhjjhhhhho....",
+        "....oHhhhSskssso...",
+        "....oHhhSkkwekko...",
+        ".....oHhSkkkkkso...",
+        ".....oHhSSkkksso...",
+        "...oooooSSksoo.....",
+        ".ooCAAAavlvAao.....",
+        "oCcCAAabTAAaao.....",
+        "oCCCAaaAGgGgGgo....",
+        ".oCCAAAAGfffggGo...",
+        "..ooAAaaAGgGGooo...",
+        "...ooAAAxxxyxo.....",
+        "...ooNNNNnnnqo.....",
+        "...oNNNNoonnqqo....",
+        "..oNNNNoooonnqqoo..",
+        "..oxxxxo...oNNnnqo.",
+        ".oBBtttuo...oxxxo..",
+        ".oooooooo...oBBttuo",
+        "............ooooooo"
+      ]
+    },
+    {
+      "id": "kestrel-board-vault",
+      "channel": "full-body",
+      "at": [
+        37,
+        19
+      ],
+      "rows": [
+        "........ooooooo......",
+        "......oohhjjhhhoo....",
+        ".....ohhhjjjhhhho....",
+        ".....oHhhhhhhhho.....",
+        "......oHhSkkssso.....",
+        "......oHSkkSeekso....",
+        ".......oSSkkksso.....",
+        "........ooSksoo......",
+        "....oooAAovSoo.......",
+        "..ooCAAAavlvAao......",
+        ".oCcCAAabTAAaao......",
+        ".oCCCAaaAGgGgGgo.....",
+        "..oCCAAAAGfffggGo....",
+        "...ooAAaaAGgGGooo....",
+        ".....oAAAxxxyxo......",
+        "....ooNNNNnnnqo......",
+        "...ooNNNNoonnqqo.....",
+        "..ooNNNNoMo.onnqqoo..",
+        ".ooxxxxomMo..oNnnnqo.",
+        "ooBBtttuoo....oxxxo..",
+        "ooooooooo.....oBBttuo",
+        ".oMMMMMo......ooooooo",
+        "..ooooo.............."
+      ]
+    },
+    {
+      "id": "kestrel-board-straddle",
+      "channel": "full-body",
+      "at": [
+        37,
+        22
+      ],
+      "rows": [
+        "...........oooooo.......",
+        ".........oohhjhhhoo.....",
+        ".........ohhjjjhhhho....",
+        ".........oHhhhhhhoo.....",
+        "..........oHSskkkso.....",
+        "..........oHSekwkso.....",
+        "...........oSSkkkso.....",
+        "............oSSkso......",
+        ".......oooAAooooo.......",
+        ".....ooCAAAavlvAao......",
+        "....oCcCAAabTAAaao......",
+        "....oCCCAaaAGgGgGgo.....",
+        "....ooCCAAAAGfffggGo....",
+        "...oMiooAAaaAGgGGooo....",
+        "..oMimmmoAAAxxxyxo......",
+        ".oMimmmmoNNNNnnnqqoo....",
+        "oMimmmmoNNNNooonnnnqqo..",
+        "oMmmmmoxxxxo...ooNNnqo..",
+        ".oMMMoBBtttuo....oxxxo..",
+        "..ooooooooooo....oBBttuo",
+        ".................ooooooo"
+      ]
+    },
+    {
+      "id": "kestrel-board-sink",
+      "channel": "full-body",
+      "at": [
+        37,
+        27
+      ],
+      "rows": [
+        "..............oooooo...",
+        "............oohhjhhhoo.",
+        "...........ohhhjjjhhhho",
+        "...........ohhjjhhhhho.",
+        "...........oHhhhSskssso",
+        "...........oHhhSkkwekko",
+        "............oHhSkkkkkso",
+        "....oooooo..oHhSSkkksso",
+        "...oMimmoooAAooSSksoo..",
+        "..oMimmoCAAAavlvAao....",
+        ".oMimmoCcCAAabTAAaao...",
+        "oMimmmoCCCAaaAGgGgGgo..",
+        "oMmmmmMoCCAAAAGfffggGo.",
+        ".oMMMMMoooAAaaAGgGGooo.",
+        "..ooooo...oAAAAAAAao...",
+        "...........oooooooo...."
+      ]
+    },
+    {
+      "id": "kestrel-board-duck",
+      "channel": "full-body",
+      "at": [
+        37,
+        30
+      ],
+      "rows": [
+        "..............ooooooo..",
+        "............oohhjjhhhoo",
+        "...........ohhhjjjhhhho",
+        "...........oHhhhhhhhho.",
+        "....oooooo..oHhSkkssso.",
+        "...oMimmmMo.oHSkkSeekso",
+        "..oMimmmmMo..oSSkkksso.",
+        ".oMimmmmmMo...ooSksoo..",
+        "oMimmmmmoooAAovSoo.....",
+        "oMmmmmMoAAAavlvAao.....",
+        ".oMMMMoAAabTAAaGggo....",
+        "..oooooAAaAGgGgffgGo...",
+        ".......oAAAGfffggGGo...",
+        "........ooooGgGGooo...."
+      ]
+    },
+    {
+      "id": "kestrel-board-hands",
+      "channel": "full-body",
+      "at": [
+        37,
+        34
+      ],
+      "rows": [
+        "....oooooo............",
+        "...oMimmmMo...........",
+        "..oMimmmmMo...........",
+        ".oMimmmmmMo...........",
+        "oMimmmmmMoooo....oooo.",
+        "oMmmmmMMoGffgo..oGffgo",
+        ".oMMMMMooGgggo..oGgggo",
+        "..ooooo..oooo....oooo."
+      ]
+    },
+    {
+      "id": "kestrel-exit-peek",
+      "channel": "full-body",
+      "at": [
+        37,
+        33
+      ],
+      "rows": [
+        ".............oooooo...",
+        "....oooooo.oohhjhhhoo.",
+        "...oMimmmMoohhjjjhhhho",
+        "..oMimmmmMooHhhhhhhoo.",
+        ".oMimmmmmMo.oHSskkkso.",
+        "oMimmmmmMo..oHSekwkso.",
+        "oMmmmmMMooooooSSkoooo.",
+        ".oMMMMMooGffgooSoGffgo",
+        "..ooooo.oGgggo.ooGgggo",
+        ".........oooo....oooo."
+      ]
+    },
+    {
+      "id": "kestrel-exit-brace",
+      "channel": "full-body",
+      "at": [
+        37,
+        26
+      ],
+      "rows": [
+        "..............oooooo...",
+        "............oohhjhhhoo.",
+        "...........ohhhjjjhhhho",
+        "...........ohhjjhhhhho.",
+        "...........oHhhhSskssso",
+        "...........oHhhSkkwekko",
+        "............oHhSkkkkkso",
+        "............oHhSSkkksso",
+        "....oooooooAAooSSksoo..",
+        "...oMimoCAAAavlvAao....",
+        "..oMimoCcCAAabTAAaao...",
+        ".oMimmoCCCAaaAGgGgGgo..",
+        "oMimmmmoCCAAAAGfffggGo.",
+        "oMmmmmMMooAAaaAGgGGooo.",
+        ".oMMMMMo..oAAAAAAAao...",
+        "..ooooo....oooooooo...."
+      ]
+    },
+    {
+      "id": "kestrel-exit-push",
+      "channel": "full-body",
+      "at": [
+        37,
+        22
+      ],
+      "rows": [
+        ".............ooooooo.....",
+        "...........oohhjjhhhoo...",
+        "..........ohhhjjjhhhho...",
+        "..........oHhhhhhhhho....",
+        "...........oHhSkkssso....",
+        "...........oHSkkSeekso...",
+        "............oSSkkksso....",
+        ".............ooSksoo.....",
+        "........oooooAAovSoo.....",
+        ".......oCdddcoAavlvaoo...",
+        "......oCcdcccoAablvAAao..",
+        ".....oCcccCCcoAabTvoAaao.",
+        "....ooCcccCCcoAabTvoAAao.",
+        "...oMioCCCCCoAaaAGgoGggo.",
+        "..oMimmoCCCooAaaAGgogffgo",
+        ".oMimmmmooooAAaaaGgoGffgo",
+        "oMimmmmmMooAAAAAAGgGogGo.",
+        "oMmmmmMMo.oxxxyxxGggGo...",
+        ".oMMMMMo..oNNNnnnqqo.....",
+        "..ooooo.................."
+      ]
+    },
+    {
+      "id": "kestrel-exit-knee",
+      "channel": "full-body",
+      "at": [
+        37,
+        20
+      ],
+      "rows": [
+        "............oooooo.......",
+        "..........oohhjhhhoo.....",
+        "..........ohhjjjhhhho....",
+        "..........oHhhhhhhoo.....",
+        "...........oHSskkkso.....",
+        "...........oHSekwkso.....",
+        "............oSSkkkso.....",
+        ".............oSSkso......",
+        "........oooAAooooo.......",
+        "......ooCAAAavlvAao......",
+        ".....oCcCAAabTAAaao......",
+        ".....oCCCAaaAGgGgGgo.....",
+        "......oCCAAAAGfffggGo....",
+        ".......ooAAaaAGgGGooo....",
+        "....ooooooAAAxxxyxo......",
+        "...oMimmmoNNNNnnnqqoo....",
+        "..oMimmmoNNNNooonnnnqqo..",
+        ".oMimmmoxxxxo...ooNNnqo..",
+        "oMimmmoBBtttuo....oxxxo..",
+        "oMmmmmoooooooo....oBBttuo",
+        ".oMMMMMo..........ooooooo",
+        "..ooooo.................."
+      ]
+    },
+    {
+      "id": "kestrel-exit-turn",
+      "channel": "full-body",
+      "at": [
+        37,
+        21
+      ],
+      "rows": [
+        "...................oooooo.....",
+        ".................oohhjhhhoo...",
+        "................ohhhjjjhhhho..",
+        "................ohhjjhhhhho...",
+        "................oHhhhSskssso..",
+        "................oHhhSkkwekko..",
+        ".................oHhSkkkkkso..",
+        ".................oHhSSkkksso..",
+        ".............oooAAooSSksoo....",
+        "...........ooCAAAavlvAao......",
+        "..........oCcCAAabTAAaao......",
+        "..........oCCCAaaAGgGgGgo.....",
+        "...........oCCAAAAGfffggGo....",
+        "....oooooo..ooAAaaAGgGGooo....",
+        "...oMimmmMo...oAAAxxxyxo......",
+        "..oMimmmmMo...oNNNNnnnqo......",
+        ".oMimmmmmMo..oNNNNoonnqqo.....",
+        "oMimmmmmMo..oNNNNo...onnqqoo..",
+        "oMmmmmMMo..oxxxxo.....oNnnnqo.",
+        ".oMMMMMo..oBBtttuo.....oxxxo..",
+        "..ooooo...oooooooo.....oBBttuo",
+        ".......................ooooooo"
+      ]
+    },
+    {
+      "id": "kestrel-exit-swing",
+      "channel": "full-body",
+      "at": [
+        37,
+        26
+      ],
+      "rows": [
+        ".......................oooooo......",
+        ".....................oohhjhhhoo....",
+        ".....................ohhjjjhhhho...",
+        ".....................oHhhhhhhoo....",
+        "......................oHSskkkso....",
+        "......................oHSekwkso....",
+        ".......................oSSkkkso....",
+        "........................oSSkso.....",
+        "....oooooo.........oooAAooooo......",
+        "...oMimmmMo......ooCAAAavlvAao.....",
+        "..oMimmmmMo.....oCcCAAabTAAaao.....",
+        ".oMimmmmmMo.....oCCCAaaAGgGgGgo....",
+        "oMimmmmmMo.......oCCAAAAGfffggGo...",
+        "oMmmmmMMo.........ooAAaaAGgGGooo...",
+        ".oMMMMMo............oAAAxxxyxo.....",
+        "..ooooo.............oNNNNnnnqo.....",
+        "...................oNNNNoonnqqo....",
+        "..................oNNNNo..onnqqoo..",
+        "..................oxxxxo...oNNnnqo.",
+        ".................oBBtttuo...oxxxo..",
+        ".................oooooooo...oBBttuo",
+        "............................ooooooo"
+      ]
+    },
+    {
+      "id": "kestrel-exit-drop",
+      "channel": "full-body",
+      "at": [
+        37,
+        34
+      ],
+      "rows": [
+        "....oooooo............................",
+        "...oMimmmMo.................ooooooo...",
+        "..oMimmmmMo...............oohhjjhhhoo.",
+        ".oMimmmmmMo..............ohhhjjjhhhho.",
+        "oMimmmmmMo...............oHhhhhhhhho..",
+        "oMmmmmMMo.................oHhSkkssso..",
+        ".oMMMMMo..................oHSkkSeekso.",
+        "..ooooo....................oSSkkksso..",
+        "............................ooSksoo...",
+        "........................oooAAovSoo....",
+        "......................ooCAAAavlvAao...",
+        ".....................oCcCAAabTAAaaoGgo",
+        ".....................oCCCAaaAGgGggffgo",
+        "......................oCCAAAAGfffggGGo",
+        ".......................ooAAaaAGgGGooo.",
+        ".........................oAAAxxxyxo...",
+        ".........................oNNNNnnnqo...",
+        "........................oNNNNoonnqqo..",
+        ".......................oNNNNo..onqqo..",
+        ".......................oxxxxo..onqqo..",
+        "......................oBBtttuo.onnno..",
+        "......................oooooooo.oxxxo..",
+        "...............................oBBttuo",
+        "...............................ooooooo"
       ]
     }
   ],
@@ -1433,20 +1799,36 @@
       "mode": "hold-last",
       "exposures": [
         {
-          "frame": "kestrel-hatch-open",
-          "ticks": 3
+          "frame": "kestrel-board-climb",
+          "ticks": 2
         },
         {
-          "frame": "kestrel-crew-up",
-          "ticks": 3
+          "frame": "kestrel-board-step",
+          "ticks": 2
         },
         {
-          "frame": "kestrel-crew-down",
-          "ticks": 3
+          "frame": "kestrel-board-vault",
+          "ticks": 2
+        },
+        {
+          "frame": "kestrel-board-straddle",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-board-sink",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-board-duck",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-board-hands",
+          "ticks": 2
         },
         {
           "frame": "kestrel-hatch-closed",
-          "ticks": 3
+          "ticks": 1
         }
       ]
     },
@@ -1456,20 +1838,36 @@
       "mode": "hold-last",
       "exposures": [
         {
+          "frame": "kestrel-exit-peek",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-brace",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-push",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-knee",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-turn",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-swing",
+          "ticks": 1
+        },
+        {
+          "frame": "kestrel-exit-drop",
+          "ticks": 1
+        },
+        {
           "frame": "kestrel-hatch-open",
-          "ticks": 2
-        },
-        {
-          "frame": "kestrel-crew-down",
-          "ticks": 2
-        },
-        {
-          "frame": "kestrel-crew-up",
-          "ticks": 2
-        },
-        {
-          "frame": "kestrel-hatch-open",
-          "ticks": 2
+          "ticks": 1
         }
       ]
     }
@@ -1478,6 +1876,7 @@
     "Kestrel is an original compact teal amphibious tractor with warm tread rollers, slab armor and a separate eight-direction turret.",
     "Chassis, tread phase, turret and hatch/crew are separate native layers. Turret headings follow world aim and do not inherit hull facing.",
     "Boarding and exit hatch acting sample the accepted 12/8-tick seat action. The simulation alone transfers ownership and places the occupant.",
-    "Literal native pixels include stride-independent track motion, airborne suspension, grounded compression and a bounded inert wreck. Further crew/ejection acting and human weight/readability review remain open."
+    "Literal native pixels include stride-independent track motion, airborne suspension, grounded compression and a bounded inert wreck. Further crew/ejection acting and human weight/readability review remain open.",
+    "Crew revision: seven boarding and seven ordinary exit drawings show boots, knees, hands, jacket and head crossing the hatch. The last closed/open exposure coincides with the existing seat-transfer marker. The operative atlas owns emergency recovery at the accepted safe root; no duplicated crew remains on the wreck."
   ]
 }

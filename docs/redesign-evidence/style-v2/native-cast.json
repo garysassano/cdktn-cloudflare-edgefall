@@ -462,8 +462,8 @@
     {
       "id": "kestrel",
       "source": "art/source/vehicles/kestrel.pixels.json",
-      "sourceSha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84",
-      "drawings": 27,
+      "sourceSha256": "bdcfc813a458399b2da58852b9546c23c8ac39fd04f034adbcd1a668c79d64d8",
+      "drawings": 39,
       "variants": 4,
       "clips": [
         {
@@ -495,20 +495,36 @@
           "mode": "hold-last",
           "exposures": [
             {
-              "frame": "kestrel-hatch-open",
-              "ticks": 3
+              "frame": "kestrel-board-climb",
+              "ticks": 2
             },
             {
-              "frame": "kestrel-crew-up",
-              "ticks": 3
+              "frame": "kestrel-board-step",
+              "ticks": 2
             },
             {
-              "frame": "kestrel-crew-down",
-              "ticks": 3
+              "frame": "kestrel-board-vault",
+              "ticks": 2
+            },
+            {
+              "frame": "kestrel-board-straddle",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-board-sink",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-board-duck",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-board-hands",
+              "ticks": 2
             },
             {
               "frame": "kestrel-hatch-closed",
-              "ticks": 3
+              "ticks": 1
             }
           ]
         },
@@ -518,20 +534,36 @@
           "mode": "hold-last",
           "exposures": [
             {
+              "frame": "kestrel-exit-peek",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-brace",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-push",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-knee",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-turn",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-swing",
+              "ticks": 1
+            },
+            {
+              "frame": "kestrel-exit-drop",
+              "ticks": 1
+            },
+            {
               "frame": "kestrel-hatch-open",
-              "ticks": 2
-            },
-            {
-              "frame": "kestrel-crew-down",
-              "ticks": 2
-            },
-            {
-              "frame": "kestrel-crew-up",
-              "ticks": 2
-            },
-            {
-              "frame": "kestrel-hatch-open",
-              "ticks": 2
+              "ticks": 1
             }
           ]
         }
@@ -633,34 +665,82 @@
         "p2/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
         "p3/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
         "p4/kestrel-hatch-open": "1360f50f4e1041024362398832e35ba25538212929304b9f62a8b8c0fdecbebe",
-        "p1/kestrel-crew-up": "903ddbdfcd3045abc13d9f79d60bfb0debf64439c75269a9cef731bc534d5c87",
-        "p2/kestrel-crew-up": "237a4355f7851441f6358afedbfff48be45126dbcf3603486763c2114ac66a0a",
-        "p3/kestrel-crew-up": "125202ca373adbfe513e10b88f87ed188aac52235536a91dfeebea548b7a8893",
-        "p4/kestrel-crew-up": "616e343e04ed29c2b82cdf4fa09fbec6c1b2ecb072ff6c6527ef12ebb35fab8e",
-        "p1/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
-        "p2/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
-        "p3/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
-        "p4/kestrel-crew-down": "8704c84e51b745dcc20c941fa427290cf5758bc1584a56e6644fc56d20f0f6a3",
-        "p1/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
-        "p2/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
-        "p3/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d",
-        "p4/kestrel-wreck": "103dd3c5d76ac0486125d27d30698ba8b38eb8a422608f11d96db5b775044a9d"
+        "p1/kestrel-wreck": "13f597ba616143d47d6337729bc65df7f5ff6cfbaef72ba61a665461a248b07c",
+        "p2/kestrel-wreck": "13f597ba616143d47d6337729bc65df7f5ff6cfbaef72ba61a665461a248b07c",
+        "p3/kestrel-wreck": "13f597ba616143d47d6337729bc65df7f5ff6cfbaef72ba61a665461a248b07c",
+        "p4/kestrel-wreck": "13f597ba616143d47d6337729bc65df7f5ff6cfbaef72ba61a665461a248b07c",
+        "p1/kestrel-board-climb": "a081882fa4f1c8314aa8cae6a1a8e59be45bc465fd857e846ba81db6bb529feb",
+        "p2/kestrel-board-climb": "38da6bd785bb417b000c2ce6ea2e1dddc701902e481365628fde4f236c0d536b",
+        "p3/kestrel-board-climb": "e503e13aae49e096828b46e39bcd2c6891b3aba8adac478425e5806c502416c6",
+        "p4/kestrel-board-climb": "fa2ddcb7bf81c5493ee09d724e15206089f67b67c5a96f5f7065453792c39fb1",
+        "p1/kestrel-board-step": "26a118230be80cf5004c7bb2ce8f258628b8ede7d2b55bf4573fad0641bcd9f3",
+        "p2/kestrel-board-step": "4a758ffa49ae6a42921d70a85a77edad363c715757f47c5f2a1c09f7232ccb0a",
+        "p3/kestrel-board-step": "51b0044c61118d37c383ac94da08be8fb55c56354347b388cd64dd78f6a8803d",
+        "p4/kestrel-board-step": "d48639b59c759aa21343b1a983c36ac3f129be79a01581a023bb8284240f118e",
+        "p1/kestrel-board-vault": "97fd93343fb08b8d41e5789b6405aafc6cb62e7a7281ca382661bfeb20a6b8be",
+        "p2/kestrel-board-vault": "18747eb95f1ec61d3cff0bdb3e2d55920d384d217b6397c9e5c5ae86178516ae",
+        "p3/kestrel-board-vault": "ffc548086b458cd74d55b8a5268a6d8e4ae6cda0af0f4e3ffb1bae31aa75fa71",
+        "p4/kestrel-board-vault": "b5b3acc17d8dd518a6eb7661218e5e603075caffb75d31c23fa3ace34ae0e992",
+        "p1/kestrel-board-straddle": "d41afcd5ec60b0ae44363949f442d4acd9414d36550483ad76576e100a6fbe6a",
+        "p2/kestrel-board-straddle": "a7a494cb834088320e5b17d70ed5aab67513d37a625681b695ef2a653be47543",
+        "p3/kestrel-board-straddle": "28b4a8963b26483b2e48c858394501f4c1acd505814f16f7bca34b07c33301c6",
+        "p4/kestrel-board-straddle": "9fa246f8cd64e9249866b19aa7aa5d79202b13ea668a010a3085d660adee335d",
+        "p1/kestrel-board-sink": "2955687152259a99cf28fbef5dca8b732f938a13c6dc4018b3a647416744c614",
+        "p2/kestrel-board-sink": "4bac373fd0f8833f5b19960e319e1616be0023e08cdeee2621153874db92b37a",
+        "p3/kestrel-board-sink": "48e99b58eccb9e17c5f0a6627511e39d0779af2323d72faefee214f502fe3c1f",
+        "p4/kestrel-board-sink": "e3a6938fd9a4e8774ca85739b5b4032dcca2470db04cc390790f84d2ca58be9b",
+        "p1/kestrel-board-duck": "023a7cd3f99be80d29f42e43e9e8298bf69b027155a8d81f0a51f6ae3bd5c1ca",
+        "p2/kestrel-board-duck": "e1956c0d4837546bbae28d602a6d248f4dffd4bae5213a40e4e7263c9da787de",
+        "p3/kestrel-board-duck": "709992b5d86946c819c31a394f754d33847fda4e5b54969b0b4cc05cc0565806",
+        "p4/kestrel-board-duck": "9adf8d061cd63756cd67bf2b9798e836e901ecd8e5dd8dd4003a6194cc547015",
+        "p1/kestrel-board-hands": "810bca31f2929fb098f67e57cb05ccc8f667afeda11f652412a1cbccd94bf1b0",
+        "p2/kestrel-board-hands": "810bca31f2929fb098f67e57cb05ccc8f667afeda11f652412a1cbccd94bf1b0",
+        "p3/kestrel-board-hands": "810bca31f2929fb098f67e57cb05ccc8f667afeda11f652412a1cbccd94bf1b0",
+        "p4/kestrel-board-hands": "810bca31f2929fb098f67e57cb05ccc8f667afeda11f652412a1cbccd94bf1b0",
+        "p1/kestrel-exit-peek": "e807d431ea6d575a0a880eef0474b0912f42cc2e3a215154c710bd1c717beae1",
+        "p2/kestrel-exit-peek": "e807d431ea6d575a0a880eef0474b0912f42cc2e3a215154c710bd1c717beae1",
+        "p3/kestrel-exit-peek": "e807d431ea6d575a0a880eef0474b0912f42cc2e3a215154c710bd1c717beae1",
+        "p4/kestrel-exit-peek": "e807d431ea6d575a0a880eef0474b0912f42cc2e3a215154c710bd1c717beae1",
+        "p1/kestrel-exit-brace": "cabbac8090fde0592cd75e870f80e1f7deaaba8d4afbd62dc47d70e12c34b136",
+        "p2/kestrel-exit-brace": "46b999f4e20b2b6ffcb6470d9d672adad96f7b219fb35907722826240094d807",
+        "p3/kestrel-exit-brace": "b468f215825b5985e26d4b626836b171007d86fb22d5dd5660d4b275c26d7f02",
+        "p4/kestrel-exit-brace": "7489afe5eec7c15066099dc88bcb941e3ea6d07d5f8de8916f4ec7eac82a87f6",
+        "p1/kestrel-exit-push": "ee943fb1cda13306080d7dda1febc009f00e9deb3b73a5cc64df16385a532a4b",
+        "p2/kestrel-exit-push": "fbbe4de33d7b7b7de7e1b70589161cbc1848e1ab6f4da0b8615b713bf563e4d0",
+        "p3/kestrel-exit-push": "c22465d81daca7c80159a0a51a2cc51617c7cddec3354bd0a16d372d053c56a1",
+        "p4/kestrel-exit-push": "5a79093ac157eb6f3c742c9fbf8ec6c1200a92979a23114e6ed8542b46a0e4ff",
+        "p1/kestrel-exit-knee": "dd7e18f9d48e2fd39127e3abfe792688e9fdcd64645e887c23de985afbc95e38",
+        "p2/kestrel-exit-knee": "db96c9565eba16f00541956025b4a2a1e8a798573d584275fc5708f172ed33c9",
+        "p3/kestrel-exit-knee": "7020226a763aeab016abbb644d731b898d69c95d7f818e666a19d049529e4fc7",
+        "p4/kestrel-exit-knee": "2639cedc0c84a6ade4c200bbbeeb59beb2f381b399171f54fc7d8e90d4afee15",
+        "p1/kestrel-exit-turn": "f8df154f7d8074aa21d364cbfa575b36e9996391ce96fab861c3d5ada2d6787e",
+        "p2/kestrel-exit-turn": "0a000f9917d0866748d288e51dcd374164096020b861091c3fd55527c0ee4117",
+        "p3/kestrel-exit-turn": "d72ffa11418b99b0989568fb140bd0f1107922724917a8d4be9e84d8a7dff5a3",
+        "p4/kestrel-exit-turn": "fba488ce45b3f053acb6f6c1e99482ce249f9cdcd74a5b599808f8bb36b05e05",
+        "p1/kestrel-exit-swing": "e722cc9ae5d8d0adba295994efbf220513881dfe1b348d86f2cb60556e47e50f",
+        "p2/kestrel-exit-swing": "304d407c3a5756111491920e1825f7e518c0a1e728c96921003240320398b782",
+        "p3/kestrel-exit-swing": "01e461bc5fd1501af1b25e9b43b5921f0fb01418b933fb460538db6da1d7d086",
+        "p4/kestrel-exit-swing": "d7e227286195dba84ddcca46ed7b8b302488aae5236f96abccf01cb0bb8623b7",
+        "p1/kestrel-exit-drop": "9b0dc129cfdd1543351ace2a306e5383063de9672dfca6e27034e75a282ce92c",
+        "p2/kestrel-exit-drop": "2bf67da4d715d5dfdaf71901754614460ed9af2db082de9e6f5234db629c6fa3",
+        "p3/kestrel-exit-drop": "98e7b628636a23cdb577057f06737021761cb900836aeb75bc4da56868e4b970",
+        "p4/kestrel-exit-drop": "144b5ed5ed47dcb1807c7e61768ba533cc706666173b880df0b6b4f7582086a3"
       },
       "image": {
         "width": 800,
-        "height": 1400,
+        "height": 2000,
         "hasAlphaChannel": true,
-        "decodedRgbaSha256": "bf4fbef90202ca3f968d9846dbcdf7aa7b3fa5776c83d9462707be6b6e3bdbc0",
+        "decodedRgbaSha256": "4dbc1098d663265788cf74f31bf2f4b8e365f3fc3dc8905411ee4be1dc6059d0",
         "alpha": {
-          "transparent": 1081752,
-          "opaque": 38248,
+          "transparent": 1548540,
+          "opaque": 51460,
           "partial": 0,
           "hiddenRgb": 0
         },
-        "visibleColors": 33,
+        "visibleColors": 42,
         "expected": {
           "width": 800,
-          "height": 1400
+          "height": 2000
         },
         "pixelScale": 1,
         "nonuniformBlocks": 0,

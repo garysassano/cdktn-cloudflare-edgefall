@@ -1,8 +1,8 @@
 {
   "status": "pass",
   "source": "art/source/hero/operative.pixels.json",
-  "sourceSha256": "309c62602b688e0aac8b43ec1a736a61018fe3f2243a7e98604c1e4831679ab0",
-  "drawings": 119,
+  "sourceSha256": "4dd8fd06af141c6159a3b196c91533e1afa941c6a118124e802960febecb1e3f",
+  "drawings": 127,
   "paletteVariants": 4,
   "runDrawings": 8,
   "runDurationTicks": 16,
@@ -190,7 +190,8 @@
   ],
   "fullBodyClips": [
     "body.death",
-    "body.reentry"
+    "body.reentry",
+    "body.eject"
   ],
   "bindings": [
     {
@@ -211,19 +212,19 @@
     }
   ],
   "image": {
-    "width": 1088,
+    "width": 1156,
     "height": 2040,
     "hasAlphaChannel": true,
-    "decodedRgbaSha256": "4772892b1f4e5afc4fbc6732806e4bba5b2eb9eca774e80f4ede28d01f6e88bf",
+    "decodedRgbaSha256": "041dd08c9b92c11381eac4467a5cc740a33666678e793203b083e997ea2fa628",
     "alpha": {
-      "transparent": 2092104,
-      "opaque": 127416,
+      "transparent": 2218184,
+      "opaque": 140056,
       "partial": 0,
       "hiddenRgb": 0
     },
     "visibleColors": 43,
     "expected": {
-      "width": 1088,
+      "width": 1156,
       "height": 2040
     },
     "pixelScale": 1,
@@ -707,7 +708,39 @@
     "p1/upper-flame-crouch-recover": "dab57e050e4904ccdfbac6aa381f224cd60201235ca06faabefa2e8c48a919b7",
     "p2/upper-flame-crouch-recover": "ba1a96d9e25b6ab733fcf59eaf8212d1cba9168933d8cd11f99a64693c8b95e2",
     "p3/upper-flame-crouch-recover": "2262e7ee0474a419b3a00294295ae2da3dd2290a367a732fffdd8d92b80f35ef",
-    "p4/upper-flame-crouch-recover": "d6d3b3dbb0bf18841fcea6b33ddad76c8b55ffe691d6450fa469a69c3eeb406f"
+    "p4/upper-flame-crouch-recover": "d6d3b3dbb0bf18841fcea6b33ddad76c8b55ffe691d6450fa469a69c3eeb406f",
+    "p1/body-eject-brace": "29b17936421f593263f020294b6131d1f1f71dcc8ebd26460f3c1b8f212c9f2e",
+    "p2/body-eject-brace": "4ce4f4c7111a1a39092103b22a9181c99e38c0e39a1e65202c6e1108709a1546",
+    "p3/body-eject-brace": "bf3242d4c9f99513d988ac6f4bc4d0bf548484b789a7104848d7e30c9aac4f19",
+    "p4/body-eject-brace": "7019e7a404dc1e6a146cc2665600e4841693c4c07f3fbfb5381bd662a3735252",
+    "p1/body-eject-tuck": "67cd76def7bc2056f330cdb9389dc3a38fa03cb479a204b4722b5b7cbc214088",
+    "p2/body-eject-tuck": "1c980efe476660d710afcf5f7b2f85406c326807327cc987d7ed65be112a7d1b",
+    "p3/body-eject-tuck": "e9e72364973b8452d9d02656d5d4e3d4f8029e04ae5d14c522a0d03dc9e8418d",
+    "p4/body-eject-tuck": "66ed6572e0b519270961ec55829f639fdd544e315386c65dfc34e331bdf65710",
+    "p1/body-eject-absorb": "e47786ceaf7685aaf98de91b13d2e5978c210bc7b92eb4a3d928804a990ca765",
+    "p2/body-eject-absorb": "216314a887e56531ac2bec8b7f7fcda60518cba224d1d53f74fd652e877d558f",
+    "p3/body-eject-absorb": "97673d95e2dc204c8a074e38d890a5f85f0358f02683d0e337243be7d3220a5c",
+    "p4/body-eject-absorb": "73d39bed9b89f675bd82b38944bb278c9c4bfc331f80a023381799c5404a3f3e",
+    "p1/body-eject-low": "edc7d674008f7488e20e2b9b5cad77e9b361baf854ad7cdb183d7e355b15801f",
+    "p2/body-eject-low": "65099ecd8b9b43c60784bc21b100a05d60bbfa12cf227aef01e82524f7b6ebf2",
+    "p3/body-eject-low": "fd487cd9117929576031a34805543e5852deb3612777f14e40d43a8a596eb390",
+    "p4/body-eject-low": "7f33cc7183c0de2d897ab220f699c3088091529da52595883b36edb439e467ce",
+    "p1/body-eject-push": "0ab17f93dc8e4e2e8251e78dc0927732a61093102c7061ebc0c71927994b81db",
+    "p2/body-eject-push": "a9489ae279603c5b10f871ec1b23b0e50fc0304f3041a3ded5ffc67da5f7b7ab",
+    "p3/body-eject-push": "deb6d7210568053020427f8071267d0d81a6c429b75ecea5d719e463c4c780cb",
+    "p4/body-eject-push": "c416625ee9b6cf18b826e73fde7c8d440e7eebfe3968dad2d05f22b5ff9539e2",
+    "p1/body-eject-rise": "9c5c6c46e7d62421100861d4d9beb86796693b7f6ad6366ec82a50f29868b7c9",
+    "p2/body-eject-rise": "757441efc52ec2d14eb158b52263292f2fb5067a2e64ae5b9029475eb0bed9ff",
+    "p3/body-eject-rise": "2dcec101c224d88e8dafd77c517de92901e7d12d5d11532abc87f321497f70ec",
+    "p4/body-eject-rise": "0c147cc7f8ae9d34439cfc508a5478045f33cf91b85ac69cc3b0ef9f0b9c3d71",
+    "p1/body-eject-settle": "38569edd049568697ee7d6310d613bc095eae7358e8ea44f6dab2d30ad0fd697",
+    "p2/body-eject-settle": "f9c2bdfde4107aa640075157767597821232d6c165e4bae4df3fd7e6f039b383",
+    "p3/body-eject-settle": "f1ea44e3567ceadc9673edeb0b668b6348b1087403173a802fdf1ee7eb24e5b3",
+    "p4/body-eject-settle": "440fd9a32257e2006baad5c09a94da185ab9a298df4dbd4b8c1edd0c05753e4b",
+    "p1/body-eject-ready": "eb241f1a79eaced5aeaee559a6d9a7ccf060ca829c5b87b05f243d233d8f0210",
+    "p2/body-eject-ready": "8b6401e16baceba813a4078429b5d37a20beb189392149194967ac095d607d3a",
+    "p3/body-eject-ready": "ce0d710208d8f6336a0c1ab4ac5f83308f37e640c628e672c7f14a4535500095",
+    "p4/body-eject-ready": "91351048c022bb7190b9fd549f6ec51f9c83c2cb636972e48cdb52d9e62a735e"
   },
   "humanReview": "pending",
   "scope": "Native operative benchmark candidate. Indexed pixels, action/life exposure durations, active/release hand sockets, firearm grips and sidearm/HMG/shotgun/flame muzzles are checked. Final weapon acting, effects, motion/feel and W06 acceptance remain open."

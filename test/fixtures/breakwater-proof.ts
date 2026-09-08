@@ -150,16 +150,17 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
         if (x >= 2678) begin(13);
         break;
       case 13:
-        if (player.vehicleId !== null) {
-          if (tank.armor === 1) interactPressed = age % 10 === 0;
-        } else {
-          held |= Held.Down;
+        // Remain aboard through the last accepted armor hit. This beat proves
+        // destruction-driven ejection, rather than exiting before the tank dies.
+        if (player.vehicleId === null) {
           if (tank.armor === 0) begin(14);
         }
         break;
       case 14:
-        held |= Held.Down;
-        interactPressed = age % 8 === 0;
+        if (age >= 8) {
+          held |= Held.Down;
+          interactPressed = age % 8 === 0;
+        }
         if (player.weapon.id === "heavy-machine-gun") begin(15);
         break;
       case 15:
@@ -210,7 +211,7 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
         destination = cache.x;
         use = tick % 8 === slot;
       }
-      if (phase >= 14) {
+      if (phase >= 12) {
         const equipped = state.pickups.find((p) => p.id === 304)?.claimedBy.includes(ally.playerId);
         destination = equipped ? 2700 - slot * 28 : 2712;
         use = !equipped && tick % 8 === slot;
@@ -229,6 +230,14 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void,
           flags |= Held.Down;
           if (ally.facing < 0) flags |= Held.Right;
         }
+        // A crouching ally waits for the tail of the accepted burst to pass its
+        // whole standing body before travelling to/from the shared cache.
+        if (
+          state.boss.phase !== "dormant" &&
+          (state.boss.phase !== "recovery" ||
+            tick - state.boss.phaseStartTick < Math.max(20, clearBurst))
+        )
+          flags |= Held.Down;
       } else if (phase >= 1 && phase <= 7) {
         const enemy = state.combat.targets.find(
           (t) => t.health > 0 && Math.abs(t.enemy.body.x / 256 - ax) < 210,

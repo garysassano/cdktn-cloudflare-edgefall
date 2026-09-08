@@ -71,8 +71,8 @@
     {
       "id": "operative-native-01",
       "file": "art/source/hero/operative.pixels.json",
-      "bytes": 137318,
-      "sha256": "309c62602b688e0aac8b43ec1a736a61018fe3f2243a7e98604c1e4831679ab0",
+      "bytes": 147907,
+      "sha256": "4dd8fd06af141c6159a3b196c91533e1afa941c6a118124e802960febecb1e3f",
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "role": "native-benchmark-candidate",
@@ -121,8 +121,8 @@
     {
       "id": "kestrel-native-01",
       "file": "art/source/vehicles/kestrel.pixels.json",
-      "bytes": 52006,
-      "sha256": "4e368b0c9a126aae704f134c4ddc578dfeda971c7afa95d907901aa377042f84",
+      "bytes": 63374,
+      "sha256": "bdcfc813a458399b2da58852b9546c23c8ac39fd04f034adbcd1a668c79d64d8",
       "creator": "Codex-authored indexed pixel drawings for Edgefall",
       "licence": "Project-original",
       "role": "native-benchmark-candidate",

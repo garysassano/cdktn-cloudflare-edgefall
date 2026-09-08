@@ -86,6 +86,8 @@ export function operativePresentation(
         ? Math.min(5, tick - actor.lifeStartTick)
         : tick - actor.lifeStartTick,
     );
+  } else if (motion.ejectionStartTick !== null) {
+    fullBody = sample("body.eject", tick - motion.ejectionStartTick);
   } else {
     const runAge = Math.max(0, tick - motion.runStartTick);
     legs =
@@ -167,6 +169,7 @@ export function operativePresentation(
       runStartTick: motion.runStartTick,
       transition: transitionActive ? motion.transition : null,
       transitionStartTick: motion.transitionStartTick,
+      ejectionStartTick: motion.ejectionStartTick,
     },
     variant,
     upperFrame,

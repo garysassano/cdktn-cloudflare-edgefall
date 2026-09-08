@@ -246,7 +246,8 @@ describe("recorded interaction audio", () => {
       "engine-start",
       "engine-stop",
       "board",
-      "exit",
+      "eject",
+      "tank-destroyed",
       "pickup",
       "checkpoint",
       "boss-warning",
@@ -256,6 +257,7 @@ describe("recorded interaction audio", () => {
       "victory",
     ])
       expect(kinds.has(kind), kind).toBe(true);
+    expect(kinds.has("exit")).toBe(false);
     expect(warnings.length).toBeGreaterThan(2);
     expect(warnings[0]).toBeLessThan(proof.state.combat.tick);
   });

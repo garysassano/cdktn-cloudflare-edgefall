@@ -12,7 +12,18 @@ import {
   advanceBreakwaterVisual,
   initialBreakwaterVisual,
 } from "../src/shared/animation/breakwater.ts";
+import {
+  advanceCastMotion,
+  enemyPresentation,
+  initialCastMotion,
+  tankPresentation,
+} from "../src/shared/animation/cast.ts";
 import { EFFECT_POSTROLL } from "../src/shared/animation/combat-effects.ts";
+import { operativePresentation } from "../src/shared/animation/operative.ts";
+import {
+  advanceOperativeMotion,
+  initialOperativeMotion,
+} from "../src/shared/animation/operative-motion.ts";
 import { runBreakwaterProof } from "../test/fixtures/breakwater-proof.ts";
 import { AUDIO_EXPORT, exportBreakwaterVideo } from "./lib/export-breakwater-video.mjs";
 import { verifyMissionAudio } from "./lib/verify-mission-audio.mjs";
@@ -25,50 +36,140 @@ const prefix = playerCount === 1 ? "solo" : `coop-${playerCount}`;
 const root = resolve("dist/client"),
   output =
     playerCount === 1 ? "dist/breakwater-evidence" : `dist/breakwater-${playerCount}-evidence`,
-  captures = new Map(
-    playerCount === 1
-      ? [
-          [0, "apron"],
-          [702, "grenade"],
-          [915, "shotgun"],
-          [1365, "flame"],
-          [1525, "boarding"],
-          [1596, "tank-jump"],
-          [1970, "ejection"],
-          [2040, "aperture"],
-          [2949, "victory"],
-        ]
-      : [[0, "apron"]],
-  ),
+  captures = new Map([[0, "apron"]]),
   expected = new Map(),
+  expectedFrames = new Map(),
+  ejections = [],
   hashes = [],
   visualHashes = [],
   hash = (text) => createHash("sha256").update(text).digest("hex");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
+const atlases = new Map(
+  await Promise.all(
+    [
+      ["operative", "hero"],
+      ["kestrel", "vehicles"],
+      ["quay-watch", "enemies"],
+      ["breakwater", "enemies"],
+    ].map(async ([id, directory]) => [
+      id,
+      JSON.parse(await readFile(`${root}/assets/art/${directory}/${id}.atlas.json`, "utf8")),
+    ]),
+  ),
+);
 let visual = initialBreakwaterVisual(),
-  beforeWorld;
+  beforeWorld,
+  heroMotion,
+  castMotion;
 const proof = runBreakwaterProof((state) => {
-  if (beforeWorld) visual = advanceBreakwaterVisual(visual, beforeWorld, state);
-  beforeWorld = state;
+  if (beforeWorld) {
+    visual = advanceBreakwaterVisual(visual, beforeWorld, state);
+    heroMotion = state.combat.players.map((p, slot) =>
+      advanceOperativeMotion(
+        beforeWorld.combat.players[slot],
+        p,
+        heroMotion[slot],
+        state.combat.tick,
+        atlases.get("operative"),
+      ),
+    );
+    castMotion = advanceCastMotion(beforeWorld.combat, state.combat, castMotion);
+  } else {
+    heroMotion = state.combat.players.map((p) => initialOperativeMotion(p, state.combat.tick));
+    castMotion = initialCastMotion(state.combat);
+  }
   visualHashes.push(hash(canonical(visual)));
   hashes.push(hash(canonical(state)));
-  if (playerCount !== 1) {
+  {
     const queue = (label, delay = 0) => {
       if (![...captures.values()].includes(label)) captures.set(state.combat.tick + delay, label);
     };
     if (state.combat.grenades.length) queue("grenade", 3);
     if (state.combat.areas.some((a) => a.definitionId === 10)) queue("shotgun", 3);
     if (state.combat.areas.some((a) => a.definitionId === 11)) queue("flame", 4);
-    if (state.combat.players[0].vehicleId !== null) queue("boarding", 8);
+    if (state.combat.players[0].action.kind === "enter")
+      for (const [age, pose] of [
+        [0, "climb"],
+        [2, "step"],
+        [4, "vault"],
+        [6, "straddle"],
+        [7, "sink"],
+        [8, "duck"],
+        [9, "hands"],
+        [11, "seated"],
+      ])
+        queue(`boarding-${pose}`, age);
     if (!state.combat.tanks[0].body.grounded) queue("tank-jump");
-    if (state.combat.tanks[0].armor === 0) queue("ejection", 4);
+    const old = beforeWorld?.combat.players[0],
+      player = state.combat.players[0];
+    if (old?.vehicleId !== null && old?.vehicleId !== undefined && player.vehicleId === null) {
+      assert.notEqual(old.action.kind, "exit", "Continuous tank beat must force ejection");
+      assert.equal(player.life, "alive");
+      assert.equal(player.health, old.health);
+      assert.equal(player.body.grounded, true);
+      assert.equal(player.invulnerableTicks, 12);
+      assert.equal(state.combat.tanks[0].armor, 0);
+      assert.equal(state.combat.tanks[0].occupantId, null);
+      ejections.push({
+        tick: state.combat.tick,
+        playerId: player.playerId,
+        vehicleId: old.vehicleId,
+        from: old.body,
+        to: player.body,
+        oldControlEpoch: old.controlEpoch,
+        controlEpoch: player.controlEpoch,
+        invulnerableTicks: player.invulnerableTicks,
+      });
+      for (const [age, pose] of [
+        "brace",
+        "tuck",
+        "absorb",
+        "low",
+        "push",
+        "rise",
+        "settle",
+        "ready",
+        "layered",
+      ].entries())
+        queue(`forced-ejection-${pose}`, age);
+    }
     if (state.boss.phase === "recovery") queue("aperture", 25);
     if (state.phase === "victory") queue("victory");
   }
-  if (captures.has(state.combat.tick)) expected.set(state.combat.tick, state);
+  if (captures.has(state.combat.tick)) {
+    expected.set(state.combat.tick, state);
+    expectedFrames.set(state.combat.tick, {
+      hero: state.combat.players.map((p, slot) =>
+        operativePresentation(p, state.combat.tick, atlases.get("operative"), heroMotion[slot]),
+      ),
+      cast: [
+        ...state.combat.tanks.flatMap((tank, i) =>
+          tankPresentation(
+            tank,
+            state.combat.tick,
+            atlases.get("kestrel"),
+            castMotion.tanks[i],
+            state.combat.players.find((p) => p.playerId === (tank.occupantId ?? tank.reservedBy))
+              ?.slot ?? 0,
+          ),
+        ),
+        ...state.combat.targets.flatMap((target, i) => {
+          const drawing = enemyPresentation(
+            target,
+            state.combat,
+            atlases.get(target.guard || target.shield ? "breakwater" : "quay-watch"),
+            castMotion.enemies[i].strideQ,
+          );
+          return drawing ? [drawing] : [];
+        }),
+      ],
+    });
+  }
+  beforeWorld = state;
 }, playerCount);
 assert.equal(proof.state.phase, "victory");
+assert.equal(ejections.length, 1);
 assert.equal(hashes.length, proof.recording.commands.length + 1);
 await writeFile(`${output}/${prefix}.recording.json`, `${JSON.stringify(proof.recording)}\n`);
 const server = createServer(async (request, response) => {
@@ -95,7 +196,7 @@ await new Promise((done) => server.listen(0, "127.0.0.1", done));
 let browser;
 const errors = [],
   report = {
-    scope: `Continuous local ${playerCount}-player mission with native art, finite effects and authored sample-based music. Network integration, final sound design and human W06 approval are pending.`,
+    scope: `Continuous local ${playerCount}-player mission with native crew transfers, destruction-driven safe ejection, finite effects and recorded audio. Network integration and human W06 approval are pending.`,
     browserAudioOutput:
       "Chromium --disable-audio-output; WebAudio rendering and MediaRecorder remain active. Physical-device output is not verified.",
     contentHash: proof.state.contentHash,
@@ -106,6 +207,8 @@ const errors = [],
     seed: proof.state.seed,
     outcome: proof.state.phase,
     landmarks: proof.landmarks,
+    forcedEjections: ejections,
+    crewBoundaries: [...expectedFrames].map(([tick, frames]) => ({ tick, ...frames })),
     boundaryHashes: hashes,
     visualHashes,
     presentationPostrollTicks: EFFECT_POSTROLL,
@@ -159,6 +262,14 @@ try {
     const state = await page.evaluate(() => globalThis.breakwater.state());
     assert.equal(canonical(state), canonical(expected.get(tick)));
     await paint();
+    assert.deepEqual(
+      await page.evaluate(() => {
+        const { hero, cast } = globalThis.breakwater.frames();
+        return { hero, cast };
+      }),
+      expectedFrames.get(tick),
+      `Accepted crew/hero frames at ${tick}`,
+    );
     for (const debug of [false, true]) {
       await page.locator("#debug").setChecked(debug);
       await paint();
@@ -194,6 +305,7 @@ try {
   );
   report.checks.push(
     `All ${proof.state.combat.tick} accepted simulation and visual boundaries match Node; complete replay restores the victory state.`,
+    `Hero and cast frames at all ${expectedFrames.size} selected boundaries match Node, including seven boarding poses, the accepted seat transfer and eight safe forced-ejection recovery poses.`,
   );
   // Playback identity belongs to the recording even if the next-run selectors were edited.
   await page.locator("#players").selectOption(playerCount === 4 ? "1" : "4");

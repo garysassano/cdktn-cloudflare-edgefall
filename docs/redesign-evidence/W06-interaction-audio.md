@@ -10,7 +10,7 @@ Engine playback derives from occupied, living, connected ownership with the matc
 
 Accepted cues carry stable action/event identity within the current playback epoch. Duplicate accepted ejection is played once. All 52 samples preload before playback; trigger and lifecycle checks issue no sound-file requests. The diagnostic selectors can omit disconnected owners, while production membership and prediction/confirmation integration remain part of W04.
 
-The current solo mission's late tank sequence is a **voluntary exit**, begun at tick 1954 and detached at 1961, before the tank becomes a wreck. The earlier screenshot label `ejection` is not proof of forced ejection. The separate accepted four-tank damage fixture ejects P4 at tick 183 and now verifies the emergency release, tank destruction and engine stop together. The continuous benchmark's remaining acting/review inventory must retain this distinction.
+The solo mission recorded in this package uses a **voluntary exit**, begun at tick 1954 and detached at 1961, before the tank becomes a wreck. The earlier screenshot label `ejection` is not proof of forced ejection. The separate accepted four-tank damage fixture ejects P4 at tick 183 and verifies the emergency release, tank destruction and engine stop together. The later [crew transfer increment](W06-crew-transfers.md) adds actual forced ejection to the continuous one-, two- and four-player recordings; this historical audio package remains unchanged.
 
 ## Voice pressure and output
 

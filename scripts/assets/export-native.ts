@@ -11,6 +11,7 @@ import {
   OPERATIVE_ARSENAL,
   OPERATIVE_POSES,
 } from "../../src/shared/animation/operative.js";
+import { OPERATIVE_EJECTION_TICKS } from "../../src/shared/animation/operative-motion.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -125,6 +126,7 @@ for (const [id, binding] of actionBindings) {
 for (const [id, duration, minDrawings] of [
   ["body.death", ARCADE.deathTicks, 8],
   ["body.reentry", ARCADE.respawnEntryTicks, 4],
+  ["body.eject", OPERATIVE_EJECTION_TICKS, 8],
 ] as const) {
   const clip = built.source.clips.find((clip) => clip.id === id);
   assert(clip && clip.channel === "full-body", "Missing native life clip");
@@ -178,7 +180,7 @@ const report = {
   sidearmRecoilClips: bindings.length,
   arsenalBindings: OPERATIVE_ARSENAL,
   actionBindings,
-  fullBodyClips: ["body.death", "body.reentry"],
+  fullBodyClips: ["body.death", "body.reentry", "body.eject"],
   bindings: bindings.map(([frame, poseId]) => ({ frame, poseId })),
   image: audit,
   frameHashes: built.frameHashes,

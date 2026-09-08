@@ -73,28 +73,6 @@
   },
   "assets": [
     {
-      "path": "assets/art/bosses/lock-engine.atlas.json",
-      "bytes": 3950,
-      "sha256": "ccc5cbe691d44d6ff2346ab637660a059c53002a1defdeaba6667692b1f17617",
-      "source": "edgefall-native-lock-engine",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/bosses/lock-engine.png",
-      "bytes": 3473,
-      "sha256": "a33c15cfd84b5256f165aa03ff04c2c9847bf36fdf4c0d6c96eb5a9ee741f1de",
-      "source": "edgefall-native-lock-engine",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1056,
-        "height": 132,
-        "colorType": 6
-      },
-      "atlas": "assets/art/bosses/lock-engine.atlas.json"
-    },
-    {
       "path": "assets/art/cinder-railworks.png",
       "bytes": 2168876,
       "sha256": "718541fa816871337aa60d3c626807e71419f978978ce81545af63bf88719b39",
@@ -106,116 +84,6 @@
         "height": 941,
         "colorType": 2
       }
-    },
-    {
-      "path": "assets/art/effects/breakwater-fx.atlas.json",
-      "bytes": 55964,
-      "sha256": "8f2cc7de3bf1d4f8b0290f9d1b583c9cd68a22201df7f0c3e2b3a873a4b1e20f",
-      "source": "edgefall-native-breakwater-fx",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/effects/breakwater-fx.png",
-      "bytes": 21590,
-      "sha256": "d5ed763224e663fb27f6a2f67744f911c23554eab2407d859124b45f8668177a",
-      "source": "edgefall-native-breakwater-fx",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1056,
-        "height": 1848,
-        "colorType": 6
-      },
-      "atlas": "assets/art/effects/breakwater-fx.atlas.json"
-    },
-    {
-      "path": "assets/art/enemies/breakwater.atlas.json",
-      "bytes": 16439,
-      "sha256": "d02bf9246f12f66999a5025e23e72edb978e38c848a8b55ba382dfec2163810e",
-      "source": "edgefall-native-breakwater",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/enemies/breakwater.png",
-      "bytes": 5071,
-      "sha256": "b170c695f475552d6b5a978e7bc1a6f9ac7a19baaff71d69060aa0d4a7ca0cd6",
-      "source": "edgefall-native-breakwater",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 544,
-        "height": 272,
-        "colorType": 6
-      },
-      "atlas": "assets/art/enemies/breakwater.atlas.json"
-    },
-    {
-      "path": "assets/art/enemies/quay-watch.atlas.json",
-      "bytes": 12615,
-      "sha256": "78e0008fd37f2e39df1ea2afefb4f37f27668145c5548c7d8f525efbe735cbc7",
-      "source": "edgefall-native-quay-watch",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/enemies/quay-watch.png",
-      "bytes": 3499,
-      "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70",
-      "source": "edgefall-native-quay-watch",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 544,
-        "height": 204,
-        "colorType": 6
-      },
-      "atlas": "assets/art/enemies/quay-watch.atlas.json"
-    },
-    {
-      "path": "assets/art/environment/breakwater-quay.atlas.json",
-      "bytes": 8108,
-      "sha256": "096ed48d75e0c25d013acf73d92dda97406f55a0639c5678a407d30bb288a5c1",
-      "source": "edgefall-native-breakwater-quay",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/environment/breakwater-quay.png",
-      "bytes": 6498,
-      "sha256": "f01d081c938d30ae45e6c9231f65a8ad2160e18eec4fc05b9e494122566177bd",
-      "source": "edgefall-native-breakwater-quay",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1056,
-        "height": 396,
-        "colorType": 6
-      },
-      "atlas": "assets/art/environment/breakwater-quay.atlas.json"
-    },
-    {
-      "path": "assets/art/hero/operative.atlas.json",
-      "bytes": 213722,
-      "sha256": "8a7c3bebd806aa9b645a0e025e539048ea94ac35d8a253b71615fdce3b0403cb",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/hero/operative.png",
-      "bytes": 66182,
-      "sha256": "100224602c5b0bbd8e1c34c0a8dbfaf946d2f9f0e5392e759ba7337de5fd847c",
-      "source": "edgefall-native-operative",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 1088,
-        "height": 2040,
-        "colorType": 6
-      },
-      "atlas": "assets/art/hero/operative.atlas.json"
     },
     {
       "path": "assets/art/rook-benchmark.json",
@@ -238,28 +106,6 @@
         "colorType": 6
       },
       "atlas": "assets/art/rook-benchmark.json"
-    },
-    {
-      "path": "assets/art/vehicles/kestrel.atlas.json",
-      "bytes": 42294,
-      "sha256": "df22b0263c4b2ac632d75fa491b15dc62fba2022a2be134b0ce4f9769e99ea8a",
-      "source": "edgefall-native-kestrel",
-      "licence": "Project-original",
-      "maxBytes": 256000
-    },
-    {
-      "path": "assets/art/vehicles/kestrel.png",
-      "bytes": 13424,
-      "sha256": "0e49a7e6e5e042b9fbc946519b2a94d8ddd755639970c548475aa8af2359b0b5",
-      "source": "edgefall-native-kestrel",
-      "licence": "Project-original",
-      "maxBytes": 500000,
-      "png": {
-        "width": 800,
-        "height": 1400,
-        "colorType": 6
-      },
-      "atlas": "assets/art/vehicles/kestrel.atlas.json"
     },
     {
       "path": "assets/audio/beam-loop.ogg",
@@ -843,6 +689,160 @@
       "licence": "CC0-1.0",
       "maxBytes": 250000,
       "originalFile": "NES00.ogg"
+    },
+    {
+      "path": "assets/art/hero/operative.png",
+      "bytes": 71217,
+      "sha256": "ea377af09841b34e18546832b7f6bd7e566796ac620e04e39f43f69b7a638758",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1156,
+        "height": 2040,
+        "colorType": 6
+      },
+      "atlas": "assets/art/hero/operative.atlas.json"
+    },
+    {
+      "path": "assets/art/hero/operative.atlas.json",
+      "bytes": 226275,
+      "sha256": "493728b127fb0fb84f56957a84a7f7fa23f8e875eac9c4f2561802e6ca86c924",
+      "source": "edgefall-native-operative",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/enemies/quay-watch.png",
+      "bytes": 3499,
+      "sha256": "9cbd34b18c369d856571dd2c1be830f3b6812832d1303bdf638fffd547cf4c70",
+      "source": "edgefall-native-quay-watch",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 544,
+        "height": 204,
+        "colorType": 6
+      },
+      "atlas": "assets/art/enemies/quay-watch.atlas.json"
+    },
+    {
+      "path": "assets/art/enemies/quay-watch.atlas.json",
+      "bytes": 12615,
+      "sha256": "78e0008fd37f2e39df1ea2afefb4f37f27668145c5548c7d8f525efbe735cbc7",
+      "source": "edgefall-native-quay-watch",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/enemies/breakwater.png",
+      "bytes": 5071,
+      "sha256": "b170c695f475552d6b5a978e7bc1a6f9ac7a19baaff71d69060aa0d4a7ca0cd6",
+      "source": "edgefall-native-breakwater",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 544,
+        "height": 272,
+        "colorType": 6
+      },
+      "atlas": "assets/art/enemies/breakwater.atlas.json"
+    },
+    {
+      "path": "assets/art/enemies/breakwater.atlas.json",
+      "bytes": 16439,
+      "sha256": "d02bf9246f12f66999a5025e23e72edb978e38c848a8b55ba382dfec2163810e",
+      "source": "edgefall-native-breakwater",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/vehicles/kestrel.png",
+      "bytes": 23577,
+      "sha256": "6cbd8a7047b84a8291698d1e6629781d9f2612735abf6e2de085347f3d90f110",
+      "source": "edgefall-native-kestrel",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 800,
+        "height": 2000,
+        "colorType": 6
+      },
+      "atlas": "assets/art/vehicles/kestrel.atlas.json"
+    },
+    {
+      "path": "assets/art/vehicles/kestrel.atlas.json",
+      "bytes": 60682,
+      "sha256": "74bc20ca96cc83260558756fc51f4e62ac67d52a78fbda8bbc6737eec657838c",
+      "source": "edgefall-native-kestrel",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/environment/breakwater-quay.png",
+      "bytes": 6498,
+      "sha256": "f01d081c938d30ae45e6c9231f65a8ad2160e18eec4fc05b9e494122566177bd",
+      "source": "edgefall-native-breakwater-quay",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1056,
+        "height": 396,
+        "colorType": 6
+      },
+      "atlas": "assets/art/environment/breakwater-quay.atlas.json"
+    },
+    {
+      "path": "assets/art/environment/breakwater-quay.atlas.json",
+      "bytes": 8108,
+      "sha256": "096ed48d75e0c25d013acf73d92dda97406f55a0639c5678a407d30bb288a5c1",
+      "source": "edgefall-native-breakwater-quay",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/bosses/lock-engine.png",
+      "bytes": 3473,
+      "sha256": "a33c15cfd84b5256f165aa03ff04c2c9847bf36fdf4c0d6c96eb5a9ee741f1de",
+      "source": "edgefall-native-lock-engine",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1056,
+        "height": 132,
+        "colorType": 6
+      },
+      "atlas": "assets/art/bosses/lock-engine.atlas.json"
+    },
+    {
+      "path": "assets/art/bosses/lock-engine.atlas.json",
+      "bytes": 3950,
+      "sha256": "ccc5cbe691d44d6ff2346ab637660a059c53002a1defdeaba6667692b1f17617",
+      "source": "edgefall-native-lock-engine",
+      "licence": "Project-original",
+      "maxBytes": 256000
+    },
+    {
+      "path": "assets/art/effects/breakwater-fx.png",
+      "bytes": 21590,
+      "sha256": "d5ed763224e663fb27f6a2f67744f911c23554eab2407d859124b45f8668177a",
+      "source": "edgefall-native-breakwater-fx",
+      "licence": "Project-original",
+      "maxBytes": 500000,
+      "png": {
+        "width": 1056,
+        "height": 1848,
+        "colorType": 6
+      },
+      "atlas": "assets/art/effects/breakwater-fx.atlas.json"
+    },
+    {
+      "path": "assets/art/effects/breakwater-fx.atlas.json",
+      "bytes": 55964,
+      "sha256": "8f2cc7de3bf1d4f8b0290f9d1b583c9cd68a22201df7f0c3e2b3a873a4b1e20f",
+      "source": "edgefall-native-breakwater-fx",
+      "licence": "Project-original",
+      "maxBytes": 256000
     }
   ]
 }
