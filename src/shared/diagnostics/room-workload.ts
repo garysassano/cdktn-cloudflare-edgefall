@@ -150,6 +150,14 @@ export function createRoomWorkload(multiplier: 1 | 2): FullSnapshot {
       action: action(),
       components: [{ id: 1, health: 100, broken: false }],
       weapon: weapon(),
+      secondary: {
+        ammo: 10,
+        shotsFired: 0,
+        cooldownTicks: 0,
+        shotOrdinal: 0,
+        lastActionInstanceId: 0,
+        action: action(),
+      },
     })),
     enemies: Array.from({ length: 32 * multiplier }, (_, index) => ({
       id: 200 + index,

@@ -8,6 +8,7 @@ import { airborneDeathRecoveryProof } from "./airborne-death-recovery-proof.js";
 import { areaCombatProof } from "./area-proof.js";
 import { beamProof } from "./beam-proof.js";
 import { campaignProof } from "./campaign-proof.js";
+import { cannonCombatProof } from "./cannon-proof.js";
 import { collisionProof } from "./collision-proof.js";
 import { combatProof } from "./combat-proof.js";
 import { combatReconnectProof } from "./combat-reconnect-proof.js";
@@ -124,6 +125,7 @@ export async function contractProof() {
     shieldCombat: await shieldCombatProof(),
     areaCombat: await areaCombatProof(),
     tankCombat: await tankCombatProof(),
+    cannonCombat: await cannonCombatProof(),
     ordnance: await ordnanceProof(),
     hmg: await hmgProof(),
     support: await supportProof(),

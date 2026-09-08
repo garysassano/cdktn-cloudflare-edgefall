@@ -1,4 +1,4 @@
-# Arcade full snapshots v3.14
+# Arcade full snapshots v3.15
 
 The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full snapshot format carries exact local controller state, remote entity state, hostile threat descriptors and explicit removals. It is not a checkpoint or replay encoding. Static geometry, textures and definition tables are identified by the negotiated content build and are not resent here. The active product remains v2 until W04 integration.
 
@@ -7,7 +7,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | Byte offset | Field                          | Encoding                 |
 | ----------- | ------------------------------ | ------------------------ |
 | 0           | Magic EF (`0x4645`)            | u16                      |
-| 2           | Major 3, minor 14              | u8, u8                   |
+| 2           | Major 3, minor 15              | u8, u8                   |
 | 4           | Message type 2, flags 0 or 1   | u8, u8                   |
 | 6           | Exact frame length             | u16                      |
 | 8           | Run epoch                      | u32, nonzero             |
@@ -27,7 +27,7 @@ The input/handshake contract is in [protocol-v3.md](./protocol-v3.md). This full
 | 48          | Room mode                      | u8 enum                  |
 | 49          | Reserved zero                  | 15 bytes                 |
 
-Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 448 bytes and the base sections can reach 39,432 bytes; the maximum combat section raises the complete frame limit to 53,088 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
+Room mode is indexed from `lobby, loading, playing, intermission, paused-empty, recovering, completed, expired`. The minimum frame is 448 bytes and the base sections can reach 40,072 bytes; the maximum combat section raises the complete frame limit to 53,728 bytes. This hard allocation limit is not the 6 KiB steady-traffic target; W02/W04 must measure representative populated rooms and reduce traffic before accepting the performance gate. No compression or render quantization is implied by this format.
 
 ## Record sequence and sizes
 
@@ -38,7 +38,7 @@ The 64-byte header is followed by the records below, in this exact order. Entity
 | Camera/campaign           | 40           | 1                |
 | Processed acknowledgments | 40           | Player count     |
 | Controlled players        | 304          | Player count     |
-| Vehicles                  | 324          | Vehicle count    |
+| Vehicles                  | 364          | Vehicle count    |
 | Enemies                   | 64           | Enemy count      |
 | Projectiles               | 48           | Projectile count |
 | Dynamic platforms         | 32           | Platform count   |
@@ -61,7 +61,9 @@ A weapon is 20 bytes: `id, ammo, cooldownTicks, shotOrdinal, lastActionInstanceI
 
 A 304-byte player record is: body; `playerId, slot, controlEpoch, life, lifeStartTick, bodyPresence, locomotion`; action; `facing, aim, firearmAim.pitch, firearmAim.nextStepTick, jumpBufferTicks, coyoteTicks, ignoredSupportId, ignoredSupportTicks, invulnerableTicks, reboardCooldownTicks, vehicleSpecialTicks, vehicleId`; weapon; `grenadeStock, grenadeCooldownTicks, meleeCooldownTicks, geometryRevision, health, lives, lastRallyMission`; then five processed edge cursors in input edge-kind order. Facing is signed ±1. Life is `alive, death, respawning, spectating`; locomotion is `grounded, airborne, crouched, seated`; aim is the input aim enum. `lifeStartTick` is an unsigned tick no later than the snapshot tick, independent of the action clock. Death, entry and spectating delays therefore survive baseline reconstruction and action cancellation. `bodyPresence` is a u32 enum: 0 for present, 1 for removed. Alive requires present; spectating requires removed. Death and protected entry may be present or removed. A removed entry waits for a safe anchor and cannot become alive merely because its animation deadline passed. Removed bodies retain their bounded last position with zero velocity/remainders, no support/contacts, false grounding and airborne locomotion. A non-alive player cannot own a vehicle or active action. Removal preserves the life clock; a successful entry retry restarts the twelve-tick entry phase and protection. `firearmAim.pitch` is a signed authored elevation index from -4 (down) through 0 (horizontal) to 4 (up), mirrored by facing; `firearmAim.nextStepTick` is the unsigned tick when the barrel may advance again, bounded to the snapshot tick plus the maximum sixty-tick content exposure. The combat archive also checks the actual weapon profile, lowered/crouched state and active pose. These fields are independent of requested aim, cadence, shot ownership and consumed action markers. Every field of `ControlledActor` is round-tripped without reduced precision.
 
-A 324-byte vehicle record is: body; `definitionId, kind, lifecycle, occupantId, reservedBy, controlEpoch, armor`; action; weapon; component count; eight component slots of `id, health, broken`, with unused slots all zero; then `ownerControlEpoch` (nullable u32), `facing` (signed i32, -1 or 1), `heading` (u32, 0–7) and `invulnerableTicks` (u32, 0–65535). Kinds are `tank, walker, aircraft`; lifecycle is `available, boarding, occupied, exiting, destroying, wreck`. Component count is 0–8. Occupants are player body/entity IDs, not profile/player membership IDs. An occupant may remain attached during exit or destruction until the authoritative transfer occurs. One member cannot occupy/reserve multiple seats. Reservations require the boarding lifecycle. A seated controller must match either the reserved or occupied owner and the vehicle’s `ownerControlEpoch`. The vehicle’s own `controlEpoch` is an independent lease generation and does not have to equal the player input generation. An unclaimed vehicle has a null owner control epoch. The tank heading runs counterclockwise from right through up-right, up, up-left, left, down-left, down and down-right; hull facing remains independent.
+A 364-byte vehicle record is: body; `definitionId, kind, lifecycle, occupantId, reservedBy, controlEpoch, armor`; action; weapon; component count; eight component slots of `id, health, broken`, with unused slots all zero; then `ownerControlEpoch` (nullable u32), `facing` (signed i32, -1 or 1), `heading` (u32, 0–7) and `invulnerableTicks` (u32, 0–65535). Kinds are `tank, walker, aircraft`; lifecycle is `available, boarding, occupied, exiting, destroying, wreck`. Component count is 0–8. Occupants are player body/entity IDs, not profile/player membership IDs. An occupant may remain attached during exit or destruction until the authoritative transfer occurs. One member cannot occupy/reserve multiple seats. Reservations require the boarding lifecycle. A seated controller must match either the reserved or occupied owner and the vehicle’s `ownerControlEpoch`. The vehicle’s own `controlEpoch` is an independent lease generation and does not have to equal the player input generation. An unclaimed vehicle has a null owner control epoch. The tank heading runs counterclockwise from right through up-right, up, up-left, left, down-left, down and down-right; hull facing remains independent.
+
+The final forty bytes are `secondary.ammo, secondary.shotsFired, secondary.cooldownTicks, secondary.shotOrdinal, secondary.lastActionInstanceId`, followed by the five-word secondary action. A ready secondary action has zero identity/definition/cursor; a firing secondary requires an occupied seat and its retained last action ID. A tank starts with ten shells; its private validator requires ammunition plus expenditure to equal ten. Primary and secondary ordinals and action IDs cannot alias. Cannon flight uses projectile definition 19 and body shape 22; its eight headings use the tank heading order. Its single contact blast uses shape 23 and radius 56 pixels.
 
 ## Other entities and threats
 
@@ -79,7 +81,7 @@ Contextual knife actions project their authored hand position, facing and shape 
 
 ## Combat accounting section
 
-Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.14; there is no compatibility decoder for earlier minors.
+Header flag bit 0 appends a versioned combat section after removal IDs; flags other than 0 or 1 are rejected. Flag 0 decodes to `combat: null`, used by controller and synthetic fixtures. Combat snapshots include the section, including when the encounter has completed. All frames and handshakes now require protocol 3.15; there is no compatibility decoder for earlier minors.
 
 | Section offset | Field                                                                            | Encoding     |
 | -------------- | -------------------------------------------------------------------------------- | ------------ |
@@ -131,4 +133,4 @@ Item IDs are unique across gameplay entities and below the allocator. The negoti
 
 ## Registered material scenarios
 
-Protocol 3.14 adds `scenarioId` at section offset 4. The registry maps IDs 1–14 to the original laboratory cases and 15–78 to the 64 weapon/material/target-motion cases. The generic codec requires a nonzero bounded integer; the loaded diagnostic adapter requires a registered ID, matching authored prop definitions and calibration enemy definition 5 with at most 32 HP. The scenario must remain fixed throughout a run, including after every prop and target has been removed. The public material and geometry therefore remain identifiable without guessing from surviving entities. The complete snapshot allocation ceiling is 53,088 bytes.
+Protocol 3.14 adds `scenarioId` at section offset 4. The registry maps IDs 1–14 to the original laboratory cases and 15–78 to the 64 weapon/material/target-motion cases. The generic codec requires a nonzero bounded integer; the loaded diagnostic adapter requires a registered ID, matching authored prop definitions and calibration enemy definition 5 with at most 32 HP. The scenario must remain fixed throughout a run, including after every prop and target has been removed. The public material and geometry therefore remain identifiable without guessing from surviving entities. The complete snapshot allocation ceiling is 53,728 bytes.

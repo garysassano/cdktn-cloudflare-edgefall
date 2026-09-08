@@ -14,6 +14,7 @@ import {
   releaseTank,
   requestTankExit,
   reserveTank,
+  stepTankCannon,
   stepTankGun,
   stepTankTransfer,
   tankOwner,
@@ -28,7 +29,7 @@ export interface CombatTankConnections {
   connectedPlayerIds: readonly number[];
   releasePlayerIds: readonly number[];
 }
-const neutral = { held: 0, jumpPressed: false, firePressed: false };
+const neutral = { held: 0, jumpPressed: false, firePressed: false, grenadePressed: false };
 function exitShape() {
   const shape = FOOT_DEFINITION && COMBAT_SHAPES.get(FOOT_DEFINITION.standingShapeId);
   if (!shape) throw new Error("Missing tank ejection shape");
@@ -51,6 +52,7 @@ export function releaseCombatTank(
     if (reason === "destroyed") tank.controlEpoch = nextCounter(tank.controlEpoch);
     tank.lifecycle = tank.armor === 0 ? "wreck" : "available";
     tank.action = idleTankAction(frame.tick);
+    tank.secondary.action = idleTankAction(frame.tick);
     if (tank.armor === 0) tank.body.vx = tank.body.vy = tank.invulnerableTicks = 0;
     return;
   }
@@ -190,7 +192,7 @@ export function fireCombatTanks(
   changes: SeatChanges,
   terrain: SweepTarget[],
 ) {
-  const outcomes = new Map<number, ActionOutcome>();
+  const outcomes = new Map<number, { fire: ActionOutcome; grenade: ActionOutcome }>();
   for (const tank of world.tanks) {
     const ownerId = tank.occupantId;
     if (ownerId === null) continue;
@@ -207,56 +209,77 @@ export function fireCombatTanks(
       COMBAT_CATALOG,
     );
     world.nextActionId = result.nextActionId;
-    outcomes.set(
-      ownerId,
-      changed && (command.firePressed || command.held & Held.Fire) ? "unavailable" : result.outcome,
+    const cannon = stepTankCannon(
+      tank,
+      !changed && command.grenadePressed,
+      world.tick,
+      world.nextActionId,
+      TANK_PROFILE,
+      COMBAT_CATALOG,
     );
-    for (const item of result.markers) {
-      const socket = item.pose.sockets.find((socket) => socket.name === "muzzle"),
-        definition = COMBAT_ATTACKS.get(item.marker.payloadId),
-        heading =
-          TANK_PROFILE.headings[TANK_PROFILE.fireTimelineIds.indexOf(tank.action.definitionId)],
-        shape = definition && COMBAT_SHAPES.get(definition.shapeId);
-      if (!socket || !definition || !shape || !heading)
-        throw new Error("Missing tank release content");
-      const point = worldSocket(tank.body, socket.point, 1);
-      const notice: CombatNotice = {
-        kind: "sound",
-        ownerId,
-        actionInstanceId: item.actionInstanceId,
-        markerIndex: item.markerIndex,
-        source: {
-          definitionId: definition.id,
-          controlEpoch: actor.controlEpoch,
-          shotOrdinal: tank.weapon.shotOrdinal,
-          vehicleId: tank.body.id,
-        },
-        position: point,
-        impact: null,
-        targetId: null,
-        beam: null,
-      };
-      if (item.marker.kind === "spawn-attack") {
-        notice.kind = "shot";
-        if (muzzleBlocked(worldSocket(tank.body, TANK_PROFILE.hardpoint, 1), point, shape, terrain))
-          notice.kind = "muzzle-blocked";
-        else {
-          if (world.projectiles.length >= 256)
-            throw new Error("Tank projectile cap requires recovery");
-          world.projectiles.push({
-            id: world.nextEntityId,
-            ownerId,
-            team: 1,
-            actionInstanceId: item.actionInstanceId,
+    world.nextActionId = cannon.nextActionId;
+    outcomes.set(ownerId, {
+      fire:
+        changed && (command.firePressed || command.held & Held.Fire)
+          ? "unavailable"
+          : result.outcome,
+      grenade: changed && command.grenadePressed ? "unavailable" : cannon.outcome,
+    });
+    for (const [secondary, release] of [
+      [false, result],
+      [true, cannon],
+    ] as const) {
+      const profile = secondary ? TANK_PROFILE.cannon : TANK_PROFILE;
+      const action = secondary ? tank.secondary.action : tank.action;
+      const feed = secondary ? tank.secondary : tank.weapon;
+      for (const item of release.markers) {
+        const socket = item.pose.sockets.find((socket) => socket.name === "muzzle"),
+          definition = COMBAT_ATTACKS.get(item.marker.payloadId),
+          heading = profile.headings[profile.fireTimelineIds.indexOf(action.definitionId)],
+          shape =
+            definition &&
+            COMBAT_SHAPES.get(secondary ? TANK_PROFILE.cannon.bodyShapeId : definition.shapeId);
+        if (!socket || !definition || !shape || !heading)
+          throw new Error("Missing tank release content");
+        const point = worldSocket(tank.body, socket.point, 1);
+        const notice: CombatNotice = {
+          kind: "sound",
+          ownerId,
+          actionInstanceId: item.actionInstanceId,
+          markerIndex: item.markerIndex,
+          source: {
             definitionId: definition.id,
-            position: point,
-            velocity: { ...heading.velocity },
-            spawnTick: world.tick,
-          });
-          world.nextEntityId = nextCounter(world.nextEntityId);
-        }
-      } else if (item.marker.kind !== "sound") throw new Error("Unsupported tank gun marker");
-      world.events.push(notice);
+            controlEpoch: actor.controlEpoch,
+            shotOrdinal: feed.shotOrdinal,
+            vehicleId: tank.body.id,
+          },
+          position: point,
+          impact: null,
+          targetId: null,
+          beam: null,
+        };
+        if (item.marker.kind === "spawn-attack") {
+          notice.kind = "shot";
+          if (muzzleBlocked(worldSocket(tank.body, profile.hardpoint, 1), point, shape, terrain))
+            notice.kind = "muzzle-blocked";
+          else {
+            if (world.projectiles.length >= 256)
+              throw new Error("Tank projectile cap requires recovery");
+            world.projectiles.push({
+              id: world.nextEntityId,
+              ownerId,
+              team: 1,
+              actionInstanceId: item.actionInstanceId,
+              definitionId: definition.id,
+              position: point,
+              velocity: { ...heading.velocity },
+              spawnTick: world.tick,
+            });
+            world.nextEntityId = nextCounter(world.nextEntityId);
+          }
+        } else if (item.marker.kind !== "sound") throw new Error("Unsupported tank gun marker");
+        world.events.push(notice);
+      }
     }
   }
   return outcomes;

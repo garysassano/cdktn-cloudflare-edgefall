@@ -51,8 +51,8 @@ export const tankInput: TankInputScript = (tick) => ({
 });
 
 /** Four real admission streams; vehicle movement is authoritative in this W05 laboratory. */
-export function recordTankCombat(through = 120, input: TankInputScript = tankInput) {
-  let state = createCombatRuntime("tank");
+export function recordTankCombat(through = 120, input: TankInputScript = tankInput, players = 4) {
+  let state = createCombatRuntime("tank", players);
   const states = [structuredClone(state)],
     entries: CombatJournalTick[] = [];
   const streams = state.combat.players.map(

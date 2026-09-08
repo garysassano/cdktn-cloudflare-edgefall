@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 import { verifyAreaLab } from "./lib/verify-area-lab.mjs";
+import { verifyCannonLab } from "./lib/verify-cannon-lab.mjs";
 import { verifyHmgLab } from "./lib/verify-hmg-lab.mjs";
 import { verifyLaserLab } from "./lib/verify-laser-lab.mjs";
 import { verifyOrdnanceLab } from "./lib/verify-ordnance-lab.mjs";
@@ -154,7 +155,7 @@ try {
     const download = page.waitForEvent("download");
     await page.locator("#export").click();
     await (await download).saveAs(path);
-    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 14);
+    assert.equal(JSON.parse(await readFile(path, "utf8")).format, 15);
     await page.locator("#reset").click();
     await page.locator("#import").setInputFiles(path);
     await page.waitForFunction(() =>
@@ -178,6 +179,7 @@ try {
   const shield = await verifyShieldLab(page, output);
   const area = await verifyAreaLab(page, output);
   const tank = await verifyTankLab(page, output);
+  const cannon = await verifyCannonLab(page, output);
   const ordnance = await verifyOrdnanceLab(page, output);
   const hmg = await verifyHmgLab(page, output);
   const support = await verifySupportLab(page, output);
@@ -285,6 +287,7 @@ try {
     shield,
     area,
     tank,
+    cannon,
     ordnance,
     hmg,
     support,

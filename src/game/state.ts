@@ -99,6 +99,15 @@ export interface ControlledActor extends FootActor {
   lastRallyMission: number;
   processedEdgeIds: EdgeCursors;
 }
+export interface VehicleSecondaryState {
+  ammo: number;
+  shotsFired: number;
+  cooldownTicks: number;
+  /** Primary and secondary share a monotonic per-vehicle confirmation ordinal space. */
+  shotOrdinal: number;
+  lastActionInstanceId: number;
+  action: ActionState;
+}
 export interface VehicleState {
   body: Body;
   definitionId: number;
@@ -116,6 +125,7 @@ export interface VehicleState {
   action: ActionState;
   components: Array<{ id: number; health: number; broken: boolean }>;
   weapon: WeaponState;
+  secondary: VehicleSecondaryState;
 }
 export interface CampaignState {
   ruleset: RulesetId;

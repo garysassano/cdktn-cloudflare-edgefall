@@ -1,9 +1,17 @@
 import type { ActionCatalog } from "../combat/timeline.js";
-import { stepAction } from "../combat/timeline.js";
+import { actionPose, stepAction } from "../combat/timeline.js";
 import type { ActorDefinition, ShapeDefinition, VehicleDefinition } from "../content/schema.js";
 import { stepFootController } from "../controller/foot.js";
 import { canonical } from "../core/canonical.js";
-import { COUNTER_LIMIT, integer, nextCounter, pixels } from "../core/numeric.js";
+import {
+  COUNTER_LIMIT,
+  MAX_MOTION,
+  integer,
+  motion,
+  nextCounter,
+  pixels,
+  position,
+} from "../core/numeric.js";
 import { Held } from "../input/types.js";
 import { blockingShapes, startSupport, worldRect, worldSocket } from "../physics/body.js";
 import { type CollisionFrame, CollisionGrid, CollisionIndex } from "../physics/grid.js";
@@ -33,6 +41,19 @@ export interface TankProfile {
   fallBoundary: number;
   hardpoint: Point;
   headings: ReadonlyArray<{ muzzle: Point; velocity: Point }>;
+  cannon: TankCannonProfile;
+}
+export interface TankCannonProfile {
+  attackId: number;
+  bodyShapeId: number;
+  stock: number;
+  cadenceTicks: number;
+  blastRadius: number;
+  fireTimelineIds: readonly number[];
+  releaseTick: number;
+  recoil: readonly number[];
+  hardpoint: Point;
+  headings: ReadonlyArray<{ muzzle: Point; velocity: Point }>;
 }
 export interface TankState extends VehicleState {
   jumpBufferTicks: number;
@@ -41,6 +62,8 @@ export interface TankState extends VehicleState {
   disconnectedTicks: number;
   lastGunOwnerId: number | null;
   lastGunControlEpoch: number | null;
+  lastCannonOwnerId: number | null;
+  lastCannonControlEpoch: number | null;
 }
 export interface TankIntent {
   held: number;
@@ -94,12 +117,22 @@ export function createTank(
       shotOrdinal: 0,
       lastActionInstanceId: 0,
     },
+    secondary: {
+      ammo: profile.cannon.stock,
+      shotsFired: 0,
+      cooldownTicks: 0,
+      shotOrdinal: 0,
+      lastActionInstanceId: 0,
+      action: idleTankAction(0),
+    },
     jumpBufferTicks: 0,
     coyoteTicks: 0,
     turnTicks: 0,
     disconnectedTicks: 0,
     lastGunOwnerId: null,
     lastGunControlEpoch: null,
+    lastCannonOwnerId: null,
+    lastCannonControlEpoch: null,
   };
 }
 export function attachTankDriver(tank: TankState, actor: ControlledActor, profile: TankProfile) {
@@ -137,6 +170,7 @@ export function moveTank(
     return { tank, jumpAccepted: false, fault: null };
   tank.invulnerableTicks = Math.max(0, tank.invulnerableTicks - 1);
   tank.weapon.cooldownTicks = Math.max(0, tank.weapon.cooldownTicks - 1);
+  tank.secondary.cooldownTicks = Math.max(0, tank.secondary.cooldownTicks - 1);
   tank.turnTicks = Math.max(0, tank.turnTicks - 1);
   const driving = tank.lifecycle === "occupied";
   const actor: FootActor = {
@@ -353,6 +387,7 @@ export function requestTankExit(
   )
     return false;
   tank.lifecycle = "exiting";
+  tank.secondary.action = idleTankAction(tick);
   tank.action = {
     kind: "exit",
     actionInstanceId: actionId,
@@ -380,6 +415,7 @@ export function releaseTank(
   tank.controlEpoch = nextCounter(tank.controlEpoch);
   tank.lifecycle = tank.armor > 0 ? "available" : "wreck";
   tank.action = idleTankAction(tick);
+  tank.secondary.action = idleTankAction(tick);
   tank.jumpBufferTicks = tank.coyoteTicks = tank.disconnectedTicks = 0;
   actor.vehicleId = null;
   actor.body = body ?? {
@@ -452,7 +488,7 @@ export function stepTankGun(
     else {
       integer(
         nextActionId,
-        tank.weapon.lastActionInstanceId + 1,
+        Math.max(tank.weapon.lastActionInstanceId, tank.secondary.lastActionInstanceId) + 1,
         COUNTER_LIMIT - 2,
         "tank gun allocation",
       );
@@ -466,13 +502,72 @@ export function stepTankGun(
         nextMarkerIndex: 0,
       };
       tank.weapon.cooldownTicks = profile.fireCadenceTicks;
-      tank.weapon.shotOrdinal = nextCounter(tank.weapon.shotOrdinal);
+      tank.weapon.shotOrdinal = nextCounter(
+        Math.max(tank.weapon.shotOrdinal, tank.secondary.shotOrdinal),
+      );
       tank.weapon.lastActionInstanceId = nextActionId;
       tank.lastGunOwnerId = tank.occupantId;
       tank.lastGunControlEpoch = tank.ownerControlEpoch;
       nextActionId = nextCounter(nextActionId);
       const step = stepAction(tank.action, tick, catalog);
       tank.action = step.action;
+      markers.push(...step.markers);
+      outcome = "applied";
+    }
+  }
+  return { outcome, nextActionId, markers };
+}
+
+/** Independent finite cannon: one grenade edge pays one shell, even if release is canceled. */
+export function stepTankCannon(
+  tank: TankState,
+  requested: boolean,
+  tick: number,
+  nextActionId: number,
+  profile: TankProfile,
+  catalog: ActionCatalog,
+) {
+  const cannon = tank.secondary;
+  const markers: ReturnType<typeof stepAction>["markers"] = [];
+  let outcome: "none" | "applied" | "cooldown" | "unavailable" = "none";
+  if (tank.lifecycle !== "occupied" || tank.occupantId === null) {
+    cannon.action = idleTankAction(tick);
+    return { outcome: requested ? ("unavailable" as const) : outcome, nextActionId, markers };
+  }
+  if (cannon.action.kind === "fire") {
+    const step = stepAction(cannon.action, tick, catalog);
+    cannon.action = step.finished ? idleTankAction(tick) : step.action;
+    markers.push(...step.markers);
+  }
+  if (requested) {
+    if (cannon.ammo === 0) outcome = "unavailable";
+    else if (cannon.action.kind !== "ready" || cannon.cooldownTicks > 0) outcome = "cooldown";
+    else {
+      integer(
+        nextActionId,
+        Math.max(tank.weapon.lastActionInstanceId, cannon.lastActionInstanceId) + 1,
+        COUNTER_LIMIT - 2,
+        "cannon allocation",
+      );
+      const definitionId = profile.cannon.fireTimelineIds[tank.heading];
+      if (definitionId === undefined) throw new Error("Missing cannon heading");
+      cannon.action = {
+        kind: "fire",
+        actionInstanceId: nextActionId,
+        stateStartTick: tick,
+        definitionId,
+        nextMarkerIndex: 0,
+      };
+      cannon.ammo--;
+      cannon.shotsFired++;
+      cannon.cooldownTicks = profile.cannon.cadenceTicks;
+      cannon.shotOrdinal = nextCounter(Math.max(tank.weapon.shotOrdinal, cannon.shotOrdinal));
+      cannon.lastActionInstanceId = nextActionId;
+      tank.lastCannonOwnerId = tank.occupantId;
+      tank.lastCannonControlEpoch = tank.ownerControlEpoch;
+      nextActionId = nextCounter(nextActionId);
+      const step = stepAction(cannon.action, tick, catalog);
+      cannon.action = step.action;
       markers.push(...step.markers);
       outcome = "applied";
     }
@@ -497,6 +592,7 @@ export function publicTankState(tank: TankState): VehicleState {
     action: tank.action,
     components: tank.components,
     weapon: tank.weapon,
+    secondary: tank.secondary,
   });
 }
 
@@ -528,6 +624,39 @@ export function validateTankState(
   integer(tank.disconnectedTicks, 0, profile.disconnectGraceTicks - 1, "tank disconnect grace");
   check(tank.weapon.id === profile.definition.weaponId && tank.weapon.ammo === 0, "primary feed");
   integer(tank.weapon.cooldownTicks, 0, profile.fireCadenceTicks, "tank gun cadence");
+  const secondary = tank.secondary;
+  integer(secondary.ammo, 0, profile.cannon.stock, "cannon ammo");
+  integer(secondary.shotsFired, 0, profile.cannon.stock, "cannon expenditure");
+  integer(secondary.shotOrdinal, 0, COUNTER_LIMIT - 1, "cannon ordinal");
+  integer(secondary.cooldownTicks, 0, profile.cannon.cadenceTicks, "cannon cadence");
+  integer(secondary.action.stateStartTick, 0, tick, "cannon action start");
+  check(
+    secondary.ammo + secondary.shotsFired === profile.cannon.stock,
+    "cannon stock conservation",
+  );
+  check((secondary.shotsFired === 0) === (secondary.shotOrdinal === 0), "cannon spent ordinal");
+  check(
+    secondary.shotOrdinal === 0 || secondary.shotOrdinal !== tank.weapon.shotOrdinal,
+    "hardpoint ordinal reuse",
+  );
+  check(
+    secondary.lastActionInstanceId === 0 ||
+      secondary.lastActionInstanceId !== tank.weapon.lastActionInstanceId,
+    "hardpoint action reuse",
+  );
+  const cannonOwner = players.find((player) => player.playerId === tank.lastCannonOwnerId);
+  check(
+    secondary.shotOrdinal === 0
+      ? secondary.lastActionInstanceId === 0 &&
+          tank.lastCannonOwnerId === null &&
+          tank.lastCannonControlEpoch === null
+      : cannonOwner &&
+          secondary.lastActionInstanceId > 0 &&
+          tank.lastCannonControlEpoch !== null &&
+          tank.lastCannonControlEpoch > 0 &&
+          tank.lastCannonControlEpoch <= cannonOwner.controlEpoch,
+    "last cannon owner",
+  );
   const gunOwner = players.find((player) => player.playerId === tank.lastGunOwnerId);
   check(
     tank.weapon.shotOrdinal === 0
@@ -561,6 +690,35 @@ export function validateTankState(
         !owner.body.grounded &&
         owner.body.supportId === null,
       "seat attachment",
+    );
+  }
+  if (secondary.action.kind === "ready") {
+    check(
+      secondary.action.actionInstanceId === 0 &&
+        secondary.action.definitionId === 0 &&
+        secondary.action.nextMarkerIndex === 0,
+      "idle cannon action",
+    );
+  } else {
+    const timeline = catalog.timelines.get(secondary.action.definitionId),
+      age = tick - secondary.action.stateStartTick;
+    check(
+      tank.lifecycle === "occupied" &&
+        secondary.action.kind === "fire" &&
+        profile.cannon.fireTimelineIds.includes(secondary.action.definitionId) &&
+        secondary.action.actionInstanceId === secondary.lastActionInstanceId &&
+        tank.lastCannonOwnerId === ownerId &&
+        tank.lastCannonControlEpoch === tank.ownerControlEpoch,
+      "cannon action owner",
+    );
+    check(
+      timeline &&
+        age >= 0 &&
+        age < timeline.durationTicks &&
+        secondary.action.nextMarkerIndex ===
+          timeline.markers.filter((marker) => marker.tickOffset <= age).length &&
+        secondary.cooldownTicks === profile.cannon.cadenceTicks - age,
+      "cannon action cursor",
     );
   }
   if (tank.action.kind === "ready") {
@@ -639,4 +797,55 @@ export function validateTankProfile(
     profile.disconnectGraceTicks,
   ])
     integer(ticks, 1, 120, "tank timing");
+  const cannon = profile.cannon;
+  integer(cannon.stock, 1, 65535, "cannon stock");
+  integer(cannon.recoil.length, 1, 120, "cannon action duration");
+  integer(cannon.cadenceTicks, cannon.recoil.length, 120, "cannon cadence");
+  integer(cannon.releaseTick, 0, cannon.recoil.length - 1, "cannon release tick");
+  integer(cannon.blastRadius, 1, 2 ** 16, "cannon blast radius");
+  integer(cannon.headings.length, 8, 8, "cannon headings");
+  integer(cannon.fireTimelineIds.length, 8, 8, "cannon fire poses");
+  if (
+    !shapes.has(cannon.bodyShapeId) ||
+    new Set([...profile.fireTimelineIds, ...cannon.fireTimelineIds]).size !== 16
+  )
+    throw new Error("Invalid cannon content identity");
+  position(cannon.hardpoint.x);
+  position(cannon.hardpoint.y);
+  for (const [age, recoil] of cannon.recoil.entries()) {
+    integer(recoil, 0, pixels(16), "cannon recoil");
+    if (age <= cannon.releaseTick && recoil !== 0) throw new Error("Cannon recoils before release");
+  }
+  for (const [index, heading] of cannon.headings.entries()) {
+    position(heading.muzzle.x);
+    position(heading.muzzle.y);
+    motion(heading.velocity.x);
+    motion(heading.velocity.y);
+    integer(
+      Math.abs(heading.velocity.x) + Math.abs(heading.velocity.y),
+      1,
+      MAX_MOTION,
+      "cannon flight speed",
+    );
+    const id = cannon.fireTimelineIds[index],
+      timeline = id === undefined ? undefined : catalog.timelines.get(id);
+    if (
+      !timeline ||
+      timeline.durationTicks !== cannon.recoil.length ||
+      timeline.markers.length !== 2 ||
+      timeline.markers.some(
+        (marker, i) =>
+          marker.kind !== (i === 0 ? "spawn-attack" : "sound") ||
+          marker.tickOffset !== cannon.releaseTick ||
+          marker.payloadId !== cannon.attackId ||
+          marker.socket !== "muzzle",
+      )
+    )
+      throw new Error("Invalid cannon release timeline");
+    const socket = actionPose(catalog, timeline.id, cannon.releaseTick)?.sockets.find(
+      (socket) => socket.name === "muzzle",
+    );
+    if (!socket || canonical(socket.point) !== canonical(heading.muzzle))
+      throw new Error("Cannon release socket mismatch");
+  }
 }

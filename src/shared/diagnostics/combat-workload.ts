@@ -170,7 +170,7 @@ export async function combatIdentity() {
         destructibles: COMBAT_SCENARIOS.map(combatDestructibles),
       },
       campaignFormat: 2,
-      combatFormat: 14,
+      combatFormat: 15,
       pickups: [1, 2, 3, 4].map((players) => [
         combatPickupDefinitions("pickups", players),
         combatPickupDefinitions("support", players),
@@ -397,20 +397,25 @@ export function combatSnapshot(
     lifetimeTicks:
       COMBAT_CONTENT.attacks.find((attack) => attack.id === projectile.definitionId)
         ?.lifetimeTicks ?? 0,
-    heading:
-      projectile.definitionId === TANK_PROFILE.attackId
-        ? TANK_PROFILE.headings.findIndex(
-            ({ velocity }) =>
-              velocity.x === projectile.velocity.x && velocity.y === projectile.velocity.y,
-          )
-        : projectile.velocity.y < 0
-          ? 1
-          : projectile.velocity.y > 0
-            ? 2
-            : projectile.velocity.x < 0
-              ? 3
-              : 0,
-    shapeId: 4,
+    heading: [TANK_PROFILE.attackId, TANK_PROFILE.cannon.attackId].includes(projectile.definitionId)
+      ? (projectile.definitionId === TANK_PROFILE.attackId
+          ? TANK_PROFILE
+          : TANK_PROFILE.cannon
+        ).headings.findIndex(
+          ({ velocity }) =>
+            velocity.x === projectile.velocity.x && velocity.y === projectile.velocity.y,
+        )
+      : projectile.velocity.y < 0
+        ? 1
+        : projectile.velocity.y > 0
+          ? 2
+          : projectile.velocity.x < 0
+            ? 3
+            : 0,
+    shapeId:
+      projectile.definitionId === TANK_PROFILE.cannon.attackId
+        ? TANK_PROFILE.cannon.bodyShapeId
+        : 4,
   }));
   for (const grenade of combat.grenades)
     snapshot.projectiles.push({

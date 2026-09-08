@@ -15,6 +15,12 @@ import {
   ROCKET_SHAPE,
   ROCKET_WEAPON,
 } from "../content/weapons/rocket-launcher.js";
+import {
+  CANNON_ATTACK,
+  CANNON_BLAST_SHAPE,
+  CANNON_PROFILE,
+  CANNON_SHAPE,
+} from "../content/weapons/tank-cannon.js";
 import { pixels } from "../core/numeric.js";
 import { type TankProfile, validateTankProfile } from "../vehicles/tank.js";
 import { COMBAT_ORDNANCE } from "./combat-terrain.js";
@@ -453,6 +459,7 @@ const tankDefinition = {
   },
 };
 export const TANK_PROFILE: TankProfile = {
+  cannon: CANNON_PROFILE,
   definition: tankDefinition,
   locomotion: tankActor,
   exitTimelineId: 131,
@@ -485,7 +492,10 @@ COMBAT_CONTENT.vehicles = [tankDefinition];
 COMBAT_CONTENT.shapes.push(
   { id: 15, rect: { x: -pixels(20), y: -pixels(24), w: pixels(40), h: pixels(24) } },
   { id: 16, rect: { x: -pixels(40), y: -pixels(40), w: pixels(80), h: pixels(40) } },
+  structuredClone(CANNON_SHAPE),
+  structuredClone(CANNON_BLAST_SHAPE),
 );
+COMBAT_CONTENT.attacks.push(structuredClone(CANNON_ATTACK));
 COMBAT_CONTENT.attacks.push({
   id: 16,
   kind: "swept-projectile",
@@ -541,6 +551,37 @@ for (const [heading, exposure] of TANK_PROFILE.headings.entries()) {
     markers: [
       { tickOffset: 0, kind: "spawn-attack", payloadId: 16, socket: "muzzle" },
       { tickOffset: 0, kind: "sound", payloadId: 16, socket: "muzzle" },
+    ],
+  });
+}
+
+for (const [heading, exposure] of CANNON_PROFILE.headings.entries()) {
+  const id = CANNON_PROFILE.fireTimelineIds[heading];
+  if (id === undefined) throw new Error("Missing cannon timeline");
+  COMBAT_CONTENT.poses.push({
+    id,
+    frame: `engineering-tank-cannon-${heading}`,
+    durationTicks: CANNON_PROFILE.recoil.length,
+    sockets: [{ name: "muzzle", point: exposure.muzzle }],
+    hurtShapeIds: [15],
+  });
+  COMBAT_CONTENT.timelines.push({
+    id,
+    durationTicks: CANNON_PROFILE.recoil.length,
+    poses: [id],
+    markers: [
+      {
+        tickOffset: CANNON_PROFILE.releaseTick,
+        kind: "spawn-attack",
+        payloadId: CANNON_ATTACK.id,
+        socket: "muzzle",
+      },
+      {
+        tickOffset: CANNON_PROFILE.releaseTick,
+        kind: "sound",
+        payloadId: CANNON_ATTACK.id,
+        socket: "muzzle",
+      },
     ],
   });
 }

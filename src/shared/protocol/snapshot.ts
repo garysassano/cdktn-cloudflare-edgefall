@@ -207,6 +207,32 @@ function validate(snapshot: FullSnapshot, context: SnapshotContext): void {
     check(vehicle.components.length <= 8, "Vehicle component count limit");
     body(vehicle.body);
     action(vehicle.action);
+    const secondary = vehicle.secondary;
+    action(secondary.action);
+    check(
+      (secondary.shotsFired === 0) === (secondary.shotOrdinal === 0) &&
+        (secondary.shotOrdinal === 0) === (secondary.lastActionInstanceId === 0),
+      "Vehicle secondary expenditure identity",
+    );
+    check(
+      secondary.shotOrdinal === 0 || secondary.shotOrdinal !== vehicle.weapon.shotOrdinal,
+      "Vehicle hardpoints share an ordinal",
+    );
+    check(
+      secondary.lastActionInstanceId === 0 ||
+        secondary.lastActionInstanceId !== vehicle.weapon.lastActionInstanceId,
+      "Vehicle hardpoints share an action",
+    );
+    check(
+      secondary.action.kind === "ready"
+        ? secondary.action.actionInstanceId === 0 &&
+            secondary.action.definitionId === 0 &&
+            secondary.action.nextMarkerIndex === 0
+        : secondary.action.kind === "fire" &&
+            vehicle.lifecycle === "occupied" &&
+            secondary.action.actionInstanceId === secondary.lastActionInstanceId,
+      "Vehicle secondary action",
+    );
     ordered(
       vehicle.components.map((component) => component.id),
       "vehicle components",

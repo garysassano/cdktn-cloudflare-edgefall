@@ -125,7 +125,7 @@ describe("combat checkpoint and committed applied-input journal", () => {
   });
   it("rejects unknown versions, identities, corrupt checksums and oversized archives", async () => {
     const raw = await encodeCombatCheckpoint(state(), identity);
-    for (const format of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) {
+    for (const format of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]) {
       const old = { ...JSON.parse(raw), format };
       await expect(decodeCombatCheckpoint(JSON.stringify(old), identity)).rejects.toThrow(
         /version/,

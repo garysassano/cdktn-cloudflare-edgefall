@@ -1,7 +1,7 @@
 """Pack combat section 5 with Python struct, independently of the TypeScript codec.
 
-The unrelated input/base-snapshot payloads retain their previously packed bytes;
-only their one-byte protocol minor header changes here.
+The vehicle secondary extension is also packed independently. Unchanged base
+records retain their previously packed bytes.
 """
 
 import argparse
@@ -186,9 +186,62 @@ def main():
         for entry in entries:
             data = bytearray.fromhex(entry["hex"])
             assert data[:3] == b"EF\x03"
-            assert data[3] in (13, 14)
+            assert data[3] in (14, 15)
             assert entry.get("snapshot", {}).get("combat") is None
-            data[3] = 14
+            if "snapshot" in entry:
+                vehicles = entry["snapshot"]["vehicles"]
+                start = 104 + len(entry["snapshot"]["players"]) * 344
+                stride = 324 if data[3] == 14 else 364
+                packed = bytearray()
+                for index, vehicle in enumerate(vehicles):
+                    secondary = vehicle.setdefault(
+                        "secondary",
+                        {
+                            "ammo": 7,
+                            "shotsFired": 3,
+                            "cooldownTicks": 20,
+                            "shotOrdinal": 9,
+                            "lastActionInstanceId": 30,
+                            "action": {
+                                "kind": "ready",
+                                "actionInstanceId": 0,
+                                "stateStartTick": 0,
+                                "definitionId": 0,
+                                "nextMarkerIndex": 0,
+                            },
+                        },
+                    )
+                    packed.extend(
+                        data[start + index * stride : start + index * stride + 324]
+                    )
+                    action = secondary["action"]
+                    packed.extend(
+                        struct.pack(
+                            "<10I",
+                            secondary["ammo"],
+                            secondary["shotsFired"],
+                            secondary["cooldownTicks"],
+                            secondary["shotOrdinal"],
+                            secondary["lastActionInstanceId"],
+                            [
+                                "ready",
+                                "fire",
+                                "melee",
+                                "grenade",
+                                "enter",
+                                "exit",
+                                "hurt",
+                            ].index(action["kind"]),
+                            action["actionInstanceId"],
+                            action["stateStartTick"],
+                            action["definitionId"],
+                            action["nextMarkerIndex"],
+                        )
+                    )
+                data[start : start + len(vehicles) * stride] = packed
+                struct.pack_into("<H", data, 6, len(data))
+                entry["byteLength"] = len(data)
+            data[3] = 15
             entry["hex"] = data.hex()
         update(path, entries, write)
     print(
@@ -196,7 +249,7 @@ def main():
             {
                 "combatSections": len(cases),
                 "section": 5,
-                "protocol": "3.14",
+                "protocol": "3.15",
                 "status": "written" if write else "pass",
             }
         )

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import type { Page } from "@playwright/test";
+import { CANNON_ATTACK } from "../../src/game/content/weapons/tank-cannon.js";
 import type { VehicleState } from "../../src/game/state.js";
 import type { RoomProbeStatus } from "../../src/shared/diagnostics/room-probe-types.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./room-host-control.js";
@@ -21,7 +22,12 @@ interface TankClient {
     receipts: { cursor: number; tick: number; kind: string; hash: string }[];
   };
 }
-export async function verifyTankCombat(pages: Page[], base: string, output: string) {
+export async function verifyTankCombat(
+  pages: Page[],
+  base: string,
+  output: string,
+  cannonMode = false,
+) {
   const read = () =>
     Promise.all(
       pages.map((page) =>
@@ -113,9 +119,55 @@ export async function verifyTankCombat(pages: Page[], base: string, output: stri
   const landed = await until(
     (state) => state.combat?.world.tanks.every((tank) => tank.body.grounded) === true,
   );
+  const cannonBoundaries: RoomProbeStatus[] = [];
+  if (cannonMode) {
+    await key("KeyC", true);
+    const released = await until(
+      (state) =>
+        (state.combat?.events.filter(
+          ({ event }) => event.kind === "shot" && event.definitionId === CANNON_ATTACK.id,
+        ).length ?? 0) === 4,
+    );
+    cannonBoundaries.push(released);
+    await pages[0]?.screenshot({ path: `${output}/cannon-release.png` });
+  }
   await key("KeyZ", true);
   const defeated = await until((state) => state.combat?.world.encounter.phase === "complete");
   await key("KeyZ", false);
+  if (cannonMode) {
+    const first = cannonBoundaries[0];
+    assert(first);
+    const held = await until((state) => state.tick >= first.tick + 48);
+    assert(
+      held.combat?.world.tanks.every(
+        (tank) => tank.secondary.ammo === 9 && tank.secondary.shotsFired === 1,
+      ),
+    );
+    assert(
+      held.combat?.events.some(
+        ({ event }) => event.kind === "explosion" && event.definitionId === CANNON_ATTACK.id,
+      ),
+      "Missing cannon contact blast",
+    );
+    cannonBoundaries.push(held);
+    await key("KeyC", false);
+    await until((state) => state.tick >= held.tick + 4);
+    await key("KeyC", true);
+    const second = await until(
+      (state) =>
+        (state.combat?.events.filter(
+          ({ event }) => event.kind === "shot" && event.definitionId === CANNON_ATTACK.id,
+        ).length ?? 0) === 8,
+    );
+    assert(
+      second.combat?.world.tanks.every(
+        (tank) => tank.secondary.ammo === 8 && tank.secondary.shotsFired === 2,
+      ),
+    );
+    cannonBoundaries.push(second);
+    await key("KeyC", false);
+    await pages[0]?.screenshot({ path: `${output}/cannon-second-release.png` });
+  }
   await pages[0]?.screenshot({ path: `${output}/tank-combat.png` });
   await until((state) => state.tick >= defeated.tick + 10);
   await key("KeyE", true);
@@ -128,6 +180,33 @@ export async function verifyTankCombat(pages: Page[], base: string, output: stri
   );
   const final = await until((state) => state.tick >= released.tick + 45),
     clients = await read();
+  if (cannonMode) {
+    assert(
+      released.combat?.world.projectiles.some((shell) => shell.definitionId === CANNON_ATTACK.id),
+      "Exit discarded released shells",
+    );
+    assert(
+      final.combat?.world.tanks.every(
+        (tank) => tank.secondary.ammo === 8 && tank.secondary.shotsFired === 2,
+      ),
+    );
+    for (const client of clients) {
+      assert(
+        client.receipts.some((receipt) =>
+          receipt.vehicles.some(
+            (tank) =>
+              tank.secondary.action.kind === "fire" && tank.secondary.action.nextMarkerIndex === 2,
+          ),
+        ),
+        "Client missed committed cannon recoil",
+      );
+      assert(
+        client.vehicles.every(
+          (tank) => tank.secondary.ammo === 8 && tank.secondary.shotsFired === 2,
+        ),
+      );
+    }
+  }
   assert(clients.every((client) => client.ready && !client.error && !client.requiresResync));
   assert(
     final.combat?.world.players.every(
@@ -187,6 +266,7 @@ export async function verifyTankCombat(pages: Page[], base: string, output: stri
   assert((clients[1]?.events.duplicates ?? 0) > 0);
   await pages[0]?.screenshot({ path: `${output}/tank-exited.png` });
   return {
+    cannonBoundaries,
     boarding,
     occupied,
     jumping,

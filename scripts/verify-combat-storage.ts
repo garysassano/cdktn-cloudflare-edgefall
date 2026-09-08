@@ -8,6 +8,7 @@ import { join } from "node:path";
 import { build } from "esbuild";
 import { verifyStoredArea } from "./lib/verify-stored-area.js";
 import { verifyStoredCampaign } from "./lib/verify-stored-campaign.js";
+import { verifyStoredCannon } from "./lib/verify-stored-cannon.js";
 import { verifyStoredDeathBody } from "./lib/verify-stored-death-body.js";
 import { verifyStoredEntry } from "./lib/verify-stored-entry.js";
 import { verifyStoredFootCombat } from "./lib/verify-stored-foot-combat.js";
@@ -245,6 +246,10 @@ try {
       runtime = create();
     }),
     ordnance: await verifyStoredOrdnance(origin, async () => {
+      await runtime.dispose();
+      runtime = create();
+    }),
+    cannon: await verifyStoredCannon(origin, async () => {
       await runtime.dispose();
       runtime = create();
     }),

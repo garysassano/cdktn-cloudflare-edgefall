@@ -10,6 +10,11 @@ import {
   ROCKET_PROFILE,
   ROCKET_SHAPE,
 } from "../game/content/weapons/rocket-launcher.js";
+import {
+  CANNON_ATTACK,
+  CANNON_PROFILE,
+  CANNON_SHAPE,
+} from "../game/content/weapons/tank-cannon.js";
 import { stateHash } from "../game/core/canonical.js";
 import { Edge, Held, type InputCommand, directionalIntent } from "../game/input/types.js";
 import {
@@ -102,7 +107,7 @@ async function startLab() {
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
-        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade on foot. E boards or exits a tank; tank direction slews its turret, Space makes a short jump and Z fires its unlimited primary gun. Armor pips and entry/exit progress appear above and below the hull. Uncheck scripted input to use the keyboard. Filled yellow boxes show shotgun reach; filled orange/red boxes show attached/traveling flame. Outlined yellow boxes show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
+        "Arrows/WASD move and aim, Space jumps, Z fires or uses the knife near exposed infantry, C throws a grenade on foot. E boards or exits a tank; tank direction slews its turret, Space makes a short jump, Z fires its unlimited primary gun, and C spends one of its ten cannon shells. Shell and armor pips and entry/exit progress appear above and below the hull. Uncheck scripted input to use the keyboard. Filled yellow boxes show shotgun reach; filled orange/red boxes show attached/traveling flame. Outlined yellow boxes show knife reach or bash windup; red marks active bashes, orange a raised shield and purple a broken shield. Green circles show grenades and blasts. After room recovery, reconnect all four clients and prepare fresh input before resuming.";
   }
   if (!Number.isInteger(slot) || slot < 0 || slot > 3) throw new Error("Invalid slot");
   function element<T extends HTMLElement>(id: string): T {
@@ -903,6 +908,12 @@ async function startLab() {
           g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
         }
         for (const projectile of snapshot?.projectiles ?? []) {
+          if (projectile.definitionId === CANNON_ATTACK.id) {
+            const rect = worldRect(projectile, CANNON_SHAPE.rect, 1);
+            g.fillStyle(0xffcc88);
+            g.fillRect(rect.x / 256, rect.y / 256, rect.w / 256, rect.h / 256);
+            continue;
+          }
           if (projectile.definitionId === ROCKET_ATTACK.id) {
             const rect = worldRect(projectile, ROCKET_SHAPE.rect, 1);
             g.lineStyle(1, 0xffb56b);
@@ -1005,7 +1016,9 @@ async function startLab() {
             item.event.kind === "explosion"
               ? (item.event.definitionId === ROCKET_ATTACK.id
                   ? ROCKET_PROFILE.blastRadius
-                  : GRENADE_PROFILE.radius) / 256
+                  : item.event.definitionId === CANNON_ATTACK.id
+                    ? CANNON_PROFILE.blastRadius
+                    : GRENADE_PROFILE.radius) / 256
               : item.event.kind === "killed"
                 ? 7
                 : 3,

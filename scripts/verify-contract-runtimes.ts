@@ -203,6 +203,7 @@ try {
     shieldCombat: expected.shieldCombat,
     areaCombat: expected.areaCombat,
     tankCombat: expected.tankCombat,
+    cannonCombat: expected.cannonCombat,
     ordnance: expected.ordnance,
     hmg: expected.hmg,
     support: expected.support,

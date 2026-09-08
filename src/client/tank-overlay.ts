@@ -2,6 +2,7 @@ import type Phaser from "phaser";
 import { COMBAT_SHAPES, TANK_PROFILE } from "../game/labs/combat-content.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import type { VehicleState } from "../game/state.js";
+import { tankCannonPose } from "../shared/animation/tank-cannon.js";
 
 /** Engineering collision/ownership inspection; these shapes are not final game media. */
 export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleState, tick: number) {
@@ -28,6 +29,14 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
   if (tank.lifecycle !== "wreck") {
     g.lineBetween(root.x / 256, root.y / 256, muzzle.x / 256, muzzle.y / 256);
     g.strokeCircle(muzzle.x / 256, muzzle.y / 256, 2);
+    const cannon = tankCannonPose(tank, tick, TANK_PROFILE.cannon);
+    g.lineStyle(4, 0xffcc88);
+    g.lineBetween(
+      cannon.root.x / 256,
+      cannon.root.y / 256,
+      cannon.muzzle.x / 256,
+      cannon.muzzle.y / 256,
+    );
   }
   g.lineBetween(
     tank.body.x / 256,
@@ -40,6 +49,7 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
     g.fillRect(tank.body.x / 256 - 8 + pip * 6, tank.body.y / 256 - 32, 4, 3);
   }
   if (tank.lifecycle === "boarding" || tank.lifecycle === "exiting") {
+    g.lineStyle(2, 0xffe475);
     const duration = tank.lifecycle === "boarding" ? 12 : 8;
     g.lineStyle(2, 0xffe475);
     g.lineBetween(
@@ -48,5 +58,9 @@ export function drawTankOverlay(g: Phaser.GameObjects.Graphics, tank: VehicleSta
       r.x / 256 + (r.w / 256) * Math.min(1, (tick - tank.action.stateStartTick + 1) / duration),
       tank.body.y / 256 + 3,
     );
+  }
+  for (let shell = 0; shell < TANK_PROFILE.cannon.stock; shell++) {
+    g.fillStyle(shell < tank.secondary.ammo ? 0xffcc88 : 0x303946);
+    g.fillRect(tank.body.x / 256 - 19 + shell * 4, tank.body.y / 256 - 38, 2, 3);
   }
 }

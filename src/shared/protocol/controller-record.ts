@@ -196,9 +196,15 @@ export function writeVehicle(writer: Writer, vehicle: VehicleState): void {
   writer.i32(vehicle.facing, 1);
   writer.u32(vehicle.heading, 0, 7);
   writer.u32(vehicle.invulnerableTicks, 0, 65535);
+  writer.u32(vehicle.secondary.ammo, 0, 65535);
+  writer.u32(vehicle.secondary.shotsFired, 0, 65535);
+  writer.u32(vehicle.secondary.cooldownTicks, 0, 65535);
+  writer.u32(vehicle.secondary.shotOrdinal);
+  writer.u32(vehicle.secondary.lastActionInstanceId);
+  writeAction(writer, vehicle.secondary.action);
 }
 export function readVehicle(reader: Reader): VehicleState {
-  const vehicle: VehicleState = {
+  const vehicle: Omit<VehicleState, "secondary"> = {
     body: readBody(reader),
     definitionId: reader.u32(1, 65535),
     kind: reader.choice(VEHICLES),
@@ -227,5 +233,13 @@ export function readVehicle(reader: Reader): VehicleState {
   vehicle.facing = reader.i32(1) as -1 | 1;
   vehicle.heading = reader.u32(0, 7);
   vehicle.invulnerableTicks = reader.u32(0, 65535);
-  return vehicle;
+  const secondary = {
+    ammo: reader.u32(0, 65535),
+    shotsFired: reader.u32(0, 65535),
+    cooldownTicks: reader.u32(0, 65535),
+    shotOrdinal: reader.u32(),
+    lastActionInstanceId: reader.u32(),
+    action: readAction(reader),
+  };
+  return { ...vehicle, secondary };
 }

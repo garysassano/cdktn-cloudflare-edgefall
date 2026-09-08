@@ -112,7 +112,8 @@ const areaMode = process.argv.includes("--combat-shotgun")
     ? "flame"
     : null;
 const shieldMode = process.argv.includes("--combat-guard");
-const tankMode = process.argv.includes("--combat-tank");
+const cannonMode = process.argv.includes("--combat-cannon");
+const tankMode = cannonMode || process.argv.includes("--combat-tank");
 const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
 const feedbackMode = process.argv
@@ -271,7 +272,9 @@ const output = feedbackMode
               : ordnanceMode
                 ? "dist/network-combat-ordnance-evidence"
                 : tankMode
-                  ? "dist/network-combat-tank-evidence"
+                  ? cannonMode
+                    ? "dist/network-combat-cannon-evidence"
+                    : "dist/network-combat-tank-evidence"
                   : areaMode
                     ? `dist/network-combat-${areaMode}-evidence`
                     : shieldMode
@@ -666,7 +669,7 @@ try {
         };
       }
       if (tankMode) {
-        const tank = await verifyTankCombat(pages, base, output);
+        const tank = await verifyTankCombat(pages, base, output, cannonMode);
         room = tank.final;
         return {
           status: "pass",
@@ -681,8 +684,9 @@ try {
           clients: tank.clients,
           sharedSnapshots: tank.common.length,
           room,
-          scope:
-            "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
+          scope: cannonMode
+            ? "Four Chromium keyboard clients board, jump, drive, spend two cannon shells each, hold the first trigger beyond its cooldown without repeating, fire the primary gun and exit with released shells. Exact shared snapshots and duplicate event delivery; engineering graphics and local workerd timing only."
+            : "Four Chromium keyboard clients over local workerd WebSockets board, jump, slew the turret, drive, fire, defeat rifle infantry and exit. Exact shared snapshots and duplicate event delivery; engineering graphics and authoritative tank movement, no deployed timing acceptance.",
         };
       }
       if (areaMode) {
