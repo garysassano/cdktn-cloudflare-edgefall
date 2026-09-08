@@ -1,0 +1,309 @@
+{
+  "status": "pass",
+  "manifestSha256": "5a5e2508a8b7a814a076d7d74f2b3d8dafc20c309c68f598210a725dd6063f38",
+  "viewerSha256": "33038de6e50dcf60579158a4ec4b9e5ebfb3eb126f91f35b636972856f4d7c1c",
+  "locationProtocol": "file:",
+  "downloadedAssets": true,
+  "browserVersion": "151.0.7922.34",
+  "views": [
+    {
+      "name": "solo-clean-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 50.767383
+    },
+    {
+      "name": "solo-clean-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.767383
+    },
+    {
+      "name": "solo-clean-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 50.7507
+    },
+    {
+      "name": "solo-clean-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.7507
+    },
+    {
+      "name": "solo-debug-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 50.739
+    },
+    {
+      "name": "solo-debug-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.7507
+    },
+    {
+      "name": "solo-debug-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 50.7507
+    },
+    {
+      "name": "solo-debug-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.733333
+    },
+    {
+      "name": "solo-clean-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 201.233333
+    },
+    {
+      "name": "solo-clean-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.233333
+    },
+    {
+      "name": "solo-clean-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 201.269
+    },
+    {
+      "name": "solo-clean-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.234367
+    },
+    {
+      "name": "solo-debug-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 201.266
+    },
+    {
+      "name": "solo-debug-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.283333
+    },
+    {
+      "name": "solo-debug-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 201.27
+    },
+    {
+      "name": "solo-debug-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.269
+    },
+    {
+      "name": "coop-2-clean-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 50.917533
+    },
+    {
+      "name": "coop-2-clean-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.91
+    },
+    {
+      "name": "coop-2-clean-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 50.917533
+    },
+    {
+      "name": "coop-2-clean-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.917533
+    },
+    {
+      "name": "coop-2-debug-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 50.909
+    },
+    {
+      "name": "coop-2-debug-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.914
+    },
+    {
+      "name": "coop-2-debug-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 50.917533
+    },
+    {
+      "name": "coop-2-debug-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 50.904
+    },
+    {
+      "name": "coop-2-clean-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 201.804
+    },
+    {
+      "name": "coop-2-clean-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.783333
+    },
+    {
+      "name": "coop-2-clean-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 201.804
+    },
+    {
+      "name": "coop-2-clean-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.783333
+    },
+    {
+      "name": "coop-2-debug-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 201.825
+    },
+    {
+      "name": "coop-2-debug-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.821
+    },
+    {
+      "name": "coop-2-debug-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 201.816
+    },
+    {
+      "name": "coop-2-debug-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 201.783333
+    },
+    {
+      "name": "coop-4-clean-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 56.611
+    },
+    {
+      "name": "coop-4-clean-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 56.573183
+    },
+    {
+      "name": "coop-4-clean-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 56.583333
+    },
+    {
+      "name": "coop-4-clean-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 56.583333
+    },
+    {
+      "name": "coop-4-debug-normal",
+      "width": 384,
+      "height": 216,
+      "duration": 56.589867
+    },
+    {
+      "name": "coop-4-debug-normal-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 56.589867
+    },
+    {
+      "name": "coop-4-debug-normal-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 56.583333
+    },
+    {
+      "name": "coop-4-debug-normal-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 56.6
+    },
+    {
+      "name": "coop-4-clean-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 224.429
+    },
+    {
+      "name": "coop-4-clean-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 224.44
+    },
+    {
+      "name": "coop-4-clean-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 224.45
+    },
+    {
+      "name": "coop-4-clean-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 224.466667
+    },
+    {
+      "name": "coop-4-debug-quarter",
+      "width": 384,
+      "height": 216,
+      "duration": 224.457567
+    },
+    {
+      "name": "coop-4-debug-quarter-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 224.496
+    },
+    {
+      "name": "coop-4-debug-quarter-music-off",
+      "width": 384,
+      "height": 216,
+      "duration": 224.440883
+    },
+    {
+      "name": "coop-4-debug-quarter-music-off-reduced-effects",
+      "width": 384,
+      "height": 216,
+      "duration": 224.45
+    }
+  ],
+  "sceneJumps": 27,
+  "pageErrors": [],
+  "networkRequests": [],
+  "checks": [
+    "All 48 selections load downloaded MP4s with the expected native dimensions and duration",
+    "MP4/raw WebM links match the selected view",
+    "Nine scene jumps per party reach their expected positions",
+    "Muted playback advances from the downloaded movie",
+    "The native weapon image loads and the 400-pixel viewport has no document overflow"
+  ],
+  "scope": "Direct file URL review of downloaded assets. Human style/listening, physical audio output, controller feel and online play remain separate checks."
+}

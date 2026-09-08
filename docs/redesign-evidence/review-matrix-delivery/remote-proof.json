@@ -1,0 +1,851 @@
+{
+  "checkedAt": "2026-09-08T07:54:36.191Z",
+  "repository": "garysassano/cdktn-cloudflare-edgefall",
+  "target": "edac319fdd69d075caf3e1bf877929ad984b9cd9",
+  "release": {
+    "id": 384527384,
+    "tag": "w06-review-v2-kestrel",
+    "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/tag/untagged-041ea219d6f27455e6aa",
+    "draft": true,
+    "prerelease": true,
+    "publishedAt": null
+  },
+  "manifestSha256": "5a5e2508a8b7a814a076d7d74f2b3d8dafc20c309c68f598210a725dd6063f38",
+  "assets": [
+    {
+      "id": 550087228,
+      "name": "artifacts.json",
+      "bytes": 221176,
+      "digest": "sha256:5a5e2508a8b7a814a076d7d74f2b3d8dafc20c309c68f598210a725dd6063f38",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/artifacts.json",
+      "downloadedSha256": "5a5e2508a8b7a814a076d7d74f2b3d8dafc20c309c68f598210a725dd6063f38"
+    },
+    {
+      "id": 550081076,
+      "name": "coop-2-clean-normal-music-off-reduced-effects.mp4",
+      "bytes": 2261762,
+      "digest": "sha256:a8ef2ea2fdbaa09a26739f9f918093fa818fb30b87b2befa77bee04d65f5fefa",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "a8ef2ea2fdbaa09a26739f9f918093fa818fb30b87b2befa77bee04d65f5fefa"
+    },
+    {
+      "id": 550080961,
+      "name": "coop-2-clean-normal-music-off-reduced-effects.webm",
+      "bytes": 6630745,
+      "digest": "sha256:3e7beee2b5d5674535c29fe39a8d06e3d2b9d27f6aeed3fafbed5159afd8b864",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "3e7beee2b5d5674535c29fe39a8d06e3d2b9d27f6aeed3fafbed5159afd8b864"
+    },
+    {
+      "id": 550080889,
+      "name": "coop-2-clean-normal-music-off.mp4",
+      "bytes": 2255374,
+      "digest": "sha256:e1a6f29af0797545b8284efd3ce93b69c56e46f08c73a83d65f3c179d2207e29",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-music-off.mp4",
+      "downloadedSha256": "e1a6f29af0797545b8284efd3ce93b69c56e46f08c73a83d65f3c179d2207e29"
+    },
+    {
+      "id": 550080769,
+      "name": "coop-2-clean-normal-music-off.webm",
+      "bytes": 6647299,
+      "digest": "sha256:44d5d8f6435258b3b02735e5c9d6bc840d3183cdaa4f1434e1d533ef2fa8d847",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-music-off.webm",
+      "downloadedSha256": "44d5d8f6435258b3b02735e5c9d6bc840d3183cdaa4f1434e1d533ef2fa8d847"
+    },
+    {
+      "id": 550080715,
+      "name": "coop-2-clean-normal-reduced-effects.mp4",
+      "bytes": 2432890,
+      "digest": "sha256:9908043a302c8890d27b5e6fcd2631ccf3f392a26a1679c58a4e8b695d3280c9",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-reduced-effects.mp4",
+      "downloadedSha256": "9908043a302c8890d27b5e6fcd2631ccf3f392a26a1679c58a4e8b695d3280c9"
+    },
+    {
+      "id": 550080634,
+      "name": "coop-2-clean-normal-reduced-effects.webm",
+      "bytes": 6600339,
+      "digest": "sha256:f9c7d640e1cf6fd3d0df2999e0c078762b6fa5cfe4def8f7dd689dd840bf9fe8",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal-reduced-effects.webm",
+      "downloadedSha256": "f9c7d640e1cf6fd3d0df2999e0c078762b6fa5cfe4def8f7dd689dd840bf9fe8"
+    },
+    {
+      "id": 550080599,
+      "name": "coop-2-clean-normal.mp4",
+      "bytes": 2453910,
+      "digest": "sha256:052cb460901217accec745775a59333c75f405e48334080e0fa6c5d9e4df45b8",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal.mp4",
+      "downloadedSha256": "052cb460901217accec745775a59333c75f405e48334080e0fa6c5d9e4df45b8"
+    },
+    {
+      "id": 550080501,
+      "name": "coop-2-clean-normal.webm",
+      "bytes": 6661317,
+      "digest": "sha256:324515cc704122abe3eaa170b0545424c0a5ceb6f47cd02dc8f6f9ae2072c429",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-normal.webm",
+      "downloadedSha256": "324515cc704122abe3eaa170b0545424c0a5ceb6f47cd02dc8f6f9ae2072c429"
+    },
+    {
+      "id": 550082666,
+      "name": "coop-2-clean-quarter-music-off-reduced-effects.mp4",
+      "bytes": 5453497,
+      "digest": "sha256:6498903a9006e7c24b35bf657844ead2771cbb86e3bbbe22ec05bd9df7b13eca",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "6498903a9006e7c24b35bf657844ead2771cbb86e3bbbe22ec05bd9df7b13eca"
+    },
+    {
+      "id": 550082498,
+      "name": "coop-2-clean-quarter-music-off-reduced-effects.webm",
+      "bytes": 14837239,
+      "digest": "sha256:376411ccc82adcf101e3d27261e44f77d4a0b9e4bdabb9d8a8e09fcd6e2e2492",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "376411ccc82adcf101e3d27261e44f77d4a0b9e4bdabb9d8a8e09fcd6e2e2492"
+    },
+    {
+      "id": 550082421,
+      "name": "coop-2-clean-quarter-music-off.mp4",
+      "bytes": 5484922,
+      "digest": "sha256:5abe44aff545603042369c1f511c99be9b70e01066d977fec08fabebcddd417a",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-music-off.mp4",
+      "downloadedSha256": "5abe44aff545603042369c1f511c99be9b70e01066d977fec08fabebcddd417a"
+    },
+    {
+      "id": 550082224,
+      "name": "coop-2-clean-quarter-music-off.webm",
+      "bytes": 14816244,
+      "digest": "sha256:8b13b9fc192327738d2c704fc81e0dba023275499221027a74ad303e99a4e40b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-music-off.webm",
+      "downloadedSha256": "8b13b9fc192327738d2c704fc81e0dba023275499221027a74ad303e99a4e40b"
+    },
+    {
+      "id": 550082157,
+      "name": "coop-2-clean-quarter-reduced-effects.mp4",
+      "bytes": 7379730,
+      "digest": "sha256:4114934745b98915d22a566d15452275e083edbf27b0afb35222499192f49b1b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-reduced-effects.mp4",
+      "downloadedSha256": "4114934745b98915d22a566d15452275e083edbf27b0afb35222499192f49b1b"
+    },
+    {
+      "id": 550082056,
+      "name": "coop-2-clean-quarter-reduced-effects.webm",
+      "bytes": 15505332,
+      "digest": "sha256:652e73fd07345e2426c4e13359f097e813b89ed00910071fda89853c16d43674",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter-reduced-effects.webm",
+      "downloadedSha256": "652e73fd07345e2426c4e13359f097e813b89ed00910071fda89853c16d43674"
+    },
+    {
+      "id": 550081962,
+      "name": "coop-2-clean-quarter.mp4",
+      "bytes": 7387159,
+      "digest": "sha256:a877d87b4359c88997221ed07b992ecd53d839460b767d00ffdb503c4e58ea33",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter.mp4",
+      "downloadedSha256": "a877d87b4359c88997221ed07b992ecd53d839460b767d00ffdb503c4e58ea33"
+    },
+    {
+      "id": 550081790,
+      "name": "coop-2-clean-quarter.webm",
+      "bytes": 15558092,
+      "digest": "sha256:24156e802da8d7d09ab413b71cec8fa127252a50b76ce1e5a911fee2efe24aac",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-clean-quarter.webm",
+      "downloadedSha256": "24156e802da8d7d09ab413b71cec8fa127252a50b76ce1e5a911fee2efe24aac"
+    },
+    {
+      "id": 550081702,
+      "name": "coop-2-debug-normal-music-off-reduced-effects.mp4",
+      "bytes": 2307443,
+      "digest": "sha256:61374e624178c27f4cd0d90f5565a3b2ca7ba9d2760cf71717262f1afaa2e5c6",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "61374e624178c27f4cd0d90f5565a3b2ca7ba9d2760cf71717262f1afaa2e5c6"
+    },
+    {
+      "id": 550081581,
+      "name": "coop-2-debug-normal-music-off-reduced-effects.webm",
+      "bytes": 6724524,
+      "digest": "sha256:b45a3cbe5c3a91c886769d45236fc619907495ec8c68e5f9f9b28f86f2b99150",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "b45a3cbe5c3a91c886769d45236fc619907495ec8c68e5f9f9b28f86f2b99150"
+    },
+    {
+      "id": 550081540,
+      "name": "coop-2-debug-normal-music-off.mp4",
+      "bytes": 2327551,
+      "digest": "sha256:9445ac2a7f82fcbec9240425190667e284c85bbbe7dccdad4ed81838a6390498",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-music-off.mp4",
+      "downloadedSha256": "9445ac2a7f82fcbec9240425190667e284c85bbbe7dccdad4ed81838a6390498"
+    },
+    {
+      "id": 550081451,
+      "name": "coop-2-debug-normal-music-off.webm",
+      "bytes": 6805727,
+      "digest": "sha256:92f3471b31780e5cb2390cb040dd6217f6c1d72f247fc29cfe5868b75589b7e2",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-music-off.webm",
+      "downloadedSha256": "92f3471b31780e5cb2390cb040dd6217f6c1d72f247fc29cfe5868b75589b7e2"
+    },
+    {
+      "id": 550081355,
+      "name": "coop-2-debug-normal-reduced-effects.mp4",
+      "bytes": 2490747,
+      "digest": "sha256:4d4359ed15a87ccde40ba0da60a72d79602046ab2611ad3808fc57b870ed1589",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-reduced-effects.mp4",
+      "downloadedSha256": "4d4359ed15a87ccde40ba0da60a72d79602046ab2611ad3808fc57b870ed1589"
+    },
+    {
+      "id": 550081243,
+      "name": "coop-2-debug-normal-reduced-effects.webm",
+      "bytes": 6698344,
+      "digest": "sha256:cccd5e68a559144a3a45a52d1df45eb99a9ea5871b8743a30f79e185561c1b06",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal-reduced-effects.webm",
+      "downloadedSha256": "cccd5e68a559144a3a45a52d1df45eb99a9ea5871b8743a30f79e185561c1b06"
+    },
+    {
+      "id": 550081187,
+      "name": "coop-2-debug-normal.mp4",
+      "bytes": 2490710,
+      "digest": "sha256:ac35e4598a52a050d1ce623cdd60b197ef0927689db6ab7732341802dc1ec1e9",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal.mp4",
+      "downloadedSha256": "ac35e4598a52a050d1ce623cdd60b197ef0927689db6ab7732341802dc1ec1e9"
+    },
+    {
+      "id": 550081108,
+      "name": "coop-2-debug-normal.webm",
+      "bytes": 6758684,
+      "digest": "sha256:5118fbb7909d3ff7bf0df5472f2bb7524b30d9f961deef5ea2a727f25fef1902",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-normal.webm",
+      "downloadedSha256": "5118fbb7909d3ff7bf0df5472f2bb7524b30d9f961deef5ea2a727f25fef1902"
+    },
+    {
+      "id": 550083684,
+      "name": "coop-2-debug-quarter-music-off-reduced-effects.mp4",
+      "bytes": 5532451,
+      "digest": "sha256:ab72243847fefee5e270f0f336b552f3a8cb01c8f01a66fc43ea3b3a9fd59067",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "ab72243847fefee5e270f0f336b552f3a8cb01c8f01a66fc43ea3b3a9fd59067"
+    },
+    {
+      "id": 550083539,
+      "name": "coop-2-debug-quarter-music-off-reduced-effects.webm",
+      "bytes": 15011955,
+      "digest": "sha256:616c55161088d42ca3ac527c5eef1612e6d4e33689042b8b07b4336987515e75",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "616c55161088d42ca3ac527c5eef1612e6d4e33689042b8b07b4336987515e75"
+    },
+    {
+      "id": 550083482,
+      "name": "coop-2-debug-quarter-music-off.mp4",
+      "bytes": 5570024,
+      "digest": "sha256:770d23e2e3790b401750c9f750c453fde91f5966fb87122f1821c259d0d136e3",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-music-off.mp4",
+      "downloadedSha256": "770d23e2e3790b401750c9f750c453fde91f5966fb87122f1821c259d0d136e3"
+    },
+    {
+      "id": 550083371,
+      "name": "coop-2-debug-quarter-music-off.webm",
+      "bytes": 15088871,
+      "digest": "sha256:78b7d0b8cc1ab5809ca21e64c503076beec8e5a411f4ec2c84b80a35712226ab",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-music-off.webm",
+      "downloadedSha256": "78b7d0b8cc1ab5809ca21e64c503076beec8e5a411f4ec2c84b80a35712226ab"
+    },
+    {
+      "id": 550083292,
+      "name": "coop-2-debug-quarter-reduced-effects.mp4",
+      "bytes": 7458927,
+      "digest": "sha256:ff003da631f65135a532082490bb04fe1c2e4f774f1a140d4d466568f184d997",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-reduced-effects.mp4",
+      "downloadedSha256": "ff003da631f65135a532082490bb04fe1c2e4f774f1a140d4d466568f184d997"
+    },
+    {
+      "id": 550083115,
+      "name": "coop-2-debug-quarter-reduced-effects.webm",
+      "bytes": 15767344,
+      "digest": "sha256:9b5fee51ecf0030009955a14cd95d0af57445c42bdb9f352740d1d200e3153af",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter-reduced-effects.webm",
+      "downloadedSha256": "9b5fee51ecf0030009955a14cd95d0af57445c42bdb9f352740d1d200e3153af"
+    },
+    {
+      "id": 550083037,
+      "name": "coop-2-debug-quarter.mp4",
+      "bytes": 7475967,
+      "digest": "sha256:dc3fd07d31fe95a8ba99ab3a98df359ad4e679e3b4a471945adcb50645c41843",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter.mp4",
+      "downloadedSha256": "dc3fd07d31fe95a8ba99ab3a98df359ad4e679e3b4a471945adcb50645c41843"
+    },
+    {
+      "id": 550082874,
+      "name": "coop-2-debug-quarter.webm",
+      "bytes": 15802747,
+      "digest": "sha256:e3e6a835378edf08888c806aa65335fa3167f4ec265757784f457cbe959df401",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-2-debug-quarter.webm",
+      "downloadedSha256": "e3e6a835378edf08888c806aa65335fa3167f4ec265757784f457cbe959df401"
+    },
+    {
+      "id": 550084254,
+      "name": "coop-4-clean-normal-music-off-reduced-effects.mp4",
+      "bytes": 2836844,
+      "digest": "sha256:ba9a5cda68c2afc1a9415d508c212530d849a3ad741ae9937f0825dca56865b4",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "ba9a5cda68c2afc1a9415d508c212530d849a3ad741ae9937f0825dca56865b4"
+    },
+    {
+      "id": 550084170,
+      "name": "coop-4-clean-normal-music-off-reduced-effects.webm",
+      "bytes": 8374441,
+      "digest": "sha256:ea87294152612cbcf4c8a7f3342ca6323cace697723f540c235ba19390ddf63b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "ea87294152612cbcf4c8a7f3342ca6323cace697723f540c235ba19390ddf63b"
+    },
+    {
+      "id": 550084128,
+      "name": "coop-4-clean-normal-music-off.mp4",
+      "bytes": 2873409,
+      "digest": "sha256:e26a908bc1aa9b9ca0e029c4502f9e87cb4b52fa473961cad9fbc2ae57f9f4b4",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-music-off.mp4",
+      "downloadedSha256": "e26a908bc1aa9b9ca0e029c4502f9e87cb4b52fa473961cad9fbc2ae57f9f4b4"
+    },
+    {
+      "id": 550084053,
+      "name": "coop-4-clean-normal-music-off.webm",
+      "bytes": 8466873,
+      "digest": "sha256:0356d7a901935dfa66360f00a3fb8c32b2826609ea61da15b1411a8043473c68",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-music-off.webm",
+      "downloadedSha256": "0356d7a901935dfa66360f00a3fb8c32b2826609ea61da15b1411a8043473c68"
+    },
+    {
+      "id": 550083978,
+      "name": "coop-4-clean-normal-reduced-effects.mp4",
+      "bytes": 2976957,
+      "digest": "sha256:48f58e08720eba3f8bce1ce72c6977cfa73dde56a34939d2ff96e370cbcd698a",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-reduced-effects.mp4",
+      "downloadedSha256": "48f58e08720eba3f8bce1ce72c6977cfa73dde56a34939d2ff96e370cbcd698a"
+    },
+    {
+      "id": 550083921,
+      "name": "coop-4-clean-normal-reduced-effects.webm",
+      "bytes": 8355351,
+      "digest": "sha256:f9cc73322c9758c4c93b6a74c137ae5987e4d4364dc0ff5dea1aa1ce9ca0248b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal-reduced-effects.webm",
+      "downloadedSha256": "f9cc73322c9758c4c93b6a74c137ae5987e4d4364dc0ff5dea1aa1ce9ca0248b"
+    },
+    {
+      "id": 550083837,
+      "name": "coop-4-clean-normal.mp4",
+      "bytes": 2971543,
+      "digest": "sha256:9cb9f4c6348e16c4a7a415d057904ce143bc87188a88bf7bbe9616c368854146",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal.mp4",
+      "downloadedSha256": "9cb9f4c6348e16c4a7a415d057904ce143bc87188a88bf7bbe9616c368854146"
+    },
+    {
+      "id": 550083740,
+      "name": "coop-4-clean-normal.webm",
+      "bytes": 8413096,
+      "digest": "sha256:c81af73d38a694f3c1a439579f4c4127f1d3bdbab616c3a8fd98658ec691ec73",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-normal.webm",
+      "downloadedSha256": "c81af73d38a694f3c1a439579f4c4127f1d3bdbab616c3a8fd98658ec691ec73"
+    },
+    {
+      "id": 550085777,
+      "name": "coop-4-clean-quarter-music-off-reduced-effects.mp4",
+      "bytes": 7070521,
+      "digest": "sha256:46b4a10c4ac0955c38c6e6bd55b638fa44de21e35fcb88b248ecb8eb59cfd36b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "46b4a10c4ac0955c38c6e6bd55b638fa44de21e35fcb88b248ecb8eb59cfd36b"
+    },
+    {
+      "id": 550085540,
+      "name": "coop-4-clean-quarter-music-off-reduced-effects.webm",
+      "bytes": 18451705,
+      "digest": "sha256:c820af6256115a2b5935cf6e03e00981b9b093b5dc205cc344f4012ff298e93f",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "c820af6256115a2b5935cf6e03e00981b9b093b5dc205cc344f4012ff298e93f"
+    },
+    {
+      "id": 550085479,
+      "name": "coop-4-clean-quarter-music-off.mp4",
+      "bytes": 7116150,
+      "digest": "sha256:5092a591facfddecdf45cc90f3290521fa268cee88c3e1d53fec342dec0eefca",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-music-off.mp4",
+      "downloadedSha256": "5092a591facfddecdf45cc90f3290521fa268cee88c3e1d53fec342dec0eefca"
+    },
+    {
+      "id": 550085310,
+      "name": "coop-4-clean-quarter-music-off.webm",
+      "bytes": 18459154,
+      "digest": "sha256:7b5d9e18e0e5cadef47c0ee21a957df441bd9f4fa72a5994e9fccc950c4b2ddd",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-music-off.webm",
+      "downloadedSha256": "7b5d9e18e0e5cadef47c0ee21a957df441bd9f4fa72a5994e9fccc950c4b2ddd"
+    },
+    {
+      "id": 550085221,
+      "name": "coop-4-clean-quarter-reduced-effects.mp4",
+      "bytes": 8660082,
+      "digest": "sha256:f5fa7ac8d0b0831bd654a6bbcc41c8c1eb9e0ebd98e6fb248aa4bdd12d56d3ea",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-reduced-effects.mp4",
+      "downloadedSha256": "f5fa7ac8d0b0831bd654a6bbcc41c8c1eb9e0ebd98e6fb248aa4bdd12d56d3ea"
+    },
+    {
+      "id": 550085061,
+      "name": "coop-4-clean-quarter-reduced-effects.webm",
+      "bytes": 18973604,
+      "digest": "sha256:9f49c004008ecf5968c8620f41e577a6da75c9b8947cfc50d01948148b47d506",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter-reduced-effects.webm",
+      "downloadedSha256": "9f49c004008ecf5968c8620f41e577a6da75c9b8947cfc50d01948148b47d506"
+    },
+    {
+      "id": 550084992,
+      "name": "coop-4-clean-quarter.mp4",
+      "bytes": 8683669,
+      "digest": "sha256:e67b9edf06a8ae43ecc3b1146e038a413162dc5f79705a282bd275ca3b07b230",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter.mp4",
+      "downloadedSha256": "e67b9edf06a8ae43ecc3b1146e038a413162dc5f79705a282bd275ca3b07b230"
+    },
+    {
+      "id": 550084865,
+      "name": "coop-4-clean-quarter.webm",
+      "bytes": 18984541,
+      "digest": "sha256:1cdc4288dc990c2220e379088ac47e298376a31c7cf5fbef7905c50faa7ea81f",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-clean-quarter.webm",
+      "downloadedSha256": "1cdc4288dc990c2220e379088ac47e298376a31c7cf5fbef7905c50faa7ea81f"
+    },
+    {
+      "id": 550084817,
+      "name": "coop-4-debug-normal-music-off-reduced-effects.mp4",
+      "bytes": 2926628,
+      "digest": "sha256:f4cd2498c0976d317fc8a628c828b0d36fb06405660188ae9ab2604cc6bba65c",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "f4cd2498c0976d317fc8a628c828b0d36fb06405660188ae9ab2604cc6bba65c"
+    },
+    {
+      "id": 550084728,
+      "name": "coop-4-debug-normal-music-off-reduced-effects.webm",
+      "bytes": 8560823,
+      "digest": "sha256:4677353787c55808a882bc9494d4b659aec831cc546d314c0a6af0640fc6d674",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "4677353787c55808a882bc9494d4b659aec831cc546d314c0a6af0640fc6d674"
+    },
+    {
+      "id": 550084671,
+      "name": "coop-4-debug-normal-music-off.mp4",
+      "bytes": 2945411,
+      "digest": "sha256:165b72c9e565939d29a688e2e1ea64810984182ccb6c7f0e611c43c57a0b5f39",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-music-off.mp4",
+      "downloadedSha256": "165b72c9e565939d29a688e2e1ea64810984182ccb6c7f0e611c43c57a0b5f39"
+    },
+    {
+      "id": 550084579,
+      "name": "coop-4-debug-normal-music-off.webm",
+      "bytes": 8609307,
+      "digest": "sha256:745e74936a9d995d35addc73ae9c438cae855cce0c1ed43028fc9f588e3d0677",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-music-off.webm",
+      "downloadedSha256": "745e74936a9d995d35addc73ae9c438cae855cce0c1ed43028fc9f588e3d0677"
+    },
+    {
+      "id": 550084527,
+      "name": "coop-4-debug-normal-reduced-effects.mp4",
+      "bytes": 3059833,
+      "digest": "sha256:25c4ef60f9e56997973f375e4939ea4fc2dce2e431fea16d797046725de81a99",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-reduced-effects.mp4",
+      "downloadedSha256": "25c4ef60f9e56997973f375e4939ea4fc2dce2e431fea16d797046725de81a99"
+    },
+    {
+      "id": 550084459,
+      "name": "coop-4-debug-normal-reduced-effects.webm",
+      "bytes": 8588959,
+      "digest": "sha256:3d533423fec11d08d38fbb489428e307764d6180c6c8d05730c41cc9e5eff64a",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal-reduced-effects.webm",
+      "downloadedSha256": "3d533423fec11d08d38fbb489428e307764d6180c6c8d05730c41cc9e5eff64a"
+    },
+    {
+      "id": 550084395,
+      "name": "coop-4-debug-normal.mp4",
+      "bytes": 3071421,
+      "digest": "sha256:2212528bd3ce42b89c33b4c6464ce8aefbd5c8b299327359c18e451102da060b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal.mp4",
+      "downloadedSha256": "2212528bd3ce42b89c33b4c6464ce8aefbd5c8b299327359c18e451102da060b"
+    },
+    {
+      "id": 550084298,
+      "name": "coop-4-debug-normal.webm",
+      "bytes": 8588949,
+      "digest": "sha256:ff7aba58ebeb0b9ff35b318e2183c315c6b61487bf7d7c6e75d871f5708bfb54",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-normal.webm",
+      "downloadedSha256": "ff7aba58ebeb0b9ff35b318e2183c315c6b61487bf7d7c6e75d871f5708bfb54"
+    },
+    {
+      "id": 550086982,
+      "name": "coop-4-debug-quarter-music-off-reduced-effects.mp4",
+      "bytes": 7197075,
+      "digest": "sha256:8ee8d0468ffd2b574bc9925423b3e3236fcddc2383d8d78f1bd7cc96127f1451",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "8ee8d0468ffd2b574bc9925423b3e3236fcddc2383d8d78f1bd7cc96127f1451"
+    },
+    {
+      "id": 550086664,
+      "name": "coop-4-debug-quarter-music-off-reduced-effects.webm",
+      "bytes": 18870197,
+      "digest": "sha256:41e34aef779687d3039b8a31e90e0c46a2e250b8a03396f1394a8de8c1365f64",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "41e34aef779687d3039b8a31e90e0c46a2e250b8a03396f1394a8de8c1365f64"
+    },
+    {
+      "id": 550086583,
+      "name": "coop-4-debug-quarter-music-off.mp4",
+      "bytes": 7195342,
+      "digest": "sha256:917cba10cc215e788bf4491a65fef56ebec6e7da4605686d1b6a1c323130d9c5",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-music-off.mp4",
+      "downloadedSha256": "917cba10cc215e788bf4491a65fef56ebec6e7da4605686d1b6a1c323130d9c5"
+    },
+    {
+      "id": 550086414,
+      "name": "coop-4-debug-quarter-music-off.webm",
+      "bytes": 18921569,
+      "digest": "sha256:9877905ebfa80f570f1fcb5feb3b132ab79e41908288e93c09f1cbdd7d1b81e2",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-music-off.webm",
+      "downloadedSha256": "9877905ebfa80f570f1fcb5feb3b132ab79e41908288e93c09f1cbdd7d1b81e2"
+    },
+    {
+      "id": 550086302,
+      "name": "coop-4-debug-quarter-reduced-effects.mp4",
+      "bytes": 8786102,
+      "digest": "sha256:583bdba367ed43b41efcab58f2ea41b9d648b8c7bbad85fb7418ed066c53dd5b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-reduced-effects.mp4",
+      "downloadedSha256": "583bdba367ed43b41efcab58f2ea41b9d648b8c7bbad85fb7418ed066c53dd5b"
+    },
+    {
+      "id": 550086067,
+      "name": "coop-4-debug-quarter-reduced-effects.webm",
+      "bytes": 19416805,
+      "digest": "sha256:e3fe86bde1617418e37578c78bb1b8899e7d44f1ae4f7fd74d3d718930084ade",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter-reduced-effects.webm",
+      "downloadedSha256": "e3fe86bde1617418e37578c78bb1b8899e7d44f1ae4f7fd74d3d718930084ade"
+    },
+    {
+      "id": 550086014,
+      "name": "coop-4-debug-quarter.mp4",
+      "bytes": 8797761,
+      "digest": "sha256:a53976c1725a6b17bdce82e942865c384681cca6af4c95b28909c1803f8d2c54",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter.mp4",
+      "downloadedSha256": "a53976c1725a6b17bdce82e942865c384681cca6af4c95b28909c1803f8d2c54"
+    },
+    {
+      "id": 550085846,
+      "name": "coop-4-debug-quarter.webm",
+      "bytes": 19479466,
+      "digest": "sha256:e36dc83febf99964d6d2dccb4f6a1708f8d08000acef3fb31e51ca7cd5633537",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/coop-4-debug-quarter.webm",
+      "downloadedSha256": "e36dc83febf99964d6d2dccb4f6a1708f8d08000acef3fb31e51ca7cd5633537"
+    },
+    {
+      "id": 550087195,
+      "name": "review.html",
+      "bytes": 13667,
+      "digest": "sha256:33038de6e50dcf60579158a4ec4b9e5ebfb3eb126f91f35b636972856f4d7c1c",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/review.html",
+      "downloadedSha256": "33038de6e50dcf60579158a4ec4b9e5ebfb3eb126f91f35b636972856f4d7c1c"
+    },
+    {
+      "id": 550078086,
+      "name": "solo-clean-normal-music-off-reduced-effects.mp4",
+      "bytes": 2034684,
+      "digest": "sha256:fa8a977180f5f27e5962ff2ee8a62c89d8aa44558091211bc5aa1ccf8f2fbe2e",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "fa8a977180f5f27e5962ff2ee8a62c89d8aa44558091211bc5aa1ccf8f2fbe2e"
+    },
+    {
+      "id": 550077952,
+      "name": "solo-clean-normal-music-off-reduced-effects.webm",
+      "bytes": 5978633,
+      "digest": "sha256:7371ed3585da0cc3609e6919e5ae263d8b2611333bcb03b863f2c0881dfa02a0",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "7371ed3585da0cc3609e6919e5ae263d8b2611333bcb03b863f2c0881dfa02a0"
+    },
+    {
+      "id": 550077926,
+      "name": "solo-clean-normal-music-off.mp4",
+      "bytes": 2034575,
+      "digest": "sha256:b5e4c54b47f12c3a2322b3d991ddc7675e525e9c14b5b4d767c9fdae70c03bee",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-music-off.mp4",
+      "downloadedSha256": "b5e4c54b47f12c3a2322b3d991ddc7675e525e9c14b5b4d767c9fdae70c03bee"
+    },
+    {
+      "id": 550077827,
+      "name": "solo-clean-normal-music-off.webm",
+      "bytes": 6018200,
+      "digest": "sha256:7b5720f72031b667b88d7acf361f7851f11d0abed0f8b02541af1af3bc995313",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-music-off.webm",
+      "downloadedSha256": "7b5720f72031b667b88d7acf361f7851f11d0abed0f8b02541af1af3bc995313"
+    },
+    {
+      "id": 550077776,
+      "name": "solo-clean-normal-reduced-effects.mp4",
+      "bytes": 2255407,
+      "digest": "sha256:ce228bd1a8bfb57675ba100038326a3f98a3b695b9a5adaa046e6bd4eabaf7b8",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-reduced-effects.mp4",
+      "downloadedSha256": "ce228bd1a8bfb57675ba100038326a3f98a3b695b9a5adaa046e6bd4eabaf7b8"
+    },
+    {
+      "id": 550077716,
+      "name": "solo-clean-normal-reduced-effects.webm",
+      "bytes": 6025878,
+      "digest": "sha256:b307c2060eb729a2cdc4c71ec2fe659196f54b9e4204a5bedb40c7f78ec1266a",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal-reduced-effects.webm",
+      "downloadedSha256": "b307c2060eb729a2cdc4c71ec2fe659196f54b9e4204a5bedb40c7f78ec1266a"
+    },
+    {
+      "id": 550077669,
+      "name": "solo-clean-normal.mp4",
+      "bytes": 2269787,
+      "digest": "sha256:f3627b5b81dccb22853985302669db5d15a1c78ea6c5fba4634bc7452af804eb",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal.mp4",
+      "downloadedSha256": "f3627b5b81dccb22853985302669db5d15a1c78ea6c5fba4634bc7452af804eb"
+    },
+    {
+      "id": 550077599,
+      "name": "solo-clean-normal.webm",
+      "bytes": 6038079,
+      "digest": "sha256:d120235eca2390d3a86b6d398e742edc19d36ed7271f9bf3acd5057b649e67a5",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-normal.webm",
+      "downloadedSha256": "d120235eca2390d3a86b6d398e742edc19d36ed7271f9bf3acd5057b649e67a5"
+    },
+    {
+      "id": 550079618,
+      "name": "solo-clean-quarter-music-off-reduced-effects.mp4",
+      "bytes": 4626555,
+      "digest": "sha256:4f2099768dcbbb6ad56c1e2a1a64b6110fca4d541928b3bde840d6971f5d793c",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "4f2099768dcbbb6ad56c1e2a1a64b6110fca4d541928b3bde840d6971f5d793c"
+    },
+    {
+      "id": 550079500,
+      "name": "solo-clean-quarter-music-off-reduced-effects.webm",
+      "bytes": 13422764,
+      "digest": "sha256:07f9083b9a0e8df9435b36ddd5fde1309d4fbc80eda0e04815463aceb1ad71b3",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "07f9083b9a0e8df9435b36ddd5fde1309d4fbc80eda0e04815463aceb1ad71b3"
+    },
+    {
+      "id": 550079401,
+      "name": "solo-clean-quarter-music-off.mp4",
+      "bytes": 4637399,
+      "digest": "sha256:5c97c93198c98e1d0965fa689d9a538e9442d5971fc9189d20e74aace3b8fb1b",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-music-off.mp4",
+      "downloadedSha256": "5c97c93198c98e1d0965fa689d9a538e9442d5971fc9189d20e74aace3b8fb1b"
+    },
+    {
+      "id": 550079277,
+      "name": "solo-clean-quarter-music-off.webm",
+      "bytes": 13451176,
+      "digest": "sha256:7da2051f742a868e6f04b4b93f7e7c0d2a049b214f80db29d93c06a5002f5563",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-music-off.webm",
+      "downloadedSha256": "7da2051f742a868e6f04b4b93f7e7c0d2a049b214f80db29d93c06a5002f5563"
+    },
+    {
+      "id": 550079212,
+      "name": "solo-clean-quarter-reduced-effects.mp4",
+      "bytes": 7060728,
+      "digest": "sha256:a3783436fc69cb468d38aa0f825af0ad0fd72cc772d7c9c1f8bcb68804c903cb",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-reduced-effects.mp4",
+      "downloadedSha256": "a3783436fc69cb468d38aa0f825af0ad0fd72cc772d7c9c1f8bcb68804c903cb"
+    },
+    {
+      "id": 550079043,
+      "name": "solo-clean-quarter-reduced-effects.webm",
+      "bytes": 14199122,
+      "digest": "sha256:6a04e2df7c27579bad54aac664a6d1a417c2817cf200f13afc7e0248facb6a19",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter-reduced-effects.webm",
+      "downloadedSha256": "6a04e2df7c27579bad54aac664a6d1a417c2817cf200f13afc7e0248facb6a19"
+    },
+    {
+      "id": 550078899,
+      "name": "solo-clean-quarter.mp4",
+      "bytes": 7081094,
+      "digest": "sha256:c835fa92cf1e765aa419ef6a4618f07184cd841ff59875743566206063805e9d",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter.mp4",
+      "downloadedSha256": "c835fa92cf1e765aa419ef6a4618f07184cd841ff59875743566206063805e9d"
+    },
+    {
+      "id": 550078757,
+      "name": "solo-clean-quarter.webm",
+      "bytes": 14228933,
+      "digest": "sha256:74f3f477de377a8a497a95bac5e377e0fb4871c105315b0a53e98328b972e40d",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-clean-quarter.webm",
+      "downloadedSha256": "74f3f477de377a8a497a95bac5e377e0fb4871c105315b0a53e98328b972e40d"
+    },
+    {
+      "id": 550078677,
+      "name": "solo-debug-normal-music-off-reduced-effects.mp4",
+      "bytes": 2064952,
+      "digest": "sha256:473b98e624d1972632094309d60e47ef6f94d4e617078585ba3fbffc18e2bec0",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-music-off-reduced-effects.mp4",
+      "downloadedSha256": "473b98e624d1972632094309d60e47ef6f94d4e617078585ba3fbffc18e2bec0"
+    },
+    {
+      "id": 550078577,
+      "name": "solo-debug-normal-music-off-reduced-effects.webm",
+      "bytes": 6101363,
+      "digest": "sha256:a28f90f5386f1abf9e2d4be13aa30ee6de16a89eb4716d27db9571665f48cac0",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-music-off-reduced-effects.webm",
+      "downloadedSha256": "a28f90f5386f1abf9e2d4be13aa30ee6de16a89eb4716d27db9571665f48cac0"
+    },
+    {
+      "id": 550078531,
+      "name": "solo-debug-normal-music-off.mp4",
+      "bytes": 2077400,
+      "digest": "sha256:ab10b1b0eeab4eeae215ded47a805a889da85e95523fed2cbcd04fa8fd2e5513",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-music-off.mp4",
+      "downloadedSha256": "ab10b1b0eeab4eeae215ded47a805a889da85e95523fed2cbcd04fa8fd2e5513"
+    },
+    {
+      "id": 550078424,
+      "name": "solo-debug-normal-music-off.webm",
+      "bytes": 6131470,
+      "digest": "sha256:adc4d12274ebc54ea12f7cb44c393fb40093cd0df45cdebf7a0a427d828219bb",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-music-off.webm",
+      "downloadedSha256": "adc4d12274ebc54ea12f7cb44c393fb40093cd0df45cdebf7a0a427d828219bb"
+    },
+    {
+      "id": 550078375,
+      "name": "solo-debug-normal-reduced-effects.mp4",
+      "bytes": 2283806,
+      "digest": "sha256:73ca6bc67b72658f9e3bf44039277b206713d6a5029f1041fc54f73fd23fc7c2",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-reduced-effects.mp4",
+      "downloadedSha256": "73ca6bc67b72658f9e3bf44039277b206713d6a5029f1041fc54f73fd23fc7c2"
+    },
+    {
+      "id": 550078307,
+      "name": "solo-debug-normal-reduced-effects.webm",
+      "bytes": 6156212,
+      "digest": "sha256:f14c91165684a8a6966baf5acdbd8a006013c18fb6a461ecb663d38828cff550",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal-reduced-effects.webm",
+      "downloadedSha256": "f14c91165684a8a6966baf5acdbd8a006013c18fb6a461ecb663d38828cff550"
+    },
+    {
+      "id": 550078239,
+      "name": "solo-debug-normal.mp4",
+      "bytes": 2308686,
+      "digest": "sha256:1a37f712f4d163956d3d5bb912aa0b59d640dd46b4e1482bc14b7ff9f0c807a6",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal.mp4",
+      "downloadedSha256": "1a37f712f4d163956d3d5bb912aa0b59d640dd46b4e1482bc14b7ff9f0c807a6"
+    },
+    {
+      "id": 550078139,
+      "name": "solo-debug-normal.webm",
+      "bytes": 6177894,
+      "digest": "sha256:d737161360eee832a39056e2fb86216fc07ca14957559b57a1f602ac7323ec82",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-normal.webm",
+      "downloadedSha256": "d737161360eee832a39056e2fb86216fc07ca14957559b57a1f602ac7323ec82"
+    },
+    {
+      "id": 550080463,
+      "name": "solo-debug-quarter-music-off-reduced-effects.mp4",
+      "bytes": 4681638,
+      "digest": "sha256:3c0d9d88804efc6c5c07a2b0f731248265878d60984b42ae1e61d1b3bc7f0534",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-music-off-reduced-effects.mp4",
+      "downloadedSha256": "3c0d9d88804efc6c5c07a2b0f731248265878d60984b42ae1e61d1b3bc7f0534"
+    },
+    {
+      "id": 550080343,
+      "name": "solo-debug-quarter-music-off-reduced-effects.webm",
+      "bytes": 13682661,
+      "digest": "sha256:801a4e0351c91b0e5e68d7d3b503308b31b29ca2c06834eb6fe61181869621d7",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-music-off-reduced-effects.webm",
+      "downloadedSha256": "801a4e0351c91b0e5e68d7d3b503308b31b29ca2c06834eb6fe61181869621d7"
+    },
+    {
+      "id": 550080271,
+      "name": "solo-debug-quarter-music-off.mp4",
+      "bytes": 4695189,
+      "digest": "sha256:193e29a89b8d3ab943419bd2b726e8e7b54cae70f08decab05ea30d3123b5c1c",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-music-off.mp4",
+      "downloadedSha256": "193e29a89b8d3ab943419bd2b726e8e7b54cae70f08decab05ea30d3123b5c1c"
+    },
+    {
+      "id": 550080146,
+      "name": "solo-debug-quarter-music-off.webm",
+      "bytes": 13746365,
+      "digest": "sha256:db1138c72f8e17739670dd3002a5b99a0ac0a99bcf54cf3d0aa8b4e15cf267e7",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-music-off.webm",
+      "downloadedSha256": "db1138c72f8e17739670dd3002a5b99a0ac0a99bcf54cf3d0aa8b4e15cf267e7"
+    },
+    {
+      "id": 550080063,
+      "name": "solo-debug-quarter-reduced-effects.mp4",
+      "bytes": 7119121,
+      "digest": "sha256:f52b3888e62377b2a58197af7fee6ae29deebcf6b5d08c06845055f24c39344d",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-reduced-effects.mp4",
+      "downloadedSha256": "f52b3888e62377b2a58197af7fee6ae29deebcf6b5d08c06845055f24c39344d"
+    },
+    {
+      "id": 550079970,
+      "name": "solo-debug-quarter-reduced-effects.webm",
+      "bytes": 14466438,
+      "digest": "sha256:ad257cae090d69e3b785b7e6cbe9f436029000aaabf493b305870226f6c3194d",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter-reduced-effects.webm",
+      "downloadedSha256": "ad257cae090d69e3b785b7e6cbe9f436029000aaabf493b305870226f6c3194d"
+    },
+    {
+      "id": 550079854,
+      "name": "solo-debug-quarter.mp4",
+      "bytes": 7136975,
+      "digest": "sha256:f26ff89b431f655c729a0c837cea8eb65c1b26b0638e0f5cf1271d4fee0b0585",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter.mp4",
+      "downloadedSha256": "f26ff89b431f655c729a0c837cea8eb65c1b26b0638e0f5cf1271d4fee0b0585"
+    },
+    {
+      "id": 550079667,
+      "name": "solo-debug-quarter.webm",
+      "bytes": 14480945,
+      "digest": "sha256:4a5df8710263ae610bdfeaaa92bb9f5cd8f080f9535affe341416afa9e260622",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/solo-debug-quarter.webm",
+      "downloadedSha256": "4a5df8710263ae610bdfeaaa92bb9f5cd8f080f9535affe341416afa9e260622"
+    },
+    {
+      "id": 550087038,
+      "name": "weapons-black-1x.png",
+      "bytes": 38746,
+      "digest": "sha256:c380cac422f4f1b594f1d52b372e2c959f066e14c482fb8fe488c930492e8069",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-black-1x.png",
+      "downloadedSha256": "c380cac422f4f1b594f1d52b372e2c959f066e14c482fb8fe488c930492e8069"
+    },
+    {
+      "id": 550087060,
+      "name": "weapons-black-4x.png",
+      "bytes": 248861,
+      "digest": "sha256:ec30c6acd03e1050eb0476c050931d03e14d8866db9a96e8f99407dd41082f96",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-black-4x.png",
+      "downloadedSha256": "ec30c6acd03e1050eb0476c050931d03e14d8866db9a96e8f99407dd41082f96"
+    },
+    {
+      "id": 550087122,
+      "name": "weapons-chroma-1x.png",
+      "bytes": 37678,
+      "digest": "sha256:cc90d31ba77d6282722127e9ef367f5308472f4cb4eae769b7392760acf3e83f",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-chroma-1x.png",
+      "downloadedSha256": "cc90d31ba77d6282722127e9ef367f5308472f4cb4eae769b7392760acf3e83f"
+    },
+    {
+      "id": 550087148,
+      "name": "weapons-chroma-4x.png",
+      "bytes": 248582,
+      "digest": "sha256:079c0a047759882eb8d9135c66b86ee5712a84fbc94c4a0c48a9424e65d36bc3",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-chroma-4x.png",
+      "downloadedSha256": "079c0a047759882eb8d9135c66b86ee5712a84fbc94c4a0c48a9424e65d36bc3"
+    },
+    {
+      "id": 550087080,
+      "name": "weapons-white-1x.png",
+      "bytes": 28912,
+      "digest": "sha256:f27b4558eb3c977952d796dbd588bc9a9690f44d42a5e063d3646f03ea78bdff",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-white-1x.png",
+      "downloadedSha256": "f27b4558eb3c977952d796dbd588bc9a9690f44d42a5e063d3646f03ea78bdff"
+    },
+    {
+      "id": 550087103,
+      "name": "weapons-white-4x.png",
+      "bytes": 100366,
+      "digest": "sha256:a8a9794c9587a0526b06dc4df9bdf61585722f2418369fc45a315bd1380c8ab8",
+      "url": "https://github.com/garysassano/cdktn-cloudflare-edgefall/releases/download/untagged-041ea219d6f27455e6aa/weapons-white-4x.png",
+      "downloadedSha256": "a8a9794c9587a0526b06dc4df9bdf61585722f2418369fc45a315bd1380c8ab8"
+    }
+  ],
+  "downloadCount": 104,
+  "downloadedBytes": 778973572,
+  "scope": "Draft review media verified against GitHub metadata and downloaded bytes. Human style/listening acceptance and production delivery are pending."
+}

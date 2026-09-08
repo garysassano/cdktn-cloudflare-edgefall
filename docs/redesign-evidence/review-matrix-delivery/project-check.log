@@ -1,0 +1,51 @@
+$ pnpm lint && pnpm assets:validate && pnpm art:validate && pnpm audio:validate && pnpm content:validate && pnpm typecheck && pnpm test && pnpm synth
+$ biome check .
+Checked 349 files in 204ms. No fixes applied.
+$ node scripts/validate-assets.mjs
+Validated 88 licensed assets and registered atlases.
+$ tsx scripts/assets/review-studies.ts && tsx scripts/assets/export-native.ts --check && tsx scripts/assets/export-cast.ts --check && tsx scripts/assets/export-breakwater.ts --check
+{"sourceIntegrity":"pass","studies":2,"unchangedImportsAllowed":0,"humanStyleReview":"pending","scope":"Concept-source inspection only. No export, pixel repair, animation validation, runtime admission or human approval is performed."}
+{"status":"pass","drawings":149,"variants":4,"humanReview":"pending"}
+{"status":"pass","drawings":118,"families":3,"humanReview":"pending"}
+{"status":"pass","drawings":137,"humanReview":"pending"}
+$ node scripts/assets/render-breakwater-music.mjs --check && node scripts/assets/render-breakwater-sfx.mjs --check
+{"track":"breakwater-quay","seconds":26.666666666666668,"bytes":447812,"peak":0.3388673663139343,"rms":0.05787300805242952,"seamDelta":0.0014925554860383272}
+{"track":"lock-engine","seconds":26.666666666666668,"bytes":443874,"peak":0.37070411443710327,"rms":0.05883382758999903,"seamDelta":0.001088365912437439}
+Validated 52 recorded SFX variants; 3762240 decoded bytes.
+$ tsx scripts/validate-content.ts && tsx scripts/compile-content.ts --check && tsx scripts/compile-benchmark.ts --check
+{"format":1,"fixture":"arcade-contract","contentHash":"29ae37575304a2e729e0c284e60cdeb2df4f8fdfeb8da4c596b4821d16b380e2","status":"valid","media":"engineering fixture; final asset availability not asserted"}
+{"status":"pass","source":"content/engineering/navigation.ldtk","output":"src/game/content/compiled/navigation.json","sourceSha256":"5b6637b99cbdb300337c949fab6331282508e8f8009038263a6ff9bf22e98301","schemaSha256":"b96ca8a106d12c5bf8aa42da223a4ceb02e93dcfbb0d1b49fbbaeb9959264bda","contentHash":"a6434f8f6468122005419e4c88336a3e6dbf29547ca01ed1057b818514c2dbb6","graphicsHash":"8523df73611d93e17ef71e49e31839cfac6fb97ba022b330e87793f6b447b47a","buildHash":"e7042cbe2114695b232b5958580c5e3bd881da7f5adbe528f7e38ff3f7ae9688","terrain":3,"links":2,"checkpointTicks":117}
+{"status":"pass","content":"breakwater-approach","format":1,"contentHash":"49c187c979cc8e1b743d154438fb782301eb51ad5f638f7d5f3f87bc49306c5b"}
+$ tsc --noEmit && tsc --noEmit -p src/worker/tsconfig.json && tsc --noEmit -p src/client/tsconfig.json
+$ pnpm bundle
+$ pnpm assets:validate && pnpm client:build && wrangler deploy --dry-run --outdir dist/wrangler
+$ node scripts/validate-assets.mjs
+Validated 88 licensed assets and registered atlases.
+$ node scripts/build-client.mjs
+Built Phaser client and static assets: dist/client
+
+ ⛅️ wrangler 4.128.0
+────────────────────
+✨ Read 103 files from the assets directory /home/user/git/cdktn-cloudflare-edgefall/dist/client
+Total Upload: 80.08 KiB / gzip: 19.57 KiB
+Your Worker has access to the following bindings:
+Binding                                Resource            
+env.GAME_ROOMS (EdgefallRoom)          Durable Object      
+env.RUNS (edgefall-runs)               D1 Database         
+env.REPLAYS (edgefall-replays)         R2 Bucket           
+env.ASSETS                             Assets              
+
+--dry-run: exiting now.
+$ vitest run
+
+ RUN  v5.0.0 /home/user/git/cdktn-cloudflare-edgefall
+
+
+ Test Files  69 passed (69)
+      Tests  694 passed (694)
+   Start at  09:33:17
+   Duration  15.80s (tests 90%, transform 6%, import 4%)
+
+$ cdktn synth
+
+Generated Terraform code for the stacks: cdktn-cloudflare-edgefall-dev
