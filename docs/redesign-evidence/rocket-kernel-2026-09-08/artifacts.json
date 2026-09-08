@@ -1,0 +1,1162 @@
+{
+  "format": 1,
+  "baseCommit": "25434f330aac156f66a8fc9a6b04571387e173c9",
+  "scope": "Released-rocket kernel and shared conformance proof. The negative validation log predates the clock/body-bounds corrections; remaining artifacts and source fingerprints describe the final kernel. Launcher room/input/ammo/archive integration and final media remain open.",
+  "sourceSha256": "595259f3f71d5a9d11587ccf62f5530e9d82736223a9d025568fec314499bffc",
+  "browserBundleSha256": "ca00ad28a61f4f6ec7d1546d360129766e8e429140bdfd9e823607e65f1ecc9d",
+  "resultSha256": "8514a0a774b320fc08bd9b2c012eba75a0dde765f3fec29b6a52ddff43f318de",
+  "sources": [
+    {
+      "path": "e2e/contracts.wrangler.jsonc",
+      "bytes": 294,
+      "sha256": "34378d3223bd72a61569c4e226b19d4dfa969f16dd402901a8a351aff85ec931"
+    },
+    {
+      "path": "mise.toml",
+      "bytes": 174,
+      "sha256": "0c816e631820069201052a4b5548d9e392bb1786bcb0d469a2fc3a52c03d65fa"
+    },
+    {
+      "path": "package.json",
+      "bytes": 4290,
+      "sha256": "75dce151d553c1f7c39ec9277f7999079026b0c1ddf7a2959316c3f1053ac03a"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 148537,
+      "sha256": "9c319c54fe45b88268cc4b86ce5d7d5c88cd16bcd43acd0287dfbdada62efc43"
+    },
+    {
+      "path": "scripts/verify-contract-runtimes.ts",
+      "bytes": 9142,
+      "sha256": "2bfabf2dc281db629ff310a6e3f5486a2526f432541998cabe4baa5305b34b75"
+    },
+    {
+      "path": "src/game/actors/grounded.ts",
+      "bytes": 6547,
+      "sha256": "34453a81e8a70927d65fad1c3eee28153eba1f0919ae678dd9967204fa201e51"
+    },
+    {
+      "path": "src/game/actors/rifle.ts",
+      "bytes": 6438,
+      "sha256": "56eaf532182d0f8243fee4ef7022a611cd9fcacd5f7f361465ddfc9cfd817924"
+    },
+    {
+      "path": "src/game/actors/routed.ts",
+      "bytes": 10189,
+      "sha256": "6b7f245a326636844f1bf4c8ae70333ebf69f469af3c96ea4afc119a30c742e3"
+    },
+    {
+      "path": "src/game/actors/shield.ts",
+      "bytes": 9823,
+      "sha256": "21b43b9f58197d513a9f1416347585431101fe9d41e3484aa7ba6ef804630d94"
+    },
+    {
+      "path": "src/game/campaign/life.ts",
+      "bytes": 11225,
+      "sha256": "51d4e743a1a9050322187b0df834506d3631a6cc2644ce7f606e47700e788ebf"
+    },
+    {
+      "path": "src/game/campaign/lifecycle.ts",
+      "bytes": 9278,
+      "sha256": "9f88a5446a35aff9c199c3177bc02e8576973f853a06dfa79b603a946b0b03bd"
+    },
+    {
+      "path": "src/game/combat/area-attack.ts",
+      "bytes": 13557,
+      "sha256": "2b7826fb8db923257a0d6bcd905db994206f69d25a688e496d01e00855f2eebc"
+    },
+    {
+      "path": "src/game/combat/destructible.ts",
+      "bytes": 3881,
+      "sha256": "20d263861a87fb9cb08fb9581b29e82bf09ad7efecb1e68dcb43bc7b02309716"
+    },
+    {
+      "path": "src/game/combat/firearm-aim.ts",
+      "bytes": 5788,
+      "sha256": "bb03a22db77438c3a90459aff13fbcf183fafa18bb2df8740eb2f11371b59177"
+    },
+    {
+      "path": "src/game/combat/firearm.ts",
+      "bytes": 5398,
+      "sha256": "fba5d427a50fbf0f54968155cdae3ee42849ac18df2cf7ec98b7c63bfed24bc0"
+    },
+    {
+      "path": "src/game/combat/foot-actions.ts",
+      "bytes": 4280,
+      "sha256": "65d7d8de41680a50742574120dafd4e11141a0a8271a3ccc1dc57bfef00e21ba"
+    },
+    {
+      "path": "src/game/combat/grenade.ts",
+      "bytes": 5968,
+      "sha256": "6a7a2dae0167846667defd575e7b9e72ce653ffc972a122b9f9150cfb1521502"
+    },
+    {
+      "path": "src/game/combat/projectile.ts",
+      "bytes": 5041,
+      "sha256": "ff5e7b199de77e2afd5ce2e98c786f07cde0f9b135dc854e5db7247fa1088853"
+    },
+    {
+      "path": "src/game/combat/rocket.ts",
+      "bytes": 12380,
+      "sha256": "3d46aebb021418a14c5897ecd0935c4ccfba5392fb14e4256d78b52c2a135589"
+    },
+    {
+      "path": "src/game/combat/timeline.ts",
+      "bytes": 2526,
+      "sha256": "4a2203ea48f0b1b78a30e9e52fe8877b2ff83c6dce15d442f90be97d8ef60cc7"
+    },
+    {
+      "path": "src/game/combat/volume.ts",
+      "bytes": 11027,
+      "sha256": "5ed14abc037931d74db83ebdef330b540dc4afd23226e817e74e555a41564e05"
+    },
+    {
+      "path": "src/game/content.ts",
+      "bytes": 7752,
+      "sha256": "b023926056f255084be8d854da036d500b342a38b3a4d941c807123de7adf15b"
+    },
+    {
+      "path": "src/game/content/compiled/navigation.json",
+      "bytes": 33524,
+      "sha256": "94f5006f5fc298135d4a1d07dce411f5fb3dd986a68e56693563df970c303ebb"
+    },
+    {
+      "path": "src/game/content/contract-fixture.ts",
+      "bytes": 3949,
+      "sha256": "8cf7729640f739437ea07adb888b84215f07d24af4654e9f2305c78542d02733"
+    },
+    {
+      "path": "src/game/content/schema.ts",
+      "bytes": 2706,
+      "sha256": "96ba58e1114e68babe3cb2d50326f05a79ea487219b5534249d27d31cbe7f09c"
+    },
+    {
+      "path": "src/game/content/validate.ts",
+      "bytes": 7407,
+      "sha256": "9d537c19476cd462ca088b08d9bedfada83f0a614fef5518c5b33750bc1c9fc7"
+    },
+    {
+      "path": "src/game/content/weapons/rocket-launcher.ts",
+      "bytes": 1557,
+      "sha256": "fa2615c0a70df7f63cd53cbb9d80b513d49c7353695f7d530dd7f92a6cdf7bb2"
+    },
+    {
+      "path": "src/game/controller/foot.ts",
+      "bytes": 11248,
+      "sha256": "f0c78961f3ed22b589d734362f0ddb7ae58dfe80bed25f9d03df7490bfd9e254"
+    },
+    {
+      "path": "src/game/core/canonical.ts",
+      "bytes": 2160,
+      "sha256": "4b255b5104b2ddba1e4155cfc40b23e81b0d58b75c45f5f2b9c7ae2c284b315e"
+    },
+    {
+      "path": "src/game/core/numeric.ts",
+      "bytes": 2257,
+      "sha256": "55d339dbef7fd2e42956f399780e060a0bfe1fc3a70ad4354e918f2342e0b5a1"
+    },
+    {
+      "path": "src/game/daily.ts",
+      "bytes": 441,
+      "sha256": "52fc74cd0280c02d76c1cb55affc1f60a3178dc72d6afc26607cbdf0c42d7fe7"
+    },
+    {
+      "path": "src/game/encounters/lifecycle.ts",
+      "bytes": 18960,
+      "sha256": "0d634d4973657351af7bf4f2de48707e6e7df1beb04ffa0a53b9150526965c28"
+    },
+    {
+      "path": "src/game/input/journal.ts",
+      "bytes": 1252,
+      "sha256": "f47e52eca4f44a64a32d3e9ab3c7f7b7cf663fecc63c5b8c26289df5be170c44"
+    },
+    {
+      "path": "src/game/input/types.ts",
+      "bytes": 1954,
+      "sha256": "262d7214882ebff5185233d55c40ebf7fe4640fc1077d8c1650fe23b6ceb6c5b"
+    },
+    {
+      "path": "src/game/labs/baseline.ts",
+      "bytes": 2536,
+      "sha256": "225a4135c87c8a2c9db25ab13f67b22f8fb13f5ba74976ff41493f42aa687b83"
+    },
+    {
+      "path": "src/game/labs/combat-campaign.ts",
+      "bytes": 9853,
+      "sha256": "0194e0eb386e395fcf975373d8e2a84c3db65e4e6886db7656d04aad58dc6cf5"
+    },
+    {
+      "path": "src/game/labs/combat-content.ts",
+      "bytes": 16837,
+      "sha256": "23eb376a1f7653ae208af5d868f114b6f0ddd27a1f001a9b420e4bdbda6d5a35"
+    },
+    {
+      "path": "src/game/labs/combat-tanks.ts",
+      "bytes": 11192,
+      "sha256": "e4f5291013d507dde529030cca21ea8d4ed3b2785656ba3c6966ad82e8cbce81"
+    },
+    {
+      "path": "src/game/labs/combat-terrain.ts",
+      "bytes": 4434,
+      "sha256": "14d455e2231f3cc749d49d801702cb11828b1ea85634928a869eaa8186544100"
+    },
+    {
+      "path": "src/game/labs/combat.ts",
+      "bytes": 45799,
+      "sha256": "9d7b2fafaa69fc69848af0de839dbfb74d54e17fc3ba2f5d19129a68762bd3fe"
+    },
+    {
+      "path": "src/game/labs/compiled.ts",
+      "bytes": 2449,
+      "sha256": "39e3f19c508b31cbf2d698c0941e9a06a8f82cd49db259f1f2040191470c10fa"
+    },
+    {
+      "path": "src/game/labs/controller.ts",
+      "bytes": 15135,
+      "sha256": "d2c9fe612f40a76a43db41dd59babaae6721f6e0a225ec3e8bf6b511085c4223"
+    },
+    {
+      "path": "src/game/labs/encounter.ts",
+      "bytes": 427,
+      "sha256": "9c265e4e022b7ec0755038142442025a4ce434b59b62f29e78122500fe02f6a2"
+    },
+    {
+      "path": "src/game/labs/foot-fixture.ts",
+      "bytes": 2130,
+      "sha256": "9533abecc95bfa402f04eb537324f0d14e58aa31183ca9a83fc200988284a7b4"
+    },
+    {
+      "path": "src/game/labs/route.ts",
+      "bytes": 2166,
+      "sha256": "cd09b11d08c5278386c58b0a7081cb593876509609c4a89b28f24bfafca5db77"
+    },
+    {
+      "path": "src/game/labs/routed.ts",
+      "bytes": 2146,
+      "sha256": "83455f74588b7b94c34e34727f06da52896db11dfe9f31e2481db7b3c7151d80"
+    },
+    {
+      "path": "src/game/labs/traversal.ts",
+      "bytes": 1687,
+      "sha256": "cd9176887d43a3716877b7ec0af95d40daf17b317aa7411156a37df86f7337ef"
+    },
+    {
+      "path": "src/game/missions/breakwater-boss.ts",
+      "bytes": 4625,
+      "sha256": "e72c02cefe55d29bda08845cb8f737d1a0a148d7a0dd02ecc0ea7777e66ed941"
+    },
+    {
+      "path": "src/game/missions/breakwater-content.ts",
+      "bytes": 2461,
+      "sha256": "0a7cf6c039db72568fdadde1dd72be3e188435434eba1226a506286da2f0c2a2"
+    },
+    {
+      "path": "src/game/missions/breakwater.ts",
+      "bytes": 9245,
+      "sha256": "8284c4b3819aeb1bc90c55e2e19246653378a2f125043f28be5c29238093c9d8"
+    },
+    {
+      "path": "src/game/missions/compiled/breakwater.json",
+      "bytes": 103,
+      "sha256": "ed1c1f658899b244a0bb69722ef888db078b6e9c4b0f89cd3afe9a24eba0a40d"
+    },
+    {
+      "path": "src/game/navigation/follower.ts",
+      "bytes": 9558,
+      "sha256": "fb3a3372e712569ada9457dd8663901cccbfc50b6bd10355797350aa66a4e74f"
+    },
+    {
+      "path": "src/game/navigation/graph.ts",
+      "bytes": 8295,
+      "sha256": "f6e70130fede0f86edf122fd5464adb9430bf18f5e5c77cb84e948745e7f3d45"
+    },
+    {
+      "path": "src/game/navigation/links.ts",
+      "bytes": 11370,
+      "sha256": "f59de65fac0d050a0128de698514638818b75c764ef19a55541e515c4542b0fd"
+    },
+    {
+      "path": "src/game/navigation/spans.ts",
+      "bytes": 5944,
+      "sha256": "821d56156ecdb63d34af99d5ef7a214ff6a0e62d084bfc71fd8a377dcd1994dd"
+    },
+    {
+      "path": "src/game/physics/body.ts",
+      "bytes": 8234,
+      "sha256": "fe2c4f7f228ee46c889bfbc40be5430a6a2ad39121a4f9121f02167f463de69c"
+    },
+    {
+      "path": "src/game/physics/grid.ts",
+      "bytes": 6474,
+      "sha256": "63fd7c6356b2304ab011fa8ba4d097d21540ffac468e3026d3a61dcd98b2c8c0"
+    },
+    {
+      "path": "src/game/physics/move.ts",
+      "bytes": 17278,
+      "sha256": "8d1004b529e104a4f9246f81fe7438a238fca30fea3e152920b0daff2f33939c"
+    },
+    {
+      "path": "src/game/physics/sweep.ts",
+      "bytes": 7683,
+      "sha256": "98f5d4b8b156fc896f03303e40f3cfa599eef9d3b2279a1f40414feb1240cf22"
+    },
+    {
+      "path": "src/game/protocol.ts",
+      "bytes": 13047,
+      "sha256": "a02fc1b6869bc5c337e7463e3e527c7613b80ef678ca13ea620bc39f0e71cad3"
+    },
+    {
+      "path": "src/game/rules.ts",
+      "bytes": 1308,
+      "sha256": "0d824b3335e6c3d60e418bb591c32e0b7c0fb13766635944e3b52fb4e2a6ef8f"
+    },
+    {
+      "path": "src/game/simulation.ts",
+      "bytes": 50721,
+      "sha256": "ebbbba47487cb98ddf5cf480cb2a52a8c4b8d11cc95d04c832ed8831c9421b27"
+    },
+    {
+      "path": "src/game/state.ts",
+      "bytes": 3612,
+      "sha256": "4618312151de37a230d246a722508e84639a19dc2528736aaad56449f943b1fb"
+    },
+    {
+      "path": "src/game/vehicles/tank.ts",
+      "bytes": 21024,
+      "sha256": "58c7b74c7e05dc71cfdef94b68c99f3c926066bcbb377c417b1ded20d33d91a9"
+    },
+    {
+      "path": "src/shared/animation/breakwater.ts",
+      "bytes": 2697,
+      "sha256": "ea9b584d299be531e495f38a6defc9c8946fcd79537f5ad82c77162797dd0735"
+    },
+    {
+      "path": "src/shared/animation/cast.ts",
+      "bytes": 7114,
+      "sha256": "8c1ab864c2f5c79b9356b05837a0afd220acc862b80b0f238e35270f26f4c4ce"
+    },
+    {
+      "path": "src/shared/animation/combat-audio.ts",
+      "bytes": 8691,
+      "sha256": "bf15dc34e2a4cbf24db45367251d547ebecac6f3ea5bc555241f1c90c1e5efd3"
+    },
+    {
+      "path": "src/shared/animation/combat-effects.ts",
+      "bytes": 11105,
+      "sha256": "97a8dee9ede922224057a02c85cad329ec96bbd361fa3c6be8736ec73649b686"
+    },
+    {
+      "path": "src/shared/animation/native.ts",
+      "bytes": 2114,
+      "sha256": "2efdd6c6e632632ce59ac66b6859d0f5541f6a819b5beff5398e1700d0cf3c10"
+    },
+    {
+      "path": "src/shared/animation/operative-motion.ts",
+      "bytes": 5789,
+      "sha256": "b367eaa602bad8fa203ce143b3ebd2fe5d334c35f9fc676cf487bd164a5bbf76"
+    },
+    {
+      "path": "src/shared/animation/operative.ts",
+      "bytes": 7963,
+      "sha256": "8ac0201255fd304f5239fc3abd41f1cdedb8b5cb6462b95fd32c8776740f0fe5"
+    },
+    {
+      "path": "src/shared/animation/sfx-profile.ts",
+      "bytes": 5833,
+      "sha256": "189e0d45603a91a19fcd29b5ae55c2536a8572b528d298739fc4af7380c49671"
+    },
+    {
+      "path": "src/shared/animation/tank-motion.ts",
+      "bytes": 2923,
+      "sha256": "87d1045c7d99433a06184e045964e721c8a05352337ff5eab3b73b94e46204d0"
+    },
+    {
+      "path": "src/shared/content-id.ts",
+      "bytes": 306,
+      "sha256": "77421fd1db43cd4d59a41d4ba8035fd983d7c988713d4573b124a4c989a615e2"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-checkpoint.ts",
+      "bytes": 35514,
+      "sha256": "e4edbf46cbe46faa693e47f3cd6e5cbdf3d41006f163404378e39ec9c9c275d5"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-events.ts",
+      "bytes": 2142,
+      "sha256": "ec4dcab37ecd899d85f2bba5f3d084db8e3f180be72e1840279678cd77d05322"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-recovery.ts",
+      "bytes": 8340,
+      "sha256": "7c5f178093c976c2d45fdb16144281968766da71f1003e14bead9fa18ec16a8d"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-runtime.ts",
+      "bytes": 13296,
+      "sha256": "d9fc4b63b0219c4207744f922b716fc88b38fdadaa83825bb3fc7951f719edcb"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-workload.ts",
+      "bytes": 20369,
+      "sha256": "65eada490e6afb2d2af60c8a10d158bbb26651291cd64d5cecb3bfe72dea01bf"
+    },
+    {
+      "path": "src/shared/diagnostics/combat-writer.ts",
+      "bytes": 5614,
+      "sha256": "5f006509a89c79e1ef885faedc850693a1726fc75f5fe2288d40ad39104e2892"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-recovery.ts",
+      "bytes": 2314,
+      "sha256": "1d06c63706181db52deb72cd9d6b3c64076c7bfabd6b57c32d0e72fb3572ae6b"
+    },
+    {
+      "path": "src/shared/diagnostics/controller-workload.ts",
+      "bytes": 3697,
+      "sha256": "f418d8d2331fc9f769b706c480b05ced474f5eb2abb9820e6b7e50e0d3451f20"
+    },
+    {
+      "path": "src/shared/diagnostics/room-probe-types.ts",
+      "bytes": 3583,
+      "sha256": "b0063cfe6ce023feff93e722925f2bd46d20bf30ae2af67721d2156f8eefdcdb"
+    },
+    {
+      "path": "src/shared/diagnostics/room-workload.ts",
+      "bytes": 6602,
+      "sha256": "fd52bd3aa4f3b85a81daadcfc83075d841cf6ff6b8f0ae38a3276cc153b13380"
+    },
+    {
+      "path": "src/shared/input/capture.ts",
+      "bytes": 6205,
+      "sha256": "d198f3dfe7d8222aca7fffba0ea51f27fc9a0da06de6c72c15d1b741dd7440d5"
+    },
+    {
+      "path": "src/shared/prediction/controller.ts",
+      "bytes": 10731,
+      "sha256": "d63255a9ce4fa116afb6b8e1070ea9d5cd601013d9a6ad8b847d1a34d615a56d"
+    },
+    {
+      "path": "src/shared/protocol/baseline.ts",
+      "bytes": 1223,
+      "sha256": "dc197db206ebbc836a6af6a872814f8af131d3c1afdaa41644068b375f00c67c"
+    },
+    {
+      "path": "src/shared/protocol/binary.ts",
+      "bytes": 3438,
+      "sha256": "dd7a67c3128985f0502143ace7e2f52c4d64674d316c993f94c48823872580d3"
+    },
+    {
+      "path": "src/shared/protocol/codec.ts",
+      "bytes": 8386,
+      "sha256": "b3d09cdc4681a20c22387148a6c32f306b4d93bc1feeb5b280becfe6c7967bd8"
+    },
+    {
+      "path": "src/shared/protocol/combat-record.ts",
+      "bytes": 15921,
+      "sha256": "0721d575319d314c3dbef68dddab44713fc73e5eade5db01722aca875746f47e"
+    },
+    {
+      "path": "src/shared/protocol/controller-record.ts",
+      "bytes": 8363,
+      "sha256": "2bae04d3fed56ca15549c6bd0a6924f2d0d6ad264cf9af6095d2c81d1927d994"
+    },
+    {
+      "path": "src/shared/protocol/event-stream.ts",
+      "bytes": 7966,
+      "sha256": "ef226d106fd858368ae6356acc5d603be043d281410acbbc067ec2bf0c0813b6"
+    },
+    {
+      "path": "src/shared/protocol/events.ts",
+      "bytes": 11333,
+      "sha256": "c69149ea7333636214a038dec3be7eb503ad87e4d7e3f7a38eeafcdc1d0c6045"
+    },
+    {
+      "path": "src/shared/protocol/handshake.ts",
+      "bytes": 3601,
+      "sha256": "1477b114de510de87e00ef713813ff08ac56af451c1e18aa85eaa6d86edeeac5"
+    },
+    {
+      "path": "src/shared/protocol/input-mapping.ts",
+      "bytes": 2727,
+      "sha256": "25fc28e2d6bd3ff17ae8c81baa4f4ae4c5152bcea1e6e9720edfd5aeb0f15aaf"
+    },
+    {
+      "path": "src/shared/protocol/input-stream.ts",
+      "bytes": 18174,
+      "sha256": "3dd4ed70f80dc3d2a1ccd9c4600ccfde241baa3bd3442506105d01b39a737b7a"
+    },
+    {
+      "path": "src/shared/protocol/limits.ts",
+      "bytes": 635,
+      "sha256": "62bdfbd5935c4fa06ce5ec897843cadbdf9631ccf1b6613945bb80bbf2408c9e"
+    },
+    {
+      "path": "src/shared/protocol/schema.ts",
+      "bytes": 541,
+      "sha256": "4da61549320633fa16fbc20f2d8a4293deafe766074d87875c47fbb9c5d09fbc"
+    },
+    {
+      "path": "src/shared/protocol/snapshot-schema.ts",
+      "bytes": 4437,
+      "sha256": "ae6639933847c7b6c7873637fb2be5e97b3fb285c109b0f61f1c2b183e2e0255"
+    },
+    {
+      "path": "src/shared/protocol/snapshot.ts",
+      "bytes": 20147,
+      "sha256": "18c1e677656ec7221cee0165498799b0507cc31980f5a8e885463b435446d557"
+    },
+    {
+      "path": "src/shared/runtime/room-clock.ts",
+      "bytes": 7384,
+      "sha256": "4de5252184963e470cfcb28ef2df7c4122061cc0c2421712ee93e5f2e0e10a30"
+    },
+    {
+      "path": "src/shared/session/admission.ts",
+      "bytes": 2532,
+      "sha256": "f9e7ab9c68bcbe90edaecc38caa3fc79213aad3e77a95dca335436a1264ca139"
+    },
+    {
+      "path": "src/shared/session/connection.ts",
+      "bytes": 9452,
+      "sha256": "8110c7be20135d67ded80906c9a741ef932dd1facb800f158f9d041e83b1213b"
+    },
+    {
+      "path": "src/shared/session/membership.ts",
+      "bytes": 6539,
+      "sha256": "582c3c6fb12ef996543f659e4adf0e0ce599309311805e6a303cdedc2814039c"
+    },
+    {
+      "path": "src/shared/session/profile.ts",
+      "bytes": 2877,
+      "sha256": "d8ed90e094903cef85cc1c7c8a77ea75318f26aa9826caac7020f4ee08101771"
+    },
+    {
+      "path": "src/shared/session/room-control.ts",
+      "bytes": 5585,
+      "sha256": "39bd3121db8bcdde8db4aca7f7ee8486c7b0b612d5bde0da5e0d6d6f68ae068d"
+    },
+    {
+      "path": "src/shared/session/room-phase.ts",
+      "bytes": 974,
+      "sha256": "63a7812db4326c8310b1c830838bfde3063fa543beaa2c25bc5236c26a5fe3ec"
+    },
+    {
+      "path": "test/admission.test.ts",
+      "bytes": 2871,
+      "sha256": "3d6620db66b3e285ba062f26165fafc873b8465b783772d289026494a4e1e8ac"
+    },
+    {
+      "path": "test/arcade-core.test.ts",
+      "bytes": 4984,
+      "sha256": "4791bd73aaf2dc00931a45bd7ca6ac621305848a496336e1fb60368ff0ee0595"
+    },
+    {
+      "path": "test/arcade-protocol.test.ts",
+      "bytes": 9004,
+      "sha256": "74176f7016cfd65abfbc27a456cdf23d1d98a4bc64c6e268b2e7dcd5c672653e"
+    },
+    {
+      "path": "test/area-attack.test.ts",
+      "bytes": 12439,
+      "sha256": "0cf3edb565bf4ab2608cd3eb42d432176072a1c1aea04798a5cfda710c96eead"
+    },
+    {
+      "path": "test/area-recovery.test.ts",
+      "bytes": 5397,
+      "sha256": "8d8a9a8590ab201349769709387b6df7e1e758ba97cbe34a37948fc63e92120a"
+    },
+    {
+      "path": "test/art-import.test.ts",
+      "bytes": 6151,
+      "sha256": "ade845f74fcc90771625bf99da8989f7ff57cd7d00fba16fabbcbd353e0f700e"
+    },
+    {
+      "path": "test/baseline-regressions.test.ts",
+      "bytes": 1347,
+      "sha256": "38b62ff3b345fdec2f083bfe2714c90297d3463ca08e866d0eb2120b2ed8c763"
+    },
+    {
+      "path": "test/breakwater.test.ts",
+      "bytes": 9904,
+      "sha256": "16d7598e4c300ec2f802b09fc4963d154ce8356fb270cac167ed92f52dea9a22"
+    },
+    {
+      "path": "test/campaign-lifecycle.test.ts",
+      "bytes": 7268,
+      "sha256": "3fa3726e13791ceb152aa94f01cebcfaad24634983657a0da2c197197aee4a51"
+    },
+    {
+      "path": "test/client-lifecycle.test.ts",
+      "bytes": 576,
+      "sha256": "4d39d5fe40ccfd13b30d018a6eb049a7248ed0df52e37ae7f9c21156f8b1795b"
+    },
+    {
+      "path": "test/client-shell.test.ts",
+      "bytes": 1754,
+      "sha256": "7208a44a3bcb2e433e131ec9b480eedd863dc89f9769615f9b0e6041da3a7983"
+    },
+    {
+      "path": "test/combat-audio.test.ts",
+      "bytes": 9318,
+      "sha256": "3d78f7822d2671eba2a75964ffd1cda9b45527e73ac3ee117d6ffe72f8332e9b"
+    },
+    {
+      "path": "test/combat-baseline.test.ts",
+      "bytes": 5141,
+      "sha256": "b9743258f143246b20e8839f650a0418bcf8cfe919df9c6e1f7238a72bb50c7e"
+    },
+    {
+      "path": "test/combat-campaign.test.ts",
+      "bytes": 6482,
+      "sha256": "8b6284272e4a7c669e8fdb569384321b108c55a49d13e777900c41d94a014ac0"
+    },
+    {
+      "path": "test/combat-checkpoint.test.ts",
+      "bytes": 8785,
+      "sha256": "f2d28f668f255df684d12d6d085829d1f0e9282624ed9c1f1878ee47abce56db"
+    },
+    {
+      "path": "test/combat-effects.test.ts",
+      "bytes": 5925,
+      "sha256": "873678549a3dc28996e95b5f8fc47f53a56ab5b3698bf8115414129ae50bf118"
+    },
+    {
+      "path": "test/combat-reconnect.test.ts",
+      "bytes": 8883,
+      "sha256": "ab8fa1cd51f21b9549bae2c3faf210d2f02485d4b2b2926c4773649df87a7866"
+    },
+    {
+      "path": "test/combat-writer.test.ts",
+      "bytes": 12955,
+      "sha256": "837b7df5a23746db8e06dbbd2a5ece961481d9eaaf7ac2337a3fe6c7568ee7f3"
+    },
+    {
+      "path": "test/combat.test.ts",
+      "bytes": 11077,
+      "sha256": "38560e69b57410889ca67fdfb58c30eb2a91f185f77c5e0a6aebf2df0888b338"
+    },
+    {
+      "path": "test/connection.test.ts",
+      "bytes": 6208,
+      "sha256": "b5538261c05c05d02dacc62e0975eeb14ced02feb2f227971556fcd9923363b0"
+    },
+    {
+      "path": "test/control-transfer.test.ts",
+      "bytes": 6361,
+      "sha256": "478a934556fb39b3217220696d123a162d42cb0444ef4586bf773516cce656bc"
+    },
+    {
+      "path": "test/controller-lab.test.ts",
+      "bytes": 4979,
+      "sha256": "4576f12f612cba8eaec8f517c9a39c997b725652fd49503718d9f7a8e7b78a4c"
+    },
+    {
+      "path": "test/controller-prediction.test.ts",
+      "bytes": 7523,
+      "sha256": "87cbfd2a167a11292302f05ce9bd80109f348c3927b0f6a4f925067524e716e0"
+    },
+    {
+      "path": "test/controller-recovery.test.ts",
+      "bytes": 7454,
+      "sha256": "1c59dc16e30489aea6a863d05f00ffc7c1fcf4080c140b4739c89f2b398e5e88"
+    },
+    {
+      "path": "test/crew-presentation.test.ts",
+      "bytes": 6530,
+      "sha256": "82eca6310512936db33d178a14f7ef6305955dbf4793cd6e2f3aa24e6861e060"
+    },
+    {
+      "path": "test/destructible.test.ts",
+      "bytes": 11304,
+      "sha256": "737755072d675630652e20724b7feb4f4111958f586bb8496c762b1d8fededae"
+    },
+    {
+      "path": "test/encounter-lifecycle.test.ts",
+      "bytes": 11396,
+      "sha256": "3d3f3e311c4af0e3d090cd64224f391bcfc8a650f1aeabae73e9373eaba4c302"
+    },
+    {
+      "path": "test/event-stream.test.ts",
+      "bytes": 9579,
+      "sha256": "4acda1a214f8b4d8f522fb2046cfd2aae4cad114301c4f2643618da1ff6d8b54"
+    },
+    {
+      "path": "test/fixtures/airborne-death-recovery-proof.ts",
+      "bytes": 4939,
+      "sha256": "564872bd90f3a8aa92181ba51e8c507db017690973ba6236ee0691c34af53df0"
+    },
+    {
+      "path": "test/fixtures/area-proof.ts",
+      "bytes": 4843,
+      "sha256": "6a2ab6eb266ad7a2d5277353372957daee391104e4adea7d5fbb5a57a6ad3f1a"
+    },
+    {
+      "path": "test/fixtures/breakwater-proof.ts",
+      "bytes": 10502,
+      "sha256": "88fc0c6cdd4f62259b69576fd44b27e8866beb788584fa4fcd917d2aea06d81e"
+    },
+    {
+      "path": "test/fixtures/campaign-proof.ts",
+      "bytes": 5347,
+      "sha256": "92ab65f6e70db925a402999aad25dd6b8257e13a918d211612e012c40e798ac8"
+    },
+    {
+      "path": "test/fixtures/collision-proof.ts",
+      "bytes": 1180,
+      "sha256": "9be692226f73a2d99e478a0790827974868321acb389b34e30582ee9fb04d2b5"
+    },
+    {
+      "path": "test/fixtures/combat-input-driver.ts",
+      "bytes": 6329,
+      "sha256": "513097a7d93211482dab36816157667969db50fb92c25454561089c6b214f907"
+    },
+    {
+      "path": "test/fixtures/combat-proof.ts",
+      "bytes": 1816,
+      "sha256": "0a80ab41d5d34275f4be67088cc7b4a1d0c9d20a269613652c90e800fd8178ed"
+    },
+    {
+      "path": "test/fixtures/combat-reconnect-proof.ts",
+      "bytes": 3678,
+      "sha256": "1de15ab01b7f6359376a9aef6635637d0fa35b6609dc78d9c6abb0df6a36d653"
+    },
+    {
+      "path": "test/fixtures/combat-recovery-proof.ts",
+      "bytes": 5512,
+      "sha256": "ebe9977c3d10a246098e2591a075e91819bdc4699900270c9f30640fe0f91d98"
+    },
+    {
+      "path": "test/fixtures/combat-storage-worker.ts",
+      "bytes": 25602,
+      "sha256": "9dfb1f015ecb09b779c8b6dcad7d07410001ea52cc385f74794d0d2ba5b9221c"
+    },
+    {
+      "path": "test/fixtures/compiled-level-proof.ts",
+      "bytes": 1494,
+      "sha256": "ce5cb67300871c1bb188b335761e50ba3f638a3819c2e44de5eba1f73b82ed29"
+    },
+    {
+      "path": "test/fixtures/connection-port.ts",
+      "bytes": 2728,
+      "sha256": "bf83c24bb37804b3408d8d9801dce0e993a60a4966006eed3eb82b7d131e3267"
+    },
+    {
+      "path": "test/fixtures/contract-proof.ts",
+      "bytes": 6270,
+      "sha256": "89cfd45b31df9639a3f899741b75318334d02a0a89c83195f505847c23ce2027"
+    },
+    {
+      "path": "test/fixtures/contract-worker.ts",
+      "bytes": 384,
+      "sha256": "971fd23d8c2dad6021c4c6f42654471afc1fe940f16298930b30bff596988e34"
+    },
+    {
+      "path": "test/fixtures/controller-proof.ts",
+      "bytes": 7209,
+      "sha256": "e0cd2c9ec5e0c27ee6b3f7d530bc97202d097a42d8f56d9dadb046390da1b269"
+    },
+    {
+      "path": "test/fixtures/death-body-proof.ts",
+      "bytes": 5977,
+      "sha256": "b6ca3b480c0ce51a3410021f93d1cae5dda80039f7f19dbbc2bd27829656988f"
+    },
+    {
+      "path": "test/fixtures/encounter-proof.ts",
+      "bytes": 2302,
+      "sha256": "ced08a65468e2270d0edf9cba1813b16894fd9a68eb8194bee888911a1f32705"
+    },
+    {
+      "path": "test/fixtures/entry-proof.ts",
+      "bytes": 8540,
+      "sha256": "a45d70629a46ff42351e40a66d1d73d3dfff1f4bd258bb0617a96af226cb81f7"
+    },
+    {
+      "path": "test/fixtures/entry-recovery-proof.ts",
+      "bytes": 5332,
+      "sha256": "6f385d95cf58cbff4ff35c42a75064acc1591dd854125632112b5439c9a1c392"
+    },
+    {
+      "path": "test/fixtures/event-delivery-proof.ts",
+      "bytes": 5738,
+      "sha256": "0f2e39a39b0503bc4017d0d72681f35cbc7238b389fb0b45f6a1521084b027fc"
+    },
+    {
+      "path": "test/fixtures/foot-combat-proof.ts",
+      "bytes": 5958,
+      "sha256": "76da357696bfd5649d0cb4bc9cea142be5eefb6ca93c99915e517b1a7610678a"
+    },
+    {
+      "path": "test/fixtures/foot-fixture.ts",
+      "bytes": 131,
+      "sha256": "f881bdff97509e037f9e6e5a7a804ee87d8b63e4e96e60485cf20c258d1564b5"
+    },
+    {
+      "path": "test/fixtures/grounded-proof.ts",
+      "bytes": 2363,
+      "sha256": "e5969a11936dffd2c9f7272453ab01477d130ce6584c40ec3097f89e6c92faba"
+    },
+    {
+      "path": "test/fixtures/hmg-proof.ts",
+      "bytes": 3956,
+      "sha256": "7a9dd1d8c73d13e36ed0ca14862c3646491a5b44c262fc99c5ec02b4ca0bc0eb"
+    },
+    {
+      "path": "test/fixtures/input-capture-proof.ts",
+      "bytes": 1960,
+      "sha256": "b77e19b698069d6cf00be22f4909d2b2868556378a909e7310d4a3341a92eebf"
+    },
+    {
+      "path": "test/fixtures/input-flow-proof.ts",
+      "bytes": 5324,
+      "sha256": "053bccfb1ea80e7bbf0e59b89bc3e952b2a9ea9c5ffd648a7e7e286eb68222be"
+    },
+    {
+      "path": "test/fixtures/kestrel-proof.ts",
+      "bytes": 1236,
+      "sha256": "ebe0cf8e8fbc3e4a377aaa0447cc2cbba3b363e285cfd7cca7cd4c126e743b8b"
+    },
+    {
+      "path": "test/fixtures/mapped-prediction-proof.ts",
+      "bytes": 3958,
+      "sha256": "2d7aed7fee93abbadcf9fc55f528cb25a3a4167dc73c1f30cf16f0aad14197f0"
+    },
+    {
+      "path": "test/fixtures/movement-proof.ts",
+      "bytes": 4480,
+      "sha256": "d8a7f7ca1d4aabbb3291b2c2454199beda3f69590e6fd5d46942d5a290376dcb"
+    },
+    {
+      "path": "test/fixtures/navigation-proof.ts",
+      "bytes": 1048,
+      "sha256": "a769e94b6102882c716dab2a389e61777e6c517100fc7108fc06f096bdbca12a"
+    },
+    {
+      "path": "test/fixtures/ordnance-proof.ts",
+      "bytes": 3670,
+      "sha256": "077ebb35ce5452fa4d490f756c6eccebcdb9359adac3c14cc7cf58451261d945"
+    },
+    {
+      "path": "test/fixtures/player-life-proof.ts",
+      "bytes": 2187,
+      "sha256": "078e79bee63dcf52f717dbcc431f260625b7c44960072f20cd31f716fc3f4c55"
+    },
+    {
+      "path": "test/fixtures/player-life-recovery-proof.ts",
+      "bytes": 5282,
+      "sha256": "199a22616ebb33fc7694d46ea9873629e39e3c07691de33c2f7d4bf4f80e2487"
+    },
+    {
+      "path": "test/fixtures/prediction-proof.ts",
+      "bytes": 4984,
+      "sha256": "74df55395397cd79bce13db612c4cd5b7b03c3dab486f76ce0fbc99ac0591b8a"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/combat-golden.json",
+      "bytes": 4974,
+      "sha256": "91243dd6023f4fba88fc97db71692f0d503c15f36f23d1b67f6a2799cffd1751"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/input-golden.json",
+      "bytes": 4919,
+      "sha256": "201dd3d1c9e9ddaa9537f9d05dc2bedf8179ba229b20f4bd800007aac4486c50"
+    },
+    {
+      "path": "test/fixtures/protocol-v3/snapshot-golden.json",
+      "bytes": 11694,
+      "sha256": "dae99f654cf73a12b30b5b15f96bf0878c86fa58d57bad8ad6bdafb070c349aa"
+    },
+    {
+      "path": "test/fixtures/rifle-proof.ts",
+      "bytes": 4474,
+      "sha256": "fbde9e2ca3acfd90e65d51c611b0ddbabe9bb9c84000484ec1fceb8c34aa93da"
+    },
+    {
+      "path": "test/fixtures/rocket-proof.ts",
+      "bytes": 6217,
+      "sha256": "aeb66b353ba74dc55d4604219e0c6f5f508c7b6483eeaca9bafbafba21c0a90a"
+    },
+    {
+      "path": "test/fixtures/route-proof.ts",
+      "bytes": 2354,
+      "sha256": "e2a55b75de2cfc8725f8e1c0eb0022a791becac747cb2969cdedfd63ead482d1"
+    },
+    {
+      "path": "test/fixtures/routed-enemy-proof.ts",
+      "bytes": 1549,
+      "sha256": "6cf36f683fe1f9d964fa66c8105e070614ebbf1fbf3dee36e2d6511cf26a670b"
+    },
+    {
+      "path": "test/fixtures/shield-proof.ts",
+      "bytes": 6262,
+      "sha256": "9f4190bb5838c14da2606cbc8da5032d3067b07bb672c5edd7d38e8c514cfa66"
+    },
+    {
+      "path": "test/fixtures/spatial-proof.ts",
+      "bytes": 3035,
+      "sha256": "04fae7f29ca204c9311cf090d6c0e95d2d49fc0af6f27785b339d2bfd26b4c4b"
+    },
+    {
+      "path": "test/fixtures/support-proof.ts",
+      "bytes": 3671,
+      "sha256": "9bd55f84ef489a040bc3fc05cbc7ca6020eb9ba46f1f752735a061b4b314dac0"
+    },
+    {
+      "path": "test/fixtures/tank-proof.ts",
+      "bytes": 5985,
+      "sha256": "ea2c242879e4b4045d663e55110644674f509260706476ddf58778b400a69cc0"
+    },
+    {
+      "path": "test/fixtures/traversal-proof.ts",
+      "bytes": 2562,
+      "sha256": "5c5683ee4678c9ab5d798ab998a85626760cd074c5e977945d9e101403bd21f8"
+    },
+    {
+      "path": "test/fixtures/world-combat-proof.ts",
+      "bytes": 3382,
+      "sha256": "98f2d3c1ce4ebbf291045ffc3da5b2848118f488c6659094a3c6fc633d159972"
+    },
+    {
+      "path": "test/foot-combat.test.ts",
+      "bytes": 11513,
+      "sha256": "18f137dd962a2fca3d1cb21f1825a3118cacb0a9a01b6b3371775a4912ec4611"
+    },
+    {
+      "path": "test/foot-controller.test.ts",
+      "bytes": 18036,
+      "sha256": "ed1dbd57c633180fce48186a54e3665abf49587abd7a3ff19236d063d787e61b"
+    },
+    {
+      "path": "test/grenade-platform.test.ts",
+      "bytes": 11545,
+      "sha256": "d1663e35793c4948317c432f6c7c0c7cad2a01fe16aa2a815e13f14ceb7df5ea"
+    },
+    {
+      "path": "test/grounded-enemy.test.ts",
+      "bytes": 8919,
+      "sha256": "170bf5e9cc2df9cd6bab0dc729487a8e0fec6e954eb89e2a00f08556c051544d"
+    },
+    {
+      "path": "test/hmg-sweep.test.ts",
+      "bytes": 8314,
+      "sha256": "c2bc4a0a4036cd01e70e0b057908c41c556c3c734ae916b0de596909d6a1f4a9"
+    },
+    {
+      "path": "test/input-capture.test.ts",
+      "bytes": 6136,
+      "sha256": "526c5c978e08af7b104c4dd173bdf8edcc5897b03619a384d5d38deffd16a829"
+    },
+    {
+      "path": "test/input-flow.test.ts",
+      "bytes": 2940,
+      "sha256": "09b84f568b0c304da912eaf741b88c00cb6f69dc1e59639806593a8e0d31fe6f"
+    },
+    {
+      "path": "test/input-mapping.test.ts",
+      "bytes": 3703,
+      "sha256": "f925bf8c1e029b90d38983c78824fe51306873dc62e4c63f1ea6b5cc73343b24"
+    },
+    {
+      "path": "test/input-stream.test.ts",
+      "bytes": 11618,
+      "sha256": "1dcf5595767b76011958b7e913ce544f1175618e2be8b96245d9aa512b5abc80"
+    },
+    {
+      "path": "test/ldtk-compiler.test.ts",
+      "bytes": 6923,
+      "sha256": "14c82a3e3a6c020bf67cd3605d4da5f6530fdb8cc721b1fe45f12458aa70e6c1"
+    },
+    {
+      "path": "test/native-art.test.ts",
+      "bytes": 23517,
+      "sha256": "230b8828a10ef5d1d387172b0ef2fc0bbef5ee40ce0dea58ae231c11c740a94c"
+    },
+    {
+      "path": "test/native-cast.test.ts",
+      "bytes": 8101,
+      "sha256": "715a1fd0a2125a2c3e22f4313707f3965969d49933ddf700dab403d0a0e47d4b"
+    },
+    {
+      "path": "test/navigation-graph.test.ts",
+      "bytes": 11164,
+      "sha256": "32c23aae3cf3af20d7f9c79ef36261d0346e046ab757d89533bc221fd2fa526a"
+    },
+    {
+      "path": "test/navigation-links.test.ts",
+      "bytes": 9888,
+      "sha256": "733ff897027f2f72404f74ac442d6db1ffdbfed98dd6edab726aace22a9244f7"
+    },
+    {
+      "path": "test/navigation-spans.test.ts",
+      "bytes": 3901,
+      "sha256": "4a6291d61af2298444556f4b4cfa351b1b0e89d386873ff9a90f26b77ab34d06"
+    },
+    {
+      "path": "test/network-model.test.ts",
+      "bytes": 2498,
+      "sha256": "e9a07c596f8eb7ef202adb7b120596885069d308e1a3595dee4457438b0bf79f"
+    },
+    {
+      "path": "test/operative-air.test.ts",
+      "bytes": 12133,
+      "sha256": "912c20297ec133fc27397270ea1eecbf0de7b2ddc3074e2c1509bacee4cc9699"
+    },
+    {
+      "path": "test/physics-grid.test.ts",
+      "bytes": 8502,
+      "sha256": "e38c00f7932d54c3f183982b5849924ccc48457b773604484baa2bba351fbd3b"
+    },
+    {
+      "path": "test/physics-move.test.ts",
+      "bytes": 12261,
+      "sha256": "ba2d3e1d4b5989a516701014b7c47f3f38fa0334941b57931d53be7a4ec1fa06"
+    },
+    {
+      "path": "test/physics-sweep.test.ts",
+      "bytes": 8939,
+      "sha256": "71dd2eb1cbe21d1a5c8dfd1ca60fba17cbdd94560dcb305b7eb7c6925ba6a364"
+    },
+    {
+      "path": "test/player-death-body.test.ts",
+      "bytes": 3713,
+      "sha256": "d648ac8115fe87f81ab6a346354641c27b4ebb5eb067ccba6121c93746a2ad0e"
+    },
+    {
+      "path": "test/player-entry.test.ts",
+      "bytes": 2019,
+      "sha256": "667de2b3330c468d536d1e96c3d6193d49e3c94409ccdaca2a98b9d3e260f8ac"
+    },
+    {
+      "path": "test/player-life.test.ts",
+      "bytes": 5731,
+      "sha256": "55490aeb6c639a9d03491425794639e42cceaa9173639f8a542fa682808d4233"
+    },
+    {
+      "path": "test/protocol.test.ts",
+      "bytes": 1424,
+      "sha256": "728e2563d32f38197b9d7f79a49ad1315fc4af2019a215b2973750d78d16c9aa"
+    },
+    {
+      "path": "test/rifle.test.ts",
+      "bytes": 9978,
+      "sha256": "cb448d28a1c25e2dc249f8484038d4db0b2ad6cb72723ffa2a8cca231b84f8c8"
+    },
+    {
+      "path": "test/rocket.test.ts",
+      "bytes": 12865,
+      "sha256": "e33b3bd86dec7ffb9eb6b8a6bb80bc76bca396ad5a1296cd3d84cfc151b6b379"
+    },
+    {
+      "path": "test/room-connection.test.ts",
+      "bytes": 5973,
+      "sha256": "da845f9b60fac931c0bbdb885b74a59984a3efdece94b82493f21758efc580d9"
+    },
+    {
+      "path": "test/room-control.test.ts",
+      "bytes": 7088,
+      "sha256": "8698f389f80d9ecfe0d3df6e7aff3ff7d113e203d9075eb546e35c8bfcbf8397"
+    },
+    {
+      "path": "test/room-workload.test.ts",
+      "bytes": 2291,
+      "sha256": "99d98a4d1061a64a62f2fd6b7d3b248d55167e5a0640a6d97ceec655f56799c7"
+    },
+    {
+      "path": "test/routed-enemy.test.ts",
+      "bytes": 6960,
+      "sha256": "e486d64b4331c853dd46ea2d45deffb7daf1e9ba7543e4b7ab9b4cdc4d976814"
+    },
+    {
+      "path": "test/runtime/control-lease.test.ts",
+      "bytes": 1659,
+      "sha256": "2f9b7b47a74115146a27656cd6e709ded2d934ea7a9ce510df451a95093b302e"
+    },
+    {
+      "path": "test/runtime/room-clock.test.ts",
+      "bytes": 9591,
+      "sha256": "5251a6deac569136e5544dc1f5274737c1b193b91ff4fb5fa92f203189226e34"
+    },
+    {
+      "path": "test/session.test.ts",
+      "bytes": 6729,
+      "sha256": "655d4d6c15e5587b537091fdf795239abdf9535b70bd64def6c849539efde7c1"
+    },
+    {
+      "path": "test/shield.test.ts",
+      "bytes": 10193,
+      "sha256": "6cfa02fa31e6e469cfeb461a800a6595822813b2b1d5fab80fba1856517dfe50"
+    },
+    {
+      "path": "test/simulation.test.ts",
+      "bytes": 16667,
+      "sha256": "11dae7a3675e6c88e204b3bc4e5ca731bbcb884810a475becbf8752de00dd16d"
+    },
+    {
+      "path": "test/snapshot.test.ts",
+      "bytes": 14301,
+      "sha256": "d13d2630660149343ea9201fa2b0aef2dd0e7b9d53d5dd297bd08b44a43da127"
+    },
+    {
+      "path": "test/stack.test.ts",
+      "bytes": 1900,
+      "sha256": "44f71393b19117ab0b75736a32b1a7ce31a79db51cc5cea590b11175b2d556be"
+    },
+    {
+      "path": "test/tank-motion.test.ts",
+      "bytes": 10559,
+      "sha256": "c3b1d3030ed7556db5509b56d1918331d2b137c947bcb747a0671356c0b54abf"
+    },
+    {
+      "path": "test/tank-world.test.ts",
+      "bytes": 11950,
+      "sha256": "2a08253db1e92c369c055f79946801ff132c2b24d742072307c25c89979f5344"
+    },
+    {
+      "path": "test/tank.test.ts",
+      "bytes": 7833,
+      "sha256": "e8608dd9379b9ee809da8d7704eebd489d7c883b592753bab0e73643021e6bc9"
+    },
+    {
+      "path": "test/worker-routing.test.ts",
+      "bytes": 824,
+      "sha256": "1fc7a033545653cd78048a5b79eae3e9d12c9999ef2532a869878cd30f7f5149"
+    },
+    {
+      "path": "test/world-input-transaction.test.ts",
+      "bytes": 5374,
+      "sha256": "600deb62cae3873f07f821cf3f9b50fdce2c814ae9234616b1ae1cb888f6dd87"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "contracts.json.gz",
+      "bytes": 49585,
+      "sha256": "34181040b903825ab99bf2a84436c794daf75ccfce1fad8f3711ea6f970f137d"
+    },
+    {
+      "path": "rocket.json",
+      "bytes": 25472,
+      "sha256": "01740981a41eebf2488bec4a89b7a995014e651551de3b681617fc7426db24e5"
+    },
+    {
+      "path": "browser.js.gz",
+      "bytes": 142923,
+      "sha256": "cec9d5df51b540f1847209a7fa0b6ace75e497c313fd577457ec92ea7c0a1c11"
+    },
+    {
+      "path": "check.log.gz",
+      "bytes": 1769,
+      "sha256": "ad6b1f782828556bec5dc122a950d0ffc26b0b1abcefa5db7d3feaff1741b555"
+    },
+    {
+      "path": "negative-validation.log.gz",
+      "bytes": 746,
+      "sha256": "e31229e4c916e23b1a35c17fa5a751d92ec5da5c176bf77edf937b6335423be1"
+    },
+    {
+      "path": "runtime-inputs.json",
+      "bytes": 4524,
+      "sha256": "97327dd0c3b6df071d7e2e566c9586ee2b312058ae0bb39b705fb77741d06d6b"
+    }
+  ]
+}

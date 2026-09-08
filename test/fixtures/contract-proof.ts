@@ -32,6 +32,7 @@ import { playerLifeRecoveryProof } from "./player-life-recovery-proof.js";
 import { predictionProof } from "./prediction-proof.js";
 import goldens from "./protocol-v3/snapshot-golden.json" with { type: "json" };
 import { rifleRecoveryProof } from "./rifle-proof.js";
+import { rocketProof } from "./rocket-proof.js";
 import { routeProof } from "./route-proof.js";
 import { routedEnemyProof } from "./routed-enemy-proof.js";
 import { shieldCombatProof } from "./shield-proof.js";
@@ -118,6 +119,7 @@ export async function contractProof() {
     ordnance: await ordnanceProof(),
     hmg: await hmgProof(),
     support: await supportProof(),
+    rocket: rocketProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
     movement: movementProof(),

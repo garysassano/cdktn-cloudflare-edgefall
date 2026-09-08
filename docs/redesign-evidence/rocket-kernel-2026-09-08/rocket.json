@@ -1,0 +1,1170 @@
+{
+  "scope": "Released rocket acceleration, guidance, collision and blast timing in a deterministic fixture; no launcher UI, room wiring, media or production claim.",
+  "cases": [
+    {
+      "name": "crowded-impact",
+      "ticks": 1,
+      "traceHash": "c66e2c59",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 5000,
+          "entityId": 500,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 2048,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2048,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 5000,
+            "entityId": 500,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2560,
+              "y": 0
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 220,
+            "entityId": 22,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 230,
+            "entityId": 23,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 240,
+            "entityId": 24,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 250,
+            "entityId": 25,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 260,
+            "entityId": 26,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 270,
+            "entityId": 27,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 280,
+            "entityId": 28,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 290,
+            "entityId": 29,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 300,
+            "entityId": 30,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 310,
+            "entityId": 31,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 320,
+            "entityId": 32,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 330,
+            "entityId": 33,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 340,
+            "entityId": 34,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 1536
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "lifetime",
+      "ticks": 90,
+      "traceHash": "416c568f",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        20,
+        50,
+        89
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "expired",
+        "position": {
+          "x": 134656,
+          "y": 0
+        }
+      }
+    },
+    {
+      "name": "guided-0",
+      "ticks": 36,
+      "traceHash": "7fe11824",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        20
+      ],
+      "headings": [
+        0,
+        1
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 49664,
+            "y": 9674
+          },
+          "time": {
+            "numerator": 442,
+            "denominator": 1419
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 442,
+              "denominator": 1419
+            },
+            "position": {
+              "x": 50176,
+              "y": 9674
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "guided-8",
+      "ticks": 35,
+      "traceHash": "3e305316",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        20
+      ],
+      "headings": [
+        8,
+        9
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": -9478,
+            "y": 49152
+          },
+          "time": {
+            "numerator": 1436,
+            "denominator": 1506
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 1436,
+              "denominator": 1506
+            },
+            "position": {
+              "x": -9478,
+              "y": 49664
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "guided-16",
+      "ticks": 36,
+      "traceHash": "ea89f7e6",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        20
+      ],
+      "headings": [
+        16,
+        17
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": -49664,
+            "y": -9674
+          },
+          "time": {
+            "numerator": 442,
+            "denominator": 1419
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 442,
+              "denominator": 1419
+            },
+            "position": {
+              "x": -50176,
+              "y": -9674
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "guided-24",
+      "ticks": 35,
+      "traceHash": "c68e8896",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        20
+      ],
+      "headings": [
+        24,
+        25
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 9478,
+            "y": -49152
+          },
+          "time": {
+            "numerator": 1436,
+            "denominator": 1506
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 1436,
+              "denominator": 1506
+            },
+            "position": {
+              "x": 9478,
+              "y": -49664
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "thin-wall",
+      "ticks": 1,
+      "traceHash": "f4e9b6ea",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 900,
+          "entityId": null,
+          "kind": "terrain",
+          "damage": 0,
+          "position": {
+            "x": 2048,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2048,
+            "denominator": 8192
+          }
+        },
+        "impacts": []
+      }
+    },
+    {
+      "name": "moving-wall",
+      "ticks": 1,
+      "traceHash": "4b38f415",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 2048,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2048,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2560,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "moving-victims",
+      "ticks": 1,
+      "traceHash": "f7318e84",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 2048,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2048,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2560,
+              "y": 0
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 220,
+            "entityId": 22,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2048,
+              "y": 3584
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "crossing",
+      "ticks": 1,
+      "traceHash": "28c859d9",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2560,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2560,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 3072,
+              "y": -384
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "shield",
+      "ticks": 1,
+      "traceHash": "6dbf6195",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 201,
+          "entityId": 20,
+          "kind": "shield",
+          "damage": 0,
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2560,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 201,
+            "entityId": 20,
+            "kind": "shield",
+            "damage": 0,
+            "time": {
+              "numerator": 2560,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 3072,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "overlapping-hurtboxes",
+      "ticks": 1,
+      "traceHash": "45ef30e3",
+      "restoredTicks": [
+        1
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 8192,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 200,
+          "entityId": 20,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 2048,
+            "y": 0
+          },
+          "time": {
+            "numerator": 2048,
+            "denominator": 8192
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 200,
+            "entityId": 20,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 2560,
+              "y": 0
+            }
+          },
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 2048,
+              "denominator": 8192
+            },
+            "position": {
+              "x": 4096,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "covered-lock",
+      "ticks": 12,
+      "traceHash": "808132bf",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        },
+        {
+          "tick": 3,
+          "targetId": null
+        },
+        {
+          "tick": 8,
+          "targetId": 21
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 210,
+          "entityId": 21,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 13824,
+            "y": 0
+          },
+          "time": {
+            "numerator": 512,
+            "denominator": 1536
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 512,
+              "denominator": 1536
+            },
+            "position": {
+              "x": 14336,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "dead-lock",
+      "ticks": 12,
+      "traceHash": "808132bf",
+      "restoredTicks": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "headings": [
+        0
+      ],
+      "maximumSpeed": 1536,
+      "locks": [
+        {
+          "tick": 1,
+          "targetId": null
+        },
+        {
+          "tick": 2,
+          "targetId": 20
+        },
+        {
+          "tick": 3,
+          "targetId": null
+        },
+        {
+          "tick": 8,
+          "targetId": 21
+        }
+      ],
+      "terminal": {
+        "status": "detonated",
+        "contact": {
+          "sourceId": 1000,
+          "definitionId": 17,
+          "actionInstanceId": 7,
+          "ownerId": 1,
+          "colliderId": 210,
+          "entityId": 21,
+          "kind": "body",
+          "damage": 0,
+          "position": {
+            "x": 13824,
+            "y": 0
+          },
+          "time": {
+            "numerator": 512,
+            "denominator": 1536
+          }
+        },
+        "impacts": [
+          {
+            "sourceId": 1000,
+            "definitionId": 17,
+            "ownerId": 1,
+            "actionInstanceId": 7,
+            "colliderId": 210,
+            "entityId": 21,
+            "kind": "body",
+            "damage": 4,
+            "time": {
+              "numerator": 512,
+              "denominator": 1536
+            },
+            "position": {
+              "x": 14336,
+              "y": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

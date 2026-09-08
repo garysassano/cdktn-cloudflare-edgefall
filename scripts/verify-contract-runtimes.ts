@@ -122,7 +122,7 @@ try {
   assert.deepEqual(errors, []);
   const report = {
     schemaVersion: 1,
-    package: "W01/W03/W04/W05",
+    package: "W01/W03/W04/W05/W07",
     recordedAt: new Date().toISOString(),
     commit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     sourceSha256: source.digest("hex"),
@@ -205,6 +205,7 @@ try {
     ordnance: expected.ordnance,
     hmg: expected.hmg,
     support: expected.support,
+    rocket: expected.rocket,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
     collisionResults: {
@@ -216,7 +217,7 @@ try {
     },
     status: "pass",
     scope:
-      "Portable snapshot/input, swept and indexed movement, pure controller, grounded patrol, navigation/traversal and coplanar seam fixtures; no production world, full gameplay replay or remote timer claim",
+      "Portable simulation, input/snapshot/recovery and released-rocket fixtures in Node, Chromium and local workerd. No production gameplay, deployed cadence or per-tick CPU claim.",
   };
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report));

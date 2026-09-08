@@ -1,7 +1,7 @@
 import type { AttackDefinition, ShapeDefinition } from "../content/schema.js";
 import { COUNTER_LIMIT, compareContactTime, divide, integer, position } from "../core/numeric.js";
 import { worldRect } from "../physics/body.js";
-import { type SweepTarget, sweepAabb } from "../physics/sweep.js";
+import { type SweepTarget, sweepAabb, sweepBounds } from "../physics/sweep.js";
 import type { Point, Rect } from "../state.js";
 
 export interface BallisticProjectile {
@@ -54,8 +54,21 @@ export function sweepProjectile(
     definition.material !== "bullet"
   )
     throw new Error("Unsupported ballistic policy");
+  return projectileImpact(projectile, shape, definition.damage, terrain, hurtboxes);
+}
+
+/** Shared swept contact query; the weapon owns direct-hit, blast and penetration policy. */
+export function projectileImpact(
+  projectile: BallisticProjectile,
+  shape: ShapeDefinition,
+  bodyDamage: number,
+  terrain: readonly SweepTarget[],
+  hurtboxes: readonly HurtTarget[],
+) {
+  integer(bodyDamage, 0, 65535, "projectile body damage");
   integer(terrain.length + hurtboxes.length, 0, 4096, "projectile candidate count");
   const bounds = worldRect(projectile.position, shape.rect, 1);
+  sweepBounds(bounds, projectile.velocity);
   const candidates = [
     ...terrain.map((target) => ({
       ...target,
@@ -104,13 +117,13 @@ export function sweepProjectile(
   const { target, time } = first;
   return {
     sourceId: projectile.id,
-    definitionId: definition.id,
+    definitionId: projectile.definitionId,
     actionInstanceId: projectile.actionInstanceId,
     ownerId: projectile.ownerId,
     colliderId: target.id,
     entityId: target.entityId,
     kind: target.kind,
-    damage: target.kind === "body" ? definition.damage : 0,
+    damage: target.kind === "body" ? bodyDamage : 0,
     position: {
       x: position(
         projectile.position.x +

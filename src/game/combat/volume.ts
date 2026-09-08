@@ -127,7 +127,12 @@ function impact(
     position: point,
   };
 }
-function ordered(hits: Impact[], maximum: number, excluded: readonly number[]): Impact[] {
+function ordered(
+  hits: Impact[],
+  maximum: number,
+  excluded: readonly number[],
+  primaryTarget: number | null = null,
+): Impact[] {
   const seen = new Set(excluded);
   return hits
     .sort(
@@ -137,7 +142,11 @@ function ordered(hits: Impact[], maximum: number, excluded: readonly number[]): 
           a.time.denominator,
           b.time.numerator,
           b.time.denominator,
-        ) || a.colliderId - b.colliderId,
+        ) ||
+        (primaryTarget === null
+          ? 0
+          : Number(b.entityId === primaryTarget) - Number(a.entityId === primaryTarget)) ||
+        a.colliderId - b.colliderId,
     )
     .filter((hit) => {
       if (hit.entityId === null || seen.has(hit.entityId) || seen.size >= maximum) return false;
@@ -260,7 +269,9 @@ export function explosionHits(
   radius: number,
   terrain: readonly SweepTarget[],
   hurtboxes: readonly HurtTarget[],
+  options: { time?: ContactTime; primaryTarget?: number | null } = {},
 ): Impact[] {
+  const { time = END, primaryTarget = null } = options;
   if (
     definition.id !== source.definitionId ||
     definition.kind !== "explosion" ||
@@ -268,6 +279,9 @@ export function explosionHits(
   )
     throw new Error("Invalid explosion policy");
   integer(radius, 1, 2 ** 16, "blast radius");
+  integer(time.denominator, 1, 2 ** 17, "blast contact denominator");
+  integer(time.numerator, 0, time.denominator, "blast contact numerator");
+  if (primaryTarget !== null) integer(primaryTarget, 1, COUNTER_LIMIT - 1, "blast primary target");
   position(center.x);
   position(center.y);
   validateQuery(source, terrain, hurtboxes);
@@ -277,25 +291,24 @@ export function explosionHits(
   for (const target of enemies.filter((target) => target.kind === "body")) {
     const point = nearest(center, {
       ...target.rect,
-      x: target.rect.x + target.delta.x,
-      y: target.rect.y + target.delta.y,
+      ...at(target.rect, target.delta, time),
     });
     const dx = point.x - center.x,
       dy = point.y - center.y;
     if (dx * dx + dy * dy > radius * radius) continue;
-    const blocked = occluder(center, point, END, terrain, shields);
+    const blocked = occluder(center, point, time, terrain, shields);
     if (blocked?.target.kind === "terrain") continue;
     hits.push(
       blocked
         ? impact(
             source,
             blocked.target as HurtTarget,
-            END,
+            time,
             at(center, { x: point.x - center.x, y: point.y - center.y }, blocked.time),
             blocked.target.kind === "body" ? definition.damage : 0,
           )
-        : impact(source, target, END, point, definition.damage),
+        : impact(source, target, time, point, definition.damage),
     );
   }
-  return ordered(hits, definition.maxTargets, []);
+  return ordered(hits, definition.maxTargets, [], primaryTarget);
 }
