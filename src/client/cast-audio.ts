@@ -1,9 +1,13 @@
 import type { CombatLab } from "../game/labs/combat.js";
 import { COMBAT_AUDIO, type CombatCue, combatAudioCues } from "../shared/animation/combat-audio.js";
+import { MissionMusic } from "./mission-music.js";
 
 /** Bounded sample playback, explicitly unlocked by a user gesture. No oscillator or gameplay clock. */
 export class CastAudio {
   private context?: AudioContext;
+  private music?: MissionMusic;
+  private musicEnabled = false;
+  private musicVolume = 0.35;
   private gain?: GainNode;
   private capture?: MediaStreamAudioDestinationNode;
   private recorder?: MediaRecorder;
@@ -20,6 +24,7 @@ export class CastAudio {
   private ready = false;
   private volume = 0.4;
   private dropped = 0;
+  private maxActiveVoices = 0;
   private lastTick = -1;
   private listenerX = 192;
   private lastAudioTime = -1;
@@ -39,10 +44,13 @@ export class CastAudio {
     this.enabled = enabled;
     if (!enabled) {
       this.hush();
+      await this.music?.setEnabled(false);
       return;
     }
     if (!this.context) {
-      this.context = new AudioContext();
+      this.context = new AudioContext({ sampleRate: 48000 });
+      this.music = new MissionMusic(this.context);
+      this.music.setVolume(this.musicVolume);
       this.gain = this.context.createGain();
       this.gain.gain.value = this.volume;
       this.gain.connect(this.context.destination);
@@ -65,6 +73,25 @@ export class CastAudio {
     }
     await this.context.resume();
     await this.loading;
+    await this.music?.setEnabled(this.musicEnabled && this.enabled);
+  }
+  async setMusicEnabled(enabled: boolean): Promise<void> {
+    this.musicEnabled = enabled;
+    await this.music?.setEnabled(enabled && this.enabled);
+  }
+  setMusicVolume(value: number): void {
+    if (!Number.isFinite(value) || value < 0 || value > 1) throw new Error("Invalid music volume");
+    this.musicVolume = value;
+    this.music?.setVolume(value);
+  }
+  playMusic(): void {
+    if (this.enabled) this.music?.play();
+  }
+  setMusicPhase(boss: boolean): void {
+    this.music?.setPhase(boss ? "lock-engine" : "breakwater-quay");
+  }
+  finishMusic(): void {
+    this.music?.finish();
   }
   setVolume(value: number): void {
     if (!Number.isFinite(value) || value < 0 || value > 1) throw new Error("Invalid audio volume");
@@ -72,6 +99,7 @@ export class CastAudio {
     if (this.gain) this.gain.gain.value = value;
   }
   hush(): void {
+    this.music?.pause();
     for (const voice of this.voices.keys()) {
       voice.stop();
       this.releaseVoice(voice);
@@ -88,10 +116,12 @@ export class CastAudio {
   }
   reset(): void {
     this.hush();
+    this.music?.reset();
     this.recent.clear();
     this.cues.length = 0;
     this.lastTick = -1;
     this.dropped = 0;
+    this.maxActiveVoices = 0;
     this.droppedExamples.length = 0;
     this.lastAudioTime = -1;
     this.stalledAudioTicks = this.maxStalledAudioTicks = 0;
@@ -118,7 +148,7 @@ export class CastAudio {
       if (this.recent.size > 1024) this.recent.delete(this.recent.values().next().value ?? "");
       const profile = COMBAT_AUDIO[cue.kind],
         buffer = this.buffers.get(profile.file);
-      if (!buffer || this.voices.size >= 24) {
+      if (!buffer || this.voices.size >= 32) {
         this.dropped++;
         if (this.droppedExamples.length < 32)
           this.droppedExamples.push({
@@ -146,6 +176,7 @@ export class CastAudio {
       pan.pan.value = Math.max(-0.7, Math.min(0.7, (cue.x - this.listenerX) / 192));
       source.connect(gain).connect(pan).connect(this.gain);
       this.voices.set(source, { end: start + duration, gain, pan });
+      this.maxActiveVoices = Math.max(this.maxActiveVoices, this.voices.size);
       source.onended = () => this.releaseVoice(source);
       source.start(start);
       source.stop(start + duration);
@@ -164,6 +195,7 @@ export class CastAudio {
       throw new Error("Enable audio before starting a new capture");
     this.capture = this.context.createMediaStreamDestination();
     this.gain.connect(this.capture);
+    this.music?.connect(this.capture);
     const stream = video
       ? new MediaStream([...video.getVideoTracks(), ...this.capture.stream.getAudioTracks()])
       : this.capture.stream;
@@ -185,6 +217,7 @@ export class CastAudio {
         for (const track of recorder.stream.getVideoTracks()) track.stop();
         if (this.capture) {
           this.gain?.disconnect(this.capture);
+          this.music?.disconnect(this.capture);
           for (const track of this.capture.stream.getTracks()) track.stop();
           this.capture = undefined;
         }
@@ -199,15 +232,41 @@ export class CastAudio {
   inspect() {
     return {
       enabled: this.enabled,
-      ready: this.ready,
+      ready: this.ready && (!this.musicEnabled || this.music?.inspect().ready === true),
       state: this.context?.state ?? "locked",
       contextSeconds: this.context?.currentTime ?? 0,
       decodedSamples: this.buffers.size,
+      decodedBytes: [...this.buffers.values()].reduce(
+        (sum, buffer) => sum + buffer.length * buffer.numberOfChannels * 4,
+        0,
+      ),
+      music: this.music?.inspect() ?? null,
       activeVoices: this.voices.size,
+      maxActiveVoices: this.maxActiveVoices,
+      voiceBudget: 32,
       dropped: this.dropped,
       droppedExamples: [...this.droppedExamples],
       maxStalledAudioTicks: this.maxStalledAudioTicks,
       cues: [...this.cues],
     };
+  }
+  dispose(): void {
+    if (this.recorder) {
+      this.recorder.ondataavailable = this.recorder.onstop = this.recorder.onerror = null;
+      if (this.recorder.state === "recording") this.recorder.stop();
+      for (const track of this.recorder.stream.getTracks()) track.stop();
+      this.recorder = undefined;
+      this.captureChunks = [];
+    }
+    if (this.capture) {
+      this.gain?.disconnect(this.capture);
+      this.music?.disconnect(this.capture);
+      for (const track of this.capture.stream.getTracks()) track.stop();
+      this.capture = undefined;
+    }
+    this.hush();
+    this.music?.dispose();
+    this.gain?.disconnect();
+    void this.context?.close();
   }
 }

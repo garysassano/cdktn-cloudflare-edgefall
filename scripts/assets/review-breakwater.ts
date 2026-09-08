@@ -8,6 +8,7 @@ for (const [directory, id, variant, prefix] of [
   ["hero", "operative", "p1", "upper-(hmg|shotgun|flame)-"],
   ["environment", "breakwater-quay", "base", ""],
   ["bosses", "lock-engine", "base", ""],
+  ["effects", "breakwater-fx", "base", ""],
 ]) {
   const path = `public/assets/art/${directory}/${id}`,
     atlas = JSON.parse(await readFile(`${path}.atlas.json`, "utf8")) as NativeAtlas,
@@ -35,6 +36,8 @@ for (const [directory, id, variant, prefix] of [
   for (const [theme, background, color] of [
     ["black", "#000000", "#ffffff"],
     ["white", "#ffffff", "#151b24"],
+    ["gray", "#808080", "#151b24"],
+    ["cyan", "#00ffff", "#151b24"],
     ["chroma", "#ff00ff", "#151b24"],
   ]) {
     const layers: Array<{ input: Buffer; left: number; top: number }> = [],
@@ -76,7 +79,7 @@ for (const [directory, id, variant, prefix] of [
     JSON.stringify({
       source: id,
       drawings: frames.length,
-      grounds: ["black", "white", "chroma"],
+      grounds: ["black", "white", "gray", "cyan", "chroma"],
       scales: [1, 4],
     }),
   );

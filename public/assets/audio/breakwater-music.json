@@ -1,0 +1,52 @@
+{
+  "format": 1,
+  "tempo": 144,
+  "beatsPerBar": 4,
+  "sampleRate": 48000,
+  "scoreSha256": "4bc947f87292a72e491c4f55cc521afde75c366c1b32bbfb7bac62022a543314",
+  "provenanceSha256": "39019b25e1a1691446739fd6bded3211cf8d753a4db57c26a389c8c42ae975fb",
+  "render": "pnpm audio:render; recorded samples, resampled notes, cosine-panned stereo mix, wrapped note/reverb tails, PCM24 FLAC masters and Vorbis quality 5",
+  "encoder": "ffmpeg version 9.0.1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "tracks": [
+    {
+      "id": "breakwater-quay",
+      "title": "Breakwater: Brass and Salt",
+      "file": "assets/audio/breakwater-quay-music.ogg",
+      "master": "masters/breakwater-quay.flac",
+      "frames": 1280000,
+      "seconds": 26.666666666666668,
+      "loopStart": 0,
+      "loopEnd": 26.666666666666668,
+      "bars": 16,
+      "notes": 556,
+      "bytes": 447812,
+      "sha256": "b02ade8d8c89292c2bd0e1545b4253139e3256a961cfffc73013ebf6ab8c96bb",
+      "masterSha256": "467113a40b9f61943080cf8a8e61e464417aed04fe3ebfdbb812d2cf38e7250b",
+      "decodedBytes": 10240000,
+      "peak": 0.3388673663139343,
+      "rms": 0.05787300805242952,
+      "seamDelta": 0.0014925554860383272,
+      "maximumDelta": 0.08272744948044419
+    },
+    {
+      "id": "lock-engine",
+      "title": "Lock Engine: Counterpressure",
+      "file": "assets/audio/lock-engine-music.ogg",
+      "master": "masters/lock-engine.flac",
+      "frames": 1280000,
+      "seconds": 26.666666666666668,
+      "loopStart": 0,
+      "loopEnd": 26.666666666666668,
+      "bars": 16,
+      "notes": 592,
+      "bytes": 443874,
+      "sha256": "089fa3892661c45736157bf774e23c9fc048e762427925c3ef0d61b8d467d66e",
+      "masterSha256": "2a8b9d6217c86a602ad06cb0c867edf7d2f043df4525ddc52b613b94b72e02c2",
+      "decodedBytes": 10240000,
+      "peak": 0.37070411443710327,
+      "rms": 0.05883382758999903,
+      "seamDelta": 0.001088365912437439,
+      "maximumDelta": 0.10106448829174042
+    }
+  ]
+}

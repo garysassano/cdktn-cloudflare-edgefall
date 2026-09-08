@@ -15,8 +15,13 @@ import {
 import { lockEngineHurtboxes } from "../game/missions/breakwater-boss.js";
 import { BREAKWATER } from "../game/missions/breakwater-content.js";
 import { worldRect } from "../game/physics/body.js";
+import {
+  advanceBreakwaterVisual,
+  initialBreakwaterVisual,
+} from "../shared/animation/breakwater.js";
 import { advanceCastMotion, initialCastMotion } from "../shared/animation/cast.js";
 import { operativeFootfalls } from "../shared/animation/combat-audio.js";
+import { EFFECT_POSTROLL, effectDrawings } from "../shared/animation/combat-effects.js";
 import {
   advanceOperativeMotion,
   initialOperativeMotion,
@@ -24,6 +29,7 @@ import {
 import { BreakwaterScenery } from "./breakwater-scenery.js";
 import { CastAudio } from "./cast-audio.js";
 import { NativeCast } from "./native-cast.js";
+import { NativeEffects } from "./native-effects.js";
 import { NativeOperative } from "./native-operative.js";
 
 function element<T extends HTMLElement>(id: string): T {
@@ -33,19 +39,58 @@ function element<T extends HTMLElement>(id: string): T {
 }
 const surface = element("game"),
   audio = new CastAudio();
+const settingsKey = "edgefall.benchmark.audio.v1";
+try {
+  const saved = JSON.parse(localStorage.getItem(settingsKey) ?? "null");
+  if (saved && typeof saved.sound === "boolean" && typeof saved.music === "boolean") {
+    element<HTMLInputElement>("sound").checked = saved.sound;
+    element<HTMLInputElement>("music").checked = saved.music;
+    for (const [id, value] of [
+      ["effects-volume", saved.effectsVolume],
+      ["music-volume", saved.musicVolume],
+    ] as const)
+      if (typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1)
+        element<HTMLInputElement>(id).value = String(value);
+    if (saved.sound) element("audio-status").textContent = "Play to unlock audio";
+  }
+} catch {
+  /* Storage can be unavailable or contain an obsolete preference. */
+}
+const saveAudioSettings = () => {
+  try {
+    localStorage.setItem(
+      settingsKey,
+      JSON.stringify({
+        sound: element<HTMLInputElement>("sound").checked,
+        music: element<HTMLInputElement>("music").checked,
+        effectsVolume: Number(element<HTMLInputElement>("effects-volume").value),
+        musicVolume: Number(element<HTMLInputElement>("music-volume").value),
+      }),
+    );
+  } catch {
+    /* Audio still works without persistent browser storage. */
+  }
+};
+audio.setVolume(Number(element<HTMLInputElement>("effects-volume").value));
+audio.setMusicVolume(Number(element<HTMLInputElement>("music-volume").value));
+void audio.setMusicEnabled(element<HTMLInputElement>("music").checked);
+let playRequest = 0;
 let mission = createBreakwater(),
   running = false,
   accumulator = 0,
   commands: CombatCommand[][] = [],
   playback: CombatCommand[][] | null = null,
   castMotion = initialCastMotion(mission.combat),
+  visual = initialBreakwaterVisual(),
+  postroll = 0,
   heroMotion = mission.combat.players.map((p) => initialOperativeMotion(p, 0)),
   hero: NativeOperative | undefined,
   frames: {
     hero: ReturnType<NativeOperative["draw"]>;
     cast: ReturnType<NativeCast["draw"]>;
     boss: string;
-  } = { hero: [], cast: [], boss: "engine-idle" },
+    effects: ReturnType<typeof effectDrawings>;
+  } = { hero: [], cast: [], boss: "engine-idle", effects: [] },
   cameraX = 0;
 let lastFrameAt = performance.now();
 const timing = { frames: 0, monotonicMs: 0, rendererMs: 0, maxFrameMs: 0 };
@@ -89,6 +134,7 @@ function clearInput() {
     for (const key of Object.keys(edge)) edge[key as keyof typeof edge] = false;
 }
 function pause(hush = true) {
+  playRequest++;
   running = false;
   accumulator = 0;
   clearInput();
@@ -105,6 +151,8 @@ function startMission(players: number, seed: number) {
   element<HTMLSelectElement>("players").value = String(players);
   element<HTMLInputElement>("seed").value = String(seed);
   castMotion = initialCastMotion(mission.combat);
+  visual = initialBreakwaterVisual();
+  postroll = 0;
   heroMotion = mission.combat.players.map((p) => initialOperativeMotion(p, 0));
   status();
 }
@@ -130,9 +178,13 @@ function record(): BreakwaterRecording {
 }
 function restore(recording: BreakwaterRecording) {
   let before: BreakwaterMission | undefined,
+    restoredVisual = initialBreakwaterVisual(),
     cast = initialCastMotion(createBreakwater(recording.players, recording.seed).combat),
     clocks: typeof heroMotion = [];
   const restored = replayBreakwater(recording, (next) => {
+    restoredVisual = before
+      ? advanceBreakwaterVisual(restoredVisual, before, next)
+      : initialBreakwaterVisual(next.combat.tick);
     cast = before
       ? advanceCastMotion(before.combat, next.combat, cast)
       : initialCastMotion(next.combat);
@@ -149,6 +201,8 @@ function restore(recording: BreakwaterRecording) {
   });
   mission = restored;
   castMotion = cast;
+  visual = restoredVisual;
+  postroll = 0;
   heroMotion = clocks;
   commands = structuredClone(recording.commands);
   playback = null;
@@ -158,8 +212,17 @@ function restore(recording: BreakwaterRecording) {
 }
 function step(submitted?: readonly CombatCommand[]) {
   if (!hero) return;
+  if (mission.phase !== "playing") {
+    if (postroll < EFFECT_POSTROLL) {
+      postroll++;
+      return;
+    }
+    pause(false);
+    playback = null;
+    status("Mission complete");
+    return;
+  }
   if (
-    mission.phase !== "playing" ||
     mission.combat.tick >= BREAKWATER.maxTicks ||
     (playback && mission.combat.tick === playback.length)
   ) {
@@ -207,6 +270,7 @@ function step(submitted?: readonly CombatCommand[]) {
       return advanceOperativeMotion(old, p, clock, next.combat.tick, atlas);
     });
     castMotion = advanceCastMotion(mission.combat, next.combat, castMotion);
+    visual = advanceBreakwaterVisual(visual, mission, next);
     audio.setListenerX(cameraX + 192);
     audio.consume(
       mission.combat,
@@ -222,6 +286,8 @@ function step(submitted?: readonly CombatCommand[]) {
       })),
     );
     mission = next;
+    audio.setMusicPhase(mission.boss.phase !== "dormant");
+    if (mission.phase !== "playing") audio.finishMusic();
     commands.push(inputs);
     if (mission.combat.tick % 6 === 0 || !running) status();
   } catch (error) {
@@ -265,13 +331,19 @@ element("reset").onclick = reset;
 element("step").onclick = () => {
   if (!running) step();
 };
-element("run").onclick = () => {
+async function play() {
+  const request = ++playRequest;
+  await unlockAudio();
+  if (request !== playRequest) return;
+  running = true;
+  audio.setMusicPhase(mission.boss.phase !== "dormant");
+  audio.playMusic();
+  element("run").textContent = "Pause";
+  surface.focus();
+}
+element("run").onclick = async () => {
   if (running) pause();
-  else {
-    running = true;
-    element("run").textContent = "Pause";
-    surface.focus();
-  }
+  else await play();
   status();
 };
 element("check-recording").onclick = () => {
@@ -283,14 +355,12 @@ element("check-recording").onclick = () => {
     status(`Replay rejected: ${error}`);
   }
 };
-element("play-recording").onclick = () => {
+element("play-recording").onclick = async () => {
   const saved = structuredClone(commands);
   if (!saved.length) return;
   startMission(mission.combat.players.length, mission.seed);
   playback = saved;
-  running = true;
-  element("run").textContent = "Pause";
-  surface.focus();
+  await play();
 };
 element("export").onclick = () => {
   const url = URL.createObjectURL(
@@ -313,21 +383,49 @@ element<HTMLInputElement>("import").onchange = async (event) => {
     status(`Import rejected: ${error}`);
   }
 };
-element<HTMLInputElement>("sound").onchange = async (event) => {
-  const control = event.target as HTMLInputElement;
+async function unlockAudio() {
+  const control = element<HTMLInputElement>("sound");
   try {
     await audio.setEnabled(control.checked);
+    audio.setMusicPhase(mission.boss.phase !== "dormant");
+    if (running) audio.playMusic();
     element("audio-status").textContent = control.checked ? "Sound ready" : "Muted";
   } catch (error) {
     control.checked = false;
     await audio.setEnabled(false);
     element("audio-status").textContent = `Sound unavailable: ${error}`;
   }
+}
+element<HTMLInputElement>("sound").onchange = async () => {
+  await unlockAudio();
+  saveAudioSettings();
 };
+element<HTMLInputElement>("music").onchange = async () => {
+  try {
+    await audio.setMusicEnabled(element<HTMLInputElement>("music").checked);
+  } catch (error) {
+    element<HTMLInputElement>("music").checked = false;
+    await audio.setMusicEnabled(false);
+    element("audio-status").textContent = `Music unavailable: ${error}`;
+  }
+  saveAudioSettings();
+};
+for (const id of ["effects-volume", "music-volume"] as const)
+  element<HTMLInputElement>(id).oninput = () => {
+    const value = Number(element<HTMLInputElement>(id).value);
+    if (id === "effects-volume") audio.setVolume(value);
+    else audio.setMusicVolume(value);
+    saveAudioSettings();
+  };
+window.addEventListener("pagehide", () => {
+  pause();
+  audio.dispose();
+});
 
 class BenchmarkScene extends Phaser.Scene {
   private scenery?: BreakwaterScenery;
   private cast?: NativeCast;
+  private effects?: NativeEffects;
   private graphics?: Phaser.GameObjects.Graphics;
   constructor() {
     super("breakwater");
@@ -336,10 +434,12 @@ class BenchmarkScene extends Phaser.Scene {
     NativeOperative.preload(this);
     NativeCast.preload(this);
     BreakwaterScenery.preload(this);
+    NativeEffects.preload(this);
   }
   create() {
     this.scenery = new BreakwaterScenery(this);
     this.cast = new NativeCast(this);
+    this.effects = new NativeEffects(this);
     hero = new NativeOperative(this);
     this.graphics = this.add.graphics().setDepth(3);
     this.cameras.main.setBounds(0, 0, BREAKWATER.width, BREAKWATER.height);
@@ -410,11 +510,24 @@ class BenchmarkScene extends Phaser.Scene {
     const lead = Math.max(48, ...alive.map((p) => p.body.x / 256));
     cameraX = Math.max(0, Math.min(BREAKWATER.width - 384, Math.round(lead - 144)));
     this.cameras.main.setScroll(cameraX, 0);
+    const reduced = element<HTMLInputElement>("reduced-effects").checked;
     frames = {
       hero: hero?.draw(mission.combat, heroMotion) ?? [],
       cast: this.cast?.draw(mission.combat, castMotion, true) ?? [],
-      boss: this.scenery?.draw(mission) ?? "engine-idle",
+      boss: this.scenery?.draw(mission, visual.bossHitTick, reduced) ?? "engine-idle",
+      effects: this.effects
+        ? effectDrawings(
+            visual.effects,
+            mission.combat,
+            this.effects.atlas,
+            breakwaterTerrain(mission),
+            mission.combat.tick + postroll,
+            reduced,
+            mission.phase !== "playing",
+          )
+        : [],
     };
+    this.effects?.draw(frames.effects);
     const g = this.graphics;
     if (!g) return;
     g.clear();
@@ -434,6 +547,7 @@ class BenchmarkScene extends Phaser.Scene {
       g.lineStyle(1, [0x72dfed, 0xbba4ff, 0xa4e488, 0xffcc88][player.slot] ?? 0xffffff);
       g.strokeRect(r.x / 256, r.y / 256, r.w / 256, r.h / 256);
     }
+    if (!debug) return;
     if (debug) {
       for (const target of breakwaterTerrain(mission)) {
         g.lineStyle(1, 0xa4e488);
@@ -513,6 +627,8 @@ Object.assign(globalThis, {
     state: () => structuredClone(mission),
     recording: record,
     frames: () => structuredClone(frames),
+    visual: () => structuredClone(visual),
+    presentationTick: () => mission.combat.tick + postroll,
     running: () => running,
     cameraX: () => cameraX,
     audio: () => audio.inspect(),

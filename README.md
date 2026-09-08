@@ -26,7 +26,7 @@ Wrangler exclusively owns Worker code, the Durable Object migration, bindings, a
 ## Prerequisites
 
 - Cloudflare API access with `Workers Scripts:Edit`, `D1:Edit`, `Workers R2 Storage:Edit`, and `Account Settings:Read` permissions.
-- [mise](https://mise.jdx.dev/installing-mise.html), which installs the repository's Node, pnpm, OpenTofu, and CDKTN versions.
+- [mise](https://mise.jdx.dev/installing-mise.html), which supplies Node, pnpm, OpenTofu and FFmpeg. CDKTN and Wrangler are project dependencies installed by pnpm; FFmpeg validates the checked-in audio and exports review recordings.
 
 ## Installation
 
@@ -68,7 +68,7 @@ Downed operatives can crawl and use a sidearm, allies revive with melee, and an 
 
 ### Redesign controller laboratory
 
-The [Breakwater Approach mission candidate](./docs/redesign-evidence/W06-breakwater.md) is available at `http://localhost:8787/benchmark.html` after `pnpm dev:lab`. It combines the new controller, native operative/enemy/tank candidates, weapon caches, a destructible quay and a mechanical target in one continuous local run. Its solo recording finishes in 49.15 simulation seconds. `pnpm test:mission:breakwater` verifies the same inputs in Node/Chromium and captures normal/quarter playback. Full co-op runs, final effects/music, production integration and human style approval remain in progress.
+The [Breakwater Approach mission candidate](./docs/redesign-evidence/W06-breakwater.md) is available at `http://localhost:8787/benchmark.html` after `pnpm dev:lab`. It combines the new controller, native operative/enemy/tank candidates, weapon caches, a destructible quay and a mechanical target in one continuous local run. Solo, two-player and four-player input recordings finish in 49.15, 49.28 and 54.93 simulation seconds. Native effects and original quay/boss music follow the presentation clock. `pnpm test:mission:breakwater` verifies Node/Chromium replay and normal/quarter capture; add `--players=2` or `--players=4` for co-op. Final acting/sound, the complete music-on/off review matrix, production integration and human style approval remain in progress.
 
 Run `pnpm dev:lab` and open `http://localhost:8787/controller-lab.html` for the new 60 Hz controller's isolated engineering surface. Select the obstacle course, moving support, crush, grounded enemy ledge authored jump/drop link or chained-route fixture; run or single-step, inspect contacts, and export/import a bounded deterministic input recording. This lab uses temporary geometry visuals and does not connect to a multiplayer room. The ordinary client build excludes development laboratories.
 
@@ -134,7 +134,7 @@ The current slice contains Rook and Vale with two outfits, four primary weapons,
 
 The [legacy style benchmark](./docs/style-benchmark.md) records the existing product's asset prompts. The redesign's [W06 source review](./docs/redesign-evidence/style-v2/README.md) begins the replacement benchmark and retains the required human art/audio gate.
 
-The existing Rook, enemy, weapon, VFX and environment assets remain in the v2 product. The redesign now has 119 native operative drawings with independent locomotion, authored head/jacket motion, sidearm/HMG/shotgun/flame poses, knife/throw clips, hand/grip contracts and full-body death/reentry. The continuous mission adds native quay scenery and a mechanical boss to the rifle, shield and tank candidates. The two generated concept sheets retain their recorded defects. Animation craft, remaining effects/audio, full co-op footage and the complete benchmark still require work and human review.
+The existing Rook, enemy, weapon, VFX and environment assets remain in the v2 product. The redesign now has 119 native operative drawings with independent locomotion, authored head/jacket motion, sidearm/HMG/shotgun/flame poses, knife/throw clips, hand/grip contracts and full-body death/reentry. The continuous mission adds native quay scenery, a mechanical boss and 112 finite effect drawings to the rifle, shield and tank candidates. Original mission/boss music has an editable score, licensed instrument sources and lossless masters in `audio/source`; `pnpm audio:render` rebuilds its runtime exports. The two generated concept sheets retain their recorded defects. Animation craft, final interaction audio and the complete benchmark still require work and human review.
 
 Every runtime media file is original or redistribution-compatible licensed and recorded in the checked-in [asset provenance manifest](./public/assets/manifest.json).
 

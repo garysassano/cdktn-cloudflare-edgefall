@@ -1,0 +1,41 @@
+{
+  "wallMs": 49172,
+  "monotonicMs": 50310.5,
+  "acceptedClockMs": 50314.19999998808,
+  "renderedFrames": 3019,
+  "rendererMs": 50314.689999999646,
+  "maximumFrameMs": 23.400000005960464,
+  "videoSeconds": 50.7507,
+  "audioCues": 943,
+  "audioDropped": 0,
+  "maximumAudioVoices": 16,
+  "audioVoiceBudget": 32,
+  "audioState": "running",
+  "audioSeconds": 50.31466666666667,
+  "maxStalledAudioTicks": 1,
+  "droppedExamples": [],
+  "music": {
+    "ready": true,
+    "enabled": true,
+    "playing": false,
+    "phase": "lock-engine",
+    "voices": 0,
+    "seconds": 49.29066666666667,
+    "decodedBytes": 20480000,
+    "transitions": [
+      {
+        "phase": "breakwater-quay",
+        "when": 0.24266666666666667,
+        "offset": 0
+      },
+      {
+        "phase": "lock-engine",
+        "when": 31.909333333333336,
+        "offset": 5
+      }
+    ]
+  },
+  "decodedAudioBytes": 22542372,
+  "capturedAudioPeak": 0.6623145341873169,
+  "capturedAudioRms": 0.06568410913491367
+}

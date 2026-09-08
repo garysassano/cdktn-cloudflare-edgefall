@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "library": "VS Chamber Orchestra Community Edition",
+  "revision": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+  "creators": [
+    "Sam Gossner",
+    "Simon Dalzell"
+  ],
+  "sampleEditing": "Elan Hickler / Soundemote",
+  "licence": "CC0-1.0",
+  "licenceFile": "vsco/CC0-1.0.txt",
+  "licenceUrl": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/LICENSE",
+  "sourceUrl": "https://github.com/sgossner/VSCO-2-CE",
+  "files": [
+    {
+      "id": "trumpet",
+      "file": "vsco/trumpet.wav",
+      "rootNote": 74,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Trumpet/stac/Sum_SHTrumpet_stac_D4_v2_rr1.wav",
+      "sha256": "a817b4b11b818e04cf73197a382b380c5dd8576f1e7f7d1ee359559d0542eb8a",
+      "bytes": 235968,
+      "pitchReference": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/6dd651d55dde97fd4028699be9d4481f26917891/TrumpetStac.sfz"
+    },
+    {
+      "id": "marimba",
+      "file": "vsco/marimba.wav",
+      "rootNote": 72,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Marimba/Marimba_hit_Outrigger_C4_loud_01.wav",
+      "sha256": "4af539d47a452d7fad26e171b1c8adcca272cee97191f040d192680462c880b8",
+      "bytes": 1016564,
+      "pitchReference": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/6dd651d55dde97fd4028699be9d4481f26917891/Marimba.sfz"
+    },
+    {
+      "id": "bass",
+      "file": "vsco/bass.wav",
+      "rootNote": 36,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Contrabass/Pizz/BKCtbss_Pizz_C1_v3_rr1.wav",
+      "sha256": "706d82ca773408bb6cd6f22466d5d017c1d36a9055f3a6b6af864407b26c5a0d",
+      "bytes": 400396,
+      "pitchReference": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/6dd651d55dde97fd4028699be9d4481f26917891/ContrabassPizz.sfz"
+    },
+    {
+      "id": "kick",
+      "file": "vsco/kick.wav",
+      "rootNote": null,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/BDrumNewhit_v3_rr1_Sum.wav",
+      "sha256": "a2d8829e8b2b59e8afb12fa396b01758827059339c2a84ad066d17b36c82d1ff",
+      "bytes": 367124
+    },
+    {
+      "id": "snare",
+      "file": "vsco/snare.wav",
+      "rootNote": null,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Snare2-HitSN_v3_rr1_Sum.wav",
+      "sha256": "3df96009d655dd4fe43c635bd3c20314a1e0cbdf9f571ee8a66207f9ef917d08",
+      "bytes": 457934
+    },
+    {
+      "id": "cymbal",
+      "file": "vsco/cymbal.wav",
+      "rootNote": null,
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/cymbal-crashshort_v1.wav",
+      "sha256": "af0d5f0eb7f2226a1c592e5cda8e2dc0588cadbc851999ed39e3f36276acc7c9",
+      "bytes": 335222
+    }
+  ],
+  "licenceSha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+}

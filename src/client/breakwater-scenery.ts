@@ -73,7 +73,7 @@ export class BreakwaterScenery {
       .setOrigin(64 / 128, 112 / 128)
       .setDepth(0.7);
   }
-  draw(mission: BreakwaterMission): string {
+  draw(mission: BreakwaterMission, hitTick: number | null = null, reduced = false): string {
     for (const pickup of mission.pickups)
       this.caches
         .get(pickup.id)
@@ -85,12 +85,14 @@ export class BreakwaterScenery {
       boss.phase === "destroyed"
         ? "engine-wreck"
         : boss.phase === "recovery"
-          ? "engine-open"
+          ? !reduced && hitTick !== null && mission.combat.tick - hitTick < 6
+            ? "engine-hit"
+            : "engine-open"
           : boss.phase === "burst"
             ? age % 15 >= 1 && age % 15 <= 3
               ? "engine-recoil"
               : "engine-fire"
-            : boss.phase === "windup" && Math.floor(age / 5) % 2
+            : boss.phase === "windup" && (reduced || Math.floor(age / 5) % 2)
               ? "engine-windup"
               : "engine-idle";
     this.boss.setFrame(`base/${frame}`);

@@ -25,7 +25,7 @@ const audit = await inspectArtImage(built.png, {
   nativeWidth: built.atlas.meta.size.w,
   nativeHeight: built.atlas.meta.size.h,
   pixelScale: 1,
-  columns: 8,
+  columns: built.atlas.meta.size.w / 68,
   rows: built.atlas.meta.size.h / 68,
 });
 assert(audit.canImportUnchanged, "Native export failed actual pixel checks");

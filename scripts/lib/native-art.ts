@@ -76,7 +76,10 @@ export async function compileNativeArt(raw: Buffer, image: string) {
   const known = new Map<string, NativeDrawing["frames"][number]>();
   for (const frame of source.frames) {
     assert(/^[a-z][a-z0-9-]+$/.test(frame.id) && !known.has(frame.id), "Native frame ID collision");
-    assert(["legs", "upper", "full-body"].includes(frame.channel), "Native frame channel");
+    assert(
+      ["legs", "upper", "full-body", "effects"].includes(frame.channel),
+      "Native frame channel",
+    );
     number(frame.at[0], 0, width - 1);
     number(frame.at[1], 0, height - 1);
     number(frame.rows.length, 1, height - frame.at[1]);
@@ -166,12 +169,17 @@ export async function compileNativeArt(raw: Buffer, image: string) {
     }
     clipIds.add(clip.id);
   }
-  const columns = 8,
-    padding = 2,
+  const padding = 2,
     strideX = width + 2 * padding,
     strideY = height + 2 * padding;
+  const maxRows = Math.floor(2048 / strideY),
+    columns = Math.max(8, Math.ceil((source.frames.length * variants.length) / maxRows));
   const imageWidth = columns * strideX,
     imageHeight = Math.ceil((source.frames.length * variants.length) / columns) * strideY;
+  assert(
+    imageWidth <= 2048 && imageHeight <= 2048,
+    "Split native art into multiple atlases to stay within the 2048-pixel texture budget",
+  );
   const pixels = Buffer.alloc(imageWidth * imageHeight * 4);
   const atlas: NativeAtlas = {
     frames: {},

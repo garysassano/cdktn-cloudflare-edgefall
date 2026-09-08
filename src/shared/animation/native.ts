@@ -1,4 +1,4 @@
-export type NativeChannel = "legs" | "upper" | "full-body";
+export type NativeChannel = "legs" | "upper" | "full-body" | "effects";
 export type NativeSockets = Partial<Record<"muzzle" | "hand" | "grip", [number, number]>>;
 export interface NativeContact {
   foot: "near" | "far";

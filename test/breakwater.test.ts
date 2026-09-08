@@ -19,6 +19,27 @@ const neutral = {
 };
 
 describe("Breakwater Approach", () => {
+  it.each([2, 4])(
+    "finishes a complete %i-player input recording with every player participating and alive",
+    { timeout: 20000 },
+    (count) => {
+      const shooters = new Set<number>();
+      const proof = runBreakwaterProof((state) => {
+        if (state.boss.phase !== "dormant")
+          for (const event of state.combat.events)
+            if (event.kind === "shot" && event.source?.definitionId === 2)
+              shooters.add(event.ownerId);
+      }, count);
+      expect(proof.state.phase).toBe("victory");
+      expect(proof.state.combat.tick).toBeGreaterThanOrEqual(2700);
+      expect(proof.state.combat.tick).toBeLessThanOrEqual(3600);
+      expect(
+        proof.state.combat.players.every((p) => p.life === "alive" && p.body.x / 256 > 2600),
+      ).toBe(true);
+      expect(shooters.size).toBe(count);
+      expect(canonical(replayBreakwater(proof.recording))).toBe(proof.recording.finalState);
+    },
+  );
   // This replays the complete 2,949-tick mission four times, including rejection
   // and observer-isolation checks, alongside the other kernel suites.
   it("finishes one continuous input recording with the weapon, enemy, life, vehicle and boss beats", {

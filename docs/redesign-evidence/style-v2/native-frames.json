@@ -211,10 +211,10 @@
     }
   ],
   "image": {
-    "width": 544,
-    "height": 4080,
+    "width": 1088,
+    "height": 2040,
     "hasAlphaChannel": true,
-    "decodedRgbaSha256": "54c49e8e28983eb81664e22151b81df0224a56785feade1a2dc320cbc28b94c6",
+    "decodedRgbaSha256": "4772892b1f4e5afc4fbc6732806e4bba5b2eb9eca774e80f4ede28d01f6e88bf",
     "alpha": {
       "transparent": 2092104,
       "opaque": 127416,
@@ -223,8 +223,8 @@
     },
     "visibleColors": 43,
     "expected": {
-      "width": 544,
-      "height": 4080
+      "width": 1088,
+      "height": 2040
     },
     "pixelScale": 1,
     "nonuniformBlocks": 0,

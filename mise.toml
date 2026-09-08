@@ -1,4 +1,5 @@
 [tools]
+ffmpeg = "latest"
 node = "24"
 opentofu = "1"
 pnpm = "12"

@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { BREAKWATER } from "../../src/game/missions/breakwater-content.js";
 import { BREAKWATER_ART } from "../../src/shared/animation/breakwater.js";
+import { EFFECT_ART } from "../../src/shared/animation/combat-effects.js";
 import { inspectArtImage } from "../lib/art-image.js";
 import { compileNativeArt } from "../lib/native-art.js";
 
@@ -13,7 +14,7 @@ const manifestPath = "public/assets/manifest.json",
   manifest = JSON.parse(await readFile(manifestPath, "utf8")),
   provenance = JSON.parse(await readFile(provenancePath, "utf8"));
 const reports = [];
-for (const asset of BREAKWATER_ART) {
+for (const asset of [...BREAKWATER_ART, EFFECT_ART]) {
   const sourcePath = `art/source/${asset.source}.pixels.json`,
     raw = await readFile(sourcePath),
     built = await compileNativeArt(raw, `${asset.id}.png`),

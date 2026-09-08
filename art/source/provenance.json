@@ -165,6 +165,22 @@
         "status": "pending",
         "reviewer": null
       }
+    },
+    {
+      "id": "breakwater-fx",
+      "file": "art/source/effects/breakwater-fx.pixels.json",
+      "bytes": 149126,
+      "sha256": "98ffda5ed8144a5cebe24a2ae783f4f2a6fd07f48578d2dcb585761ded83efec",
+      "creator": "Codex-authored indexed pixel drawings for Edgefall",
+      "licence": "Project-original",
+      "role": "native-benchmark-candidate",
+      "references": [],
+      "method": "Original literal palette-indexed source rows for Breakwater Approach; no sampled reference pixels or runtime figure generation.",
+      "export": "pnpm art:export",
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null
+      }
     }
   ]
 }

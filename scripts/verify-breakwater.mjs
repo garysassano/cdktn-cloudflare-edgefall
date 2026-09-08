@@ -8,33 +8,69 @@ import { chromium } from "@playwright/test";
 import sharp from "sharp";
 import { canonical } from "../src/game/core/canonical.ts";
 import { createBreakwater, stepBreakwater } from "../src/game/missions/breakwater.ts";
+import {
+  advanceBreakwaterVisual,
+  initialBreakwaterVisual,
+} from "../src/shared/animation/breakwater.ts";
+import { EFFECT_POSTROLL } from "../src/shared/animation/combat-effects.ts";
 import { runBreakwaterProof } from "../test/fixtures/breakwater-proof.ts";
+import { AUDIO_EXPORT, exportBreakwaterVideo } from "./lib/export-breakwater-video.mjs";
+import { verifyMissionAudio } from "./lib/verify-mission-audio.mjs";
 
+const playerCount = Number(
+  process.argv.find((arg) => arg.startsWith("--players="))?.split("=")[1] ?? 1,
+);
+assert([1, 2, 4].includes(playerCount));
+const prefix = playerCount === 1 ? "solo" : `coop-${playerCount}`;
 const root = resolve("dist/client"),
-  output = "dist/breakwater-evidence",
-  captures = new Map([
-    [0, "apron"],
-    [702, "grenade"],
-    [915, "shotgun"],
-    [1365, "flame"],
-    [1525, "boarding"],
-    [1596, "tank-jump"],
-    [1970, "ejection"],
-    [2040, "aperture"],
-    [2949, "victory"],
-  ]),
+  output =
+    playerCount === 1 ? "dist/breakwater-evidence" : `dist/breakwater-${playerCount}-evidence`,
+  captures = new Map(
+    playerCount === 1
+      ? [
+          [0, "apron"],
+          [702, "grenade"],
+          [915, "shotgun"],
+          [1365, "flame"],
+          [1525, "boarding"],
+          [1596, "tank-jump"],
+          [1970, "ejection"],
+          [2040, "aperture"],
+          [2949, "victory"],
+        ]
+      : [[0, "apron"]],
+  ),
   expected = new Map(),
   hashes = [],
+  visualHashes = [],
   hash = (text) => createHash("sha256").update(text).digest("hex");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
+let visual = initialBreakwaterVisual(),
+  beforeWorld;
 const proof = runBreakwaterProof((state) => {
+  if (beforeWorld) visual = advanceBreakwaterVisual(visual, beforeWorld, state);
+  beforeWorld = state;
+  visualHashes.push(hash(canonical(visual)));
   hashes.push(hash(canonical(state)));
+  if (playerCount !== 1) {
+    const queue = (label, delay = 0) => {
+      if (![...captures.values()].includes(label)) captures.set(state.combat.tick + delay, label);
+    };
+    if (state.combat.grenades.length) queue("grenade", 3);
+    if (state.combat.areas.some((a) => a.definitionId === 10)) queue("shotgun", 3);
+    if (state.combat.areas.some((a) => a.definitionId === 11)) queue("flame", 4);
+    if (state.combat.players[0].vehicleId !== null) queue("boarding", 8);
+    if (!state.combat.tanks[0].body.grounded) queue("tank-jump");
+    if (state.combat.tanks[0].armor === 0) queue("ejection", 4);
+    if (state.boss.phase === "recovery") queue("aperture", 25);
+    if (state.phase === "victory") queue("victory");
+  }
   if (captures.has(state.combat.tick)) expected.set(state.combat.tick, state);
-});
+}, playerCount);
 assert.equal(proof.state.phase, "victory");
 assert.equal(hashes.length, proof.recording.commands.length + 1);
-await writeFile(`${output}/solo.recording.json`, `${JSON.stringify(proof.recording)}\n`);
+await writeFile(`${output}/${prefix}.recording.json`, `${JSON.stringify(proof.recording)}\n`);
 const server = createServer(async (request, response) => {
   try {
     const path = resolve(root, `.${new URL(request.url, "http://localhost").pathname}`);
@@ -59,17 +95,20 @@ await new Promise((done) => server.listen(0, "127.0.0.1", done));
 let browser;
 const errors = [],
   report = {
-    scope:
-      "Continuous local solo mission; native scenery/cast/weapon candidates with engineering effect graphics. Network, full multiplayer captures, final sound/music and human W06 approval are pending.",
+    scope: `Continuous local ${playerCount}-player mission with native art, finite effects and authored sample-based music. Network integration, final sound design and human W06 approval are pending.`,
     browserAudioOutput:
       "Chromium --disable-audio-output; WebAudio rendering and MediaRecorder remain active. Physical-device output is not verified.",
     contentHash: proof.state.contentHash,
+    players: playerCount,
+    clientSha256: hash(await readFile(`${root}/benchmark.js`)),
     ticks: proof.state.combat.tick,
     simulationSeconds: proof.state.combat.tick / 60,
     seed: proof.state.seed,
     outcome: proof.state.phase,
     landmarks: proof.landmarks,
     boundaryHashes: hashes,
+    visualHashes,
+    presentationPostrollTicks: EFFECT_POSTROLL,
     screenshots: [],
     videos: [],
     checks: [],
@@ -83,29 +122,40 @@ try {
   page.on("pageerror", (error) => errors.push(String(error)));
   await page.goto(`http://127.0.0.1:${server.address().port}/benchmark.html`);
   await page.waitForFunction(() => globalThis.breakwater?.frames().hero.length > 0);
+  await page.locator("#players").selectOption(String(playerCount));
+  await page.locator("#reset").click();
   const paint = () =>
     page.evaluate(
       () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))),
     );
-  for (const [tick, label] of captures) {
+  for (const [tick, label] of [...captures].sort((a, b) => a[0] - b[0])) {
     const current = await page.evaluate(() => globalThis.breakwater.state().combat.tick);
     const states = await page.evaluate(
       (rows) => {
         const results = [];
         for (const row of rows) {
           globalThis.breakwater.advance(row);
-          results.push(globalThis.breakwater.state());
+          results.push({
+            state: globalThis.breakwater.state(),
+            visual: globalThis.breakwater.visual(),
+          });
         }
         return results;
       },
       proof.recording.commands.slice(current, tick),
     );
-    for (const state of states)
+    for (const { state, visual } of states) {
       assert.equal(
         hash(canonical(state)),
         hashes[state.combat.tick],
         `Browser boundary ${state.combat.tick}`,
       );
+      assert.equal(
+        hash(canonical(visual)),
+        visualHashes[state.combat.tick],
+        `Browser visual boundary ${state.combat.tick}`,
+      );
+    }
     const state = await page.evaluate(() => globalThis.breakwater.state());
     assert.equal(canonical(state), canonical(expected.get(tick)));
     await paint();
@@ -138,14 +188,18 @@ try {
   assert.deepEqual(await page.evaluate(() => globalThis.breakwater.recording()), proof.recording);
   await page.locator("#check-recording").click();
   assert.match(await page.locator("#status").textContent(), /Replay matches/);
+  assert.equal(
+    hash(canonical(await page.evaluate(() => globalThis.breakwater.visual()))),
+    visualHashes.at(-1),
+  );
   report.checks.push(
-    "All 2949 accepted input boundaries match Node; complete replay restores the victory state.",
+    `All ${proof.state.combat.tick} accepted simulation and visual boundaries match Node; complete replay restores the victory state.`,
   );
   // Playback identity belongs to the recording even if the next-run selectors were edited.
-  await page.locator("#players").selectOption("4");
+  await page.locator("#players").selectOption(playerCount === 4 ? "1" : "4");
   await page.locator("#seed").fill("123");
   await page.locator("#play-recording").click();
-  assert.equal(await page.locator("#players").inputValue(), "1");
+  assert.equal(await page.locator("#players").inputValue(), String(playerCount));
   assert.equal(await page.locator("#seed").inputValue(), String(proof.state.seed));
   await page.locator("#run").click();
   report.checks.push("Playback retains recording player count and seed after selector edits.");
@@ -174,7 +228,7 @@ try {
     await paint();
     assert.equal((await page.evaluate(() => globalThis.breakwater.frames().hero)).length, count);
     report.checks.push(
-      `${count} local input slots match Node after 100 boundaries; this is not a complete co-op run.`,
+      `Additional ${count}-slot reset with seed 123 matches Node after 100 boundaries.`,
     );
   }
   // Real input: a short tap survives until the next accepted boundary, and blur clears held intent.
@@ -247,7 +301,12 @@ try {
   report.checks.push(
     "Injected gamepad attach/replacement neutral barriers, disconnect clearing and unknown-mapping rejection pass; physical controllers remain unverified.",
   );
-  await page.locator("#import").setInputFiles(`${output}/solo.recording.json`);
+  if (playerCount === 1) {
+    const audioProof = await verifyMissionAudio(page);
+    report.checks.push(...audioProof.checks);
+    report.musicLoops = audioProof.loops;
+  }
+  await page.locator("#import").setInputFiles(`${output}/${prefix}.recording.json`);
   await page.waitForFunction(() =>
     document.querySelector("#status").textContent.includes("Imported replay matches"),
   );
@@ -260,13 +319,20 @@ try {
   if (!process.argv.includes("--no-video")) {
     await page.locator("#sound").check();
     await page.waitForFunction(() => globalThis.breakwater.audio().ready);
-    for (const [name, speed, debug] of [
-      ["solo-clean-normal", 1, false],
-      ["solo-debug-normal", 1, true],
-      ["solo-clean-quarter", 0.25, false],
-    ]) {
+    const modes = process.argv.includes("--all-videos")
+      ? [1, 0.25].flatMap((speed) =>
+          [false, true].flatMap((debug) => [true, false].map((music) => [speed, debug, music])),
+        )
+      : [
+          [1, false, true],
+          [1, true, true],
+          [0.25, false, true],
+        ];
+    for (const [speed, debug, music] of modes) {
+      const name = `${prefix}-${debug ? "debug" : "clean"}-${speed === 1 ? "normal" : "quarter"}${music ? "" : "-music-off"}`;
       await page.locator("#speed").selectOption(String(speed));
       await page.locator("#debug").setChecked(debug);
+      await page.locator("#music").setChecked(music);
       await page.locator("#play-recording").click();
       await page.evaluate(() => globalThis.breakwater.startCapture());
       const start = Date.now(),
@@ -279,6 +345,17 @@ try {
       );
       const afterTiming = await page.evaluate(() => globalThis.breakwater.timing());
       const audio = await page.evaluate(() => globalThis.breakwater.audio());
+      assert.equal(audio.music.voices, 0, "Terminal music voices did not stop");
+      assert(
+        audio.decodedBytes + audio.music.decodedBytes <= 32 * 1024 * 1024,
+        "Decoded encounter audio budget exceeded",
+      );
+      if (music)
+        assert.deepEqual(
+          audio.music.transitions.map((t) => t.phase),
+          ["breakwater-quay", "lock-engine"],
+        );
+      else assert.equal(audio.music.transitions.length, 0);
       await page.waitForTimeout(400);
       const capture = await page.evaluate(async () => {
         const blob = await globalThis.breakwater.stopCapture();
@@ -295,29 +372,7 @@ try {
         };
       });
       await writeFile(`${output}/${name}.webm`, Buffer.from(capture.base64, "base64"));
-      execFileSync("ffmpeg", [
-        "-hide_banner",
-        "-loglevel",
-        "error",
-        "-y",
-        "-i",
-        `${output}/${name}.webm`,
-        "-c:v",
-        "libx264",
-        "-crf",
-        "20",
-        "-pix_fmt",
-        "yuv420p",
-        "-af",
-        "aresample=async=1:first_pts=0",
-        "-c:a",
-        "aac",
-        "-b:a",
-        "96k",
-        "-movflags",
-        "+faststart",
-        `${output}/${name}.mp4`,
-      ]);
+      exportBreakwaterVideo(`${output}/${name}`);
       const media = JSON.parse(
         execFileSync(
           "ffprobe",
@@ -364,10 +419,14 @@ try {
         videoSeconds: Number(media.format.duration),
         audioCues: audio.cues.length,
         audioDropped: audio.dropped,
+        maximumAudioVoices: audio.maxActiveVoices,
+        audioVoiceBudget: audio.voiceBudget,
         audioState: audio.state,
         audioSeconds: audio.contextSeconds - beforeAudio.contextSeconds,
         maxStalledAudioTicks: audio.maxStalledAudioTicks,
         droppedExamples: audio.droppedExamples,
+        music: audio.music,
+        decodedAudioBytes: audio.decodedBytes + audio.music.decodedBytes,
         capturedAudioPeak: peak,
         capturedAudioRms: rms,
       };
@@ -378,11 +437,17 @@ try {
         Math.abs(clocks.audioSeconds - clocks.monotonicMs / 1000) < 0.2,
         "Audio clock diverged from browser playback",
       );
-      assert(Math.abs(Number(media.format.duration) - proof.state.combat.tick / 60 / speed) < 2);
+      assert(
+        Math.abs(
+          Number(media.format.duration) - (proof.state.combat.tick + EFFECT_POSTROLL) / 60 / speed,
+        ) < 2,
+      );
       report.videos.push({
         name,
         speed,
         debug,
+        music,
+        audioExport: AUDIO_EXPORT,
         mimeType: capture.mimeType,
         wallMs: Date.now() - start,
         duration: Number(media.format.duration),

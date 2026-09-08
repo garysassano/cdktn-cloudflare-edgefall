@@ -1,0 +1,3722 @@
+{
+  "format": 1,
+  "id": "breakwater-fx",
+  "status": "benchmark-candidate",
+  "creator": "Codex-authored indexed pixel drawings for Edgefall",
+  "licence": "Project-original",
+  "reference": "Original Breakwater combat effect studies; no sampled reference pixels.",
+  "canvas": {
+    "width": 128,
+    "height": 128,
+    "root": [
+      64,
+      64
+    ]
+  },
+  "palette": {
+    ".": "00000000",
+    "K": "262431ff",
+    "k": "423743ff",
+    "r": "81433cff",
+    "O": "d56337ff",
+    "o": "f69b49ff",
+    "Y": "ffe995ff",
+    "I": "fff6d1ff",
+    "S": "59696eff",
+    "s": "829294ff",
+    "h": "b4bfadff",
+    "G": "5b7770ff",
+    "g": "95ae81ff",
+    "B": "342e35ff",
+    "b": "67554fff",
+    "T": "b08b61ff",
+    "c": "5ad4caff"
+  },
+  "variants": {
+    "base": {}
+  },
+  "frames": [
+    {
+      "id": "sidearm-0",
+      "channel": "effects",
+      "at": [
+        62,
+        57
+      ],
+      "rows": [
+        "........Y.........",
+        "..................",
+        "..................",
+        ".....oo...........",
+        "....oooo..........",
+        "...oooooooooooo...",
+        "..IIIIIIIIIIooooo.",
+        "ooIIIIIIIIIIIIIooo",
+        "..IIIIIIIIIIooo...",
+        "......ooooo.......",
+        "......oooo........",
+        ".......oo.........",
+        "..................",
+        "............O....."
+      ]
+    },
+    {
+      "id": "sidearm-1",
+      "channel": "effects",
+      "at": [
+        62,
+        58
+      ],
+      "rows": [
+        "........Y......",
+        "...............",
+        "...............",
+        ".....oo........",
+        "...ooooooooo...",
+        "..IIIIIIIIIooo.",
+        "ooIIIIIIIIIIooo",
+        "..IIIIIIIIIo...",
+        "......oo.......",
+        ".......o.......",
+        "...............",
+        "............O.."
+      ]
+    },
+    {
+      "id": "sidearm-2",
+      "channel": "effects",
+      "at": [
+        62,
+        62
+      ],
+      "rows": [
+        "....OOOO...",
+        "..YYYYYYYO.",
+        "OOYYYYYYOOO",
+        "..YYYYYYY..",
+        "....OO....."
+      ]
+    },
+    {
+      "id": "tank-0",
+      "channel": "effects",
+      "at": [
+        62,
+        54
+      ],
+      "rows": [
+        "........Y....................",
+        ".............................",
+        ".............................",
+        "......o......................",
+        ".....oo......................",
+        "....ooo......................",
+        "...ooooo.....................",
+        "...ooooo.....................",
+        "..oooooooooooooooooooooooo...",
+        ".oIIIIIIIIIIIIIIIIoooooooooo.",
+        "ooIIIIIIIIIIIIIIIIIIIIIIIIooo",
+        "..IIIIIIIIIIIIIIIIoooooooo...",
+        "......oooooooooooooooo.......",
+        "......oooooooooooooo.........",
+        "......ooooooooooo............",
+        ".......oooooooo..............",
+        ".......ooooo.................",
+        ".......ooo...................",
+        ".............................",
+        "............O................"
+      ]
+    },
+    {
+      "id": "tank-1",
+      "channel": "effects",
+      "at": [
+        62,
+        55
+      ],
+      "rows": [
+        "........Y.................",
+        "..........................",
+        "..........................",
+        "......o...................",
+        ".....oo...................",
+        "....oooo..................",
+        "...ooooo..................",
+        "..ooooooooooooooooooooo...",
+        ".oIIIIIIIIIIIIIIooooooooo.",
+        "ooIIIIIIIIIIIIIIIIIIIIIooo",
+        "..IIIIIIIIIIIIIIooooooo...",
+        "......ooooooooooooo.......",
+        "......ooooooooooo.........",
+        "......ooooooooo...........",
+        ".......ooooo..............",
+        ".......ooo................",
+        "..........................",
+        "............O............."
+      ]
+    },
+    {
+      "id": "tank-2",
+      "channel": "effects",
+      "at": [
+        62,
+        59
+      ],
+      "rows": [
+        ".....OO...............",
+        "....OOO...............",
+        "...OOOOO..............",
+        "..OOOOOOOOOOOOOOOOO...",
+        ".OYYYYYYYYYYYYOOOOOOO.",
+        "OOYYYYYYYYYYYYYYYYYOOO",
+        "..YYYYYYYYYYYYOOOOO...",
+        "......OOOOOOOOO.......",
+        "......OOOOOOO.........",
+        ".......OOOO...........",
+        ".......OO............."
+      ]
+    },
+    {
+      "id": "shotgun-flash-0",
+      "channel": "effects",
+      "at": [
+        62,
+        52
+      ],
+      "rows": [
+        "........Y................",
+        ".........................",
+        ".........................",
+        "......o..................",
+        ".....oo..................",
+        ".....oo..................",
+        "....ooo..................",
+        "...ooooo.................",
+        "...ooooo.................",
+        "..oooooo.................",
+        "..oooooooooooooooooooo...",
+        ".oIIIIIIIIIIIIIIoooooooo.",
+        "ooIIIIIIIIIIIIIIIIIIIIooo",
+        "..IIIIIIIIIIIIIIoooooo...",
+        "......oooooooooooo.......",
+        "......ooooooooooo........",
+        "......oooooooooo.........",
+        "......oooooooo...........",
+        ".......oooooo............",
+        ".......ooooo.............",
+        ".......ooo...............",
+        ".......oo................",
+        ".........................",
+        "............O............"
+      ]
+    },
+    {
+      "id": "shotgun-flash-1",
+      "channel": "effects",
+      "at": [
+        62,
+        53
+      ],
+      "rows": [
+        "........Y.............",
+        "......................",
+        "......................",
+        "......o...............",
+        ".....oo...............",
+        "....ooo...............",
+        "....oooo..............",
+        "...ooooo..............",
+        "..oooooo..............",
+        "..ooooooooooooooooo...",
+        ".oIIIIIIIIIIIIooooooo.",
+        "ooIIIIIIIIIIIIIIIIIooo",
+        "..IIIIIIIIIIIIooooo...",
+        "......ooooooooo.......",
+        "......oooooooo........",
+        "......ooooooo.........",
+        "......oooooo..........",
+        ".......oooo...........",
+        ".......ooo............",
+        ".......oo.............",
+        "......................",
+        "............O........."
+      ]
+    },
+    {
+      "id": "shotgun-flash-2",
+      "channel": "effects",
+      "at": [
+        62,
+        57
+      ],
+      "rows": [
+        "......O...........",
+        ".....OO...........",
+        "....OOO...........",
+        "...OOOOO..........",
+        "...OOOOO..........",
+        "..OOOOOOOOOOOOO...",
+        ".OYYYYYYYYYYOOOOO.",
+        "OOYYYYYYYYYYYYYOOO",
+        "..YYYYYYYYYYOOO...",
+        "......OOOOO.......",
+        "......OOOOO.......",
+        "......OOOO........",
+        ".......OO.........",
+        ".......OO.........",
+        ".......O.........."
+      ]
+    },
+    {
+      "id": "hmg-0-0",
+      "channel": "effects",
+      "at": [
+        59,
+        45
+      ],
+      "rows": [
+        "....oo....",
+        "...ooo....",
+        "...ooo...Y",
+        "...ooo....",
+        "...oooo...",
+        "...oooo...",
+        "...oooo...",
+        "...ooIo...",
+        "...ooIo...",
+        "...ooIoo..",
+        "...ooIooo.",
+        "...ooIooo.",
+        "...ooIIooo",
+        "...ooIIooo",
+        "..oooIIoo.",
+        "oooooIIo..",
+        ".ooooII...",
+        "..oooI....",
+        "...oo....."
+      ]
+    },
+    {
+      "id": "hmg-0-1",
+      "channel": "effects",
+      "at": [
+        60,
+        47
+      ],
+      "rows": [
+        "........Y",
+        ".........",
+        "...oo....",
+        "..ooo....",
+        "..oooo...",
+        "..oooo...",
+        "..oooo...",
+        "..ooooo..",
+        "..ooIoo..",
+        "..ooIooo.",
+        "..ooIooo.",
+        "..ooIIoo.",
+        ".oooIIo..",
+        "ooooII...",
+        ".oooII...",
+        "..ooI....",
+        "...o....."
+      ]
+    },
+    {
+      "id": "hmg-0-2",
+      "channel": "effects",
+      "at": [
+        61,
+        47
+      ],
+      "rows": [
+        ".......Y",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........",
+        "..OOO...",
+        ".OOOOO..",
+        ".OOOOO..",
+        ".OOOOO..",
+        ".OOOOO..",
+        ".OOYOO..",
+        ".OOYOO..",
+        "OOOYY...",
+        ".OOYY...",
+        ".OOY....",
+        "..O....."
+      ]
+    },
+    {
+      "id": "tracer-ally-0",
+      "channel": "effects",
+      "at": [
+        64,
+        64
+      ],
+      "rows": [
+        "IO",
+        "YO",
+        "YO",
+        "YO",
+        "YO",
+        "OO",
+        "OO",
+        "OO",
+        "OO",
+        "OO"
+      ]
+    },
+    {
+      "id": "tracer-hostile-0",
+      "channel": "effects",
+      "at": [
+        64,
+        64
+      ],
+      "rows": [
+        "Ir",
+        "or",
+        "or",
+        "or",
+        "or",
+        "rr",
+        "rr",
+        "rr",
+        "rr",
+        "rr"
+      ]
+    },
+    {
+      "id": "hmg-1-0",
+      "channel": "effects",
+      "at": [
+        62,
+        46
+      ],
+      "rows": [
+        ".........o...",
+        ".......ooo...",
+        ".......ooo...",
+        ".......ooo...",
+        "......ooo...Y",
+        "......ooo....",
+        ".....oooo....",
+        ".....oooo....",
+        "....ooIoo....",
+        "....ooIoo....",
+        "....oIIoo....",
+        "...ooIooo....",
+        ".oooIIooo....",
+        "ooooIIooo....",
+        "oooIIIooo....",
+        "oooIIIo......",
+        ".oIII........",
+        ".oI.........."
+      ]
+    },
+    {
+      "id": "hmg-1-1",
+      "channel": "effects",
+      "at": [
+        62,
+        50
+      ],
+      "rows": [
+        ".......oo...Y",
+        "......ooo....",
+        ".....oooo....",
+        ".....oooo....",
+        "....ooooo....",
+        "....ooooo....",
+        "....ooooo....",
+        "...ooIooo....",
+        "..oooIooo....",
+        "ooooIIooo....",
+        ".oooIIoo.....",
+        ".ooIII.......",
+        ".oIII........",
+        ".oI.........."
+      ]
+    },
+    {
+      "id": "hmg-1-2",
+      "channel": "effects",
+      "at": [
+        63,
+        50
+      ],
+      "rows": [
+        "...........Y",
+        "............",
+        "............",
+        "............",
+        "...OOOO.....",
+        "...OOOO.....",
+        "...OOOO.....",
+        "..OOOOO.....",
+        "..OOOOO.....",
+        "OOOYOOO.....",
+        "OOOYOO......",
+        "OOYY........",
+        "OOYY........",
+        ".Y.........."
+      ]
+    },
+    {
+      "id": "tracer-ally-1",
+      "channel": "effects",
+      "at": [
+        61,
+        64
+      ],
+      "rows": [
+        "...IO",
+        "..OYO",
+        "..YO.",
+        "..YO.",
+        ".YOO.",
+        ".OO..",
+        "OOO..",
+        "OO...",
+        "OO..."
+      ]
+    },
+    {
+      "id": "tracer-hostile-1",
+      "channel": "effects",
+      "at": [
+        61,
+        64
+      ],
+      "rows": [
+        "...Ir",
+        "..ror",
+        "..or.",
+        "..or.",
+        ".orr.",
+        ".rr..",
+        "rrr..",
+        "rr...",
+        "rr..."
+      ]
+    },
+    {
+      "id": "hmg-2-0",
+      "channel": "effects",
+      "at": [
+        64,
+        50
+      ],
+      "rows": [
+        "............ooo.",
+        "...........ooo..",
+        "..........ooo...",
+        ".........oooo...",
+        "........oooo....",
+        ".......ooIo....Y",
+        "......ooIoo.....",
+        ".....ooIoo......",
+        "oo..ooIIoo......",
+        "oooooIIoo.......",
+        "ooooIIooo.......",
+        "ooIIIIooo.......",
+        "oIIIIoooo.......",
+        "IIII..oo........"
+      ]
+    },
+    {
+      "id": "hmg-2-1",
+      "channel": "effects",
+      "at": [
+        64,
+        53
+      ],
+      "rows": [
+        ".........ooo....",
+        "........ooo.....",
+        ".......oooo....Y",
+        "......oooo......",
+        ".....ooIoo......",
+        "....ooIooo......",
+        "oooooIooo.......",
+        "ooooIIooo.......",
+        "oooIIooo........",
+        "oIIIIooo........",
+        "IIII............"
+      ]
+    },
+    {
+      "id": "hmg-2-2",
+      "channel": "effects",
+      "at": [
+        64,
+        55
+      ],
+      "rows": [
+        "...............Y",
+        "......OOO.......",
+        ".....OOOO.......",
+        "....OOOOO.......",
+        ".OOOOOOOO.......",
+        ".OOOYOOO........",
+        ".OOYYOO.........",
+        "OOYYOO..........",
+        "YYYY............"
+      ]
+    },
+    {
+      "id": "tracer-ally-2",
+      "channel": "effects",
+      "at": [
+        58,
+        64
+      ],
+      "rows": [
+        "......I",
+        ".....YO",
+        "....YOO",
+        "...YOO.",
+        "..OOO..",
+        ".OOO...",
+        "OOO....",
+        "OO....."
+      ]
+    },
+    {
+      "id": "tracer-hostile-2",
+      "channel": "effects",
+      "at": [
+        58,
+        64
+      ],
+      "rows": [
+        "......I",
+        ".....or",
+        "....orr",
+        "...orr.",
+        "..rrr..",
+        ".rrr...",
+        "rrr....",
+        "rr....."
+      ]
+    },
+    {
+      "id": "hmg-3-0",
+      "channel": "effects",
+      "at": [
+        64,
+        56
+      ],
+      "rows": [
+        "...............ooo",
+        "............oooooo",
+        "..o.......ooooooo.",
+        "..oo...oooooooo...",
+        ".oooooooooIooo....",
+        ".oooooIIIIoo.....Y",
+        ".ooIIIIIooo.......",
+        "IIIIIIIooo........",
+        "..IIIooooo........",
+        "......ooo.........",
+        ".......o.........."
+      ]
+    },
+    {
+      "id": "hmg-3-1",
+      "channel": "effects",
+      "at": [
+        64,
+        57
+      ],
+      "rows": [
+        "............o.....",
+        "..........ooooo...",
+        ".......ooooooo....",
+        "..ooooooooooo.....",
+        ".ooooooIIooo.....Y",
+        ".oooIIIoooo.......",
+        "IIIIIIoooo........",
+        "..IIIoooo.........",
+        ".......o.........."
+      ]
+    },
+    {
+      "id": "hmg-3-2",
+      "channel": "effects",
+      "at": [
+        64,
+        59
+      ],
+      "rows": [
+        ".......OOOO.......",
+        "...OOOOOOOOO......",
+        "..OOOOOOOOO......Y",
+        ".OOOYYOOOOO.......",
+        "YYYYYYOOO.........",
+        "..YYYOOO.........."
+      ]
+    },
+    {
+      "id": "tracer-ally-3",
+      "channel": "effects",
+      "at": [
+        57,
+        64
+      ],
+      "rows": [
+        "......YIO",
+        "....YYOOO",
+        "..OYOOOO.",
+        "OOOOO....",
+        "OOO......"
+      ]
+    },
+    {
+      "id": "tracer-hostile-3",
+      "channel": "effects",
+      "at": [
+        57,
+        64
+      ],
+      "rows": [
+        "......oIr",
+        "....oorrr",
+        "..rorrrr.",
+        "rrrrr....",
+        "rrr......"
+      ]
+    },
+    {
+      "id": "hmg-4-0",
+      "channel": "effects",
+      "at": [
+        64,
+        60
+      ],
+      "rows": [
+        "...oo...............",
+        "..oooo..............",
+        ".ooooooooooooooooo..",
+        "ooooooooooooooooooo.",
+        ".IIIIIIIIIIIIooooooo",
+        "..IIIIIIoooooooo....",
+        "....ooooooo.........",
+        ".....ooooo..........",
+        "......oo.........Y.."
+      ]
+    },
+    {
+      "id": "hmg-4-1",
+      "channel": "effects",
+      "at": [
+        64,
+        61
+      ],
+      "rows": [
+        "...oo.............",
+        "..oooooooooooo....",
+        "ooooooooooooooo...",
+        ".IIIIIIIIIoooooo..",
+        "..IIIIIooooooo....",
+        "....ooooooo.......",
+        ".....oooo.........",
+        ".................Y"
+      ]
+    },
+    {
+      "id": "hmg-4-2",
+      "channel": "effects",
+      "at": [
+        64,
+        62
+      ],
+      "rows": [
+        "..OOOOOOOO........",
+        "OOOOOOOOOOO.......",
+        ".YYYYYYOOOOO......",
+        "..YYYOOOOOOO......",
+        ".....OOOOOO.......",
+        "..................",
+        ".................Y"
+      ]
+    },
+    {
+      "id": "tracer-ally-4",
+      "channel": "effects",
+      "at": [
+        56,
+        64
+      ],
+      "rows": [
+        "OOOOYYYYIO",
+        "OOOOOOOOOO"
+      ]
+    },
+    {
+      "id": "tracer-hostile-4",
+      "channel": "effects",
+      "at": [
+        56,
+        64
+      ],
+      "rows": [
+        "rrrrooooIr",
+        "rrrrrrrrrr"
+      ]
+    },
+    {
+      "id": "hmg-5-0",
+      "channel": "effects",
+      "at": [
+        65,
+        62
+      ],
+      "rows": [
+        "..ooo.............",
+        "oooooo............",
+        "IIoooo............",
+        ".IIIooo...........",
+        ".IIIIIoooo........",
+        "..IIIIIIoooo......",
+        "..oooooIIIoooo....",
+        "...oooooooooooooo.",
+        "...oooooooooooooo.",
+        "..............oooo",
+        "..................",
+        "..................",
+        ".............Y...."
+      ]
+    },
+    {
+      "id": "hmg-5-1",
+      "channel": "effects",
+      "at": [
+        65,
+        62
+      ],
+      "rows": [
+        "....o.........",
+        "ooooo.........",
+        "IIoooo........",
+        ".IIoooo.......",
+        ".IIIIooooo....",
+        "..IIIIIooooo..",
+        "...oooooooooo.",
+        "...ooooooooooo",
+        "....oooooooooo",
+        "..............",
+        "..............",
+        "..............",
+        ".............Y"
+      ]
+    },
+    {
+      "id": "hmg-5-2",
+      "channel": "effects",
+      "at": [
+        65,
+        63
+      ],
+      "rows": [
+        ".OOOO.........",
+        "YOOOO.........",
+        ".YYOOOO.......",
+        ".YYYYOOOOO....",
+        "...OOOOOOO....",
+        "...OOOOOOO....",
+        "....OOOOOO....",
+        "..............",
+        "..............",
+        "..............",
+        "..............",
+        ".............Y"
+      ]
+    },
+    {
+      "id": "tracer-ally-5",
+      "channel": "effects",
+      "at": [
+        57,
+        61
+      ],
+      "rows": [
+        "OOO......",
+        "OOOYO....",
+        "..OOYYOO.",
+        "....OOYIO",
+        ".......OO"
+      ]
+    },
+    {
+      "id": "tracer-hostile-5",
+      "channel": "effects",
+      "at": [
+        57,
+        61
+      ],
+      "rows": [
+        "rrr......",
+        "rrror....",
+        "..rroorr.",
+        "....rroIr",
+        ".......rr"
+      ]
+    },
+    {
+      "id": "hmg-6-0",
+      "channel": "effects",
+      "at": [
+        65,
+        64
+      ],
+      "rows": [
+        "Iooooo........",
+        "IIoooo........",
+        "IIIoo.........",
+        "IIIoo.........",
+        ".IIIoo........",
+        ".oIIIoo.......",
+        "ooooIIoo......",
+        "oooooIIoo.....",
+        ".ooooooIoo....",
+        ".....oooIoo...",
+        ".......ooooo..",
+        ".........oooo.",
+        "..........oooo",
+        "............oo",
+        ".............o",
+        "........Y....."
+      ]
+    },
+    {
+      "id": "hmg-6-1",
+      "channel": "effects",
+      "at": [
+        65,
+        64
+      ],
+      "rows": [
+        "Ioooo......",
+        "IIooo......",
+        "IIooo......",
+        "IIIoo......",
+        ".IIIoo.....",
+        ".ooIIoo....",
+        ".ooooIoo...",
+        ".oooooIoo..",
+        "...ooooooo.",
+        ".....oooooo",
+        "........ooo",
+        "..........o",
+        "...........",
+        "...........",
+        "...........",
+        "........Y.."
+      ]
+    },
+    {
+      "id": "hmg-6-2",
+      "channel": "effects",
+      "at": [
+        65,
+        64
+      ],
+      "rows": [
+        "YO.......",
+        "YOOOO....",
+        "YYOOO....",
+        "YYYOO....",
+        ".OYYOO...",
+        ".OOOOOO..",
+        "..OOOOOO.",
+        "...OOOOO.",
+        "....OOOO.",
+        ".........",
+        ".........",
+        ".........",
+        ".........",
+        ".........",
+        ".........",
+        "........Y"
+      ]
+    },
+    {
+      "id": "tracer-ally-6",
+      "channel": "effects",
+      "at": [
+        58,
+        58
+      ],
+      "rows": [
+        "OO.....",
+        "OOO....",
+        ".OOO...",
+        "..OYO..",
+        "...OYO.",
+        "....OYO",
+        ".....OI"
+      ]
+    },
+    {
+      "id": "tracer-hostile-6",
+      "channel": "effects",
+      "at": [
+        58,
+        58
+      ],
+      "rows": [
+        "rr.....",
+        "rrr....",
+        ".rrr...",
+        "..ror..",
+        "...ror.",
+        "....ror",
+        ".....rI"
+      ]
+    },
+    {
+      "id": "hmg-7-0",
+      "channel": "effects",
+      "at": [
+        62,
+        64
+      ],
+      "rows": [
+        "...I.......",
+        "...Iooo....",
+        "..IIooooo..",
+        "..IIIooo...",
+        "..IIIoo....",
+        "..oIIoo....",
+        ".ooIIIo....",
+        "ooooIIoo...",
+        ".ooooIoo...",
+        "..oooIoo...",
+        "....ooIoo..",
+        ".....oooo..",
+        "......oooo.",
+        "......oooo.",
+        ".......ooo.",
+        "........ooo",
+        "........ooo",
+        ".....Y...oo"
+      ]
+    },
+    {
+      "id": "hmg-7-1",
+      "channel": "effects",
+      "at": [
+        63,
+        64
+      ],
+      "rows": [
+        "..I......",
+        "..Ioo....",
+        ".IIooo...",
+        ".IIooo...",
+        ".IIIoo...",
+        ".oIIoo...",
+        ".ooIoo...",
+        "ooooIoo..",
+        ".oooIoo..",
+        "..ooooo..",
+        "...ooooo.",
+        "....oooo.",
+        ".....oooo",
+        "......oo.",
+        ".......o.",
+        ".........",
+        ".........",
+        "....Y...."
+      ]
+    },
+    {
+      "id": "hmg-7-2",
+      "channel": "effects",
+      "at": [
+        64,
+        64
+      ],
+      "rows": [
+        ".Y....",
+        ".YO...",
+        "YYOO..",
+        "YYOOO.",
+        "YYYOO.",
+        "OYYOO.",
+        "OOOOO.",
+        "OOOOOO",
+        ".OOOOO",
+        "..OOOO",
+        "..OOOO",
+        "....O.",
+        "......",
+        "......",
+        "......",
+        "......",
+        "......",
+        "...Y.."
+      ]
+    },
+    {
+      "id": "tracer-ally-7",
+      "channel": "effects",
+      "at": [
+        61,
+        57
+      ],
+      "rows": [
+        "OO...",
+        "OO...",
+        "OOO..",
+        ".YO..",
+        ".OYO.",
+        "..YO.",
+        "..OY.",
+        "..OIO",
+        "...OO"
+      ]
+    },
+    {
+      "id": "tracer-hostile-7",
+      "channel": "effects",
+      "at": [
+        61,
+        57
+      ],
+      "rows": [
+        "rr...",
+        "rr...",
+        "rrr..",
+        ".or..",
+        ".ror.",
+        "..or.",
+        "..ro.",
+        "..rIr",
+        "...rr"
+      ]
+    },
+    {
+      "id": "hmg-8-0",
+      "channel": "effects",
+      "at": [
+        59,
+        65
+      ],
+      "rows": [
+        ".....Io...",
+        "....IIoo..",
+        "...IIIooo.",
+        "...oIIoooo",
+        "..ooIIooo.",
+        "ooooIIo...",
+        ".oooIIo...",
+        "..ooIIo...",
+        "..oooIo...",
+        "...ooIo...",
+        "...ooIo...",
+        "....oIo...",
+        "....ooo...",
+        "....ooo...",
+        "....ooo...",
+        ".....oo...",
+        ".Y...oo...",
+        ".....oo...",
+        ".....o...."
+      ]
+    },
+    {
+      "id": "hmg-8-1",
+      "channel": "effects",
+      "at": [
+        60,
+        65
+      ],
+      "rows": [
+        "....Io..",
+        "...IIoo.",
+        "..IIIooo",
+        "..oIIooo",
+        ".ooIIoo.",
+        "oooIIo..",
+        ".oooIo..",
+        ".oooIo..",
+        "..ooIo..",
+        "..oooo..",
+        "..oooo..",
+        "...ooo..",
+        "...ooo..",
+        "....oo..",
+        "....o...",
+        "........",
+        "Y......."
+      ]
+    },
+    {
+      "id": "hmg-8-2",
+      "channel": "effects",
+      "at": [
+        60,
+        65
+      ],
+      "rows": [
+        "....YO.",
+        "...YYO.",
+        "..YYYOO",
+        "...YYOO",
+        "..OYYOO",
+        ".OOOYO.",
+        "..OOOO.",
+        "..OOOO.",
+        "..OOOO.",
+        "..OOOO.",
+        "..OOO..",
+        ".......",
+        ".......",
+        ".......",
+        ".......",
+        ".......",
+        "Y......"
+      ]
+    },
+    {
+      "id": "tracer-ally-8",
+      "channel": "effects",
+      "at": [
+        64,
+        56
+      ],
+      "rows": [
+        "OO",
+        "OO",
+        "OO",
+        "OO",
+        "YO",
+        "YO",
+        "YO",
+        "YO",
+        "IO",
+        "OO"
+      ]
+    },
+    {
+      "id": "tracer-hostile-8",
+      "channel": "effects",
+      "at": [
+        64,
+        56
+      ],
+      "rows": [
+        "rr",
+        "rr",
+        "rr",
+        "rr",
+        "or",
+        "or",
+        "or",
+        "or",
+        "Ir",
+        "rr"
+      ]
+    },
+    {
+      "id": "grenade-0",
+      "channel": "effects",
+      "at": [
+        61,
+        59
+      ],
+      "rows": [
+        "...hh..",
+        "..Ghh..",
+        ".BgGGB.",
+        ".GGGGG.",
+        "BGGGGG.",
+        ".gggggB",
+        ".BGGGB.",
+        ".BBGBB.",
+        ".BBBBB."
+      ]
+    },
+    {
+      "id": "grenade-1",
+      "channel": "effects",
+      "at": [
+        61,
+        60
+      ],
+      "rows": [
+        "..GG.....",
+        ".BgGGB...",
+        ".GGGGG.hh",
+        "BGGGGG.hh",
+        ".gggggB..",
+        ".BGGGB...",
+        ".BBGBB...",
+        ".BBBBB..."
+      ]
+    },
+    {
+      "id": "grenade-2",
+      "channel": "effects",
+      "at": [
+        61,
+        60
+      ],
+      "rows": [
+        "..GG...",
+        ".BgGGB.",
+        ".GGGGG.",
+        "BGGGGG.",
+        ".gggggB",
+        ".BGGGB.",
+        ".BBGBB.",
+        ".BBBBB.",
+        "....hh.",
+        "....hh."
+      ]
+    },
+    {
+      "id": "grenade-3",
+      "channel": "effects",
+      "at": [
+        60,
+        60
+      ],
+      "rows": [
+        "...GG...",
+        "..BgGGB.",
+        "..GGGGG.",
+        ".BGGGGG.",
+        "hhgggggB",
+        "hhBGGGB.",
+        "..BBGBB.",
+        "..BBBBB."
+      ]
+    },
+    {
+      "id": "impact-metal-0",
+      "channel": "effects",
+      "at": [
+        57,
+        58
+      ],
+      "rows": [
+        "...I...........",
+        "....I..........",
+        ".....I.........",
+        ".....I.......II",
+        "......II...II..",
+        "......IIIsI....",
+        "......III......",
+        "...IIsIII......",
+        "III....Is......",
+        "........I......",
+        ".........I.....",
+        ".........I.....",
+        ".........I.....",
+        "..........I...."
+      ]
+    },
+    {
+      "id": "impact-metal-1",
+      "channel": "effects",
+      "at": [
+        56,
+        58
+      ],
+      "rows": [
+        "....I............",
+        "....I............",
+        ".....I..........I",
+        "..............II.",
+        ".......s.....I...",
+        ".......IIIs......",
+        ".......III.......",
+        "......sIII.......",
+        "IIII.....s.......",
+        ".................",
+        ".................",
+        "..........I......",
+        "..........I......",
+        "...........I.....",
+        "...........I....."
+      ]
+    },
+    {
+      "id": "impact-metal-2",
+      "channel": "effects",
+      "at": [
+        55,
+        57
+      ],
+      "rows": [
+        "....I..............",
+        ".....I.............",
+        "...................",
+        ".................II",
+        "................I..",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        ".II................",
+        "I..................",
+        "...................",
+        "...................",
+        "...................",
+        "............I......",
+        "............I......",
+        ".............I....."
+      ]
+    },
+    {
+      "id": "impact-metal-3",
+      "channel": "effects",
+      "at": [
+        54,
+        56
+      ],
+      "rows": [
+        ".....s...............",
+        ".....................",
+        ".....................",
+        "....................s",
+        "...................s.",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "ss...................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "..............s......",
+        "..............s......"
+      ]
+    },
+    {
+      "id": "impact-body-0",
+      "channel": "effects",
+      "at": [
+        57,
+        58
+      ],
+      "rows": [
+        "...o...........",
+        "....o..........",
+        ".....o.........",
+        ".....o.......oo",
+        "......oo...oo..",
+        "......oooro....",
+        "......ooo......",
+        "...oorooo......",
+        "ooo....or......",
+        "........o......",
+        ".........o.....",
+        ".........o.....",
+        ".........o.....",
+        "..........o...."
+      ]
+    },
+    {
+      "id": "impact-body-1",
+      "channel": "effects",
+      "at": [
+        56,
+        58
+      ],
+      "rows": [
+        "....o............",
+        "....o............",
+        ".....o..........o",
+        "..............oo.",
+        ".......r.....o...",
+        ".......ooor......",
+        ".......ooo.......",
+        "......rooo.......",
+        "oooo.....r.......",
+        ".................",
+        ".................",
+        "..........o......",
+        "..........o......",
+        "...........o.....",
+        "...........o....."
+      ]
+    },
+    {
+      "id": "impact-body-2",
+      "channel": "effects",
+      "at": [
+        55,
+        57
+      ],
+      "rows": [
+        "....o..............",
+        ".....o.............",
+        "...................",
+        ".................oo",
+        "................o..",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        ".oo................",
+        "o..................",
+        "...................",
+        "...................",
+        "...................",
+        "............o......",
+        "............o......",
+        ".............o....."
+      ]
+    },
+    {
+      "id": "impact-body-3",
+      "channel": "effects",
+      "at": [
+        54,
+        56
+      ],
+      "rows": [
+        ".....r...............",
+        ".....................",
+        ".....................",
+        "....................r",
+        "...................r.",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "rr...................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "..............r......",
+        "..............r......"
+      ]
+    },
+    {
+      "id": "impact-stone-0",
+      "channel": "effects",
+      "at": [
+        57,
+        58
+      ],
+      "rows": [
+        "...T...........",
+        "....T..........",
+        ".....T.........",
+        ".....T.......TT",
+        "......TT...TT..",
+        "......TTTbT....",
+        "......TTT......",
+        "...TTbTTT......",
+        "TTT....Tb......",
+        "........T......",
+        ".........T.....",
+        ".........T.....",
+        ".........T.....",
+        "..........T...."
+      ]
+    },
+    {
+      "id": "impact-stone-1",
+      "channel": "effects",
+      "at": [
+        56,
+        58
+      ],
+      "rows": [
+        "....T............",
+        "....T............",
+        ".....T..........T",
+        "..............TT.",
+        ".......b.....T...",
+        ".......TTTb......",
+        ".......TTT.......",
+        "......bTTT.......",
+        "TTTT.....b.......",
+        ".................",
+        ".................",
+        "..........T......",
+        "..........T......",
+        "...........T.....",
+        "...........T....."
+      ]
+    },
+    {
+      "id": "impact-stone-2",
+      "channel": "effects",
+      "at": [
+        55,
+        57
+      ],
+      "rows": [
+        "....T..............",
+        ".....T.............",
+        "...................",
+        ".................TT",
+        "................T..",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        ".TT................",
+        "T..................",
+        "...................",
+        "...................",
+        "...................",
+        "............T......",
+        "............T......",
+        ".............T....."
+      ]
+    },
+    {
+      "id": "impact-stone-3",
+      "channel": "effects",
+      "at": [
+        54,
+        56
+      ],
+      "rows": [
+        ".....b...............",
+        ".....................",
+        ".....................",
+        "....................b",
+        "...................b.",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "bb...................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        ".....................",
+        "..............b......",
+        "..............b......"
+      ]
+    },
+    {
+      "id": "blast-0",
+      "channel": "effects",
+      "at": [
+        58,
+        57
+      ],
+      "rows": [
+        "......r......",
+        "..rOrOOOrOO..",
+        "..oYYroooYor.",
+        ".roYYOYoOooO.",
+        ".rOYYOYYrOOYY",
+        ".YYOrIIIOOrYY",
+        "OYYOIIIIOroYY",
+        "rYYrIIIIIroOr",
+        "roooOIIIOrOYY",
+        ".OOOOoIoOrrYY",
+        ".rrrrOOOOr.YY",
+        ".....rrrrr...",
+        ".......r....."
+      ]
+    },
+    {
+      "id": "blast-1",
+      "channel": "effects",
+      "at": [
+        50,
+        47
+      ],
+      "rows": [
+        ".............rrr.............",
+        ".........rrrrOOrrr...........",
+        "......rOOrOOOOOOOrrOOoOr.....",
+        ".....OoooOOroooOOOOoYYYOO....",
+        "....OoYYYoOOrYoooOOoYYYoOr...",
+        "....OoYYYYoOrYYYoOOoYYYoOOr..",
+        "...rOoYYYYoOOrYYooOoooooOOr..",
+        "....OooooooOOrrYYorOoooOOrr..",
+        "...rOooooYYOOrYYYorOOOOOOrr..",
+        "...OrOOOOYYOrrYYYoorrOOrrrr..",
+        "..rOrrOOOYYOrIIYooOOrrrrrrrr.",
+        ".rOoorrrrrrrIIIIIoOOOrrrOOOr.",
+        ".OOooYrrrrrIIIIIIoOOOrYYoOOrr",
+        "rOOooYYrOOOIIIIIIIrOOrYYoOOOr",
+        ".OOooYYrOOrIIIIIIIOrrrYYOOOrr",
+        ".rOooYYrrrOIIIIIIIIrrrooOOOrr",
+        ".rOooYYYrOOIIIIIIIOOrroOOOOrr",
+        ".rOOoooooOOIIIIIIIoOOrOOOOrr.",
+        ".rOOOoooorOIIIIIIIoOOrOOOrrr.",
+        "..rOOOOOOrOooIIIIoOOOrrYYrrr.",
+        "..rrOOOOOrOoooooooOOrrrYYrr..",
+        "..rrrrrOOOOOOoooOOOOrrrYY....",
+        "...rrrrrrrrOOOOOOOOOrr.......",
+        "......rrrrrrrOOOOOrrr........",
+        "..........rrrrrrrrrrr........",
+        ".............rrrrrr..........",
+        "................r............"
+      ]
+    },
+    {
+      "id": "blast-2",
+      "channel": "effects",
+      "at": [
+        42,
+        36
+      ],
+      "rows": [
+        ".......................r.......................",
+        "..................rrrrrrrr.....................",
+        "..............rrrrrrrOOrrrr....................",
+        ".............rrrrOOOOOOOOrrrr......r...........",
+        "........rrOOOOrrOOOOOOOOOOOrrrOOOoOOOr.........",
+        ".......OOOoooOOOrrOOooOOOOOOrrooYYYoOOr........",
+        ".......OooYYYoOOOrroooooOOOOOOoYYYYYoOOr.......",
+        "......OooYYYYYoOOOrroYoooOOOOooYYYYYoOOOr......",
+        ".....rOooYYYYYYoOOOrYYYooooOOooYYYYYooOOr......",
+        ".....OoooYYYYYYooOOrrYYYYooOOOooYYYYooOOOr.....",
+        "....rOOooYYYYYYooOOOrYYYYooorOoooooooOOOOrr....",
+        ".....rOooYYYYYoooOOOrrYYYYoorOoooooooOOOrrr....",
+        ".....rOooooYYoooOOOOrrrYYYoooOOoooooOOOOrrr....",
+        ".....rOoooooooooOOOOrrYYYYYooOOOOOOOOOOOrr.....",
+        "....rrOOoooooooYYOOrrrYYYYooorOOOOOOOOOrrr.....",
+        "...rrOrOOOOooOOYYOOrrrYYYYooorrrrOOOOrrrrrr....",
+        "...rOOrOOOOOOOOYYOOrrYYYYYooorrrrrrrrrrrrrr....",
+        "..rOOOrrOOOOOOOOOOrrIIIIoooooOOrrrrrrrrrOrrr...",
+        "..rOOorrrrrOOOOrrrIIIIIIIooooOOOOOrrrrOOOOrr...",
+        ".rOOooorrrrrrrrrrrIIIIIIIIIoOOOOOrrrrooOOOOrr..",
+        "rOOOoooYYrrrrrrrrIIIIIIIIIIoOOOOOrrrrooOOOOrr..",
+        "rOOoooYYYYrrrrrrOIIIIIIIIIIIOOOOOrYYoooOOOOOrr.",
+        "rOOooooYYYrrOOOOIIIIIIIIIIIIrrOOrrYYoooOOOOOrrr",
+        "rOOOoooYYYYrOOOOIIIIIIIIIIIIIrrOrrYYoooOOOOrrrr",
+        "rrOOoooYYYYrrOOrIIIIIIIIIIIIIOrrrrroooOOOOOrrr.",
+        "rrOOoooYYYYrrrrOOIIIIIIIIIIIIOOrrrroooOOOOOrrr.",
+        ".rOOooooYYYrrrrOOIIIIIIIIIIIIOOrrrroooOOOOrrrr.",
+        ".rOOOoooooorrrOOoIIIIIIIIIIIIOOOrroOOOOOOOrrr..",
+        ".rOOOoooooooorOOoIIIIIIIIIIIoOOOrrOOOOOOOOrrr..",
+        ".rrOOoooooooorrOoIIIIIIIIIIIoOOOOrrOOOOOOrrrr..",
+        ".rrOOOOOoooooorOOoIIIIIIIIIIoOOOOrrOOOOrrrrr...",
+        "..rOOOOOOOOoOOrOOoIIIIIIIIIooOOOOrrYYrrrrrrr...",
+        "..rOOOOOOOOOOOrOOooooIIIIoooOOOOOrrYYrrrrrrr...",
+        "..rrrrOOOOOOOOrrOoooooooooooOOOOrrrYYrrrrrr....",
+        "..rrrrrrrOOOOOOrOOoooooooooOOOOOrrrrrrrr.......",
+        "...rrrrrrrrrOOrrOOOOOooooOOOOOOrrrrrrr.........",
+        "....rrrrrrrrrrrrOOOOOOOOOOOOOOOrrrr............",
+        ".......rrrrrrrrrrOOOOOOOOOOOOOOrrr.............",
+        ".........rrrrrrrrrrrOOOOOOOOrrrrrr.............",
+        "............rrr.rrrrrrrOOrrrrrrrr..............",
+        "................rrrrrrrrrrrrrrrrr..............",
+        "...................rrrrrrrrrrrr................",
+        "......................rrrrrr..................."
+      ]
+    },
+    {
+      "id": "blast-3",
+      "channel": "effects",
+      "at": [
+        31,
+        23
+      ],
+      "rows": [
+        "...................................r.................................",
+        "..............................rrrrrrr................................",
+        ".........................rrrrrrrrrrrrrr..............................",
+        ".....................rrrrrrrrrrrOOOrrrrr.............................",
+        "...................rrrrrrrrOOOOOOOOOrrrrrr...........................",
+        ".................rrOrrOOOOOOOOOOOOOOOOrrrrrr.....OOOOr...............",
+        ".............rrOOOOOOrrrOOOOOOOOOOOOOOOOrrrrrOOOOOOOOOrr.............",
+        "...........rOOOOOOOOOOOrrrOOOOOOOOOOOOOOOrrrOooooYYoOOOOrr...........",
+        "..........rOOoooooooOOOOOrroooooooOOOOOOOOOrOooYYYYYYoOOOrr..........",
+        "..........OOoooYYYYooOOOOOrrrooooooOOOOOOOOOooYYYYYYYoOOOOrr.........",
+        ".........rOoooYYYYYYYooOOOOrrooooooooOOOOOOOooYYYYYYYYoOOOrr.........",
+        ".........OOooYYYYYYYYooOOOOrrrYYYooooooOOOOoooYYYYYYYYooOOOrr........",
+        "........OOoooYYYYYYYYYooOOOOrrYYYYYoooooOOOOoooYYYYYYYooOOOOrr.......",
+        "........OOoooYYYYYYYYYYooOOOOrrYYYYYooooOrOOoooYYYYYYoooOOOOrr.......",
+        ".......rOOooooYYYYYYYYoooOOOOrrYYYYYYooooOOOooooYYYYYoooOOOOOrr......",
+        ".......rOOooooYYYYYYYYooooOOOOrrYYYYYYoooorOooooooooooooOOOOrrr......",
+        ".......rOOooooYYYYYYYYoooOOOOOrrrYYYYYoooorOoooooooooooOOOOOrrrr.....",
+        ".......rrOOooooYYYYYYooooOOOOOrrrYYYYYYooorOOooooooooooOOOOOrrr......",
+        "........rOOooooooooooooooOOOOOrrrrYYYYYooorOOOOooooooOOOOOOrrrr......",
+        "........rOOoooooooooooooOOOOOrrrrrYYYYYYooorOOOOOOOOOOOOOOOrrrr......",
+        ".......rrOOoooooooooooooOOOOOrrrrYYYYYYoooorOOOOOOOOOOOOOOOrrr.......",
+        "......rrrrOOOooooooooooOOOOOOrrrrYYYYYYoooorrOOOOOOOOOOOOOrrrr.......",
+        ".....rrOOrOOOOOOooooOOOOOOOOrrrrrYYYYYYoooorrrrrOOOOOOOrrrrrrrr......",
+        ".....rrOOrOOOOOOOOOOOOOOYYOOrrrrYYYYYYoooooorrrrrrrOOrrrrrrrrrr......",
+        "....rrOOOrOOOOOOOOOOOOOOYYOOrrrrYYYYYYoooooOrrrrrrrrrrrrrrrrrrrr.....",
+        "....rOOOOrrrOOOOOOOOOOOOYYOrrrrrYYYYYooooooOOrrrrrrrrrrrrrrrOrrrr....",
+        "...rrOOOorrrrrrOOOOOOOOOrrrrrrrYYYoooooooooOOOOOrrrrrrrrrOOOOOrrr....",
+        "..rrOOOOoorrrrrrrrOOOrrrrrrrrrroooooooooooOOOOOOOOrrrrrroOOOOOOrrr...",
+        "..rOOOOooorrrrrrrrrrrrrrrrrrrrroooooooooooOOOOOOOOrrrrroooOOOOOrrr...",
+        ".rrOOOooooorrrrrrrrrrrrrrrrrrroooorrrrroooOOOOOOOrrrrrroooOOOOOOrrr..",
+        ".rOOOOooooYYYYrrrrrrrrrrrrrooorrrrrOrrrroOOOOOOOOrrrrrrooooOOOOOrrrr.",
+        "rrOOOoooooYYYYYrrrrrrrrrrorrrrrOOOOOOOrrrrOOOOOOOYYrrroooooOOOOOOrrr.",
+        "rrOOOoooooYYYYYrrrOOrrOOOrOOOOOOOOOOOOOOrrrOOOOOrYYrrrooooOOOOOOOrrrr",
+        "rrOOOoooooYYYYYrrrOOOOOOrOOOOOOOOooOOOOOOrrrrOOOrYYrrrooooOOOOOOOrrrr",
+        "rrOOOOooooYYYYYYrrOOOOOOrOOOOoooooooOOOOOOOrrrOrrrrrrooooOOOOOOOrrrrr",
+        "rrOOOOoooooYYYYYYYrOOOOrOOOoooooooYoooOOOOOOrrrrrrrrrooooOOOOOOOrrrrr",
+        "rrrOOOoooooYYYYYYYrrrOOrOOooooYYYYYYooooOOOOOrrrrrrrrooooOOOOOOOrrrrr",
+        ".rrOOOoooooYYYYYYYrrrrrOOOoooYYYYYYYYYooOOOOOrrrrrrrooooOOOOOOOrrrrr.",
+        ".rrOOOOooooYYYYYYrrrrrOOOooooYYYYYYYYYoooOOOOOrrrrrrooooOOOOOOOrrrrr.",
+        ".rrOOOOoooooooYYYrrrrrOOooooYYYYYYYYYYYoooOOOOOrrrrroooOOOOOOOrrrrrr.",
+        ".rrrOOOoooooooooorrrrOOOooooYYYYYYYYYYYYooOOOOOrrrroOOOOOOOOOOrrrrr..",
+        "..rrOOOoooooooooooorrOOOooooYYYYYYYYYYYYoooOOOOOrrrOOOOOOOOOOOrrrrr..",
+        "..rrOOOooooooooooooorrOOoooooYYYYYYYYYYYoooOOOOOrrrOOOOOOOOOOrrrrrr..",
+        "..rrOOOOoooooooooooorrOOOooooYYYYYYYYYYoooooOOOOOrrrOOOOOOOOOrrrrr...",
+        "..rrrOOOOOOooooooooorrOOOooooYYYYYYYYYYooooOOOOOOOrrOOOOOOOrrrrrrr...",
+        "...rrOOOOOOOOOooooooOrOOOooooYYYYYYYYYYooooOOOOOOrYYrOOOOrrrrrrrrr...",
+        "...rrOOOOOOOOOOOOOOOOrrOOooooooYYYYYYYoooooOOOOOOrYYrOrrrrrrrrrrr....",
+        "...rrOOOOOOOOOOOOOOOOrrOOOooooooooYoooooooOOOOOOrrYYrrrrrrrrrrrrr....",
+        "...rrrOOOOOOOOOOOOOOOrrOOOooooooooooooooooOOOOOOrrrrrrrrrrrrrrrrr....",
+        "...rrrrrrOOOOOOOOOOOOrrOOOooooooooooooooooOOOOOOrrrrrrrrrrrrrrr......",
+        "....rrrrrrrrOOOOOOOOOOrrOOOooooooooooooooOOOOOOrrrrrrrrrrrrr.........",
+        "....rrrrrrrrrrrOOOOOOOrrOOOOOOoooooooooOOOOOOOOrrrrrrrrrrr...........",
+        "....rrrrrrrrrrrrrrOOrrrrOOOOOOOOOoooOOOOOOOOOOOrrrrrrrr..............",
+        ".....rrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOrrrrrrr................",
+        "........rrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOrrrrr..................",
+        "...........rrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOrrrrr...................",
+        "..............rrrrrrrrrrrrrrrrOOOOOOOOOOOOrrrrrrrr...................",
+        "................rrrrrrrrrrrrrrrrrOOOOOOrrrrrrrrrrr...................",
+        "...................rr...rrrrrrrrrrrrrrrrrrrrrrrrr....................",
+        "........................rrrrrrrrrrrrrrrrrrrrrrrrr....................",
+        "...........................rrrrrrrrrrrrrrrrrrrr......................",
+        "..............................rrrrrrrrrrrrrr.........................",
+        ".................................rrrrrrrrr...........................",
+        "....................................rrr.............................."
+      ]
+    },
+    {
+      "id": "blast-4",
+      "channel": "effects",
+      "at": [
+        19,
+        9
+      ],
+      "rows": [
+        "..............................................rrr.............................................",
+        "..........................................rrrrrrrr............................................",
+        ".....................................rrrrrrrrrrrrrrr..........................................",
+        ".................................rrrrrrrrrrrrrrrrrrrrr........................................",
+        "............................rrrrrrrrrrrrrrrOOOOrrrrrrrr.......................................",
+        "..........................rrrrrrrrrrrrOOOOOOOOOOOrrrrrrrr.....................................",
+        "..........................rrrrrrrrOOOOOOOOOOOOOOOOOrrrrrrr............rrr.....................",
+        "......................rrrOOOrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrrr.....OOOOOOOrr....................",
+        ".................rrrOOOOOOOOOrrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrrOOOOOOoOOOOOOrr..................",
+        "...............rOOOOOOOOOOOOOOOrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrOOooooYYoOOOOOrrr................",
+        "...............OOOOOOoooooOOOOOOrrrrOOOOOooooOOOOOOOOOOOOrrrOoooYYYYYYooOOOOOrr...............",
+        "..............rOOooooooooooOOOOOOOrrroooooooooOOOOOOOOOOOOOOOoooYYYYYYYooOOOOOrrr.............",
+        "..............OOooooYYYYYYoooOOOOOOrrrroooooooooOOOOOOOOOOOOoooYYYYYYYYYooOOOOrrr.............",
+        ".............OOOoooYYYYYYYYYoooOOOOOrrroooooooooooOOOOOOOOOoooYYYYYYYYYYYoOOOOOrrr............",
+        "............rOOooooYYYYYYYYYYooOOOOOOrrroooYoooooooOOOOOOOOooooYYYYYYYYYYooOOOOOrr............",
+        "............OOooooYYYYYYYYYYYoooOOOOOrrrYYYYYooooooooOOOOOOooooYYYYYYYYYYoooOOOOrrr...........",
+        "...........rOOooooYYYYYYYYYYYYooOOOOOOrrrYYYYYYoooooooOOrOOooooYYYYYYYYYYoooOOOOOrr...........",
+        "...........OOoooooYYYYYYYYYYYYYooOOOOOOrrrYYYYYYYooooooOrOOooooYYYYYYYYYYooooOOOOOrr..........",
+        "..........rOOoooooYYYYYYYYYYYYYoooOOOOOrrrYYYYYYYYoooooOrOOOooooYYYYYYYYooooOOOOOOrrr.........",
+        ".........rrOOOooooYYYYYYYYYYYYooooOOOOOOrrrYYYYYYYoooooorrOOoooooYYYYYYoooooOOOOOOrrr.........",
+        ".........rrOOOoooooYYYYYYYYYYYoooooOOOOOrrrYYYYYYYYoooooOrOOoooooooooooooooOOOOOOOrrrr........",
+        "..........rOOOoooooYYYYYYYYYYYooooOOOOOOOrrrYYYYYYYYooooorOOoooooooooooooooOOOOOOOrrrr........",
+        "..........rrOOoooooYYYYYYYYYYoooooOOOOOOOrrrrYYYYYYYooooorOOoooooooooooooooOOOOOOrrrrr........",
+        "..........rrOOOoooooYYYYYYYYooooooOOOOOOOrrrrYYYYYYYYoooorrOOoooooooooooooOOOOOOOrrrrr........",
+        "..........rrOOOooooooooYYYoooooooOOOOOOOOrrrrrYYYYYYYooooorOOOOooooooooooOOOOOOOOrrrrr........",
+        "...........rOOOooooooooooooooooooOOOOOOOrrrrrrYYYYYYYYoooorOOOOOOOooooOOOOOOOOOOrrrrr.........",
+        "...........rrOOooooooooooooooooooOOOOOOOrrrrrYYYYYYYYYoooorOOOOOOOOOOOOOOOOOOOOOrrrrr.........",
+        "..........rrrOOOooooooooooooooooOOOOOOOOrrrrrYYYYYYYYooooorrOOOOOOOOOOOOOOOOOOOrrrrrr.........",
+        "........rrrrrOOOooooooooooooooooOOOOOOOrrrrrrYYYYYYYYooooorrOOOOOOOOOOOOOOOOOOOrrrrr..........",
+        "........rrrrrOOOOOOooooooooooOOOOOOOOOOrrrrrYYYYYYYYYoooooorrrrOOOOOOOOOOOOOOrrrrrrrr.........",
+        ".......rrrOOrrOOOOOOOOoooooOOOOOOOOOOOOrrrrrYYYYYYYYooooooorrrrrrrOOOOOOOOrrrrrrrrrrrr........",
+        ".......rrOOOrrOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrYYYYYYYYooooooorrrrrrrrrrOOrrrrrrrrrrrrrrr........",
+        "......rrOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOrrrrrYYYYYYYYYooooooorrrrrrrrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrrOOOOrrOOOOOOOOOOOOOOOOOOOOYYOrrrrrrYYYYYYYYooooooooOrrrrrrrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrOOOOOorrrrOOOOOOOOOOOOOOOOOYYrrrrrrrYYYYYYoooooooooOOOOrrrrrrrrrrrrrrrrrrrOOrrrrr......",
+        "....rrOOOOOoorrrrrrrOOOOOOOOOOOOOrYYrrrrrrYYYYYoooooooooooOOOOOOOrrrrrrrrrrrrrOOOOOOrrrr......",
+        "....rrOOOOOoorrrrrrrrrrOOOOOOOrrrrrrrrrrrroYooooooooooooooOOOOOOOOOOrrrrrrrroOOOOOOOOrrrr.....",
+        "...rrOOOOOooorrrrrrrrrrrrrOrrrrrrrrrrrrrrroooooooooooooooOOOOOOOOOOOrrrrrrroooOOOOOOOrrrrr....",
+        "..rrrOOOOooooorrrrrrrrrrrrrrrrrrrrrrrrrrrooooooooooooooooOOOOOOOOOOrrrrrrrroooOOOOOOOOrrrr....",
+        "..rrOOOOOoooooorrrrrrrrrrrrrrrrrrrrrrrrrroooooorrrrroooooOOOOOOOOOOrrrrrrroooooOOOOOOOrrrrr...",
+        ".rrOOOOOooooooYYYYrrrrrrrrrrrrrrrrrrrrooooorrrrrrrrrrrooOOOOOOOOOOOrrrrrrroooooOOOOOOOOrrrr...",
+        ".rrOOOOooooooYYYYYYYrrrrrrrrrrrrrrrroorrrrrrrrOOOOrrrrrOOOOOOOOOOOrrrrrrrrooooooOOOOOOOOrrrr..",
+        "rrOOOOOooooooYYYYYYYrrrrrrrrrrrrrOorrrrrrOOOOOOOOOOOrrrrrOOOOOOOOOrrrrrrrooooooOOOOOOOOOrrrr..",
+        "rrOOOOOooooooYYYYYYYYrrrOOrrrrrOOOrrOOOOOOOOOOOOOOOOOrrrrrOOOOOOOYYrrrrrrooooooOOOOOOOOOrrrrr.",
+        "rrrOOOOoooooooYYYYYYYrrrrOOOOOOOOrrOOOOOOOOOOOOOOOOOOOOrrrrrOOOOOYYrrrrrrooooooOOOOOOOOOrrrrrr",
+        "rrrOOOOoooooooYYYYYYYrrrrOOOOOOOOrOOOOOOOOOoooooOOOOOOOOOrrrrOOOOYYrrrrrooooooOOOOOOOOOrrrrrrr",
+        "rrrOOOOOooooooYYYYYYYrrrrOOOOOOOrrOOOOooooooooooooOOOOOOOOrrrrrOrrrrrrrrooooooOOOOOOOOOrrrrrrr",
+        "rrrOOOOOooooooYYYYYYYYrrYYOOOOOOrOOOOooooooooooooooOOOOOOOOOrrrrrrrrrrrrooooooOOOOOOOOOrrrrrr.",
+        ".rrrOOOOoooooooYYYYYYYrrYYrOOOOrOOOOooooooYYYYYYoooooOOOOOOOrrrrrrrrrrrooooooOOOOOOOOOrrrrrrr.",
+        ".rrrOOOOoooooooYYYYYYYrrYYrrrrrrOOOoooooYYYYYYYYYYooooOOOOOOOrrrrrrrrrrooooooOOOOOOOOOrrrrrrr.",
+        ".rrrOOOOOooooooYYYYYYYrrrrrrrrrOOOOoooooYYYYYYYYYYYooooOOOOOOOrrrrrrrrrooooooOOOOOOOOOrrrrrr..",
+        ".rrrOOOOOooooooYYYYYYYrrrrrrrrrOOOoooooYYYYYYYYYYYYYoooOOOOOOOrrrrrrrrooooooOOOOOOOOOrrrrrrr..",
+        "..rrOOOOOooooooooYYYYYYrrrrrrrOOOOoooooYYYYYYYYYYYYYooooOOOOOOOrrrrrrrooooooOOOOOOOOOrrrrrrr..",
+        "..rrrOOOOoooooooooooYYYrrrrrrOOOOoooooYYYYYYYYYYYYYYYooooOOOOOOrrrrrrroooOOOOOOOOOOOOrrrrrr...",
+        "..rrrOOOOOooooooooooooorrrrrrOOOooooooYYYYYYYYYYYYYYYYoooOOOOOOOrrrrrooOOOOOOOOOOOOOrrrrrrr...",
+        "..rrrOOOOOoooooooooooooorrrrrOOOOoooooYYYYYYYYYYYYYYYYooooOOOOOOOrrrrOOOOOOOOOOOOOOOrrrrrrr...",
+        "..rrrOOOOOooooooooooooooooorrOOOOooooooYYYYYYYYYYYYYYYoooooOOOOOOrrrrOOOOOOOOOOOOOOOrrrrrr....",
+        "...rrrOOOOooooooooooooooooorrOOOOooooooYYYYYYYYYYYYYYYoooooOOOOOOOrrrrOOOOOOOOOOOOOrrrrrrr....",
+        "...rrrOOOOOoooooooooooooooorrrOOOooooooYYYYYYYYYYYYYYYoooooOOOOOOOrrrrOOOOOOOOOOOOOrrrrrrr....",
+        "...rrrOOOOOOOooooooooooooooorrOOOOoooooYYYYYYYYYYYYYYooooooOOOOOOOOrrrrOOOOOOOOOOOrrrrrrr.....",
+        "...rrrOOOOOOOOOOoooooooooooorrOOOOooooooYYYYYYYYYYYYYooooooOOOOOOOYYrrrOOOOOOOOrrrrrrrrrr.....",
+        "....rrrOOOOOOOOOOOOooooooooOrrOOOOooooooYYYYYYYYYYYYYoooooOOOOOOOOYYrrrrOOOOOrrrrrrrrrrrr.....",
+        "....rrrOOOOOOOOOOOOOOOooOOOOrrrOOOoooooooYYYYYYYYYYoooooooOOOOOOOOYYrrrrrOrrrrrrrrrrrrrr......",
+        "....rrrOOOOOOOOOOOOOOOOOOOOOrrrOOOOoooooooooYYYYYoooooooooOOOOOOOOrrrrrrrrrrrrrrrrrrrrrr......",
+        "....rrrOOOOOOOOOOOOOOOOOOOOOOrrOOOOooooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrr......",
+        "....rrrrrOOOOOOOOOOOOOOOOOOOOrrOOOOooooooooooooooooooooooOOOOOOOOrrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrrrrrrOOOOOOOOOOOOOOOOOrrrOOOooooooooooooooooooooooOOOOOOOOrrrrrrrrrrrrrrrrrrrrr........",
+        ".....rrrrrrrrrrOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrr...........",
+        ".....rrrrrrrrrrrrrOOOOOOOOOOOOrrOOOOOooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrr.............",
+        ".....rrrrrrrrrrrrrrrrOOOOOOOOOrrOOOOOOOOooooooooooooOOOOOOOOOOOOrrrrrrrrrrrrrr................",
+        "......rrrrrrrrrrrrrrrrrrOOOOrrrrrOOOOOOOOOOoooooooOOOOOOOOOOOOOrrrrrrrrrrrrr..................",
+        "......rrrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOoOOOOOOOOOOOOOOOOrrrrrrrrrr.....................",
+        "........rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr.......................",
+        "...........rrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrr.........................",
+        "..............rrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrr.........................",
+        "................rrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrrrr..........................",
+        "...................rrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOrrrrrrrrrrrr..........................",
+        "......................rrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOrrrrrrrrrrrrrr..........................",
+        ".........................rrrrr..rrrrrrrrrrrrrrrOOOOrrrrrrrrrrrrrrrr...........................",
+        "................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr...........................",
+        ".................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr...........................",
+        "....................................rrrrrrrrrrrrrrrrrrrrrrrrrrrr..............................",
+        ".......................................rrrrrrrrrrrrrrrrrrrrrrr................................",
+        "..........................................rrrrrrrrrrrrrrrrr...................................",
+        ".............................................rrrrrrrrrrr......................................",
+        "................................................rrrrrr........................................"
+      ]
+    },
+    {
+      "id": "blast-5",
+      "channel": "effects",
+      "at": [
+        13,
+        1
+      ],
+      "rows": [
+        ".....................................................rr...................................................",
+        "................................................rrrrrrrrr.................................................",
+        "............................................rrrrrrrrrrrrrr................................................",
+        ".......................................rrrrrrrrrrrrrrrrrrrrr..............................................",
+        "..................................rrrrrrrrrrrrrrrrrrOrrrrrrrr.............................................",
+        "..............................rrrrrrrrrrrrrrrrrOOOOOOOrrrrrrrrr...........................................",
+        "..............................rrrrrrrrrrrrOOOOOOOOOOOOOOrrrrrrrrr.........................................",
+        ".............................rrrrrrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrrr...........rOOrr........................",
+        "........................rrrrOOOOrrrOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrr.....OOOOOOOOrrr......................",
+        "....................rrrOOOOOOOOOOrrrrOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrOOOOOOOoOOOOOOrrr....................",
+        "..................OOOOOOOOOOOOOOOOOrrrrOOOOOOOOOOOOOOOOOOOOOOOrrrrrrOOOooooooooOOOOOOrr...................",
+        ".................rOOOOOOOOoooOOOOOOOOrrrOOOOOOOoooOOOOOOOOOOOOOOrrrrOoooooooooooOOOOOOrrr.................",
+        ".................OOOOooooooooooOOOOOOOrrrrooooooooooOOOOOOOOOOOOOOrOOoooooooooooooOOOOOrrr................",
+        "................rOOoooooooooooooOOOOOOOOrrroooooooooooOOOOOOOOOOOOOOoooooooooooooooOOOOOrrr...............",
+        "...............rOOOoooooooooooooooOOOOOOOrrroooooooooooOOOOOOOOOOOOooooooooooooooooOOOOOOrrr..............",
+        "...............OOOoooooooooooooooooOOOOOOrrrrooooooooooooOOOOOOOOOOoooooooooooooooooOOOOOrrr..............",
+        "..............rOOoooooooooooooooooooOOOOOOrrrooooooooooooooOOOOOOOoooooooooooooooooooOOOOOrrr.............",
+        "..............OOOoooooooooooooooooooOOOOOOrrrrooooooooooooooOOOOOOoooooooooooooooooooOOOOOOrr.............",
+        ".............OOOoooooooooooooooooooooOOOOOOrrrrooooooooooooooOOOOOOoooooooooooooooooooOOOOOrrr............",
+        "............rOOoooooooooooooooooooooooOOOOOOrrroooooooooooooooOrrOOoooooooooooooooooooOOOOOOrrr...........",
+        "............rOOOooooooooooooooooooooooOOOOOOrrrrooooooooooooooOrrOOoooooooooooooooooooOOOOOOrrr...........",
+        "...........rrOOOoooooooooooooooooooooooOOOOOOrrroooooooooooooooOrOOoooooooooooooooooooOOOOOOOrrr..........",
+        "...........rrOOOoooooooooooooooooooooooOOOOOOrrrrooooooooooooooorOOOoooooooooooooooooOOOOOOOrrrr..........",
+        "...........rrOOOoooooooooooooooooooooooOOOOOOOrrrooooooooooooooorrOOoooooooooooooooooOOOOOOOrrrrr.........",
+        "............rOOOOooooooooooooooooooooooOOOOOOOOrrroooooooooooooorrOOoooooooooooooooooOOOOOOOrrrrr.........",
+        "............rrOOOooooooooooooooooooooooOOOOOOOOrrrroooooooooooooorOOooooooooooooooooOOOOOOOrrrrrr.........",
+        "............rrOOOoooooooooooooooooooooOOOOOOOOrrrrroooooooooooooorOOOoooooooooooooooOOOOOOOrrrrrr.........",
+        "............rrOOOoooooooooooooooooooooOOOOOOOOrrrrrrooooooooooooorrOOOOoooooooooooOOOOOOOOOrrrrr..........",
+        "............rrOOOOooooooooooooooooooooOOOOOOOOrrrrrrooooooooooooorrOOOOOOOoooooOOOOOOOOOOOrrrrrr..........",
+        ".............rrOOOoooooooooooooooooooOOOOOOOOrrrrrroooooooooooooorrOOOOOOOOOOOOOOOOOOOOOOOrrrrrr..........",
+        ".............rrOOOoooooooooooooooooooOOOOOOOOrrrrrrooooooooooooooorOOOOOOOOOOOOOOOOOOOOOOOrrrrr...........",
+        "..........rrrrrOOOoooooooooooooooooooOOOOOOOOrrrrrrooooooooooooooorrOOOOOOOOOOOOOOOOOOOOOrrrrrr...........",
+        "..........rrrrrOOOOOOooooooooooooooOOOOOOOOOrrrrrroooooooooooooooorrrrOOOOOOOOOOOOOOOOOOrrrrrrr...........",
+        ".........rrrOOrrOOOOOOOOooooooooOOOOOOOOOOOOrrrrrroooooooooooooooorrrrrrrOOOOOOOOOOOOrrrrrrrrrrr..........",
+        "........rrrOOOrrOOOOOOOOOOOooOOOOOOOOOOOOOOOrrrrrrooooooooooooooooorrrrrrrrrOOOOOOOrrrrrrrrrrrrrr.........",
+        "........rrOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrroooooooooooooooooorrrrrrrrrrrrOrrrrrrrrrrrrrrrrr.........",
+        ".......rrrOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrroooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr........",
+        ".......rrOOOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrroooooooooooooooooOrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr........",
+        "......rrrOOOOOorrrrrOOOOOOOOOOOOOOOOOOOOOrrrrrrrooooooooooooooooooOOOOrrrrrrrrrrrrrrrrrrrrrOOOrrrrr.......",
+        ".....rrrOOOOOoorrrrrrrrOOOOOOOOOOOOOOOOrrrrrrrrrooooooooooooooooooOOOOOOOrrrrrrrrrrrrrrrrOOOOOrrrrr.......",
+        ".....rrOOOOOOoorrrrrrrrrrrOOOOOOOOOrrrrrrrrrrrrroooooooooooooooooOOOOOOOOOOOrrrrrrrrrroOOOOOOOOrrrrr......",
+        "....rrrOOOOOooorrrrrrrrrrrrrrOOOOrrrrrrrrrrrrrrooooooooooooooooooOOOOOOOOOOOrrrrrrrrrooOOOOOOOOOrrrrr.....",
+        "....rrOOOOOooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooooooooooOOOOOOOOOOOOrrrrrrrrooooOOOOOOOOrrrrr.....",
+        "...rrOOOOOOooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooooorooooooOOOOOOOOOOOOrrrrrrrrooooOOOOOOOOOrrrrr....",
+        "...rrOOOOOoooooooorrrrrrrrrrrrrrrrrrrrrrrrrrrroooooorrrrrrroooooOOOOOOOOOOOrrrrrrrrroooooOOOOOOOOrrrrr....",
+        "..rrOOOOOOooooooooooorrrrrrrrrrrrrrrrrrrrrrooooorrrrrrrrrrrrrooOOOOOOOOOOOOrrrrrrrroooooooOOOOOOOOrrrrr...",
+        ".rrrOOOOOoooooooooooooorrrrrrrrrrrrrrrrrooorrrrrrrrrOOOOOrrrrrOOOOOOOOOOOOOrrrrrrrroooooooOOOOOOOOOrrrr...",
+        ".rrOOOOOooooooooooooooorrrrrrrrrrrrrrrOrrrrrrrrOOOOOOOOOOOrrrrrrOOOOOOOOOOrrrrrrrrrooooooOOOOOOOOOOrrrrr..",
+        "rrrOOOOOoooooooooooooooorrrrOOrrrrrOOOOrrrOOOOOOOOOOOOOOOOOOrrrrrrOOOOOOOOrrrrrrrroooooooOOOOOOOOOOrrrrrr.",
+        "rrrOOOOOOooooooooooooooorrrrOOOOrOOOOOrrOOOOOOOOOOOOOOOOOOOOOOrrrrrOOOOOOOrOOrrrrroooooooOOOOOOOOOOrrrrrr.",
+        "rrrrOOOOOooooooooooooooorrrrOOOOOOOOOOrOOOOOOOOOOOOooOOOOOOOOOOrrrrrrOOOOrrOOrrrrrooooooOOOOOOOOOOOrrrrrrr",
+        ".rrrOOOOOooooooooooooooorrrrOOOOOOOOOrrOOOOOOOoooooooooOOOOOOOOOOrrrrrOOOrrOOrrrroooooooOOOOOOOOOOrrrrrrrr",
+        ".rrrOOOOOoooooooooooooooorrrrOOOOOOOrrOOOOoooooooooooooooOOOOOOOOOOrrrrrOrrrrrrrroooooooOOOOOOOOOOrrrrrrr.",
+        ".rrrOOOOOoooooooooooooooorrrrOOOOOOOrOOOOoooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrooooooOOOOOOOOOOOrrrrrrr.",
+        ".rrrrOOOOOooooooooooooooorOOrrrOOOOrrOOOOoooooooooooooooooooOOOOOOOOrrrrrrrrrrrroooooooOOOOOOOOOOrrrrrrrr.",
+        "..rrrOOOOOooooooooooooooorOOrrrrrrOrOOOOoooooooooooooooooooooOOOOOOOOrrrrrrrrrrroooooooOOOOOOOOOOrrrrrrr..",
+        "..rrrOOOOOooooooooooooooorOOrrrrrrrrOOOOooooooooooooooooooooooOOOOOOOrrrrrrrrrrrooooooOOOOOOOOOOrrrrrrrr..",
+        "..rrrOOOOOoooooooooooooooorrrrrrrrrOOOOooooooooooooooooooooooooOOOOOOOrrrrrrrrroooooooOOOOOOOOOOrrrrrrrr..",
+        "..rrrrOOOOOooooooooooooooorrrrrrrrOOOOoooooooooooooooooooooooooOOOOOOOOrrrrrrrroooooooOOOOOOOOOOrrrrrrr...",
+        "..rrrrOOOOOooooooooooooooorrrrrrrrOOOOooooooooooooooooooooooooooOOOOOOOrrrrrrrroooooOOOOOOOOOOOrrrrrrrr...",
+        "...rrrOOOOOooooooooooooooorrrrrrrOOOOoooooooooooooooooooooooooooOOOOOOOOrrrrrroooOOOOOOOOOOOOOOrrrrrrrr...",
+        "...rrrOOOOOoooooooooooooooorrrrrrOOOOooooooooooooooooooooooooooooOOOOOOOOrrrrrOOOOOOOOOOOOOOOOOrrrrrrr....",
+        "...rrrrOOOOOooooooooooooooooorrrrOOOOoooooooooooooooooooooooooooooOOOOOOOrrrrrOOOOOOOOOOOOOOOOrrrrrrrr....",
+        "...rrrrOOOOOooooooooooooooooooorrOOOOoooooooooooooooooooooooooooooOOOOOOOOrrrrOOOOOOOOOOOOOOOOrrrrrrrr....",
+        "....rrrOOOOOooooooooooooooooooorrrOOOOoooooooooooooooooooooooooooooOOOOOOOrrrrrOOOOOOOOOOOOOOOrrrrrrr.....",
+        "....rrrOOOOOooooooooooooooooooorrrOOOOoooooooooooooooooooooooooooooOOOOOOOOrrrrOOOOOOOOOOOOOOrrrrrrrr.....",
+        "....rrrOOOOOOOOoooooooooooooooorrrOOOOoooooooooooooooooooooooooooooOOOOOOOOOrrrrOOOOOOOOOOOOOrrrrrrrr.....",
+        "....rrrrOOOOOOOOOOoooooooooooooorrOOOOooooooooooooooooooooooooooooOOOOOOOOOOrrrrOOOOOOOOOOrrrrrrrrrr......",
+        ".....rrrOOOOOOOOOOOOOooooooooooorrrOOOOoooooooooooooooooooooooooooOOOOOOOOOrrrrrrOOOOOOrrrrrrrrrrrrr......",
+        ".....rrrOOOOOOOOOOOOOOOOoooooOOOrrrOOOOoooooooooooooooooooooooooooOOOOOOOOOrOOrrrrOOrrrrrrrrrrrrrrrr......",
+        ".....rrrOOOOOOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooooOOOOOOOOOOrOOrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrrrOOOOOOOOOOOOOOOOOOOOOOOOrrOOOOooooooooooooooooooooooooooOOOOOOOOOrrOOrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrrrOOOOOOOOOOOOOOOOOOOOOOOOrrOOOOOooooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrrr.......",
+        "......rrrrrOOOOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrr........",
+        "......rrrrrrrrOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrr.........",
+        "......rrrrrrrrrrrOOOOOOOOOOOOOOOOrrrOOOOoooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrr............",
+        "......rrrrrrrrrrrrrrOOOOOOOOOOOOOOrrOOOOOOoooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrrr...............",
+        ".......rrrrrrrrrrrrrrrrOOOOOOOOOOOrrrOOOOOOOOoooooooooooooooOOOOOOOOOOOOrrrrrrrrrrrrrrrrr.................",
+        ".......rrrrrrrrrrrrrrrrrrrOOOOOOOrrrrOOOOOOOOOOOoooooooooOOOOOOOOOOOOOOOrrrrrrrrrrrrrr....................",
+        ".......rrrrrrrrrrrrrrrrrrrrrrOrrrrrrrOOOOOOOOOOOOOOoooOOOOOOOOOOOOOOOOOrrrrrrrrrrrrr......................",
+        "........rrrrrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrrr.........................",
+        "..........rrrrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr...........................",
+        ".............rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr............................",
+        "................rrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr.............................",
+        "...................rrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrrrr.............................",
+        "......................rrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOrrrrrrrrrrrrr.............................",
+        ".........................rrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOrrrrrrrrrrrrrrr..............................",
+        "............................rrrrrrr.rrrrrrrrrrrrrrrrOOOOOOrrrrrrrrrrrrrrrrrr..............................",
+        "..............................rrr...rrrrrrrrrrrrrrrrrrrOrrrrrrrrrrrrrrrrrrrr..............................",
+        ".....................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr...............................",
+        ".......................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr................................",
+        "..........................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr..................................",
+        ".............................................rrrrrrrrrrrrrrrrrrrrrrrr.....................................",
+        "................................................rrrrrrrrrrrrrrrrrr........................................",
+        "...................................................rrrrrrrrrrrrr..........................................",
+        ".....................................................rrrrrrrr.............................................",
+        "........................................................rrr..............................................."
+      ]
+    },
+    {
+      "id": "blast-6",
+      "channel": "effects",
+      "at": [
+        11,
+        0
+      ],
+      "rows": [
+        "...................................rrrrrrrrrrrrrrrrrOOOrrrrrrrrr..............................................",
+        "...............................rrrrrrrrrrrrrrrrrOOOOOOOOOrrrrrrrrr............................................",
+        "...............................rrrrrrrrrrrrOOOOOOOOOOOOOOOrrrrrrrrr...........................................",
+        "..............................rrrrrrrrOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrr...........OOOrrr........................",
+        ".........................rrrrOOOOrrrrOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr.....OOOOOOOOOOrr.......................",
+        "....................rrrrOOOOOOOOOOrrrrOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrrOOOOOOOoOOOOOOrrr.....................",
+        "..................rOOOOOOOOOOOOOOOOOrrrrOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrOOOooooooooOOOOOOrrr...................",
+        "..................OOOOOOOOOoooOOOOOOOOrrrrOOOOOOOoooOOOOOOOOOOOOOOrrrrrOooooooooooooOOOOOOrr..................",
+        ".................rOOOOooooooooooOOOOOOOrrrrOOoooooooooOOOOOOOOOOOOOOrrOooooooooooooooOOOOOOrrr................",
+        ".................OOOoooooooooooooOOOOOOOOrrrrooooooooooOOOOOOOOOOOOOOOOoooooooooooooooOOOOOOrrr...............",
+        "................rOOooooooooooooooooOOOOOOOrrrroooooooooooOOOOOOOOOOOOOoooooooooooooooooOOOOOrrr...............",
+        "...............rOOOoooooooooooooooooOOOOOOOrrroooooooooooooOOOOOOOOOOOoooooooooooooooooOOOOOOrrr..............",
+        "...............OOOoooooooooooooooooooOOOOOOrrrroooooooooooooOOOOOOOOOoooooooooooooooooooOOOOOrrr..............",
+        "..............rOOooooooooooooooooooooOOOOOOOrrrrooooooooooooooOOOOOOOooooooooooooooooooooOOOOOrrr.............",
+        "..............OOOoooooooooooooooooooooOOOOOOrrrroooooooooooooooOOOrOOooooooooooooooooooooOOOOOOrrr............",
+        ".............OOOoooooooooooooooooooooooOOOOOOrrrroooooooooooooooOOrOOoooooooooooooooooooooOOOOOrrr............",
+        "............rOOOoooooooooooooooooooooooOOOOOOOrrroooooooooooooooOOrOOOooooooooooooooooooooOOOOOOrrr...........",
+        "............rOOOooooooooooooooooooooooooOOOOOOrrrroooooooooooooooOrrOOoooooooooooooooooooOOOOOOOrrr...........",
+        "...........rrOOOoooooooooooooooooooooooooOOOOOOrrroooooooooooooooorrOOoooooooooooooooooooOOOOOOOrrrr..........",
+        "...........rrOOOOooooooooooooooooooooooooOOOOOOOrrrooooooooooooooorrOOooooooooooooooooooOOOOOOOOrrrr..........",
+        "............rrOOOooooooooooooooooooooooooOOOOOOOrrrrooooooooooooooorOOOoooooooooooooooooOOOOOOOOrrrrr.........",
+        "............rrOOOoooooooooooooooooooooooOOOOOOOOOrrrooooooooooooooorrOOoooooooooooooooooOOOOOOOrrrrrr.........",
+        "............rrOOOoooooooooooooooooooooooOOOOOOOOrrrrroooooooooooooorrOOooooooooooooooooOOOOOOOOrrrrrr.........",
+        "............rrOOOOooooooooooooooooooooooOOOOOOOOrrrrroooooooooooooorrOOOoooooooooooooooOOOOOOOOrrrrr..........",
+        ".............rrOOOoooooooooooooooooooooOOOOOOOOOrrrrrroooooooooooooorOOOOOOoooooooooOOOOOOOOOOrrrrrr..........",
+        ".............rrOOOoooooooooooooooooooooOOOOOOOOrrrrrrroooooooooooooorOOOOOOOOOooooOOOOOOOOOOOOrrrrrr..........",
+        ".............rrOOOoooooooooooooooooooooOOOOOOOOrrrrrrooooooooooooooorrOOOOOOOOOOOOOOOOOOOOOOOOrrrrr...........",
+        ".............rrOOOOoooooooooooooooooooOOOOOOOOOrrrrrrooooooooooooooorrOOOOOOOOOOOOOOOOOOOOOOOrrrrrr...........",
+        "..........rrrrrrOOOoooooooooooooooooooOOOOOOOOrrrrrrroooooooooooooooorOOOOOOOOOOOOOOOOOOOOOOOrrrrrr...........",
+        "..........rrrrrrOOOOOoooooooooooooooOOOOOOOOOOrrrrrrooooooooooooooooorrrOOOOOOOOOOOOOOOOOOOOrrrrrrr...........",
+        ".........rrrOOrrOOOOOOOOoooooooooOOOOOOOOOOOOOrrrrrrooooooooooooooooorrrrrrOOOOOOOOOOOOOOrrrrrrrrrrr..........",
+        ".........rrOOOrrOOOOOOOOOOOooooOOOOOOOOOOOOOOrrrrrrrooooooooooooooooorrrrrrrrrOOOOOOOOrrrrrrrrrrrrrr..........",
+        "........rrrOOOrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrroooooooooooooooooorrrrrrrrrrrrOOrrrrrrrrrrrrrrrrrr.........",
+        ".......rrrOOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrooooooooooooooooooOrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr........",
+        ".......rrrOOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrooooooooooooooooooOrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr........",
+        "......rrrOOOOOorrrrrOOOOOOOOOOOOOOOOOOOOOOOrrrrrrroooooooooooooooooooOOOrrrrrrrrrrrrrrrrrrrrrrrrOrrrrrr.......",
+        "......rrOOOOOOorrrrrrrrOOOOOOOOOOOOOOOOOrrrrrrrrrrooooooooooooooooooOOOOOOOrrrrrrrrrrrrrrrrrrOOOOOrrrrr.......",
+        ".....rrrOOOOOooorrrrrrrrrrOOOOOOOOOOOrrrrrrrrrrrrrooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrOOOOOOOOOrrrrr......",
+        ".....rrOOOOOOooorrrrrrrrrrrrrOOOOOOrrrrrrrrrrrrrroooooooooooooooooooOOOOOOOOOOOOrrrrrrrrooOOOOOOOOOrrrrr......",
+        "....rrOOOOOOoooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrooooooooooooooooooOOOOOOOOOOOOrrrrrrrrroooOOOOOOOOOrrrrr.....",
+        "...rrrOOOOOooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrooooooooooooooooooOOOOOOOOOOOOrrrrrrrrrooooOOOOOOOOrrrrrr....",
+        "...rrOOOOOOoooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrroooooooorrrrroooooOOOOOOOOOOOOOrrrrrrrroooooOOOOOOOOOrrrrr....",
+        "..rrrOOOOOoooooooooorrrrrrrrrrrrrrrrrrrrrrrrrroooooorrrrrrrrrrooooOOOOOOOOOOOOrrrrrrrrrooooooOOOOOOOOOrrrrr...",
+        "..rrOOOOOoooooooooooooorrrrrrrrrrrrrrrrrrrrrooorrrrrrrrrOOrrrrrrooOOOOOOOOOOOOrrrrrrrrrooooooOOOOOOOOOrrrrr...",
+        ".rrOOOOOOooooooooooooooorrrrrrrrrrrrrrrrroorrrrrrrrrOOOOOOOOrrrrrrOOOOOOOOOOOrrrrrrrrroooooooOOOOOOOOOOrrrrr..",
+        "rrrOOOOOoooooooooooooooorrrrrrrrrrrrrrOOOrrrrrrOOOOOOOOOOOOOOrrrrrrOOOOOOOOOOrrrrrrrrroooooooOOOOOOOOOOrrrrrr.",
+        "rrrOOOOOOoooooooooooooooorrrrOOOrrrrOOOOrrOOOOOOOOOOOOOOOOOOOOOrrrrrrOOOOOOOOrrrrrrrrroooooooOOOOOOOOOOrrrrrr.",
+        "rrrOOOOOOoooooooooooooooorrrrOOOOOOOOOOrrOOOOOOOOOOOOOOOOOOOOOOOOrrrrrOOOOOOrrrrrOOrroooooooOOOOOOOOOOOrrrrrrr",
+        "rrrrOOOOOoooooooooooooooorrrrOOOOOOOOOOrrOOOOOOOOOOOooooOOOOOOOOOOrrrrrrOOOOrrrrrrrrroooooooOOOOOOOOOOrrrrrrrr",
+        "rrrrOOOOOoooooooooooooooorrrrrOOOOOOOOrrOOOOOOOoooooooooooOOOOOOOOOOrrrrrOOOrrrrrrrrrooooooOOOOOOOOOOOrrrrrrrr",
+        ".rrrOOOOOoooooooooooooooorrrrrOOOOOOOOrOOOOOoooooooooooooooOOOOOOOOOOOrrrrrrrrrrrrrroooooooOOOOOOOOOOOrrrrrrrr",
+        ".rrrOOOOOOoooooooooooooooorrrrOOOOOOOrrOOOOooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrroooooooOOOOOOOOOOrrrrrrrr.",
+        ".rrrrOOOOOoooooooooooooooorrrrrrrOOOrrOOOOoooooooooooooooooooooOOOOOOOOrrrrrrrrrrrrrooooooOOOOOOOOOOOrrrrrrrr.",
+        ".rrrrOOOOOooooooooooooooOOrrrrrrrrrrrOOOOOooooooooooooooooooooooOOOOOOOOrrrrrrrrrrroooooooOOOOOOOOOOOrrrrrrrr.",
+        "..rrrOOOOOoooooooooooooooorrrrrrrrrrrOOOOoooooooooooooooooooooooOOOOOOOOrrrrrrrrrrroooooooOOOOOOOOOOrrrrrrrr..",
+        "..rrrOOOOOOoooooooooooooooorrrrrrrrrOOOOoooooooooooooooooooooooooOOOOOOOOrrrrrrrrrrooooooOOOOOOOOOOOrrrrrrrr..",
+        "..rrrrOOOOOoooooooooooooooorrrrrrrrrOOOOooooooooooooooooooooooooooOOOOOOOrrrrrrrrroooooooOOOOOOOOOOOrrrrrrrr..",
+        "..rrrrOOOOOoooooooooooooooorrrrrrrrOOOOoooooooooooooooooooooooooooOOOOOOOOrrrrrrrrooooooOOOOOOOOOOOrrrrrrrr...",
+        "...rrrOOOOOoooooooooooooooorrrrrrrOOOOOooooooooooooooooooooooooooooOOOOOOOOrrrrrrroooOOOOOOOOOOOOOOrrrrrrrr...",
+        "...rrrOOOOOOoooooooooooooooorrrrrrOOOOoooooooooooooooooooooooooooooOOOOOOOOrrrrrroOOOOOOOOOOOOOOOOOrrrrrrrr...",
+        "...rrrrOOOOOooooooooooooooooorrrrrOOOOOoooooooooooooooooooooooooooooOOOOOOOOrrrrrOOOOOOOOOOOOOOOOOrrrrrrrr....",
+        "...rrrrOOOOOoooooooooooooooooooorrOOOOOooooooooooooooooooooooooooooooOOOOOOOOrrrrOOOOOOOOOOOOOOOOOrrrrrrrr....",
+        "...rrrrOOOOOoooooooooooooooooooorrrOOOOooooooooooooooooooooooooooooooOOOOOOOOrrrrrOOOOOOOOOOOOOOOOrrrrrrrr....",
+        "....rrrOOOOOOooooooooooooooooooorrrOOOOoooooooooooooooooooooooooooooooOOOOOOOOrrrrOOOOOOOOOOOOOOOrrrrrrrr.....",
+        "....rrrOOOOOOOOooooooooooooooooorrrOOOOOoooooooooooooooooooooooooooooOOOOOOOOOrrrrrOOOOOOOOOOOOOOrrrrrrrr.....",
+        "....rrrrOOOOOOOOOOooooooooooooooorrOOOOOoooooooooooooooooooooooooooooOOOOOOOOOOrrrrOOOOOOOOOOOOrrrrrrrrrr.....",
+        "....rrrrOOOOOOOOOOOOOoooooooooooorrrOOOOoooooooooooooooooooooooooooooOOOOOOOOOrrrrrrOOOOOOOOrrrrrrrrrrrr......",
+        ".....rrrOOOOOOOOOOOOOOOOoooooooOOrrrOOOOooooooooooooooooooooooooooooOOOOOOOOOOrrrrrrrOOOOrrrrrrrrrrrrrrr......",
+        ".....rrrOOOOOOOOOOOOOOOOOOOooOOOOrrrOOOOOoooooooooooooooooooooooooooOOOOOOOOOOrrrrrrrOOrrrrrrrrrrrrrrrrr......",
+        ".....rrrrOOOOOOOOOOOOOOOOOOOOOOOOOrrOOOOOoooooooooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrrrr.......",
+        ".....rrrrOOOOOOOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrrrr.......",
+        "......rrrOOOOOOOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooooOOOOOOOOOOrrrrrOOrrrrrrrrrrrrrrrrrrr.......",
+        "......rrrrrrOOOOOOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooooOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrrrr........",
+        "......rrrrrrrrrOOOOOOOOOOOOOOOOOOOrrrOOOOOooooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrrrrr..........",
+        "......rrrrrrrrrrrrOOOOOOOOOOOOOOOOOrrrOOOOooooooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrrr.............",
+        "......rrrrrrrrrrrrrrrOOOOOOOOOOOOOOrrrOOOOOOoooooooooooooooooooooOOOOOOOOOOrrrrrrrrrrrrrrrrrrrr...............",
+        ".......rrrrrrrrrrrrrrrrrOOOOOOOOOOOrrrOOOOOOOOOoooooooooooooooOOOOOOOOOOOOOrrrrrrrrrrrrrrrrr..................",
+        ".......rrrrrrrrrrrrrrrrrrrrOOOOOOOrrrrOOOOOOOOOOOOoooooooooOOOOOOOOOOOOOOOOrrrrrrrrrrrrrrr....................",
+        ".......rrrrrrrrrrrrrrrrrrrrrrrOrrrrrrrrOOOOOOOOOOOOOOooooOOOOOOOOOOOOOOOOOrrrrrrrrrrrrr.......................",
+        "........rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrrr..........................",
+        "..........rrrrrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr............................",
+        ".............rrrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr.............................",
+        "................rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrr..............................",
+        "...................rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOOOOOOOrrrrrrrrrr..............................",
+        "......................rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOOOOOOOrrrrrrrrrrrrr..............................",
+        ".........................rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOOOOOOOrrrrrrrrrrrrrrr...............................",
+        "............................rrrrrrrrrrrrrrrrrrrrrrrrrOOOOOOOOrrrrrrrrrrrrrrrrrr...............................",
+        "..............................rrrrr...rrrrrrrrrrrrrrrrrrOOOrrrrrrrrrrrrrrrrrrrr...............................",
+        "......................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr................................",
+        ".......................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr................................",
+        "..........................................rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr..................................",
+        ".............................................rrrrrrrrrrrrrrrrrrrrrrrrrrrr.....................................",
+        "................................................rrrrrrrrrrrrrrrrrrrrrr........................................",
+        "...................................................rrrrrrrrrrrrrrrrr..........................................",
+        "......................................................rrrrrrrrrrr.............................................",
+        ".........................................................rrrrrr...............................................",
+        "...........................................................r.................................................."
+      ]
+    },
+    {
+      "id": "blast-7",
+      "channel": "effects",
+      "at": [
+        13,
+        0
+      ],
+      "rows": [
+        "..............................KKKKKKKKKKKKKKKKKkkkkkkkKKKKKKKKK...........................................",
+        "..............................KKKKKKKKKKKKkkkkkkkkkkkkkkKKKKKKKKK.........................................",
+        ".............................KKKKKKKKkkkkkkkkkkkkkkkkkkkkkKKKKKKKK...........KkkKK........................",
+        "........................KKKKkkkkKKKkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKK.....kkkkkkkkKKK......................",
+        "....................KKKkkkkkkkkkkKKKKkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKkkkkkkkSkkkkkkKKK....................",
+        "..................kkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKKkkkSSSSSSSSkkkkkkKK...................",
+        ".................KkkkkkkkkSSSkkkkkkkkKKKkkkkkkkSSSkkkkkkkkkkkkkkKKKKkSSSSSSSSSSSkkkkkkKKK.................",
+        ".................kkkkSSSSSSSSSSkkkkkkkKKKKSSSSSSSSSSkkkkkkkkkkkkkkKkkSSSSSSSSSSSSSkkkkkKKK................",
+        "................KkkSSSSSSSSSSSSSkkkkkkkkKKKSSSSSSSSSSSkkkkkkkkkkkkkkSSSSSSSSSSSSSSSkkkkkKKK...............",
+        "...............KkkkSSSSSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSSSkkkkkkkkkkkkSSSSSSSSSSSSSSSSkkkkkkKKK..............",
+        "...............kkkSSSSSSSSSSSSSSSSSkkkkkkKKKKSSSSSSSSSSSSkkkkkkkkkkSSSSSSSSSSSSSSSSSkkkkkKKK..............",
+        "..............KkkSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSSkkkkkkkSSSSSSSSSSSSSSSSSSSkkkkkKKK.............",
+        "..............kkkSSSSSSSSSSSSSSSSSSSkkkkkkKKKKSSSSSSSSSSSSSSkkkkkkSSSSSSSSSSSSSSSSSSSkkkkkkKK.............",
+        ".............kkkSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKSSSSSSSSSSSSSSkkkkkkSSSSSSSSSSSSSSSSSSSkkkkkKKK............",
+        "............KkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSSSkKKkkSSSSSSSSSSSSSSSSSSSkkkkkkKKK...........",
+        "............KkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKSSSSSSSSSSSSSSkKKkkSSSSSSSSSSSSSSSSSSSkkkkkkKKK...........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSSSkKkkSSSSSSSSSSSSSSSSSSSkkkkkkkKKK..........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKSSSSSSSSSSSSSSSKkkkSSSSSSSSSSSSSSSSSkkkkkkkKKKK..........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSSSSSSSKKkkSSSSSSSSSSSSSSSSSkkkkkkkKKKKK.........",
+        "............KkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKSSSSSSSSSSSSSSKKkkSSSSSSSSSSSSSSSSSkkkkkkkKKKKK.........",
+        "............KKkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKSSSSSSSSSSSSSSKkkSSSSSSSSSSSSSSSSkkkkkkkKKKKKK.........",
+        "............KKkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKSSSSSSSSSSSSSSKkkkSSSSSSSSSSSSSSSkkkkkkkKKKKKK.........",
+        "............KKkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSkkkkkkkkkKKKKK..........",
+        "............KKkkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSSSSSSSSSSSKKkkkkkkkSSSSSkkkkkkkkkkkKKKKKK..........",
+        ".............KKkkkSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSSSSSSSSSSSSKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKK..........",
+        ".............KKkkkSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSSSSSSSSSSSSSKkkkkkkkkkkkkkkkkkkkkkkkKKKKK...........",
+        "..........KKKKKkkkSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSSSSSSSSSSSSSKKkkkkkkkkkkkkkkkkkkkkkKKKKKK...........",
+        "..........KKKKKkkkkkkSSSSSSSSSSSSSSkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSKKKKkkkkkkkkkkkkkkkkkkKKKKKKK...........",
+        ".........KKKkkKKkkkkkkkkSSSSSSSSkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSKKKKKKKkkkkkkkkkkkkKKKKKKKKKKK..........",
+        "........KKKkkkKKkkkkkkkkkkkSSkkkkOkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSSKKKKKKKKKkkkkkkkKKKKKKKKKKKKKK.........",
+        "........KKkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSSSKKKKKKKKKKKKkKKKKKKKKKKKKKKKKK.........",
+        ".......KKKkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK........",
+        ".......KKkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSSkKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK........",
+        "......KKKkkkkkSKKKKKkkkkkkkkkkkkkkkkkkkkkKKKKKKKSSSSSSSSSSSSSSSSSSkkkkKKKKKKKKKKKKKKKKKKKKKkkkKKKKK.......",
+        ".....KKKkkkkkSSKKKKKKKKkkkkkkkkkkkkkkkKKKKKKKKKKSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKKKKKKkkkkkKKKKK.......",
+        ".....KKkkkkkkSSKKKKKKKKKKKkkkkkkkkkKKKKKKKKKKKKKSSSSSSSSSSSSSSSSSkkkkkkkkkkkKKKKKKKKKKSkkkkkkkkKKKKK......",
+        "....KKKkkkkkSSSKKKKKKKKKKKKKKkkkkKKKKKKKKKKKKKKSSSSSSSSSSSSSSSSSSkkkkkkkkkkkKKKKKKKKKSSkkkkkkkkkKKKKK.....",
+        "....KKkkkkkSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSSSSSSSSSSSkkkkkkkkkkkkKKKKKKKKSSSSkkkkkkkkKKKKK.....",
+        "...KKkkkkkkSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSSSSKSSSSSSkkkkkkkkkkkkKKKKKKKKSSSSkkkkkkkkkKKKKK....",
+        "...KKkkkkkSSSSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSKKKKKKKSSSSSkkkkkkkkkkkKKKKKKKKKSSSSSkkkkkkkkKKKKK....",
+        "..KKkkkkkkSSSSSSSSSSSKKKKKKKKKKKKKKKKKKKKKKSSSSSKKKKKKKKKKKKKSSkkkkkkkkkkkkKKKKKKKKSSSSSSSkkkkkkkkKKKKK...",
+        ".KKKkkkkkSSSSSSSSSSSSSSKKKKKKKKKKKKKKKKKSSSKKKKKKKKKkkkkkKKKKKkkkkkkkkkkkkkKKKKKKKKSSSSSSSkkkkkkkkkKKKK...",
+        ".KKkkkkkSSSSSSSSSSSSSSSKKKKKKKKKKKKKKKkKKKKKKKKkkkkkkkkkkkKKKKKKkkkkkkkkkkKKKKKKKKKSSSSSSkkkkkkkkkkKKKKK..",
+        "KKKkkkkkSSSSSSSSSSSSSSSSKKKKkkKKKKKkkkkKKKkkkkkkkkkkkkkkkkkkKKKKKKkkkkkkkkKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKK.",
+        "KKKkkkkkkSSSSSSSSSSSSSSSKKKKkkkkKkkkkkKKkkkkkkkkkkkkkkkkkkkkkkKKKKKkkkkkkkKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKK.",
+        "KKKKkkkkkSSSSSSSSSSSSSSSKKKKkkkkkkkkkkKkkkkkkkkkkkkSSkkkkkkkkkkKKKKKKkkkkKKKKKKKKKSOSSSSkkkkkkkkkkkKKKKKKK",
+        ".KKKkkkkkSSSSSSSSSSSSSSSKKKKkkkkkkkkkKKkkkkkkkSSSSSSSSSkkkkkkkkkkKKKKKkkkKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKKK",
+        ".KKKkkkkkSSSSSSSSSSSSSSSSKKKKkkkkkkkKKkkkkSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKkKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKK.",
+        ".KKKkkkkkSSSSSSSSSSSSSSSSKKKKkkkkkkkKkkkkSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKSSSSSSkkkkkkkkkkkKKKKKKK.",
+        ".KKKKkkkkkSSSSSSSSSSSSSSSKKKKKKkkkkKKkkkkSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKKK.",
+        "..KKKkkkkkSSSSSSSSSSSSSSSKKKKKKKKKkKkkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKK..",
+        "..KKKkkkkkSSSSSSSSSSSSSSSKKKKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKSSSSSSkkkkkkkkkkKKKKKKKK..",
+        "..KKKkkkkkSSSSSSSSOSSSSSSSKKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKKK..",
+        "..KKKKkkkkkSSSSSSSSSSSSSSSKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKSSSSSSSkkkkkkkkkkKKKKKKK...",
+        "..KKKKkkkkkSSSSSSSSSSSSSSSKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKSSSSSkkkkkkkkkkkKKKKKKKK...",
+        "...KKKkkkkkSSSSSSSSSSSSSSSKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKSSSkkkkkkkkkkkkkkKKKKKKKK...",
+        "...KKKkkkkkSSSSSSSSSSSSSSSSKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKkkkkkkkkkkkkkkkkkKKKKKKK....",
+        "...KKKKkkkkkSSSSSSSSSSSSSSSSSKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKkkkkkkkkkkkkkkkkKKKKKKKK....",
+        "...KKKKkkkkkSSSSSSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKkkkkkkkkkkkkkkkkKKKKKKKK....",
+        "....KKKkkkkkSSSSSSSSSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKkkkkkkkkkkkkkkkKKKKKKK.....",
+        "....KKKkkkkkSSSSSSSSSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKkkkkkkkkkkkkkkKKKKKKKK.....",
+        "....KKKkkkkkkkkSSSSSSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKkkkkkkkkkkkkkKKKKKKKK.....",
+        "....KKKKkkkkkkkkkkSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKkkkkkkkkkkKKKKKKKKKK......",
+        ".....KKKkkkkkkkkkkkkkSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKkkkkkkKKKKKKKKKKKKK......",
+        ".....KKKkkkkkkkkkkkkkkkkSSSSSkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKkkKKKKKKKKKKKKKKKK......",
+        ".....KKKkkkkkkkkkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKK.......",
+        ".....KKKKkkkkkkkkkkkkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKKK.......",
+        ".....KKKKkkkkkkkkkkkkkkkkkkkkkkkkKKkkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKKK.......",
+        "......KKKKKkkkkkkkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKK........",
+        "......KKKKKKKKkkkkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKKK.........",
+        "......KKKKKKKKKKKkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKKKKKKKKK............",
+        "......KKKKKKKKKKKKKKkkkkkkkkkkkkkkKKkkkkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKKK...............",
+        ".......KKKKKKKKKKKKKKKKkkkkkkkkkkkKKKkkkkkkkkSSSSSSSSSSSSSSSkkkkkkkkkkkkKKKKKKKKKKKKOKKKK.................",
+        ".......KKKKKKKKKKKKKKKKKKKkkkkkkkKKKKkkkkkkkkkkkSSSSSSSSSkkkkkkkkkkkkkkkKKKKKKKKKKKKKK....................",
+        ".......KKKKKKKKKKKKKKKKKKKKKKkKKKKKKKkkkkkkkkkkkkkkSSSkkkkkkkkkkkkkkkkkKKKKKKKKKKKKK......................",
+        "........KKKKKKKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKK.........................",
+        "..........KKKKKKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKK...........................",
+        ".............KKKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKK............................",
+        "................KKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKK.............................",
+        "...................KKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKKK.............................",
+        "......................KKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkKKKKKKKKKKKKK.............................",
+        ".........................KKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkKKKKKKKKKKKKKKK..............................",
+        "............................KKKKKKK.KKKKKKKKKKKKKKKKkkkkkkKKKKKKKKKKKKKKKKKK..............................",
+        "..............................KKK...KKKKKKKKKKKKKKKKKKKkKKKKKKKKKKKKKKKKKKKK..............................",
+        ".....................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK...............................",
+        ".......................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK................................",
+        "..........................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK..................................",
+        ".............................................KKKKKKKKKKKKKKKKKKKKKKKK.....................................",
+        "................................................KKKKKKKKKKKKKKKKKK........................................",
+        "...................................................KKKKKKKKKKKKK..........................................",
+        ".....................................................KKKKKKKK.............................................",
+        "........................................................KKK..............................................."
+      ]
+    },
+    {
+      "id": "blast-8",
+      "channel": "effects",
+      "at": [
+        17,
+        0
+      ],
+      "rows": [
+        ".............................KKKKKKKKKKKKKKKKkkkkKKKKKKKK........................................",
+        "............................KKKKKKKKKKKKkkkkkkkkkkkKKKKKKKK......................................",
+        "...........................KKKKKKKKkkkkkkkkkkkkkkkkkkKKKKKKKK...........kKKK.....................",
+        ".......................KKKkkkKKKKkkkkkkkkkkkkkkkkkkkkkKKKKKKKK.....kkkkkkkkKK....................",
+        "..................KKKkkkkkkkkkkKKKkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKkkkkkkSkkkkkKKK..................",
+        ".................kkkkkkkkkkkkkkkKKKKkkkkkkkkkkkkkkkkkkkkkkKKKKKkkSSSSSSSSkkkkkKK.................",
+        "................KkkkkkkSSSSkkkkkkkKKKkkkkkkSSSSkkkkkkkkkkkkKKKkkSSSSSSSSSSkkkkkkKK...............",
+        "...............KkkSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSkkkkkkkkkkkkkKkSSSSSSSSSSSSSkkkkkKK..............",
+        "...............kkkSSSSSSSSSSSSkkkkkkkKKKKSSSSSSSSSkkkkkkkkkkkkSSSSSSSSSSSSSSkkkkkKKK.............",
+        "..............KkkSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSkkkkkkkkkkSSSSSSSSSSSSSSSkkkkkKK.............",
+        "..............kkSSSSSSSSSSSSSSSSSkkkkkKKKKSSSSSSSSSSSkkkkkkkkSSSSSSSSSSSSSSSSSkkkkKKK............",
+        ".............kkkSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSkkkkkkSSSSSSSSSSSSSSSSSkkkkkKKK...........",
+        "............KkkSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSkkkkkSSSSSSSSSSSSSSSSSSkkkkkKK...........",
+        "............kkkSSSSSSSSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSSSSSSkKkkkSSSSSSSSSSSSSSSSSkkkkkKKK..........",
+        "...........KkkkSSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSkKKkkSSSSSSSSSSSSSSSSSkkkkkkKK..........",
+        "...........KkkkSSSSSSSSSSSSSSSSSSSSSkkkkkKKKKSSSSSSSSSSSSSkKkkSSSSSSSSSSSSSSSSSkkkkkkKKK.........",
+        "...........KkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKSSSSSSSSSSSSSSKkkSSSSSSSSSSSSSSSSkkkkkkkKKKK........",
+        "...........KKkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSSSSSKkkkSSSSSSSSSSSSSSSkkkkkkkKKKK........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSSSSSKKkkSSSSSSSSSSSSSSSkkkkkkKKKKK........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKSSSSSSSSSSSSSKkkSSSSSSSSSSSSSSkkkkkkkKKKKK........",
+        "...........KKkkkSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKSSSSSSSSSSSSKkkkSSSSSSSSSSSSkkkkkkkkKKKKK........",
+        "............KKkkSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKSSSSSSSSSSSSKkkkkkkSSSSSSSkkkkkkkkkKKKKK.........",
+        "............KKkkkSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKSSSSSSSSSSSSKKkkkkkkkkSkkkkkkkkkkkkKKKKK.........",
+        "............KKkkkSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKSSSSSSSSSSSSSKKkkkkkkkkkkkkkkkkkkkkKKKKKK.........",
+        "..........KKKKkkkSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKSSSSSSSSSSSSSSKkkkkkkkkkkkkkkkkkkkkKKKKK..........",
+        ".........KKKKKkkkkkSSSSSSSSOSSSSkkkkkkkkkKKKKKKSSSSSSSSSSSSSSKKKkkkkkkkkkkkkkkkkkKKKKKKK.........",
+        ".........KKkkKKkkkkkkkSSSSSSSSkkkkkkkkkkkKKKKKSSSSSSSSSSSSSSSKKKKKKkkkkkkkkkkkKKKKKKKKKK.........",
+        "........KKkkkKKkkkkkkkkkkSSkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSKKKKKKKKKkkkkkkKKKKKKKKKKKKK........",
+        ".......KKKkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKK........",
+        ".......KKkkkkkKkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKSSSSSSSSSSSSSSSSkKKKKKKKKKKKKKKKKKKKKKKKKKKKK.......",
+        "......KKKkkkkSKKKkkkkkkkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSSSkkKKKKKKKKKKKKKKKKKKKKKKkKKKK.......",
+        "......KKkkkkkSKKKKKKkkkkkkkkkkkkkkkkKKKKKKKKKSSSSSSSSSSSSSSSkkkkkkKKKKKKKKKKKKKKKKKkkkKKKKK......",
+        ".....KKkkkkkSSKKKKKKKKKkkkkkkkkkkkKKKKKKKKKKSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKkkkkkkkKKKKK.....",
+        "....KKKkkkkkSSKKKKKKKKKKKKkkkkkKKKKKKKKKKKKKSSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKSSkkkkkkkkKKKK.....",
+        "....KKkkkkkSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSSSSSSSSSkkkkkkkkkkkKKKKKKKKSSSkkkkkkkKKKKK....",
+        "...KKkkkkkSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSSSSSSSSSSkkkkkkkkkkkKKKKKKKSSSSkkkkkkkkKKKK....",
+        "...KKkkkkkSSSSSSSKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSKKKKKKKSSSSkkkkkkkkkkKKKKKKKKSSSSSkkkkkkkKKKKK...",
+        "..KKkkkkkSSSSSSSSSSSKKKKKKKKKKKKKKKKKKKKSSSSKKKKKKKKKKKKSSkkkkkkkkkkkKKKKKKKKSSSSSkkkkkkkkKKKKK..",
+        "..KKkkkkSSSSSSSSSSSSSSKKKKKKKKKKKKKKKSSKKKKKKKKkkkkkkKKKKKkkkkkkkkkkkKKKKKKKSSSSSSkkkkkkkkkKKKK..",
+        ".KKkkkkkSSSSSSSSSSSSSSKKKKKKKKKKKKkkKKKKKKkkkkkkkkkkkkKKKKKkkkkkkkkkKKKKKKKKSSSSSSkkkkkkkkkKKKKK.",
+        "KKKkkkkkSSSSSSSSSSSSSSKKKKkkKKKKkkkkKkkkkkkkkkkkkkkkkkkkKKKKKkkkkkkkKKKKKKKKSSSSSSkkkkkkkkkKKKKK.",
+        ".KKKkkkkSSSSSSSSSSSSSSKKKKkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkKKKKkkkkkkKKKKKKKSSSSSSkkkkkkkkkkKKKKKK",
+        ".KKKkkkkkSSSSSSSSSSSSSSKKKkkkkkkkkKKkkkkkkkkkSSSSSkkkkkkkkkKKKKKkkkKKKKKKKKSSSSSSkkkkkkkkkKKKKKKK",
+        ".KKKkkkkkSSSSSSSSSSSSSSKKKKkkkkkkkKkkkkkSSSSSSSSSSSSkkkkkkkkkKKKKKkKKKKKKKKSSSSSSkOkkkkkkkKKKKKKK",
+        ".KKKkkkkkSSSSSSSSSSSSSSKKKKkkkkkkKKkkkSSSSSSSSSSSSSSSkkkkkkkkkKKKKkKKKKKKKSSSSSSkkkkkkkkkkKKKKKKK",
+        "..KKKkkkkSSSSSSSSSSSSSSKKKKKKkkkkKkkkkSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKSSSSSSkkkkkkkkkKKKKKKK.",
+        "..KKKkkkkSSSSSSSSSSSSSSKKKKKKKKKKKkkkSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKSSSSSSkkkkkkkkkKKKKKKK.",
+        "..KKKkkkkkSSSSSSSSSSSSSSKKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKSSSSSSkkkkkkkkkkKKKKKKK.",
+        "..KKKkkkkkSSSSSSSSSSSSSSKKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKSSSSSSkkkkkkkkkKKKKKKK..",
+        "..KKKKkkkkSSSSSSSSSSSSSSKKKKKKKKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKSSSSSSkkkkkkkkkKKKKKKK..",
+        "...KKKkkkkOSSSSSSSSSSSSSKKKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKSSSSkkkkkkkkkkkkKKKKKKK..",
+        "...KKKkkkkkSSSSSSSSSSSSSSKKKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKKKSSkkkkkkkkkkkkkKKKKKKK...",
+        "...KKKkkkkkSSSSSSSSSSSSSSKKKKKKkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKkkkkkkkkkkkkkkkKKKKKKK...",
+        "...KKKkkkkkSSSSSSSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKkkkkkkkkkkkkkkkKKKKKKK...",
+        "....KKKkkkkSSSSSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKkkkkkkkkkkkkkkKKKKKKK....",
+        "....KKKkkkkkSSSSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKkkkkkkkkkkkkkKKKKKKK....",
+        "....KKKkkkkkkkSSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKkkkkkkkkkkkkKKKKKKKK....",
+        "....KKKkkkkkkkkkkSSSSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKkkkkkkkkkKKKKKKKKK.....",
+        ".....KKKkkkkkkkkkkkkSSSSSSSSSKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKkkkkkkKKKKKKKKKKKK.....",
+        ".....KKKkkkkkkkkkkkkkkkSSSkkkkKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKkkKKKKKKKKKKKKKKK.....",
+        ".....KKKkkkkkkkkkkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKK......",
+        ".....KKKkkkkkkkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKK......",
+        ".....KKKKkkkkkkkkkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKK......",
+        "......KKKKKKkkkkkkkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKKKKKKKKKKK.......",
+        "......KKKKKKKKKkkkkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKKKKKKKK..........",
+        "......KKKKKKKKKKKKkkkkkkkkkkkkkKKKkkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKKKKKKKKKKKK............",
+        "......KKKKKKKKKKKKKKKkkkkkkkkkkKKKkkkkkkkSSSSSSSSSSSSSSSkkkkkkkkkkKKKKKKKKKKKKKKKK...............",
+        ".......KKKKKKKKKKKKKKKKKkkkkkkkKKKkkkkkkkkkkSSSSSSSSSkkkkkkkkkkkkkKKKKKKKKKKKKKK.................",
+        ".......KKKKKKKKKKKKKKKKKKKKkKKKKKKkkkkkkkkkkkkkSSSkkkkkkkkkkkkkkkkKKKKKKKKKKK....................",
+        ".......KKKKKKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKK.......................",
+        "..........KKKKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKK.........................",
+        ".............KKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKK..........................",
+        "................KKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKK..........................",
+        "...................KKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkKKKKKKKKKKK.............O............",
+        "......................KKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkKKKKKKKKKKKKK...........................",
+        ".........................KKKKKKKKKKKKKKKKKKKKKKkkkkkkkkKKKKKKKKKKKKKKK...........................",
+        "...........................KKKK...KKKKKKKKKKKKKKKKkkKKKKKKKKKKKKKKKKKK...........................",
+        "..................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK............................",
+        "....................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.............................",
+        ".......................................KKKKKKKKKKKKKKKKKKKKKKKKKKK...............................",
+        "..........................................KKKKKKKKKKKKKKKKKKKKK..................................",
+        ".............................................KKKKKKKKKKKKKKKK....................................",
+        "...............................................KKKKKKKKKKK.......................................",
+        "..................................................KKKKKK........................................."
+      ]
+    },
+    {
+      "id": "blast-9",
+      "channel": "effects",
+      "at": [
+        23,
+        0
+      ],
+      "rows": [
+        ".....................................KKKKKKKKK......................................",
+        ".................................KKKKKKKKKKKKKKK....................................",
+        "............................KKKKKKKKKKKKKKKKKKKKK...................................",
+        ".........................KKKKKKKKKKKKkkkkkkkKKKKKKK.................................",
+        "........................KKKKKKKKkkkkkkkkkkkkkkKKKKKK............K...................",
+        ".....................KKKkkKKKkkkkkkkkkkkkkkkkkkKKKKKKK.....kkkkkkKK.................",
+        "................KKKkkkkkkkkKKKkkkkkkkkkkkkkkkkkkkKKKKKKkkkkkkSkkkkKK................",
+        "...............kkkkkkkkkkkkkkKKKkkkkkkkkkkkkkkkkkkKKKKKkSSSSSSSkkkkkKK..............",
+        "..............KkkkkSSSSSkkkkkkKKKkkkSSSSSkkkkkkkkkkkKKkSSSSSSSSSSkkkkkK.............",
+        "..............kkSSSSSSSSSSkkkkkkKKKSSSSSSSSkkkkkkkkkkkkSSSSSSSSSSSkkkkKKK...........",
+        ".............kkSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSkkkkkkkkkSSSSSSSSSSSSSkkkkKK...........",
+        "............KkkSSSSSSSSSSSSSSkkkkkKKSSSSSSSSSSkkkkkkkSSSSSSSSSSSSSSkkkkKKK..........",
+        "............kkSSSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSSSkkkkkSSSSSSSSSSSSSSSkkkkKK..........",
+        "...........KkkSSSSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSSSkkKkSSSSSSSSSSSSSSSSkkkkKK.........",
+        "...........kkSSSSSSSSSSSSSSSSSSkkkkKKKSSSSSSSSSSSSkKkkSSSSSSSSSSSSSSSkkkkKK.........",
+        "..........KkkSSSSSSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSSSkKkkSSSSSSSSSSSSSSkkkkkkKK........",
+        "..........KkkkSSSSSSSSSSSSSSSSSSkkkkkKKSSSSSSSSSSSSKkkSSSSSSSSSSSSSSkkkkkkKKK.......",
+        "..........KkkkSSSSSSSSSSSSSSSSSSkkkkkKKKSSSSSSSSSSSKKkSSSSSSSSSSSSSSkkkkkKKKK.......",
+        "..........KKkkSSSSSSSSSSSSSSSSSSkkkkkkKKSSSSSSSSSSSSKkkSSSSSSSSSSSSkkkkkkKKKKK......",
+        "..........KKkkSSSSSSSSSSSSSSSSSkkkkkkkKKKSSSSSSSSSSSKkkSSSSSSSSSSSSkkkkkkKKKK.......",
+        "...........KkkkSSSSSSSSSSSSSSSSkkkkkkKKKKKSSSSSSSSSSKkkkkSSSSSSSSSkkkkkkKKKKK.......",
+        "...........KkkkSSSSbSSSSSSSSSSSkkkkkkKKKKKSSSSSSSSSSKKkkkkkkSSSkkkkkkkkkKKKKK.......",
+        "...........KKkkSSSSSSSSSSSSSSSkkkkkkkKKKKSSSSSSSSSSSSKkkkkkkkkkkkkkkkkkkKKKK........",
+        ".........KKKKkkSSSSSSSSSSSSSSSkkkkkkKKKKKSSSSSSSSSSSSKkkkkkkkkkkkkkkkkkKKKKK........",
+        ".........KKKKkkkkSSSSSSSSSSSSkkkkkkkKKKKKSSSSSSSSSSSSKKkkkkkkkkkkkkkkkkKKKKK........",
+        "........KKkkKkkkkkkkSSSSSSkkkkkkkkkKKKKKSSSSSSSSSSSSSKKKKKkkkkkkkkkkKKKKKKKKK.......",
+        ".......KKkkkKKkkkkkkkkkkkkkkkkkkkkkKKKKKSSSSSSSSSSSSSKKKKKKKKkkkkKKKKKKKKKKKK.......",
+        ".......KKkkkKKkkkkkkkkkkkkkkkkkkkkkKKKKKSSSSSSSSSSSSSkKKKKKKKKKKKKKKKKKKKKKKKK......",
+        "......KKkkkkKKkkkkkkkkkkkkkkkkkkkkKKKKKSSSSSSSSSSSSSSkKKKKKKKKKKKKKKKKKKKKKKKK......",
+        "......KKkkkkSKKKKkkkkkkkkkkkkkkkkKKKKKKSSSSSSSSSSSSSSkkkkKKKKKKKKKKKKKKKkkkKKKK.....",
+        ".....KKkkkkSSKKKKKKKkkkkkkkkkkKKKKKKKKKSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKkkkkkKKKK.....",
+        "....KKkkkkkSSKKKKKKKKKKkkkkKKKKKKKKKKKSSSSSSSSSSSSSSkkkkkkkkkKKKKKKKSkkkkkkkKKKK....",
+        "....KKkkkkSSSKKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSSSSSSSSkkkkkkkkkKKKKKKSSSkkkkkkkKKKK...",
+        "...KKkkkkSSSSSKKKKKKKKKKKKKKKKKKKKKKKKSSSSSSSKKSSSSkkkkkkkkkKKKKKKKSSSSkkkkkkKKKK...",
+        "...KKkkkkSSSSSSSSKKKKKKKKKKKKKKKKKKKSSSSKKKKKKKKSSSkkkkkkkkkKKKKKKKSSSSkkkkkkkKKKK..",
+        "..KKkkkkSSSSSSSSSSSKKKKKKKKKKKKKKSSKKKKKKKkkkKKKKKkkkkkkkkkkKKKKKKSSSSSSkkkkkkkKKK..",
+        "..KkkkkSSSSSSSSSSSSKKKKKKKKKKKKkKKKKKkkkkkkkkkkKKKKkkkkkkkkKKKKKKKSSSSSkkkkkkkkKKKK.",
+        ".KKKkkkkSSSSSSSSSSSSKKKkkKKKkkkKKkkkkkkkkkkkkkkkkKKKKkkkkkkKKKKKKKSSSSSkkkkkkkkKKKKK",
+        ".KKKkkkkSSSSSSSSSSSSKKKkkkkkkkkKkkkkkkkkkkSkkkkkkkKKKKKkkkkKKKKKKSSSSSSkkkkkkkkKKKKK",
+        ".KKKkkkkSSSSSSSSSSSSKKKkkkkkkkKkkkkkkkSSSSSSkkkkkkkkKKKKkkKKKKKKKSSSSSkkkkkkkkKKKKKK",
+        "..KKkkkkSSSSSSSSSSSSKKKKkkkkkkKkkkSSSSSSSSSSSSkkkkkkkkKKKkKKKKKKKSSSSSkkkkkkkkKKKKKK",
+        "..KKkkkkkSSSSSSSSSSSSKKKkkkkkKkkkSSSSSSSSSSSSSSSkkkkkkKKKKKKKKKKSSSSSSkkkkkkkkKKbKKK",
+        "..KKKkkkkSSSSSSSSSSSSKKKKKKkKKkkkSSSSSSSSSSSSSSSSkkkkkkKKKKKKKKKSSSSSkkkkkkkkKKKKKK.",
+        "..KKKkkkkSSSSSSSSSSSSKKKKKKKKkkkSSSSSSSSSSSSSSSSSSkkkkkkKKKKKKKKSSSSSkkkkkkkkKKKKKK.",
+        "...KKkkkkSSSSSSSSSSSSKKKKKKKkkkSSSSSSSSSSSSSSSSSSSkkkkkkKKKKKKKSSSSSkkkkkkkkkKKKKKK.",
+        "...KKkkkkSSSSSSSSSSSSKKKKKKKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKKKSSSSSkkkkkkkkKKKKKK..",
+        "...KKKkkkkSSSSSSSSSSSSKKKKKkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkKKKKKKSSkkkkkkkkkkkKKKKKK..",
+        "...KKKkkkkSSSSSSSSSSSSKKKKKkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKkkkkkkkkkkkkkkKKKKKK..",
+        "...KKKkkkkSSSSSSSSSSSSSSKKKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKkkkkkkkkkkkkkKKKKKK...",
+        "b...KKkkkkSSSSSSSSSSSSSSSKKkkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKKkkkkkkkkkkkkKKKKKK...",
+        "....KKKkkkkSSSSSSSSSSSSSSKKKkkkSSSSSSSSSSSSSSSSSSSSSSSkkkkkkKKKkkkkkkkkkkkKKKKKKK...",
+        "....KKKkkkkkkkSSSSSSSSSSSSKKkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKkkkkkkkkkKKKKKKK....",
+        "....KKKkkkkkkkkkkSSSSSSSSSKKkkkSSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKkkkkkkkKKKKKKKKK....",
+        ".....KKkkkkkkkkkkkkkSSSSkkKKkkkkSSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKkkkKKKKKKKKKKKK....",
+        ".....KKKkkkkkkkkkkkkkkkkkkKKKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKKKKKKK.....",
+        ".....KKKkkkkkkkkkkkkkkkkkkkKKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKKKKKKKKKK.....",
+        ".....KKKkkkkkkkkkkkkkkkkkkkKKkkkSSSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKKKKKKKKKK.....",
+        "......KKKKKkkkkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKKKKKK.......",
+        "......KKKKKKKKkkkkkkkkkkkkkKKkkkkSSSSSSSSSSSSSSSSSSkkkkkkkKKKKKKKKKKKKKKKKK.........",
+        "......KKKKKKKKKKKkkkkkkkkkkkKKkkkkkSSSSSSSSSSSSSSSkkkkkkkkKKKKKKKKKKKKKK............",
+        "......KKKKKKKKKKKKKKkkkkkkkkKKkkkkkkkkSSSSSSSSSkkkkkkkkkkkKKKKKKKKKKKK..............",
+        "......KKKKKKKKKKKKKKKKKkkKKKKKkkkkkkkkkkkSSSkkkkkkkkkkkkkKKKKKKKKKK.................",
+        ".......KKKKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKK...................",
+        "..........KKKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkKKKKK......................",
+        ".............KKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkKKKKKK......................",
+        "................KKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkKKKKKKKK.......................",
+        "...................KKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkKKKKKKKKKK.......................",
+        ".....................KKKKKKKKKKKKKKKKKKKKkkkkkkkKKKKKKKKKKKKK.......................",
+        "........................KKK...KKKKKKKKKKKKKKkKKKKKKKKKKKKKKK........................",
+        "..............................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK........................",
+        ".................................KKKKKKKKKKKKKKKKKKKKKKKKKK.........................",
+        "...................................KKKKKKKKKKKKKKKKKKKKK............................",
+        "......................................KKKKKKKKKKKKKKKK..............................",
+        ".........................................KKKKKKKKKK.................................",
+        "............................................KKKK..................................b."
+      ]
+    },
+    {
+      "id": "blast-10",
+      "channel": "effects",
+      "at": [
+        22,
+        5
+      ],
+      "rows": [
+        ".........................................KKKKK.......................................",
+        "....................................KKKKKKKKKKK......................................",
+        "................................KKKKKKKKKKkKKKKKK....................................",
+        ".............................KKKKKKKKkkkkkkkkKKKKK...................................",
+        "...........................KKKKKKkkkkkkkkkkkkkkKKKKK.....kkkKK.......................",
+        ".......................KKkkkkkkKKKkkkkkkkkkkkkkkKKKKKkkkkkkkkkKK.....................",
+        ".....................KkkkkkkkkkkkKKkkkkkkkkkkkkkkkKKKkkkkkkkkkkkK....................",
+        ".....................kkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkKK..................",
+        "....................KkkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkkKK..................",
+        "....................kkkkkkkkkkkkkkkkKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkKK.................",
+        "...................kkkkkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkK.................",
+        "...................kkkkkkkkkkkkkkkkkkkKKkkkkkkkkkkKkkkkkkkkkkkkkkkkKK................",
+        "..................KkkkkkkkkkkkkkkkkkkkKKkkkkkkkkkkKkkkkkkkkkkkkkkkkkKK...............",
+        "..................KkkkkkkkkkkkkkkkkkkkkKKkkkkkkkkkKkkkkkkkkkkkkkkkkkKK...............",
+        "..................KbkkkkkkkkkkkkkkkkkkkKKkkkkkkkkkKkkkkkkkkkkkkkkkkKKKK..............",
+        "..................KkkkkkkkkkkkkkkkkkkkkkKKkkkkkkkkkKkkkkkkkkkkkkkkkKKKK..............",
+        "..................KkkkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkKkkkkkkkkkkkkkkkKKK...............",
+        "..................KKkkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkKkkkkkkkkkkkkkkKKKK...............",
+        "...................KkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkkKkkkkkkkkkkkkkkKKKK...............",
+        ".................KKKkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkkKKkkkkkkkkkkkkkKKK................",
+        "................KKkKkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkKKKKkkkkkkkKKKKKKK...............",
+        "................KkkKKkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkkKKKKKKKkKKKKKKKKKKK..............",
+        "...............KKkkkKkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkkKKKKKKKKKKKKKKKKKKK..............",
+        "..............KKkkkkKKKkkkkkkkkkkkkkKKKKKkkkkkkkkkkkkkKKKKKKKKKKKKKkkKKK.............",
+        "..............KkkkkkKKKKKKkkkkkkkKKKKKKKkkkkkkkkkkkkkkkkkKKKKKKKkkkkkKKK.............",
+        ".............KKkkkkkKKKKKKKKKkKKKKKKKKKKkkkkkkkkkkkkkkkkkkKKKKKkkkkkkkKKK............",
+        ".............KkkkkkkkKKKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkKKKKKKkkkkkkkKKKK...........",
+        "............KkkkkkkkkkkKKKKKKKKKKKKKKKkkkKKKKKKKkkkkkkkkkKKKKKkkkkkkkkkKKK...........",
+        "...........KKkkkkkkkkkkkkKKKKKKKKKKkkKKKKKkkkkKKKKkkkkkkkKKKKKkkkkkkkkkkKKK..........",
+        "...........KKkkkkkkkkkkkkKKKkKKKKkkKKkkkkkkkkkkkKKKkkkkkKKKKKKkkkkkkkkkkKKK..........",
+        "...........KKkkkkkkkkkkkkkKKkkkkkkKkkkkkkkkkkkkkkKKKKkkkKKKKKkkkkkkkkkkkKKKK.........",
+        "...........KKkkkkkkkkkkkkkKKkkkkkKKkkkkkkkkkkkkkkkkKKKkkKKKKKkkkkkkkkkkKKKKK.........",
+        "...........KKkkkkkkkkkkkkkKKKkkkkKkkkkkkkkkkkkkkkkkkKKKKKKKKKkkkkkkkkkkKKKKK.........",
+        "............KKkkkkkkkkkkkkKKKKKkKkkkkkkkkkkkkkkkkkkkkKKKKKKKkkkkkkkkkkkKKKK..........",
+        "............KKkkkkkkkkkkkkKKKKKKKkkkkkkkkkkkkkkkkkkkkkKKKKKKkkkkkkkkkkKKKKK..........",
+        "............KKkkkkkkkkkkkkkKKKKKkkkkkkkkkkkkkkkkkkkkkkKKKKKKkkkkkkkkkkKKKKK........b.",
+        "............KKkkkkkkkkkkkkkKKKKkkkkkkkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkkKKKK...........",
+        "............KKKkkkkkkkkkkkkKKKKkkkkkkkkkkkkkkkkkkkkkkkkKKKKkkkkkkkkkkKKKKK...........",
+        ".............KKkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKkkkkkkkkkkKKKKK...........",
+        ".............KKkkkkkkkkkkkkkkkKkkkkkkkkkkkkkkkkkkkkkkkkkkKKkkkkkkkkkkKKKK............",
+        ".............KKkkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKkkkkkkkkKKKKK............",
+        ".............KKKkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKkkkkkkKKKKKKK............",
+        "..............KKkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkkkKKKKkkKKKKKKKKK.............",
+        "b.............KKkkkkkkkkkkkkkkkKkkkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKKKKKKK.............",
+        "..............KKkkkkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKKKKKKKK.............",
+        "..............KKKKKkkkkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKKKKKKK..............",
+        "...............KKKKKKKkkkkkkkkkKKkkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKKKK.................",
+        "...............KKKKKKKKKKkkkkkkkKkkkkkkkkkkkkkkkkkkkkkkKKKKKKKKKK....................",
+        "...............KKKKKKKKKKKKKkkKKKKkkkkkkkkkkkkkkkkkkkkkKKKKKKKK......................",
+        "................KKKKKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkKKKKK.........................",
+        "...................KKKKKKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkKKKKK..........................",
+        "......................KKKKKKKKKKKKKKKkkkkkkkkkkkkkkkKKKKKK...........................",
+        "........................KKKKKKKKKKKKKKKKkkkkkkkkkkKKKKKKKK...........................",
+        "...........................KKKKKKKKKKKKKKKKkkkkKKKKKKKKKKK...........................",
+        ".................................KKKKKKKKKKKKKKKKKKKKKKKK............................",
+        "...................................KKKKKKKKKKKKKKKKKKKKK.............................",
+        "......................................KKKKKKKKKKKKKKKK...............................",
+        ".........................................KKKKKKKKKK..................................",
+        "............................................KKKKK....................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        "....................................................................................b"
+      ]
+    },
+    {
+      "id": "blast-11",
+      "channel": "effects",
+      "at": [
+        22,
+        13
+      ],
+      "rows": [
+        "........................................KKKKK........................................",
+        "...................................KKKKKKKkKKKK......................................",
+        "..................................KKKKkkkkkkkKKK......K..............................",
+        "..............................KkkkkKKkkkkkkkkkKKKKkkkkkK.............................",
+        ".............................kkkkkkkkKkkkkkkkkkkKkkkkkkkkK...........................",
+        "............................kkkkkkkkkkKKkkkkkkkkkkkkkkkkkkK..........................",
+        "...................b.......KkkkkkkkkkkkKkkkkkkkkkkkkkkkkkkK..........................",
+        "...........................kkkkkkkkkkkkKKkkkkkkKkkkkkkkkkkkK.........................",
+        "..........................KkkkkkkkkkkkkkKkkkkkkKkkkkkkkkkkkK.........................",
+        "..........................KkkkkkkkkkkkkkkKkkkkkkkkkkkkkkkkkKK........................",
+        "...........................kkkkkkkkkkkkkKKkkkkkkKkkkkkkkkkKKK........................",
+        "...........................KkkkkkkkkkkkkKKKkkkkkKkkkkkkkkkKK.........................",
+        "..........................KKkkkkkkkkkkkkKKkkkkkkKkkkkkkkkkKK.........................",
+        ".........................KkKkkkkkkkkkkkKKKkkkkkkkKKKkkkKKKKKK........................",
+        ".........................KkKkkkkkkkkkkkKKKkkkkkkkKKKKKKKKKKKK........................",
+        "........................KkkkKKkkkkkkkKKKKkkkkkkkkkkKKKKKKKkkKK.......................",
+        ".......................KkkkkKKKKKkkKKKKKKkkkkkkkkkkkkKKKkkkkKK.......................",
+        ".......................KkkkkkKKKKKKKKKKKKkkKKkkkkkkkKKKKkkkkkKK......................",
+        "......................KkkkkkkkkKKKKKKKkKKKkkkKKkkkkkKKKkkkkkkkKK.....................",
+        "......................KkkkkkkkkKKkKkkKkkkkkkkkKKKkkKKKKkkkkkkkKK.....................",
+        "......................KkkkkkkkkkKkkkkkkkkkkkkkkkKKkKKKKkkkkkkKKK.....................",
+        "......................KkkkkkkkkkKKkkKkkkkkkkkkkkkKKKKKkkkkkkkKKK.....................",
+        "......................KKkkkkkkkkKKKKkkkkkkkkkkkkkkKKKKkkkkkkkKKK.....................",
+        ".......................KkkkkkkkkKKKkkkkkkkkkkkkkkkKKKKkkkkkkKKK......................",
+        ".......................KkkkkkkkkKKKkkkkkkkkkkkkkkkkKKkkkkkkkKKK......................",
+        ".......................KkkkkkkkkkkKkkkkkkkkkkkkkkkkkKkkkkkkkKKK......................",
+        ".......................KKkkkkkkkkkKkkkkkkkkkkkkkkkkkKKkkkkkKKK.......................",
+        "........................KkkkkkkkkkkKkkkkkkkkkkkkkkkkKKKkkKKKKK.....................b.",
+        "........................KkkkkkkkkkkKkkkkkkkkkkkkkkkkKKKKKKKKKK.......................",
+        "........................KKkkkkkkkkkKkkkkkkkkkkkkkkkKKKKKKKKKK........................",
+        "........................KKKKKkkkkkkKkkkkkkkkkkkkkkkKKKKKKKK..........................",
+        "........................KKKKKKKKkkkKKkkkkkkkkkkkkkkKKKKK.............................",
+        "..........................KKKKKKKKKKKkkkkkkkkkkkkkKKKK...............................",
+        "............................KKKKKKKKKKkkkkkkkkkkkKKKK................................",
+        "...............................KKKKKKKKKKkkkkkkKKKKKK................................",
+        "b.................................K.KKKKKKKKKKKKKKKK.................................",
+        "......................................KKKKKKKKKKKKK..................................",
+        ".........................................KKKKKKK.....................................",
+        "............................................KK.......................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        ".....................................................................................",
+        "....................................................................................b"
+      ]
+    },
+    {
+      "id": "smoke-0",
+      "channel": "effects",
+      "at": [
+        54,
+        52
+      ],
+      "rows": [
+        "........SSS..........",
+        "......SSSSSSS........",
+        ".....sssssSSSS.......",
+        "....SssssssSSSS......",
+        "....KsssssSSSSSK.....",
+        "....KSSSSSSSSSSKK....",
+        "....KSSSSSSSSSKKK....",
+        ".....KSSSSSSSKKKK....",
+        ".....KKKKKKKKKKKK....",
+        "..SSSKKKKKKKKKKKSS...",
+        ".sssSSSKKKKKKKKSSSS..",
+        "sssssSSSK..SSSSSSSKK.",
+        ".sssSSSSSK.KSSSSSSKKK",
+        "KSSSSSSSKKKKKKKKKKKK.",
+        ".SSSSSSSKKK.KKKKKKKK.",
+        ".KKKSKKKKKK..KKKKKK..",
+        ".KKKKKKKKK...........",
+        "..KKKKKKKK..........."
+      ]
+    },
+    {
+      "id": "smoke-1",
+      "channel": "effects",
+      "at": [
+        53,
+        51
+      ],
+      "rows": [
+        "........SSSSK..........",
+        "......SSSSSSSSK........",
+        ".....SssssSSSSSSK......",
+        "....SsssssssSSSSKK.....",
+        "....SsssssssSSSSSK.....",
+        "...KSsssssssSSSSSKK....",
+        "....KSSSsSSSSSSSSKKK...",
+        "....KSSSSSSSSSSSSKKK...",
+        "....KSSSSSSSSSSSKKKK...",
+        "...SKKKSSSSSSSSKKKKK...",
+        ".SSSSKKKKKKKKKKKKKKSK..",
+        ".ssssKKKKKKKKKKKKKSSSK.",
+        "SssssssKKKKKKKKKKSSSKKK",
+        "KsssssSSSSSKKKSSSSSSKKK",
+        "KSSSSSSSSSSKKSSSSSSKKKK",
+        "KSSSSSSSSSKKKKKKKKKKKK.",
+        ".KSSSSSSSKKKKKKKKKKKKK.",
+        ".KKKKKKKKKKKK.KKKKKK...",
+        ".KKKKKKKKKKK...........",
+        "...KKKKKKKK............",
+        ".......K..............."
+      ]
+    },
+    {
+      "id": "smoke-2",
+      "channel": "effects",
+      "at": [
+        51,
+        50
+      ],
+      "rows": [
+        ".........SSSSSSK..........",
+        ".......SSSSSSSSSSK........",
+        "......SSSSSSSSSSSSKK......",
+        ".....SSssssssSSSSSSKK.....",
+        "....SSssssssssSSSSSSKK....",
+        "....KSsssssssssSSSSSSK....",
+        "....KSSssssssssSSSSSSKK...",
+        "....KSSSssssssSSSSSSSKKK..",
+        "....KKSSSSSSSSSSSSSSKKKK..",
+        ".....KSSSSSSSSSSSSSSKKKK..",
+        "...SSKSSSSSSSSSSSSSKKKKK..",
+        "..SssKKKKSSSSSSSSKKKKKKKK.",
+        ".SsssKKKKKKKKKKKKKKKKKSSK.",
+        ".SssssKKKKKKKKKKKKKKKKSKKK",
+        "KKSsssssKKKKKKKKKKKKSSSKKK",
+        ".KSSSsSSSSSSKKKKKSSSSSKKKK",
+        ".KSSSSSSSSSSKKKKSSSSKKKKKK",
+        ".KKSSSSSSSSSKKKKKKKKKKKKK.",
+        "..KKKSSSSSSKKKKKKKKKKKKKK.",
+        "..KKKKKKKKKKKKKKKKKKKK....",
+        "..KKKKKKKKKKKKK...........",
+        ".....KKKKKKKK.............",
+        "........KK................"
+      ]
+    },
+    {
+      "id": "smoke-3",
+      "channel": "effects",
+      "at": [
+        50,
+        48
+      ],
+      "rows": [
+        "...............K.............",
+        ".........SSSSSSSKK...........",
+        "......KSSSSSSSSSSSKK.........",
+        "......SSSSSSSSSSSSSSKK.......",
+        ".....SSSSssssSSSSSSSSKK......",
+        "....SSSssssssssSSSSSSSKK.....",
+        "...KSSssssssssssSSSSSSKKK....",
+        "...KSSSssssssssssSSSSSSKK....",
+        "...KKSSsssssssssSSSSSSSKKK...",
+        "...KKSSsssssssssSSSSSSSKKKK..",
+        "....KSSSSSSSSSSSSSSSSSSKKKK..",
+        "...SKKSSSSSSSSSSSSSSSSKKKK...",
+        "...SKKSSSSSSSSSSSSSSSSKKKK...",
+        "..SssKSSSSSSSSSSSSSSSKKKKKK..",
+        ".SsssKKKKKSSSSSSSSKKKKKKKSKK.",
+        "KSSssKKKKKKKKKSKKKKKKKKKKKKKK",
+        "KKSssKKKKKKKKKKKKKKKKKKKSKKKK",
+        "KKSSSsssKKKKKKKKKKKKKKKSSKKK.",
+        ".KSSSSSSSSSKKKKKKKKSSSSSKKKK.",
+        ".KSSSSSSSSSSKKKKKKSSKKKKKKK..",
+        ".KKSSSSSSSSSSKKKKKKKKKKKKKK..",
+        "..KKKKKSSSSKKKKKKKKKKKKKKKK..",
+        "..KKKKKKKKKKKKKKKKKKKKK......",
+        "..KKKKKKKKKKKKKKK............",
+        ".....KKKKKKKKKK..............",
+        ".........KK.................."
+      ]
+    },
+    {
+      "id": "smoke-4",
+      "channel": "effects",
+      "at": [
+        49,
+        47
+      ],
+      "rows": [
+        ".............KKKKK.............",
+        ".......KKkkkkkkkkkKK...........",
+        "......KkkkkkkkkkkkkkKK.........",
+        ".....KkkkkkkkkkkkkkkkkKK.......",
+        "....KkkkkkkkkkkkkkkkkkkKK......",
+        "....KkkksssssssskkkkkkkKKK.....",
+        "...KkkksssssssssskkkkkkkKKK....",
+        "..KKkksssssssssssskkkkkkkKKK...",
+        "..KKkkksssssssssssskkkkkkkKK...",
+        "..KKkkkssssssssssskkkkkkkkKKK..",
+        "...KKkkksssssssssskkkkkkkKKKKK.",
+        "...KKkkkkkksssskkkkkkkkkkKKKKK.",
+        "...KKkkkkkkkkkkkkkkkkkkkkKKKK..",
+        "..kkKKkkkkkkkkkkkkkkkkkkKKKKK..",
+        ".kkkKKkkkkkkkkkkkkkkkkkkKKKKKK.",
+        "KkksKKKkkkkkkkkkkkkkkkkKKKKKKK.",
+        "KkkssKKKKKKkkkkkkkkKKKKKKKKKKKK",
+        "KkkssKKKKKKKKKKkKKKKKKKKKKKKKKK",
+        "KKkksKKKKKKKKKKK..KKKKKKKKKKKKK",
+        "KKkkkkkKKKKKKKKK..KKKKKKKkKKKK.",
+        ".KkkkkkkkkkKKKKK..KKKKkkKKKKKK.",
+        ".KKkkkkkkkkkKKKKKKKKKKKKKKKKK..",
+        ".KKKKkkkkkkkkKKKKKKKKKKKKKKKK..",
+        "..KKKKKKkkkkKKKKKKKKKKKKKKKK...",
+        "..KKKKKKKKKKKKKKKKKKKKKK.......",
+        "..KKKKKKKKKKKKKKKKK............",
+        "......KKKKKKKKKK...............",
+        "..........KKK.................."
+      ]
+    },
+    {
+      "id": "smoke-5",
+      "channel": "effects",
+      "at": [
+        47,
+        45
+      ],
+      "rows": [
+        "..................K................",
+        "............KKKKKkKKK..............",
+        ".......KKKkkkkkkkkkkKKK............",
+        ".......KkkkkkkkkkkkkkkKKK..........",
+        "......KkkkkkkkkkkkkkkkkkKKK........",
+        ".....KkkkkkkkkkkkkkkkkkkkKKK.......",
+        "....KKkkkkkksssskkkkkkkkkkKKK......",
+        "....KkkkksssssssssskkkkkkkkKKK.....",
+        "...KkkkksssssssssssskkkkkkkkKKK....",
+        "..KKKkkkssssssssssssskkkkkkkkKK....",
+        "..KKKkkksssssssssssssskkkkkkkKKK...",
+        "...KKkkkksssssssssssskkkkkkkkKKKK..",
+        "...KKKkkksssssssssssskkkkkkkkKKKKK.",
+        "...KKKkkkkssssssssskkkkkkkkkKKKKKK.",
+        "...KKKkkkkkkkkkkkkkkkkkkkkkkKKKKK..",
+        "..KkKKkkkkkkkkkkkkkkkkkkkkkkKKKKK..",
+        ".KkkKKKkkkkkkkkkkkkkkkkkkkkKKKKKK..",
+        ".KkksKKkkkkkkkkkkkkkkkkkkkkKKKKKKK.",
+        "KKkksKKKKkkkkkkkkkkkkkkkkKKKKKKKKKK",
+        ".KkkkKKKKKKKKkkkkkkkkkKKKKKKKKKKKKK",
+        ".KKkksKKKKKKKKKKKk...KKKKKKKKKKKKK.",
+        ".KKkkkKKKKKKKKKKKK...KKKKKKKKKKKKK.",
+        "..KkkkkkKKKKKKKKKK...KKKKKKKKKKKK..",
+        "..KKkkkkkkkkKKKKKKKKKKKKKKKKKKKKK..",
+        "..KKkkkkkkkkkKKKKKKKKKKKKKKKKKKK...",
+        "..KKKKKkkkkkkkKKKKKKKKKKKKKKKKKK...",
+        "...KKKKKKKKkkKKKKKKKKKKKKKKKKK.....",
+        "...KKKKKKKKKKKKKKKKKKKKKKKK........",
+        "....KKKKKKKKKKKKKKKKKK.............",
+        "........KKKKKKKKKKK................",
+        "............KKK...................."
+      ]
+    },
+    {
+      "id": "dust-0",
+      "channel": "effects",
+      "at": [
+        53,
+        58
+      ],
+      "rows": [
+        "........TTTTTTbbb.......",
+        "......bbTTTTTTTTbb......",
+        ".......bbTTTTTTbbbb.....",
+        ".......bbbbbbbbbbbTbb...",
+        "..TTTTTTbbbbbbbbbTTTTbb.",
+        "bTTTTTTTTTbbbTTTTTTTbbbb",
+        ".bTTTTTTTbbbbbbbbbbbbbb.",
+        ".bbbbbbbbbbb.bbbbbbbbb..",
+        "..bbbbbbbbb............."
+      ]
+    },
+    {
+      "id": "dust-1",
+      "channel": "effects",
+      "at": [
+        50,
+        58
+      ],
+      "rows": [
+        ".............TTTTTb...........",
+        "...........bTTTTTTTbb.........",
+        "............bTTTTTbbbb........",
+        "............bbbbbbbbbTTTTTb...",
+        ".TTTTTb........bbb..bTTTTTTTb.",
+        "bTTTTTTbb...........bbTTTTTbbb",
+        "bTTTTTbbbb...........bbbbbbbbb",
+        "bbbbbbbbb...............bbb...",
+        "....bbb......................."
+      ]
+    },
+    {
+      "id": "dust-2",
+      "channel": "effects",
+      "at": [
+        46,
+        58
+      ],
+      "rows": [
+        "..................TTTT................",
+        ".................bTTTTTbb.............",
+        ".................bbTTTbbbb............",
+        "..................bbbbbbb......TTT....",
+        ".TTTT.........................TTTTTbb.",
+        "bTTTTTbb......................bTTTTbbb",
+        "bTTTTbbbb.....................bbbbbbb.",
+        ".bbbbbbb.............................."
+      ]
+    },
+    {
+      "id": "dust-3",
+      "channel": "effects",
+      "at": [
+        43,
+        58
+      ],
+      "rows": [
+        ".......................TT....................",
+        ".......................TTTbb.................",
+        "......................bTTTbbb................",
+        ".......................bbbbb...........TTT...",
+        "TTT....................................TTTbb.",
+        "TTTTb.................................bTTTbbb",
+        "bTTbbb.................................bbbbb.",
+        "bbbbb........................................"
+      ]
+    },
+    {
+      "id": "pickup-0",
+      "channel": "effects",
+      "at": [
+        59,
+        59
+      ],
+      "rows": [
+        ".....Y.....",
+        "...IIIII...",
+        "...........",
+        ".I.......I.",
+        ".I.......I.",
+        "YI.......IY",
+        ".I.......I.",
+        ".I.......I.",
+        "...........",
+        "...IIIII...",
+        ".....Y....."
+      ]
+    },
+    {
+      "id": "pickup-1",
+      "channel": "effects",
+      "at": [
+        55,
+        55
+      ],
+      "rows": [
+        ".........Y.........",
+        ".......IIIII.......",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        ".I...............I.",
+        ".I...............I.",
+        "YI...............IY",
+        ".I...............I.",
+        ".I...............I.",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        "...................",
+        ".......IIIII.......",
+        ".........Y........."
+      ]
+    },
+    {
+      "id": "pickup-2",
+      "channel": "effects",
+      "at": [
+        51,
+        51
+      ],
+      "rows": [
+        ".............Y.............",
+        "...........ccccc...........",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        ".c.......................c.",
+        ".c.......................c.",
+        "Yc.......................cY",
+        ".c.......................c.",
+        ".c.......................c.",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........................",
+        "...........ccccc...........",
+        ".............Y............."
+      ]
+    },
+    {
+      "id": "pickup-3",
+      "channel": "effects",
+      "at": [
+        47,
+        47
+      ],
+      "rows": [
+        ".................Y.................",
+        "...............ccccc...............",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        ".c...............................c.",
+        ".c...............................c.",
+        "Yc...............................cY",
+        ".c...............................c.",
+        ".c...............................c.",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...................................",
+        "...............ccccc...............",
+        ".................Y................."
+      ]
+    },
+    {
+      "id": "debris-wood-0",
+      "channel": "effects",
+      "at": [
+        61,
+        63
+      ],
+      "rows": [
+        "bTTbbb",
+        ".bbTTb",
+        ".bbbbb"
+      ]
+    },
+    {
+      "id": "debris-wood-1",
+      "channel": "effects",
+      "at": [
+        62,
+        62
+      ],
+      "rows": [
+        "bbb..",
+        "TTbbb",
+        "bbTTb",
+        "bbbb.",
+        "..bb."
+      ]
+    },
+    {
+      "id": "debris-metal-0",
+      "channel": "effects",
+      "at": [
+        61,
+        63
+      ],
+      "rows": [
+        "KssKKK",
+        ".KKssK",
+        ".KKKKK"
+      ]
+    },
+    {
+      "id": "debris-metal-1",
+      "channel": "effects",
+      "at": [
+        62,
+        62
+      ],
+      "rows": [
+        "KKK..",
+        "ssKKK",
+        "KKssK",
+        "KKKK.",
+        "..KK."
+      ]
+    },
+    {
+      "id": "flame-0",
+      "channel": "effects",
+      "at": [
+        57,
+        61
+      ],
+      "rows": [
+        "...rrr.....r..",
+        "..rrOrr..rrrr.",
+        ".rOOYYOOOOOOrr",
+        "OYIIYYYYYYOOOO",
+        "..YYYYYOOOOOrr",
+        "...rrOOrr..rr.",
+        "....rrrr......"
+      ]
+    },
+    {
+      "id": "flame-1",
+      "channel": "effects",
+      "at": [
+        55,
+        60
+      ],
+      "rows": [
+        ".....rrr......r...",
+        "...rrrrrr...rrrr..",
+        "..rrOOOOrrrrOOOrr.",
+        ".rOOYYYYOOOOOOOOrr",
+        "OYIIIYYYYYYYOOOOOr",
+        "..YYYYYYYYOOOOOrrr",
+        "...rrOOOOOOOOrrrr.",
+        "....rrrrrrr....rr.",
+        "......rrrr........"
+      ]
+    },
+    {
+      "id": "flame-2",
+      "channel": "effects",
+      "at": [
+        52,
+        59
+      ],
+      "rows": [
+        ".......rrr.........r....",
+        "....rrrrrrr......rrrr...",
+        "...rrrOOOrrr...rrrrrrr..",
+        "..rrOOOOOOOrrrOOOOOOrrrr",
+        ".rOOOYYYYYYYOOOOOOOOOOrr",
+        "OYIIIIIYYYYYYYYYOOOOOOOr",
+        "..rYYYYYYYYYYYOOOOOOOrrr",
+        "...rYYOOOOOOOOOOOOOrrrr.",
+        "....rrrrOOOOrrr...rrrrr.",
+        "......rrrrrrrr.......r..",
+        ".........rrrr..........."
+      ]
+    },
+    {
+      "id": "flame-3",
+      "channel": "effects",
+      "at": [
+        50,
+        58
+      ],
+      "rows": [
+        "........rrr.................",
+        "......rrrrrr........rrrr....",
+        "....rrrrOrrrr.....rrrrrrr...",
+        "...rrrOOOOOrrrr.rrrrOOOrrrr.",
+        "..rrOOOOYYOOOrOOOOOOOOOOrrrr",
+        ".rOOOYYYYYYYYYOOOOOOOOOOOrrr",
+        "OYIIIIIIYYYYYYYYYYYOOOOOOOOr",
+        "..rYYYYYYYYYYYYYOOOOOOOOOrr.",
+        "...rYYYYYYYOOOOOOOOOOOrrrrr.",
+        "....rrrrOOOOOOOOOOOrrrrrrrr.",
+        ".....rrrrrrrrrrrr......rrr..",
+        "........rrrrrrrr............",
+        "..........rrrr.............."
+      ]
+    },
+    {
+      "id": "flame-4",
+      "channel": "effects",
+      "at": [
+        48,
+        58
+      ],
+      "rows": [
+        ".........rrrr...................",
+        ".......rrrrrrr.........rrrrr....",
+        ".....rrrrrOrrrr......rrrrrrrr...",
+        "....rrrOOOOOOrrrr.rrrrrOOOrrrr..",
+        "...rrOOOOYYOOOOrOOOOOOOOOOOOrrrr",
+        "..rOOYYYYYYYYYYYOOOOOOOOOOOOOrrr",
+        "OYIIIIIIIYYYYYYYYYYYYYOOOOOOOOOr",
+        "..rYYYYYYYYYYYYYYYYOOOOOOOOOrrr.",
+        "...rrYYYYYYYOOOOOOOOOOOOOOrrrrr.",
+        ".....rrrrOOOOOOOOOOOO.rrrrrrrr..",
+        "......rrrrrrrrrrrrr.......rrrr..",
+        ".........rrrrrrrrr..............",
+        "............rrrr................"
+      ]
+    },
+    {
+      "id": "flame-5",
+      "channel": "effects",
+      "at": [
+        46,
+        58
+      ],
+      "rows": [
+        "..........rrrr...............r......",
+        ".......rrrrrrrrr..........rrrrr.....",
+        ".....rrrrrrOrrrrr......rrrrrrrrrr...",
+        "....rrrrOOOOOOrrrrr..rrrrrOOOrrrrr..",
+        "...rrrOOOOYYYOOOOrOOOOOOOOOOOOOrrrrr",
+        "..rOOOYYYYYYYYYYYYOOOOOOOOOOOOOOOrrr",
+        "OYIIIIIIIIYYYYYYYYYYYYYYOOOOOOOOOOrr",
+        "..rYYYYYYYYYYYYYYYYYYOOOOOOOOOOOrrr.",
+        "....rYYYYYYYYYOOOOOOOOOOOOOOOrrrrrr.",
+        ".....rrrrrOOOOOOOOOOOOOO.rrrrrrrrr..",
+        ".......rrrrrrrrrrrrrrr.......rrrr...",
+        "..........rrrrrrrrrr................",
+        ".............rrrrr.................."
+      ]
+    },
+    {
+      "id": "shot-blast-0",
+      "channel": "effects",
+      "at": [
+        53,
+        62
+      ],
+      "rows": [
+        ".IIIIIIIIYYYYYIIII",
+        "IIIIIIIIIIYYYYIIII",
+        ".IIIIIIIIIIY......",
+        ".IIIIIIIII..YYIIII",
+        "..IIIIIIIIYYYYIIII"
+      ]
+    },
+    {
+      "id": "shot-blast-1",
+      "channel": "effects",
+      "at": [
+        46,
+        60
+      ],
+      "rows": [
+        "....YYYY..............YYYYYIIIIIIII",
+        "...YYYYYY.....YYYYYYYY.............",
+        "...YYYYYYYYYYY.....................",
+        "YYYYYYYYYYYYYYYYYYYYYYYYYYYIIIIIIII",
+        "YYYYYYYYYYY........................",
+        "YYYYYYYYYYYYYYYYYYYYYYYYYYYIIIIIIII",
+        "...YYYYYYYYYY......................",
+        "...YYYYYYY...YYYYYYYYY.............",
+        "......YY..............YYYYYIIIIIIII"
+      ]
+    },
+    {
+      "id": "shot-blast-2",
+      "channel": "effects",
+      "at": [
+        38,
+        58
+      ],
+      "rows": [
+        ".......YY..............................TIIIIIIIIIIII",
+        ".......YYY...................TTTTTTTTTT.............",
+        "......YYYY..........TTTTTTTTT.......................",
+        "......YYYYYTTTTTTTTT................................",
+        ".TTTTTYYYYY..............TTTTTTTTTTTTTTTIIIIIIIIIIII",
+        "TTTTTTYYYYYTTTTTTTTTTTTTT...........................",
+        "TTTTTTYYYYY.........................................",
+        "T.....YYYYYTTTTTTTTTTTTTTTTTTTTTTTTTTTTTIIIIIIIIIIII",
+        ".TTTTTYYYYY.........................................",
+        "......YYYYYTTTTTTTTT................................",
+        "......YYYYY.........TTTTTTTTT.......................",
+        ".......YYY...................TTTTTTTTTT.............",
+        "........Y..............................TIIIIIIIIIIII"
+      ]
+    },
+    {
+      "id": "shot-blast-3",
+      "channel": "effects",
+      "at": [
+        30,
+        57
+      ],
+      "rows": [
+        "..............................................TTTTTTT.oooooooooooooooo",
+        "....................................TTTTTTTTTT........................",
+        "...........................TTTTTTTTT..................................",
+        ".................TTTTTTTTTT...........................................",
+        ".......TTTTTTTTTT..............................TTTTTT.oooooooooooooooo",
+        "TTTTTTT...............TTTTTTTTTTTTTTTTTTTTTTTTT.......................",
+        "TTTTTTTTTTTTTTTTTTTTTT................................................",
+        "TT....................................................................",
+        "..TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.............................",
+        "TTTTTTT..................................TTTTTTTTTTTT.oooooooooooooooo",
+        ".......TTTTTTTTTT.....................................................",
+        ".................TTTTTTTTT............................................",
+        "..........................TTTTTTTTTT..................................",
+        "....................................TTTTTTTTTT........................",
+        "..............................................TTTTTTT.oooooooooooooooo"
+      ]
+    },
+    {
+      "id": "shot-blast-4",
+      "channel": "effects",
+      "at": [
+        22,
+        55
+      ],
+      "rows": [
+        "...............................................................TTT.oooooooooooooooooooo",
+        ".....................................................TTTTTTTTTT........................",
+        "...........................................TTTTTTTTTT..................................",
+        ".................................TTTTTTTTTT............................................",
+        ".......................TTTTTTTTTT......................................................",
+        ".............TTTTTTTTTT................................................................",
+        "...TTTTTTTTTT...............................TTTTTTTTTTTTTTTTTTTTTT.oooooooooooooooooooo",
+        "TTT...............TTTTTTTTTTTTTTTTTTTTTTTTTT...........................................",
+        "TTTTTTTTTTTTTTTTTT.....................................................................",
+        ".......................................................................................",
+        "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.................................................",
+        "TTT...................................TTTTTTTTTTTTTTTTTTTTTTTTTTTT.oooooooooooooooooooo",
+        "...TTTTTTTTTT..........................................................................",
+        ".............TTTTTTTTTT................................................................",
+        ".......................TTTTTTTTTT......................................................",
+        ".................................TTTTTTTTTT............................................",
+        "...........................................TTTTTTTTTT..................................",
+        ".....................................................TTTTTTTTTT........................",
+        "...............................................................TTT.oooooooooooooooooooo"
+      ]
+    },
+    {
+      "id": "shot-blast-5",
+      "channel": "effects",
+      "at": [
+        19,
+        54
+      ],
+      "rows": [
+        "................................................................TTTTTTTT..ooooooooooooooooooooo",
+        ".......................................................TTTTTTTTT...............................",
+        ".............................................TTTTTTTTTT........................................",
+        "....................................TTTTTTTTT..................................................",
+        "...........................TTTTTTTTT...........................................................",
+        "..................TTTTTTTTT....................................................................",
+        ".........TTTTTTTTT............................................TTTTTTTTTT..ooooooooooooooooooooo",
+        "TTTTTTTTT.............................TTTTTTTTTTTTTTTTTTTTTTTT.................................",
+        ".............TTTTTTTTTTTTTTTTTTTTTTTTT.........................................................",
+        "TTTTTTTTTTTTT..................................................................................",
+        "...............................................................................................",
+        "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT...............................................................",
+        "................................TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT...........................",
+        "TTTTTTTTT...........................................................TTTT..ooooooooooooooooooooo",
+        ".........TTTTTTTTT.............................................................................",
+        "..................TTTTTTTTT....................................................................",
+        "...........................TTTTTTTTT...........................................................",
+        "....................................TTTTTTTTT..................................................",
+        ".............................................TTTTTTTTTT........................................",
+        ".......................................................TTTTTTTTT...............................",
+        "................................................................TTTTTTTT..ooooooooooooooooooooo"
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "sidearm",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "sidearm-0",
+          "ticks": 1
+        },
+        {
+          "frame": "sidearm-1",
+          "ticks": 1
+        },
+        {
+          "frame": "sidearm-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "tank",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "tank-0",
+          "ticks": 1
+        },
+        {
+          "frame": "tank-1",
+          "ticks": 1
+        },
+        {
+          "frame": "tank-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "shotgun-flash",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "shotgun-flash-0",
+          "ticks": 1
+        },
+        {
+          "frame": "shotgun-flash-1",
+          "ticks": 1
+        },
+        {
+          "frame": "shotgun-flash-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-0",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-0-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-0-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-0-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-1",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-1-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-1-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-1-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-2",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-2-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-2-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-2-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-3",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-3-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-3-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-3-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-4",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-4-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-4-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-4-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-5",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-5-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-5-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-5-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-6",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-6-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-6-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-6-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-7",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-7-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-7-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-7-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "hmg-8",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "hmg-8-0",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-8-1",
+          "ticks": 1
+        },
+        {
+          "frame": "hmg-8-2",
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": "impact-metal",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "impact-metal-0",
+          "ticks": 1
+        },
+        {
+          "frame": "impact-metal-1",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-metal-2",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-metal-3",
+          "ticks": 3
+        }
+      ]
+    },
+    {
+      "id": "impact-body",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "impact-body-0",
+          "ticks": 1
+        },
+        {
+          "frame": "impact-body-1",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-body-2",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-body-3",
+          "ticks": 3
+        }
+      ]
+    },
+    {
+      "id": "impact-stone",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "impact-stone-0",
+          "ticks": 1
+        },
+        {
+          "frame": "impact-stone-1",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-stone-2",
+          "ticks": 2
+        },
+        {
+          "frame": "impact-stone-3",
+          "ticks": 3
+        }
+      ]
+    },
+    {
+      "id": "blast",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "blast-0",
+          "ticks": 1
+        },
+        {
+          "frame": "blast-1",
+          "ticks": 1
+        },
+        {
+          "frame": "blast-2",
+          "ticks": 2
+        },
+        {
+          "frame": "blast-3",
+          "ticks": 2
+        },
+        {
+          "frame": "blast-4",
+          "ticks": 2
+        },
+        {
+          "frame": "blast-5",
+          "ticks": 2
+        },
+        {
+          "frame": "blast-6",
+          "ticks": 3
+        },
+        {
+          "frame": "blast-7",
+          "ticks": 3
+        },
+        {
+          "frame": "blast-8",
+          "ticks": 3
+        },
+        {
+          "frame": "blast-9",
+          "ticks": 3
+        },
+        {
+          "frame": "blast-10",
+          "ticks": 4
+        },
+        {
+          "frame": "blast-11",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "smoke-0",
+          "ticks": 4
+        },
+        {
+          "frame": "smoke-1",
+          "ticks": 4
+        },
+        {
+          "frame": "smoke-2",
+          "ticks": 4
+        },
+        {
+          "frame": "smoke-3",
+          "ticks": 4
+        },
+        {
+          "frame": "smoke-4",
+          "ticks": 4
+        },
+        {
+          "frame": "smoke-5",
+          "ticks": 4
+        }
+      ]
+    },
+    {
+      "id": "dust",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "dust-0",
+          "ticks": 2
+        },
+        {
+          "frame": "dust-1",
+          "ticks": 2
+        },
+        {
+          "frame": "dust-2",
+          "ticks": 2
+        },
+        {
+          "frame": "dust-3",
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": "pickup",
+      "channel": "effects",
+      "mode": "hold-last",
+      "exposures": [
+        {
+          "frame": "pickup-0",
+          "ticks": 2
+        },
+        {
+          "frame": "pickup-1",
+          "ticks": 2
+        },
+        {
+          "frame": "pickup-2",
+          "ticks": 2
+        },
+        {
+          "frame": "pickup-3",
+          "ticks": 2
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Static indexed-pixel drawings, including separately authored direction and expansion exposures.",
+    "Opaque pixel clusters only; no runtime figure drawing, smooth scaling, glow shader or unbounded particle simulation.",
+    "Human art and effects review remains pending."
+  ]
+}

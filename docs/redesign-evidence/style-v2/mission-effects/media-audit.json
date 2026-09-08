@@ -1,0 +1,240 @@
+{
+  "status": "pass",
+  "scope": "Independent FFmpeg decode of each stereo channel in raw WebAudio/WebM captures and the published AAC/MP4 encodes; no mono downmix masks channel peaks.",
+  "files": [
+    {
+      "file": "dist/breakwater-evidence/solo-clean-normal.webm",
+      "peakDb": [
+        -8.538898,
+        -4.820218,
+        -4.820218
+      ],
+      "rmsDb": [
+        -28.591028,
+        -28.179777,
+        -28.380537
+      ]
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-normal.mp4",
+      "peakDb": [
+        -9.548431,
+        -5.851017,
+        -5.851017
+      ],
+      "rmsDb": [
+        -29.638897,
+        -29.221932,
+        -29.425412
+      ]
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-debug-normal.webm",
+      "peakDb": [
+        -8.247704,
+        -6.093127,
+        -6.093127
+      ],
+      "rmsDb": [
+        -28.573241,
+        -28.158493,
+        -28.360918
+      ]
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-debug-normal.mp4",
+      "peakDb": [
+        -9.294408,
+        -7.109538,
+        -7.109538
+      ],
+      "rmsDb": [
+        -29.617533,
+        -29.198957,
+        -29.403204
+      ]
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-quarter.webm",
+      "peakDb": [
+        -8.533322,
+        -4.941226,
+        -4.941226
+      ],
+      "rmsDb": [
+        -31.426935,
+        -31.851843,
+        -31.634194
+      ]
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-quarter.mp4",
+      "peakDb": [
+        -9.575653,
+        -5.982614,
+        -5.982614
+      ],
+      "rmsDb": [
+        -32.468173,
+        -32.879702,
+        -32.669065
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-normal.webm",
+      "peakDb": [
+        -5.899663,
+        -3.155443,
+        -3.155443
+      ],
+      "rmsDb": [
+        -26.324759,
+        -26.249367,
+        -26.286899
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-normal.mp4",
+      "peakDb": [
+        -6.906461,
+        -3.981816,
+        -3.981816
+      ],
+      "rmsDb": [
+        -27.369033,
+        -27.309905,
+        -27.339368
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-debug-normal.webm",
+      "peakDb": [
+        -5.899663,
+        -2.746572,
+        -2.746572
+      ],
+      "rmsDb": [
+        -26.305707,
+        -26.182699,
+        -26.243768
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-debug-normal.mp4",
+      "peakDb": [
+        -6.894036,
+        -3.749958,
+        -3.749958
+      ],
+      "rmsDb": [
+        -27.349615,
+        -27.238456,
+        -27.29368
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-quarter.webm",
+      "peakDb": [
+        -4.919571,
+        -3.017782,
+        -3.017782
+      ],
+      "rmsDb": [
+        -30.125598,
+        -30.557313,
+        -30.336094
+      ]
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-quarter.mp4",
+      "peakDb": [
+        -5.899708,
+        -3.922029,
+        -3.922029
+      ],
+      "rmsDb": [
+        -31.16254,
+        -31.586832,
+        -31.369507
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-normal.webm",
+      "peakDb": [
+        -1.10483,
+        -1.370384,
+        -1.10483
+      ],
+      "rmsDb": [
+        -23.27888,
+        -23.475496,
+        -23.376076
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-normal.mp4",
+      "peakDb": [
+        -2.271483,
+        -2.481273,
+        -2.271483
+      ],
+      "rmsDb": [
+        -24.325942,
+        -24.534803,
+        -24.429117
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-debug-normal.webm",
+      "peakDb": [
+        -0.453142,
+        -1.206318,
+        -0.453142
+      ],
+      "rmsDb": [
+        -23.350421,
+        -23.510499,
+        -23.429722
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-debug-normal.mp4",
+      "peakDb": [
+        -1.614692,
+        -2.353338,
+        -1.614692
+      ],
+      "rmsDb": [
+        -24.399429,
+        -24.579777,
+        -24.488666
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-quarter.webm",
+      "peakDb": [
+        -3.084831,
+        -1.812084,
+        -1.812084
+      ],
+      "rmsDb": [
+        -28.102577,
+        -28.494711,
+        -28.29422
+      ]
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-quarter.mp4",
+      "peakDb": [
+        -4.131041,
+        -2.096354,
+        -2.096354
+      ],
+      "rmsDb": [
+        -29.139878,
+        -29.523951,
+        -29.32767
+      ]
+    }
+  ]
+}

@@ -9,9 +9,9 @@ import {
 } from "../../src/game/missions/breakwater.js";
 import { BREAKWATER } from "../../src/game/missions/breakwater-content.js";
 
-/** A continuous solo input demonstration. The director can inspect state but never writes it. */
-export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void) {
-  let state = createBreakwater(),
+/** Continuous input demonstrations. Directors inspect accepted state and never write the world. */
+export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void, players = 1) {
+  let state = createBreakwater(players),
     phase = 0,
     began = 0;
   const commands: CombatCommand[][] = [],
@@ -139,7 +139,11 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void)
       case 11:
         go(target(27).health > 0 ? 2070 : 2450);
         fire();
-        if (x >= 2448) begin(12);
+        if (
+          x >= 2448 &&
+          state.combat.players.every((p) => p.life === "alive" && p.body.x / 256 >= 2428)
+        )
+          begin(12);
         break;
       case 12:
         go(2680);
@@ -183,6 +187,104 @@ export function runBreakwaterProof(observe?: (state: BreakwaterMission) => void)
     )
       jumpPressed = true;
     const row = [{ held, firePressed, jumpPressed, grenadePressed, interactPressed }];
+    for (let slot = 1; slot < players; slot++) {
+      const ally = state.combat.players[slot];
+      if (!ally) throw new Error("Missing demonstration ally");
+      const ax = ally.body.x / 256,
+        ay = ally.body.y / 256;
+      let destination = x - slot * 14,
+        flags = 0,
+        jump = phase === 0 && tick % 120 === slot * 16,
+        grenade = false,
+        use = false;
+      if (phase === 11 && x >= 2400) destination = 2450 - slot * 4;
+      const cache = BREAKWATER.pickups.find(
+        (p) =>
+          state.pickups.find((s) => s.id === p.id)?.claimedBy.includes(player.playerId) &&
+          !state.pickups.find((s) => s.id === p.id)?.claimedBy.includes(ally.playerId) &&
+          p.x >= ax - 24 &&
+          p.x <= x + 32 &&
+          x - p.x < 150,
+      );
+      if (cache) {
+        destination = cache.x;
+        use = tick % 8 === slot;
+      }
+      if (phase >= 14) {
+        const equipped = state.pickups.find((p) => p.id === 304)?.claimedBy.includes(ally.playerId);
+        destination = equipped ? 2700 - slot * 28 : 2712;
+        use = !equipped && tick % 8 === slot;
+        const settled = Math.abs(ax - destination) <= 2;
+        const clearBurst = Math.ceil((2790 - ax + 12) / 3) - 15;
+        if (
+          settled &&
+          equipped &&
+          ally.facing === 1 &&
+          state.boss.phase === "recovery" &&
+          tick - state.boss.phaseStartTick >= Math.max(20, clearBurst) &&
+          tick >= 2400
+        )
+          flags |= Held.Fire;
+        else if (settled) {
+          flags |= Held.Down;
+          if (ally.facing < 0) flags |= Held.Right;
+        }
+      } else if (phase >= 1 && phase <= 7) {
+        const enemy = state.combat.targets.find(
+          (t) => t.health > 0 && Math.abs(t.enemy.body.x / 256 - ax) < 210,
+        );
+        if (enemy) {
+          flags |= Held.Fire;
+          if (enemy.enemy.body.x / 256 < ax) destination = ax - 3;
+          grenade = !!enemy.guard && tick % 180 === slot * 24;
+          if (enemy.rifle && Math.abs(enemy.enemy.body.x / 256 - ax) < 100) flags |= Held.Down;
+        }
+      } else if (phase === 0) flags |= held & (Held.Fire | Held.Up | Held.Down);
+      else if (phase < 14 && Math.abs(ax - x) < 120) flags |= held & Held.Fire;
+      if (ax < destination - 2) flags |= Held.Right;
+      else if (ax > destination + 2) flags |= Held.Left;
+      if (cache && ay < 190 && ally.body.grounded) {
+        flags |= Held.Down;
+        jump = true;
+      }
+      if (
+        phase >= 2 &&
+        phase < 14 &&
+        ally.body.grounded &&
+        Math.abs(ally.body.vx) === 0 &&
+        Math.abs(ax - destination) > 24
+      )
+        jump = tick % 30 === slot * 5;
+      if (
+        ally.body.grounded &&
+        state.combat.projectiles.some(
+          (p) =>
+            p.team === 2 &&
+            Math.abs(p.position.x / 256 - ax) < 110 &&
+            (ax - p.position.x / 256) * p.velocity.x > 0 &&
+            p.position.y / 256 > ay - 35 &&
+            p.position.y / 256 < ay - 16,
+        )
+      )
+        flags |= Held.Down;
+      if (
+        ally.body.grounded &&
+        state.combat.targets.some(
+          (t) =>
+            t.health > 0 && t.guard?.phase === "bash" && Math.abs(t.enemy.body.x / 256 - ax) < 55,
+        )
+      ) {
+        flags &= ~Held.Down;
+        jump = true;
+      }
+      row.push({
+        held: flags,
+        firePressed: (flags & Held.Fire) !== 0 && tick % 8 === slot,
+        jumpPressed: jump,
+        grenadePressed: grenade,
+        interactPressed: use,
+      });
+    }
     state = stepBreakwater(state, row);
     commands.push(row);
     observe?.(structuredClone(state));

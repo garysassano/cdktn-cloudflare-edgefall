@@ -196,7 +196,7 @@ function validateNativeAtlas(atlas, atlasPath) {
     known = new Set();
   if (!Object.keys(drawings).length) fail("empty native drawings");
   for (const [id, drawing] of Object.entries(drawings)) {
-    if (!["legs", "upper", "full-body"].includes(drawing.channel))
+    if (!["legs", "upper", "full-body", "effects"].includes(drawing.channel))
       fail(`invalid native channel ${id}`);
     if (
       drawing.contact &&

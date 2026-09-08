@@ -1,0 +1,8093 @@
+{
+  "format": 1,
+  "composer": "Original composition authored for Edgefall by Codex",
+  "licence": "Project-original",
+  "tempo": 144,
+  "sampleRate": 48000,
+  "beatsPerBar": 4,
+  "notes": "Two 16-bar arrangements share tempo and form. Trumpet call-and-response over pizzicato bass and syncopated marimba; the boss revoices the material with chromatic roots and denser percussion. No pre-existing melody or music loop is sampled.",
+  "instruments": {
+    "trumpet": {
+      "gain": 0.24,
+      "pan": -0.12,
+      "releaseSeconds": 0.055
+    },
+    "marimba": {
+      "gain": 0.15,
+      "pan": 0.3,
+      "releaseSeconds": 0.14
+    },
+    "bass": {
+      "gain": 0.25,
+      "pan": -0.2,
+      "releaseSeconds": 0.1
+    },
+    "kick": {
+      "gain": 0.23,
+      "pan": 0,
+      "releaseSeconds": 0.09
+    },
+    "snare": {
+      "gain": 0.16,
+      "pan": 0.14,
+      "releaseSeconds": 0.06
+    },
+    "cymbal": {
+      "gain": 0.14,
+      "pan": -0.25,
+      "releaseSeconds": 0.05
+    }
+  },
+  "tracks": [
+    {
+      "id": "breakwater-quay",
+      "title": "Breakwater: Brass and Salt",
+      "bars": 16,
+      "notes": [
+        {
+          "instrument": "bass",
+          "beat": 0.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.35
+        },
+        {
+          "instrument": "kick",
+          "beat": 0,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 0,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 0.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 0.5,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 0.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 0.75,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 1.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 1,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 1,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 1.25,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 1.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 1.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 1.5,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 1.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 1.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 2.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 2,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 2.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 2.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 2.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 2.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 2.5,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 2.75,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 3.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 3,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 3,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 3,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 3.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 3.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 3.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 3.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 4.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 4,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 4,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 4.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 4.5,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 4.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 4.5,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 4.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 5.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 5,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 5.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 5.25,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 5.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 5.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 5.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 5.75,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 6.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 6,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 6,
+          "note": 72,
+          "beats": 0.75,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 6.25,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 6.5,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 6.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 6.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 6.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 7.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 7,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 7,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 7.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 7.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 7.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 7.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 7.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 8.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 8,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 8,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 8,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 8.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 8.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 8.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 8.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 9.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 9,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 9,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 9,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 9.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 9.5,
+          "note": 53,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 9.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 9.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 9.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 9.75,
+          "note": 84,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 10.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 10,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 10.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 10.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 10.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 10.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 10.5,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 10.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 11.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 11,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 11,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 11.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 11.25,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 11.5,
+          "note": 53,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 11.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 11.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 12.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 12,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 12,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 12,
+          "note": 76,
+          "beats": 0.75,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 12.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 12.5,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 12.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 12.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 13.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 13,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 13,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 13.25,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 13.25,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 13.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 13.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 13.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 13.75,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 14.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 14,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 14,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 14.25,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 14.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 14.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 14.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 14.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "marimba",
+          "beat": 14.75,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 15.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 15,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 15,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 15.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 15.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 15.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 15.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 15.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 16.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.35
+        },
+        {
+          "instrument": "kick",
+          "beat": 16,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 16,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 16.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 16.5,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 16.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 16.75,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 17.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 17,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 17,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 17.25,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 17.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 17.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 17.5,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 17.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 17.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 18.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 18,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 18.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 18.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 18.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 18.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 18.5,
+          "note": 84,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 18.75,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 19.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 19,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 19,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 19,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 19.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 19.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 19.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 19.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 20.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 20,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 20,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 20.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 20.5,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 20.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 20.5,
+          "note": 79,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 20.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 21.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 21,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 21,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 21.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 21.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 21.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 21.5,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 21.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 21.75,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 22.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 22,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 22.25,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 22.25,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 22.5,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 22.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 22.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 22.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 23.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 23,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 23,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 23,
+          "note": 72,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 23.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 23.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 23.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 23.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 24.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 24,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 24,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 24,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 24.25,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 24.5,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 24.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 24.5,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 24.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 25.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 25,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 25,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 25.25,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 25.25,
+          "note": 79,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 25.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 25.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 25.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 25.75,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 26.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 26,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 26,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 26.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 26.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 26.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 26.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 26.75,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 27.0,
+          "note": 44,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 27,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 27,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 27,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 27.25,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 27.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 27.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 27.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 28.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 28,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 28,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 28,
+          "note": 73,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 28.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 28.5,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 28.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 28.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 29.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 29,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 29,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 29,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 29.25,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 29.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 29.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 29.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 29.75,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 30.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 30,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 30.25,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 30.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 30.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 30.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 30.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 30.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 30.75,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 31.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 31,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 31,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 31.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 31.25,
+          "note": 69,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 31.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 31.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "marimba",
+          "beat": 31.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 32.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.35
+        },
+        {
+          "instrument": "kick",
+          "beat": 32,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 32,
+          "note": 81,
+          "beats": 0.75,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 32.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 32.5,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 32.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 33.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 33,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 33,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 33.25,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 33.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 33.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 33.5,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 33.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 33.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 34.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 34,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 34,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 34.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 34.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 34.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 34.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 34.75,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 35.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 35,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 35,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 35,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 35.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 35.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 35.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 35.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 36.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 36,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 36,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 36.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 36.25,
+          "note": 79,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 36.5,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 36.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 36.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 37.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 37,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 37,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 37,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 37.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 37.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 37.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 37.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 37.75,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 38.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 38,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 38,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 38.25,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 38.5,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 38.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 38.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 38.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 38.75,
+          "note": 72,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 39.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 39,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 39,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 39.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 39.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 39.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 39.5,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 39.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 40.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 40,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 40,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 40,
+          "note": 77,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 40.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 40.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 40.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 40.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 41.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 41,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 41,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 41,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 41.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 41.5,
+          "note": 53,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 41.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 41.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 41.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 41.75,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 42.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 42,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 42.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 42.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 42.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 42.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 42.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 43.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 43,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 43,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 43,
+          "note": 84,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 43.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 43.5,
+          "note": 53,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 43.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 43.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 44.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 44,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 44,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 44.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 44.5,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 44.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 44.5,
+          "note": 80,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 44.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 45.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 45,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 45,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 45.25,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 45.25,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 45.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 45.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 45.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 45.75,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 46.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 46,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 46,
+          "note": 73,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 46.25,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 46.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 46.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 46.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 46.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "marimba",
+          "beat": 46.75,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 47.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 47,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 47,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 47,
+          "note": 71,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 47.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 47.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 47.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "marimba",
+          "beat": 47.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 48.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.35
+        },
+        {
+          "instrument": "kick",
+          "beat": 48,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 48,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 48.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 48.5,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 48.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 48.75,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 49.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 49,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 49,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 49.25,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 49.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 49.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 49.5,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 49.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 49.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 50.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 50,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 50.25,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 50.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 50.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 50.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 50.5,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 50.75,
+          "note": 74,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 51.0,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 51,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 51,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 51.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 51.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 51.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 51.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 51.75,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 52.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 52,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 52,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 52.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 52.25,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 52.5,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 52.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 52.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 53.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 53,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 53,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 53.25,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 53.25,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 53.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 53.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 53.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 53.75,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 54.0,
+          "note": 36,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 54,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 54,
+          "note": 72,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 54.25,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 54.5,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 54.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 54.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 54.75,
+          "note": 72,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 55.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 55,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 55,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 55,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 55.25,
+          "note": 64,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 55.5,
+          "note": 48,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 55.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 55.75,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 56.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 56,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 56,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 56,
+          "note": 70,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 56.25,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 56.5,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 56.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 56.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 57.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 57,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 57,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 57,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 57.25,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 57.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 57.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 57.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 57.75,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 58.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 58,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 58,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 58.25,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 58.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 58.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 58.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 58.5,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 58.75,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 59.0,
+          "note": 44,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 59,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 59,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 59,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 59.25,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 59.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 59.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 59.75,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 60.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 60,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 60,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 60,
+          "note": 73,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "marimba",
+          "beat": 60.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 60.5,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 60.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 60.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 61.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 61,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 61,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 61,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 61.25,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 61.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 61.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 61.75,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 61.75,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 62.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 62,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 62,
+          "note": 81,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 62.25,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 62.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 62.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 62.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 62.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "marimba",
+          "beat": 62.75,
+          "note": 81,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 63.0,
+          "note": 43,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 63,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "snare",
+          "beat": 63,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 63,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 63.25,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 63.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 63.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 63.5,
+          "note": 76,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "marimba",
+          "beat": 63.75,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        }
+      ]
+    },
+    {
+      "id": "lock-engine",
+      "title": "Lock Engine: Counterpressure",
+      "bars": 16,
+      "notes": [
+        {
+          "instrument": "bass",
+          "beat": 0.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.55
+        },
+        {
+          "instrument": "kick",
+          "beat": 0,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 0.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 0,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 0.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 0.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 0.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 0.5,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 1.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 1,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 1.0,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 1,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 1.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 1.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 1.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 1.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 1.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 2.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 2,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 2,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 2.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 2,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 2.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 2.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 2.5,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 3.0,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 3,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 3.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 3,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 3,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 3.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 3.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 3.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 3.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 3.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 4.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 4,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 4,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 4.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 4,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 4.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 4.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 4.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 4.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 5.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 5.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 5,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 5.25,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 5.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 5.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 5.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 5.5,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 6.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 6,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 6,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 6.0,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 6,
+          "note": 75,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 6.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 6.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 6.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 7.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 7,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 7.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 7,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 7,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 7.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 7.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 7.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 7.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 7.5,
+          "note": 75,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 8.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 8,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 8,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 8.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 8,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 8.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 8.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 8.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 8.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 9.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 9,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 9.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 9,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 9.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 9.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 9.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 9.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 9.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 10.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 10,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 10,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 10.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 10,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 10.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 10.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 10.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 11.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 11,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 11.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 11,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 11,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 11.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 11.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 11.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 11.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 11.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 12.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 12,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 12,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 12.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 12,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 12.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 12.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 12.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 13.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 13,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 13.0,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 13,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 13,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 13.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 13.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 13.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 13.5,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 13.75,
+          "note": 70,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 14.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 14,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 14,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 14.0,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 14.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 14.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 14.5,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 14.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 14.5,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 15.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 15,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 15.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 15,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "kick",
+          "beat": 15.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 15.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 15.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 15.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 15.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "snare",
+          "beat": 15.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 16.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.55
+        },
+        {
+          "instrument": "kick",
+          "beat": 16,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 16.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 16,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 16.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 16.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 16.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 16.5,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 17.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 17,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 17.0,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 17,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 17.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 17.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 17.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 17.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 17.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 18.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 18,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 18,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 18.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 18,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 18.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 18.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 18.5,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 19.0,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 19,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 19.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 19,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 19,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 19.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 19.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 19.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 19.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 19.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 20.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 20,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 20,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 20.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 20,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 20.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 20.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 20.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 20.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 21.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 21,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 21.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 21,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 21.25,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 21.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 21.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 21.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 21.5,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 22.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 22,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 22,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 22.0,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 22,
+          "note": 75,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 22.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 22.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 22.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 23.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 23,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 23.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 23,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 23,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 23.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 23.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 23.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 23.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 23.5,
+          "note": 75,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 24.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 24,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 24,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 24.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 24,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 24.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 24.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 24.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 24.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 25.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 25,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 25.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 25,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 25.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 25.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 25.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 25.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 25.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 26.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 26,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 26,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 26.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 26,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 26.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 26.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 26.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 27.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 27,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 27.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 27,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 27,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 27.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 27.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 27.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 27.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 27.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 28.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 28,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 28,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 28.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 28,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 28.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 28.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 28.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 29.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 29,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 29.0,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 29,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 29,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 29.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 29.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 29.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 29.5,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 29.75,
+          "note": 70,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 30.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 30,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 30,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 30.0,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 30.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 30.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 30.5,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 30.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 30.5,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 31.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 31,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 31.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 31,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "kick",
+          "beat": 31.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 31.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 31.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 31.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 31.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "snare",
+          "beat": 31.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 32.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.55
+        },
+        {
+          "instrument": "kick",
+          "beat": 32,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 32.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 32,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 32.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 32.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 32.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 32.5,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 33.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 33,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 33.0,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 33,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 33.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 33.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 33.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 33.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 33.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 34.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 34,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 34,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 34.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 34,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 34.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 34.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 34.5,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 35.0,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 35,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 35.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 35,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 35,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 35.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 35.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 35.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 35.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 35.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 36.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 36,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 36,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 36.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 36,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 36.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 36.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 36.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 36.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 37.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 37,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 37.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 37,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 37.25,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 37.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 37.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 37.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 37.5,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 38.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 38,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 38,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 38.0,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 38,
+          "note": 75,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 38.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 38.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 38.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 39.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 39,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 39.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 39,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 39,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 39.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 39.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 39.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 39.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 39.5,
+          "note": 75,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 40.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 40,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 40,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 40.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 40,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 40.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 40.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 40.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 40.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 41.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 41,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 41.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 41,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 41.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 41.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 41.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 41.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 41.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 42.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 42,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 42,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 42.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 42,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 42.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 42.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 42.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 43.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 43,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 43.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 43,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 43,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 43.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 43.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 43.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 43.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 43.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 44.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 44,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 44,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 44.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 44,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 44.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 44.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 44.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 45.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 45,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 45.0,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 45,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 45,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 45.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 45.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 45.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 45.5,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 45.75,
+          "note": 70,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 46.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 46,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 46,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 46.0,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 46.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 46.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 46.5,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 46.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 46.5,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 47.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 47,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 47.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 47,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "kick",
+          "beat": 47.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 47.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 47.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 47.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 47.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "snare",
+          "beat": 47.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        },
+        {
+          "instrument": "bass",
+          "beat": 48.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48,
+          "note": null,
+          "beats": 2,
+          "velocity": 0.55
+        },
+        {
+          "instrument": "kick",
+          "beat": 48,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 48.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 48,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 48.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 48.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 48.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 48.5,
+          "note": 81,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 49.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 49,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 49.0,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 49,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 49.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 49.5,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 49.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 49.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 49.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 50.0,
+          "note": 38,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 50,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 50,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 50.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 50,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 50.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 50.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 50.5,
+          "note": 69,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 51.0,
+          "note": 50,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 51,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 51.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 51,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 51,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 51.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 51.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 51.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 51.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 51.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 52.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 52,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 52,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 52.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 52,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 52.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 52.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 52.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 52.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 53.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 53,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 53.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 53,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 53.25,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 53.5,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 53.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 53.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 53.5,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 54.0,
+          "note": 39,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 54,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 54,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 54.0,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 54,
+          "note": 75,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 54.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 54.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 54.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 55.0,
+          "note": 51,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 55,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 55.0,
+          "note": 63,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 55,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 55,
+          "note": 79,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 55.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 55.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 55.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 55.5,
+          "note": 67,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 55.5,
+          "note": 75,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 56.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 56,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 56,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 56.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 56,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 56.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 56.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 56.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 56.5,
+          "note": 82,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 57.0,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 57,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 57.0,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 57,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 57.25,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 57.5,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 57.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 57.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 57.5,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "bass",
+          "beat": 58.0,
+          "note": 34,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 58,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 58,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 58.0,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 58,
+          "note": 74,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 58.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 58.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 58.5,
+          "note": 70,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "bass",
+          "beat": 59.0,
+          "note": 46,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 59,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 59.0,
+          "note": 62,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 59,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 59,
+          "note": 77,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "kick",
+          "beat": 59.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "bass",
+          "beat": 59.5,
+          "note": 41,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 59.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 59.5,
+          "note": 65,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 59.5,
+          "note": 74,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 60.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 60,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 60,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "marimba",
+          "beat": 60.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 60,
+          "note": 76,
+          "beats": 0.5,
+          "velocity": 0.84
+        },
+        {
+          "instrument": "bass",
+          "beat": 60.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 60.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 60.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 61.0,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 61,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 61.0,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 61,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 61,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 61.5,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 61.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "kick",
+          "beat": 61.5,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 61.5,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 61.75,
+          "note": 70,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 62.0,
+          "note": 33,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 62,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "kick",
+          "beat": 62,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "marimba",
+          "beat": 62.0,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "bass",
+          "beat": 62.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 62.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 62.5,
+          "note": 79,
+          "beats": 0.38,
+          "velocity": 0.52
+        },
+        {
+          "instrument": "snare",
+          "beat": 62.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.28
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 62.5,
+          "note": 69,
+          "beats": 0.5,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "bass",
+          "beat": 63.0,
+          "note": 45,
+          "beats": 0.42,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 63,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.22
+        },
+        {
+          "instrument": "marimba",
+          "beat": 63.0,
+          "note": 73,
+          "beats": 0.38,
+          "velocity": 0.38
+        },
+        {
+          "instrument": "snare",
+          "beat": 63,
+          "note": null,
+          "beats": 0.48,
+          "velocity": 0.8
+        },
+        {
+          "instrument": "kick",
+          "beat": 63.25,
+          "note": null,
+          "beats": 0.65,
+          "velocity": 0.6
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.25,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.43
+        },
+        {
+          "instrument": "bass",
+          "beat": 63.5,
+          "note": 40,
+          "beats": 0.42,
+          "velocity": 0.88
+        },
+        {
+          "instrument": "cymbal",
+          "beat": 63.5,
+          "note": null,
+          "beats": 0.09,
+          "velocity": 0.16
+        },
+        {
+          "instrument": "marimba",
+          "beat": 63.5,
+          "note": 76,
+          "beats": 0.38,
+          "velocity": 0.45
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.5,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.48
+        },
+        {
+          "instrument": "trumpet",
+          "beat": 63.5,
+          "note": 73,
+          "beats": 0.25,
+          "velocity": 0.72
+        },
+        {
+          "instrument": "snare",
+          "beat": 63.75,
+          "note": null,
+          "beats": 0.2,
+          "velocity": 0.53
+        }
+      ]
+    }
+  ]
+}

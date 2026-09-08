@@ -1,0 +1,167 @@
+{
+  "scope": "Original encodes, before additional AAC export headroom. Stereo channel peaks, followed by overall peak.",
+  "rows": [
+    {
+      "file": "dist/breakwater-evidence/solo-clean-normal.webm",
+      "peaks": [
+        -8.538898,
+        -4.820218,
+        -4.820218
+      ],
+      "sha256": "deef4c1ffdd84778f620de8077c9ce728671a6200ce26fcff04f983dca9e4fd6"
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-normal.mp4",
+      "peaks": [
+        -8.60496,
+        -0.789613,
+        -0.789613
+      ],
+      "sha256": "2d8d86a2ea351ff4c66679d1133a5d205098f9e34ff768ca01c2451d4edffb26"
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-debug-normal.webm",
+      "peaks": [
+        -8.247704,
+        -6.093127,
+        -6.093127
+      ],
+      "sha256": "d7e4af048f16307bbd2cf2ba451096e8f62f9111d4100b772fbd30c75f1014cf"
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-debug-normal.mp4",
+      "peaks": [
+        -8.415507,
+        -6.090216,
+        -6.090216
+      ],
+      "sha256": "8940acff60314f3522227910bd5449cefe0b9d0599a2f7d868886c959abd6556"
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-quarter.webm",
+      "peaks": [
+        -8.533322,
+        -4.941226,
+        -4.941226
+      ],
+      "sha256": "54f19c3e4c6ff443cda2bacf4a44091fb08b8b10e1b6797b95138657cd9ea984"
+    },
+    {
+      "file": "dist/breakwater-evidence/solo-clean-quarter.mp4",
+      "peaks": [
+        -8.551579,
+        -4.945205,
+        -4.945205
+      ],
+      "sha256": "cc7ca0c7200eefdad463f6ebffd022f3f361c4b5cc229983c641e0b8b14fda78"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-normal.webm",
+      "peaks": [
+        -5.899663,
+        -3.155443,
+        -3.155443
+      ],
+      "sha256": "3059b3821db52f34f82be4569ea6637ffe5797cb9e543cb7b9f1bb235e8c930a"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-normal.mp4",
+      "peaks": [
+        -5.94837,
+        -2.758985,
+        -2.758985
+      ],
+      "sha256": "c91b4ba3dc9c0f59e012fbc52c5562737ab12c610325bf8464461733a5d6161e"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-debug-normal.webm",
+      "peaks": [
+        -5.899663,
+        -2.746572,
+        -2.746572
+      ],
+      "sha256": "ca50fec97dd892ec67972cbe1b88e489019ab73e2adff4a510162df8995a9c06"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-debug-normal.mp4",
+      "peaks": [
+        -6.060204,
+        -2.609793,
+        -2.609793
+      ],
+      "sha256": "ef46489b432bea4eae92c3696305c0628b5665b120ab2435f31d39b13c443cb4"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-quarter.webm",
+      "peaks": [
+        -4.919571,
+        -3.017782,
+        -3.017782
+      ],
+      "sha256": "fc88bdd95254cb6ef0308db275831c69f486c5b7c466070de6c8a68d42d1f321"
+    },
+    {
+      "file": "dist/breakwater-2-evidence/coop-2-clean-quarter.mp4",
+      "peaks": [
+        -5.367098,
+        2.969993,
+        2.969993
+      ],
+      "sha256": "ad0dedbf01b4093b350e2ecd237511c802700d5fa12dbba2a85139a278439d2a"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-normal.webm",
+      "peaks": [
+        -1.10483,
+        -1.370384,
+        -1.10483
+      ],
+      "sha256": "ae4afbb272aa8b52f046ea4d8dfcafe81680a8e6075803454a08332d78968f0a"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-normal.mp4",
+      "peaks": [
+        -1.024068,
+        -0.979059,
+        -0.979059
+      ],
+      "sha256": "3c96849e36df436bc2d5ee4eb0c2cff1b9c4a8453782fb90b5279b591eddf686"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-debug-normal.webm",
+      "peaks": [
+        -0.453142,
+        -1.206318,
+        -0.453142
+      ],
+      "sha256": "c08115dffcc4bfbeb824a20a9e829c61651aa168c22bc6d1d25e53021f7f39cb"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-debug-normal.mp4",
+      "peaks": [
+        -1.204067,
+        -0.813764,
+        -0.813764
+      ],
+      "sha256": "d35aa61bab85c729b8af88f3208742463cac9c1ddcae6351032f3c789dd81bd3"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-quarter.webm",
+      "peaks": [
+        -3.084831,
+        -1.812084,
+        -1.812084
+      ],
+      "sha256": "84fa21582244c81b5dc8efff2b42154269801a54c0239badb9584fcae3760265"
+    },
+    {
+      "file": "dist/breakwater-4-evidence/coop-4-clean-quarter.mp4",
+      "peaks": [
+        -2.646404,
+        2.634065,
+        2.634065
+      ],
+      "sha256": "ef9224ef9a73c627f59cc6de67e3a0f804bd257f0905cd62c08c4a973599ba1f"
+    }
+  ]
+}
