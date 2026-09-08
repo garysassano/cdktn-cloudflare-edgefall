@@ -442,14 +442,11 @@ function appendShieldMarkers(
     });
   }
 }
-function meleeEligible(
+/** The same close-target arbitration is available to snapshot-based local prediction. */
+export function combatMeleeEligible(
   actor: ControlledActor,
-  targets: CombatTarget[],
-  terrain: SweepTarget[],
-  tick: number,
-  props: readonly DestructibleState[],
-  definitions: readonly DestructibleDefinition[],
-  extraHurtboxes: readonly HurtTarget[],
+  terrain: readonly SweepTarget[],
+  hurtboxes: readonly HurtTarget[],
 ): boolean {
   const definition = COMBAT_ATTACKS.get(4),
     shape = COMBAT_SHAPES.get(9);
@@ -471,11 +468,7 @@ function meleeEligible(
       actor.facing,
       { x: actor.body.x, y: hand.y },
       terrain,
-      [
-        ...combatHurtboxes(targets, tick),
-        ...destructibleHurtboxes(props, definitions),
-        ...extraHurtboxes,
-      ],
+      hurtboxes,
     ).some((hit) => hit.damage > 0)
   );
 }
@@ -723,15 +716,11 @@ export function advanceCombatLab(
       world.nextActionId,
       COMBAT_CATALOG,
       FOOT_ACTION_PROFILES,
-      meleeEligible(
-        actor,
-        world.targets,
-        terrain,
-        tick,
-        world.props,
-        destructibles,
-        stage?.extraHurtboxes ?? [],
-      ),
+      combatMeleeEligible(actor, terrain, [
+        ...combatHurtboxes(world.targets, tick),
+        ...destructibleHurtboxes(world.props, destructibles),
+        ...(stage?.extraHurtboxes ?? []),
+      ]),
     );
     world.players[slot] = result.actor;
     world.nextActionId = result.nextActionId;

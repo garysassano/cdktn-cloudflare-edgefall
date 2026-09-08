@@ -19,6 +19,7 @@ import { encounterProof } from "./encounter-proof.js";
 import { entryPhysicsProof } from "./entry-proof.js";
 import { entryRecoveryProof } from "./entry-recovery-proof.js";
 import { eventDeliveryProof } from "./event-delivery-proof.js";
+import { firearmFeedbackProof } from "./firearm-feedback-proof.js";
 import { footCombatProof } from "./foot-combat-proof.js";
 import { groundedProof, seamProof } from "./grounded-proof.js";
 import { hmgProof } from "./hmg-proof.js";
@@ -27,6 +28,7 @@ import { inputFlowProof } from "./input-flow-proof.js";
 import { laserCombatProof } from "./laser-combat-proof.js";
 import { mappedPredictionProof } from "./mapped-prediction-proof.js";
 import { materialProof } from "./material-proof.js";
+import { mixedInputRecoveryProof } from "./mixed-input-recovery-proof.js";
 import { movementProof, movingCasesProof } from "./movement-proof.js";
 import { navigationProof } from "./navigation-proof.js";
 import { ordnanceProof } from "./ordnance-proof.js";
@@ -134,6 +136,8 @@ export async function contractProof() {
     materials: materialProof(),
     combatReconnect: combatReconnectProof(),
     eventDelivery: eventDeliveryProof(),
+    firearmFeedback: firearmFeedbackProof(),
+    mixedInputRecovery: await mixedInputRecoveryProof(),
     movement: movementProof(),
     controller: controllerProof(),
     grounded: groundedProof(),

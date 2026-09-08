@@ -19,6 +19,7 @@ import {
   combatRecoveryProof,
   recordCombatRecovery,
 } from "./fixtures/combat-recovery-proof.js";
+import { mixedInputRecoveryProof } from "./fixtures/mixed-input-recovery-proof.js";
 import { playerLifeRecoveryProof } from "./fixtures/player-life-recovery-proof.js";
 
 let identity: CombatArchiveIdentity;
@@ -33,6 +34,15 @@ function state(tick = 60): CombatRuntime {
   return structuredClone(value);
 }
 describe("combat checkpoint and committed applied-input journal", () => {
+  it("cold-restores Fire-before-Jump and all three-action orders without sorting physical intent", async () => {
+    const proof = await mixedInputRecoveryProof();
+    expect(proof).toHaveLength(9);
+    expect(
+      proof.every(
+        (entry) => entry.players === 4 && entry.ticks === 15 && entry.sameKindReuseRejected,
+      ),
+    ).toBe(true);
+  });
   it("restores spent lives and remaining death/entry delays from full checkpoints and committed inputs", async () => {
     const proof = await playerLifeRecoveryProof();
     expect(proof.entryTick - proof.deathTick).toBe(30);

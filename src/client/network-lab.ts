@@ -23,6 +23,10 @@ import { combatEndTerrain } from "../game/labs/combat-terrain.js";
 import { FOOT_SHAPES } from "../game/labs/foot-fixture.js";
 import { worldRect, worldSocket } from "../game/physics/body.js";
 import { combatEventContext } from "../shared/diagnostics/combat-events.js";
+import {
+  predictCombatController,
+  predictedFirearmCues,
+} from "../shared/diagnostics/combat-prediction.js";
 import { combatContinuationHash } from "../shared/diagnostics/combat-recovery.js";
 import {
   COMBAT_SHAPE_IDS,
@@ -30,7 +34,6 @@ import {
   combatGeometryContext,
   combatIdentity,
   combatSnapshotScenario,
-  predictCombatMovement,
   validateCombatGeometryTransition,
 } from "../shared/diagnostics/combat-workload.js";
 import {
@@ -42,6 +45,7 @@ import {
 import { probeContext, roomWorkloadHash } from "../shared/diagnostics/room-workload.js";
 import { type InputBinding, InputCapture, inputSequenceLimit } from "../shared/input/capture.js";
 import { ControllerPrediction } from "../shared/prediction/controller.js";
+import { FirearmFeedback } from "../shared/prediction/firearm-feedback.js";
 import { decodeInitialSnapshot } from "../shared/protocol/baseline.js";
 import { encodeInputBatch } from "../shared/protocol/codec.js";
 import { EventReceiver } from "../shared/protocol/event-stream.js";
@@ -94,7 +98,7 @@ async function startLab() {
     const intro = document.getElementById("intro");
     if (intro)
       intro.textContent =
-        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts movement on foot; tanks, enemies, projectiles and ammo use committed snapshots. Confirmed hit/shot markers use acknowledged, deduplicated events. Predicted effects, final audio and remote interpolation remain in progress.";
+        "Engineering graphics. Four browsers share one authoritative combat world. Cyan predicts foot movement and muzzle feedback immediately; yellow confirms the same flash without restarting it. Tanks, enemies, projectiles, damage and ammo use committed snapshots. Hit markers use acknowledged, deduplicated events. Knife/grenade/vehicle feedback, final audio and remote interpolation remain in progress.";
     const controls = document.getElementById("controls");
     if (controls)
       controls.textContent =
@@ -133,6 +137,7 @@ async function startLab() {
     snapshot: FullSnapshot | null = null,
     prediction: ControllerPrediction | null = null;
   let movementSnapshot: FullSnapshot | null = null;
+  let firearmFeedback: FirearmFeedback | null = null;
   let initialActor: FullSnapshot["players"][number] | null = null;
   let inputStopped = false;
   let pendingMapping: InputMapping | null = null;
@@ -302,6 +307,7 @@ async function startLab() {
       remainingEnemies: snapshot?.campaign.remainingEnemies ?? null,
       combatBaseline: snapshot?.combat ?? null,
       removedIds: snapshot?.removedIds ?? [],
+      firearmFeedback: firearmFeedback?.status ?? null,
       events: eventReceiver
         ? {
             ...eventReceiver.status,
@@ -413,7 +419,22 @@ async function startLab() {
       directionalIntent(input.held, actor.facing, actor.body.grounded).aim,
     );
     prediction.submit(command);
+    synchronizeFeedback();
     trace("capture", command.sequence, command.sequence, prediction.tick);
+  }
+  function synchronizeFeedback() {
+    const ack = snapshot?.acknowledgments[slot];
+    if (!firearmFeedback || !prediction || !snapshot || !ack || !eventReceiver) return;
+    firearmFeedback.synchronize(
+      predictedFirearmCues(prediction.frames),
+      {
+        tick: snapshot.tick,
+        acknowledgedSequence: ack.lastProcessedSequence,
+        eventCursor: snapshot.baselineEventCursor,
+      },
+      eventReceiver.cursor,
+      performance.now(),
+    );
   }
   function flush(force = false) {
     if (!welcome || !snapshot || error) return false;
@@ -530,6 +551,7 @@ async function startLab() {
           const accepted = eventReceiver.consume(batch);
           if (eventFaults.duplicate) accepted.push(...eventReceiver.consume(batch));
           for (const item of accepted) {
+            firearmFeedback?.confirm(item, performance.now());
             eventHash = stateHash([eventHash, { runEpoch: welcome.runEpoch, ...item }]);
             eventCounts[item.event.kind] = (eventCounts[item.event.kind] ?? 0) + 1;
             eventReceipts.push({
@@ -550,6 +572,7 @@ async function startLab() {
             });
             confirmedEffects.push({ ...item, receivedAtTick: snapshot?.tick ?? item.tick });
           }
+          synchronizeFeedback();
           if (eventReceipts.length > 512) eventReceipts.splice(0, eventReceipts.length - 512);
           if (confirmedEffects.length > 512)
             confirmedEffects.splice(0, confirmedEffects.length - 512);
@@ -620,14 +643,8 @@ async function startLab() {
       prediction ??= new ControllerPrediction(
         baseline,
         (a, c, t) =>
-          mode === "combat"
-            ? predictCombatMovement(
-                a,
-                c,
-                t,
-                movementSnapshot ? combatSnapshotScenario(movementSnapshot) : "range",
-                movementSnapshot?.combat?.props ?? [],
-              )
+          mode === "combat" && movementSnapshot
+            ? predictCombatController(a, c, t, movementSnapshot)
             : stepNetworkController(a, c, t).actor,
         mapping,
         () => movementSnapshot?.geometryRevision ?? 1,
@@ -637,6 +654,7 @@ async function startLab() {
       lastObservedTick = incoming.tick;
       if (mode === "combat") {
         eventReceiver ??= new EventReceiver(combatEventContext(context), incoming);
+        firearmFeedback ??= new FirearmFeedback(incoming.runEpoch, actor.playerId);
         if (pendingEventBaseline) {
           eventReceiver.installBaseline(incoming, pendingEventBaseline);
           pendingEventBaseline = null;
@@ -645,9 +663,11 @@ async function startLab() {
           confirmedEffects.length = 0;
           renderedBeamEvents.length = 0;
           renderedPickupEvents.length = 0;
+          firearmFeedback.reset(incoming.tick);
           // Explicit acceptance couples this full snapshot to its replacement event prefix.
           sendCommands([]);
         }
+        synchronizeFeedback();
       }
       if (receipts.length >= 500) throw new Error("Receipt history bound");
       receipts.push({
@@ -698,6 +718,8 @@ async function startLab() {
     welcome = null;
     snapshot = null;
     prediction = null;
+    firearmFeedback = null;
+    movementSnapshot = null;
     initialActor = null;
     pendingMapping = null;
     eventReceiver = null;
@@ -800,6 +822,19 @@ async function startLab() {
         }
       }
       if (mode === "combat") {
+        const feedback = firearmFeedback;
+        const flashes = feedback?.visible(performance.now()) ?? [];
+        for (const flash of flashes) {
+          g.lineStyle(2, flash.state === "predicted" ? 0x6bd8ec : 0xffe475);
+          g.strokeCircle(flash.x / 256, flash.y / 256, flash.kind === "muzzle-blocked" ? 5 : 3);
+        }
+        if (flashes.length)
+          this.game.events.once(Phaser.Core.Events.POST_RENDER, () => {
+            feedback?.presented(
+              flashes.map((flash) => flash.id),
+              performance.now(),
+            );
+          });
         for (const tank of snapshot?.vehicles ?? []) drawTankOverlay(g, tank, snapshot?.tick ?? 0);
         for (const enemy of snapshot?.enemies ?? []) {
           const shape = FOOT_SHAPES.get(enemy.shapeId);
@@ -951,6 +986,11 @@ async function startLab() {
             }
             continue;
           }
+          if (
+            item.event.confirmation?.playerId === welcome?.playerId &&
+            ["shot", "muzzle-blocked"].includes(item.event.kind)
+          )
+            continue;
           g.lineStyle(
             1,
             item.event.kind === "explosion"

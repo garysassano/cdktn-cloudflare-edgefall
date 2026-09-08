@@ -85,16 +85,16 @@ function command(value: InputCommand, allowZero: boolean) {
   integer(value.held, 0, HELD_MASK, "journal held mask");
   integer(value.aim, 0, 2, "journal aim");
   integer(value.edges.length, 0, 8, "journal edge count");
-  let kind = 0,
-    id = 0;
+  // Physical edges retain capture order across different kinds. Only each kind's
+  // own counter is monotonic, matching wire admission and InputCapture.
+  const highWater = new Map<number, number>();
   for (const edge of value.edges) {
     check(
-      EDGE_KINDS.includes(edge.kind) && (edge.kind > kind || (edge.kind === kind && edge.id > id)),
+      EDGE_KINDS.includes(edge.kind) && edge.id > (highWater.get(edge.kind) ?? 0),
       "edge order",
     );
     integer(edge.id, 1, COUNTER_LIMIT - 1, "journal edge ID");
-    kind = edge.kind;
-    id = edge.id;
+    highWater.set(edge.kind, edge.id);
   }
 }
 function validatePrepared(current: CombatRuntime, prepared: readonly PreparedPlayerTick[]) {

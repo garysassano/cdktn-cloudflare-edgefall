@@ -5,7 +5,11 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer, request as httpRequest } from "node:http";
 import { extname, resolve } from "node:path";
 import { chromium } from "@playwright/test";
-import { materialCase, materialScenario } from "../src/game/content/scenarios/materials.js";
+import {
+  type MaterialCase,
+  materialCase,
+  materialScenario,
+} from "../src/game/content/scenarios/materials.js";
 import { combatScenarioId } from "../src/game/labs/combat-scenarios.js";
 import { CONTROLLER_INPUT_PREFILL_TICKS } from "../src/shared/diagnostics/controller-workload.js";
 import type { RoomProbeStatus } from "../src/shared/diagnostics/room-probe-types.js";
@@ -17,6 +21,7 @@ import { withDirectRoomWorker } from "./lib/local-worker.js";
 import { loadRoomIfNeeded, roomHostCommand } from "./lib/room-host-control.js";
 import { verifyAreaCombat } from "./lib/verify-area-combat.js";
 import { verifyCombatCampaign } from "./lib/verify-combat-campaign.js";
+import { verifyFirearmFeedback } from "./lib/verify-firearm-feedback.js";
 import { verifyFootCombat } from "./lib/verify-foot-combat.js";
 import { verifyHmgCombat } from "./lib/verify-hmg-combat.js";
 import { verifyHostileCombat } from "./lib/verify-hostile-combat.js";
@@ -110,6 +115,21 @@ const shieldMode = process.argv.includes("--combat-guard");
 const tankMode = process.argv.includes("--combat-tank");
 const supportMode = process.argv.includes("--combat-support");
 const rocketMode = process.argv.includes("--combat-rocket");
+const feedbackMode = process.argv
+  .find((argument) => argument.startsWith("--combat-feedback="))
+  ?.slice("--combat-feedback=".length);
+assert(
+  feedbackMode === undefined ||
+    [
+      "sidearm",
+      "heavy-machine-gun",
+      "shotgun",
+      "rocket-launcher",
+      "flamethrower",
+      "laser",
+    ].includes(feedbackMode),
+  "Unknown firearm feedback scenario",
+);
 const laserMode = process.argv.includes("--combat-laser");
 const pickupMode = process.argv.includes("--combat-pickups");
 const materialArgument = process.argv
@@ -153,6 +173,7 @@ const combatMode =
   hmgMode ||
   supportMode ||
   rocketMode ||
+  feedbackMode ||
   laserMode ||
   pickupMode ||
   materialMode !== null;
@@ -166,6 +187,7 @@ assert(
     hmgMode ||
     supportMode ||
     rocketMode ||
+    feedbackMode ||
     laserMode ||
     pickupMode ||
     materialMode
@@ -194,6 +216,7 @@ assert(
     hmgMode,
     supportMode,
     rocketMode,
+    feedbackMode,
     laserMode,
     pickupMode,
     materialMode,
@@ -231,53 +254,55 @@ assert(
 );
 assert(!(eventMode && faultMode), "Run event repair and world abort separately");
 const workload = combatMode ? "combat" : "controller";
-const output = materialMode
-  ? `dist/network-material-room-evidence/${partySize}-${combatScenarioId(materialScenario(materialMode))}`
-  : pickupMode
-    ? "dist/network-combat-pickup-evidence"
-    : laserMode
-      ? "dist/network-combat-laser-evidence"
-      : rocketMode
-        ? "dist/network-combat-rocket-evidence"
-        : supportMode
-          ? "dist/network-combat-support-evidence"
-          : hmgMode
-            ? "dist/network-combat-hmg-evidence"
-            : ordnanceMode
-              ? "dist/network-combat-ordnance-evidence"
-              : tankMode
-                ? "dist/network-combat-tank-evidence"
-                : areaMode
-                  ? `dist/network-combat-${areaMode}-evidence`
-                  : shieldMode
-                    ? "dist/network-combat-guard-evidence"
-                    : footMode
-                      ? `dist/network-combat-${footMode}-evidence`
-                      : hostileMode
-                        ? "dist/network-combat-hostile-evidence"
-                        : campaignMode
-                          ? "dist/network-combat-campaign-evidence"
-                          : automaticMode
-                            ? "dist/network-combat-auto-evidence"
-                            : combatReconnectMode
-                              ? loadingMode
-                                ? phaseMode
-                                  ? "dist/network-combat-phase-evidence"
-                                  : "dist/network-combat-loading-evidence"
-                                : "dist/network-combat-reconnect-evidence"
-                              : combatRecoveryMode
-                                ? "dist/network-combat-recovery-evidence"
-                                : baselineMode
-                                  ? "dist/network-combat-baseline-evidence"
-                                  : combatMode
-                                    ? eventMode
-                                      ? "dist/network-event-evidence"
-                                      : faultMode
-                                        ? "dist/network-combat-fault-evidence"
-                                        : "dist/network-combat-evidence"
-                                    : recoveryMode
-                                      ? "dist/network-controller-recovery-evidence"
-                                      : "dist/network-controller-evidence";
+const output = feedbackMode
+  ? `dist/network-firearm-feedback/${feedbackMode}`
+  : materialMode
+    ? `dist/network-material-room-evidence/${partySize}-${combatScenarioId(materialScenario(materialMode))}`
+    : pickupMode
+      ? "dist/network-combat-pickup-evidence"
+      : laserMode
+        ? "dist/network-combat-laser-evidence"
+        : rocketMode
+          ? "dist/network-combat-rocket-evidence"
+          : supportMode
+            ? "dist/network-combat-support-evidence"
+            : hmgMode
+              ? "dist/network-combat-hmg-evidence"
+              : ordnanceMode
+                ? "dist/network-combat-ordnance-evidence"
+                : tankMode
+                  ? "dist/network-combat-tank-evidence"
+                  : areaMode
+                    ? `dist/network-combat-${areaMode}-evidence`
+                    : shieldMode
+                      ? "dist/network-combat-guard-evidence"
+                      : footMode
+                        ? `dist/network-combat-${footMode}-evidence`
+                        : hostileMode
+                          ? "dist/network-combat-hostile-evidence"
+                          : campaignMode
+                            ? "dist/network-combat-campaign-evidence"
+                            : automaticMode
+                              ? "dist/network-combat-auto-evidence"
+                              : combatReconnectMode
+                                ? loadingMode
+                                  ? phaseMode
+                                    ? "dist/network-combat-phase-evidence"
+                                    : "dist/network-combat-loading-evidence"
+                                  : "dist/network-combat-reconnect-evidence"
+                                : combatRecoveryMode
+                                  ? "dist/network-combat-recovery-evidence"
+                                  : baselineMode
+                                    ? "dist/network-combat-baseline-evidence"
+                                    : combatMode
+                                      ? eventMode
+                                        ? "dist/network-event-evidence"
+                                        : faultMode
+                                          ? "dist/network-combat-fault-evidence"
+                                          : "dist/network-combat-evidence"
+                                      : recoveryMode
+                                        ? "dist/network-controller-recovery-evidence"
+                                        : "dist/network-controller-evidence";
 // This generated directory belongs to this invocation, including scenario-specific screenshots.
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -329,6 +354,7 @@ try {
       ...(hmgMode ? ["scripts/lib/verify-hmg-combat.ts"] : []),
       ...(supportMode ? ["scripts/lib/verify-support-combat.ts"] : []),
       ...(rocketMode ? ["scripts/lib/verify-rocket-combat.ts"] : []),
+      ...(feedbackMode ? ["scripts/lib/verify-firearm-feedback.ts"] : []),
       ...(laserMode ? ["scripts/lib/verify-laser-combat.ts"] : []),
       ...(pickupMode ? ["scripts/lib/verify-pickup-combat.ts"] : []),
       ...(materialMode ? ["scripts/lib/verify-material-room-network.ts"] : []),
@@ -394,7 +420,7 @@ try {
               record("http-error", `${response.status()} ${new URL(response.url()).pathname}`);
           });
           await page.goto(
-            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode || laserMode || pickupMode || materialMode ? 0 : 1}`,
+            `http://127.0.0.1:${address.port}/network-lab.html?room=${encodeURIComponent(base)}&slot=${slot}&mode=${workload}&manual=${automaticMode || campaignMode || hostileMode || footMode || shieldMode || areaMode || tankMode || ordnanceMode || hmgMode || supportMode || rocketMode || laserMode || feedbackMode || pickupMode || materialMode ? 0 : 1}`,
           );
           await page.waitForFunction(() => {
             const lab = (
@@ -517,6 +543,26 @@ try {
           room,
           scope:
             "Four real keyboards share individual supplies while firing in an authoritative local workerd room. Public availability, exact inventory, delayed confirmed claim rendering and duplicate suppression agree. Final media and deployed cadence remain open.",
+        };
+      }
+      if (feedbackMode) {
+        const feedback = await verifyFirearmFeedback(pages, base, output);
+        room = feedback.final;
+        return {
+          status: "pass",
+          recordedAt: new Date().toISOString(),
+          baseCommit: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+          workerBundleSha256,
+          browser: browser.version(),
+          bundleSha256: createHash("sha256")
+            .update(await readFile(`${root}/network-lab.js`))
+            .digest("hex"),
+          feedback,
+          clients: feedback.clients,
+          sharedSnapshots: feedback.common.length,
+          room,
+          scope:
+            "Four real keyboards and local workerd sockets show firearm muzzle feedback before input acknowledgment, preserve its age through delayed confirmation, and run/jump while firing. Engineering presentation only; production integration, final media and broader impairment acceptance remain open.",
         };
       }
       if (laserMode) {
@@ -2201,23 +2247,31 @@ try {
   };
   const report = await withDirectRoomWorker(runProbe, {
     combatPlayers: partySize,
-    combatScenario: materialMode
-      ? materialScenario(materialMode)
-      : pickupMode
-        ? "pickups"
-        : laserMode
-          ? "laser"
-          : rocketMode
-            ? "rocket"
-            : supportMode
-              ? "support"
-              : hmgMode
-                ? "hmg"
-                : ordnanceMode
-                  ? "ordnance"
-                  : tankMode
-                    ? "tank"
-                    : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range")),
+    combatScenario:
+      (feedbackMode
+        ? materialScenario({
+            weapon: feedbackMode as MaterialCase["weapon"],
+            materialId: "concrete",
+            targetMotion: "stationary",
+          })
+        : undefined) ??
+      (materialMode
+        ? materialScenario(materialMode)
+        : pickupMode
+          ? "pickups"
+          : laserMode
+            ? "laser"
+            : rocketMode
+              ? "rocket"
+              : supportMode
+                ? "support"
+                : hmgMode
+                  ? "hmg"
+                  : ordnanceMode
+                    ? "ordnance"
+                    : tankMode
+                      ? "tank"
+                      : (areaMode ?? (shieldMode ? "guard" : hostileMode ? "rifle" : "range"))),
   });
   await writeFile(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(

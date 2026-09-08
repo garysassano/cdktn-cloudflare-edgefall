@@ -1,0 +1,68 @@
+[
+  {
+    "name": "edgefall-feedback-journal-control",
+    "error": "AssertionError [ERR_ASSERTION]: Feedback room failed",
+    "tick": 69,
+    "clock": {
+      "mode": "recovery",
+      "tick": 69,
+      "timerPending": false,
+      "fault": {
+        "reason": "step_failed",
+        "lastCompletedTick": 69,
+        "observedAtMs": 1788881709519,
+        "debtMs": null
+      }
+    },
+    "worldFailure": "Error: Combat journal: edge order",
+    "persistenceFailure": null
+  },
+  {
+    "name": "edgefall-feedback-hostile-control",
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2 !== 3\n",
+    "tick": 149,
+    "clock": {
+      "mode": "running",
+      "tick": 149,
+      "timerPending": true,
+      "fault": null
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "edgefall-feedback-prop-control",
+    "error": "Error: Feedback boundary timed out",
+    "tick": 0,
+    "clock": {
+      "mode": "stopped",
+      "tick": 0,
+      "timerPending": false,
+      "fault": null
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "edgefall-feedback-clock-control",
+    "error": "AssertionError [ERR_ASSERTION]: Feedback room failed",
+    "tick": 20,
+    "clock": {
+      "mode": "recovery",
+      "tick": 20,
+      "timerPending": false,
+      "fault": {
+        "reason": "time_regression",
+        "lastCompletedTick": 20,
+        "observedAtMs": 1788882330754,
+        "debtMs": null
+      }
+    },
+    "worldFailure": null,
+    "persistenceFailure": null
+  },
+  {
+    "name": "unit-acknowledgment-time-control",
+    "error": "The first focused test expected acknowledgedAtMs 20 and received 32. Promotion reset the timestamp; corrected to preserve the first acknowledgment."
+  }
+]

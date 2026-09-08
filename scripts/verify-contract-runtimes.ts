@@ -215,6 +215,8 @@ try {
     materials: expected.materials,
     combatReconnect: expected.combatReconnect,
     eventDelivery: expected.eventDelivery,
+    firearmFeedback: expected.firearmFeedback,
+    mixedInputRecovery: expected.mixedInputRecovery,
     collisionResults: {
       solidHits: expected.collision.samples.filter((sample) => sample.solid?.kind === "hit").length,
       initialOverlaps: expected.collision.samples.filter(

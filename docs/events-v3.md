@@ -1,6 +1,6 @@
 # Gameplay events v3.14
 
-The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. These are engineering combat payloads; final audio, predicted effects and complete combat recovery remain separate work.
+The combat room laboratory negotiates capability `3`: input mapping plus acknowledged gameplay events. The platform-neutral kernel emits notices; the room adapter maps those notices to the wire definition and stages them with the complete world/input transaction. Production gameplay remains v2. The diagnostic client now predicts foot firearm timing and muzzle feedback. Final media, the remaining predicted effects and production integration remain open.
 
 ## Binary frame
 
@@ -9,7 +9,7 @@ All fields are little endian. A type-3 event batch contains a 32-byte header and
 | Header offset | Field                                           | Type    |
 | ------------- | ----------------------------------------------- | ------- |
 | 0             | Magic `0x4645`                                  | u16     |
-| 2             | Major `3`, minor `13`                           | 2 × u8  |
+| 2             | Major `3`, minor `14`                           | 2 × u8  |
 | 4             | Type `3`, flags `0`                             | 2 × u8  |
 | 6             | Exact total byte length                         | u16     |
 | 8 / 12        | Run epoch / connection epoch                    | 2 × u32 |
@@ -77,7 +77,7 @@ If the client detects an application-level gap, it stops consuming events and se
 
 The room checks that the requested cursor belongs to data already sent to that connection, and offers the same full-baseline flow with reason `client-gap`. Unknown fields, wrong epochs and oversized controls are rejected. This event repair preserves the existing controlling session; it does not reconstruct a restarted room or reset uncertain physics/prediction history.
 
-The four-browser verifier's `--events` mode separately exercises an intact dropped frame, duplicate delivery, a reader paused beyond retention, and an injected missing record after binary decoding to test the client's gap request. The last injection models a consumer fault; it is not a claim that TCP/WebSockets reorder individual records. Confirmed engineering hit/shot markers are deduplicated; no final audio or predicted-action promotion is claimed.
+The four-browser verifier's `--events` mode separately exercises an intact dropped frame, duplicate delivery, a reader paused beyond retention, and an injected missing record after binary decoding to test the client's gap request. The last injection models a consumer fault; it is not a claim that TCP/WebSockets reorder individual records. Confirmed engineering hit/shot markers are deduplicated. The separate `pnpm test:network:feedback` suite checks local muzzle promotion under delayed delivery; final audio remains open.
 
 ## Active shield events
 
@@ -108,3 +108,11 @@ The two weapon words use one-based indexes in `sidearm, heavy-machine-gun, shotg
 The engineering client draws each confirmed claim once, including a delayed claim delivered after its original eight-tick effect window. Its display lifetime starts at receipt; its authoritative tick, claimant and grant remain unchanged. Expired history follows the existing explicit baseline repair and cannot resurrect an old supply. `--combat-pickups` exercises four real keyboards, shared item contention, exact inventory, delayed delivery and duplicate suppression.
 
 Protocol 3.14 retains the 96-byte event record while requiring the current frame version and registered material content identity. Material-room inputs emit the existing acknowledged shot, sound, impact, explosion and prop-destruction events; calibration HP and surface damage do not introduce a separate event format.
+
+## Local firearm feedback
+
+The diagnostic client replays the shared foot controller and foot-action timing from a complete authoritative actor, then projects immutable muzzle cues from the pending controller frames. Its private action allocator exists only to run the shared timing contract; a predicted global action ID never enters a room command. Target positions are estimates from the latest snapshot. Damage, released projectiles, pickups, beam volumes and the displayed inventory remain authoritative.
+
+A cosmetic cue is keyed by run epoch, player ID, control epoch, shot ordinal and marker index. The marker index distinguishes flame emissions within one paid action. The ledger presents each cue for 100 milliseconds of browser monotonic time. Acknowledged shot or blocked-muzzle events correct its position and appearance while preserving the age of a flash that reached an actual rendered frame. Reconciliation updates pending cue data without replaying callbacks. A consumed input alone cannot reject a cue while its event frames are delayed: rejection waits until the client has consumed the snapshot's complete event prefix. A prediction removed by replay is canceled; a later consumed rejection can release its ungranted ordinal for a new input attempt.
+
+The ledger retains at most 512 entries and trims entries beyond the 120-tick event window. Baseline repair cancels cosmetics and keeps pending-input tombstones; a fresh connection creates a fresh ledger. Hits, kills and pickups never become speculative. This currently covers muzzle feedback for the six foot guns. Knife, grenade and vehicle effects, sustained predicted beam geometry, final audio, interpolation and production integration remain separate work. Evidence and retained failures are in [the feedback report](redesign-evidence/W04-firearm-feedback.md).

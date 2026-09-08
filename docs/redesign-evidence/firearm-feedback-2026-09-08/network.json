@@ -1,0 +1,494 @@
+[
+  {
+    "scenario": "sidearm",
+    "directory": "dist/network-firearm-feedback/sidearm",
+    "reportSha256": "3f7b96049990268f03a1e5264664e290bb6b74754a156e8741de6297331b76c7",
+    "sharedSnapshots": 8,
+    "roomScenario": "material:sidearm:concrete:stationary",
+    "tick": 103,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1408.1000000238419,
+        "acknowledgedAtMs": 1460.6000000238419,
+        "confirmedAtMs": 1755.7000000178814,
+        "lastPresentedAtMs": 1480.2000000178814,
+        "preAckMs": 52.5,
+        "confirmationDelayMs": 361.90000000596046
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1386.0999999940395,
+        "acknowledgedAtMs": 1456.800000011921,
+        "confirmedAtMs": 1753.0999999940395,
+        "lastPresentedAtMs": 1473.4000000059605,
+        "preAckMs": 70.7000000178814,
+        "confirmationDelayMs": 379.5
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1392.7000000178814,
+        "acknowledgedAtMs": 1454.5,
+        "confirmedAtMs": 1751,
+        "lastPresentedAtMs": 1460.6000000238419,
+        "preAckMs": 61.79999998211861,
+        "confirmationDelayMs": 373.7999999821186
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1393.5999999940395,
+        "acknowledgedAtMs": 1451.0999999940395,
+        "confirmedAtMs": 1748.300000011921,
+        "lastPresentedAtMs": 1463.9000000059605,
+        "preAckMs": 57.5,
+        "confirmationDelayMs": 371.2000000178814
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 144,
+    "counts": [
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  },
+  {
+    "scenario": "heavy-machine-gun",
+    "directory": "dist/network-firearm-feedback/heavy-machine-gun",
+    "reportSha256": "dfe4d11b4f17c2ff68808882a8c7f3f31a18e9b4cd8988ed77fbc30a0cafaa14",
+    "sharedSnapshots": 8,
+    "roomScenario": "material:heavy-machine-gun:concrete:stationary",
+    "tick": 102,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1387.199999988079,
+        "acknowledgedAtMs": 1495.0999999940395,
+        "confirmedAtMs": 1788.5,
+        "lastPresentedAtMs": 1458.5999999940395,
+        "preAckMs": 107.90000000596046,
+        "confirmationDelayMs": 418.09999999403954
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1414.2999999821186,
+        "acknowledgedAtMs": 1491.3999999761581,
+        "confirmedAtMs": 1787.2999999821186,
+        "lastPresentedAtMs": 1489.5,
+        "preAckMs": 77.09999999403954,
+        "confirmationDelayMs": 391.90000000596046
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1383.699999988079,
+        "acknowledgedAtMs": 1488.0999999940395,
+        "confirmedAtMs": 1783.5999999940395,
+        "lastPresentedAtMs": 1458.7999999821186,
+        "preAckMs": 104.40000000596046,
+        "confirmationDelayMs": 414.59999999403954
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1385.4000000059605,
+        "acknowledgedAtMs": 1485.4000000059605,
+        "confirmedAtMs": 1780.699999988079,
+        "lastPresentedAtMs": 1462,
+        "preAckMs": 100,
+        "confirmationDelayMs": 410.19999998807907
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 208,
+    "counts": [
+      {
+        "predicted": 4,
+        "presented": 4,
+        "promoted": 4,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 4,
+        "presented": 4,
+        "promoted": 4,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 4,
+        "presented": 4,
+        "promoted": 4,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 4,
+        "presented": 4,
+        "promoted": 4,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  },
+  {
+    "scenario": "shotgun",
+    "directory": "dist/network-firearm-feedback/shotgun",
+    "reportSha256": "4649809dae947242852c927843b52b235955649b59df46c0a40410b927818c0a",
+    "sharedSnapshots": 7,
+    "roomScenario": "material:shotgun:concrete:stationary",
+    "tick": 125,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1374.2000000178814,
+        "acknowledgedAtMs": 1469.300000011921,
+        "confirmedAtMs": 1766.2000000178814,
+        "lastPresentedAtMs": 1448.1000000238419,
+        "preAckMs": 95.09999999403954,
+        "confirmationDelayMs": 412.90000000596046
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1354.800000011921,
+        "acknowledgedAtMs": 1466.699999988079,
+        "confirmedAtMs": 1762.5999999940395,
+        "lastPresentedAtMs": 1430,
+        "preAckMs": 111.89999997615814,
+        "confirmationDelayMs": 418.90000000596046
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1353.2000000178814,
+        "acknowledgedAtMs": 1463.5999999940395,
+        "confirmedAtMs": 1758.5999999940395,
+        "lastPresentedAtMs": 1431.300000011921,
+        "preAckMs": 110.39999997615814,
+        "confirmationDelayMs": 418.7999999821186
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1355.5999999940395,
+        "acknowledgedAtMs": 1459.5999999940395,
+        "confirmedAtMs": 1754.8999999761581,
+        "lastPresentedAtMs": 1432,
+        "preAckMs": 104,
+        "confirmationDelayMs": 415.69999998807907
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 144,
+    "counts": [
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  },
+  {
+    "scenario": "rocket-launcher",
+    "directory": "dist/network-firearm-feedback/rocket-launcher",
+    "reportSha256": "d25d0e170295c7b7ce0de774addec53afb3b9a0eaace80b5eefb3355852e0a5a",
+    "sharedSnapshots": 7,
+    "roomScenario": "material:rocket-launcher:concrete:stationary",
+    "tick": 121,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1369.800000011921,
+        "acknowledgedAtMs": 1469.5999999940395,
+        "confirmedAtMs": 1765,
+        "lastPresentedAtMs": 1441.4000000059605,
+        "preAckMs": 99.7999999821186,
+        "confirmationDelayMs": 413.69999998807907
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1358.7000000178814,
+        "acknowledgedAtMs": 1462.5,
+        "confirmedAtMs": 1760,
+        "lastPresentedAtMs": 1431.2000000178814,
+        "preAckMs": 103.7999999821186,
+        "confirmationDelayMs": 417
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1363.5999999940395,
+        "acknowledgedAtMs": 1458.0999999940395,
+        "confirmedAtMs": 1754,
+        "lastPresentedAtMs": 1436.2999999821186,
+        "preAckMs": 94.5,
+        "confirmationDelayMs": 407.40000000596046
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1343.6000000238419,
+        "acknowledgedAtMs": 1454.1000000238419,
+        "confirmedAtMs": 1750.2000000178814,
+        "lastPresentedAtMs": 1416.800000011921,
+        "preAckMs": 110.5,
+        "confirmationDelayMs": 419.80000001192093
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 144,
+    "counts": [
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  },
+  {
+    "scenario": "flamethrower",
+    "directory": "dist/network-firearm-feedback/flamethrower",
+    "reportSha256": "06c69c354b08a0abee26b732f2b0bdc9f9601e631e0c4882d7a281c335d55fdb",
+    "sharedSnapshots": 8,
+    "roomScenario": "material:flamethrower:concrete:stationary",
+    "tick": 129,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1377.699999988079,
+        "acknowledgedAtMs": 1471.2999999821186,
+        "confirmedAtMs": 1773.5999999940395,
+        "lastPresentedAtMs": 1443.8999999761581,
+        "preAckMs": 93.59999999403954,
+        "confirmationDelayMs": 416.5
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1379.800000011921,
+        "acknowledgedAtMs": 1469.5999999940395,
+        "confirmedAtMs": 1771.2000000178814,
+        "lastPresentedAtMs": 1446.9000000059605,
+        "preAckMs": 89.7999999821186,
+        "confirmationDelayMs": 412.40000000596046
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1381.300000011921,
+        "acknowledgedAtMs": 1464.9000000059605,
+        "confirmedAtMs": 1767.300000011921,
+        "lastPresentedAtMs": 1447.800000011921,
+        "preAckMs": 83.59999999403954,
+        "confirmationDelayMs": 403.40000000596046
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1363.9000000059605,
+        "acknowledgedAtMs": 1462.0999999940395,
+        "confirmedAtMs": 1765.5999999940395,
+        "lastPresentedAtMs": 1430.9000000059605,
+        "preAckMs": 98.19999998807907,
+        "confirmationDelayMs": 422.19999998807907
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 336,
+    "counts": [
+      {
+        "predicted": 9,
+        "presented": 9,
+        "promoted": 9,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 9,
+        "presented": 9,
+        "promoted": 9,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 9,
+        "presented": 9,
+        "promoted": 9,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 9,
+        "presented": 9,
+        "promoted": 9,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  },
+  {
+    "scenario": "laser",
+    "directory": "dist/network-firearm-feedback/laser",
+    "reportSha256": "192ccdb21b9f6609853ea49ac1842f3da95baf4a55941d02c725c64914b30628",
+    "sharedSnapshots": 7,
+    "roomScenario": "material:laser:concrete:stationary",
+    "tick": 110,
+    "first": [
+      {
+        "playerId": 1,
+        "firstPresentedAtMs": 1410.3999999761581,
+        "acknowledgedAtMs": 1491.699999988079,
+        "confirmedAtMs": 1787.0999999940395,
+        "lastPresentedAtMs": 1476.8999999761581,
+        "preAckMs": 81.30000001192093,
+        "confirmationDelayMs": 394.90000000596046
+      },
+      {
+        "playerId": 2,
+        "firstPresentedAtMs": 1383.300000011921,
+        "acknowledgedAtMs": 1488.9000000059605,
+        "confirmedAtMs": 1782.300000011921,
+        "lastPresentedAtMs": 1468.0999999940395,
+        "preAckMs": 105.59999999403954,
+        "confirmationDelayMs": 413.30000001192093
+      },
+      {
+        "playerId": 3,
+        "firstPresentedAtMs": 1387.800000011921,
+        "acknowledgedAtMs": 1483,
+        "confirmedAtMs": 1778.1000000238419,
+        "lastPresentedAtMs": 1455.5,
+        "preAckMs": 95.19999998807907,
+        "confirmationDelayMs": 407
+      },
+      {
+        "playerId": 4,
+        "firstPresentedAtMs": 1371.5,
+        "acknowledgedAtMs": 1479.6000000238419,
+        "confirmedAtMs": 1777.300000011921,
+        "lastPresentedAtMs": 1460,
+        "preAckMs": 108.10000002384186,
+        "confirmationDelayMs": 419.90000000596046
+      }
+    ],
+    "droppedFrames": 24,
+    "duplicates": 96,
+    "counts": [
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      },
+      {
+        "predicted": 3,
+        "presented": 3,
+        "promoted": 3,
+        "authoritative": 0,
+        "rejected": 0,
+        "evicted": 0
+      }
+    ]
+  }
+]

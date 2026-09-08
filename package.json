@@ -42,6 +42,7 @@
     "test:lab:controller": "node scripts/build-client.mjs --lab && node scripts/verify-controller-lab.mjs",
     "content:compile": "tsx scripts/compile-content.ts && tsx scripts/compile-benchmark.ts",
     "test:network:controller": "tsx scripts/verify-network-controller.ts",
+    "test:network:feedback": "tsx scripts/verify-firearm-feedback.ts",
     "test:lab:combat": "node scripts/build-client.mjs --lab && node scripts/verify-combat-lab.mjs",
     "test:lab:materials": "node scripts/build-client.mjs --lab && tsx scripts/verify-material-lab.mjs",
     "art:review": "tsx scripts/assets/review-studies.ts --write",

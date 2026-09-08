@@ -19,6 +19,11 @@ export interface PredictionBaseline {
   actor: ControlledActor;
   acknowledgment: PlayerAcknowledgment;
 }
+export interface PredictionFrame {
+  sequence: number;
+  tick: number;
+  actor: ControlledActor;
+}
 type Step = (actor: ControlledActor, command: InputCommand, tick: number) => ControlledActor;
 
 /** Full-controller reconciliation with optional snapshot-paired authoritative command mapping. */
@@ -106,6 +111,15 @@ export class ControllerPrediction {
   }
   get pending() {
     return this.#pending.length;
+  }
+  /** Rebuilt by reconciliation; presentation consumes data, never replay-time callbacks. */
+  get frames(): PredictionFrame[] {
+    return this.#pending.map((command) => {
+      const tick = this.#target(command);
+      const actor = this.#history.get(tick);
+      if (!actor) throw new Error("Missing predicted controller boundary");
+      return { sequence: command.sequence, tick, actor: structuredClone(actor) };
+    });
   }
   get requiresResync() {
     return this.#stopped;
