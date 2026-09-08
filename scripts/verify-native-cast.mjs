@@ -353,7 +353,7 @@ try {
       );
       assert.deepEqual(observed.audio.cues, cues, `${scene.id}: sound intents at ${tick}`);
       assert.equal(observed.audio.dropped, 0);
-      assert(observed.audio.activeVoices <= 24);
+      assert(observed.audio.activeVoices <= observed.audio.voiceBudget);
       trace.push({
         tick,
         frames: observed.frames,

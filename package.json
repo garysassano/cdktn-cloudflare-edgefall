@@ -48,7 +48,9 @@
     "test:art:native": "node scripts/build-client.mjs --lab && node scripts/verify-native-operative.mjs",
     "test:art:review": "node scripts/build-client.mjs --lab && node scripts/verify-art-review.mjs",
     "audio:render": "node scripts/assets/render-breakwater-music.mjs",
-    "audio:validate": "node scripts/assets/render-breakwater-music.mjs --check"
+    "audio:validate": "node scripts/assets/render-breakwater-music.mjs --check && node scripts/assets/render-breakwater-sfx.mjs --check",
+    "audio:sfx:render": "node scripts/assets/render-breakwater-sfx.mjs",
+    "test:audio:combat": "tsx scripts/verify-combat-audio.mjs"
   },
   "dependencies": {
     "cdktn": "^0.24.0",

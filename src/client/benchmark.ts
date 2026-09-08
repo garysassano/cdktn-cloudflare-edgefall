@@ -17,6 +17,7 @@ import { BREAKWATER } from "../game/missions/breakwater-content.js";
 import { worldRect } from "../game/physics/body.js";
 import {
   advanceBreakwaterVisual,
+  breakwaterAudioCues,
   initialBreakwaterVisual,
 } from "../shared/animation/breakwater.js";
 import { advanceCastMotion, initialCastMotion } from "../shared/animation/cast.js";
@@ -273,21 +274,13 @@ function step(submitted?: readonly CombatCommand[]) {
     visual = advanceBreakwaterVisual(visual, mission, next);
     audio.setListenerX(cameraX + 192);
     audio.consume(
-      mission.combat,
       next.combat,
-      operativeFootfalls(heroMotion, atlas),
-      next.notices.map((notice) => ({
-        id: `${notice.tick}:mission:${notice.kind}:${notice.id}:${notice.playerId}`,
-        kind: "entry",
-        tick: notice.tick,
-        x: next.combat.players.find((p) => p.playerId === notice.playerId)?.body.x
-          ? (next.combat.players.find((p) => p.playerId === notice.playerId)?.body.x ?? 0) / 256
-          : cameraX + 192,
-      })),
+      breakwaterAudioCues(mission, next, operativeFootfalls(heroMotion, atlas)),
+      running,
     );
     mission = next;
     audio.setMusicPhase(mission.boss.phase !== "dormant");
-    if (mission.phase !== "playing") audio.finishMusic();
+    if (mission.phase !== "playing") audio.finish();
     commands.push(inputs);
     if (mission.combat.tick % 6 === 0 || !running) status();
   } catch (error) {
@@ -336,6 +329,7 @@ async function play() {
   await unlockAudio();
   if (request !== playRequest) return;
   running = true;
+  audio.resume(mission.combat);
   audio.setMusicPhase(mission.boss.phase !== "dormant");
   audio.playMusic();
   element("run").textContent = "Pause";

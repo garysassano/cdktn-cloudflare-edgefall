@@ -1,0 +1,18 @@
+{
+  "scope": "FFmpeg short mono file decode control; explicit pages retain all authored frames without adding silence.",
+  "master": "audio/source/masters/sfx/sidearm-a.flac",
+  "masterSha256": "a57acbf43923b78a9fb318c3a7269631cb5562bd757fe5345961131675855ddc",
+  "expectedFrames": 9120,
+  "controls": [
+    {
+      "name": "default-pages",
+      "sha256": "d4a3b608195af207539bc9454f600fb70bfcb49227bca636dcc03d1391b07574",
+      "decodedFrames": 8992
+    },
+    {
+      "name": "explicit-pages",
+      "sha256": "18242a455eaa94ff1c5fcac5bbe7ec9c1451c774bf2c5d639aa7b9f1f74d2e4d",
+      "decodedFrames": 9120
+    }
+  ]
+}

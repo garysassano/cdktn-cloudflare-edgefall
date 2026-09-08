@@ -1,0 +1,172 @@
+{
+  "format": 1,
+  "creator": "Original Edgefall layered cue arrangements by Codex",
+  "licence": "Project-original",
+  "review": "pending",
+  "libraries": {
+    "kenney-impact-sounds": {
+      "creator": "Kenney",
+      "licence": "CC0-1.0",
+      "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+      "archiveUrl": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+      "archiveSha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+      "licenceFile": "sfx/kenney/License.txt",
+      "licenceSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "sourceEncoding": "Original Vorbis recordings retained byte for byte; derived FLAC masters do not recover information lost upstream."
+    },
+    "vsco-ce": {
+      "creator": "Sam Gossner and Simon Dalzell; sample editing by Elan Hickler / Soundemote",
+      "licence": "CC0-1.0",
+      "sourceUrl": "https://github.com/sgossner/VSCO-2-CE",
+      "revision": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "licenceFile": "vsco/CC0-1.0.txt",
+      "licenceSha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+    }
+  },
+  "files": [
+    {
+      "id": "metal-light",
+      "file": "sfx/kenney/impactMetal_light_003.ogg",
+      "originalFile": "Audio/impactMetal_light_003.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 9023,
+      "sha256": "92d5db6bfc672d9dc1b4f390b2900504f013187fa36335472554fafefa9050b1"
+    },
+    {
+      "id": "metal-heavy",
+      "file": "sfx/kenney/impactMetal_heavy_001.ogg",
+      "originalFile": "Audio/impactMetal_heavy_001.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 7279,
+      "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae"
+    },
+    {
+      "id": "metal-rattle",
+      "file": "sfx/kenney/impactMetal_medium_002.ogg",
+      "originalFile": "Audio/impactMetal_medium_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 5857,
+      "sha256": "7e89ce2ca0dbda95ea2b78d4b50791cab35c10d20e9f5ccd45dd0b00e99ff548"
+    },
+    {
+      "id": "plate",
+      "file": "sfx/kenney/impactPlate_heavy_002.ogg",
+      "originalFile": "Audio/impactPlate_heavy_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 10188,
+      "sha256": "b0cab75d1befa32b4cf215d8ee7e1c400a39182e8b105963b8e310f825b198a1"
+    },
+    {
+      "id": "tin",
+      "file": "sfx/kenney/impactTin_medium_003.ogg",
+      "originalFile": "Audio/impactTin_medium_003.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 6541,
+      "sha256": "0d18737d93ba7aa0669f751094cbc1671bbebac4fe207783922938ce75e24334"
+    },
+    {
+      "id": "wood",
+      "file": "sfx/kenney/impactWood_heavy_002.ogg",
+      "originalFile": "Audio/impactWood_heavy_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 6146,
+      "sha256": "ce1e06f2a05f2634c645cb72f6a1623e64bc2d92be34917430a61031fb6597d4"
+    },
+    {
+      "id": "plank",
+      "file": "sfx/kenney/impactPlank_medium_001.ogg",
+      "originalFile": "Audio/impactPlank_medium_001.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 12082,
+      "sha256": "d7c304319f8beac616231b62041fa8da74045b62d7155965516efb9b19303df4"
+    },
+    {
+      "id": "punch",
+      "file": "sfx/kenney/impactPunch_heavy_002.ogg",
+      "originalFile": "Audio/impactPunch_heavy_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 9025,
+      "sha256": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3"
+    },
+    {
+      "id": "soft",
+      "file": "sfx/kenney/impactSoft_heavy_002.ogg",
+      "originalFile": "Audio/impactSoft_heavy_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 6749,
+      "sha256": "d130ae541951243d3f6ed963d0057450a445ffe117fbf9a084d34eb1635cb563"
+    },
+    {
+      "id": "grit",
+      "file": "sfx/kenney/footstep_grass_003.ogg",
+      "originalFile": "Audio/footstep_grass_003.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 8129,
+      "sha256": "0546e1d8ab2def714425701a18bd34c5ee2794b12e858e5b595aabcf38a34137"
+    },
+    {
+      "id": "foot-a",
+      "file": "sfx/kenney/footstep_concrete_000.ogg",
+      "originalFile": "Audio/footstep_concrete_000.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 5808,
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe"
+    },
+    {
+      "id": "foot-b",
+      "file": "sfx/kenney/footstep_concrete_001.ogg",
+      "originalFile": "Audio/footstep_concrete_001.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 6308,
+      "sha256": "507a75eb19b897087855a3be3cf11a12d7fa37d143ad535eeebe0b8031c7325d"
+    },
+    {
+      "id": "bell",
+      "file": "sfx/kenney/impactBell_heavy_001.ogg",
+      "originalFile": "Audio/impactBell_heavy_001.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 15577,
+      "sha256": "9df61e3ae9a83dc65e5a1fd3ed19d480876f3b22b963a1b9ef6fa293592dcec4"
+    },
+    {
+      "id": "glass",
+      "file": "sfx/kenney/impactGlass_light_002.ogg",
+      "originalFile": "Audio/impactGlass_light_002.ogg",
+      "library": "kenney-impact-sounds",
+      "bytes": 6562,
+      "sha256": "710db7451bb7857b9140dfe6afe4621ea2188ad65eda3919c569d1bb285b933d"
+    },
+    {
+      "id": "marimba",
+      "file": "vsco/marimba.wav",
+      "library": "vsco-ce",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Marimba/Marimba_hit_Outrigger_C4_loud_01.wav",
+      "bytes": 1016564,
+      "sha256": "4af539d47a452d7fad26e171b1c8adcca272cee97191f040d192680462c880b8"
+    },
+    {
+      "id": "kick",
+      "file": "vsco/kick.wav",
+      "library": "vsco-ce",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/BDrumNewhit_v3_rr1_Sum.wav",
+      "bytes": 367124,
+      "sha256": "a2d8829e8b2b59e8afb12fa396b01758827059339c2a84ad066d17b36c82d1ff"
+    },
+    {
+      "id": "snare",
+      "file": "vsco/snare.wav",
+      "library": "vsco-ce",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Snare2-HitSN_v3_rr1_Sum.wav",
+      "bytes": 457934,
+      "sha256": "3df96009d655dd4fe43c635bd3c20314a1e0cbdf9f571ee8a66207f9ef917d08"
+    },
+    {
+      "id": "cymbal",
+      "file": "vsco/cymbal.wav",
+      "library": "vsco-ce",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/cymbal-crashshort_v1.wav",
+      "bytes": 335222,
+      "sha256": "af0d5f0eb7f2226a1c592e5cda8e2dc0588cadbc851999ed39e3f36276acc7c9"
+    }
+  ]
+}

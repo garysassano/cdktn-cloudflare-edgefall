@@ -1,5 +1,7 @@
 # Breakwater Approach: continuous mission candidate
 
+This report records the effects/music/co-op increment at `7953bb6`. [The subsequent interaction-audio report](W06-interaction-audio.md) covers the current cue set, persistent loops and mix policy, and corrects the earlier late-tank screenshot label: the continuous route uses a voluntary exit; forced ejection is proved separately.
+
 Breakwater Approach is a continuous local mission at 384×216 native pixels. It crosses one 3,072-pixel quay, clears eight defenders, destroys a crate, uses the tank and defeats the lock engine. Complete solo, two-player and four-player recordings exercise the same deterministic combat kernel. Directors submit input intent; they never change positions, inventory, damage or outcomes directly.
 
 | Players | Victory tick | Simulation duration | Input recording                                                | Normal clean capture                                             |

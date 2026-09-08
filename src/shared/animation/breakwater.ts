@@ -1,5 +1,6 @@
 import type { BreakwaterMission } from "../../game/missions/breakwater.js";
 import { BREAKWATER } from "../../game/missions/breakwater-content.js";
+import { type CombatCue, combatAudioCues } from "./combat-audio.js";
 import {
   type CombatEffects,
   type EffectMarker,
@@ -15,6 +16,34 @@ export const BREAKWATER_ART = [
 export interface BreakwaterVisual {
   bossHitTick: number | null;
   effects: CombatEffects;
+}
+export function breakwaterAudioCues(
+  before: BreakwaterMission,
+  next: BreakwaterMission,
+  footfalls: readonly number[] = [],
+): CombatCue[] {
+  const cues = combatAudioCues(before.combat, next.combat, footfalls, BREAKWATER.boss.id);
+  if (before.boss.phase !== "windup" && next.boss.phase === "windup")
+    cues.push({
+      id: `${next.combat.tick}:boss:${next.boss.actionInstanceId}:warning`,
+      kind: "boss-warning",
+      tick: next.combat.tick,
+      x: BREAKWATER.boss.x,
+      emitter: "boss",
+    });
+  for (const notice of next.notices) {
+    const player =
+      next.combat.players.find((p) => p.playerId === notice.playerId) ?? next.combat.players[0];
+    if (!player) throw new Error("Missing mission audio listener");
+    cues.push({
+      id: `${notice.tick}:mission:${notice.kind}:${notice.id}:${notice.playerId}`,
+      kind: notice.kind,
+      tick: notice.tick,
+      x: player.body.x / 256,
+      emitter: `mission:${notice.playerId ?? "all"}`,
+    });
+  }
+  return cues;
 }
 export function initialBreakwaterVisual(tick = 0): BreakwaterVisual {
   return { bossHitTick: null, effects: initialEffects(tick) };

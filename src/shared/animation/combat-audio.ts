@@ -1,34 +1,14 @@
 import type { CombatLab, CombatNotice } from "../../game/labs/combat.js";
+import { AREA_PROFILES } from "../../game/labs/combat-content.js";
 import { type NativeAtlas, nativeExposure } from "./native.js";
 import type { OperativeMotion } from "./operative-motion.js";
-
-export const COMBAT_AUDIO = {
-  sidearm: { file: "carbine-shot.ogg", gain: 0.45, rate: 1.1, duration: 0.22 },
-  hmg: { file: "rivet-shot.ogg", gain: 0.32, rate: 1.05, duration: 0.12 },
-  rifle: { file: "carbine-shot.ogg", gain: 0.38, rate: 0.72, duration: 0.25 },
-  shotgun: { file: "scatter-shot.ogg", gain: 0.65, rate: 0.84, duration: 0.35 },
-  flame: { file: "beam-loop.ogg", gain: 0.3, rate: 0.64, duration: 0.36 },
-  tank: { file: "rivet-shot.ogg", gain: 0.58, rate: 0.66, duration: 0.19 },
-  knife: { file: "melee.ogg", gain: 0.5, rate: 1 },
-  bash: { file: "impact-light.ogg", gain: 0.6, rate: 0.45 },
-  throw: { file: "footstep-b.ogg", gain: 0.3, rate: 1.5 },
-  explosion: { file: "explosion.ogg", gain: 0.8, rate: 0.85 },
-  shield: { file: "impact-light.ogg", gain: 0.55, rate: 1.65, duration: 0.18 },
-  break: { file: "explosion.ogg", gain: 0.45, rate: 1.8 },
-  impact: { file: "impact-light.ogg", gain: 0.3, rate: 1, duration: 0.16 },
-  death: { file: "player-hit.ogg", gain: 0.55, rate: 0.7 },
-  entry: { file: "reward.ogg", gain: 0.25, rate: 0.75 },
-  step: { file: "footstep-a.ogg", gain: 0.1, rate: 1 },
-  jump: { file: "footstep-b.ogg", gain: 0.2, rate: 1.2 },
-  land: { file: "footstep-b.ogg", gain: 0.35, rate: 0.75 },
-  board: { file: "impact-light.ogg", gain: 0.38, rate: 0.65 },
-} as const;
-export type CombatCueName = keyof typeof COMBAT_AUDIO;
+import type { CombatCueName, CombatLoopName } from "./sfx-profile.js";
 export interface CombatCue {
   id: string;
   kind: CombatCueName;
   tick: number;
   x: number;
+  emitter: string;
 }
 /** A planted foot changes at an authored stride contact, independent of the global tick origin. */
 export function operativeFootfalls(
@@ -50,8 +30,9 @@ export function operativeFootfalls(
     })
     .map((clock) => clock.playerId);
 }
-function eventCue(event: CombatNotice): CombatCueName | null {
+function eventCue(event: CombatNotice, bossId?: number): CombatCueName | null {
   if (event.kind === "shot") {
+    if (event.ownerId === bossId) return "boss-fire";
     switch (event.source?.definitionId) {
       case 2:
         return "hmg";
@@ -60,7 +41,7 @@ function eventCue(event: CombatNotice): CombatCueName | null {
       case 10:
         return "shotgun";
       case 11:
-        return "flame";
+        return null; // The accepted emitter transition owns ignition and persistent roar.
       case 16:
         return "tank";
       default:
@@ -73,16 +54,19 @@ function eventCue(event: CombatNotice): CombatCueName | null {
     case "throw":
       return "throw";
     case "explosion":
-    case "prop-destroyed":
       return "explosion";
+    case "prop-destroyed":
+      return "wood-break";
     case "shield-break":
-      return "break";
+      return "shield-break";
     case "killed":
-      return "death";
+      return event.targetId === bossId ? "boss-destroyed" : "death";
     case "impact":
-      return event.impact?.kind === "shield" ? "shield" : "impact";
+      if (event.impact?.kind === "shield") return "shield";
+      if (event.impact?.entityId === bossId && event.impact?.kind === "body") return "boss-hit";
+      return event.impact?.kind === "body" ? "impact-body" : "impact-metal";
     case "muzzle-blocked":
-      return "impact";
+      return "impact-stone";
     default:
       return null;
   }
@@ -92,18 +76,30 @@ export function combatAudioCues(
   before: CombatLab,
   next: CombatLab,
   footfalls: readonly number[] = [],
+  bossId?: number,
 ): CombatCue[] {
   if (next.tick !== before.tick + 1 || before.scenario !== next.scenario)
     throw new Error("Audio needs one accepted world transition");
   const cues: CombatCue[] = [];
   for (const event of next.events) {
-    const kind = eventCue(event);
+    const tank = next.tanks.find((t) => t.body.id === (event.targetId ?? event.impact?.entityId));
+    const kind =
+      tank && event.kind === "killed"
+        ? "tank-destroyed"
+        : tank && event.kind === "impact"
+          ? "tank-hit"
+          : event.kind === "killed" &&
+              event.targetId !== bossId &&
+              !next.players.some((p) => p.body.id === event.targetId)
+            ? "enemy-death"
+            : eventCue(event, bossId);
     if (kind)
       cues.push({
         id: `${next.tick}:event:${event.ownerId}:${event.actionInstanceId}:${event.markerIndex}:${event.kind}:${event.targetId ?? event.impact?.colliderId ?? "none"}`,
         kind,
         tick: next.tick,
         x: event.position.x / 256,
+        emitter: `actor:${event.ownerId}`,
       });
   }
   for (const player of next.players) {
@@ -112,11 +108,11 @@ export function combatAudioCues(
     let kind: CombatCueName | null = null;
     if (old.life !== "death" && player.life === "death") kind = "death";
     else if (old.life !== "respawning" && player.life === "respawning") kind = "entry";
-    else if (
-      old.vehicleId !== player.vehicleId ||
-      (old.action.kind !== "enter" && player.action.kind === "enter")
-    )
-      kind = "board";
+    else if (player.health < old.health) kind = "hurt";
+    else if (old.action.kind !== "enter" && player.action.kind === "enter") kind = "board";
+    else if (old.action.kind !== "exit" && player.action.kind === "exit") kind = "exit";
+    else if (old.vehicleId !== null && player.vehicleId === null && old.action.kind !== "exit")
+      kind = "eject";
     else if (player.life === "alive" && player.vehicleId === null) {
       if (!old.body.grounded && player.body.grounded) kind = "land";
       else if (old.body.grounded && !player.body.grounded && player.body.vy < 0) kind = "jump";
@@ -135,6 +131,7 @@ export function combatAudioCues(
         kind,
         tick: next.tick,
         x: player.body.x / 256,
+        emitter: `actor:${player.playerId}`,
       });
   }
   for (const tank of next.tanks) {
@@ -142,10 +139,106 @@ export function combatAudioCues(
     if (old && !old.body.grounded && tank.body.grounded)
       cues.push({
         id: `${next.tick}:tank:${tank.body.id}:land`,
-        kind: "land",
+        kind: "tank-land",
         tick: next.tick,
         x: tank.body.x / 256,
+        emitter: `tank:${tank.body.id}`,
       });
   }
+  for (const grenade of next.grenades) {
+    const old = before.grenades.find((value) => value.id === grenade.id);
+    if (old && grenade.bounces > old.bounces)
+      cues.push({
+        id: `${next.tick}:grenade:${grenade.id}:bounce:${grenade.bounces}`,
+        kind: "grenade-bounce",
+        tick: next.tick,
+        x: grenade.body.x / 256,
+        emitter: `grenade:${grenade.id}`,
+      });
+  }
+  const oldLoops = combatAudioLoops(before),
+    loops = combatAudioLoops(next);
+  for (const loop of loops)
+    if (!oldLoops.some((old) => old.id === loop.id))
+      cues.push({
+        id: `${next.tick}:${loop.id}:start`,
+        kind: loop.kind === "flame" ? "flame-ignite" : "engine-start",
+        tick: next.tick,
+        x: loop.x,
+        emitter: loop.id,
+      });
+  for (const loop of oldLoops)
+    if (!loops.some((next) => next.id === loop.id))
+      cues.push({
+        id: `${next.tick}:${loop.id}:stop`,
+        kind: loop.kind === "flame" ? "flame-tail" : "engine-stop",
+        tick: next.tick,
+        x: loop.x,
+        emitter: loop.id,
+      });
   return cues;
+}
+
+export interface CombatLoop {
+  id: string;
+  kind: CombatLoopName;
+  x: number;
+  rate: number;
+}
+/** Reconstructable persistent sound from the current accepted state, with no historical one-shots. */
+export function combatAudioLoops(
+  state: CombatLab,
+  disconnected: ReadonlySet<number> = new Set(),
+): CombatLoop[] {
+  const loops: CombatLoop[] = [];
+  for (const tank of state.tanks) {
+    const player = state.players.find((p) => p.playerId === tank.occupantId);
+    if (
+      tank.lifecycle !== "occupied" ||
+      tank.armor <= 0 ||
+      tank.disconnectedTicks > 0 ||
+      !player ||
+      player.life !== "alive" ||
+      player.controlEpoch !== tank.ownerControlEpoch ||
+      disconnected.has(player.playerId)
+    )
+      continue;
+    loops.push({
+      id: `engine:${tank.body.id}:${tank.controlEpoch}:${player.controlEpoch}`,
+      kind: "engine",
+      x: tank.body.x / 256,
+      rate: 0.85 + Math.min(0.45, (Math.abs(tank.body.vx) / 256) * 0.13),
+    });
+  }
+  for (const player of state.players) {
+    if (
+      player.life !== "alive" ||
+      player.bodyPresence !== "present" ||
+      player.vehicleId !== null ||
+      player.weapon.id !== "flamethrower" ||
+      disconnected.has(player.playerId)
+    )
+      continue;
+    const active = state.areas.some((area) => {
+      const profile = AREA_PROFILES.get(area.definitionId);
+      return (
+        area.ownerId === player.playerId &&
+        area.definitionId === 11 &&
+        area.cancelledTick === null &&
+        profile &&
+        area.lobes.some((lobe) => {
+          const emitted = area.startTick + (profile.emissionOffsets[lobe.index] ?? -1000);
+          return state.tick >= emitted && state.tick < emitted + profile.attachedTicks;
+        })
+      );
+    });
+    if (active)
+      loops.push({
+        id: `flame:${player.playerId}:${player.controlEpoch}`,
+        kind: "flame",
+        x: player.body.x / 256,
+        rate: 1,
+      });
+  }
+  return loops;
 }

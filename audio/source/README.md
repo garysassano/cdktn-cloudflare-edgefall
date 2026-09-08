@@ -1,4 +1,4 @@
-# Breakwater music sources
+# Breakwater audio sources
 
 The editable [score](scores/breakwater.json) contains two original 16-bar arrangements at 144 BPM: **Brass and Salt** for the quay and **Counterpressure** for the lock engine. Trumpet phrases, pizzicato bass, marimba and percussion are authored as MIDI pitches, beat positions, durations and velocities. The boss arrangement changes the harmony, voicing and percussion density. No existing melody or music loop is sampled.
 
@@ -8,4 +8,4 @@ Run `pnpm audio:render` with the repository's mise-managed Node and FFmpeg tools
 
 Both loops contain exactly 1,280,000 stereo frames at 48 kHz: 26⅔ seconds each and 20,480,000 bytes of decoded float audio together. The browser keeps one local musical clock and changes arrangements at the next bar with a one-beat crossfade. Music retains normal tempo during quarter-speed visual inspection. Music mute preserves its clock; pause preserves position; replay starts from the beginning; terminal playback fades out. Audio unlock requires a gesture, and music/effects volumes and mute settings persist locally.
 
-These are benchmark candidates. Numerical checks and headless browser rendering do not establish listening quality or physical-device playback. Original interaction effects, persistent engine/flame treatment, musical polish and the full human listening review remain open.
+The [interaction-audio session](sfx/README.md) adds recorded cue variants, engine/flame loops and the shared mixer policy. These remain benchmark candidates. Numerical checks and headless browser rendering do not establish listening quality or physical-device playback. Musical/effects polish and full human listening review remain open.

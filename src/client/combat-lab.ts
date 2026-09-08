@@ -33,7 +33,7 @@ import {
   advanceCastMotion,
   initialCastMotion,
 } from "../shared/animation/cast.js";
-import { operativeFootfalls } from "../shared/animation/combat-audio.js";
+import { combatAudioCues, operativeFootfalls } from "../shared/animation/combat-audio.js";
 import type { NativeAtlas } from "../shared/animation/native.js";
 import {
   type OperativeMotion,
@@ -154,7 +154,11 @@ function step() {
   try {
     const next = stepCombatLab(state, inputs),
       clocks = nextMotion(state, next, motion);
-    audio.consume(state, next, nativeAtlas ? operativeFootfalls(clocks, nativeAtlas) : []);
+    audio.consume(
+      next,
+      combatAudioCues(state, next, nativeAtlas ? operativeFootfalls(clocks, nativeAtlas) : []),
+      running,
+    );
     castMotion = advanceCastMotion(state, next, castMotion);
     state = next;
     motion = clocks;
@@ -238,6 +242,7 @@ element("run").onclick = () => {
   if (running) pause();
   else {
     running = true;
+    audio.resume(state);
     element("run").textContent = "Pause";
     surface.focus();
   }
@@ -270,6 +275,7 @@ element("play-recording").onclick = () => {
   commands = [];
   audio.reset();
   running = true;
+  audio.resume(state);
   element("run").textContent = "Pause";
   surface.focus();
   inspect("playing recorded input");
@@ -318,6 +324,7 @@ element<HTMLInputElement>("cast-audio").onchange = async (event) => {
 };
 element<HTMLInputElement>("audio-volume").oninput = (event) =>
   audio.setVolume(Number((event.target as HTMLInputElement).value));
+window.addEventListener("pagehide", () => audio.dispose());
 if (new URLSearchParams(location.search).get("cast") === "1") {
   for (const id of ["native-operative", "native-cast"])
     element<HTMLInputElement>(id).checked = true;

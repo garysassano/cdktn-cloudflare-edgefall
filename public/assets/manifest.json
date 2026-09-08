@@ -64,6 +64,11 @@
       "creator": "Original Edgefall score by Codex; VSCO CE instruments recorded by Sam Gossner and Simon Dalzell, edited by Elan Hickler / Soundemote",
       "licence": "Project-original",
       "provenance": "Editable score, lossless masters and CC0 sample provenance in audio/source; pnpm audio:render."
+    },
+    "edgefall-breakwater-sfx": {
+      "creator": "Original Edgefall layer arrangements by Codex; Kenney CC0 foley and VSCO CE recorded instruments",
+      "licence": "Project-original",
+      "provenance": "Exact CC0 sources, licences, editable layer sessions and lossless derived masters in audio/source/sfx; pnpm audio:sfx:render. Human listening review pending."
     }
   },
   "assets": [
@@ -405,6 +410,430 @@
       "licence": "CC0-1.0",
       "maxBytes": 250000,
       "originalFile": "laser3.ogg"
+    },
+    {
+      "path": "assets/audio/sfx/bash.ogg",
+      "bytes": 6753,
+      "sha256": "26117b81e780fa61435642394c7393b3d9f0786b50a88918c29e2b9920835aa4",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/board.ogg",
+      "bytes": 7572,
+      "sha256": "1af09414eae5ce9d21e79c7116d38b52d43ee956af674ed9c118211b522ec921",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/boss-destroyed.ogg",
+      "bytes": 11789,
+      "sha256": "a75d5cab4c990f341135542d5d249affd01e1657c5c76d6d2d636790c9cacf38",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/boss-fire.ogg",
+      "bytes": 6479,
+      "sha256": "ce3e29bc7d0ede2b67fdc0e59d6d14c74b75af5ba2ef78eae8a4628deb2be8ed",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/boss-hit.ogg",
+      "bytes": 5827,
+      "sha256": "0b006cb1afa1c075b938b8795fd74369226925619f898c1dc01a5b6befeed8e7",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/boss-warning.ogg",
+      "bytes": 7328,
+      "sha256": "f4691936137660ab4a631af33c675fb0a8831cd4e198bc1fe9b4b789e9c417f6",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/breakwater-sfx.json",
+      "bytes": 31612,
+      "sha256": "9ace40974f094bd2580bd6a32347540bebf2ad24d0c4de76a9e97ea6f660d79c",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/checkpoint.ogg",
+      "bytes": 8350,
+      "sha256": "b39f2d0360514214cc4863cc6559a6bb3dea66e5f46e20fa6b25a97f0c88401b",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/death.ogg",
+      "bytes": 7766,
+      "sha256": "66b9dcac645eb42160d46c2e22487700d4a0ef08d1e1eafde4e251f8d653b1a5",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/defeat.ogg",
+      "bytes": 9305,
+      "sha256": "3b57aaf75133c126e30da1b9f05d8e5ba2b2a5575f82589898c1954fb7650a7d",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/eject.ogg",
+      "bytes": 8463,
+      "sha256": "121b4f1ceab0c466e89773bfebfcc95f4d89ab12bd6c018357457702111ae57f",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/engine-loop.ogg",
+      "bytes": 17192,
+      "sha256": "1d23371abc64f07f52e66133284ac91d166aa93ebbdfb782b0536a3e3b1e6106",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/engine-start.ogg",
+      "bytes": 8078,
+      "sha256": "c1a0b9b29d225964c86dab3f838f69b8c8bea41343b9b408ae83e56d70509f7f",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/engine-stop.ogg",
+      "bytes": 6721,
+      "sha256": "a563a720de9ddc0ead9c5ad74c1ca43939c7be36b24cba037566c8625a252723",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/entry.ogg",
+      "bytes": 7304,
+      "sha256": "cfab7382e4f0a06f3a084bf3247ffa92fc1070814350f0f4d10401d22e436f8a",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/exit.ogg",
+      "bytes": 7130,
+      "sha256": "149c423efc3ad9eaf785bef97ad9e2f38347e90483200c04b046f4cab8e60ee1",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/explosion-a.ogg",
+      "bytes": 11088,
+      "sha256": "daaf769dd199867bab45fedfb779b3771a109281c032f7282feef1ff9930586b",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/explosion-b.ogg",
+      "bytes": 11270,
+      "sha256": "74977856943ad549595a8c8fd7db02e6313b9c0a2005fb0755ca6dd16ef3336f",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/flame-ignite.ogg",
+      "bytes": 6171,
+      "sha256": "9c785772c31ded4aabb59606f1dac5759e338785ba52589d3e60896198b1d7c4",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/flame-loop.ogg",
+      "bytes": 19990,
+      "sha256": "e22acb6982de1840f643a77464db3b3d59ea1457c7c5e11aa847647b9dfd3cd3",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/flame-tail.ogg",
+      "bytes": 6222,
+      "sha256": "64bec42b3681de4ee4021bdf30c3fcda80ecbf36b6ab0ab59d297554371f742b",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/grenade-bounce.ogg",
+      "bytes": 5680,
+      "sha256": "6d018a45db2c4bda624e2979bfbcd79ccf05ad5fbb1ee4bad7d9d4efb0678031",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/hmg-a.ogg",
+      "bytes": 5279,
+      "sha256": "01e0edb222fc72fe3e65fece9ae64c5386a79f081704236e67aad9bfbf2ae48e",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/hmg-b.ogg",
+      "bytes": 5250,
+      "sha256": "814a8304f3a961224fa0822d4b046d8cacf3ff6f4b1c6c2c73984f9425eac368",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/hmg-c.ogg",
+      "bytes": 5267,
+      "sha256": "9f43fa8a7f2c356567f363a1d5eabc3d31d98bcb0ca1002a9dd4c0885fe6f445",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/hurt.ogg",
+      "bytes": 6156,
+      "sha256": "b3174c109e68a635bd6f8099bf04a65a76e6510bb8bd47f90d0e8065ad552b03",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/impact-body.ogg",
+      "bytes": 5293,
+      "sha256": "a82dae437c156d0bd4d28b9c67da313e7ff3d163548c682f6bc6bf1d446dc6c4",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/impact-metal-a.ogg",
+      "bytes": 5387,
+      "sha256": "935a6d9b5dbdf00a1df630a79918c366e902eb1d595c64618d0cbbb209d2cf56",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/impact-metal-b.ogg",
+      "bytes": 5297,
+      "sha256": "00d151af08889e5d8da2c7ff0946123450ba39554a2681979451114d79b49ee3",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/impact-stone.ogg",
+      "bytes": 5673,
+      "sha256": "1978af5fa5969246e734bbf05c5f485aa2849600c0daca300c9f67f9cac34e7d",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/jump.ogg",
+      "bytes": 5825,
+      "sha256": "ff781e5a4e1fa19fd052c1f3090211a11b1f1958cf41ff07678a4f4044c1476e",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/knife.ogg",
+      "bytes": 5733,
+      "sha256": "9e7bd56b54ab2504e4a6119d8aa9985c79e619692705bb76b5a5bf23bb5a27eb",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/land.ogg",
+      "bytes": 5499,
+      "sha256": "8cb64fcefe426c1dcd5176c268a359098281d15ad89893770acd527eb64bfaf2",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/pickup.ogg",
+      "bytes": 6372,
+      "sha256": "d372513e0479e6740abf6c4be9ce9575c97853fadc0338c3f08282a73f328ccc",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/rifle-a.ogg",
+      "bytes": 6426,
+      "sha256": "9dc73bf3a2481e7c1916a8e61cff0a193e35fce897f9ec1b2d89bebdaf42088f",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/rifle-b.ogg",
+      "bytes": 6305,
+      "sha256": "9ef314452d9a1b3d6bafc3925a14fda045b6804c8e7b759cab81dd7515f971f3",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/shield-a.ogg",
+      "bytes": 5887,
+      "sha256": "4d3d50b0ff5146954a547f614715c5265082b3d25595336b6cf0d13091dc9774",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/shield-b.ogg",
+      "bytes": 5813,
+      "sha256": "e159e0373874bddcf8243bc9a5f825d8310dea0b8e597dc39316acca7a155ca5",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/shield-break.ogg",
+      "bytes": 7062,
+      "sha256": "3bc3a816b1d2e73b94a3f651e982ebb4c8d41d1982f19544e3027cb17c69e4b9",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/shotgun-a.ogg",
+      "bytes": 7077,
+      "sha256": "a096d146a17e4bdd2cf1c5a84d106e590048033518e4144b3ef5fcdea1113486",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/shotgun-b.ogg",
+      "bytes": 7061,
+      "sha256": "9962a1012d23fb927d0df2ef4236b2180707eb89e754f0e9e73dfe3127b0d5fc",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/sidearm-a.ogg",
+      "bytes": 5780,
+      "sha256": "18242a455eaa94ff1c5fcac5bbe7ec9c1451c774bf2c5d639aa7b9f1f74d2e4d",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/sidearm-b.ogg",
+      "bytes": 5837,
+      "sha256": "43fbaa0c066c1152bbc34aa12f043eccf8c808d09c05a49d526a3af734e07d3f",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/step-a.ogg",
+      "bytes": 5271,
+      "sha256": "f4e8f97c5146ddf9f8b08fe542b489a51e3b424481fac9ffe3d03393e35bcd9e",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/step-b.ogg",
+      "bytes": 5583,
+      "sha256": "7776142069f11f70faf0f011da0af912ff74264be292f4b2e42e0ef4fa4a21e0",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/tank-a.ogg",
+      "bytes": 5997,
+      "sha256": "86f99c24781a7566bdab5b740f59860a8e4fdf6cf7202034c2f102d71a8e8178",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/tank-b.ogg",
+      "bytes": 5971,
+      "sha256": "632d499173e9d2556d13524684e9120fb6f60d33319f6897340b1ccc782f5ab7",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/tank-destroyed.ogg",
+      "bytes": 11976,
+      "sha256": "eebf91eec01d5ed9c49b11a72c666c4512540c08f547a81380cec3c216e4800b",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/tank-hit.ogg",
+      "bytes": 6029,
+      "sha256": "28b6aacf5a310e1bcc0a92be174515081d0504737b14eaae5603d46cd8919b34",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/tank-land.ogg",
+      "bytes": 7775,
+      "sha256": "7aaff78606798fc53576dc0ea2d199cf3f765837181d7820476331e4ba199683",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/throw.ogg",
+      "bytes": 5995,
+      "sha256": "21a3b437b866bf04843cb731959b6de647ff126f3d273321c2c18922ab61a5c0",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/victory.ogg",
+      "bytes": 10532,
+      "sha256": "5e618b86066206a48e515e4dfc45dbed8b83bf729a9360787a0d15771a9b648c",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
+    },
+    {
+      "path": "assets/audio/sfx/wood-break.ogg",
+      "bytes": 7808,
+      "sha256": "0e21d1973e43e84117022d0dea924abef295d476f21f99f64eabc5f28fd7eae7",
+      "source": "edgefall-breakwater-sfx",
+      "licence": "Project-original",
+      "maxBytes": 250000
     },
     {
       "path": "assets/audio/victory.ogg",

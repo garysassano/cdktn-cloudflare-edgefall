@@ -29,10 +29,13 @@ export class MissionMusic {
   private offset = 0;
   private readonly beat = 60 / 144;
   private readonly transitions: Array<{ phase: MusicPhase; when: number; offset: number }> = [];
-  constructor(private readonly context: AudioContext) {
+  constructor(
+    private readonly context: AudioContext,
+    output: AudioNode = context.destination,
+  ) {
     this.bus = context.createGain();
     this.bus.gain.value = 0.35;
-    this.bus.connect(context.destination);
+    this.bus.connect(output);
   }
   async setEnabled(enabled: boolean): Promise<void> {
     this.enabled = enabled;
@@ -167,12 +170,6 @@ export class MissionMusic {
   }
   private stopVoices(): void {
     for (const voice of [...this.voices]) this.release(voice, true);
-  }
-  connect(destination: AudioNode): void {
-    this.bus.connect(destination);
-  }
-  disconnect(destination: AudioNode): void {
-    this.bus.disconnect(destination);
   }
   dispose(): void {
     this.disposed = true;

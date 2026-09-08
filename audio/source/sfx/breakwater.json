@@ -1,0 +1,2211 @@
+{
+  "format": 1,
+  "sampleRate": 48000,
+  "channels": 1,
+  "description": "Editable recorded-sample layer sessions. All times in seconds; linear attack/release; wrapped tails only for declared loops. Mono sources gain spatial placement at runtime.",
+  "cues": [
+    {
+      "id": "sidearm-a",
+      "seconds": 0.19,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Dry short wooden crack, snare air and delayed slide click.",
+      "layers": [
+        {
+          "sample": "plank",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.8,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 450
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.095,
+          "gain": 0.4,
+          "rate": 1.4,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 1100
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.034,
+          "seconds": 0.12,
+          "gain": 0.25,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "sidearm-b",
+      "seconds": 0.19,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Dry short wooden crack, snare air and delayed slide click.",
+      "layers": [
+        {
+          "sample": "plank",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.8,
+          "rate": 1.5524999999999998,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 450
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.095,
+          "gain": 0.4,
+          "rate": 1.4489999999999998,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 1100
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.034,
+          "seconds": 0.12,
+          "gain": 0.25,
+          "rate": 1.2419999999999998,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "hmg-a",
+      "seconds": 0.105,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Compact layered report with bolt chatter; three separately rendered exposures.",
+      "layers": [
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.7,
+          "rate": 1.41,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 700
+        },
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.35,
+          "rate": 0.7989999999999999,
+          "attack": 0.002,
+          "release": 0.02666666666666667,
+          "lowpass": 4200
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.037,
+          "seconds": 0.06,
+          "gain": 0.35,
+          "rate": 1.3159999999999998,
+          "attack": 0.002,
+          "release": 0.02
+        }
+      ]
+    },
+    {
+      "id": "hmg-b",
+      "seconds": 0.105,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Compact layered report with bolt chatter; three separately rendered exposures.",
+      "layers": [
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.7,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 700
+        },
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.35,
+          "rate": 0.85,
+          "attack": 0.002,
+          "release": 0.02666666666666667,
+          "lowpass": 4200
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.037,
+          "seconds": 0.06,
+          "gain": 0.35,
+          "rate": 1.4,
+          "attack": 0.002,
+          "release": 0.02
+        }
+      ]
+    },
+    {
+      "id": "hmg-c",
+      "seconds": 0.105,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Compact layered report with bolt chatter; three separately rendered exposures.",
+      "layers": [
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.7,
+          "rate": 1.5675,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 700
+        },
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.35,
+          "rate": 0.8882499999999999,
+          "attack": 0.002,
+          "release": 0.02666666666666667,
+          "lowpass": 4200
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.037,
+          "seconds": 0.06,
+          "gain": 0.35,
+          "rate": 1.4629999999999999,
+          "attack": 0.002,
+          "release": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rifle-a",
+      "seconds": 0.22,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Longer woody enemy rifle report and closing mechanism.",
+      "layers": [
+        {
+          "sample": "plank",
+          "at": 0,
+          "seconds": 0.1,
+          "gain": 0.9,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "plate",
+          "at": 0.012,
+          "seconds": 0.15,
+          "gain": 0.28,
+          "rate": 0.9,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.09,
+          "seconds": 0.085,
+          "gain": 0.3,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.028333333333333335
+        }
+      ]
+    },
+    {
+      "id": "shotgun-a",
+      "seconds": 0.38,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Low drum body, sharp snare crack, wooden tail and spaced pump recovery.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.22,
+          "gain": 0.8,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.11,
+          "gain": 0.9,
+          "rate": 0.9,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 900
+        },
+        {
+          "sample": "plank",
+          "at": 0.015,
+          "seconds": 0.15,
+          "gain": 0.45,
+          "rate": 0.65,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.2,
+          "seconds": 0.16,
+          "gain": 0.4,
+          "rate": 0.9,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tank-a",
+      "seconds": 0.2,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Heavy mechanical machine-gun report with low chamber body and rack.",
+      "layers": [
+        {
+          "sample": "metal-heavy",
+          "at": 0,
+          "seconds": 0.12,
+          "gain": 0.6,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.085,
+          "gain": 0.8,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.028333333333333335
+        },
+        {
+          "sample": "kick",
+          "at": 0.006,
+          "seconds": 0.16,
+          "gain": 0.5,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.072,
+          "seconds": 0.1,
+          "gain": 0.4,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rifle-b",
+      "seconds": 0.22,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Longer woody enemy rifle report and closing mechanism.",
+      "layers": [
+        {
+          "sample": "plank",
+          "at": 0,
+          "seconds": 0.1,
+          "gain": 0.9,
+          "rate": 1.1275,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "plate",
+          "at": 0.012,
+          "seconds": 0.15,
+          "gain": 0.28,
+          "rate": 0.9225,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.09,
+          "seconds": 0.085,
+          "gain": 0.3,
+          "rate": 1.1275,
+          "attack": 0.002,
+          "release": 0.028333333333333335
+        }
+      ]
+    },
+    {
+      "id": "shotgun-b",
+      "seconds": 0.38,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Low drum body, sharp snare crack, wooden tail and spaced pump recovery.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.22,
+          "gain": 0.8,
+          "rate": 1.1275,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.11,
+          "gain": 0.9,
+          "rate": 0.9225,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 900
+        },
+        {
+          "sample": "plank",
+          "at": 0.015,
+          "seconds": 0.15,
+          "gain": 0.45,
+          "rate": 0.66625,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.2,
+          "seconds": 0.16,
+          "gain": 0.4,
+          "rate": 0.9225,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tank-b",
+      "seconds": 0.2,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Heavy mechanical machine-gun report with low chamber body and rack.",
+      "layers": [
+        {
+          "sample": "metal-heavy",
+          "at": 0,
+          "seconds": 0.12,
+          "gain": 0.6,
+          "rate": 0.82,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "snare",
+          "at": 0,
+          "seconds": 0.085,
+          "gain": 0.8,
+          "rate": 1.2299999999999998,
+          "attack": 0.002,
+          "release": 0.028333333333333335
+        },
+        {
+          "sample": "kick",
+          "at": 0.006,
+          "seconds": 0.16,
+          "gain": 0.5,
+          "rate": 1.5374999999999999,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.072,
+          "seconds": 0.1,
+          "gain": 0.4,
+          "rate": 1.1275,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "knife",
+      "seconds": 0.19,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Short cloth/grit swish and fine blade tick.",
+      "layers": [
+        {
+          "sample": "grit",
+          "at": 0,
+          "seconds": 0.16,
+          "gain": 0.6,
+          "rate": 1.7,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 900
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.055,
+          "seconds": 0.11,
+          "gain": 0.3,
+          "rate": 1.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bash",
+      "seconds": 0.3,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Blunt armored shove with a soft body thud.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.25,
+          "gain": 0.7,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "punch",
+          "at": 0.022,
+          "seconds": 0.2,
+          "gain": 0.7,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "throw",
+      "seconds": 0.17,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Pin click followed by a short hand swish.",
+      "layers": [
+        {
+          "sample": "tin",
+          "at": 0,
+          "seconds": 0.05,
+          "gain": 0.4,
+          "rate": 2,
+          "attack": 0.002,
+          "release": 0.016666666666666666
+        },
+        {
+          "sample": "grit",
+          "at": 0.025,
+          "seconds": 0.13,
+          "gain": 0.55,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "explosion-a",
+      "seconds": 0.8,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Weighted blast attack, expanding recorded cymbal air and falling material.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.5,
+          "gain": 0.9,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "wood",
+          "at": 0,
+          "seconds": 0.3,
+          "gain": 0.5,
+          "rate": 0.48,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.025,
+          "seconds": 0.65,
+          "gain": 0.65,
+          "rate": 0.52,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 180,
+          "lowpass": 6000
+        },
+        {
+          "sample": "metal-heavy",
+          "at": 0.17,
+          "seconds": 0.42,
+          "gain": 0.3,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "explosion-b",
+      "seconds": 0.8,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Weighted blast attack, expanding recorded cymbal air and falling material.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.5,
+          "gain": 0.9,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "wood",
+          "at": 0,
+          "seconds": 0.3,
+          "gain": 0.5,
+          "rate": 0.48,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.025,
+          "seconds": 0.65,
+          "gain": 0.65,
+          "rate": 0.52,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 180,
+          "lowpass": 6000
+        },
+        {
+          "sample": "metal-heavy",
+          "at": 0.17,
+          "seconds": 0.42,
+          "gain": 0.3,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "shield-a",
+      "seconds": 0.17,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Bright armored deflection.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.15,
+          "gain": 0.6,
+          "rate": 1.3,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "bell",
+          "at": 0.012,
+          "seconds": 0.13,
+          "gain": 0.25,
+          "rate": 1.8,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 1400
+        }
+      ]
+    },
+    {
+      "id": "shield-b",
+      "seconds": 0.17,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Bright armored deflection.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.15,
+          "gain": 0.6,
+          "rate": 1.45,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "bell",
+          "at": 0.012,
+          "seconds": 0.13,
+          "gain": 0.25,
+          "rate": 1.8,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 1400
+        }
+      ]
+    },
+    {
+      "id": "shield-break",
+      "seconds": 0.4,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Metal separation, fine fragments and clatter.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.6,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "glass",
+          "at": 0.025,
+          "seconds": 0.3,
+          "gain": 0.45,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.11,
+          "seconds": 0.25,
+          "gain": 0.4,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wood-break",
+      "seconds": 0.43,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Splintered timber and a short falling debris tail.",
+      "layers": [
+        {
+          "sample": "wood",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.75,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "plank",
+          "at": 0.04,
+          "seconds": 0.18,
+          "gain": 0.45,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "grit",
+          "at": 0.15,
+          "seconds": 0.25,
+          "gain": 0.3,
+          "rate": 0.85,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "impact-metal-a",
+      "seconds": 0.15,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Small hard-surface ping.",
+      "layers": [
+        {
+          "sample": "metal-light",
+          "at": 0,
+          "seconds": 0.14,
+          "gain": 0.8,
+          "rate": 1,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "impact-metal-b",
+      "seconds": 0.15,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Small hard-surface ping.",
+      "layers": [
+        {
+          "sample": "metal-light",
+          "at": 0,
+          "seconds": 0.14,
+          "gain": 0.8,
+          "rate": 1.12,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "impact-body",
+      "seconds": 0.13,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Short muted body contact.",
+      "layers": [
+        {
+          "sample": "punch",
+          "at": 0,
+          "seconds": 0.12,
+          "gain": 0.7,
+          "rate": 1.3,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "soft",
+          "at": 0.009,
+          "seconds": 0.1,
+          "gain": 0.35,
+          "rate": 1.4,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "impact-stone",
+      "seconds": 0.14,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Dry chipped stone and grit.",
+      "layers": [
+        {
+          "sample": "plank",
+          "at": 0,
+          "seconds": 0.07,
+          "gain": 0.6,
+          "rate": 1.8,
+          "attack": 0.002,
+          "release": 0.023333333333333334,
+          "highpass": 1300
+        },
+        {
+          "sample": "grit",
+          "at": 0.015,
+          "seconds": 0.12,
+          "gain": 0.5,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "hurt",
+      "seconds": 0.24,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Foreground player damage thud without a vocal impersonation.",
+      "layers": [
+        {
+          "sample": "punch",
+          "at": 0,
+          "seconds": 0.19,
+          "gain": 0.9,
+          "rate": 0.9,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "soft",
+          "at": 0.03,
+          "seconds": 0.18,
+          "gain": 0.4,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "death",
+      "seconds": 0.43,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Weighted body collapse and cloth settling.",
+      "layers": [
+        {
+          "sample": "punch",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.9,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "soft",
+          "at": 0.06,
+          "seconds": 0.3,
+          "gain": 0.6,
+          "rate": 0.65,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "grit",
+          "at": 0.16,
+          "seconds": 0.22,
+          "gain": 0.3,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "entry",
+      "seconds": 0.33,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Two-note safe re-entry signal from recorded marimba.",
+      "layers": [
+        {
+          "sample": "marimba",
+          "at": 0,
+          "seconds": 0.22,
+          "gain": 0.5,
+          "rate": 1.0,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.095,
+          "seconds": 0.23,
+          "gain": 0.5,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "step-a",
+      "seconds": 0.14,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Concrete sole contact with two original variants.",
+      "layers": [
+        {
+          "sample": "foot-a",
+          "at": 0,
+          "seconds": 0.13,
+          "gain": 0.8,
+          "rate": 1.0,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "step-b",
+      "seconds": 0.14,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Concrete sole contact with two original variants.",
+      "layers": [
+        {
+          "sample": "foot-b",
+          "at": 0,
+          "seconds": 0.13,
+          "gain": 0.8,
+          "rate": 1.0,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "seconds": 0.16,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Light push-off and cloth lift.",
+      "layers": [
+        {
+          "sample": "foot-b",
+          "at": 0,
+          "seconds": 0.11,
+          "gain": 0.5,
+          "rate": 1.35,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "grit",
+          "at": 0.015,
+          "seconds": 0.13,
+          "gain": 0.25,
+          "rate": 1.4,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "land",
+      "seconds": 0.22,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Two-layer cushioned boot landing.",
+      "layers": [
+        {
+          "sample": "foot-a",
+          "at": 0,
+          "seconds": 0.15,
+          "gain": 0.6,
+          "rate": 0.85,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "soft",
+          "at": 0.012,
+          "seconds": 0.18,
+          "gain": 0.4,
+          "rate": 1.15,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tank-land",
+      "seconds": 0.48,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Suspension compression followed by tread rattle.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.3,
+          "gain": 0.8,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.35,
+          "gain": 0.5,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.14,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "seconds": 0.33,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Latch, closing hatch and lock pin.",
+      "layers": [
+        {
+          "sample": "metal-light",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.6,
+          "rate": 0.9,
+          "attack": 0.002,
+          "release": 0.02666666666666667
+        },
+        {
+          "sample": "plate",
+          "at": 0.11,
+          "seconds": 0.2,
+          "gain": 0.6,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "tin",
+          "at": 0.21,
+          "seconds": 0.1,
+          "gain": 0.3,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "seconds": 0.3,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Opening latch and stepping from the hatch.",
+      "layers": [
+        {
+          "sample": "tin",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.6,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.02666666666666667
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.065,
+          "seconds": 0.2,
+          "gain": 0.5,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "foot-b",
+          "at": 0.17,
+          "seconds": 0.11,
+          "gain": 0.25,
+          "rate": 1.0,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "eject",
+      "seconds": 0.38,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Emergency release, rushing air and displaced armor.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.12,
+          "gain": 0.7,
+          "rate": 1.4,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.02,
+          "seconds": 0.27,
+          "gain": 0.35,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 1800
+        },
+        {
+          "sample": "metal-heavy",
+          "at": 0.16,
+          "seconds": 0.2,
+          "gain": 0.5,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "pickup",
+      "seconds": 0.22,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Compact bright equipment pickup.",
+      "layers": [
+        {
+          "sample": "metal-light",
+          "at": 0,
+          "seconds": 0.08,
+          "gain": 0.2,
+          "rate": 1.7,
+          "attack": 0.002,
+          "release": 0.02666666666666667
+        },
+        {
+          "sample": "marimba",
+          "at": 0.035,
+          "seconds": 0.17,
+          "gain": 0.65,
+          "rate": 2,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "checkpoint",
+      "seconds": 0.4,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Three-note route confirmation.",
+      "layers": [
+        {
+          "sample": "marimba",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.5,
+          "rate": 1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.09,
+          "seconds": 0.24,
+          "gain": 0.5,
+          "rate": 1.25,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.18,
+          "seconds": 0.2,
+          "gain": 0.5,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "victory",
+      "seconds": 0.75,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Short authored resolve over the departing music.",
+      "layers": [
+        {
+          "sample": "marimba",
+          "at": 0,
+          "seconds": 0.38,
+          "gain": 0.5,
+          "rate": 1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.12,
+          "seconds": 0.35,
+          "gain": 0.5,
+          "rate": 1.25,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.24,
+          "seconds": 0.4,
+          "gain": 0.55,
+          "rate": 1.5,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "bell",
+          "at": 0.24,
+          "seconds": 0.46,
+          "gain": 0.2,
+          "rate": 1.0,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "defeat",
+      "seconds": 0.66,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Descending recorded resolve.",
+      "layers": [
+        {
+          "sample": "marimba",
+          "at": 0,
+          "seconds": 0.3,
+          "gain": 0.5,
+          "rate": 1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "marimba",
+          "at": 0.18,
+          "seconds": 0.43,
+          "gain": 0.5,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "soft",
+          "at": 0.24,
+          "seconds": 0.35,
+          "gain": 0.2,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "boss-warning",
+      "seconds": 0.52,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Two rising mechanical warning strikes distinct from weapon reports.",
+      "layers": [
+        {
+          "sample": "bell",
+          "at": 0,
+          "seconds": 0.25,
+          "gain": 0.6,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "bell",
+          "at": 0.19,
+          "seconds": 0.27,
+          "gain": 0.65,
+          "rate": 0.95,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.035,
+          "seconds": 0.4,
+          "gain": 0.3,
+          "rate": 0.65,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "boss-fire",
+      "seconds": 0.26,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Heavy pressure-piston discharge.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.2,
+          "gain": 0.6,
+          "rate": 0.55,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.2,
+          "gain": 0.65,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "snare",
+          "at": 0.025,
+          "seconds": 0.18,
+          "gain": 0.4,
+          "rate": 0.7,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "boss-hit",
+      "seconds": 0.18,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Exposed machinery contact.",
+      "layers": [
+        {
+          "sample": "tin",
+          "at": 0,
+          "seconds": 0.14,
+          "gain": 0.6,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "punch",
+          "at": 0.01,
+          "seconds": 0.15,
+          "gain": 0.35,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "boss-destroyed",
+      "seconds": 0.9,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Staged pressure release, falling machinery and final metal debris.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.55,
+          "gain": 0.8,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.38,
+          "gain": 0.6,
+          "rate": 0.4,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.025,
+          "seconds": 0.8,
+          "gain": 0.5,
+          "rate": 0.45,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-heavy",
+          "at": 0.19,
+          "seconds": 0.5,
+          "gain": 0.3,
+          "rate": 0.55,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.49,
+          "seconds": 0.35,
+          "gain": 0.35,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "flame-ignite",
+      "seconds": 0.18,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Igniter tick and short expanding air burst.",
+      "layers": [
+        {
+          "sample": "tin",
+          "at": 0,
+          "seconds": 0.055,
+          "gain": 0.3,
+          "rate": 2.0,
+          "attack": 0.002,
+          "release": 0.018333333333333333
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.015,
+          "seconds": 0.15,
+          "gain": 0.7,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03,
+          "highpass": 500,
+          "lowpass": 6500
+        }
+      ]
+    },
+    {
+      "id": "flame-tail",
+      "seconds": 0.2,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Decaying recorded air after the emitter closes.",
+      "layers": [
+        {
+          "sample": "cymbal",
+          "at": 0,
+          "seconds": 0.19,
+          "gain": 0.6,
+          "rate": 0.8,
+          "attack": 0.002,
+          "release": 0.03,
+          "offset": 0.06,
+          "highpass": 600,
+          "lowpass": 5000
+        }
+      ]
+    },
+    {
+      "id": "engine-start",
+      "seconds": 0.4,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Starter crank and clutch engagement.",
+      "layers": [
+        {
+          "sample": "metal-rattle",
+          "at": 0,
+          "seconds": 0.24,
+          "gain": 0.6,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "kick",
+          "at": 0.1,
+          "seconds": 0.25,
+          "gain": 0.3,
+          "rate": 1,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "plate",
+          "at": 0.23,
+          "seconds": 0.14,
+          "gain": 0.25,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "engine-stop",
+      "seconds": 0.28,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Clutch release and a short mechanical coast.",
+      "layers": [
+        {
+          "sample": "metal-rattle",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.6,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03
+        },
+        {
+          "sample": "metal-light",
+          "at": 0.15,
+          "seconds": 0.1,
+          "gain": 0.4,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "engine-loop",
+      "seconds": 2.4,
+      "loop": true,
+      "peak": 0.45,
+      "description": "Recorded drum compression pulses and low metal rattle arranged across a seamless 2.4-second cycle.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.035,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.15,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.432,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.185,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.3,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.444,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.33499999999999996,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.45,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.485,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.6,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.432,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.635,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.75,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.444,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.785,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 0.9,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.935,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.05,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.432,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.085,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.2,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.444,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.2349999999999999,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.35,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.385,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.5,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.432,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.535,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.65,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.444,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.6849999999999998,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.8,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.835,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 1.95,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.432,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 1.9849999999999999,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 2.1,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.444,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 2.1350000000000002,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.6,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        },
+        {
+          "sample": "kick",
+          "at": 2.25,
+          "seconds": 0.23,
+          "gain": 0.25,
+          "rate": 0.42,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 450
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 2.285,
+          "seconds": 0.14,
+          "gain": 0.08,
+          "rate": 0.64,
+          "attack": 0.002,
+          "release": 0.03,
+          "lowpass": 2200
+        }
+      ]
+    },
+    {
+      "id": "flame-loop",
+      "seconds": 1.6,
+      "loop": true,
+      "peak": 0.45,
+      "description": "Overlapping recorded cymbal-air grains form a continuous rough roar, without an oscillator.",
+      "layers": [
+        {
+          "sample": "cymbal",
+          "at": 0,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.62,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.1,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.657,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.095,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.2,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.694,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.13,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.3,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.731,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.4,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.62,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.095,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.5,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.657,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.13,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.6,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.694,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.7,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.731,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.095,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.8,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.62,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.13,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.9,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.657,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.0,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.694,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.095,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.1,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.731,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.13,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.2,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.62,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.3,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.657,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.095,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.4,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.694,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.13,
+          "highpass": 450,
+          "lowpass": 6800
+        },
+        {
+          "sample": "cymbal",
+          "at": 1.5,
+          "seconds": 0.28,
+          "gain": 0.5,
+          "rate": 0.731,
+          "attack": 0.075,
+          "release": 0.11,
+          "offset": 0.06,
+          "highpass": 450,
+          "lowpass": 6800
+        }
+      ]
+    },
+    {
+      "id": "grenade-bounce",
+      "seconds": 0.16,
+      "loop": false,
+      "peak": 0.55,
+      "description": "Small weighted metal body strikes the ground.",
+      "layers": [
+        {
+          "sample": "tin",
+          "at": 0,
+          "seconds": 0.13,
+          "gain": 0.6,
+          "rate": 0.85,
+          "attack": 0.002,
+          "release": 0.025
+        },
+        {
+          "sample": "grit",
+          "at": 0.02,
+          "seconds": 0.12,
+          "gain": 0.25,
+          "rate": 1.2,
+          "attack": 0.002,
+          "release": 0.025
+        }
+      ]
+    },
+    {
+      "id": "tank-hit",
+      "seconds": 0.22,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Heavy armor strike with a short internal rattle.",
+      "layers": [
+        {
+          "sample": "plate",
+          "at": 0,
+          "seconds": 0.17,
+          "gain": 0.7,
+          "rate": 0.75,
+          "attack": 0.002,
+          "release": 0.025
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.045,
+          "seconds": 0.16,
+          "gain": 0.3,
+          "rate": 1.1,
+          "attack": 0.002,
+          "release": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tank-destroyed",
+      "seconds": 0.82,
+      "loop": false,
+      "peak": 0.68,
+      "description": "Low hull rupture, displaced plates and falling tread metal.",
+      "layers": [
+        {
+          "sample": "kick",
+          "at": 0,
+          "seconds": 0.4,
+          "gain": 0.7,
+          "rate": 0.65,
+          "attack": 0.002,
+          "release": 0.1
+        },
+        {
+          "sample": "metal-heavy",
+          "at": 0.012,
+          "seconds": 0.42,
+          "gain": 0.8,
+          "rate": 0.5,
+          "attack": 0.002,
+          "release": 0.08
+        },
+        {
+          "sample": "cymbal",
+          "at": 0.03,
+          "seconds": 0.65,
+          "gain": 0.45,
+          "rate": 0.75,
+          "attack": 0.003,
+          "release": 0.18
+        },
+        {
+          "sample": "metal-rattle",
+          "at": 0.35,
+          "seconds": 0.4,
+          "gain": 0.35,
+          "rate": 0.65,
+          "attack": 0.002,
+          "release": 0.08
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "status": "pass",
+  "scope": "Each raw WebM and published MP4 stereo channel, plus overall statistics; no mono downmix.",
+  "files": [
+    {
+      "name": "coop-4-clean-normal.webm",
+      "sha256": "fd326ce245db6f7af58979350ddd10cd6d831937bb97752a2d9612b6537452b5",
+      "peakDb": [
+        -7.096808,
+        -11.766507,
+        -7.096808
+      ],
+      "rmsDb": [
+        -28.270179,
+        -30.049362,
+        -29.069291
+      ]
+    },
+    {
+      "name": "coop-4-clean-normal.mp4",
+      "sha256": "fb030dd3a4e99843b8144a00206c8db01ce1bbadccd74d2f7b3f68336bce9ad4",
+      "peakDb": [
+        -8.226855,
+        -12.725589,
+        -8.226855
+      ],
+      "rmsDb": [
+        -29.329334,
+        -31.082559,
+        -30.11807
+      ]
+    },
+    {
+      "name": "coop-4-debug-normal.webm",
+      "sha256": "8197383398a44b665f3731009fdf0f8e111a11435ef8b561c3f952bf583fce7d",
+      "peakDb": [
+        -7.103866,
+        -11.539036,
+        -7.103866
+      ],
+      "rmsDb": [
+        -28.271049,
+        -30.034721,
+        -29.063965
+      ]
+    },
+    {
+      "name": "coop-4-debug-normal.mp4",
+      "sha256": "a5a8648ee1a81244bad25339aca86ca4cefc8059a127794722af7148dec6ac52",
+      "peakDb": [
+        -8.174977,
+        -12.599261,
+        -8.174977
+      ],
+      "rmsDb": [
+        -29.325517,
+        -31.06459,
+        -30.108581
+      ]
+    },
+    {
+      "name": "coop-4-clean-quarter.webm",
+      "sha256": "cf5ae014d0bed9b0add683ad69dac9d9c041ed962b3b3b519e831d5a574f240a",
+      "peakDb": [
+        -7.14459,
+        -11.097869,
+        -7.14459
+      ],
+      "rmsDb": [
+        -30.966471,
+        -32.723443,
+        -31.756707
+      ]
+    },
+    {
+      "name": "coop-4-clean-quarter.mp4",
+      "sha256": "0fcd0f049876746080d3243413982ad09ca04bf0cb44272d27fe2e40b0b596f1",
+      "peakDb": [
+        -8.102307,
+        -12.200291,
+        -8.102307
+      ],
+      "rmsDb": [
+        -32.012695,
+        -33.745291,
+        -32.793159
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Full-volume mixer capture before the shared scene output guard; signal acceptance fails. Voice-budget checks alone do not establish headroom.",
+  "sfxVolume": 1,
+  "musicEnabled": false,
+  "file": {
+    "file": "maximum-mix-before-output-guard.webm",
+    "bytes": 10922,
+    "sha256": "0ecbf1d9a80923f07f1c20897cb5ed49fed8058918a0b0be3c3776d5e54bdf91",
+    "seconds": 0.66,
+    "channels": [
+      {
+        "peak": 1.0931531190872192,
+        "rms": 0.17270864972617217
+      },
+      {
+        "peak": 1.0841223001480103,
+        "rms": 0.1524254884775658
+      }
+    ]
+  },
+  "headroomPassed": false,
+  "defaultVolumeControl": {
+    "volume": 0.4,
+    "channelPeaks": [
+      0.665617823600769,
+      0.6583420634269714
+    ],
+    "source": "Earlier independent run retained in the tool transcript; not a current-output assertion."
+  }
+}
